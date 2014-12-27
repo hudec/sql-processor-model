@@ -5,18 +5,6 @@ package org.sqlproc.model.ui.outline
 
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
 import org.eclipse.emf.ecore.EObject
-import org.sqlproc.model.processorModel.Artifacts
-import org.sqlproc.model.processorModel.OptionalFeature
-import org.sqlproc.model.processorModel.MetaStatement
-import org.sqlproc.model.processorModel.MappingRule
-import org.eclipse.xtext.ui.editor.outline.IOutlineNode
-import org.sqlproc.model.processorModel.Identifier
-import org.sqlproc.model.processorModel.Constant
-import org.sqlproc.model.util.Utils
-import org.sqlproc.model.processorModel.Column
-import org.sqlproc.model.processorModel.DatabaseColumn
-import org.sqlproc.model.util.Collector
-import org.sqlproc.model.processorModel.MappingColumn
 
 /**
  * Customization of the default outline structure.
@@ -30,77 +18,5 @@ class ProcessorModelOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outl
 		// for (EObject content : rootElement.eContents()) {
 		// 		createNode(parentNode, content)
 		// }
-		
-		val artifacts = rootElement as Artifacts;
-		if (artifacts.features != null) {
-			for (optionalFeature : artifacts.features)
-				createNode(parentNode, optionalFeature)
-		}
-		if (artifacts.statements != null) {
-			for (metaStatement : artifacts.statements)
-				createNode(parentNode, metaStatement)
-		}
-		if (artifacts.mappings!= null) {
-			for (mappingRule : artifacts.mappings)
-				createNode(parentNode, mappingRule)
-		}
 	}
-
-	override _createChildren(IOutlineNode parentNode, EObject modelElement) {
-		switch (modelElement) {
-			MetaStatement: {
-				val identifiers = <Identifier>newTreeSet[a,b|a.name.compareTo(b.name)]
-	        	val constants = <Constant>newTreeSet[a,b|a.name.compareTo(b.name)]
-	        	val columns = <Column>newTreeSet[a,b|Utils.getName(a).compareTo(Utils.getName(b))]
-	        	val databaseColumns = <DatabaseColumn>newTreeSet[a,b|a.name.compareTo(b.name)]
-	            Collector.allVariables(modelElement as MetaStatement, identifiers, constants, columns, databaseColumns)
-				for (identifier : identifiers)
-	            	createNode(parentNode, identifier)
-	            for (constant : constants)
-	                createNode(parentNode, constant)
-	            for (column : columns)
-	                createNode(parentNode, column)
-	            for (column : databaseColumns)
-	                createNode(parentNode, column)
-			}
-        	MappingRule: {
-	        	val columns = <MappingColumn>newTreeSet[a,b|Utils.getName(a).compareTo(Utils.getName(b))]
-	            Collector.allVariables(modelElement as MappingRule, columns)
-                for (column : columns)
-                    createNode(parentNode, column)
-           	}
-        }
-    }
-
-    def _isLeaf(MetaStatement metaStatement) {
-        return false;
-    }
-
-    def _isLeaf(MappingRule mappingRule) {
-        return false;
-    }
-
-    def _isLeaf(OptionalFeature optionalFeature) {
-        return true;
-    }
-
-    def _isLeaf(Identifier identifier) {
-        return true;
-    }
-
-    def _isLeaf(Constant constant) {
-        return true;
-    }
-
-    def _isLeaf(Column column) {
-        return true;
-    }
-
-    def _isLeaf(DatabaseColumn column) {
-        return true;
-    }
-
-    def _isLeaf(MappingColumn column) {
-        return true;
-    }
 }

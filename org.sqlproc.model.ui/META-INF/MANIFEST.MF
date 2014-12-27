@@ -27,4 +27,4 @@ Export-Package: org.sqlproc.model.ui.quickfix,
  org.sqlproc.model.ui.contentassist,
  org.sqlproc.model.ui.contentassist.antlr,
  org.sqlproc.model.ui.internal
-Bundle-Activator: org.sqlproc.model.ui.internal.ProcessorDslActivator
+Bundle-Activator: org.sqlproc.model.ui.internal.ProcessorModelActivator

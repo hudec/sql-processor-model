@@ -57,16 +57,7 @@ public class ProcessorModelFormatter extends AbstractDeclarativeFormatter {
     ParserRule _functionDefinitionRule = this._processorModelGrammarAccess.getFunctionDefinitionRule();
     _setLinewrap_8.after(_functionDefinitionRule);
     FormattingConfig.LinewrapLocator _setLinewrap_9 = c.setLinewrap(1, 1, 2);
-    ParserRule _metaStatementRule = this._processorModelGrammarAccess.getMetaStatementRule();
-    _setLinewrap_9.after(_metaStatementRule);
-    FormattingConfig.LinewrapLocator _setLinewrap_10 = c.setLinewrap(1, 1, 2);
-    ParserRule _mappingRuleRule = this._processorModelGrammarAccess.getMappingRuleRule();
-    _setLinewrap_10.after(_mappingRuleRule);
-    FormattingConfig.LinewrapLocator _setLinewrap_11 = c.setLinewrap(1, 1, 2);
-    ParserRule _optionalFeatureRule = this._processorModelGrammarAccess.getOptionalFeatureRule();
-    _setLinewrap_11.after(_optionalFeatureRule);
-    FormattingConfig.LinewrapLocator _setLinewrap_12 = c.setLinewrap(1, 1, 2);
     ParserRule _packageDeclarationRule = this._processorModelGrammarAccess.getPackageDeclarationRule();
-    _setLinewrap_12.after(_packageDeclarationRule);
+    _setLinewrap_9.after(_packageDeclarationRule);
   }
 }

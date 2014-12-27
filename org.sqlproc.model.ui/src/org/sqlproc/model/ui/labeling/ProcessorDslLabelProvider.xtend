@@ -5,16 +5,6 @@ package org.sqlproc.model.ui.labeling
 
 import com.google.inject.Inject
 import org.sqlproc.model.processorModel.Artifacts
-import org.sqlproc.model.processorModel.MetaStatement
-import org.sqlproc.model.processorModel.MappingRule
-import org.sqlproc.model.processorModel.OptionalFeature
-import org.sqlproc.model.processorModel.Identifier
-import org.sqlproc.model.processorModel.Constant
-import org.sqlproc.model.processorModel.Column
-import org.sqlproc.model.processorModel.MappingColumn
-import org.sqlproc.model.processorModel.DatabaseColumn
-import org.sqlproc.model.processorModel.DatabaseTable
-import org.sqlproc.model.util.Utils
 
 /**
  * Provides labels for a EObjects.
@@ -30,73 +20,5 @@ class ProcessorModelLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObj
 
     def text(Artifacts ele) {
         "MODEL"
-    }
-
-    def text(MetaStatement ele) {
-        ele.name
-    }
-
-    def text(MappingRule ele) {
-        ele.name
-    }
-
-    def text(OptionalFeature ele) {
-        ele.name
-    }
-
-    def text(Identifier ele) {
-        ele.name
-    }
-
-    def text(Constant ele) {
-        ele.name
-    }
-
-    def text(Column ele) {
-        Utils.getName(ele)
-    }
-
-    def text(MappingColumn ele) {
-        Utils.getName(ele)
-    }
-
-    def text(DatabaseColumn ele) {
-        ele.name
-    }
-
-    def text(DatabaseTable ele) {
-        ele.name
-    }
-
-    def image(MetaStatement ele) {
-        "SQL.gif"
-    }
-
-    def image(MappingRule ele) {
-        "OUT.gif"
-    }
-
-    def image(OptionalFeature ele) {
-        "OPT.gif"
-    }
-
-    def image(Identifier ele) {
-        "IDNT.gif"
-    }
-
-    def image(Constant ele) {
-        "CNST.gif"
-    }
-
-    def image(Column ele) {
-        "COL.gif"
-    }
-
-    def image(MappingColumn ele) {
-        "COL.gif"
-    }
-
-    def image(DatabaseColumn ele) {
-        "DBCOL.gif"
     }
 }

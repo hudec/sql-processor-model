@@ -23,7 +23,7 @@ import org.sqlproc.model.property.PojoAttribute;
 import org.sqlproc.model.resolver.DbResolver.DbType;
 import org.sqlproc.model.util.Debug;
 
-public class TableDaoGenerator extends TableMetaGenerator {
+public class TableDaoGenerator extends TablePojoGenerator {
 
     protected Logger LOGGER = Logger.getLogger(TableDaoGenerator.class);
     private Debug debug = new Debug(LOGGER);
@@ -40,13 +40,16 @@ public class TableDaoGenerator extends TableMetaGenerator {
     protected Set<String> generics;
     protected Filter daoActiveFilter = null;
 
+    protected Map<String, String> metaFunctionsResultSet = new HashMap<String, String>();
+    protected Map<String, String> metaProceduresResultSet = new HashMap<String, String>();
+
     public TableDaoGenerator() {
         super();
     }
 
     public TableDaoGenerator(ModelProperty modelProperty, Artifacts artifacts, String suffix,
             IScopeProvider scopeProvider, Map<String, String> finalDaos, List<String> dbSequences, DbType dbType) {
-        super(modelProperty, artifacts, null, Collections.<String, String> emptyMap(), dbSequences, dbType);
+        super(modelProperty, artifacts, null, Collections.<String, String> emptyMap(), null, dbSequences, dbType);
 
         debug = new Debug(modelProperty.getDaoDebugLevel(artifacts), modelProperty.getDaoDebugScope(artifacts), LOGGER);
 
@@ -74,6 +77,15 @@ public class TableDaoGenerator extends TableMetaGenerator {
         }
         this.daoActiveFilter = Filter.parse(modelProperty.getDaoActiveFilter(artifacts));
 
+        Map<String, String> metaFunctionsResultSet = modelProperty.getMetaFunctionsResultSet(artifacts);
+        if (metaFunctionsResultSet != null) {
+            this.metaFunctionsResultSet.putAll(metaFunctionsResultSet);
+        }
+        Map<String, String> metaProceduresResultSet = modelProperty.getMetaProceduresResultSet(artifacts);
+        if (metaProceduresResultSet != null) {
+            this.metaProceduresResultSet.putAll(metaProceduresResultSet);
+        }
+
         if (debug.debug) {
             System.out.println("finalDaos " + this.finalDaos);
             System.out.println("daoIgnoreTables " + this.daoIgnoreTables);
@@ -83,6 +95,9 @@ public class TableDaoGenerator extends TableMetaGenerator {
             System.out.println("daoToExtends " + this.daoToExtends);
             System.out.println("daoFunctionsResult " + this.daoFunctionsResult);
             System.out.println("daoActiveFilter " + this.daoActiveFilter);
+
+            System.out.println("metaFunctionsResultSet " + this.metaFunctionsResultSet);
+            System.out.println("metaProceduresResultSet " + this.metaProceduresResultSet);
         }
     }
 

@@ -25,7 +25,6 @@ import org.sqlproc.model.processorModel.AbstractPojoEntity;
 import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.EnumEntity;
-import org.sqlproc.model.processorModel.MetaStatement;
 import org.sqlproc.model.processorModel.PackageDeclaration;
 import org.sqlproc.model.processorModel.PojoDao;
 import org.sqlproc.model.processorModel.PojoEntity;
@@ -267,17 +266,6 @@ public class Main {
             return;
         }
 
-        Artifacts sqls = null;
-        List<MetaStatement> statements = null;
-        if (!merge) {
-            statements = new ArrayList<MetaStatement>();
-        } else {
-            if (sqlResource != null) {
-                sqls = (Artifacts) sqlResource.getContents().get(0);
-                statements = sqls.getStatements();
-            }
-        }
-
         String pojoDefinitions = getPojoDefinitions(modelProperty, dbResolver, definitions, pojoPackage,
                 ((XtextResource) controlResource).getSerializer());
         fileAccess.generateFile(pojo, "package " + pojoPackageName + " {\n" + pojoDefinitions + "}");
@@ -287,11 +275,6 @@ public class Main {
                 ((XtextResource) controlResource).getSerializer());
         fileAccess.generateFile(dao, "package " + daoPackageName + " {\n" + daoDefinitions + "}");
         System.out.println(dao + " generation finished.");
-
-        String metaDefinitions = getMetaDefinitions(modelProperty, dbResolver, definitions, statements,
-                ((XtextResource) controlResource).getSerializer());
-        fileAccess.generateFile(sql, metaDefinitions);
-        System.out.println(sql + " generation finished.");
     }
 
     protected String getFile(String source, String file) {
@@ -389,27 +372,6 @@ public class Main {
             if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts)) {
                 return generator.getDaoDefinitions(modelProperty, artifacts);
             }
-        }
-        return null;
-    }
-
-    protected String getMetaDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
-            List<MetaStatement> statements, ISerializer serializer) {
-
-        if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-            Map<String, String> finalMetas = new HashMap<String, String>();
-            for (MetaStatement meta : statements) {
-                if (Utils.isFinal(meta)) {
-                    finalMetas.put(meta.getName(), serializer.serialize(meta));
-                }
-            }
-            // List<String> tables = dbResolver.getTables(artifacts);
-            List<String> dbSequences = dbResolver.getSequences(artifacts);
-            DbType dbType = Utils.getDbType(dbResolver, artifacts);
-            TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider, finalMetas,
-                    dbSequences, dbType);
-            if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
-                return generator.getMetaDefinitions(modelProperty, artifacts);
         }
         return null;
     }

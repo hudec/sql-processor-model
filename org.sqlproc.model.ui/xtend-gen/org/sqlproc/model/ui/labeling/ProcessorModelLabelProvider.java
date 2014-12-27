@@ -7,16 +7,6 @@ import com.google.inject.Inject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 import org.sqlproc.model.processorModel.Artifacts;
-import org.sqlproc.model.processorModel.Column;
-import org.sqlproc.model.processorModel.Constant;
-import org.sqlproc.model.processorModel.DatabaseColumn;
-import org.sqlproc.model.processorModel.DatabaseTable;
-import org.sqlproc.model.processorModel.Identifier;
-import org.sqlproc.model.processorModel.MappingColumn;
-import org.sqlproc.model.processorModel.MappingRule;
-import org.sqlproc.model.processorModel.MetaStatement;
-import org.sqlproc.model.processorModel.OptionalFeature;
-import org.sqlproc.model.util.Utils;
 
 /**
  * Provides labels for a EObjects.
@@ -32,73 +22,5 @@ public class ProcessorModelLabelProvider extends DefaultEObjectLabelProvider {
   
   public String text(final Artifacts ele) {
     return "MODEL";
-  }
-  
-  public String text(final MetaStatement ele) {
-    return ele.getName();
-  }
-  
-  public String text(final MappingRule ele) {
-    return ele.getName();
-  }
-  
-  public String text(final OptionalFeature ele) {
-    return ele.getName();
-  }
-  
-  public String text(final Identifier ele) {
-    return ele.getName();
-  }
-  
-  public String text(final Constant ele) {
-    return ele.getName();
-  }
-  
-  public String text(final Column ele) {
-    return Utils.getName(ele);
-  }
-  
-  public String text(final MappingColumn ele) {
-    return Utils.getName(ele);
-  }
-  
-  public String text(final DatabaseColumn ele) {
-    return ele.getName();
-  }
-  
-  public String text(final DatabaseTable ele) {
-    return ele.getName();
-  }
-  
-  public String image(final MetaStatement ele) {
-    return "SQL.gif";
-  }
-  
-  public String image(final MappingRule ele) {
-    return "OUT.gif";
-  }
-  
-  public String image(final OptionalFeature ele) {
-    return "OPT.gif";
-  }
-  
-  public String image(final Identifier ele) {
-    return "IDNT.gif";
-  }
-  
-  public String image(final Constant ele) {
-    return "CNST.gif";
-  }
-  
-  public String image(final Column ele) {
-    return "COL.gif";
-  }
-  
-  public String image(final MappingColumn ele) {
-    return "COL.gif";
-  }
-  
-  public String image(final DatabaseColumn ele) {
-    return "DBCOL.gif";
   }
 }

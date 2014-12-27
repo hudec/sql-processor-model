@@ -3,7 +3,7 @@
  */
 package org.sqlproc.model.ui.contentassist
 
-import static org.sqlproc.model.util.Constants.*
+//import static org.sqlproc.model.util.Constants.*
 
 import java.lang.reflect.ParameterizedType
 import java.util.Collection
@@ -13,14 +13,10 @@ import java.util.Set
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.xtext.Assignment
-import org.eclipse.xtext.RuleCall
-import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
 import org.sqlproc.model.processorModel.AnnotatedEntity
-import org.sqlproc.model.processorModel.Artifacts
-import org.sqlproc.model.processorModel.Column
 import org.sqlproc.model.processorModel.DatabaseProperty
 import org.sqlproc.model.processorModel.DriverMethodOutputAssignement
 import org.sqlproc.model.processorModel.Entity
@@ -28,16 +24,12 @@ import org.sqlproc.model.processorModel.ExportAssignement
 import org.sqlproc.model.processorModel.ImportAssignement
 import org.sqlproc.model.processorModel.InheritanceAssignement
 import org.sqlproc.model.processorModel.ManyToManyAssignement
-import org.sqlproc.model.processorModel.MappingColumn
-import org.sqlproc.model.processorModel.MappingRule
-import org.sqlproc.model.processorModel.MetaStatement
 import org.sqlproc.model.processorModel.MetagenProperty
 import org.sqlproc.model.processorModel.PackageDeclaration
 import org.sqlproc.model.processorModel.PojoDefinition
 import org.sqlproc.model.processorModel.PojoEntity
 import org.sqlproc.model.processorModel.PojoProperty
 import org.sqlproc.model.processorModel.PojogenProperty
-import org.sqlproc.model.processorModel.ProcessorModelPackage
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement
 import org.sqlproc.model.processorModel.TableDefinition
 import org.sqlproc.model.resolver.DbResolver
@@ -60,36 +52,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 	@Inject
 	DbResolver dbResolver
 
-	@Inject
-	IQualifiedNameConverter qualifiedNameConverter
-
-	val STATEMENT_TYPE = <String>newArrayList("QRY", "CRUD", "CALL")
-	val MAPPING_TYPE = <String>newArrayList("OUT")
-	val OPTION_TYPE = <String>newArrayList("OPT", "LOPT", "IOPT", "SOPT", "BOPT", "MOPT")
-	val TYPES = <String>newArrayList("int", "integer", "long", "byte", "short",
-            "float", "double", "character", "char", "string", "str", "time", "date", "datetime", "timestamp", "stamp",
-            "bool", "boolean", "bigint", "biginteger", "bigdec", "bigdecimal", "bytearr", "bytearray", "bytes", "text",
-            "blob", "clob", "einteger", "eint", "enumstring", "estring", "fromdate", "todate", "cursor", "other"
-	)
-    val MODIFIERS = <String>newArrayList("any", "null", "notnull", "seq", "seq=",
-            "idsel", "idsel=", "id", "isDef=", "isCall=", "dtype=", "gtype=", "discr")
-    val F_TYPES = <String>newArrayList("set", "update", "values", "where")
     val DEBUG_LEVELS = <String>newArrayList("DEBUG", "INFO", "FATAL", "ERROR", "WARN", "TRACE")
-
-    override completeMetaStatement_Type(EObject model, Assignment assignment, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        addProposalList(STATEMENT_TYPE, "STATEMENT_TYPE", context, acceptor, null)
-    }
-
-    override completeMappingRule_Type(EObject model, Assignment assignment, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        addProposalList(MAPPING_TYPE, "MAPPING_TYPE", context, acceptor, null)
-    }
-
-    override completeOptionalFeature_Type(EObject model, Assignment assignment, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        addProposalList(OPTION_TYPE, "OPTION_TYPE", context, acceptor, null)
-    }
 
     def addProposalList(List<String> values, String lexerRule, ContentAssistContext context,
             ICompletionProposalAcceptor acceptor, String prefix) {
@@ -99,154 +62,6 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
         ]
     }
 
-    override completeMetaSql_Ftype(EObject model, Assignment assignment, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        addProposalList(F_TYPES, "IDENT", context, acceptor, null)
-    }
-
-    override completeExtendedColumnName_Name(EObject model, Assignment assignment, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        val column = model.getContainerOfType(typeof(Column)) 
-        val partialName = new StringBuilder("")
-        column?.columns?.findFirst[
-            append(partialName, col.name)
-            context.previousModel != null && it === context.previousModel
-        ]
-        val prefix = append(partialName, context.prefix).toString()
-        if (!completeUsage(model, assignment, context, acceptor, COLUMN_USAGE, COLUMN_USAGE_EXTENDED, prefix, true))
-            super.completeExtendedColumnName_Name(model, assignment, context, acceptor)
-    }
-
-    override completeConstant_Name(EObject model, Assignment assignment, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        if (!completeUsage(model, assignment, context, acceptor, CONSTANT_USAGE, CONSTANT_USAGE_EXTENDED, context.prefix, false))
-            super.completeConstant_Name(model, assignment, context, acceptor)
-    }
-
-    override completeIdentifier_Name(EObject model, Assignment assignment, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        if (!completeUsage(model, assignment, context, acceptor, IDENTIFIER_USAGE, IDENTIFIER_USAGE_EXTENDED, context.prefix,
-                false))
-            super.completeIdentifier_Name(model, assignment, context, acceptor)
-    }
-
-    def boolean completeUsage(EObject model, Assignment assignment, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor, String usageInFilter, String usageInFilterExt, String _prefix,
-            boolean cutPrefix) {
-        if (!isResolvePojo(model))
-            return false
-        val metaStatement = model.getContainerOfType(typeof(MetaStatement))
-        val artifacts = model.getContainerOfType(typeof(Artifacts))
-
-        val entityName = Utils.getTokenFromModifier(metaStatement, usageInFilterExt)
-        val pojoEntity = if (entityName != null) Utils.findEntity(qualifiedNameConverter, artifacts,
-                getScopeProvider().getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJO_PACKAGES),
-                entityName)
-
-        val pojoName = if (pojoEntity == null) Utils.getTokenFromModifier(metaStatement, usageInFilter)
-        val pojoDefinition = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
-                getScopeProvider().getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJOS), pojoName)
-
-        if (pojoDefinition == null && pojoEntity == null) {
-            val proposal = getValueConverter().toString("Error: I can't load pojo for " + model, "IDENT")
-            acceptor.accept(createCompletionProposal(proposal, context))
-            return true
-        }
-
-        val pos = _prefix.lastIndexOf('.')
-		val prefix = if (pos > 0) _prefix.substring(0, pos + 1) else ""
-
-        if (pojoDefinition != null) {
-            val clazz = getClassName(getClass(pojoDefinition), prefix)
-            if (clazz == null)
-                return false
-            val descriptors = pojoResolver.getPropertyDescriptors(clazz)
-            if (descriptors == null)
-                return false
-            descriptors.filter["class" != name].forEach[descriptor |
-				val proposal = getValueConverter().toString(descriptor.getName(), "IDENT")
-				acceptor.accept(createCompletionProposal(if (cutPrefix) proposal else prefix + proposal, context))
-            ]
-            return true
-        } else {
-            val entity = getPojoEntity(pojoEntity, prefix)
-            val properties = getProperties(entity, null)
-            if (properties.isEmpty()) {
-                return false
-            }
-            properties.forEach[pojoProperty |
-                var proposal = getValueConverter().toString(pojoProperty.getName(), "IDENT")
-                acceptor.accept(createCompletionProposal(if (cutPrefix) proposal else prefix + proposal, context))
-            ]
-            return true
-        }
-    }
-
-    override completeMappingColumnName_Name(EObject model, Assignment assignment, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        if (!isResolvePojo(model)) {
-            super.completeMappingColumnName_Name(model, assignment, context, acceptor)
-            return
-        }
-        
-        val mappingColumn = model.getContainerOfType(typeof(MappingColumn))
-        val mappingRule = model.getContainerOfType(typeof(MappingRule))
-        val artifacts = model.getContainerOfType(typeof(Artifacts))
-
-        val entityName = Utils.getTokenFromModifier(mappingRule, MAPPING_USAGE_EXTENDED)
-        val pojoEntity = if (entityName != null) Utils.findEntity(qualifiedNameConverter, artifacts,
-                getScopeProvider().getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJO_PACKAGES),
-                entityName)
-                
-        val pojoName = if (pojoEntity == null) Utils.getTokenFromModifier(mappingRule, MAPPING_USAGE)
-        val pojoDefinition = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
-                getScopeProvider().getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJOS), pojoName)
-
-        if (pojoDefinition == null && pojoEntity == null) {
-            val proposal = getValueConverter().toString("Error: I can't load pojo for " + model, "IDENT")
-            acceptor.accept(createCompletionProposal(proposal, context))
-        }
-
-        val partialName = new StringBuilder("")
-        var cutPrefix = false
-        if (model instanceof MappingColumn && mappingColumn != null) {
-            cutPrefix = true
-            mappingColumn.items.findFirst[
-            	append(partialName, attr.name)
-	            context.previousModel != null && it === context.previousModel
-            ]
-        }
-        var prefix = append(partialName, context.prefix).toString()
-        val pos = prefix.lastIndexOf('.')
-        val _prefix = if (pos > 0) prefix.substring(0, pos + 1) else ""
-        val _cutPrefix = cutPrefix
-
-        if (pojoDefinition != null) {
-            val clazz = getClassName(getClass(pojoDefinition), prefix)
-            if (clazz == null)
-                return
-            val descriptors = pojoResolver.getPropertyDescriptors(clazz)
-            if (descriptors == null) {
-                super.completeMappingColumnName_Name(model, assignment, context, acceptor)
-            } else {
-	            descriptors.filter["class" != name].forEach[descriptor |
-					val proposal = getValueConverter().toString(descriptor.getName(), "IDENT")
-					acceptor.accept(createCompletionProposal(if (_cutPrefix) proposal else _prefix + proposal, context))
-            	]
-            }
-        } else {
-            val entity = getPojoEntity(pojoEntity, prefix)
-            val properties = getProperties(entity, null)
-            if (properties.isEmpty()) {
-                return
-            }
-            properties.forEach[property |
-                val proposal = getValueConverter().toString(property.name, "IDENT")
-                acceptor.accept(createCompletionProposal(if (_cutPrefix) proposal else  _prefix + proposal, context))
-            ]
-        }
-    }
-    
     def append(StringBuilder sb, String s) {
     	if (sb.length > 0)
     		sb.append(".")
@@ -457,42 +272,6 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
             return
         }
         acceptFunctions(model, context, acceptor)
-    }
-
-    override complete_DatabaseColumn(EObject model, RuleCall ruleCall, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        if (!isResolveDb(model)) {
-            super.complete_DatabaseColumn(model, ruleCall, context, acceptor)
-            return
-        }
-        val pos = context.prefix.indexOf('.')
-        val prefix = if (pos > 0) context.prefix.substring(0, pos)
-        val metaStatement = model.getContainerOfType(typeof(MetaStatement))
-        val artifacts = model.getContainerOfType(typeof(Artifacts))
-        val value = Utils.getTokenFromModifier(metaStatement, TABLE_USAGE, prefix)
-        val tableDefinition = if (value != null) Utils.findTable(qualifiedNameConverter, artifacts,
-                getScopeProvider().getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__TABLES), value)
-        if (tableDefinition != null && tableDefinition.table != null) {
-        	acceptColumns(dbResolver.getColumns(model, tableDefinition.table), context, acceptor, prefix, null)
-        }
-    }
-
-    override complete_DatabaseTable(EObject model, RuleCall ruleCall, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        if (!isResolveDb(model)) {
-            super.complete_DatabaseTable(model, ruleCall, context, acceptor)
-            return
-        }
-        val metaStatement = model.getContainerOfType(typeof(MetaStatement))
-        val artifacts = model.getContainerOfType(typeof(Artifacts))
-        Utils.getTokensFromModifier(metaStatement, TABLE_USAGE).forEach[value |
-            val tableDefinition = Utils.findTable(qualifiedNameConverter, artifacts,
-                    getScopeProvider().getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__TABLES), value)
-            if (tableDefinition != null) {
-                val proposal = getValueConverter().toString(tableDefinition.getTable(), "IDENT")
-                acceptor.accept(createCompletionProposal(proposal, context))
-            }
-        ]
     }
 
     override completePojogenProperty_DbTable(EObject model, Assignment assignment, ContentAssistContext context,
@@ -969,64 +748,6 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
             result.add(table)
         ]
         return result
-    }
-
-    override complete_StatementModifier(EObject model, RuleCall ruleCall, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        val metaStatement = model.getContainerOfType(typeof(MetaStatement))
-        val artifacts = metaStatement.getContainerOfType(typeof(Artifacts))
-        val entities = listEntities(artifacts.eResource().getResourceSet(),
-                getScopeProvider().getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJO_PACKAGES))
-        entities.forEach[entity |
-            val proposal = getValueConverter().toString(entity.getName(), "IDENT")
-            acceptor.accept(createCompletionProposal(CONSTANT_USAGE_EXTENDED + "=" + proposal, context))
-            acceptor.accept(createCompletionProposal(IDENTIFIER_USAGE_EXTENDED + "=" + proposal, context))
-            acceptor.accept(createCompletionProposal(COLUMN_USAGE_EXTENDED + "=" + proposal, context))
-        ]
-        val pojos = listPojos(artifacts.eResource().getResourceSet(),
-                getScopeProvider().getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJOS))
-        pojos.forEach[pojo |
-            val proposal = getValueConverter().toString(pojo.getName(), "IDENT")
-            acceptor.accept(createCompletionProposal(CONSTANT_USAGE + "=" + proposal, context))
-            acceptor.accept(createCompletionProposal(IDENTIFIER_USAGE + "=" + proposal, context))
-            acceptor.accept(createCompletionProposal(COLUMN_USAGE + "=" + proposal, context))
-        ]
-        val tables = listTables(artifacts.eResource().getResourceSet(),
-                getScopeProvider().getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__TABLES))
-        tables.forEach[table |
-            val proposal = getValueConverter().toString(table.getName(), "IDENT")
-            acceptor.accept(createCompletionProposal(TABLE_USAGE + "=" + proposal, context))
-        ]
-    }
-
-    override complete_MappingRuleModifier(EObject model, RuleCall ruleCall, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        val mappingRule = model.getContainerOfType(typeof(MappingRule))
-        val artifacts = mappingRule.getContainerOfType(typeof(Artifacts))
-        val entities = listEntities(artifacts.eResource().getResourceSet(),
-                getScopeProvider().getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJO_PACKAGES))
-        entities.forEach[entity |
-            val proposal = getValueConverter().toString(entity.getName(), "IDENT")
-            acceptor.accept(createCompletionProposal(MAPPING_USAGE_EXTENDED + "=" + proposal, context))
-        ]
-        val pojos = listPojos(artifacts.eResource().getResourceSet(),
-                getScopeProvider().getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJOS))
-        pojos.forEach[pojo |
-            val proposal = getValueConverter().toString(pojo.getName(), "IDENT")
-            acceptor.accept(createCompletionProposal(MAPPING_USAGE + "=" + proposal, context))
-        ]
-    }
-
-    override complete_Modifier(EObject model, RuleCall ruleCall, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        addProposalList(TYPES, "IDENT", context, acceptor, "type=")
-        addProposalList(MODIFIERS, "IDENT", context, acceptor, null)
-    }
-
-    override complete_MappingItemModifier(EObject model, RuleCall ruleCall, ContentAssistContext context,
-            ICompletionProposalAcceptor acceptor) {
-        addProposalList(TYPES, "IDENT", context, acceptor, "type=")
-        addProposalList(MODIFIERS, "IDENT", context, acceptor, null)
     }
 
     override completeMetagenProperty_DbTable(EObject model, Assignment assignment, ContentAssistContext context,

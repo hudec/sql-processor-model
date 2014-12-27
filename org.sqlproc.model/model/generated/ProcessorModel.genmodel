@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sqlproc.model/src-gen" editDirectory="//home/hudec/git/sql-processor-model/org.sqlproc.model.edit/src"
-    editorDirectory="//home/hudec/git/sql-processor-model/org.sqlproc.model.editor/src"
-    modelPluginID="org.sqlproc.model" forceOverwrite="true" modelName="ProcessorModel"
-    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sqlproc.model/src-gen" editDirectory="/org.sqlproc.model.edit/src"
+    editorDirectory="/org.sqlproc.model.editor/src" modelPluginID="org.sqlproc.model"
+    forceOverwrite="true" modelName="ProcessorModel" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.sqlproc.model.edit"
-    editorPluginID="org.sqlproc.model.edit" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
+    editorPluginID="org.sqlproc.model.editor" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="ProcessorModel" basePackage="org.sqlproc.model" disposableProviderFactory="true"
       fileExtensions="model" ecorePackage="ProcessorModel.ecore#/">
     <genClasses ecoreClass="ProcessorModel.ecore#//Artifacts">
@@ -14,9 +13,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Artifacts/tables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Artifacts/procedures"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Artifacts/functions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Artifacts/statements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Artifacts/mappings"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Artifacts/features"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Artifacts/pojoPackages"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DatabaseCatalogAssignement">
@@ -230,134 +226,6 @@
     <genClasses ecoreClass="ProcessorModel.ecore#//FunctionDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//FunctionDefinition/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//FunctionDefinition/table"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//MetaStatement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//MetaStatement/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//MetaStatement/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//MetaStatement/modifiers"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//MetaStatement/statement"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//Sql">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Sql/sqls"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//SqlFragment">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//SqlFragment/value"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//SqlFragment/col"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//SqlFragment/cnst"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//SqlFragment/ident"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//SqlFragment/cnstOper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//SqlFragment/identOper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//SqlFragment/meta"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//SqlFragment/dbtab"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//SqlFragment/dbcol"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//MetaSql">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//MetaSql/ifs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//MetaSql/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//MetaSql/cond"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//MetaSql/ftype"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//MetaSql/ord"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//IfSql">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSql/sqls"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//IfSqlFragment">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//IfSqlFragment/value"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlFragment/col"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlFragment/cnst"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlFragment/ident"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlFragment/cnstOper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlFragment/identOper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlFragment/dbtab"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlFragment/dbcol"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlFragment/meta"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//IfMetaSql">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfMetaSql/ifs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//IfMetaSql/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfMetaSql/cond"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//IfSqlCond">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlCond/bool1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//IfSqlCond/oper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlCond/bool2"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//IfSqlBool">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//IfSqlBool/not"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlBool/cnst"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlBool/ident"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//IfSqlBool/cond"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//OrdSql">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//OrdSql/sqls"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//OrdSql2">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//OrdSql2/value"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//OrdSql2/cnst"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//OrdSql2/ident"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//OrdSql2/dbcol"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//Column">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Column/columns"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//ExtendedColumn">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//ExtendedColumn/col"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//ExtendedColumn/modifiers"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//ExtendedColumnName">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//ExtendedColumnName/name"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//Constant">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Constant/case"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Constant/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Constant/modifiers"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//Identifier">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Identifier/mode"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Identifier/case"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Identifier/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Identifier/modifiers"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//ConstantOperator">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//ConstantOperator/name"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//IdentifierOperator">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//IdentifierOperator/name"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//DatabaseColumn">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DatabaseColumn/name"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//DatabaseTable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DatabaseTable/name"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//MappingRule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//MappingRule/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//MappingRule/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//MappingRule/modifiers"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//MappingRule/mapping"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//Mapping">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Mapping/mappingItems"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//MappingItem">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//MappingItem/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//MappingItem/attr"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//MappingColumn">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//MappingColumn/items"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//ExtendedMappingItem">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//ExtendedMappingItem/attr"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//ExtendedMappingItem/modifiers"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//MappingColumnName">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//MappingColumnName/name"/>
-    </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//OptionalFeature">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//OptionalFeature/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//OptionalFeature/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//OptionalFeature/modifiers"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//OptionalFeature/option"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoType/native"/>

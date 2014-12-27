@@ -34,9 +34,6 @@ class ProcessorModelFormatter extends AbstractDeclarativeFormatter {
         c.setLinewrap(1, 1, 2).after(tableDefinitionRule);
         c.setLinewrap(1, 1, 2).after(procedureDefinitionRule);
         c.setLinewrap(1, 1, 2).after(functionDefinitionRule);
-        c.setLinewrap(1, 1, 2).after(metaStatementRule);
-        c.setLinewrap(1, 1, 2).after(mappingRuleRule);
-        c.setLinewrap(1, 1, 2).after(optionalFeatureRule);
         c.setLinewrap(1, 1, 2).after(packageDeclarationRule);
 	}
 }

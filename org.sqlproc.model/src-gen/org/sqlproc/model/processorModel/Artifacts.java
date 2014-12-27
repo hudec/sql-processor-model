@@ -19,9 +19,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.model.processorModel.Artifacts#getTables <em>Tables</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Artifacts#getProcedures <em>Procedures</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Artifacts#getFunctions <em>Functions</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.Artifacts#getStatements <em>Statements</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.Artifacts#getMappings <em>Mappings</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.Artifacts#getFeatures <em>Features</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Artifacts#getPojoPackages <em>Pojo Packages</em>}</li>
  * </ul>
  * </p>
@@ -111,54 +108,6 @@ public interface Artifacts extends EObject
    * @generated
    */
   EList<FunctionDefinition> getFunctions();
-
-  /**
-   * Returns the value of the '<em><b>Statements</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.MetaStatement}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Statements</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Statements</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getArtifacts_Statements()
-   * @model containment="true"
-   * @generated
-   */
-  EList<MetaStatement> getStatements();
-
-  /**
-   * Returns the value of the '<em><b>Mappings</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.MappingRule}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Mappings</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Mappings</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getArtifacts_Mappings()
-   * @model containment="true"
-   * @generated
-   */
-  EList<MappingRule> getMappings();
-
-  /**
-   * Returns the value of the '<em><b>Features</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.OptionalFeature}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Features</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Features</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getArtifacts_Features()
-   * @model containment="true"
-   * @generated
-   */
-  EList<OptionalFeature> getFeatures();
 
   /**
    * Returns the value of the '<em><b>Pojo Packages</b></em>' containment reference list.

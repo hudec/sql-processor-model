@@ -44,31 +44,17 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFunctionsFunctionDefinitionParserRuleCall_2_4_0_0 = (RuleCall)cFunctionsAssignment_2_4_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_2_4_1 = (RuleCall)cGroup_2_4.eContents().get(1);
 		private final Group cGroup_2_5 = (Group)cAlternatives_2.eContents().get(5);
-		private final Assignment cStatementsAssignment_2_5_0 = (Assignment)cGroup_2_5.eContents().get(0);
-		private final RuleCall cStatementsMetaStatementParserRuleCall_2_5_0_0 = (RuleCall)cStatementsAssignment_2_5_0.eContents().get(0);
+		private final Assignment cPojoPackagesAssignment_2_5_0 = (Assignment)cGroup_2_5.eContents().get(0);
+		private final RuleCall cPojoPackagesPackageDeclarationParserRuleCall_2_5_0_0 = (RuleCall)cPojoPackagesAssignment_2_5_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_2_5_1 = (RuleCall)cGroup_2_5.eContents().get(1);
-		private final Group cGroup_2_6 = (Group)cAlternatives_2.eContents().get(6);
-		private final Assignment cMappingsAssignment_2_6_0 = (Assignment)cGroup_2_6.eContents().get(0);
-		private final RuleCall cMappingsMappingRuleParserRuleCall_2_6_0_0 = (RuleCall)cMappingsAssignment_2_6_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_2_6_1 = (RuleCall)cGroup_2_6.eContents().get(1);
-		private final Group cGroup_2_7 = (Group)cAlternatives_2.eContents().get(7);
-		private final Assignment cFeaturesAssignment_2_7_0 = (Assignment)cGroup_2_7.eContents().get(0);
-		private final RuleCall cFeaturesOptionalFeatureParserRuleCall_2_7_0_0 = (RuleCall)cFeaturesAssignment_2_7_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_2_7_1 = (RuleCall)cGroup_2_7.eContents().get(1);
-		private final Group cGroup_2_8 = (Group)cAlternatives_2.eContents().get(8);
-		private final Assignment cPojoPackagesAssignment_2_8_0 = (Assignment)cGroup_2_8.eContents().get(0);
-		private final RuleCall cPojoPackagesPackageDeclarationParserRuleCall_2_8_0_0 = (RuleCall)cPojoPackagesAssignment_2_8_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_2_8_1 = (RuleCall)cGroup_2_8.eContents().get(1);
 		
 		//Artifacts:
 		//	{Artifacts} WS* (properties+=Property WS* | pojos+=PojoDefinition WS* | tables+=TableDefinition WS* |
-		//	procedures+=ProcedureDefinition WS* | functions+=FunctionDefinition WS* | statements+=MetaStatement WS* |
-		//	mappings+=MappingRule WS* | features+=OptionalFeature WS* | pojoPackages+=PackageDeclaration WS*)*;
+		//	procedures+=ProcedureDefinition WS* | functions+=FunctionDefinition WS* | pojoPackages+=PackageDeclaration WS*)*;
 		public ParserRule getRule() { return rule; }
 
 		//{Artifacts} WS* (properties+=Property WS* | pojos+=PojoDefinition WS* | tables+=TableDefinition WS* |
-		//procedures+=ProcedureDefinition WS* | functions+=FunctionDefinition WS* | statements+=MetaStatement WS* |
-		//mappings+=MappingRule WS* | features+=OptionalFeature WS* | pojoPackages+=PackageDeclaration WS*)*
+		//procedures+=ProcedureDefinition WS* | functions+=FunctionDefinition WS* | pojoPackages+=PackageDeclaration WS*)*
 		public Group getGroup() { return cGroup; }
 
 		//{Artifacts}
@@ -78,8 +64,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
 
 		//(properties+=Property WS* | pojos+=PojoDefinition WS* | tables+=TableDefinition WS* | procedures+=ProcedureDefinition
-		//WS* | functions+=FunctionDefinition WS* | statements+=MetaStatement WS* | mappings+=MappingRule WS* |
-		//features+=OptionalFeature WS* | pojoPackages+=PackageDeclaration WS*)*
+		//WS* | functions+=FunctionDefinition WS* | pojoPackages+=PackageDeclaration WS*)*
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//properties+=Property WS*
@@ -142,53 +127,17 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//WS*
 		public RuleCall getWSTerminalRuleCall_2_4_1() { return cWSTerminalRuleCall_2_4_1; }
 
-		//statements+=MetaStatement WS*
+		//pojoPackages+=PackageDeclaration WS*
 		public Group getGroup_2_5() { return cGroup_2_5; }
 
-		//statements+=MetaStatement
-		public Assignment getStatementsAssignment_2_5_0() { return cStatementsAssignment_2_5_0; }
+		//pojoPackages+=PackageDeclaration
+		public Assignment getPojoPackagesAssignment_2_5_0() { return cPojoPackagesAssignment_2_5_0; }
 
-		//MetaStatement
-		public RuleCall getStatementsMetaStatementParserRuleCall_2_5_0_0() { return cStatementsMetaStatementParserRuleCall_2_5_0_0; }
+		//PackageDeclaration
+		public RuleCall getPojoPackagesPackageDeclarationParserRuleCall_2_5_0_0() { return cPojoPackagesPackageDeclarationParserRuleCall_2_5_0_0; }
 
 		//WS*
 		public RuleCall getWSTerminalRuleCall_2_5_1() { return cWSTerminalRuleCall_2_5_1; }
-
-		//mappings+=MappingRule WS*
-		public Group getGroup_2_6() { return cGroup_2_6; }
-
-		//mappings+=MappingRule
-		public Assignment getMappingsAssignment_2_6_0() { return cMappingsAssignment_2_6_0; }
-
-		//MappingRule
-		public RuleCall getMappingsMappingRuleParserRuleCall_2_6_0_0() { return cMappingsMappingRuleParserRuleCall_2_6_0_0; }
-
-		//WS*
-		public RuleCall getWSTerminalRuleCall_2_6_1() { return cWSTerminalRuleCall_2_6_1; }
-
-		//features+=OptionalFeature WS*
-		public Group getGroup_2_7() { return cGroup_2_7; }
-
-		//features+=OptionalFeature
-		public Assignment getFeaturesAssignment_2_7_0() { return cFeaturesAssignment_2_7_0; }
-
-		//OptionalFeature
-		public RuleCall getFeaturesOptionalFeatureParserRuleCall_2_7_0_0() { return cFeaturesOptionalFeatureParserRuleCall_2_7_0_0; }
-
-		//WS*
-		public RuleCall getWSTerminalRuleCall_2_7_1() { return cWSTerminalRuleCall_2_7_1; }
-
-		//pojoPackages+=PackageDeclaration WS*
-		public Group getGroup_2_8() { return cGroup_2_8; }
-
-		//pojoPackages+=PackageDeclaration
-		public Assignment getPojoPackagesAssignment_2_8_0() { return cPojoPackagesAssignment_2_8_0; }
-
-		//PackageDeclaration
-		public RuleCall getPojoPackagesPackageDeclarationParserRuleCall_2_8_0_0() { return cPojoPackagesPackageDeclarationParserRuleCall_2_8_0_0; }
-
-		//WS*
-		public RuleCall getWSTerminalRuleCall_2_8_1() { return cWSTerminalRuleCall_2_8_1; }
 	}
 
 	public class DatabaseCatalogAssignementElements extends AbstractParserRuleElementFinder {
@@ -4422,10 +4371,6 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cANDTerminalRuleCall_0_0_25 = (RuleCall)cAlternatives_0_0.eContents().get(25);
 		private final RuleCall cORTerminalRuleCall_0_0_26 = (RuleCall)cAlternatives_0_0.eContents().get(26);
 		private final RuleCall cESC_CHARTerminalRuleCall_0_0_27 = (RuleCall)cAlternatives_0_0.eContents().get(27);
-		private final RuleCall cON_OFFTerminalRuleCall_0_0_28 = (RuleCall)cAlternatives_0_0.eContents().get(28);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_0_0_29 = (RuleCall)cAlternatives_0_0.eContents().get(29);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_0_0_30 = (RuleCall)cAlternatives_0_0.eContents().get(30);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_0_0_31 = (RuleCall)cAlternatives_0_0.eContents().get(31);
 		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
 		private final Alternatives cAlternatives_0_1_0 = (Alternatives)cGroup_0_1.eContents().get(0);
 		private final RuleCall cRESTTerminalRuleCall_0_1_0_0 = (RuleCall)cAlternatives_0_1_0.eContents().get(0);
@@ -4457,38 +4402,31 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cANDTerminalRuleCall_0_1_0_26 = (RuleCall)cAlternatives_0_1_0.eContents().get(26);
 		private final RuleCall cORTerminalRuleCall_0_1_0_27 = (RuleCall)cAlternatives_0_1_0.eContents().get(27);
 		private final RuleCall cESC_CHARTerminalRuleCall_0_1_0_28 = (RuleCall)cAlternatives_0_1_0.eContents().get(28);
-		private final RuleCall cON_OFFTerminalRuleCall_0_1_0_29 = (RuleCall)cAlternatives_0_1_0.eContents().get(29);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_0_1_0_30 = (RuleCall)cAlternatives_0_1_0.eContents().get(30);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_0_1_0_31 = (RuleCall)cAlternatives_0_1_0.eContents().get(31);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_0_1_0_32 = (RuleCall)cAlternatives_0_1_0.eContents().get(32);
 		private final RuleCall cSTRING_VALUETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//PropertyValue:
 		//	(REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
-		//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR |
-		//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING |
-		//	COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS |
-		//	LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)* |
-		//	STRING_VALUE;
+		//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR)
+		//	=> (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE
+		//	| QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR |
+		//	ESC_CHAR)* | STRING_VALUE;
 		public ParserRule getRule() { return rule; }
 
 		//(REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI
-		//| NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF
-		//| STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA |
-		//MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN |
-		//MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)* | STRING_VALUE
+		//| NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR) => (REST
+		//| IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI
+		//| NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR)* |
+		//STRING_VALUE
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//(REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI
-		//| NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF
-		//| STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA |
-		//MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN |
-		//MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*
+		//| NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR) => (REST
+		//| IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI
+		//| NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR)*
 		public Group getGroup_0() { return cGroup_0; }
 
 		//REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI |
-		//NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF |
-		//STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE
+		//NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR
 		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
 
 		//REST
@@ -4575,26 +4513,12 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//ESC_CHAR
 		public RuleCall getESC_CHARTerminalRuleCall_0_0_27() { return cESC_CHARTerminalRuleCall_0_0_27; }
 
-		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_0_0_28() { return cON_OFFTerminalRuleCall_0_0_28; }
-
-		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_0_0_29() { return cSTATEMENT_TYPETerminalRuleCall_0_0_29; }
-
-		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_0_0_30() { return cMAPPING_TYPETerminalRuleCall_0_0_30; }
-
-		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_0_0_31() { return cOPTION_TYPETerminalRuleCall_0_0_31; }
-
 		//=> (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
-		//QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR |
-		//ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*
+		//QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR)*
 		public Group getGroup_0_1() { return cGroup_0_1; }
 
 		//REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
-		//QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR |
-		//ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE
+		//QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR
 		public Alternatives getAlternatives_0_1_0() { return cAlternatives_0_1_0; }
 
 		//REST
@@ -4683,18 +4607,6 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ESC_CHAR
 		public RuleCall getESC_CHARTerminalRuleCall_0_1_0_28() { return cESC_CHARTerminalRuleCall_0_1_0_28; }
-
-		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_0_1_0_29() { return cON_OFFTerminalRuleCall_0_1_0_29; }
-
-		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_0_1_0_30() { return cSTATEMENT_TYPETerminalRuleCall_0_1_0_30; }
-
-		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_0_1_0_31() { return cMAPPING_TYPETerminalRuleCall_0_1_0_31; }
-
-		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_0_1_0_32() { return cOPTION_TYPETerminalRuleCall_0_1_0_32; }
 
 		//STRING_VALUE
 		public RuleCall getSTRING_VALUETerminalRuleCall_1() { return cSTRING_VALUETerminalRuleCall_1; }
@@ -4876,2705 +4788,6 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getSEMICOLONTerminalRuleCall_3() { return cSEMICOLONTerminalRuleCall_3; }
 	}
 
-	public class MetaStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MetaStatement");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cLPARENTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTypeSTATEMENT_TYPETerminalRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cCOMMATerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cModifiersAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cModifiersStatementModifierParserRuleCall_3_1_0 = (RuleCall)cModifiersAssignment_3_1.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cEQUALSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final Assignment cStatementAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cStatementSqlParserRuleCall_6_0 = (RuleCall)cStatementAssignment_6.eContents().get(0);
-		private final RuleCall cSEMICOLONTerminalRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
-		
-		//MetaStatement:
-		//	name=IDENT LPAREN type=STATEMENT_TYPE (COMMA modifiers+=StatementModifier)* RPAREN EQUALS statement=Sql SEMICOLON;
-		public ParserRule getRule() { return rule; }
-
-		//name=IDENT LPAREN type=STATEMENT_TYPE (COMMA modifiers+=StatementModifier)* RPAREN EQUALS statement=Sql SEMICOLON
-		public Group getGroup() { return cGroup; }
-
-		//name=IDENT
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_1() { return cLPARENTerminalRuleCall_1; }
-
-		//type=STATEMENT_TYPE
-		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
-
-		//STATEMENT_TYPE
-		public RuleCall getTypeSTATEMENT_TYPETerminalRuleCall_2_0() { return cTypeSTATEMENT_TYPETerminalRuleCall_2_0; }
-
-		//(COMMA modifiers+=StatementModifier)*
-		public Group getGroup_3() { return cGroup_3; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_3_0() { return cCOMMATerminalRuleCall_3_0; }
-
-		//modifiers+=StatementModifier
-		public Assignment getModifiersAssignment_3_1() { return cModifiersAssignment_3_1; }
-
-		//StatementModifier
-		public RuleCall getModifiersStatementModifierParserRuleCall_3_1_0() { return cModifiersStatementModifierParserRuleCall_3_1_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_4() { return cRPARENTerminalRuleCall_4; }
-
-		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_5() { return cEQUALSTerminalRuleCall_5; }
-
-		//statement=Sql
-		public Assignment getStatementAssignment_6() { return cStatementAssignment_6; }
-
-		//Sql
-		public RuleCall getStatementSqlParserRuleCall_6_0() { return cStatementSqlParserRuleCall_6_0; }
-
-		//SEMICOLON
-		public RuleCall getSEMICOLONTerminalRuleCall_7() { return cSEMICOLONTerminalRuleCall_7; }
-	}
-
-	public class SqlElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Sql");
-		private final Assignment cSqlsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cSqlsSqlFragmentParserRuleCall_0 = (RuleCall)cSqlsAssignment.eContents().get(0);
-		
-		//Sql:
-		//	sqls+=SqlFragment+;
-		public ParserRule getRule() { return rule; }
-
-		//sqls+=SqlFragment+
-		public Assignment getSqlsAssignment() { return cSqlsAssignment; }
-
-		//SqlFragment
-		public RuleCall getSqlsSqlFragmentParserRuleCall_0() { return cSqlsSqlFragmentParserRuleCall_0; }
-	}
-
-	public class SqlFragmentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SqlFragment");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cValueSqlValueParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final RuleCall cATTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final Assignment cColAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cColColumnParserRuleCall_1_1_0 = (RuleCall)cColAssignment_1_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final RuleCall cSTRINGTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final Assignment cCnstAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cCnstConstantParserRuleCall_2_1_0 = (RuleCall)cCnstAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final RuleCall cCOLONTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cIdentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cIdentIdentifierParserRuleCall_3_1_0 = (RuleCall)cIdentAssignment_3_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final RuleCall cSTRINGTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final RuleCall cSTRINGTerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
-		private final Assignment cCnstOperAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cCnstOperConstantOperatorParserRuleCall_4_2_0 = (RuleCall)cCnstOperAssignment_4_2.eContents().get(0);
-		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
-		private final RuleCall cCOLONTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final RuleCall cCOLONTerminalRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
-		private final Assignment cIdentOperAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
-		private final RuleCall cIdentOperIdentifierOperatorParserRuleCall_5_2_0 = (RuleCall)cIdentOperAssignment_5_2.eContents().get(0);
-		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
-		private final RuleCall cLBRACETerminalRuleCall_6_0 = (RuleCall)cGroup_6.eContents().get(0);
-		private final Assignment cMetaAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cMetaMetaSqlParserRuleCall_6_1_0 = (RuleCall)cMetaAssignment_6_1.eContents().get(0);
-		private final RuleCall cRBRACETerminalRuleCall_6_2 = (RuleCall)cGroup_6.eContents().get(2);
-		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
-		private final RuleCall cPERCENTTerminalRuleCall_7_0 = (RuleCall)cGroup_7.eContents().get(0);
-		private final Alternatives cAlternatives_7_1 = (Alternatives)cGroup_7.eContents().get(1);
-		private final Group cGroup_7_1_0 = (Group)cAlternatives_7_1.eContents().get(0);
-		private final RuleCall cPERCENTTerminalRuleCall_7_1_0_0 = (RuleCall)cGroup_7_1_0.eContents().get(0);
-		private final Assignment cDbtabAssignment_7_1_0_1 = (Assignment)cGroup_7_1_0.eContents().get(1);
-		private final RuleCall cDbtabDatabaseTableParserRuleCall_7_1_0_1_0 = (RuleCall)cDbtabAssignment_7_1_0_1.eContents().get(0);
-		private final Assignment cDbcolAssignment_7_1_1 = (Assignment)cAlternatives_7_1.eContents().get(1);
-		private final RuleCall cDbcolDatabaseColumnParserRuleCall_7_1_1_0 = (RuleCall)cDbcolAssignment_7_1_1.eContents().get(0);
-		
-		//SqlFragment:
-		//	value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
-		//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT
-		//	dbtab=DatabaseTable | dbcol=DatabaseColumn);
-		public ParserRule getRule() { return rule; }
-
-		//value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING cnstOper=ConstantOperator
-		//| COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT dbtab=DatabaseTable |
-		//dbcol=DatabaseColumn)
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//value=SqlValue
-		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
-
-		//SqlValue
-		public RuleCall getValueSqlValueParserRuleCall_0_0() { return cValueSqlValueParserRuleCall_0_0; }
-
-		//AT col=Column
-		public Group getGroup_1() { return cGroup_1; }
-
-		//AT
-		public RuleCall getATTerminalRuleCall_1_0() { return cATTerminalRuleCall_1_0; }
-
-		//col=Column
-		public Assignment getColAssignment_1_1() { return cColAssignment_1_1; }
-
-		//Column
-		public RuleCall getColColumnParserRuleCall_1_1_0() { return cColColumnParserRuleCall_1_1_0; }
-
-		//STRING cnst=Constant
-		public Group getGroup_2() { return cGroup_2; }
-
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_2_0() { return cSTRINGTerminalRuleCall_2_0; }
-
-		//cnst=Constant
-		public Assignment getCnstAssignment_2_1() { return cCnstAssignment_2_1; }
-
-		//Constant
-		public RuleCall getCnstConstantParserRuleCall_2_1_0() { return cCnstConstantParserRuleCall_2_1_0; }
-
-		//COLON ident=Identifier
-		public Group getGroup_3() { return cGroup_3; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_3_0() { return cCOLONTerminalRuleCall_3_0; }
-
-		//ident=Identifier
-		public Assignment getIdentAssignment_3_1() { return cIdentAssignment_3_1; }
-
-		//Identifier
-		public RuleCall getIdentIdentifierParserRuleCall_3_1_0() { return cIdentIdentifierParserRuleCall_3_1_0; }
-
-		//STRING STRING cnstOper=ConstantOperator
-		public Group getGroup_4() { return cGroup_4; }
-
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_4_0() { return cSTRINGTerminalRuleCall_4_0; }
-
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_4_1() { return cSTRINGTerminalRuleCall_4_1; }
-
-		//cnstOper=ConstantOperator
-		public Assignment getCnstOperAssignment_4_2() { return cCnstOperAssignment_4_2; }
-
-		//ConstantOperator
-		public RuleCall getCnstOperConstantOperatorParserRuleCall_4_2_0() { return cCnstOperConstantOperatorParserRuleCall_4_2_0; }
-
-		//COLON COLON identOper=IdentifierOperator
-		public Group getGroup_5() { return cGroup_5; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_5_0() { return cCOLONTerminalRuleCall_5_0; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_5_1() { return cCOLONTerminalRuleCall_5_1; }
-
-		//identOper=IdentifierOperator
-		public Assignment getIdentOperAssignment_5_2() { return cIdentOperAssignment_5_2; }
-
-		//IdentifierOperator
-		public RuleCall getIdentOperIdentifierOperatorParserRuleCall_5_2_0() { return cIdentOperIdentifierOperatorParserRuleCall_5_2_0; }
-
-		//LBRACE meta=MetaSql RBRACE
-		public Group getGroup_6() { return cGroup_6; }
-
-		//LBRACE
-		public RuleCall getLBRACETerminalRuleCall_6_0() { return cLBRACETerminalRuleCall_6_0; }
-
-		//meta=MetaSql
-		public Assignment getMetaAssignment_6_1() { return cMetaAssignment_6_1; }
-
-		//MetaSql
-		public RuleCall getMetaMetaSqlParserRuleCall_6_1_0() { return cMetaMetaSqlParserRuleCall_6_1_0; }
-
-		//RBRACE
-		public RuleCall getRBRACETerminalRuleCall_6_2() { return cRBRACETerminalRuleCall_6_2; }
-
-		//PERCENT (PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn)
-		public Group getGroup_7() { return cGroup_7; }
-
-		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_7_0() { return cPERCENTTerminalRuleCall_7_0; }
-
-		//PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn
-		public Alternatives getAlternatives_7_1() { return cAlternatives_7_1; }
-
-		//PERCENT dbtab=DatabaseTable
-		public Group getGroup_7_1_0() { return cGroup_7_1_0; }
-
-		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_7_1_0_0() { return cPERCENTTerminalRuleCall_7_1_0_0; }
-
-		//dbtab=DatabaseTable
-		public Assignment getDbtabAssignment_7_1_0_1() { return cDbtabAssignment_7_1_0_1; }
-
-		//DatabaseTable
-		public RuleCall getDbtabDatabaseTableParserRuleCall_7_1_0_1_0() { return cDbtabDatabaseTableParserRuleCall_7_1_0_1_0; }
-
-		//dbcol=DatabaseColumn
-		public Assignment getDbcolAssignment_7_1_1() { return cDbcolAssignment_7_1_1; }
-
-		//DatabaseColumn
-		public RuleCall getDbcolDatabaseColumnParserRuleCall_7_1_1_0() { return cDbcolDatabaseColumnParserRuleCall_7_1_1_0; }
-	}
-
-	public class SqlValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SqlValue");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final RuleCall cRESTTerminalRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
-		private final RuleCall cIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
-		private final RuleCall cCOMMATerminalRuleCall_0_5 = (RuleCall)cAlternatives_0.eContents().get(5);
-		private final RuleCall cMINUSTerminalRuleCall_0_6 = (RuleCall)cAlternatives_0.eContents().get(6);
-		private final RuleCall cPLUSTerminalRuleCall_0_7 = (RuleCall)cAlternatives_0.eContents().get(7);
-		private final RuleCall cLPARENTerminalRuleCall_0_8 = (RuleCall)cAlternatives_0.eContents().get(8);
-		private final RuleCall cRPARENTerminalRuleCall_0_9 = (RuleCall)cAlternatives_0.eContents().get(9);
-		private final RuleCall cRBRACETerminalRuleCall_0_10 = (RuleCall)cAlternatives_0.eContents().get(10);
-		private final RuleCall cQUESTITerminalRuleCall_0_11 = (RuleCall)cAlternatives_0.eContents().get(11);
-		private final RuleCall cNOTTerminalRuleCall_0_12 = (RuleCall)cAlternatives_0.eContents().get(12);
-		private final RuleCall cBANDTerminalRuleCall_0_13 = (RuleCall)cAlternatives_0.eContents().get(13);
-		private final RuleCall cBORTerminalRuleCall_0_14 = (RuleCall)cAlternatives_0.eContents().get(14);
-		private final RuleCall cHASHTerminalRuleCall_0_15 = (RuleCall)cAlternatives_0.eContents().get(15);
-		private final RuleCall cCARETTerminalRuleCall_0_16 = (RuleCall)cAlternatives_0.eContents().get(16);
-		private final RuleCall cEQUALSTerminalRuleCall_0_17 = (RuleCall)cAlternatives_0.eContents().get(17);
-		private final RuleCall cLESS_THANTerminalRuleCall_0_18 = (RuleCall)cAlternatives_0.eContents().get(18);
-		private final RuleCall cMORE_THANTerminalRuleCall_0_19 = (RuleCall)cAlternatives_0.eContents().get(19);
-		private final RuleCall cDOTTerminalRuleCall_0_20 = (RuleCall)cAlternatives_0.eContents().get(20);
-		private final RuleCall cANDTerminalRuleCall_0_21 = (RuleCall)cAlternatives_0.eContents().get(21);
-		private final RuleCall cORTerminalRuleCall_0_22 = (RuleCall)cAlternatives_0.eContents().get(22);
-		private final RuleCall cESC_CHARTerminalRuleCall_0_23 = (RuleCall)cAlternatives_0.eContents().get(23);
-		private final RuleCall cON_OFFTerminalRuleCall_0_24 = (RuleCall)cAlternatives_0.eContents().get(24);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_0_25 = (RuleCall)cAlternatives_0.eContents().get(25);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_0_26 = (RuleCall)cAlternatives_0.eContents().get(26);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_0_27 = (RuleCall)cAlternatives_0.eContents().get(27);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final RuleCall cRESTTerminalRuleCall_1_0_0 = (RuleCall)cAlternatives_1_0.eContents().get(0);
-		private final RuleCall cIDENT_DOTTerminalRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_1_0_2 = (RuleCall)cAlternatives_1_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_1_0_4 = (RuleCall)cAlternatives_1_0.eContents().get(4);
-		private final RuleCall cCOMMATerminalRuleCall_1_0_5 = (RuleCall)cAlternatives_1_0.eContents().get(5);
-		private final RuleCall cMINUSTerminalRuleCall_1_0_6 = (RuleCall)cAlternatives_1_0.eContents().get(6);
-		private final RuleCall cPLUSTerminalRuleCall_1_0_7 = (RuleCall)cAlternatives_1_0.eContents().get(7);
-		private final RuleCall cLPARENTerminalRuleCall_1_0_8 = (RuleCall)cAlternatives_1_0.eContents().get(8);
-		private final RuleCall cRPARENTerminalRuleCall_1_0_9 = (RuleCall)cAlternatives_1_0.eContents().get(9);
-		private final RuleCall cRBRACETerminalRuleCall_1_0_10 = (RuleCall)cAlternatives_1_0.eContents().get(10);
-		private final RuleCall cQUESTITerminalRuleCall_1_0_11 = (RuleCall)cAlternatives_1_0.eContents().get(11);
-		private final RuleCall cNOTTerminalRuleCall_1_0_12 = (RuleCall)cAlternatives_1_0.eContents().get(12);
-		private final RuleCall cBANDTerminalRuleCall_1_0_13 = (RuleCall)cAlternatives_1_0.eContents().get(13);
-		private final RuleCall cBORTerminalRuleCall_1_0_14 = (RuleCall)cAlternatives_1_0.eContents().get(14);
-		private final RuleCall cHASHTerminalRuleCall_1_0_15 = (RuleCall)cAlternatives_1_0.eContents().get(15);
-		private final RuleCall cCARETTerminalRuleCall_1_0_16 = (RuleCall)cAlternatives_1_0.eContents().get(16);
-		private final RuleCall cEQUALSTerminalRuleCall_1_0_17 = (RuleCall)cAlternatives_1_0.eContents().get(17);
-		private final RuleCall cLESS_THANTerminalRuleCall_1_0_18 = (RuleCall)cAlternatives_1_0.eContents().get(18);
-		private final RuleCall cMORE_THANTerminalRuleCall_1_0_19 = (RuleCall)cAlternatives_1_0.eContents().get(19);
-		private final RuleCall cDOTTerminalRuleCall_1_0_20 = (RuleCall)cAlternatives_1_0.eContents().get(20);
-		private final RuleCall cANDTerminalRuleCall_1_0_21 = (RuleCall)cAlternatives_1_0.eContents().get(21);
-		private final RuleCall cORTerminalRuleCall_1_0_22 = (RuleCall)cAlternatives_1_0.eContents().get(22);
-		private final RuleCall cESC_CHARTerminalRuleCall_1_0_23 = (RuleCall)cAlternatives_1_0.eContents().get(23);
-		private final RuleCall cON_OFFTerminalRuleCall_1_0_24 = (RuleCall)cAlternatives_1_0.eContents().get(24);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_1_0_25 = (RuleCall)cAlternatives_1_0.eContents().get(25);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_1_0_26 = (RuleCall)cAlternatives_1_0.eContents().get(26);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_1_0_27 = (RuleCall)cAlternatives_1_0.eContents().get(27);
-		
-		////~(COLON | STRING | AT | LBRACE | SEMICOLON)
-		//SqlValue:
-		//	(REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR
-		//	| HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI |
-		//	NOT | BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-		//	| MAPPING_TYPE | OPTION_TYPE)*;
-		public ParserRule getRule() { return rule; }
-
-		//(REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
-		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI |
-		//NOT | BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-		//| MAPPING_TYPE | OPTION_TYPE)*
-		public Group getGroup() { return cGroup; }
-
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
-		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//OPTION_TYPE
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
-
-		//REST
-		public RuleCall getRESTTerminalRuleCall_0_0() { return cRESTTerminalRuleCall_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getIDENT_DOTTerminalRuleCall_0_1() { return cIDENT_DOTTerminalRuleCall_0_1; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_0_2() { return cIDENTTerminalRuleCall_0_2; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_0_3() { return cNUMBERTerminalRuleCall_0_3; }
-
-		//WS
-		public RuleCall getWSTerminalRuleCall_0_4() { return cWSTerminalRuleCall_0_4; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_0_5() { return cCOMMATerminalRuleCall_0_5; }
-
-		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_0_6() { return cMINUSTerminalRuleCall_0_6; }
-
-		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_0_7() { return cPLUSTerminalRuleCall_0_7; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_0_8() { return cLPARENTerminalRuleCall_0_8; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_0_9() { return cRPARENTerminalRuleCall_0_9; }
-
-		//RBRACE
-		public RuleCall getRBRACETerminalRuleCall_0_10() { return cRBRACETerminalRuleCall_0_10; }
-
-		//QUESTI
-		public RuleCall getQUESTITerminalRuleCall_0_11() { return cQUESTITerminalRuleCall_0_11; }
-
-		//NOT
-		public RuleCall getNOTTerminalRuleCall_0_12() { return cNOTTerminalRuleCall_0_12; }
-
-		//BAND
-		public RuleCall getBANDTerminalRuleCall_0_13() { return cBANDTerminalRuleCall_0_13; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_0_14() { return cBORTerminalRuleCall_0_14; }
-
-		//HASH
-		public RuleCall getHASHTerminalRuleCall_0_15() { return cHASHTerminalRuleCall_0_15; }
-
-		//CARET
-		public RuleCall getCARETTerminalRuleCall_0_16() { return cCARETTerminalRuleCall_0_16; }
-
-		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_0_17() { return cEQUALSTerminalRuleCall_0_17; }
-
-		//LESS_THAN
-		public RuleCall getLESS_THANTerminalRuleCall_0_18() { return cLESS_THANTerminalRuleCall_0_18; }
-
-		//MORE_THAN
-		public RuleCall getMORE_THANTerminalRuleCall_0_19() { return cMORE_THANTerminalRuleCall_0_19; }
-
-		//DOT
-		public RuleCall getDOTTerminalRuleCall_0_20() { return cDOTTerminalRuleCall_0_20; }
-
-		//AND
-		public RuleCall getANDTerminalRuleCall_0_21() { return cANDTerminalRuleCall_0_21; }
-
-		//OR
-		public RuleCall getORTerminalRuleCall_0_22() { return cORTerminalRuleCall_0_22; }
-
-		//ESC_CHAR
-		public RuleCall getESC_CHARTerminalRuleCall_0_23() { return cESC_CHARTerminalRuleCall_0_23; }
-
-		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_0_24() { return cON_OFFTerminalRuleCall_0_24; }
-
-		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_0_25() { return cSTATEMENT_TYPETerminalRuleCall_0_25; }
-
-		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_0_26() { return cMAPPING_TYPETerminalRuleCall_0_26; }
-
-		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_0_27() { return cOPTION_TYPETerminalRuleCall_0_27; }
-
-		//=> (REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR
-		//| HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//OPTION_TYPE)*
-		public Group getGroup_1() { return cGroup_1; }
-
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
-		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//OPTION_TYPE
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
-
-		//REST
-		public RuleCall getRESTTerminalRuleCall_1_0_0() { return cRESTTerminalRuleCall_1_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getIDENT_DOTTerminalRuleCall_1_0_1() { return cIDENT_DOTTerminalRuleCall_1_0_1; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_1_0_2() { return cIDENTTerminalRuleCall_1_0_2; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1_0_3() { return cNUMBERTerminalRuleCall_1_0_3; }
-
-		//WS
-		public RuleCall getWSTerminalRuleCall_1_0_4() { return cWSTerminalRuleCall_1_0_4; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_1_0_5() { return cCOMMATerminalRuleCall_1_0_5; }
-
-		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_1_0_6() { return cMINUSTerminalRuleCall_1_0_6; }
-
-		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_1_0_7() { return cPLUSTerminalRuleCall_1_0_7; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_1_0_8() { return cLPARENTerminalRuleCall_1_0_8; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_1_0_9() { return cRPARENTerminalRuleCall_1_0_9; }
-
-		//RBRACE
-		public RuleCall getRBRACETerminalRuleCall_1_0_10() { return cRBRACETerminalRuleCall_1_0_10; }
-
-		//QUESTI
-		public RuleCall getQUESTITerminalRuleCall_1_0_11() { return cQUESTITerminalRuleCall_1_0_11; }
-
-		//NOT
-		public RuleCall getNOTTerminalRuleCall_1_0_12() { return cNOTTerminalRuleCall_1_0_12; }
-
-		//BAND
-		public RuleCall getBANDTerminalRuleCall_1_0_13() { return cBANDTerminalRuleCall_1_0_13; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_1_0_14() { return cBORTerminalRuleCall_1_0_14; }
-
-		//HASH
-		public RuleCall getHASHTerminalRuleCall_1_0_15() { return cHASHTerminalRuleCall_1_0_15; }
-
-		//CARET
-		public RuleCall getCARETTerminalRuleCall_1_0_16() { return cCARETTerminalRuleCall_1_0_16; }
-
-		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_1_0_17() { return cEQUALSTerminalRuleCall_1_0_17; }
-
-		//LESS_THAN
-		public RuleCall getLESS_THANTerminalRuleCall_1_0_18() { return cLESS_THANTerminalRuleCall_1_0_18; }
-
-		//MORE_THAN
-		public RuleCall getMORE_THANTerminalRuleCall_1_0_19() { return cMORE_THANTerminalRuleCall_1_0_19; }
-
-		//DOT
-		public RuleCall getDOTTerminalRuleCall_1_0_20() { return cDOTTerminalRuleCall_1_0_20; }
-
-		//AND
-		public RuleCall getANDTerminalRuleCall_1_0_21() { return cANDTerminalRuleCall_1_0_21; }
-
-		//OR
-		public RuleCall getORTerminalRuleCall_1_0_22() { return cORTerminalRuleCall_1_0_22; }
-
-		//ESC_CHAR
-		public RuleCall getESC_CHARTerminalRuleCall_1_0_23() { return cESC_CHARTerminalRuleCall_1_0_23; }
-
-		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_1_0_24() { return cON_OFFTerminalRuleCall_1_0_24; }
-
-		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_1_0_25() { return cSTATEMENT_TYPETerminalRuleCall_1_0_25; }
-
-		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_1_0_26() { return cMAPPING_TYPETerminalRuleCall_1_0_26; }
-
-		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_1_0_27() { return cOPTION_TYPETerminalRuleCall_1_0_27; }
-	}
-
-	public class MetaSqlElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MetaSql");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
-		private final Assignment cIfsAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_0_1_0 = (RuleCall)cIfsAssignment_0_1.eContents().get(0);
-		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
-		private final RuleCall cBORTerminalRuleCall_0_2_0 = (RuleCall)cGroup_0_2.eContents().get(0);
-		private final Assignment cIfsAssignment_0_2_1 = (Assignment)cGroup_0_2.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_0_2_1_0 = (RuleCall)cIfsAssignment_0_2_1.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Assignment cTypeAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cTypeQUESTITerminalRuleCall_1_0_0 = (RuleCall)cTypeAssignment_1_0.eContents().get(0);
-		private final Assignment cCondAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cCondIfSqlCondParserRuleCall_1_1_0 = (RuleCall)cCondAssignment_1_1.eContents().get(0);
-		private final RuleCall cBORTerminalRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
-		private final Assignment cIfsAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
-		private final RuleCall cIfsIfSqlParserRuleCall_1_3_0 = (RuleCall)cIfsAssignment_1_3.eContents().get(0);
-		private final Group cGroup_1_4 = (Group)cGroup_1.eContents().get(4);
-		private final RuleCall cBORTerminalRuleCall_1_4_0 = (RuleCall)cGroup_1_4.eContents().get(0);
-		private final Assignment cIfsAssignment_1_4_1 = (Assignment)cGroup_1_4.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_1_4_1_0 = (RuleCall)cIfsAssignment_1_4_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Assignment cTypeAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cTypeBANDTerminalRuleCall_2_0_0 = (RuleCall)cTypeAssignment_2_0.eContents().get(0);
-		private final Assignment cIfsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_2_1_0 = (RuleCall)cIfsAssignment_2_1.eContents().get(0);
-		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
-		private final RuleCall cBORTerminalRuleCall_2_2_0 = (RuleCall)cGroup_2_2.eContents().get(0);
-		private final Assignment cIfsAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_2_2_1_0 = (RuleCall)cIfsAssignment_2_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final Assignment cTypeAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
-		private final RuleCall cTypeBORTerminalRuleCall_3_0_0 = (RuleCall)cTypeAssignment_3_0.eContents().get(0);
-		private final Assignment cIfsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_3_1_0 = (RuleCall)cIfsAssignment_3_1.eContents().get(0);
-		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
-		private final RuleCall cBORTerminalRuleCall_3_2_0 = (RuleCall)cGroup_3_2.eContents().get(0);
-		private final Assignment cIfsAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_3_2_1_0 = (RuleCall)cIfsAssignment_3_2_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final Assignment cTypeAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final RuleCall cTypeEQUALSTerminalRuleCall_4_0_0 = (RuleCall)cTypeAssignment_4_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
-		private final Assignment cFtypeAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cFtypeIDENTTerminalRuleCall_4_2_0 = (RuleCall)cFtypeAssignment_4_2.eContents().get(0);
-		private final Assignment cIfsAssignment_4_3 = (Assignment)cGroup_4.eContents().get(3);
-		private final RuleCall cIfsIfSqlParserRuleCall_4_3_0 = (RuleCall)cIfsAssignment_4_3.eContents().get(0);
-		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
-		private final Assignment cTypeAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
-		private final RuleCall cTypeHASHTerminalRuleCall_5_0_0 = (RuleCall)cTypeAssignment_5_0.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
-		private final Assignment cOrdAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
-		private final RuleCall cOrdOrdSqlParserRuleCall_5_2_0 = (RuleCall)cOrdAssignment_5_2.eContents().get(0);
-		
-		//MetaSql:
-		//	WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-		//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH NUMBER
-		//	ord=OrdSql;
-		public ParserRule getRule() { return rule; }
-
-		//WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-		//(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH NUMBER
-		//ord=OrdSql
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//WS ifs+=IfSql (BOR ifs+=IfSql)*
-		public Group getGroup_0() { return cGroup_0; }
-
-		//WS
-		public RuleCall getWSTerminalRuleCall_0_0() { return cWSTerminalRuleCall_0_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_0_1() { return cIfsAssignment_0_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_0_1_0() { return cIfsIfSqlParserRuleCall_0_1_0; }
-
-		//(BOR ifs+=IfSql)*
-		public Group getGroup_0_2() { return cGroup_0_2; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_0_2_0() { return cBORTerminalRuleCall_0_2_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_0_2_1() { return cIfsAssignment_0_2_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_0_2_1_0() { return cIfsIfSqlParserRuleCall_0_2_1_0; }
-
-		//type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)*
-		public Group getGroup_1() { return cGroup_1; }
-
-		//type=QUESTI
-		public Assignment getTypeAssignment_1_0() { return cTypeAssignment_1_0; }
-
-		//QUESTI
-		public RuleCall getTypeQUESTITerminalRuleCall_1_0_0() { return cTypeQUESTITerminalRuleCall_1_0_0; }
-
-		//cond=IfSqlCond
-		public Assignment getCondAssignment_1_1() { return cCondAssignment_1_1; }
-
-		//IfSqlCond
-		public RuleCall getCondIfSqlCondParserRuleCall_1_1_0() { return cCondIfSqlCondParserRuleCall_1_1_0; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_1_2() { return cBORTerminalRuleCall_1_2; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_1_3() { return cIfsAssignment_1_3; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_1_3_0() { return cIfsIfSqlParserRuleCall_1_3_0; }
-
-		//(BOR ifs+=IfSql)*
-		public Group getGroup_1_4() { return cGroup_1_4; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_1_4_0() { return cBORTerminalRuleCall_1_4_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_1_4_1() { return cIfsAssignment_1_4_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_1_4_1_0() { return cIfsIfSqlParserRuleCall_1_4_1_0; }
-
-		//type=BAND ifs+=IfSql (BOR ifs+=IfSql)*
-		public Group getGroup_2() { return cGroup_2; }
-
-		//type=BAND
-		public Assignment getTypeAssignment_2_0() { return cTypeAssignment_2_0; }
-
-		//BAND
-		public RuleCall getTypeBANDTerminalRuleCall_2_0_0() { return cTypeBANDTerminalRuleCall_2_0_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_2_1() { return cIfsAssignment_2_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_2_1_0() { return cIfsIfSqlParserRuleCall_2_1_0; }
-
-		//(BOR ifs+=IfSql)*
-		public Group getGroup_2_2() { return cGroup_2_2; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_2_2_0() { return cBORTerminalRuleCall_2_2_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_2_2_1() { return cIfsAssignment_2_2_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_2_2_1_0() { return cIfsIfSqlParserRuleCall_2_2_1_0; }
-
-		//type=BOR ifs+=IfSql (BOR ifs+=IfSql)*
-		public Group getGroup_3() { return cGroup_3; }
-
-		//type=BOR
-		public Assignment getTypeAssignment_3_0() { return cTypeAssignment_3_0; }
-
-		//BOR
-		public RuleCall getTypeBORTerminalRuleCall_3_0_0() { return cTypeBORTerminalRuleCall_3_0_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_3_1() { return cIfsAssignment_3_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_3_1_0() { return cIfsIfSqlParserRuleCall_3_1_0; }
-
-		//(BOR ifs+=IfSql)*
-		public Group getGroup_3_2() { return cGroup_3_2; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_3_2_0() { return cBORTerminalRuleCall_3_2_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_3_2_1() { return cIfsAssignment_3_2_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_3_2_1_0() { return cIfsIfSqlParserRuleCall_3_2_1_0; }
-
-		//type=EQUALS WS* ftype=IDENT ifs+=IfSql
-		public Group getGroup_4() { return cGroup_4; }
-
-		//type=EQUALS
-		public Assignment getTypeAssignment_4_0() { return cTypeAssignment_4_0; }
-
-		//EQUALS
-		public RuleCall getTypeEQUALSTerminalRuleCall_4_0_0() { return cTypeEQUALSTerminalRuleCall_4_0_0; }
-
-		//WS*
-		public RuleCall getWSTerminalRuleCall_4_1() { return cWSTerminalRuleCall_4_1; }
-
-		//ftype=IDENT
-		public Assignment getFtypeAssignment_4_2() { return cFtypeAssignment_4_2; }
-
-		//IDENT
-		public RuleCall getFtypeIDENTTerminalRuleCall_4_2_0() { return cFtypeIDENTTerminalRuleCall_4_2_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_4_3() { return cIfsAssignment_4_3; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_4_3_0() { return cIfsIfSqlParserRuleCall_4_3_0; }
-
-		//type=HASH NUMBER ord=OrdSql
-		public Group getGroup_5() { return cGroup_5; }
-
-		//type=HASH
-		public Assignment getTypeAssignment_5_0() { return cTypeAssignment_5_0; }
-
-		//HASH
-		public RuleCall getTypeHASHTerminalRuleCall_5_0_0() { return cTypeHASHTerminalRuleCall_5_0_0; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_5_1() { return cNUMBERTerminalRuleCall_5_1; }
-
-		//ord=OrdSql
-		public Assignment getOrdAssignment_5_2() { return cOrdAssignment_5_2; }
-
-		//OrdSql
-		public RuleCall getOrdOrdSqlParserRuleCall_5_2_0() { return cOrdOrdSqlParserRuleCall_5_2_0; }
-	}
-
-	public class IfSqlElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IfSql");
-		private final Assignment cSqlsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cSqlsIfSqlFragmentParserRuleCall_0 = (RuleCall)cSqlsAssignment.eContents().get(0);
-		
-		//IfSql:
-		//	sqls+=IfSqlFragment+;
-		public ParserRule getRule() { return rule; }
-
-		//sqls+=IfSqlFragment+
-		public Assignment getSqlsAssignment() { return cSqlsAssignment; }
-
-		//IfSqlFragment
-		public RuleCall getSqlsIfSqlFragmentParserRuleCall_0() { return cSqlsIfSqlFragmentParserRuleCall_0; }
-	}
-
-	public class IfSqlFragmentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IfSqlFragment");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cValueIfSqlValueParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final RuleCall cATTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final Assignment cColAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cColColumnParserRuleCall_1_1_0 = (RuleCall)cColAssignment_1_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final RuleCall cSTRINGTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final Assignment cCnstAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cCnstConstantParserRuleCall_2_1_0 = (RuleCall)cCnstAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final RuleCall cCOLONTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cIdentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cIdentIdentifierParserRuleCall_3_1_0 = (RuleCall)cIdentAssignment_3_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final RuleCall cSTRINGTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final RuleCall cSTRINGTerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
-		private final Assignment cCnstOperAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cCnstOperConstantOperatorParserRuleCall_4_2_0 = (RuleCall)cCnstOperAssignment_4_2.eContents().get(0);
-		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
-		private final RuleCall cCOLONTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final RuleCall cCOLONTerminalRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
-		private final Assignment cIdentOperAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
-		private final RuleCall cIdentOperIdentifierOperatorParserRuleCall_5_2_0 = (RuleCall)cIdentOperAssignment_5_2.eContents().get(0);
-		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
-		private final RuleCall cPERCENTTerminalRuleCall_6_0 = (RuleCall)cGroup_6.eContents().get(0);
-		private final Alternatives cAlternatives_6_1 = (Alternatives)cGroup_6.eContents().get(1);
-		private final Group cGroup_6_1_0 = (Group)cAlternatives_6_1.eContents().get(0);
-		private final RuleCall cPERCENTTerminalRuleCall_6_1_0_0 = (RuleCall)cGroup_6_1_0.eContents().get(0);
-		private final Assignment cDbtabAssignment_6_1_0_1 = (Assignment)cGroup_6_1_0.eContents().get(1);
-		private final RuleCall cDbtabDatabaseTableParserRuleCall_6_1_0_1_0 = (RuleCall)cDbtabAssignment_6_1_0_1.eContents().get(0);
-		private final Assignment cDbcolAssignment_6_1_1 = (Assignment)cAlternatives_6_1.eContents().get(1);
-		private final RuleCall cDbcolDatabaseColumnParserRuleCall_6_1_1_0 = (RuleCall)cDbcolAssignment_6_1_1.eContents().get(0);
-		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
-		private final RuleCall cLBRACETerminalRuleCall_7_0 = (RuleCall)cGroup_7.eContents().get(0);
-		private final Assignment cMetaAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
-		private final RuleCall cMetaIfMetaSqlParserRuleCall_7_1_0 = (RuleCall)cMetaAssignment_7_1.eContents().get(0);
-		private final RuleCall cRBRACETerminalRuleCall_7_2 = (RuleCall)cGroup_7.eContents().get(2);
-		
-		//IfSqlFragment:
-		//	value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
-		//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
-		//	dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE;
-		public ParserRule getRule() { return rule; }
-
-		//value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
-		//cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
-		//dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//value=IfSqlValue
-		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
-
-		//IfSqlValue
-		public RuleCall getValueIfSqlValueParserRuleCall_0_0() { return cValueIfSqlValueParserRuleCall_0_0; }
-
-		//AT col=Column
-		public Group getGroup_1() { return cGroup_1; }
-
-		//AT
-		public RuleCall getATTerminalRuleCall_1_0() { return cATTerminalRuleCall_1_0; }
-
-		//col=Column
-		public Assignment getColAssignment_1_1() { return cColAssignment_1_1; }
-
-		//Column
-		public RuleCall getColColumnParserRuleCall_1_1_0() { return cColColumnParserRuleCall_1_1_0; }
-
-		//STRING cnst=Constant
-		public Group getGroup_2() { return cGroup_2; }
-
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_2_0() { return cSTRINGTerminalRuleCall_2_0; }
-
-		//cnst=Constant
-		public Assignment getCnstAssignment_2_1() { return cCnstAssignment_2_1; }
-
-		//Constant
-		public RuleCall getCnstConstantParserRuleCall_2_1_0() { return cCnstConstantParserRuleCall_2_1_0; }
-
-		//COLON ident=Identifier
-		public Group getGroup_3() { return cGroup_3; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_3_0() { return cCOLONTerminalRuleCall_3_0; }
-
-		//ident=Identifier
-		public Assignment getIdentAssignment_3_1() { return cIdentAssignment_3_1; }
-
-		//Identifier
-		public RuleCall getIdentIdentifierParserRuleCall_3_1_0() { return cIdentIdentifierParserRuleCall_3_1_0; }
-
-		//STRING STRING cnstOper=ConstantOperator
-		public Group getGroup_4() { return cGroup_4; }
-
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_4_0() { return cSTRINGTerminalRuleCall_4_0; }
-
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_4_1() { return cSTRINGTerminalRuleCall_4_1; }
-
-		//cnstOper=ConstantOperator
-		public Assignment getCnstOperAssignment_4_2() { return cCnstOperAssignment_4_2; }
-
-		//ConstantOperator
-		public RuleCall getCnstOperConstantOperatorParserRuleCall_4_2_0() { return cCnstOperConstantOperatorParserRuleCall_4_2_0; }
-
-		//COLON COLON identOper=IdentifierOperator
-		public Group getGroup_5() { return cGroup_5; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_5_0() { return cCOLONTerminalRuleCall_5_0; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_5_1() { return cCOLONTerminalRuleCall_5_1; }
-
-		//identOper=IdentifierOperator
-		public Assignment getIdentOperAssignment_5_2() { return cIdentOperAssignment_5_2; }
-
-		//IdentifierOperator
-		public RuleCall getIdentOperIdentifierOperatorParserRuleCall_5_2_0() { return cIdentOperIdentifierOperatorParserRuleCall_5_2_0; }
-
-		//PERCENT (PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn)
-		public Group getGroup_6() { return cGroup_6; }
-
-		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_6_0() { return cPERCENTTerminalRuleCall_6_0; }
-
-		//PERCENT dbtab=DatabaseTable | dbcol=DatabaseColumn
-		public Alternatives getAlternatives_6_1() { return cAlternatives_6_1; }
-
-		//PERCENT dbtab=DatabaseTable
-		public Group getGroup_6_1_0() { return cGroup_6_1_0; }
-
-		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_6_1_0_0() { return cPERCENTTerminalRuleCall_6_1_0_0; }
-
-		//dbtab=DatabaseTable
-		public Assignment getDbtabAssignment_6_1_0_1() { return cDbtabAssignment_6_1_0_1; }
-
-		//DatabaseTable
-		public RuleCall getDbtabDatabaseTableParserRuleCall_6_1_0_1_0() { return cDbtabDatabaseTableParserRuleCall_6_1_0_1_0; }
-
-		//dbcol=DatabaseColumn
-		public Assignment getDbcolAssignment_6_1_1() { return cDbcolAssignment_6_1_1; }
-
-		//DatabaseColumn
-		public RuleCall getDbcolDatabaseColumnParserRuleCall_6_1_1_0() { return cDbcolDatabaseColumnParserRuleCall_6_1_1_0; }
-
-		//LBRACE meta=IfMetaSql RBRACE
-		public Group getGroup_7() { return cGroup_7; }
-
-		//LBRACE
-		public RuleCall getLBRACETerminalRuleCall_7_0() { return cLBRACETerminalRuleCall_7_0; }
-
-		//meta=IfMetaSql
-		public Assignment getMetaAssignment_7_1() { return cMetaAssignment_7_1; }
-
-		//IfMetaSql
-		public RuleCall getMetaIfMetaSqlParserRuleCall_7_1_0() { return cMetaIfMetaSqlParserRuleCall_7_1_0; }
-
-		//RBRACE
-		public RuleCall getRBRACETerminalRuleCall_7_2() { return cRBRACETerminalRuleCall_7_2; }
-	}
-
-	public class IfSqlValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IfSqlValue");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final RuleCall cRESTTerminalRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
-		private final RuleCall cIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
-		private final RuleCall cSEMICOLONTerminalRuleCall_0_5 = (RuleCall)cAlternatives_0.eContents().get(5);
-		private final RuleCall cCOMMATerminalRuleCall_0_6 = (RuleCall)cAlternatives_0.eContents().get(6);
-		private final RuleCall cMINUSTerminalRuleCall_0_7 = (RuleCall)cAlternatives_0.eContents().get(7);
-		private final RuleCall cPLUSTerminalRuleCall_0_8 = (RuleCall)cAlternatives_0.eContents().get(8);
-		private final RuleCall cLPARENTerminalRuleCall_0_9 = (RuleCall)cAlternatives_0.eContents().get(9);
-		private final RuleCall cRPARENTerminalRuleCall_0_10 = (RuleCall)cAlternatives_0.eContents().get(10);
-		private final RuleCall cQUESTITerminalRuleCall_0_11 = (RuleCall)cAlternatives_0.eContents().get(11);
-		private final RuleCall cNOTTerminalRuleCall_0_12 = (RuleCall)cAlternatives_0.eContents().get(12);
-		private final RuleCall cBANDTerminalRuleCall_0_13 = (RuleCall)cAlternatives_0.eContents().get(13);
-		private final RuleCall cHASHTerminalRuleCall_0_14 = (RuleCall)cAlternatives_0.eContents().get(14);
-		private final RuleCall cCARETTerminalRuleCall_0_15 = (RuleCall)cAlternatives_0.eContents().get(15);
-		private final RuleCall cEQUALSTerminalRuleCall_0_16 = (RuleCall)cAlternatives_0.eContents().get(16);
-		private final RuleCall cLESS_THANTerminalRuleCall_0_17 = (RuleCall)cAlternatives_0.eContents().get(17);
-		private final RuleCall cMORE_THANTerminalRuleCall_0_18 = (RuleCall)cAlternatives_0.eContents().get(18);
-		private final RuleCall cDOTTerminalRuleCall_0_19 = (RuleCall)cAlternatives_0.eContents().get(19);
-		private final RuleCall cANDTerminalRuleCall_0_20 = (RuleCall)cAlternatives_0.eContents().get(20);
-		private final RuleCall cORTerminalRuleCall_0_21 = (RuleCall)cAlternatives_0.eContents().get(21);
-		private final RuleCall cESC_CHARTerminalRuleCall_0_22 = (RuleCall)cAlternatives_0.eContents().get(22);
-		private final RuleCall cON_OFFTerminalRuleCall_0_23 = (RuleCall)cAlternatives_0.eContents().get(23);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_0_24 = (RuleCall)cAlternatives_0.eContents().get(24);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_0_25 = (RuleCall)cAlternatives_0.eContents().get(25);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_0_26 = (RuleCall)cAlternatives_0.eContents().get(26);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final RuleCall cRESTTerminalRuleCall_1_0_0 = (RuleCall)cAlternatives_1_0.eContents().get(0);
-		private final RuleCall cIDENT_DOTTerminalRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_1_0_2 = (RuleCall)cAlternatives_1_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_1_0_4 = (RuleCall)cAlternatives_1_0.eContents().get(4);
-		private final RuleCall cSEMICOLONTerminalRuleCall_1_0_5 = (RuleCall)cAlternatives_1_0.eContents().get(5);
-		private final RuleCall cCOMMATerminalRuleCall_1_0_6 = (RuleCall)cAlternatives_1_0.eContents().get(6);
-		private final RuleCall cMINUSTerminalRuleCall_1_0_7 = (RuleCall)cAlternatives_1_0.eContents().get(7);
-		private final RuleCall cPLUSTerminalRuleCall_1_0_8 = (RuleCall)cAlternatives_1_0.eContents().get(8);
-		private final RuleCall cLPARENTerminalRuleCall_1_0_9 = (RuleCall)cAlternatives_1_0.eContents().get(9);
-		private final RuleCall cRPARENTerminalRuleCall_1_0_10 = (RuleCall)cAlternatives_1_0.eContents().get(10);
-		private final RuleCall cQUESTITerminalRuleCall_1_0_11 = (RuleCall)cAlternatives_1_0.eContents().get(11);
-		private final RuleCall cNOTTerminalRuleCall_1_0_12 = (RuleCall)cAlternatives_1_0.eContents().get(12);
-		private final RuleCall cBANDTerminalRuleCall_1_0_13 = (RuleCall)cAlternatives_1_0.eContents().get(13);
-		private final RuleCall cHASHTerminalRuleCall_1_0_14 = (RuleCall)cAlternatives_1_0.eContents().get(14);
-		private final RuleCall cCARETTerminalRuleCall_1_0_15 = (RuleCall)cAlternatives_1_0.eContents().get(15);
-		private final RuleCall cEQUALSTerminalRuleCall_1_0_16 = (RuleCall)cAlternatives_1_0.eContents().get(16);
-		private final RuleCall cLESS_THANTerminalRuleCall_1_0_17 = (RuleCall)cAlternatives_1_0.eContents().get(17);
-		private final RuleCall cMORE_THANTerminalRuleCall_1_0_18 = (RuleCall)cAlternatives_1_0.eContents().get(18);
-		private final RuleCall cDOTTerminalRuleCall_1_0_19 = (RuleCall)cAlternatives_1_0.eContents().get(19);
-		private final RuleCall cANDTerminalRuleCall_1_0_20 = (RuleCall)cAlternatives_1_0.eContents().get(20);
-		private final RuleCall cORTerminalRuleCall_1_0_21 = (RuleCall)cAlternatives_1_0.eContents().get(21);
-		private final RuleCall cESC_CHARTerminalRuleCall_1_0_22 = (RuleCall)cAlternatives_1_0.eContents().get(22);
-		private final RuleCall cON_OFFTerminalRuleCall_1_0_23 = (RuleCall)cAlternatives_1_0.eContents().get(23);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_1_0_24 = (RuleCall)cAlternatives_1_0.eContents().get(24);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_1_0_25 = (RuleCall)cAlternatives_1_0.eContents().get(25);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_1_0_26 = (RuleCall)cAlternatives_1_0.eContents().get(26);
-		
-		////~(COLON | STRING | AT | LBRACE | BOR | RBRACE)
-		//IfSqlValue:
-		//	(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
-		//	HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI
-		//	| NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
-		//	MAPPING_TYPE | OPTION_TYPE)*;
-		public ParserRule getRule() { return rule; }
-
-		//(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
-		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI |
-		//NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
-		//MAPPING_TYPE | OPTION_TYPE)*
-		public Group getGroup() { return cGroup; }
-
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH
-		//| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//OPTION_TYPE
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
-
-		//REST
-		public RuleCall getRESTTerminalRuleCall_0_0() { return cRESTTerminalRuleCall_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getIDENT_DOTTerminalRuleCall_0_1() { return cIDENT_DOTTerminalRuleCall_0_1; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_0_2() { return cIDENTTerminalRuleCall_0_2; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_0_3() { return cNUMBERTerminalRuleCall_0_3; }
-
-		//WS
-		public RuleCall getWSTerminalRuleCall_0_4() { return cWSTerminalRuleCall_0_4; }
-
-		//SEMICOLON
-		public RuleCall getSEMICOLONTerminalRuleCall_0_5() { return cSEMICOLONTerminalRuleCall_0_5; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_0_6() { return cCOMMATerminalRuleCall_0_6; }
-
-		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_0_7() { return cMINUSTerminalRuleCall_0_7; }
-
-		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_0_8() { return cPLUSTerminalRuleCall_0_8; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_0_9() { return cLPARENTerminalRuleCall_0_9; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_0_10() { return cRPARENTerminalRuleCall_0_10; }
-
-		//QUESTI
-		public RuleCall getQUESTITerminalRuleCall_0_11() { return cQUESTITerminalRuleCall_0_11; }
-
-		//NOT
-		public RuleCall getNOTTerminalRuleCall_0_12() { return cNOTTerminalRuleCall_0_12; }
-
-		//BAND
-		public RuleCall getBANDTerminalRuleCall_0_13() { return cBANDTerminalRuleCall_0_13; }
-
-		//HASH
-		public RuleCall getHASHTerminalRuleCall_0_14() { return cHASHTerminalRuleCall_0_14; }
-
-		//CARET
-		public RuleCall getCARETTerminalRuleCall_0_15() { return cCARETTerminalRuleCall_0_15; }
-
-		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_0_16() { return cEQUALSTerminalRuleCall_0_16; }
-
-		//LESS_THAN
-		public RuleCall getLESS_THANTerminalRuleCall_0_17() { return cLESS_THANTerminalRuleCall_0_17; }
-
-		//MORE_THAN
-		public RuleCall getMORE_THANTerminalRuleCall_0_18() { return cMORE_THANTerminalRuleCall_0_18; }
-
-		//DOT
-		public RuleCall getDOTTerminalRuleCall_0_19() { return cDOTTerminalRuleCall_0_19; }
-
-		//AND
-		public RuleCall getANDTerminalRuleCall_0_20() { return cANDTerminalRuleCall_0_20; }
-
-		//OR
-		public RuleCall getORTerminalRuleCall_0_21() { return cORTerminalRuleCall_0_21; }
-
-		//ESC_CHAR
-		public RuleCall getESC_CHARTerminalRuleCall_0_22() { return cESC_CHARTerminalRuleCall_0_22; }
-
-		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_0_23() { return cON_OFFTerminalRuleCall_0_23; }
-
-		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_0_24() { return cSTATEMENT_TYPETerminalRuleCall_0_24; }
-
-		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_0_25() { return cMAPPING_TYPETerminalRuleCall_0_25; }
-
-		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_0_26() { return cOPTION_TYPETerminalRuleCall_0_26; }
-
-		//=> (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
-		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//OPTION_TYPE)*
-		public Group getGroup_1() { return cGroup_1; }
-
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH
-		//| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//OPTION_TYPE
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
-
-		//REST
-		public RuleCall getRESTTerminalRuleCall_1_0_0() { return cRESTTerminalRuleCall_1_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getIDENT_DOTTerminalRuleCall_1_0_1() { return cIDENT_DOTTerminalRuleCall_1_0_1; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_1_0_2() { return cIDENTTerminalRuleCall_1_0_2; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1_0_3() { return cNUMBERTerminalRuleCall_1_0_3; }
-
-		//WS
-		public RuleCall getWSTerminalRuleCall_1_0_4() { return cWSTerminalRuleCall_1_0_4; }
-
-		//SEMICOLON
-		public RuleCall getSEMICOLONTerminalRuleCall_1_0_5() { return cSEMICOLONTerminalRuleCall_1_0_5; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_1_0_6() { return cCOMMATerminalRuleCall_1_0_6; }
-
-		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_1_0_7() { return cMINUSTerminalRuleCall_1_0_7; }
-
-		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_1_0_8() { return cPLUSTerminalRuleCall_1_0_8; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_1_0_9() { return cLPARENTerminalRuleCall_1_0_9; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_1_0_10() { return cRPARENTerminalRuleCall_1_0_10; }
-
-		//QUESTI
-		public RuleCall getQUESTITerminalRuleCall_1_0_11() { return cQUESTITerminalRuleCall_1_0_11; }
-
-		//NOT
-		public RuleCall getNOTTerminalRuleCall_1_0_12() { return cNOTTerminalRuleCall_1_0_12; }
-
-		//BAND
-		public RuleCall getBANDTerminalRuleCall_1_0_13() { return cBANDTerminalRuleCall_1_0_13; }
-
-		//HASH
-		public RuleCall getHASHTerminalRuleCall_1_0_14() { return cHASHTerminalRuleCall_1_0_14; }
-
-		//CARET
-		public RuleCall getCARETTerminalRuleCall_1_0_15() { return cCARETTerminalRuleCall_1_0_15; }
-
-		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_1_0_16() { return cEQUALSTerminalRuleCall_1_0_16; }
-
-		//LESS_THAN
-		public RuleCall getLESS_THANTerminalRuleCall_1_0_17() { return cLESS_THANTerminalRuleCall_1_0_17; }
-
-		//MORE_THAN
-		public RuleCall getMORE_THANTerminalRuleCall_1_0_18() { return cMORE_THANTerminalRuleCall_1_0_18; }
-
-		//DOT
-		public RuleCall getDOTTerminalRuleCall_1_0_19() { return cDOTTerminalRuleCall_1_0_19; }
-
-		//AND
-		public RuleCall getANDTerminalRuleCall_1_0_20() { return cANDTerminalRuleCall_1_0_20; }
-
-		//OR
-		public RuleCall getORTerminalRuleCall_1_0_21() { return cORTerminalRuleCall_1_0_21; }
-
-		//ESC_CHAR
-		public RuleCall getESC_CHARTerminalRuleCall_1_0_22() { return cESC_CHARTerminalRuleCall_1_0_22; }
-
-		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_1_0_23() { return cON_OFFTerminalRuleCall_1_0_23; }
-
-		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_1_0_24() { return cSTATEMENT_TYPETerminalRuleCall_1_0_24; }
-
-		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_1_0_25() { return cMAPPING_TYPETerminalRuleCall_1_0_25; }
-
-		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_1_0_26() { return cOPTION_TYPETerminalRuleCall_1_0_26; }
-	}
-
-	public class IfMetaSqlElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IfMetaSql");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
-		private final Assignment cIfsAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_0_1_0 = (RuleCall)cIfsAssignment_0_1.eContents().get(0);
-		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
-		private final RuleCall cBORTerminalRuleCall_0_2_0 = (RuleCall)cGroup_0_2.eContents().get(0);
-		private final Assignment cIfsAssignment_0_2_1 = (Assignment)cGroup_0_2.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_0_2_1_0 = (RuleCall)cIfsAssignment_0_2_1.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Assignment cTypeAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cTypeQUESTITerminalRuleCall_1_0_0 = (RuleCall)cTypeAssignment_1_0.eContents().get(0);
-		private final Assignment cCondAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cCondIfSqlCondParserRuleCall_1_1_0 = (RuleCall)cCondAssignment_1_1.eContents().get(0);
-		private final RuleCall cBORTerminalRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
-		private final Assignment cIfsAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
-		private final RuleCall cIfsIfSqlParserRuleCall_1_3_0 = (RuleCall)cIfsAssignment_1_3.eContents().get(0);
-		private final Group cGroup_1_4 = (Group)cGroup_1.eContents().get(4);
-		private final RuleCall cBORTerminalRuleCall_1_4_0 = (RuleCall)cGroup_1_4.eContents().get(0);
-		private final Assignment cIfsAssignment_1_4_1 = (Assignment)cGroup_1_4.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_1_4_1_0 = (RuleCall)cIfsAssignment_1_4_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Assignment cTypeAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cTypeBANDTerminalRuleCall_2_0_0 = (RuleCall)cTypeAssignment_2_0.eContents().get(0);
-		private final Assignment cIfsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_2_1_0 = (RuleCall)cIfsAssignment_2_1.eContents().get(0);
-		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
-		private final RuleCall cBORTerminalRuleCall_2_2_0 = (RuleCall)cGroup_2_2.eContents().get(0);
-		private final Assignment cIfsAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_2_2_1_0 = (RuleCall)cIfsAssignment_2_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final Assignment cTypeAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
-		private final RuleCall cTypeBORTerminalRuleCall_3_0_0 = (RuleCall)cTypeAssignment_3_0.eContents().get(0);
-		private final Assignment cIfsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_3_1_0 = (RuleCall)cIfsAssignment_3_1.eContents().get(0);
-		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
-		private final RuleCall cBORTerminalRuleCall_3_2_0 = (RuleCall)cGroup_3_2.eContents().get(0);
-		private final Assignment cIfsAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cIfsIfSqlParserRuleCall_3_2_1_0 = (RuleCall)cIfsAssignment_3_2_1.eContents().get(0);
-		
-		//IfMetaSql:
-		//	WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-		//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)*;
-		public ParserRule getRule() { return rule; }
-
-		//WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-		//(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)*
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//WS ifs+=IfSql (BOR ifs+=IfSql)*
-		public Group getGroup_0() { return cGroup_0; }
-
-		//WS
-		public RuleCall getWSTerminalRuleCall_0_0() { return cWSTerminalRuleCall_0_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_0_1() { return cIfsAssignment_0_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_0_1_0() { return cIfsIfSqlParserRuleCall_0_1_0; }
-
-		//(BOR ifs+=IfSql)*
-		public Group getGroup_0_2() { return cGroup_0_2; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_0_2_0() { return cBORTerminalRuleCall_0_2_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_0_2_1() { return cIfsAssignment_0_2_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_0_2_1_0() { return cIfsIfSqlParserRuleCall_0_2_1_0; }
-
-		//type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)*
-		public Group getGroup_1() { return cGroup_1; }
-
-		//type=QUESTI
-		public Assignment getTypeAssignment_1_0() { return cTypeAssignment_1_0; }
-
-		//QUESTI
-		public RuleCall getTypeQUESTITerminalRuleCall_1_0_0() { return cTypeQUESTITerminalRuleCall_1_0_0; }
-
-		//cond=IfSqlCond
-		public Assignment getCondAssignment_1_1() { return cCondAssignment_1_1; }
-
-		//IfSqlCond
-		public RuleCall getCondIfSqlCondParserRuleCall_1_1_0() { return cCondIfSqlCondParserRuleCall_1_1_0; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_1_2() { return cBORTerminalRuleCall_1_2; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_1_3() { return cIfsAssignment_1_3; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_1_3_0() { return cIfsIfSqlParserRuleCall_1_3_0; }
-
-		//(BOR ifs+=IfSql)*
-		public Group getGroup_1_4() { return cGroup_1_4; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_1_4_0() { return cBORTerminalRuleCall_1_4_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_1_4_1() { return cIfsAssignment_1_4_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_1_4_1_0() { return cIfsIfSqlParserRuleCall_1_4_1_0; }
-
-		//type=BAND ifs+=IfSql (BOR ifs+=IfSql)*
-		public Group getGroup_2() { return cGroup_2; }
-
-		//type=BAND
-		public Assignment getTypeAssignment_2_0() { return cTypeAssignment_2_0; }
-
-		//BAND
-		public RuleCall getTypeBANDTerminalRuleCall_2_0_0() { return cTypeBANDTerminalRuleCall_2_0_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_2_1() { return cIfsAssignment_2_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_2_1_0() { return cIfsIfSqlParserRuleCall_2_1_0; }
-
-		//(BOR ifs+=IfSql)*
-		public Group getGroup_2_2() { return cGroup_2_2; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_2_2_0() { return cBORTerminalRuleCall_2_2_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_2_2_1() { return cIfsAssignment_2_2_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_2_2_1_0() { return cIfsIfSqlParserRuleCall_2_2_1_0; }
-
-		//type=BOR ifs+=IfSql (BOR ifs+=IfSql)*
-		public Group getGroup_3() { return cGroup_3; }
-
-		//type=BOR
-		public Assignment getTypeAssignment_3_0() { return cTypeAssignment_3_0; }
-
-		//BOR
-		public RuleCall getTypeBORTerminalRuleCall_3_0_0() { return cTypeBORTerminalRuleCall_3_0_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_3_1() { return cIfsAssignment_3_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_3_1_0() { return cIfsIfSqlParserRuleCall_3_1_0; }
-
-		//(BOR ifs+=IfSql)*
-		public Group getGroup_3_2() { return cGroup_3_2; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_3_2_0() { return cBORTerminalRuleCall_3_2_0; }
-
-		//ifs+=IfSql
-		public Assignment getIfsAssignment_3_2_1() { return cIfsAssignment_3_2_1; }
-
-		//IfSql
-		public RuleCall getIfsIfSqlParserRuleCall_3_2_1_0() { return cIfsIfSqlParserRuleCall_3_2_1_0; }
-	}
-
-	public class IfSqlCondElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IfSqlCond");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Assignment cBool1Assignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cBool1IfSqlBoolParserRuleCall_1_0 = (RuleCall)cBool1Assignment_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Assignment cOperAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
-		private final Alternatives cOperAlternatives_3_0_0 = (Alternatives)cOperAssignment_3_0.eContents().get(0);
-		private final RuleCall cOperANDTerminalRuleCall_3_0_0_0 = (RuleCall)cOperAlternatives_3_0_0.eContents().get(0);
-		private final RuleCall cOperORTerminalRuleCall_3_0_0_1 = (RuleCall)cOperAlternatives_3_0_0.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
-		private final Assignment cBool2Assignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
-		private final RuleCall cBool2IfSqlBoolParserRuleCall_3_2_0 = (RuleCall)cBool2Assignment_3_2.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_3_3 = (RuleCall)cGroup_3.eContents().get(3);
-		
-		//IfSqlCond:
-		//	WS* bool1=IfSqlBool WS* (oper+=(AND | OR) WS* bool2+=IfSqlBool WS*)*;
-		public ParserRule getRule() { return rule; }
-
-		//WS* bool1=IfSqlBool WS* (oper+=(AND | OR) WS* bool2+=IfSqlBool WS*)*
-		public Group getGroup() { return cGroup; }
-
-		//WS*
-		public RuleCall getWSTerminalRuleCall_0() { return cWSTerminalRuleCall_0; }
-
-		//bool1=IfSqlBool
-		public Assignment getBool1Assignment_1() { return cBool1Assignment_1; }
-
-		//IfSqlBool
-		public RuleCall getBool1IfSqlBoolParserRuleCall_1_0() { return cBool1IfSqlBoolParserRuleCall_1_0; }
-
-		//WS*
-		public RuleCall getWSTerminalRuleCall_2() { return cWSTerminalRuleCall_2; }
-
-		//(oper+=(AND | OR) WS* bool2+=IfSqlBool WS*)*
-		public Group getGroup_3() { return cGroup_3; }
-
-		//oper+=(AND | OR)
-		public Assignment getOperAssignment_3_0() { return cOperAssignment_3_0; }
-
-		//AND | OR
-		public Alternatives getOperAlternatives_3_0_0() { return cOperAlternatives_3_0_0; }
-
-		//AND
-		public RuleCall getOperANDTerminalRuleCall_3_0_0_0() { return cOperANDTerminalRuleCall_3_0_0_0; }
-
-		//OR
-		public RuleCall getOperORTerminalRuleCall_3_0_0_1() { return cOperORTerminalRuleCall_3_0_0_1; }
-
-		//WS*
-		public RuleCall getWSTerminalRuleCall_3_1() { return cWSTerminalRuleCall_3_1; }
-
-		//bool2+=IfSqlBool
-		public Assignment getBool2Assignment_3_2() { return cBool2Assignment_3_2; }
-
-		//IfSqlBool
-		public RuleCall getBool2IfSqlBoolParserRuleCall_3_2_0() { return cBool2IfSqlBoolParserRuleCall_3_2_0; }
-
-		//WS*
-		public RuleCall getWSTerminalRuleCall_3_3() { return cWSTerminalRuleCall_3_3; }
-	}
-
-	public class IfSqlBoolElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IfSqlBool");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Assignment cNotAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final RuleCall cNotNOTTerminalRuleCall_0_0_0 = (RuleCall)cNotAssignment_0_0.eContents().get(0);
-		private final RuleCall cSTRINGTerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Assignment cCnstAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cCnstConstantParserRuleCall_0_2_0 = (RuleCall)cCnstAssignment_0_2.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Assignment cNotAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cNotNOTTerminalRuleCall_1_0_0 = (RuleCall)cNotAssignment_1_0.eContents().get(0);
-		private final RuleCall cCOLONTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final Assignment cIdentAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cIdentIdentifierParserRuleCall_1_2_0 = (RuleCall)cIdentAssignment_1_2.eContents().get(0);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Assignment cNotAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cNotNOTTerminalRuleCall_2_0_0 = (RuleCall)cNotAssignment_2_0.eContents().get(0);
-		private final RuleCall cLPARENTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
-		private final Assignment cCondAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
-		private final RuleCall cCondIfSqlCondParserRuleCall_2_2_0 = (RuleCall)cCondAssignment_2_2.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_2_3 = (RuleCall)cGroup_2.eContents().get(3);
-		
-		//IfSqlBool:
-		//	not?=NOT? STRING cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN;
-		public ParserRule getRule() { return rule; }
-
-		//not?=NOT? STRING cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//not?=NOT? STRING cnst=Constant
-		public Group getGroup_0() { return cGroup_0; }
-
-		//not?=NOT?
-		public Assignment getNotAssignment_0_0() { return cNotAssignment_0_0; }
-
-		//NOT
-		public RuleCall getNotNOTTerminalRuleCall_0_0_0() { return cNotNOTTerminalRuleCall_0_0_0; }
-
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_0_1() { return cSTRINGTerminalRuleCall_0_1; }
-
-		//cnst=Constant
-		public Assignment getCnstAssignment_0_2() { return cCnstAssignment_0_2; }
-
-		//Constant
-		public RuleCall getCnstConstantParserRuleCall_0_2_0() { return cCnstConstantParserRuleCall_0_2_0; }
-
-		//not?=NOT? COLON ident=Identifier
-		public Group getGroup_1() { return cGroup_1; }
-
-		//not?=NOT?
-		public Assignment getNotAssignment_1_0() { return cNotAssignment_1_0; }
-
-		//NOT
-		public RuleCall getNotNOTTerminalRuleCall_1_0_0() { return cNotNOTTerminalRuleCall_1_0_0; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_1_1() { return cCOLONTerminalRuleCall_1_1; }
-
-		//ident=Identifier
-		public Assignment getIdentAssignment_1_2() { return cIdentAssignment_1_2; }
-
-		//Identifier
-		public RuleCall getIdentIdentifierParserRuleCall_1_2_0() { return cIdentIdentifierParserRuleCall_1_2_0; }
-
-		//not?=NOT? LPAREN cond=IfSqlCond RPAREN
-		public Group getGroup_2() { return cGroup_2; }
-
-		//not?=NOT?
-		public Assignment getNotAssignment_2_0() { return cNotAssignment_2_0; }
-
-		//NOT
-		public RuleCall getNotNOTTerminalRuleCall_2_0_0() { return cNotNOTTerminalRuleCall_2_0_0; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_2_1() { return cLPARENTerminalRuleCall_2_1; }
-
-		//cond=IfSqlCond
-		public Assignment getCondAssignment_2_2() { return cCondAssignment_2_2; }
-
-		//IfSqlCond
-		public RuleCall getCondIfSqlCondParserRuleCall_2_2_0() { return cCondIfSqlCondParserRuleCall_2_2_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_2_3() { return cRPARENTerminalRuleCall_2_3; }
-	}
-
-	public class OrdSqlElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OrdSql");
-		private final Assignment cSqlsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cSqlsOrdSql2ParserRuleCall_0 = (RuleCall)cSqlsAssignment.eContents().get(0);
-		
-		//OrdSql:
-		//	sqls+=OrdSql2+;
-		public ParserRule getRule() { return rule; }
-
-		//sqls+=OrdSql2+
-		public Assignment getSqlsAssignment() { return cSqlsAssignment; }
-
-		//OrdSql2
-		public RuleCall getSqlsOrdSql2ParserRuleCall_0() { return cSqlsOrdSql2ParserRuleCall_0; }
-	}
-
-	public class OrdSql2Elements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OrdSql2");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cValueOrdSqlValueParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final RuleCall cSTRINGTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final Assignment cCnstAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cCnstConstantParserRuleCall_1_1_0 = (RuleCall)cCnstAssignment_1_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final RuleCall cCOLONTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final Assignment cIdentAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cIdentIdentifierParserRuleCall_2_1_0 = (RuleCall)cIdentAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final RuleCall cPERCENTTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cDbcolAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cDbcolDatabaseColumnParserRuleCall_3_1_0 = (RuleCall)cDbcolAssignment_3_1.eContents().get(0);
-		
-		//OrdSql2:
-		//	value=OrdSqlValue | STRING cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn;
-		public ParserRule getRule() { return rule; }
-
-		//value=OrdSqlValue | STRING cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//value=OrdSqlValue
-		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
-
-		//OrdSqlValue
-		public RuleCall getValueOrdSqlValueParserRuleCall_0_0() { return cValueOrdSqlValueParserRuleCall_0_0; }
-
-		//STRING cnst=Constant
-		public Group getGroup_1() { return cGroup_1; }
-
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_1_0() { return cSTRINGTerminalRuleCall_1_0; }
-
-		//cnst=Constant
-		public Assignment getCnstAssignment_1_1() { return cCnstAssignment_1_1; }
-
-		//Constant
-		public RuleCall getCnstConstantParserRuleCall_1_1_0() { return cCnstConstantParserRuleCall_1_1_0; }
-
-		//COLON ident=Identifier
-		public Group getGroup_2() { return cGroup_2; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_2_0() { return cCOLONTerminalRuleCall_2_0; }
-
-		//ident=Identifier
-		public Assignment getIdentAssignment_2_1() { return cIdentAssignment_2_1; }
-
-		//Identifier
-		public RuleCall getIdentIdentifierParserRuleCall_2_1_0() { return cIdentIdentifierParserRuleCall_2_1_0; }
-
-		//PERCENT dbcol=DatabaseColumn
-		public Group getGroup_3() { return cGroup_3; }
-
-		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_3_0() { return cPERCENTTerminalRuleCall_3_0; }
-
-		//dbcol=DatabaseColumn
-		public Assignment getDbcolAssignment_3_1() { return cDbcolAssignment_3_1; }
-
-		//DatabaseColumn
-		public RuleCall getDbcolDatabaseColumnParserRuleCall_3_1_0() { return cDbcolDatabaseColumnParserRuleCall_3_1_0; }
-	}
-
-	public class OrdSqlValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OrdSqlValue");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final RuleCall cRESTTerminalRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
-		private final RuleCall cIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
-		private final RuleCall cSEMICOLONTerminalRuleCall_0_5 = (RuleCall)cAlternatives_0.eContents().get(5);
-		private final RuleCall cCOMMATerminalRuleCall_0_6 = (RuleCall)cAlternatives_0.eContents().get(6);
-		private final RuleCall cMINUSTerminalRuleCall_0_7 = (RuleCall)cAlternatives_0.eContents().get(7);
-		private final RuleCall cPLUSTerminalRuleCall_0_8 = (RuleCall)cAlternatives_0.eContents().get(8);
-		private final RuleCall cLPARENTerminalRuleCall_0_9 = (RuleCall)cAlternatives_0.eContents().get(9);
-		private final RuleCall cRPARENTerminalRuleCall_0_10 = (RuleCall)cAlternatives_0.eContents().get(10);
-		private final RuleCall cLBRACETerminalRuleCall_0_11 = (RuleCall)cAlternatives_0.eContents().get(11);
-		private final RuleCall cQUESTITerminalRuleCall_0_12 = (RuleCall)cAlternatives_0.eContents().get(12);
-		private final RuleCall cNOTTerminalRuleCall_0_13 = (RuleCall)cAlternatives_0.eContents().get(13);
-		private final RuleCall cBANDTerminalRuleCall_0_14 = (RuleCall)cAlternatives_0.eContents().get(14);
-		private final RuleCall cBORTerminalRuleCall_0_15 = (RuleCall)cAlternatives_0.eContents().get(15);
-		private final RuleCall cHASHTerminalRuleCall_0_16 = (RuleCall)cAlternatives_0.eContents().get(16);
-		private final RuleCall cATTerminalRuleCall_0_17 = (RuleCall)cAlternatives_0.eContents().get(17);
-		private final RuleCall cCARETTerminalRuleCall_0_18 = (RuleCall)cAlternatives_0.eContents().get(18);
-		private final RuleCall cEQUALSTerminalRuleCall_0_19 = (RuleCall)cAlternatives_0.eContents().get(19);
-		private final RuleCall cLESS_THANTerminalRuleCall_0_20 = (RuleCall)cAlternatives_0.eContents().get(20);
-		private final RuleCall cMORE_THANTerminalRuleCall_0_21 = (RuleCall)cAlternatives_0.eContents().get(21);
-		private final RuleCall cDOTTerminalRuleCall_0_22 = (RuleCall)cAlternatives_0.eContents().get(22);
-		private final RuleCall cANDTerminalRuleCall_0_23 = (RuleCall)cAlternatives_0.eContents().get(23);
-		private final RuleCall cORTerminalRuleCall_0_24 = (RuleCall)cAlternatives_0.eContents().get(24);
-		private final RuleCall cESC_CHARTerminalRuleCall_0_25 = (RuleCall)cAlternatives_0.eContents().get(25);
-		private final RuleCall cON_OFFTerminalRuleCall_0_26 = (RuleCall)cAlternatives_0.eContents().get(26);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_0_27 = (RuleCall)cAlternatives_0.eContents().get(27);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_0_28 = (RuleCall)cAlternatives_0.eContents().get(28);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_0_29 = (RuleCall)cAlternatives_0.eContents().get(29);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final RuleCall cRESTTerminalRuleCall_1_0_0 = (RuleCall)cAlternatives_1_0.eContents().get(0);
-		private final RuleCall cIDENT_DOTTerminalRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_1_0_2 = (RuleCall)cAlternatives_1_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_1_0_4 = (RuleCall)cAlternatives_1_0.eContents().get(4);
-		private final RuleCall cSEMICOLONTerminalRuleCall_1_0_5 = (RuleCall)cAlternatives_1_0.eContents().get(5);
-		private final RuleCall cCOMMATerminalRuleCall_1_0_6 = (RuleCall)cAlternatives_1_0.eContents().get(6);
-		private final RuleCall cMINUSTerminalRuleCall_1_0_7 = (RuleCall)cAlternatives_1_0.eContents().get(7);
-		private final RuleCall cPLUSTerminalRuleCall_1_0_8 = (RuleCall)cAlternatives_1_0.eContents().get(8);
-		private final RuleCall cLPARENTerminalRuleCall_1_0_9 = (RuleCall)cAlternatives_1_0.eContents().get(9);
-		private final RuleCall cRPARENTerminalRuleCall_1_0_10 = (RuleCall)cAlternatives_1_0.eContents().get(10);
-		private final RuleCall cLBRACETerminalRuleCall_1_0_11 = (RuleCall)cAlternatives_1_0.eContents().get(11);
-		private final RuleCall cQUESTITerminalRuleCall_1_0_12 = (RuleCall)cAlternatives_1_0.eContents().get(12);
-		private final RuleCall cNOTTerminalRuleCall_1_0_13 = (RuleCall)cAlternatives_1_0.eContents().get(13);
-		private final RuleCall cBANDTerminalRuleCall_1_0_14 = (RuleCall)cAlternatives_1_0.eContents().get(14);
-		private final RuleCall cBORTerminalRuleCall_1_0_15 = (RuleCall)cAlternatives_1_0.eContents().get(15);
-		private final RuleCall cHASHTerminalRuleCall_1_0_16 = (RuleCall)cAlternatives_1_0.eContents().get(16);
-		private final RuleCall cATTerminalRuleCall_1_0_17 = (RuleCall)cAlternatives_1_0.eContents().get(17);
-		private final RuleCall cCARETTerminalRuleCall_1_0_18 = (RuleCall)cAlternatives_1_0.eContents().get(18);
-		private final RuleCall cEQUALSTerminalRuleCall_1_0_19 = (RuleCall)cAlternatives_1_0.eContents().get(19);
-		private final RuleCall cLESS_THANTerminalRuleCall_1_0_20 = (RuleCall)cAlternatives_1_0.eContents().get(20);
-		private final RuleCall cMORE_THANTerminalRuleCall_1_0_21 = (RuleCall)cAlternatives_1_0.eContents().get(21);
-		private final RuleCall cDOTTerminalRuleCall_1_0_22 = (RuleCall)cAlternatives_1_0.eContents().get(22);
-		private final RuleCall cANDTerminalRuleCall_1_0_23 = (RuleCall)cAlternatives_1_0.eContents().get(23);
-		private final RuleCall cORTerminalRuleCall_1_0_24 = (RuleCall)cAlternatives_1_0.eContents().get(24);
-		private final RuleCall cESC_CHARTerminalRuleCall_1_0_25 = (RuleCall)cAlternatives_1_0.eContents().get(25);
-		private final RuleCall cON_OFFTerminalRuleCall_1_0_26 = (RuleCall)cAlternatives_1_0.eContents().get(26);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_1_0_27 = (RuleCall)cAlternatives_1_0.eContents().get(27);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_1_0_28 = (RuleCall)cAlternatives_1_0.eContents().get(28);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_1_0_29 = (RuleCall)cAlternatives_1_0.eContents().get(29);
-		
-		////~(COLON | STRING | PERCENT | RBRACE)
-		//OrdSqlValue:
-		//	(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
-		//	BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-		//	| MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
-		//	RPAREN | LBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR |
-		//	ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*;
-		public ParserRule getRule() { return rule; }
-
-		//(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
-		//BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
-		//MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
-		//RPAREN | LBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR |
-		//ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*
-		public Group getGroup() { return cGroup; }
-
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
-		//BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
-		//MAPPING_TYPE | OPTION_TYPE
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
-
-		//REST
-		public RuleCall getRESTTerminalRuleCall_0_0() { return cRESTTerminalRuleCall_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getIDENT_DOTTerminalRuleCall_0_1() { return cIDENT_DOTTerminalRuleCall_0_1; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_0_2() { return cIDENTTerminalRuleCall_0_2; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_0_3() { return cNUMBERTerminalRuleCall_0_3; }
-
-		//WS
-		public RuleCall getWSTerminalRuleCall_0_4() { return cWSTerminalRuleCall_0_4; }
-
-		//SEMICOLON
-		public RuleCall getSEMICOLONTerminalRuleCall_0_5() { return cSEMICOLONTerminalRuleCall_0_5; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_0_6() { return cCOMMATerminalRuleCall_0_6; }
-
-		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_0_7() { return cMINUSTerminalRuleCall_0_7; }
-
-		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_0_8() { return cPLUSTerminalRuleCall_0_8; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_0_9() { return cLPARENTerminalRuleCall_0_9; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_0_10() { return cRPARENTerminalRuleCall_0_10; }
-
-		//LBRACE
-		public RuleCall getLBRACETerminalRuleCall_0_11() { return cLBRACETerminalRuleCall_0_11; }
-
-		//QUESTI
-		public RuleCall getQUESTITerminalRuleCall_0_12() { return cQUESTITerminalRuleCall_0_12; }
-
-		//NOT
-		public RuleCall getNOTTerminalRuleCall_0_13() { return cNOTTerminalRuleCall_0_13; }
-
-		//BAND
-		public RuleCall getBANDTerminalRuleCall_0_14() { return cBANDTerminalRuleCall_0_14; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_0_15() { return cBORTerminalRuleCall_0_15; }
-
-		//HASH
-		public RuleCall getHASHTerminalRuleCall_0_16() { return cHASHTerminalRuleCall_0_16; }
-
-		//AT
-		public RuleCall getATTerminalRuleCall_0_17() { return cATTerminalRuleCall_0_17; }
-
-		//CARET
-		public RuleCall getCARETTerminalRuleCall_0_18() { return cCARETTerminalRuleCall_0_18; }
-
-		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_0_19() { return cEQUALSTerminalRuleCall_0_19; }
-
-		//LESS_THAN
-		public RuleCall getLESS_THANTerminalRuleCall_0_20() { return cLESS_THANTerminalRuleCall_0_20; }
-
-		//MORE_THAN
-		public RuleCall getMORE_THANTerminalRuleCall_0_21() { return cMORE_THANTerminalRuleCall_0_21; }
-
-		//DOT
-		public RuleCall getDOTTerminalRuleCall_0_22() { return cDOTTerminalRuleCall_0_22; }
-
-		//AND
-		public RuleCall getANDTerminalRuleCall_0_23() { return cANDTerminalRuleCall_0_23; }
-
-		//OR
-		public RuleCall getORTerminalRuleCall_0_24() { return cORTerminalRuleCall_0_24; }
-
-		//ESC_CHAR
-		public RuleCall getESC_CHARTerminalRuleCall_0_25() { return cESC_CHARTerminalRuleCall_0_25; }
-
-		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_0_26() { return cON_OFFTerminalRuleCall_0_26; }
-
-		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_0_27() { return cSTATEMENT_TYPETerminalRuleCall_0_27; }
-
-		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_0_28() { return cMAPPING_TYPETerminalRuleCall_0_28; }
-
-		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_0_29() { return cOPTION_TYPETerminalRuleCall_0_29; }
-
-		//=> (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT
-		//| BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-		//| MAPPING_TYPE | OPTION_TYPE)*
-		public Group getGroup_1() { return cGroup_1; }
-
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
-		//BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
-		//MAPPING_TYPE | OPTION_TYPE
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
-
-		//REST
-		public RuleCall getRESTTerminalRuleCall_1_0_0() { return cRESTTerminalRuleCall_1_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getIDENT_DOTTerminalRuleCall_1_0_1() { return cIDENT_DOTTerminalRuleCall_1_0_1; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_1_0_2() { return cIDENTTerminalRuleCall_1_0_2; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1_0_3() { return cNUMBERTerminalRuleCall_1_0_3; }
-
-		//WS
-		public RuleCall getWSTerminalRuleCall_1_0_4() { return cWSTerminalRuleCall_1_0_4; }
-
-		//SEMICOLON
-		public RuleCall getSEMICOLONTerminalRuleCall_1_0_5() { return cSEMICOLONTerminalRuleCall_1_0_5; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_1_0_6() { return cCOMMATerminalRuleCall_1_0_6; }
-
-		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_1_0_7() { return cMINUSTerminalRuleCall_1_0_7; }
-
-		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_1_0_8() { return cPLUSTerminalRuleCall_1_0_8; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_1_0_9() { return cLPARENTerminalRuleCall_1_0_9; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_1_0_10() { return cRPARENTerminalRuleCall_1_0_10; }
-
-		//LBRACE
-		public RuleCall getLBRACETerminalRuleCall_1_0_11() { return cLBRACETerminalRuleCall_1_0_11; }
-
-		//QUESTI
-		public RuleCall getQUESTITerminalRuleCall_1_0_12() { return cQUESTITerminalRuleCall_1_0_12; }
-
-		//NOT
-		public RuleCall getNOTTerminalRuleCall_1_0_13() { return cNOTTerminalRuleCall_1_0_13; }
-
-		//BAND
-		public RuleCall getBANDTerminalRuleCall_1_0_14() { return cBANDTerminalRuleCall_1_0_14; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_1_0_15() { return cBORTerminalRuleCall_1_0_15; }
-
-		//HASH
-		public RuleCall getHASHTerminalRuleCall_1_0_16() { return cHASHTerminalRuleCall_1_0_16; }
-
-		//AT
-		public RuleCall getATTerminalRuleCall_1_0_17() { return cATTerminalRuleCall_1_0_17; }
-
-		//CARET
-		public RuleCall getCARETTerminalRuleCall_1_0_18() { return cCARETTerminalRuleCall_1_0_18; }
-
-		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_1_0_19() { return cEQUALSTerminalRuleCall_1_0_19; }
-
-		//LESS_THAN
-		public RuleCall getLESS_THANTerminalRuleCall_1_0_20() { return cLESS_THANTerminalRuleCall_1_0_20; }
-
-		//MORE_THAN
-		public RuleCall getMORE_THANTerminalRuleCall_1_0_21() { return cMORE_THANTerminalRuleCall_1_0_21; }
-
-		//DOT
-		public RuleCall getDOTTerminalRuleCall_1_0_22() { return cDOTTerminalRuleCall_1_0_22; }
-
-		//AND
-		public RuleCall getANDTerminalRuleCall_1_0_23() { return cANDTerminalRuleCall_1_0_23; }
-
-		//OR
-		public RuleCall getORTerminalRuleCall_1_0_24() { return cORTerminalRuleCall_1_0_24; }
-
-		//ESC_CHAR
-		public RuleCall getESC_CHARTerminalRuleCall_1_0_25() { return cESC_CHARTerminalRuleCall_1_0_25; }
-
-		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_1_0_26() { return cON_OFFTerminalRuleCall_1_0_26; }
-
-		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_1_0_27() { return cSTATEMENT_TYPETerminalRuleCall_1_0_27; }
-
-		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_1_0_28() { return cMAPPING_TYPETerminalRuleCall_1_0_28; }
-
-		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_1_0_29() { return cOPTION_TYPETerminalRuleCall_1_0_29; }
-	}
-
-	public class ColumnElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Column");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cColumnsAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cColumnsExtendedColumnParserRuleCall_0_0 = (RuleCall)cColumnsAssignment_0.eContents().get(0);
-		private final Assignment cColumnsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cColumnsExtendedColumnParserRuleCall_1_0 = (RuleCall)cColumnsAssignment_1.eContents().get(0);
-		
-		//Column:
-		//	columns+=ExtendedColumn => columns+=ExtendedColumn*;
-		public ParserRule getRule() { return rule; }
-
-		//columns+=ExtendedColumn => columns+=ExtendedColumn*
-		public Group getGroup() { return cGroup; }
-
-		//columns+=ExtendedColumn
-		public Assignment getColumnsAssignment_0() { return cColumnsAssignment_0; }
-
-		//ExtendedColumn
-		public RuleCall getColumnsExtendedColumnParserRuleCall_0_0() { return cColumnsExtendedColumnParserRuleCall_0_0; }
-
-		//=> columns+=ExtendedColumn*
-		public Assignment getColumnsAssignment_1() { return cColumnsAssignment_1; }
-
-		//ExtendedColumn
-		public RuleCall getColumnsExtendedColumnParserRuleCall_1_0() { return cColumnsExtendedColumnParserRuleCall_1_0; }
-	}
-
-	public class ExtendedColumnElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExtendedColumn");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cColAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cColExtendedColumnNameParserRuleCall_0_0 = (RuleCall)cColAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cLPARENTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final Assignment cModifiersAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cModifiersModifierParserRuleCall_1_1_0 = (RuleCall)cModifiersAssignment_1_1.eContents().get(0);
-		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
-		private final RuleCall cCOMMATerminalRuleCall_1_2_0 = (RuleCall)cGroup_1_2.eContents().get(0);
-		private final Assignment cModifiersAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final RuleCall cModifiersModifierParserRuleCall_1_2_1_0 = (RuleCall)cModifiersAssignment_1_2_1.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_1_3 = (RuleCall)cGroup_1.eContents().get(3);
-		
-		//ExtendedColumn:
-		//	col=ExtendedColumnName (LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
-		public ParserRule getRule() { return rule; }
-
-		//col=ExtendedColumnName (LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?
-		public Group getGroup() { return cGroup; }
-
-		//col=ExtendedColumnName
-		public Assignment getColAssignment_0() { return cColAssignment_0; }
-
-		//ExtendedColumnName
-		public RuleCall getColExtendedColumnNameParserRuleCall_0_0() { return cColExtendedColumnNameParserRuleCall_0_0; }
-
-		//(=> LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//=> LPAREN
-		public RuleCall getLPARENTerminalRuleCall_1_0() { return cLPARENTerminalRuleCall_1_0; }
-
-		//modifiers+=Modifier
-		public Assignment getModifiersAssignment_1_1() { return cModifiersAssignment_1_1; }
-
-		//Modifier
-		public RuleCall getModifiersModifierParserRuleCall_1_1_0() { return cModifiersModifierParserRuleCall_1_1_0; }
-
-		//(COMMA modifiers+=Modifier)*
-		public Group getGroup_1_2() { return cGroup_1_2; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_1_2_0() { return cCOMMATerminalRuleCall_1_2_0; }
-
-		//modifiers+=Modifier
-		public Assignment getModifiersAssignment_1_2_1() { return cModifiersAssignment_1_2_1; }
-
-		//Modifier
-		public RuleCall getModifiersModifierParserRuleCall_1_2_1_0() { return cModifiersModifierParserRuleCall_1_2_1_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_1_3() { return cRPARENTerminalRuleCall_1_3; }
-	}
-
-	public class ExtendedColumnNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExtendedColumnName");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final Alternatives cNameAlternatives_0 = (Alternatives)cNameAssignment.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAlternatives_0.eContents().get(0);
-		private final RuleCall cNameNUMBERTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
-		private final RuleCall cNameIDENT_DOTTerminalRuleCall_0_2 = (RuleCall)cNameAlternatives_0.eContents().get(2);
-		
-		//ExtendedColumnName:
-		//	name=(IDENT | NUMBER | IDENT_DOT);
-		public ParserRule getRule() { return rule; }
-
-		//name=(IDENT | NUMBER | IDENT_DOT)
-		public Assignment getNameAssignment() { return cNameAssignment; }
-
-		//IDENT | NUMBER | IDENT_DOT
-		public Alternatives getNameAlternatives_0() { return cNameAlternatives_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
-
-		//NUMBER
-		public RuleCall getNameNUMBERTerminalRuleCall_0_1() { return cNameNUMBERTerminalRuleCall_0_1; }
-
-		//IDENT_DOT
-		public RuleCall getNameIDENT_DOTTerminalRuleCall_0_2() { return cNameIDENT_DOTTerminalRuleCall_0_2; }
-	}
-
-	public class ConstantElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Constant");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cCaseAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Alternatives cCaseAlternatives_0_0 = (Alternatives)cCaseAssignment_0.eContents().get(0);
-		private final RuleCall cCasePLUSTerminalRuleCall_0_0_0 = (RuleCall)cCaseAlternatives_0_0.eContents().get(0);
-		private final RuleCall cCaseMINUSTerminalRuleCall_0_0_1 = (RuleCall)cCaseAlternatives_0_0.eContents().get(1);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Alternatives cNameAlternatives_1_0 = (Alternatives)cNameAssignment_1.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_1_0_0 = (RuleCall)cNameAlternatives_1_0.eContents().get(0);
-		private final RuleCall cNameIDENT_DOTTerminalRuleCall_1_0_1 = (RuleCall)cNameAlternatives_1_0.eContents().get(1);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final RuleCall cLPARENTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final Assignment cModifiersAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cModifiersModifierParserRuleCall_2_1_0 = (RuleCall)cModifiersAssignment_2_1.eContents().get(0);
-		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
-		private final RuleCall cCOMMATerminalRuleCall_2_2_0 = (RuleCall)cGroup_2_2.eContents().get(0);
-		private final Assignment cModifiersAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cModifiersModifierParserRuleCall_2_2_1_0 = (RuleCall)cModifiersAssignment_2_2_1.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_2_3 = (RuleCall)cGroup_2.eContents().get(3);
-		
-		//Constant:
-		//	case=(PLUS | MINUS)? name=(IDENT | IDENT_DOT) (LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
-		public ParserRule getRule() { return rule; }
-
-		//case=(PLUS | MINUS)? name=(IDENT | IDENT_DOT) (LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?
-		public Group getGroup() { return cGroup; }
-
-		//case=(PLUS | MINUS)?
-		public Assignment getCaseAssignment_0() { return cCaseAssignment_0; }
-
-		//PLUS | MINUS
-		public Alternatives getCaseAlternatives_0_0() { return cCaseAlternatives_0_0; }
-
-		//PLUS
-		public RuleCall getCasePLUSTerminalRuleCall_0_0_0() { return cCasePLUSTerminalRuleCall_0_0_0; }
-
-		//MINUS
-		public RuleCall getCaseMINUSTerminalRuleCall_0_0_1() { return cCaseMINUSTerminalRuleCall_0_0_1; }
-
-		//name=(IDENT | IDENT_DOT)
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-
-		//IDENT | IDENT_DOT
-		public Alternatives getNameAlternatives_1_0() { return cNameAlternatives_1_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_1_0_0() { return cNameIDENTTerminalRuleCall_1_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getNameIDENT_DOTTerminalRuleCall_1_0_1() { return cNameIDENT_DOTTerminalRuleCall_1_0_1; }
-
-		//(=> LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?
-		public Group getGroup_2() { return cGroup_2; }
-
-		//=> LPAREN
-		public RuleCall getLPARENTerminalRuleCall_2_0() { return cLPARENTerminalRuleCall_2_0; }
-
-		//modifiers+=Modifier
-		public Assignment getModifiersAssignment_2_1() { return cModifiersAssignment_2_1; }
-
-		//Modifier
-		public RuleCall getModifiersModifierParserRuleCall_2_1_0() { return cModifiersModifierParserRuleCall_2_1_0; }
-
-		//(COMMA modifiers+=Modifier)*
-		public Group getGroup_2_2() { return cGroup_2_2; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_2_2_0() { return cCOMMATerminalRuleCall_2_2_0; }
-
-		//modifiers+=Modifier
-		public Assignment getModifiersAssignment_2_2_1() { return cModifiersAssignment_2_2_1; }
-
-		//Modifier
-		public RuleCall getModifiersModifierParserRuleCall_2_2_1_0() { return cModifiersModifierParserRuleCall_2_2_1_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_2_3() { return cRPARENTerminalRuleCall_2_3; }
-	}
-
-	public class IdentifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Identifier");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cModeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Alternatives cModeAlternatives_0_0 = (Alternatives)cModeAssignment_0.eContents().get(0);
-		private final RuleCall cModeEQUALSTerminalRuleCall_0_0_0 = (RuleCall)cModeAlternatives_0_0.eContents().get(0);
-		private final RuleCall cModeLESS_THANTerminalRuleCall_0_0_1 = (RuleCall)cModeAlternatives_0_0.eContents().get(1);
-		private final RuleCall cModeMORE_THANTerminalRuleCall_0_0_2 = (RuleCall)cModeAlternatives_0_0.eContents().get(2);
-		private final Assignment cCaseAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Alternatives cCaseAlternatives_1_0 = (Alternatives)cCaseAssignment_1.eContents().get(0);
-		private final RuleCall cCasePLUSTerminalRuleCall_1_0_0 = (RuleCall)cCaseAlternatives_1_0.eContents().get(0);
-		private final RuleCall cCaseMINUSTerminalRuleCall_1_0_1 = (RuleCall)cCaseAlternatives_1_0.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Alternatives cNameAlternatives_2_0 = (Alternatives)cNameAssignment_2.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_2_0_0 = (RuleCall)cNameAlternatives_2_0.eContents().get(0);
-		private final RuleCall cNameNUMBERTerminalRuleCall_2_0_1 = (RuleCall)cNameAlternatives_2_0.eContents().get(1);
-		private final RuleCall cNameIDENT_DOTTerminalRuleCall_2_0_2 = (RuleCall)cNameAlternatives_2_0.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cLPARENTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cModifiersAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cModifiersModifierParserRuleCall_3_1_0 = (RuleCall)cModifiersAssignment_3_1.eContents().get(0);
-		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
-		private final RuleCall cCOMMATerminalRuleCall_3_2_0 = (RuleCall)cGroup_3_2.eContents().get(0);
-		private final Assignment cModifiersAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cModifiersModifierParserRuleCall_3_2_1_0 = (RuleCall)cModifiersAssignment_3_2_1.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_3_3 = (RuleCall)cGroup_3.eContents().get(3);
-		
-		//Identifier:
-		//	mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | NUMBER | IDENT_DOT) (LPAREN
-		//	modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
-		public ParserRule getRule() { return rule; }
-
-		//mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | NUMBER | IDENT_DOT) (LPAREN
-		//modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?
-		public Group getGroup() { return cGroup; }
-
-		//mode=(EQUALS | LESS_THAN | MORE_THAN)?
-		public Assignment getModeAssignment_0() { return cModeAssignment_0; }
-
-		//EQUALS | LESS_THAN | MORE_THAN
-		public Alternatives getModeAlternatives_0_0() { return cModeAlternatives_0_0; }
-
-		//EQUALS
-		public RuleCall getModeEQUALSTerminalRuleCall_0_0_0() { return cModeEQUALSTerminalRuleCall_0_0_0; }
-
-		//LESS_THAN
-		public RuleCall getModeLESS_THANTerminalRuleCall_0_0_1() { return cModeLESS_THANTerminalRuleCall_0_0_1; }
-
-		//MORE_THAN
-		public RuleCall getModeMORE_THANTerminalRuleCall_0_0_2() { return cModeMORE_THANTerminalRuleCall_0_0_2; }
-
-		//case=(PLUS | MINUS)?
-		public Assignment getCaseAssignment_1() { return cCaseAssignment_1; }
-
-		//PLUS | MINUS
-		public Alternatives getCaseAlternatives_1_0() { return cCaseAlternatives_1_0; }
-
-		//PLUS
-		public RuleCall getCasePLUSTerminalRuleCall_1_0_0() { return cCasePLUSTerminalRuleCall_1_0_0; }
-
-		//MINUS
-		public RuleCall getCaseMINUSTerminalRuleCall_1_0_1() { return cCaseMINUSTerminalRuleCall_1_0_1; }
-
-		//name=(IDENT | NUMBER | IDENT_DOT)
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
-
-		//IDENT | NUMBER | IDENT_DOT
-		public Alternatives getNameAlternatives_2_0() { return cNameAlternatives_2_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_2_0_0() { return cNameIDENTTerminalRuleCall_2_0_0; }
-
-		//NUMBER
-		public RuleCall getNameNUMBERTerminalRuleCall_2_0_1() { return cNameNUMBERTerminalRuleCall_2_0_1; }
-
-		//IDENT_DOT
-		public RuleCall getNameIDENT_DOTTerminalRuleCall_2_0_2() { return cNameIDENT_DOTTerminalRuleCall_2_0_2; }
-
-		//(=> LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?
-		public Group getGroup_3() { return cGroup_3; }
-
-		//=> LPAREN
-		public RuleCall getLPARENTerminalRuleCall_3_0() { return cLPARENTerminalRuleCall_3_0; }
-
-		//modifiers+=Modifier
-		public Assignment getModifiersAssignment_3_1() { return cModifiersAssignment_3_1; }
-
-		//Modifier
-		public RuleCall getModifiersModifierParserRuleCall_3_1_0() { return cModifiersModifierParserRuleCall_3_1_0; }
-
-		//(COMMA modifiers+=Modifier)*
-		public Group getGroup_3_2() { return cGroup_3_2; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_3_2_0() { return cCOMMATerminalRuleCall_3_2_0; }
-
-		//modifiers+=Modifier
-		public Assignment getModifiersAssignment_3_2_1() { return cModifiersAssignment_3_2_1; }
-
-		//Modifier
-		public RuleCall getModifiersModifierParserRuleCall_3_2_1_0() { return cModifiersModifierParserRuleCall_3_2_1_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_3_3() { return cRPARENTerminalRuleCall_3_3; }
-	}
-
-	public class ConstantOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConstantOperator");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final Alternatives cNameAlternatives_0 = (Alternatives)cNameAssignment.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAlternatives_0.eContents().get(0);
-		private final RuleCall cNameEQUALSTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
-		
-		//ConstantOperator:
-		//	name=(IDENT | EQUALS);
-		public ParserRule getRule() { return rule; }
-
-		//name=(IDENT | EQUALS)
-		public Assignment getNameAssignment() { return cNameAssignment; }
-
-		//IDENT | EQUALS
-		public Alternatives getNameAlternatives_0() { return cNameAlternatives_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
-
-		//EQUALS
-		public RuleCall getNameEQUALSTerminalRuleCall_0_1() { return cNameEQUALSTerminalRuleCall_0_1; }
-	}
-
-	public class IdentifierOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IdentifierOperator");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final Alternatives cNameAlternatives_0 = (Alternatives)cNameAssignment.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAlternatives_0.eContents().get(0);
-		private final RuleCall cNameEQUALSTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
-		
-		//IdentifierOperator:
-		//	name=(IDENT | EQUALS);
-		public ParserRule getRule() { return rule; }
-
-		//name=(IDENT | EQUALS)
-		public Assignment getNameAssignment() { return cNameAssignment; }
-
-		//IDENT | EQUALS
-		public Alternatives getNameAlternatives_0() { return cNameAlternatives_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
-
-		//EQUALS
-		public RuleCall getNameEQUALSTerminalRuleCall_0_1() { return cNameEQUALSTerminalRuleCall_0_1; }
-	}
-
-	public class DatabaseColumnElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DatabaseColumn");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final Alternatives cNameAlternatives_0 = (Alternatives)cNameAssignment.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAlternatives_0.eContents().get(0);
-		private final RuleCall cNameIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
-		
-		//DatabaseColumn:
-		//	name=(IDENT | IDENT_DOT);
-		public ParserRule getRule() { return rule; }
-
-		//name=(IDENT | IDENT_DOT)
-		public Assignment getNameAssignment() { return cNameAssignment; }
-
-		//IDENT | IDENT_DOT
-		public Alternatives getNameAlternatives_0() { return cNameAlternatives_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getNameIDENT_DOTTerminalRuleCall_0_1() { return cNameIDENT_DOTTerminalRuleCall_0_1; }
-	}
-
-	public class DatabaseTableElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DatabaseTable");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final Alternatives cNameAlternatives_0 = (Alternatives)cNameAssignment.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAlternatives_0.eContents().get(0);
-		private final RuleCall cNameIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
-		
-		//DatabaseTable:
-		//	name=(IDENT | IDENT_DOT);
-		public ParserRule getRule() { return rule; }
-
-		//name=(IDENT | IDENT_DOT)
-		public Assignment getNameAssignment() { return cNameAssignment; }
-
-		//IDENT | IDENT_DOT
-		public Alternatives getNameAlternatives_0() { return cNameAlternatives_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getNameIDENT_DOTTerminalRuleCall_0_1() { return cNameIDENT_DOTTerminalRuleCall_0_1; }
-	}
-
-	public class MappingRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingRule");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cLPARENTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTypeMAPPING_TYPETerminalRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cCOMMATerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cModifiersAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cModifiersMappingRuleModifierParserRuleCall_3_1_0 = (RuleCall)cModifiersAssignment_3_1.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cEQUALSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final Assignment cMappingAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cMappingMappingParserRuleCall_6_0 = (RuleCall)cMappingAssignment_6.eContents().get(0);
-		private final RuleCall cSEMICOLONTerminalRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
-		
-		//MappingRule:
-		//	name=IDENT LPAREN type=MAPPING_TYPE (COMMA modifiers+=MappingRuleModifier)* RPAREN EQUALS mapping=Mapping SEMICOLON;
-		public ParserRule getRule() { return rule; }
-
-		//name=IDENT LPAREN type=MAPPING_TYPE (COMMA modifiers+=MappingRuleModifier)* RPAREN EQUALS mapping=Mapping SEMICOLON
-		public Group getGroup() { return cGroup; }
-
-		//name=IDENT
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_1() { return cLPARENTerminalRuleCall_1; }
-
-		//type=MAPPING_TYPE
-		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
-
-		//MAPPING_TYPE
-		public RuleCall getTypeMAPPING_TYPETerminalRuleCall_2_0() { return cTypeMAPPING_TYPETerminalRuleCall_2_0; }
-
-		//(COMMA modifiers+=MappingRuleModifier)*
-		public Group getGroup_3() { return cGroup_3; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_3_0() { return cCOMMATerminalRuleCall_3_0; }
-
-		//modifiers+=MappingRuleModifier
-		public Assignment getModifiersAssignment_3_1() { return cModifiersAssignment_3_1; }
-
-		//MappingRuleModifier
-		public RuleCall getModifiersMappingRuleModifierParserRuleCall_3_1_0() { return cModifiersMappingRuleModifierParserRuleCall_3_1_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_4() { return cRPARENTerminalRuleCall_4; }
-
-		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_5() { return cEQUALSTerminalRuleCall_5; }
-
-		//mapping=Mapping
-		public Assignment getMappingAssignment_6() { return cMappingAssignment_6; }
-
-		//Mapping
-		public RuleCall getMappingMappingParserRuleCall_6_0() { return cMappingMappingParserRuleCall_6_0; }
-
-		//SEMICOLON
-		public RuleCall getSEMICOLONTerminalRuleCall_7() { return cSEMICOLONTerminalRuleCall_7; }
-	}
-
-	public class MappingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Mapping");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Assignment cMappingItemsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cMappingItemsMappingItemParserRuleCall_1_0 = (RuleCall)cMappingItemsAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final RuleCall cWSTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final Assignment cMappingItemsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cMappingItemsMappingItemParserRuleCall_2_1_0 = (RuleCall)cMappingItemsAssignment_2_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		
-		//Mapping:
-		//	WS* mappingItems+=MappingItem (WS+ mappingItems+=MappingItem)* WS*;
-		public ParserRule getRule() { return rule; }
-
-		//WS* mappingItems+=MappingItem (WS+ mappingItems+=MappingItem)* WS*
-		public Group getGroup() { return cGroup; }
-
-		//WS*
-		public RuleCall getWSTerminalRuleCall_0() { return cWSTerminalRuleCall_0; }
-
-		//mappingItems+=MappingItem
-		public Assignment getMappingItemsAssignment_1() { return cMappingItemsAssignment_1; }
-
-		//MappingItem
-		public RuleCall getMappingItemsMappingItemParserRuleCall_1_0() { return cMappingItemsMappingItemParserRuleCall_1_0; }
-
-		//(WS+ mappingItems+=MappingItem)*
-		public Group getGroup_2() { return cGroup_2; }
-
-		//WS+
-		public RuleCall getWSTerminalRuleCall_2_0() { return cWSTerminalRuleCall_2_0; }
-
-		//mappingItems+=MappingItem
-		public Assignment getMappingItemsAssignment_2_1() { return cMappingItemsAssignment_2_1; }
-
-		//MappingItem
-		public RuleCall getMappingItemsMappingItemParserRuleCall_2_1_0() { return cMappingItemsMappingItemParserRuleCall_2_1_0; }
-
-		//WS*
-		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
-	}
-
-	public class MappingItemElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingItem");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Alternatives cNameAlternatives_0_0 = (Alternatives)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_0_0_0 = (RuleCall)cNameAlternatives_0_0.eContents().get(0);
-		private final RuleCall cNameNUMBERTerminalRuleCall_0_0_1 = (RuleCall)cNameAlternatives_0_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cSTRINGTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final Assignment cAttrAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cAttrMappingColumnParserRuleCall_1_1_0 = (RuleCall)cAttrAssignment_1_1.eContents().get(0);
-		
-		//MappingItem:
-		//	name=(IDENT | NUMBER) (STRING attr=MappingColumn)?;
-		public ParserRule getRule() { return rule; }
-
-		//name=(IDENT | NUMBER) (STRING attr=MappingColumn)?
-		public Group getGroup() { return cGroup; }
-
-		//name=(IDENT | NUMBER)
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-
-		//IDENT | NUMBER
-		public Alternatives getNameAlternatives_0_0() { return cNameAlternatives_0_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_0_0_0() { return cNameIDENTTerminalRuleCall_0_0_0; }
-
-		//NUMBER
-		public RuleCall getNameNUMBERTerminalRuleCall_0_0_1() { return cNameNUMBERTerminalRuleCall_0_0_1; }
-
-		//(STRING attr=MappingColumn)?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_1_0() { return cSTRINGTerminalRuleCall_1_0; }
-
-		//attr=MappingColumn
-		public Assignment getAttrAssignment_1_1() { return cAttrAssignment_1_1; }
-
-		//MappingColumn
-		public RuleCall getAttrMappingColumnParserRuleCall_1_1_0() { return cAttrMappingColumnParserRuleCall_1_1_0; }
-	}
-
-	public class MappingColumnElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingColumn");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cItemsAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cItemsExtendedMappingItemParserRuleCall_0_0 = (RuleCall)cItemsAssignment_0.eContents().get(0);
-		private final Assignment cItemsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cItemsExtendedMappingItemParserRuleCall_1_0 = (RuleCall)cItemsAssignment_1.eContents().get(0);
-		
-		//MappingColumn:
-		//	items+=ExtendedMappingItem => items+=ExtendedMappingItem*;
-		public ParserRule getRule() { return rule; }
-
-		//items+=ExtendedMappingItem => items+=ExtendedMappingItem*
-		public Group getGroup() { return cGroup; }
-
-		//items+=ExtendedMappingItem
-		public Assignment getItemsAssignment_0() { return cItemsAssignment_0; }
-
-		//ExtendedMappingItem
-		public RuleCall getItemsExtendedMappingItemParserRuleCall_0_0() { return cItemsExtendedMappingItemParserRuleCall_0_0; }
-
-		//=> items+=ExtendedMappingItem*
-		public Assignment getItemsAssignment_1() { return cItemsAssignment_1; }
-
-		//ExtendedMappingItem
-		public RuleCall getItemsExtendedMappingItemParserRuleCall_1_0() { return cItemsExtendedMappingItemParserRuleCall_1_0; }
-	}
-
-	public class ExtendedMappingItemElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExtendedMappingItem");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cAttrAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cAttrMappingColumnNameParserRuleCall_0_0 = (RuleCall)cAttrAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cLPARENTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final Assignment cModifiersAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cModifiersMappingItemModifierParserRuleCall_1_1_0 = (RuleCall)cModifiersAssignment_1_1.eContents().get(0);
-		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
-		private final RuleCall cCOMMATerminalRuleCall_1_2_0 = (RuleCall)cGroup_1_2.eContents().get(0);
-		private final Assignment cModifiersAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final RuleCall cModifiersMappingItemModifierParserRuleCall_1_2_1_0 = (RuleCall)cModifiersAssignment_1_2_1.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_1_3 = (RuleCall)cGroup_1.eContents().get(3);
-		
-		//ExtendedMappingItem:
-		//	attr=MappingColumnName (LPAREN modifiers+=MappingItemModifier (COMMA modifiers+=MappingItemModifier)* RPAREN)?;
-		public ParserRule getRule() { return rule; }
-
-		//attr=MappingColumnName (LPAREN modifiers+=MappingItemModifier (COMMA modifiers+=MappingItemModifier)* RPAREN)?
-		public Group getGroup() { return cGroup; }
-
-		//attr=MappingColumnName
-		public Assignment getAttrAssignment_0() { return cAttrAssignment_0; }
-
-		//MappingColumnName
-		public RuleCall getAttrMappingColumnNameParserRuleCall_0_0() { return cAttrMappingColumnNameParserRuleCall_0_0; }
-
-		//(=> LPAREN modifiers+=MappingItemModifier (COMMA modifiers+=MappingItemModifier)* RPAREN)?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//=> LPAREN
-		public RuleCall getLPARENTerminalRuleCall_1_0() { return cLPARENTerminalRuleCall_1_0; }
-
-		//modifiers+=MappingItemModifier
-		public Assignment getModifiersAssignment_1_1() { return cModifiersAssignment_1_1; }
-
-		//MappingItemModifier
-		public RuleCall getModifiersMappingItemModifierParserRuleCall_1_1_0() { return cModifiersMappingItemModifierParserRuleCall_1_1_0; }
-
-		//(COMMA modifiers+=MappingItemModifier)*
-		public Group getGroup_1_2() { return cGroup_1_2; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_1_2_0() { return cCOMMATerminalRuleCall_1_2_0; }
-
-		//modifiers+=MappingItemModifier
-		public Assignment getModifiersAssignment_1_2_1() { return cModifiersAssignment_1_2_1; }
-
-		//MappingItemModifier
-		public RuleCall getModifiersMappingItemModifierParserRuleCall_1_2_1_0() { return cModifiersMappingItemModifierParserRuleCall_1_2_1_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_1_3() { return cRPARENTerminalRuleCall_1_3; }
-	}
-
-	public class MappingColumnNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingColumnName");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final Alternatives cNameAlternatives_0 = (Alternatives)cNameAssignment.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAlternatives_0.eContents().get(0);
-		private final RuleCall cNameIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
-		private final RuleCall cNameNUMBERTerminalRuleCall_0_2 = (RuleCall)cNameAlternatives_0.eContents().get(2);
-		
-		//MappingColumnName:
-		//	name=(IDENT | IDENT_DOT | NUMBER);
-		public ParserRule getRule() { return rule; }
-
-		//name=(IDENT | IDENT_DOT | NUMBER)
-		public Assignment getNameAssignment() { return cNameAssignment; }
-
-		//IDENT | IDENT_DOT | NUMBER
-		public Alternatives getNameAlternatives_0() { return cNameAlternatives_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getNameIDENT_DOTTerminalRuleCall_0_1() { return cNameIDENT_DOTTerminalRuleCall_0_1; }
-
-		//NUMBER
-		public RuleCall getNameNUMBERTerminalRuleCall_0_2() { return cNameNUMBERTerminalRuleCall_0_2; }
-	}
-
-	public class OptionalFeatureElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OptionalFeature");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cLPARENTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTypeOPTION_TYPETerminalRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cCOMMATerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cModifiersAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cModifiersOptionalFeatureModifierParserRuleCall_3_1_0 = (RuleCall)cModifiersAssignment_3_1.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cEQUALSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final Assignment cOptionAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cOptionFeatureValueParserRuleCall_6_0 = (RuleCall)cOptionAssignment_6.eContents().get(0);
-		private final RuleCall cSEMICOLONTerminalRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
-		
-		//OptionalFeature:
-		//	name=IDENT LPAREN type=OPTION_TYPE (COMMA modifiers+=OptionalFeatureModifier)* RPAREN EQUALS option=FeatureValue
-		//	SEMICOLON;
-		public ParserRule getRule() { return rule; }
-
-		//name=IDENT LPAREN type=OPTION_TYPE (COMMA modifiers+=OptionalFeatureModifier)* RPAREN EQUALS option=FeatureValue
-		//SEMICOLON
-		public Group getGroup() { return cGroup; }
-
-		//name=IDENT
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-
-		//IDENT
-		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_1() { return cLPARENTerminalRuleCall_1; }
-
-		//type=OPTION_TYPE
-		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
-
-		//OPTION_TYPE
-		public RuleCall getTypeOPTION_TYPETerminalRuleCall_2_0() { return cTypeOPTION_TYPETerminalRuleCall_2_0; }
-
-		//(COMMA modifiers+=OptionalFeatureModifier)*
-		public Group getGroup_3() { return cGroup_3; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_3_0() { return cCOMMATerminalRuleCall_3_0; }
-
-		//modifiers+=OptionalFeatureModifier
-		public Assignment getModifiersAssignment_3_1() { return cModifiersAssignment_3_1; }
-
-		//OptionalFeatureModifier
-		public RuleCall getModifiersOptionalFeatureModifierParserRuleCall_3_1_0() { return cModifiersOptionalFeatureModifierParserRuleCall_3_1_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_4() { return cRPARENTerminalRuleCall_4; }
-
-		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_5() { return cEQUALSTerminalRuleCall_5; }
-
-		//option=FeatureValue
-		public Assignment getOptionAssignment_6() { return cOptionAssignment_6; }
-
-		//FeatureValue
-		public RuleCall getOptionFeatureValueParserRuleCall_6_0() { return cOptionFeatureValueParserRuleCall_6_0; }
-
-		//SEMICOLON
-		public RuleCall getSEMICOLONTerminalRuleCall_7() { return cSEMICOLONTerminalRuleCall_7; }
-	}
-
-	public class StatementModifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StatementModifier");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//StatementModifier:
-		//	IDENT | NUMBER;
-		public ParserRule getRule() { return rule; }
-
-		//IDENT | NUMBER
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
-	}
-
-	public class MappingRuleModifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingRuleModifier");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//MappingRuleModifier:
-		//	IDENT | NUMBER;
-		public ParserRule getRule() { return rule; }
-
-		//IDENT | NUMBER
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
-	}
-
-	public class MappingItemModifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingItemModifier");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//MappingItemModifier:
-		//	IDENT | NUMBER;
-		public ParserRule getRule() { return rule; }
-
-		//IDENT | NUMBER
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
-	}
-
-	public class OptionalFeatureModifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OptionalFeatureModifier");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//OptionalFeatureModifier:
-		//	IDENT | NUMBER;
-		public ParserRule getRule() { return rule; }
-
-		//IDENT | NUMBER
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
-	}
-
-	public class ModifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Modifier");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cNOTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
-		
-		//Modifier:
-		//	NOT? (IDENT | NUMBER);
-		public ParserRule getRule() { return rule; }
-
-		//NOT? (IDENT | NUMBER)
-		public Group getGroup() { return cGroup; }
-
-		//NOT?
-		public RuleCall getNOTTerminalRuleCall_0() { return cNOTTerminalRuleCall_0; }
-
-		//IDENT | NUMBER
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_1_0() { return cIDENTTerminalRuleCall_1_0; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1_1() { return cNUMBERTerminalRuleCall_1_1; }
-	}
-
 	public class FeatureValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FeatureValue");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -7606,20 +4819,14 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cANDTerminalRuleCall_25 = (RuleCall)cAlternatives.eContents().get(25);
 		private final RuleCall cORTerminalRuleCall_26 = (RuleCall)cAlternatives.eContents().get(26);
 		private final RuleCall cESC_CHARTerminalRuleCall_27 = (RuleCall)cAlternatives.eContents().get(27);
-		private final RuleCall cON_OFFTerminalRuleCall_28 = (RuleCall)cAlternatives.eContents().get(28);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_29 = (RuleCall)cAlternatives.eContents().get(29);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_30 = (RuleCall)cAlternatives.eContents().get(30);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_31 = (RuleCall)cAlternatives.eContents().get(31);
 		
 		//FeatureValue:
 		//	(REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
-		//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR |
-		//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)+;
+		//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR)+;
 		public ParserRule getRule() { return rule; }
 
 		//(REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
-		//QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR | ON_OFF
-		//| STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)+
+		//QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR)+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//REST
@@ -7705,18 +4912,6 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ESC_CHAR
 		public RuleCall getESC_CHARTerminalRuleCall_27() { return cESC_CHARTerminalRuleCall_27; }
-
-		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_28() { return cON_OFFTerminalRuleCall_28; }
-
-		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_29() { return cSTATEMENT_TYPETerminalRuleCall_29; }
-
-		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_30() { return cMAPPING_TYPETerminalRuleCall_30; }
-
-		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_31() { return cOPTION_TYPETerminalRuleCall_31; }
 	}
 
 	public class PojoTypeElements extends AbstractParserRuleElementFinder {
@@ -9766,149 +6961,208 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
-	private ArtifactsElements pArtifacts;
-	private DatabaseCatalogAssignementElements pDatabaseCatalogAssignement;
-	private DatabaseSchemaAssignementElements pDatabaseSchemaAssignement;
-	private DatabaseTypeAssignementElements pDatabaseTypeAssignement;
-	private DatabaseMetaInfoAssignementElements pDatabaseMetaInfoAssignement;
-	private DriverMetaInfoAssignementElements pDriverMetaInfoAssignement;
-	private DriverMethodOutputAssignementElements pDriverMethodOutputAssignement;
-	private SqlTypeAssignementElements pSqlTypeAssignement;
-	private ColumnTypeAssignementElements pColumnTypeAssignement;
-	private ShowColumnTypeAssignementElements pShowColumnTypeAssignement;
-	private TableAssignementElements pTableAssignement;
-	private JoinTableAssignementElements pJoinTableAssignement;
-	private ColumnAssignementElements pColumnAssignement;
-	private ImportAssignementElements pImportAssignement;
-	private ExportAssignementElements pExportAssignement;
-	private InheritanceAssignementElements pInheritanceAssignement;
-	private ManyToManyAssignementElements pManyToManyAssignement;
-	private DebugLevelAssignementElements pDebugLevelAssignement;
-	private ProcedurePojoAssignementElements pProcedurePojoAssignement;
-	private FunctionPojoAssignementElements pFunctionPojoAssignement;
-	private ImplementsAssignementElements pImplementsAssignement;
-	private ExtendsAssignementElements pExtendsAssignement;
-	private ImplementsAssignementGenericsElements pImplementsAssignementGenerics;
-	private ExtendsAssignementGenericsElements pExtendsAssignementGenerics;
-	private PropertyElements pProperty;
-	private DatabasePropertyElements pDatabaseProperty;
-	private PojogenPropertyElements pPojogenProperty;
-	private MetaTypeAssignementElements pMetaTypeAssignement;
-	private MetagenPropertyElements pMetagenProperty;
-	private DaogenPropertyElements pDaogenProperty;
-	private PropertyValueElements pPropertyValue;
-	private PojoDefinitionElements pPojoDefinition;
-	private TableDefinitionElements pTableDefinition;
-	private ProcedureDefinitionElements pProcedureDefinition;
-	private FunctionDefinitionElements pFunctionDefinition;
-	private MetaStatementElements pMetaStatement;
-	private SqlElements pSql;
-	private SqlFragmentElements pSqlFragment;
-	private SqlValueElements pSqlValue;
-	private MetaSqlElements pMetaSql;
-	private IfSqlElements pIfSql;
-	private IfSqlFragmentElements pIfSqlFragment;
-	private IfSqlValueElements pIfSqlValue;
-	private IfMetaSqlElements pIfMetaSql;
-	private IfSqlCondElements pIfSqlCond;
-	private IfSqlBoolElements pIfSqlBool;
-	private OrdSqlElements pOrdSql;
-	private OrdSql2Elements pOrdSql2;
-	private OrdSqlValueElements pOrdSqlValue;
-	private ColumnElements pColumn;
-	private ExtendedColumnElements pExtendedColumn;
-	private ExtendedColumnNameElements pExtendedColumnName;
-	private ConstantElements pConstant;
-	private IdentifierElements pIdentifier;
-	private ConstantOperatorElements pConstantOperator;
-	private IdentifierOperatorElements pIdentifierOperator;
-	private DatabaseColumnElements pDatabaseColumn;
-	private DatabaseTableElements pDatabaseTable;
-	private MappingRuleElements pMappingRule;
-	private MappingElements pMapping;
-	private MappingItemElements pMappingItem;
-	private MappingColumnElements pMappingColumn;
-	private ExtendedMappingItemElements pExtendedMappingItem;
-	private MappingColumnNameElements pMappingColumnName;
-	private OptionalFeatureElements pOptionalFeature;
-	private StatementModifierElements pStatementModifier;
-	private MappingRuleModifierElements pMappingRuleModifier;
-	private MappingItemModifierElements pMappingItemModifier;
-	private OptionalFeatureModifierElements pOptionalFeatureModifier;
-	private ModifierElements pModifier;
-	private TerminalRule tON_OFF;
-	private TerminalRule tSTATEMENT_TYPE;
-	private TerminalRule tMAPPING_TYPE;
-	private TerminalRule tOPTION_TYPE;
-	private TerminalRule tIDENT_DOT;
-	private TerminalRule tIDENT;
-	private TerminalRule tNUMBER;
-	private TerminalRule tESC_CHAR;
-	private TerminalRule tML_COMMENT;
-	private TerminalRule tSL_COMMENT;
-	private TerminalRule tWS;
-	private TerminalRule tAND;
-	private TerminalRule tOR;
-	private TerminalRule tCOLON;
-	private TerminalRule tSEMICOLON;
-	private TerminalRule tSTRING;
-	private TerminalRule tCOMMA;
-	private TerminalRule tMINUS;
-	private TerminalRule tPLUS;
-	private TerminalRule tLPAREN;
-	private TerminalRule tRPAREN;
-	private TerminalRule tLBRACE;
-	private TerminalRule tRBRACE;
-	private TerminalRule tQUESTI;
-	private TerminalRule tNOT;
-	private TerminalRule tBAND;
-	private TerminalRule tBOR;
-	private TerminalRule tHASH;
-	private TerminalRule tAT;
-	private TerminalRule tCARET;
-	private TerminalRule tEQUALS;
-	private TerminalRule tLESS_THAN;
-	private TerminalRule tMORE_THAN;
-	private TerminalRule tPERCENT;
-	private TerminalRule tDOT;
-	private TerminalRule tREST;
-	private TerminalRule tSTRING_VALUE;
-	private FeatureValueElements pFeatureValue;
-	private PojoTypeElements pPojoType;
-	private PackageDeclarationElements pPackageDeclaration;
-	private AnnotationElements pAnnotation;
-	private AnnotationPropertyElements pAnnotationProperty;
-	private EntityElements pEntity;
-	private AnnotatedEntityElements pAnnotatedEntity;
-	private AbstractPojoEntityElements pAbstractPojoEntity;
-	private ImportElements pImport;
-	private ImplementsElements pImplements;
-	private ExtendsElements pExtends;
-	private ImplPackageElements pImplPackage;
-	private PojoEntityModifier1Elements pPojoEntityModifier1;
-	private PojoEntityModifier2Elements pPojoEntityModifier2;
-	private PojoEntityElements pPojoEntity;
-	private PojoAnnotatedPropertyElements pPojoAnnotatedProperty;
-	private PojoPropertyModifierElements pPojoPropertyModifier;
-	private PojoPropertyElements pPojoProperty;
-	private EnumEntityModifier1Elements pEnumEntityModifier1;
-	private EnumEntityModifier2Elements pEnumEntityModifier2;
-	private EnumEntityElements pEnumEntity;
-	private EnumPropertyElements pEnumProperty;
-	private PojoDaoModifierElements pPojoDaoModifier;
-	private PojoDaoElements pPojoDao;
-	private PojoMethodModifierElements pPojoMethodModifier;
-	private PojoMethodElements pPojoMethod;
-	private ToInitMethodElements pToInitMethod;
-	private PojoMethodArgElements pPojoMethodArg;
-	private QualifiedNameWithWildcardElements pQualifiedNameWithWildcard;
-	private QualifiedNameElements pQualifiedName;
+	private final ArtifactsElements pArtifacts;
+	private final DatabaseCatalogAssignementElements pDatabaseCatalogAssignement;
+	private final DatabaseSchemaAssignementElements pDatabaseSchemaAssignement;
+	private final DatabaseTypeAssignementElements pDatabaseTypeAssignement;
+	private final DatabaseMetaInfoAssignementElements pDatabaseMetaInfoAssignement;
+	private final DriverMetaInfoAssignementElements pDriverMetaInfoAssignement;
+	private final DriverMethodOutputAssignementElements pDriverMethodOutputAssignement;
+	private final SqlTypeAssignementElements pSqlTypeAssignement;
+	private final ColumnTypeAssignementElements pColumnTypeAssignement;
+	private final ShowColumnTypeAssignementElements pShowColumnTypeAssignement;
+	private final TableAssignementElements pTableAssignement;
+	private final JoinTableAssignementElements pJoinTableAssignement;
+	private final ColumnAssignementElements pColumnAssignement;
+	private final ImportAssignementElements pImportAssignement;
+	private final ExportAssignementElements pExportAssignement;
+	private final InheritanceAssignementElements pInheritanceAssignement;
+	private final ManyToManyAssignementElements pManyToManyAssignement;
+	private final DebugLevelAssignementElements pDebugLevelAssignement;
+	private final ProcedurePojoAssignementElements pProcedurePojoAssignement;
+	private final FunctionPojoAssignementElements pFunctionPojoAssignement;
+	private final ImplementsAssignementElements pImplementsAssignement;
+	private final ExtendsAssignementElements pExtendsAssignement;
+	private final ImplementsAssignementGenericsElements pImplementsAssignementGenerics;
+	private final ExtendsAssignementGenericsElements pExtendsAssignementGenerics;
+	private final PropertyElements pProperty;
+	private final DatabasePropertyElements pDatabaseProperty;
+	private final PojogenPropertyElements pPojogenProperty;
+	private final MetaTypeAssignementElements pMetaTypeAssignement;
+	private final MetagenPropertyElements pMetagenProperty;
+	private final DaogenPropertyElements pDaogenProperty;
+	private final PropertyValueElements pPropertyValue;
+	private final PojoDefinitionElements pPojoDefinition;
+	private final TableDefinitionElements pTableDefinition;
+	private final ProcedureDefinitionElements pProcedureDefinition;
+	private final FunctionDefinitionElements pFunctionDefinition;
+	private final TerminalRule tIDENT_DOT;
+	private final TerminalRule tIDENT;
+	private final TerminalRule tNUMBER;
+	private final TerminalRule tESC_CHAR;
+	private final TerminalRule tML_COMMENT;
+	private final TerminalRule tSL_COMMENT;
+	private final TerminalRule tWS;
+	private final TerminalRule tAND;
+	private final TerminalRule tOR;
+	private final TerminalRule tCOLON;
+	private final TerminalRule tSEMICOLON;
+	private final TerminalRule tSTRING;
+	private final TerminalRule tCOMMA;
+	private final TerminalRule tMINUS;
+	private final TerminalRule tPLUS;
+	private final TerminalRule tLPAREN;
+	private final TerminalRule tRPAREN;
+	private final TerminalRule tLBRACE;
+	private final TerminalRule tRBRACE;
+	private final TerminalRule tQUESTI;
+	private final TerminalRule tNOT;
+	private final TerminalRule tBAND;
+	private final TerminalRule tBOR;
+	private final TerminalRule tHASH;
+	private final TerminalRule tAT;
+	private final TerminalRule tCARET;
+	private final TerminalRule tEQUALS;
+	private final TerminalRule tLESS_THAN;
+	private final TerminalRule tMORE_THAN;
+	private final TerminalRule tPERCENT;
+	private final TerminalRule tDOT;
+	private final TerminalRule tREST;
+	private final TerminalRule tSTRING_VALUE;
+	private final FeatureValueElements pFeatureValue;
+	private final PojoTypeElements pPojoType;
+	private final PackageDeclarationElements pPackageDeclaration;
+	private final AnnotationElements pAnnotation;
+	private final AnnotationPropertyElements pAnnotationProperty;
+	private final EntityElements pEntity;
+	private final AnnotatedEntityElements pAnnotatedEntity;
+	private final AbstractPojoEntityElements pAbstractPojoEntity;
+	private final ImportElements pImport;
+	private final ImplementsElements pImplements;
+	private final ExtendsElements pExtends;
+	private final ImplPackageElements pImplPackage;
+	private final PojoEntityModifier1Elements pPojoEntityModifier1;
+	private final PojoEntityModifier2Elements pPojoEntityModifier2;
+	private final PojoEntityElements pPojoEntity;
+	private final PojoAnnotatedPropertyElements pPojoAnnotatedProperty;
+	private final PojoPropertyModifierElements pPojoPropertyModifier;
+	private final PojoPropertyElements pPojoProperty;
+	private final EnumEntityModifier1Elements pEnumEntityModifier1;
+	private final EnumEntityModifier2Elements pEnumEntityModifier2;
+	private final EnumEntityElements pEnumEntity;
+	private final EnumPropertyElements pEnumProperty;
+	private final PojoDaoModifierElements pPojoDaoModifier;
+	private final PojoDaoElements pPojoDao;
+	private final PojoMethodModifierElements pPojoMethodModifier;
+	private final PojoMethodElements pPojoMethod;
+	private final ToInitMethodElements pToInitMethod;
+	private final PojoMethodArgElements pPojoMethodArg;
+	private final QualifiedNameWithWildcardElements pQualifiedNameWithWildcard;
+	private final QualifiedNameElements pQualifiedName;
 	
 	private final Grammar grammar;
 
 	@Inject
 	public ProcessorModelGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
+		this.pArtifacts = new ArtifactsElements();
+		this.pDatabaseCatalogAssignement = new DatabaseCatalogAssignementElements();
+		this.pDatabaseSchemaAssignement = new DatabaseSchemaAssignementElements();
+		this.pDatabaseTypeAssignement = new DatabaseTypeAssignementElements();
+		this.pDatabaseMetaInfoAssignement = new DatabaseMetaInfoAssignementElements();
+		this.pDriverMetaInfoAssignement = new DriverMetaInfoAssignementElements();
+		this.pDriverMethodOutputAssignement = new DriverMethodOutputAssignementElements();
+		this.pSqlTypeAssignement = new SqlTypeAssignementElements();
+		this.pColumnTypeAssignement = new ColumnTypeAssignementElements();
+		this.pShowColumnTypeAssignement = new ShowColumnTypeAssignementElements();
+		this.pTableAssignement = new TableAssignementElements();
+		this.pJoinTableAssignement = new JoinTableAssignementElements();
+		this.pColumnAssignement = new ColumnAssignementElements();
+		this.pImportAssignement = new ImportAssignementElements();
+		this.pExportAssignement = new ExportAssignementElements();
+		this.pInheritanceAssignement = new InheritanceAssignementElements();
+		this.pManyToManyAssignement = new ManyToManyAssignementElements();
+		this.pDebugLevelAssignement = new DebugLevelAssignementElements();
+		this.pProcedurePojoAssignement = new ProcedurePojoAssignementElements();
+		this.pFunctionPojoAssignement = new FunctionPojoAssignementElements();
+		this.pImplementsAssignement = new ImplementsAssignementElements();
+		this.pExtendsAssignement = new ExtendsAssignementElements();
+		this.pImplementsAssignementGenerics = new ImplementsAssignementGenericsElements();
+		this.pExtendsAssignementGenerics = new ExtendsAssignementGenericsElements();
+		this.pProperty = new PropertyElements();
+		this.pDatabaseProperty = new DatabasePropertyElements();
+		this.pPojogenProperty = new PojogenPropertyElements();
+		this.pMetaTypeAssignement = new MetaTypeAssignementElements();
+		this.pMetagenProperty = new MetagenPropertyElements();
+		this.pDaogenProperty = new DaogenPropertyElements();
+		this.pPropertyValue = new PropertyValueElements();
+		this.pPojoDefinition = new PojoDefinitionElements();
+		this.pTableDefinition = new TableDefinitionElements();
+		this.pProcedureDefinition = new ProcedureDefinitionElements();
+		this.pFunctionDefinition = new FunctionDefinitionElements();
+		this.tIDENT_DOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT_DOT");
+		this.tIDENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT");
+		this.tNUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER");
+		this.tESC_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESC_CHAR");
+		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT");
+		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT");
+		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS");
+		this.tAND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "AND");
+		this.tOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OR");
+		this.tCOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COLON");
+		this.tSEMICOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SEMICOLON");
+		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
+		this.tCOMMA = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COMMA");
+		this.tMINUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MINUS");
+		this.tPLUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PLUS");
+		this.tLPAREN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LPAREN");
+		this.tRPAREN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RPAREN");
+		this.tLBRACE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LBRACE");
+		this.tRBRACE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RBRACE");
+		this.tQUESTI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "QUESTI");
+		this.tNOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NOT");
+		this.tBAND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BAND");
+		this.tBOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BOR");
+		this.tHASH = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HASH");
+		this.tAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "AT");
+		this.tCARET = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "CARET");
+		this.tEQUALS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "EQUALS");
+		this.tLESS_THAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LESS_THAN");
+		this.tMORE_THAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MORE_THAN");
+		this.tPERCENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PERCENT");
+		this.tDOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOT");
+		this.tREST = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REST");
+		this.tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING_VALUE");
+		this.pFeatureValue = new FeatureValueElements();
+		this.pPojoType = new PojoTypeElements();
+		this.pPackageDeclaration = new PackageDeclarationElements();
+		this.pAnnotation = new AnnotationElements();
+		this.pAnnotationProperty = new AnnotationPropertyElements();
+		this.pEntity = new EntityElements();
+		this.pAnnotatedEntity = new AnnotatedEntityElements();
+		this.pAbstractPojoEntity = new AbstractPojoEntityElements();
+		this.pImport = new ImportElements();
+		this.pImplements = new ImplementsElements();
+		this.pExtends = new ExtendsElements();
+		this.pImplPackage = new ImplPackageElements();
+		this.pPojoEntityModifier1 = new PojoEntityModifier1Elements();
+		this.pPojoEntityModifier2 = new PojoEntityModifier2Elements();
+		this.pPojoEntity = new PojoEntityElements();
+		this.pPojoAnnotatedProperty = new PojoAnnotatedPropertyElements();
+		this.pPojoPropertyModifier = new PojoPropertyModifierElements();
+		this.pPojoProperty = new PojoPropertyElements();
+		this.pEnumEntityModifier1 = new EnumEntityModifier1Elements();
+		this.pEnumEntityModifier2 = new EnumEntityModifier2Elements();
+		this.pEnumEntity = new EnumEntityElements();
+		this.pEnumProperty = new EnumPropertyElements();
+		this.pPojoDaoModifier = new PojoDaoModifierElements();
+		this.pPojoDao = new PojoDaoElements();
+		this.pPojoMethodModifier = new PojoMethodModifierElements();
+		this.pPojoMethod = new PojoMethodElements();
+		this.pToInitMethod = new ToInitMethodElements();
+		this.pPojoMethodArg = new PojoMethodArgElements();
+		this.pQualifiedNameWithWildcard = new QualifiedNameWithWildcardElements();
+		this.pQualifiedName = new QualifiedNameElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -9936,10 +7190,9 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Artifacts:
 	//	{Artifacts} WS* (properties+=Property WS* | pojos+=PojoDefinition WS* | tables+=TableDefinition WS* |
-	//	procedures+=ProcedureDefinition WS* | functions+=FunctionDefinition WS* | statements+=MetaStatement WS* |
-	//	mappings+=MappingRule WS* | features+=OptionalFeature WS* | pojoPackages+=PackageDeclaration WS*)*;
+	//	procedures+=ProcedureDefinition WS* | functions+=FunctionDefinition WS* | pojoPackages+=PackageDeclaration WS*)*;
 	public ArtifactsElements getArtifactsAccess() {
-		return (pArtifacts != null) ? pArtifacts : (pArtifacts = new ArtifactsElements());
+		return pArtifacts;
 	}
 	
 	public ParserRule getArtifactsRule() {
@@ -9949,7 +7202,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//DatabaseCatalogAssignement:
 	//	dbCatalog=PropertyValue;
 	public DatabaseCatalogAssignementElements getDatabaseCatalogAssignementAccess() {
-		return (pDatabaseCatalogAssignement != null) ? pDatabaseCatalogAssignement : (pDatabaseCatalogAssignement = new DatabaseCatalogAssignementElements());
+		return pDatabaseCatalogAssignement;
 	}
 	
 	public ParserRule getDatabaseCatalogAssignementRule() {
@@ -9959,7 +7212,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//DatabaseSchemaAssignement:
 	//	dbSchema=PropertyValue;
 	public DatabaseSchemaAssignementElements getDatabaseSchemaAssignementAccess() {
-		return (pDatabaseSchemaAssignement != null) ? pDatabaseSchemaAssignement : (pDatabaseSchemaAssignement = new DatabaseSchemaAssignementElements());
+		return pDatabaseSchemaAssignement;
 	}
 	
 	public ParserRule getDatabaseSchemaAssignementRule() {
@@ -9969,7 +7222,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//DatabaseTypeAssignement:
 	//	dbType=IDENT;
 	public DatabaseTypeAssignementElements getDatabaseTypeAssignementAccess() {
-		return (pDatabaseTypeAssignement != null) ? pDatabaseTypeAssignement : (pDatabaseTypeAssignement = new DatabaseTypeAssignementElements());
+		return pDatabaseTypeAssignement;
 	}
 	
 	public ParserRule getDatabaseTypeAssignementRule() {
@@ -9979,7 +7232,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//DatabaseMetaInfoAssignement:
 	//	dbMetaInfo=PropertyValue;
 	public DatabaseMetaInfoAssignementElements getDatabaseMetaInfoAssignementAccess() {
-		return (pDatabaseMetaInfoAssignement != null) ? pDatabaseMetaInfoAssignement : (pDatabaseMetaInfoAssignement = new DatabaseMetaInfoAssignementElements());
+		return pDatabaseMetaInfoAssignement;
 	}
 	
 	public ParserRule getDatabaseMetaInfoAssignementRule() {
@@ -9989,7 +7242,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//DriverMetaInfoAssignement:
 	//	dbDriverInfo=PropertyValue;
 	public DriverMetaInfoAssignementElements getDriverMetaInfoAssignementAccess() {
-		return (pDriverMetaInfoAssignement != null) ? pDriverMetaInfoAssignement : (pDriverMetaInfoAssignement = new DriverMetaInfoAssignementElements());
+		return pDriverMetaInfoAssignement;
 	}
 	
 	public ParserRule getDriverMetaInfoAssignementRule() {
@@ -9999,7 +7252,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//DriverMethodOutputAssignement:
 	//	driverMethod=IDENT "->" callOutput=PropertyValue;
 	public DriverMethodOutputAssignementElements getDriverMethodOutputAssignementAccess() {
-		return (pDriverMethodOutputAssignement != null) ? pDriverMethodOutputAssignement : (pDriverMethodOutputAssignement = new DriverMethodOutputAssignementElements());
+		return pDriverMethodOutputAssignement;
 	}
 	
 	public ParserRule getDriverMethodOutputAssignementRule() {
@@ -10009,7 +7262,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//SqlTypeAssignement:
 	//	typeName=IDENT (LPAREN size=NUMBER RPAREN)? "->" type=PojoType;
 	public SqlTypeAssignementElements getSqlTypeAssignementAccess() {
-		return (pSqlTypeAssignement != null) ? pSqlTypeAssignement : (pSqlTypeAssignement = new SqlTypeAssignementElements());
+		return pSqlTypeAssignement;
 	}
 	
 	public ParserRule getSqlTypeAssignementRule() {
@@ -10019,7 +7272,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//ColumnTypeAssignement:
 	//	dbColumn=IDENT "->" type=PojoType;
 	public ColumnTypeAssignementElements getColumnTypeAssignementAccess() {
-		return (pColumnTypeAssignement != null) ? pColumnTypeAssignement : (pColumnTypeAssignement = new ColumnTypeAssignementElements());
+		return pColumnTypeAssignement;
 	}
 	
 	public ParserRule getColumnTypeAssignementRule() {
@@ -10029,7 +7282,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//ShowColumnTypeAssignement:
 	//	dbColumn=IDENT "->" type=PropertyValue;
 	public ShowColumnTypeAssignementElements getShowColumnTypeAssignementAccess() {
-		return (pShowColumnTypeAssignement != null) ? pShowColumnTypeAssignement : (pShowColumnTypeAssignement = new ShowColumnTypeAssignementElements());
+		return pShowColumnTypeAssignement;
 	}
 	
 	public ParserRule getShowColumnTypeAssignementRule() {
@@ -10039,7 +7292,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//TableAssignement:
 	//	dbTable=IDENT "->" newName=IDENT;
 	public TableAssignementElements getTableAssignementAccess() {
-		return (pTableAssignement != null) ? pTableAssignement : (pTableAssignement = new TableAssignementElements());
+		return pTableAssignement;
 	}
 	
 	public ParserRule getTableAssignementRule() {
@@ -10049,7 +7302,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//JoinTableAssignement:
 	//	dbTable=IDENT ("->" dbTables+=IDENT)+;
 	public JoinTableAssignementElements getJoinTableAssignementAccess() {
-		return (pJoinTableAssignement != null) ? pJoinTableAssignement : (pJoinTableAssignement = new JoinTableAssignementElements());
+		return pJoinTableAssignement;
 	}
 	
 	public ParserRule getJoinTableAssignementRule() {
@@ -10059,7 +7312,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//ColumnAssignement:
 	//	dbColumn=IDENT "->" newName=IDENT;
 	public ColumnAssignementElements getColumnAssignementAccess() {
-		return (pColumnAssignement != null) ? pColumnAssignement : (pColumnAssignement = new ColumnAssignementElements());
+		return pColumnAssignement;
 	}
 	
 	public ParserRule getColumnAssignementRule() {
@@ -10069,7 +7322,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//ImportAssignement:
 	//	dbColumn=IDENT "->" pkTable=IDENT ("->" pkColumn=IDENT)?;
 	public ImportAssignementElements getImportAssignementAccess() {
-		return (pImportAssignement != null) ? pImportAssignement : (pImportAssignement = new ImportAssignementElements());
+		return pImportAssignement;
 	}
 	
 	public ParserRule getImportAssignementRule() {
@@ -10079,7 +7332,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//ExportAssignement:
 	//	dbColumn=IDENT "->" fkTable=IDENT ("->" fkColumn=IDENT)?;
 	public ExportAssignementElements getExportAssignementAccess() {
-		return (pExportAssignement != null) ? pExportAssignement : (pExportAssignement = new ExportAssignementElements());
+		return pExportAssignement;
 	}
 	
 	public ParserRule getExportAssignementRule() {
@@ -10089,7 +7342,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//InheritanceAssignement:
 	//	discriminator=IDENT "->" dbTable=IDENT ("->" dbColumns+=IDENT)+;
 	public InheritanceAssignementElements getInheritanceAssignementAccess() {
-		return (pInheritanceAssignement != null) ? pInheritanceAssignement : (pInheritanceAssignement = new InheritanceAssignementElements());
+		return pInheritanceAssignement;
 	}
 	
 	public ParserRule getInheritanceAssignementRule() {
@@ -10099,7 +7352,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//ManyToManyAssignement:
 	//	pkColumn=IDENT "->" pkTable=IDENT ("->" fkColumn=IDENT)?;
 	public ManyToManyAssignementElements getManyToManyAssignementAccess() {
-		return (pManyToManyAssignement != null) ? pManyToManyAssignement : (pManyToManyAssignement = new ManyToManyAssignementElements());
+		return pManyToManyAssignement;
 	}
 	
 	public ParserRule getManyToManyAssignementRule() {
@@ -10109,7 +7362,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//DebugLevelAssignement:
 	//	debug=IDENT (WS+ scope=PropertyValue)?;
 	public DebugLevelAssignementElements getDebugLevelAssignementAccess() {
-		return (pDebugLevelAssignement != null) ? pDebugLevelAssignement : (pDebugLevelAssignement = new DebugLevelAssignementElements());
+		return pDebugLevelAssignement;
 	}
 	
 	public ParserRule getDebugLevelAssignementRule() {
@@ -10119,7 +7372,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//ProcedurePojoAssignement:
 	//	dbProcedure=IDENT "->" pojo=PojoType;
 	public ProcedurePojoAssignementElements getProcedurePojoAssignementAccess() {
-		return (pProcedurePojoAssignement != null) ? pProcedurePojoAssignement : (pProcedurePojoAssignement = new ProcedurePojoAssignementElements());
+		return pProcedurePojoAssignement;
 	}
 	
 	public ParserRule getProcedurePojoAssignementRule() {
@@ -10129,7 +7382,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//FunctionPojoAssignement:
 	//	dbFunction=IDENT "->" pojo=PojoType;
 	public FunctionPojoAssignementElements getFunctionPojoAssignementAccess() {
-		return (pFunctionPojoAssignement != null) ? pFunctionPojoAssignement : (pFunctionPojoAssignement = new FunctionPojoAssignementElements());
+		return pFunctionPojoAssignement;
 	}
 	
 	public ParserRule getFunctionPojoAssignementRule() {
@@ -10140,7 +7393,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
 	//	dbNotTables+=IDENT)+)?;
 	public ImplementsAssignementElements getImplementsAssignementAccess() {
-		return (pImplementsAssignement != null) ? pImplementsAssignement : (pImplementsAssignement = new ImplementsAssignementElements());
+		return pImplementsAssignement;
 	}
 	
 	public ParserRule getImplementsAssignementRule() {
@@ -10150,7 +7403,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//ExtendsAssignement:
 	//	toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 	public ExtendsAssignementElements getExtendsAssignementAccess() {
-		return (pExtendsAssignement != null) ? pExtendsAssignement : (pExtendsAssignement = new ExtendsAssignementElements());
+		return pExtendsAssignement;
 	}
 	
 	public ParserRule getExtendsAssignementRule() {
@@ -10161,7 +7414,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
 	//	dbNotTables+=IDENT)+)?;
 	public ImplementsAssignementGenericsElements getImplementsAssignementGenericsAccess() {
-		return (pImplementsAssignementGenerics != null) ? pImplementsAssignementGenerics : (pImplementsAssignementGenerics = new ImplementsAssignementGenericsElements());
+		return pImplementsAssignementGenerics;
 	}
 	
 	public ParserRule getImplementsAssignementGenericsRule() {
@@ -10171,7 +7424,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//ExtendsAssignementGenerics:
 	//	toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 	public ExtendsAssignementGenericsElements getExtendsAssignementGenericsAccess() {
-		return (pExtendsAssignementGenerics != null) ? pExtendsAssignementGenerics : (pExtendsAssignementGenerics = new ExtendsAssignementGenericsElements());
+		return pExtendsAssignementGenerics;
 	}
 	
 	public ParserRule getExtendsAssignementGenericsRule() {
@@ -10184,7 +7437,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
 	//	replaceId=IDENT WS+ replacement=PropertyValue) SEMICOLON;
 	public PropertyElements getPropertyAccess() {
-		return (pProperty != null) ? pProperty : (pProperty = new PropertyElements());
+		return pProperty;
 	}
 	
 	public ParserRule getPropertyRule() {
@@ -10203,7 +7456,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
 	//	debug=DebugLevelAssignement | name="take-comments" | name="lowercase-names" | name="uppercase-names";
 	public DatabasePropertyElements getDatabasePropertyAccess() {
-		return (pDatabaseProperty != null) ? pDatabaseProperty : (pDatabaseProperty = new DatabasePropertyElements());
+		return pDatabaseProperty;
 	}
 	
 	public ParserRule getDatabasePropertyRule() {
@@ -10242,7 +7495,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	activeFilter=PropertyValue | name="package" WS+ pckg=PropertyValue | name="enum-for-check-constraints" WS+
 	//	enumName=IDENT (WS+ dbCheckConstraints+=IDENT)+;
 	public PojogenPropertyElements getPojogenPropertyAccess() {
-		return (pPojogenProperty != null) ? pPojogenProperty : (pPojogenProperty = new PojogenPropertyElements());
+		return pPojogenProperty;
 	}
 	
 	public ParserRule getPojogenPropertyRule() {
@@ -10252,7 +7505,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//MetaTypeAssignement:
 	//	dbColumn=IDENT "->" type=IDENT ("->" extension=IDENT)?;
 	public MetaTypeAssignementElements getMetaTypeAssignementAccess() {
-		return (pMetaTypeAssignement != null) ? pMetaTypeAssignement : (pMetaTypeAssignement = new MetaTypeAssignementElements());
+		return pMetaTypeAssignement;
 	}
 	
 	public ParserRule getMetaTypeAssignementRule() {
@@ -10274,7 +7527,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="optimize-insert" (WS+ dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+
 	//	optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=PropertyValue;
 	public MetagenPropertyElements getMetagenPropertyAccess() {
-		return (pMetagenProperty != null) ? pMetagenProperty : (pMetagenProperty = new MetagenPropertyElements());
+		return pMetagenProperty;
 	}
 	
 	public ParserRule getMetagenPropertyRule() {
@@ -10291,7 +7544,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=PropertyValue | name="package" WS+
 	//	pckg=PropertyValue;
 	public DaogenPropertyElements getDaogenPropertyAccess() {
-		return (pDaogenProperty != null) ? pDaogenProperty : (pDaogenProperty = new DaogenPropertyElements());
+		return pDaogenProperty;
 	}
 	
 	public ParserRule getDaogenPropertyRule() {
@@ -10300,13 +7553,12 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 
 	//PropertyValue:
 	//	(REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
-	//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR |
-	//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING |
-	//	COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS |
-	//	LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)* |
-	//	STRING_VALUE;
+	//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR)
+	//	=> (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE
+	//	| QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR |
+	//	ESC_CHAR)* | STRING_VALUE;
 	public PropertyValueElements getPropertyValueAccess() {
-		return (pPropertyValue != null) ? pPropertyValue : (pPropertyValue = new PropertyValueElements());
+		return pPropertyValue;
 	}
 	
 	public ParserRule getPropertyValueRule() {
@@ -10316,7 +7568,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"pojo" name=IDENT (class=(IDENT | IDENT_DOT) | COLON classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON;
 	public PojoDefinitionElements getPojoDefinitionAccess() {
-		return (pPojoDefinition != null) ? pPojoDefinition : (pPojoDefinition = new PojoDefinitionElements());
+		return pPojoDefinition;
 	}
 	
 	public ParserRule getPojoDefinitionRule() {
@@ -10326,7 +7578,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//TableDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"table" name=IDENT table=IDENT SEMICOLON;
 	public TableDefinitionElements getTableDefinitionAccess() {
-		return (pTableDefinition != null) ? pTableDefinition : (pTableDefinition = new TableDefinitionElements());
+		return pTableDefinition;
 	}
 	
 	public ParserRule getTableDefinitionRule() {
@@ -10336,7 +7588,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//ProcedureDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"procedure" name=IDENT table=IDENT SEMICOLON;
 	public ProcedureDefinitionElements getProcedureDefinitionAccess() {
-		return (pProcedureDefinition != null) ? pProcedureDefinition : (pProcedureDefinition = new ProcedureDefinitionElements());
+		return pProcedureDefinition;
 	}
 	
 	public ParserRule getProcedureDefinitionRule() {
@@ -10346,617 +7598,218 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//FunctionDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"function" name=IDENT table=IDENT SEMICOLON;
 	public FunctionDefinitionElements getFunctionDefinitionAccess() {
-		return (pFunctionDefinition != null) ? pFunctionDefinition : (pFunctionDefinition = new FunctionDefinitionElements());
+		return pFunctionDefinition;
 	}
 	
 	public ParserRule getFunctionDefinitionRule() {
 		return getFunctionDefinitionAccess().getRule();
 	}
 
-	//MetaStatement:
-	//	name=IDENT LPAREN type=STATEMENT_TYPE (COMMA modifiers+=StatementModifier)* RPAREN EQUALS statement=Sql SEMICOLON;
-	public MetaStatementElements getMetaStatementAccess() {
-		return (pMetaStatement != null) ? pMetaStatement : (pMetaStatement = new MetaStatementElements());
-	}
-	
-	public ParserRule getMetaStatementRule() {
-		return getMetaStatementAccess().getRule();
-	}
-
-	//Sql:
-	//	sqls+=SqlFragment+;
-	public SqlElements getSqlAccess() {
-		return (pSql != null) ? pSql : (pSql = new SqlElements());
-	}
-	
-	public ParserRule getSqlRule() {
-		return getSqlAccess().getRule();
-	}
-
-	//SqlFragment:
-	//	value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
-	//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT
-	//	dbtab=DatabaseTable | dbcol=DatabaseColumn);
-	public SqlFragmentElements getSqlFragmentAccess() {
-		return (pSqlFragment != null) ? pSqlFragment : (pSqlFragment = new SqlFragmentElements());
-	}
-	
-	public ParserRule getSqlFragmentRule() {
-		return getSqlFragmentAccess().getRule();
-	}
-
-	////~(COLON | STRING | AT | LBRACE | SEMICOLON)
-	//SqlValue:
-	//	(REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR
-	//	| HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-	//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI |
-	//	NOT | BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-	//	| MAPPING_TYPE | OPTION_TYPE)*;
-	public SqlValueElements getSqlValueAccess() {
-		return (pSqlValue != null) ? pSqlValue : (pSqlValue = new SqlValueElements());
-	}
-	
-	public ParserRule getSqlValueRule() {
-		return getSqlValueAccess().getRule();
-	}
-
-	//MetaSql:
-	//	WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-	//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH NUMBER
-	//	ord=OrdSql;
-	public MetaSqlElements getMetaSqlAccess() {
-		return (pMetaSql != null) ? pMetaSql : (pMetaSql = new MetaSqlElements());
-	}
-	
-	public ParserRule getMetaSqlRule() {
-		return getMetaSqlAccess().getRule();
-	}
-
-	//IfSql:
-	//	sqls+=IfSqlFragment+;
-	public IfSqlElements getIfSqlAccess() {
-		return (pIfSql != null) ? pIfSql : (pIfSql = new IfSqlElements());
-	}
-	
-	public ParserRule getIfSqlRule() {
-		return getIfSqlAccess().getRule();
-	}
-
-	//IfSqlFragment:
-	//	value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
-	//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
-	//	dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE;
-	public IfSqlFragmentElements getIfSqlFragmentAccess() {
-		return (pIfSqlFragment != null) ? pIfSqlFragment : (pIfSqlFragment = new IfSqlFragmentElements());
-	}
-	
-	public ParserRule getIfSqlFragmentRule() {
-		return getIfSqlFragmentAccess().getRule();
-	}
-
-	////~(COLON | STRING | AT | LBRACE | BOR | RBRACE)
-	//IfSqlValue:
-	//	(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
-	//	HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-	//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI
-	//	| NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
-	//	MAPPING_TYPE | OPTION_TYPE)*;
-	public IfSqlValueElements getIfSqlValueAccess() {
-		return (pIfSqlValue != null) ? pIfSqlValue : (pIfSqlValue = new IfSqlValueElements());
-	}
-	
-	public ParserRule getIfSqlValueRule() {
-		return getIfSqlValueAccess().getRule();
-	}
-
-	//IfMetaSql:
-	//	WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-	//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)*;
-	public IfMetaSqlElements getIfMetaSqlAccess() {
-		return (pIfMetaSql != null) ? pIfMetaSql : (pIfMetaSql = new IfMetaSqlElements());
-	}
-	
-	public ParserRule getIfMetaSqlRule() {
-		return getIfMetaSqlAccess().getRule();
-	}
-
-	//IfSqlCond:
-	//	WS* bool1=IfSqlBool WS* (oper+=(AND | OR) WS* bool2+=IfSqlBool WS*)*;
-	public IfSqlCondElements getIfSqlCondAccess() {
-		return (pIfSqlCond != null) ? pIfSqlCond : (pIfSqlCond = new IfSqlCondElements());
-	}
-	
-	public ParserRule getIfSqlCondRule() {
-		return getIfSqlCondAccess().getRule();
-	}
-
-	//IfSqlBool:
-	//	not?=NOT? STRING cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN;
-	public IfSqlBoolElements getIfSqlBoolAccess() {
-		return (pIfSqlBool != null) ? pIfSqlBool : (pIfSqlBool = new IfSqlBoolElements());
-	}
-	
-	public ParserRule getIfSqlBoolRule() {
-		return getIfSqlBoolAccess().getRule();
-	}
-
-	//OrdSql:
-	//	sqls+=OrdSql2+;
-	public OrdSqlElements getOrdSqlAccess() {
-		return (pOrdSql != null) ? pOrdSql : (pOrdSql = new OrdSqlElements());
-	}
-	
-	public ParserRule getOrdSqlRule() {
-		return getOrdSqlAccess().getRule();
-	}
-
-	//OrdSql2:
-	//	value=OrdSqlValue | STRING cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn;
-	public OrdSql2Elements getOrdSql2Access() {
-		return (pOrdSql2 != null) ? pOrdSql2 : (pOrdSql2 = new OrdSql2Elements());
-	}
-	
-	public ParserRule getOrdSql2Rule() {
-		return getOrdSql2Access().getRule();
-	}
-
-	////~(COLON | STRING | PERCENT | RBRACE)
-	//OrdSqlValue:
-	//	(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
-	//	BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-	//	| MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
-	//	RPAREN | LBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR |
-	//	ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*;
-	public OrdSqlValueElements getOrdSqlValueAccess() {
-		return (pOrdSqlValue != null) ? pOrdSqlValue : (pOrdSqlValue = new OrdSqlValueElements());
-	}
-	
-	public ParserRule getOrdSqlValueRule() {
-		return getOrdSqlValueAccess().getRule();
-	}
-
-	//Column:
-	//	columns+=ExtendedColumn => columns+=ExtendedColumn*;
-	public ColumnElements getColumnAccess() {
-		return (pColumn != null) ? pColumn : (pColumn = new ColumnElements());
-	}
-	
-	public ParserRule getColumnRule() {
-		return getColumnAccess().getRule();
-	}
-
-	//ExtendedColumn:
-	//	col=ExtendedColumnName (LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
-	public ExtendedColumnElements getExtendedColumnAccess() {
-		return (pExtendedColumn != null) ? pExtendedColumn : (pExtendedColumn = new ExtendedColumnElements());
-	}
-	
-	public ParserRule getExtendedColumnRule() {
-		return getExtendedColumnAccess().getRule();
-	}
-
-	//ExtendedColumnName:
-	//	name=(IDENT | NUMBER | IDENT_DOT);
-	public ExtendedColumnNameElements getExtendedColumnNameAccess() {
-		return (pExtendedColumnName != null) ? pExtendedColumnName : (pExtendedColumnName = new ExtendedColumnNameElements());
-	}
-	
-	public ParserRule getExtendedColumnNameRule() {
-		return getExtendedColumnNameAccess().getRule();
-	}
-
-	//Constant:
-	//	case=(PLUS | MINUS)? name=(IDENT | IDENT_DOT) (LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
-	public ConstantElements getConstantAccess() {
-		return (pConstant != null) ? pConstant : (pConstant = new ConstantElements());
-	}
-	
-	public ParserRule getConstantRule() {
-		return getConstantAccess().getRule();
-	}
-
-	//Identifier:
-	//	mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | NUMBER | IDENT_DOT) (LPAREN
-	//	modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
-	public IdentifierElements getIdentifierAccess() {
-		return (pIdentifier != null) ? pIdentifier : (pIdentifier = new IdentifierElements());
-	}
-	
-	public ParserRule getIdentifierRule() {
-		return getIdentifierAccess().getRule();
-	}
-
-	//ConstantOperator:
-	//	name=(IDENT | EQUALS);
-	public ConstantOperatorElements getConstantOperatorAccess() {
-		return (pConstantOperator != null) ? pConstantOperator : (pConstantOperator = new ConstantOperatorElements());
-	}
-	
-	public ParserRule getConstantOperatorRule() {
-		return getConstantOperatorAccess().getRule();
-	}
-
-	//IdentifierOperator:
-	//	name=(IDENT | EQUALS);
-	public IdentifierOperatorElements getIdentifierOperatorAccess() {
-		return (pIdentifierOperator != null) ? pIdentifierOperator : (pIdentifierOperator = new IdentifierOperatorElements());
-	}
-	
-	public ParserRule getIdentifierOperatorRule() {
-		return getIdentifierOperatorAccess().getRule();
-	}
-
-	//DatabaseColumn:
-	//	name=(IDENT | IDENT_DOT);
-	public DatabaseColumnElements getDatabaseColumnAccess() {
-		return (pDatabaseColumn != null) ? pDatabaseColumn : (pDatabaseColumn = new DatabaseColumnElements());
-	}
-	
-	public ParserRule getDatabaseColumnRule() {
-		return getDatabaseColumnAccess().getRule();
-	}
-
-	//DatabaseTable:
-	//	name=(IDENT | IDENT_DOT);
-	public DatabaseTableElements getDatabaseTableAccess() {
-		return (pDatabaseTable != null) ? pDatabaseTable : (pDatabaseTable = new DatabaseTableElements());
-	}
-	
-	public ParserRule getDatabaseTableRule() {
-		return getDatabaseTableAccess().getRule();
-	}
-
-	//MappingRule:
-	//	name=IDENT LPAREN type=MAPPING_TYPE (COMMA modifiers+=MappingRuleModifier)* RPAREN EQUALS mapping=Mapping SEMICOLON;
-	public MappingRuleElements getMappingRuleAccess() {
-		return (pMappingRule != null) ? pMappingRule : (pMappingRule = new MappingRuleElements());
-	}
-	
-	public ParserRule getMappingRuleRule() {
-		return getMappingRuleAccess().getRule();
-	}
-
-	//Mapping:
-	//	WS* mappingItems+=MappingItem (WS+ mappingItems+=MappingItem)* WS*;
-	public MappingElements getMappingAccess() {
-		return (pMapping != null) ? pMapping : (pMapping = new MappingElements());
-	}
-	
-	public ParserRule getMappingRule() {
-		return getMappingAccess().getRule();
-	}
-
-	//MappingItem:
-	//	name=(IDENT | NUMBER) (STRING attr=MappingColumn)?;
-	public MappingItemElements getMappingItemAccess() {
-		return (pMappingItem != null) ? pMappingItem : (pMappingItem = new MappingItemElements());
-	}
-	
-	public ParserRule getMappingItemRule() {
-		return getMappingItemAccess().getRule();
-	}
-
-	//MappingColumn:
-	//	items+=ExtendedMappingItem => items+=ExtendedMappingItem*;
-	public MappingColumnElements getMappingColumnAccess() {
-		return (pMappingColumn != null) ? pMappingColumn : (pMappingColumn = new MappingColumnElements());
-	}
-	
-	public ParserRule getMappingColumnRule() {
-		return getMappingColumnAccess().getRule();
-	}
-
-	//ExtendedMappingItem:
-	//	attr=MappingColumnName (LPAREN modifiers+=MappingItemModifier (COMMA modifiers+=MappingItemModifier)* RPAREN)?;
-	public ExtendedMappingItemElements getExtendedMappingItemAccess() {
-		return (pExtendedMappingItem != null) ? pExtendedMappingItem : (pExtendedMappingItem = new ExtendedMappingItemElements());
-	}
-	
-	public ParserRule getExtendedMappingItemRule() {
-		return getExtendedMappingItemAccess().getRule();
-	}
-
-	//MappingColumnName:
-	//	name=(IDENT | IDENT_DOT | NUMBER);
-	public MappingColumnNameElements getMappingColumnNameAccess() {
-		return (pMappingColumnName != null) ? pMappingColumnName : (pMappingColumnName = new MappingColumnNameElements());
-	}
-	
-	public ParserRule getMappingColumnNameRule() {
-		return getMappingColumnNameAccess().getRule();
-	}
-
-	//OptionalFeature:
-	//	name=IDENT LPAREN type=OPTION_TYPE (COMMA modifiers+=OptionalFeatureModifier)* RPAREN EQUALS option=FeatureValue
-	//	SEMICOLON;
-	public OptionalFeatureElements getOptionalFeatureAccess() {
-		return (pOptionalFeature != null) ? pOptionalFeature : (pOptionalFeature = new OptionalFeatureElements());
-	}
-	
-	public ParserRule getOptionalFeatureRule() {
-		return getOptionalFeatureAccess().getRule();
-	}
-
-	//StatementModifier:
-	//	IDENT | NUMBER;
-	public StatementModifierElements getStatementModifierAccess() {
-		return (pStatementModifier != null) ? pStatementModifier : (pStatementModifier = new StatementModifierElements());
-	}
-	
-	public ParserRule getStatementModifierRule() {
-		return getStatementModifierAccess().getRule();
-	}
-
-	//MappingRuleModifier:
-	//	IDENT | NUMBER;
-	public MappingRuleModifierElements getMappingRuleModifierAccess() {
-		return (pMappingRuleModifier != null) ? pMappingRuleModifier : (pMappingRuleModifier = new MappingRuleModifierElements());
-	}
-	
-	public ParserRule getMappingRuleModifierRule() {
-		return getMappingRuleModifierAccess().getRule();
-	}
-
-	//MappingItemModifier:
-	//	IDENT | NUMBER;
-	public MappingItemModifierElements getMappingItemModifierAccess() {
-		return (pMappingItemModifier != null) ? pMappingItemModifier : (pMappingItemModifier = new MappingItemModifierElements());
-	}
-	
-	public ParserRule getMappingItemModifierRule() {
-		return getMappingItemModifierAccess().getRule();
-	}
-
-	//OptionalFeatureModifier:
-	//	IDENT | NUMBER;
-	public OptionalFeatureModifierElements getOptionalFeatureModifierAccess() {
-		return (pOptionalFeatureModifier != null) ? pOptionalFeatureModifier : (pOptionalFeatureModifier = new OptionalFeatureModifierElements());
-	}
-	
-	public ParserRule getOptionalFeatureModifierRule() {
-		return getOptionalFeatureModifierAccess().getRule();
-	}
-
-	//Modifier:
-	//	NOT? (IDENT | NUMBER);
-	public ModifierElements getModifierAccess() {
-		return (pModifier != null) ? pModifier : (pModifier = new ModifierElements());
-	}
-	
-	public ParserRule getModifierRule() {
-		return getModifierAccess().getRule();
-	}
-
-	//terminal ON_OFF:
-	//	"ON" | "OFF";
-	public TerminalRule getON_OFFRule() {
-		return (tON_OFF != null) ? tON_OFF : (tON_OFF = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ON_OFF"));
-	} 
-
-	//terminal STATEMENT_TYPE:
-	//	"QRY" | "CRUD" | "CALL";
-	public TerminalRule getSTATEMENT_TYPERule() {
-		return (tSTATEMENT_TYPE != null) ? tSTATEMENT_TYPE : (tSTATEMENT_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STATEMENT_TYPE"));
-	} 
-
-	//terminal MAPPING_TYPE:
-	//	"OUT";
-	public TerminalRule getMAPPING_TYPERule() {
-		return (tMAPPING_TYPE != null) ? tMAPPING_TYPE : (tMAPPING_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MAPPING_TYPE"));
-	} 
-
-	//terminal OPTION_TYPE:
-	//	"OPT" | "LOPT" | "IOPT" | "SOPT" | "BOPT" | "MOPT";
-	public TerminalRule getOPTION_TYPERule() {
-		return (tOPTION_TYPE != null) ? tOPTION_TYPE : (tOPTION_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OPTION_TYPE"));
-	} 
-
 	////terminal IDENT_TYPE: IDENT LPAREN NUMBER (COMMA NUMBER)? RPAREN;
 	//terminal IDENT_DOT:
 	//	IDENT (DOT IDENT)+;
 	public TerminalRule getIDENT_DOTRule() {
-		return (tIDENT_DOT != null) ? tIDENT_DOT : (tIDENT_DOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT_DOT"));
+		return tIDENT_DOT;
 	} 
 
 	//terminal IDENT:
 	//	("a".."z" | "A".."Z") ("a".."z" | "A".."Z" | "0".."9" | "_" | "=")*;
 	public TerminalRule getIDENTRule() {
-		return (tIDENT != null) ? tIDENT : (tIDENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT"));
+		return tIDENT;
 	} 
 
 	//terminal NUMBER:
 	//	"0".."9"+;
 	public TerminalRule getNUMBERRule() {
-		return (tNUMBER != null) ? tNUMBER : (tNUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER"));
+		return tNUMBER;
 	} 
 
 	////terminal NEGATIVE_NUMBER: '-'('0'..'9')+;
 	//terminal ESC_CHAR:
 	//	"\\" (COLON | SEMICOLON | STRING | LBRACE | RBRACE | BOR | HASH | AT | PERCENT | DOT | "/");
 	public TerminalRule getESC_CHARRule() {
-		return (tESC_CHAR != null) ? tESC_CHAR : (tESC_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESC_CHAR"));
+		return tESC_CHAR;
 	} 
 
 	//terminal ML_COMMENT:
 	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
-		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
+		return tML_COMMENT;
 	} 
 
 	//terminal SL_COMMENT:
 	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
-		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
+		return tSL_COMMENT;
 	} 
 
 	//terminal WS:
 	//	(" " | "\t" | "\n" | "\r")+;
 	public TerminalRule getWSRule() {
-		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
+		return tWS;
 	} 
 
 	//terminal AND:
 	//	"&" "&";
 	public TerminalRule getANDRule() {
-		return (tAND != null) ? tAND : (tAND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "AND"));
+		return tAND;
 	} 
 
 	//terminal OR:
 	//	"|" "|";
 	public TerminalRule getORRule() {
-		return (tOR != null) ? tOR : (tOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OR"));
+		return tOR;
 	} 
 
 	//terminal COLON:
 	//	":";
 	public TerminalRule getCOLONRule() {
-		return (tCOLON != null) ? tCOLON : (tCOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COLON"));
+		return tCOLON;
 	} 
 
 	//terminal SEMICOLON:
 	//	";";
 	public TerminalRule getSEMICOLONRule() {
-		return (tSEMICOLON != null) ? tSEMICOLON : (tSEMICOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SEMICOLON"));
+		return tSEMICOLON;
 	} 
 
 	//terminal STRING:
 	//	"$";
 	public TerminalRule getSTRINGRule() {
-		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
+		return tSTRING;
 	} 
 
 	//terminal COMMA:
 	//	",";
 	public TerminalRule getCOMMARule() {
-		return (tCOMMA != null) ? tCOMMA : (tCOMMA = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COMMA"));
+		return tCOMMA;
 	} 
 
 	//terminal MINUS:
 	//	"-";
 	public TerminalRule getMINUSRule() {
-		return (tMINUS != null) ? tMINUS : (tMINUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MINUS"));
+		return tMINUS;
 	} 
 
 	//terminal PLUS:
 	//	"+";
 	public TerminalRule getPLUSRule() {
-		return (tPLUS != null) ? tPLUS : (tPLUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PLUS"));
+		return tPLUS;
 	} 
 
 	//terminal LPAREN:
 	//	"(";
 	public TerminalRule getLPARENRule() {
-		return (tLPAREN != null) ? tLPAREN : (tLPAREN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LPAREN"));
+		return tLPAREN;
 	} 
 
 	//terminal RPAREN:
 	//	")";
 	public TerminalRule getRPARENRule() {
-		return (tRPAREN != null) ? tRPAREN : (tRPAREN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RPAREN"));
+		return tRPAREN;
 	} 
 
 	//terminal LBRACE:
 	//	"{";
 	public TerminalRule getLBRACERule() {
-		return (tLBRACE != null) ? tLBRACE : (tLBRACE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LBRACE"));
+		return tLBRACE;
 	} 
 
 	//terminal RBRACE:
 	//	"}";
 	public TerminalRule getRBRACERule() {
-		return (tRBRACE != null) ? tRBRACE : (tRBRACE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RBRACE"));
+		return tRBRACE;
 	} 
 
 	//terminal QUESTI:
 	//	"?";
 	public TerminalRule getQUESTIRule() {
-		return (tQUESTI != null) ? tQUESTI : (tQUESTI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "QUESTI"));
+		return tQUESTI;
 	} 
 
 	//terminal NOT:
 	//	"!";
 	public TerminalRule getNOTRule() {
-		return (tNOT != null) ? tNOT : (tNOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NOT"));
+		return tNOT;
 	} 
 
 	//terminal BAND:
 	//	"&";
 	public TerminalRule getBANDRule() {
-		return (tBAND != null) ? tBAND : (tBAND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BAND"));
+		return tBAND;
 	} 
 
 	//terminal BOR:
 	//	"|";
 	public TerminalRule getBORRule() {
-		return (tBOR != null) ? tBOR : (tBOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BOR"));
+		return tBOR;
 	} 
 
 	//terminal HASH:
 	//	"#";
 	public TerminalRule getHASHRule() {
-		return (tHASH != null) ? tHASH : (tHASH = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HASH"));
+		return tHASH;
 	} 
 
 	//terminal AT:
 	//	"@";
 	public TerminalRule getATRule() {
-		return (tAT != null) ? tAT : (tAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "AT"));
+		return tAT;
 	} 
 
 	//terminal CARET:
 	//	"^";
 	public TerminalRule getCARETRule() {
-		return (tCARET != null) ? tCARET : (tCARET = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "CARET"));
+		return tCARET;
 	} 
 
 	//terminal EQUALS:
 	//	"=";
 	public TerminalRule getEQUALSRule() {
-		return (tEQUALS != null) ? tEQUALS : (tEQUALS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "EQUALS"));
+		return tEQUALS;
 	} 
 
 	//terminal LESS_THAN:
 	//	"<";
 	public TerminalRule getLESS_THANRule() {
-		return (tLESS_THAN != null) ? tLESS_THAN : (tLESS_THAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LESS_THAN"));
+		return tLESS_THAN;
 	} 
 
 	//terminal MORE_THAN:
 	//	">";
 	public TerminalRule getMORE_THANRule() {
-		return (tMORE_THAN != null) ? tMORE_THAN : (tMORE_THAN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MORE_THAN"));
+		return tMORE_THAN;
 	} 
 
 	//terminal PERCENT:
 	//	"%";
 	public TerminalRule getPERCENTRule() {
-		return (tPERCENT != null) ? tPERCENT : (tPERCENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PERCENT"));
+		return tPERCENT;
 	} 
 
 	//terminal DOT:
 	//	".";
 	public TerminalRule getDOTRule() {
-		return (tDOT != null) ? tDOT : (tDOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOT"));
+		return tDOT;
 	} 
 
 	//terminal REST:
 	//	!SEMICOLON;
 	public TerminalRule getRESTRule() {
-		return (tREST != null) ? tREST : (tREST = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REST"));
+		return tREST;
 	} 
 
 	//terminal STRING_VALUE:
 	//	"\""->"\"";
 	public TerminalRule getSTRING_VALUERule() {
-		return (tSTRING_VALUE != null) ? tSTRING_VALUE : (tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING_VALUE"));
+		return tSTRING_VALUE;
 	} 
 
 	//FeatureValue:
 	//	(REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
-	//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR |
-	//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)+;
+	//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR)+;
 	public FeatureValueElements getFeatureValueAccess() {
-		return (pFeatureValue != null) ? pFeatureValue : (pFeatureValue = new FeatureValueElements());
+		return pFeatureValue;
 	}
 	
 	public ParserRule getFeatureValueRule() {
@@ -10971,7 +7824,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	(COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName])) (LESS_THAN (COLON gref=[PojoEntity|IDENT] |
 	//	gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) array?="[]"?;
 	public PojoTypeElements getPojoTypeAccess() {
-		return (pPojoType != null) ? pPojoType : (pPojoType = new PojoTypeElements());
+		return pPojoType;
 	}
 	
 	public ParserRule getPojoTypeRule() {
@@ -10981,7 +7834,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//PackageDeclaration hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"package" name=(IDENT | IDENT_DOT) ("suffix" suffix=(IDENT | NUMBER))? LBRACE elements+=AbstractPojoEntity* RBRACE;
 	public PackageDeclarationElements getPackageDeclarationAccess() {
-		return (pPackageDeclaration != null) ? pPackageDeclaration : (pPackageDeclaration = new PackageDeclarationElements());
+		return pPackageDeclaration;
 	}
 	
 	public ParserRule getPackageDeclarationRule() {
@@ -10991,7 +7844,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//Annotation:
 	//	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?;
 	public AnnotationElements getAnnotationAccess() {
-		return (pAnnotation != null) ? pAnnotation : (pAnnotation = new AnnotationElements());
+		return pAnnotation;
 	}
 	
 	public ParserRule getAnnotationRule() {
@@ -11002,7 +7855,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	COMMA? name=IDENT (COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))? (number=NUMBER |
 	//	value=STRING_VALUE | constant=IDENT);
 	public AnnotationPropertyElements getAnnotationPropertyAccess() {
-		return (pAnnotationProperty != null) ? pAnnotationProperty : (pAnnotationProperty = new AnnotationPropertyElements());
+		return pAnnotationProperty;
 	}
 	
 	public ParserRule getAnnotationPropertyRule() {
@@ -11012,7 +7865,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//Entity:
 	//	PojoEntity | EnumEntity;
 	public EntityElements getEntityAccess() {
-		return (pEntity != null) ? pEntity : (pEntity = new EntityElements());
+		return pEntity;
 	}
 	
 	public ParserRule getEntityRule() {
@@ -11023,7 +7876,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	(AT (AT (AT (AT conflictAnnotations+=Annotation | staticAnnotations+=Annotation) | constructorAnnotations+=Annotation)
 	//	| annotations+=Annotation))* entity=Entity;
 	public AnnotatedEntityElements getAnnotatedEntityAccess() {
-		return (pAnnotatedEntity != null) ? pAnnotatedEntity : (pAnnotatedEntity = new AnnotatedEntityElements());
+		return pAnnotatedEntity;
 	}
 	
 	public ParserRule getAnnotatedEntityRule() {
@@ -11033,7 +7886,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	PackageDeclaration | AnnotatedEntity | Import | Implements | Extends | ImplPackage | PojoDao;
 	public AbstractPojoEntityElements getAbstractPojoEntityAccess() {
-		return (pAbstractPojoEntity != null) ? pAbstractPojoEntity : (pAbstractPojoEntity = new AbstractPojoEntityElements());
+		return pAbstractPojoEntity;
 	}
 	
 	public ParserRule getAbstractPojoEntityRule() {
@@ -11043,7 +7896,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//Import hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"import" importedNamespace=QualifiedNameWithWildcard;
 	public ImportElements getImportAccess() {
-		return (pImport != null) ? pImport : (pImport = new ImportElements());
+		return pImport;
 	}
 	
 	public ParserRule getImportRule() {
@@ -11055,7 +7908,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	onlyPojos+=[PojoEntity|IDENT]*)? ("onlyDaos" onlyDaos+=[PojoDao|IDENT]*)? ("exceptPojos"
 	//	exceptPojos+=[PojoEntity|IDENT]*)? ("exceptDaos" exceptDaos+=[PojoDao|IDENT]*)?;
 	public ImplementsElements getImplementsAccess() {
-		return (pImplements != null) ? pImplements : (pImplements = new ImplementsElements());
+		return pImplements;
 	}
 	
 	public ParserRule getImplementsRule() {
@@ -11067,7 +7920,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	("onlyDaos" onlyDaos+=[PojoDao|IDENT]*)? ("exceptPojos" exceptPojos+=[PojoEntity|IDENT]*)? ("exceptDaos"
 	//	exceptDaos+=[PojoDao|IDENT]*)?;
 	public ExtendsElements getExtendsAccess() {
-		return (pExtends != null) ? pExtends : (pExtends = new ExtendsElements());
+		return pExtends;
 	}
 	
 	public ParserRule getExtendsRule() {
@@ -11077,7 +7930,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//ImplPackage hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	"implementation-package" name=(IDENT | IDENT_DOT);
 	public ImplPackageElements getImplPackageAccess() {
-		return (pImplPackage != null) ? pImplPackage : (pImplPackage = new ImplPackageElements());
+		return pImplPackage;
 	}
 	
 	public ParserRule getImplPackageRule() {
@@ -11087,7 +7940,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//PojoEntityModifier1:
 	//	final?="final" | abstract?="abstract";
 	public PojoEntityModifier1Elements getPojoEntityModifier1Access() {
-		return (pPojoEntityModifier1 != null) ? pPojoEntityModifier1 : (pPojoEntityModifier1 = new PojoEntityModifier1Elements());
+		return pPojoEntityModifier1;
 	}
 	
 	public ParserRule getPojoEntityModifier1Rule() {
@@ -11098,7 +7951,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	"extends" superType=[PojoEntity|IDENT] | "discriminator" discriminator=(IDENT | NUMBER) | operators="operators"
 	//	operatorsSuffix=IDENT? | "serializable" sernum=NUMBER;
 	public PojoEntityModifier2Elements getPojoEntityModifier2Access() {
-		return (pPojoEntityModifier2 != null) ? pPojoEntityModifier2 : (pPojoEntityModifier2 = new PojoEntityModifier2Elements());
+		return pPojoEntityModifier2;
 	}
 	
 	public ParserRule getPojoEntityModifier2Rule() {
@@ -11109,7 +7962,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	modifiers1+=PojoEntityModifier1* "pojo" name=IDENT modifiers2+=PojoEntityModifier2* LBRACE
 	//	features+=PojoAnnotatedProperty* RBRACE;
 	public PojoEntityElements getPojoEntityAccess() {
-		return (pPojoEntity != null) ? pPojoEntity : (pPojoEntity = new PojoEntityElements());
+		return pPojoEntity;
 	}
 	
 	public ParserRule getPojoEntityRule() {
@@ -11120,7 +7973,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	(AT (AT (AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation))*
 	//	feature=PojoProperty;
 	public PojoAnnotatedPropertyElements getPojoAnnotatedPropertyAccess() {
-		return (pPojoAnnotatedProperty != null) ? pPojoAnnotatedProperty : (pPojoAnnotatedProperty = new PojoAnnotatedPropertyElements());
+		return pPojoAnnotatedProperty;
 	}
 	
 	public ParserRule getPojoAnnotatedPropertyRule() {
@@ -11132,7 +7985,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	version?="optLock" | "updateCol" updateColumn1=IDENT "->" updateColumn2=IDENT | "createCol" createColumn1=IDENT "->"
 	//	createColumn2=IDENT;
 	public PojoPropertyModifierElements getPojoPropertyModifierAccess() {
-		return (pPojoPropertyModifier != null) ? pPojoPropertyModifier : (pPojoPropertyModifier = new PojoPropertyModifierElements());
+		return pPojoPropertyModifier;
 	}
 	
 	public ParserRule getPojoPropertyModifierRule() {
@@ -11145,7 +7998,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	(COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) array?="[]"?
 	//	modifiers+=PojoPropertyModifier*;
 	public PojoPropertyElements getPojoPropertyAccess() {
-		return (pPojoProperty != null) ? pPojoProperty : (pPojoProperty = new PojoPropertyElements());
+		return pPojoProperty;
 	}
 	
 	public ParserRule getPojoPropertyRule() {
@@ -11155,7 +8008,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//EnumEntityModifier1:
 	//	final?="final";
 	public EnumEntityModifier1Elements getEnumEntityModifier1Access() {
-		return (pEnumEntityModifier1 != null) ? pEnumEntityModifier1 : (pEnumEntityModifier1 = new EnumEntityModifier1Elements());
+		return pEnumEntityModifier1;
 	}
 	
 	public ParserRule getEnumEntityModifier1Rule() {
@@ -11165,7 +8018,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//EnumEntityModifier2:
 	//	"extends" superType=[PojoEntity|IDENT] | "serializable" sernum=NUMBER;
 	public EnumEntityModifier2Elements getEnumEntityModifier2Access() {
-		return (pEnumEntityModifier2 != null) ? pEnumEntityModifier2 : (pEnumEntityModifier2 = new EnumEntityModifier2Elements());
+		return pEnumEntityModifier2;
 	}
 	
 	public ParserRule getEnumEntityModifier2Rule() {
@@ -11176,7 +8029,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	modifiers1+=EnumEntityModifier1* "enum" name=IDENT modifiers2+=EnumEntityModifier2* LBRACE features+=EnumProperty*
 	//	RBRACE;
 	public EnumEntityElements getEnumEntityAccess() {
-		return (pEnumEntity != null) ? pEnumEntity : (pEnumEntity = new EnumEntityElements());
+		return pEnumEntity;
 	}
 	
 	public ParserRule getEnumEntityRule() {
@@ -11187,7 +8040,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	name=IDENT (native=("_char" | "_byte" | "_short" | "_int" | "_long" | "_float" | "_double" | "_boolean") | COLON
 	//	(COLON COLON value=(NUMBER | STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName]));
 	public EnumPropertyElements getEnumPropertyAccess() {
-		return (pEnumProperty != null) ? pEnumProperty : (pEnumProperty = new EnumPropertyElements());
+		return pEnumProperty;
 	}
 	
 	public ParserRule getEnumPropertyRule() {
@@ -11197,7 +8050,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//PojoDaoModifier:
 	//	"extends" superType=[PojoDao|IDENT] | "serializable" sernum=NUMBER;
 	public PojoDaoModifierElements getPojoDaoModifierAccess() {
-		return (pPojoDaoModifier != null) ? pPojoDaoModifier : (pPojoDaoModifier = new PojoDaoModifierElements());
+		return pPojoDaoModifier;
 	}
 	
 	public ParserRule getPojoDaoModifierRule() {
@@ -11208,7 +8061,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	modifiers1+=PojoEntityModifier1* "dao" name=IDENT (COLON COLON pojoGenerics?=COLON? pojo=[PojoEntity|IDENT])?
 	//	modifiers2+=PojoDaoModifier* LBRACE methods+=PojoMethod* toInits+=ToInitMethod* RBRACE;
 	public PojoDaoElements getPojoDaoAccess() {
-		return (pPojoDao != null) ? pPojoDao : (pPojoDao = new PojoDaoElements());
+		return pPojoDao;
 	}
 	
 	public ParserRule getPojoDaoRule() {
@@ -11219,7 +8072,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	callFunction?="callFunction" | callUpdate?="callUpdate" | callQuery?="callQuery" |
 	//	callQueryFunction?="callQueryFunction" | callSelectFunction?="callSelectFunction";
 	public PojoMethodModifierElements getPojoMethodModifierAccess() {
-		return (pPojoMethodModifier != null) ? pPojoMethodModifier : (pPojoMethodModifier = new PojoMethodModifierElements());
+		return pPojoMethodModifier;
 	}
 	
 	public ParserRule getPojoMethodModifierRule() {
@@ -11229,7 +8082,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//PojoMethod hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	modifiers1+=PojoMethodModifier* name=IDENT (type=PojoType COLON COLON COLON args+=PojoMethodArg+)?;
 	public PojoMethodElements getPojoMethodAccess() {
-		return (pPojoMethod != null) ? pPojoMethod : (pPojoMethod = new PojoMethodElements());
+		return pPojoMethod;
 	}
 	
 	public ParserRule getPojoMethodRule() {
@@ -11239,7 +8092,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//ToInitMethod hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	name=IDENT COLON COLON COLON args+=PojoMethodArg+;
 	public ToInitMethodElements getToInitMethodAccess() {
-		return (pToInitMethod != null) ? pToInitMethod : (pToInitMethod = new ToInitMethodElements());
+		return pToInitMethod;
 	}
 	
 	public ParserRule getToInitMethodRule() {
@@ -11249,7 +8102,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//PojoMethodArg hidden(ML_COMMENT, SL_COMMENT, WS):
 	//	name=IDENT type=PojoType;
 	public PojoMethodArgElements getPojoMethodArgAccess() {
-		return (pPojoMethodArg != null) ? pPojoMethodArg : (pPojoMethodArg = new PojoMethodArgElements());
+		return pPojoMethodArg;
 	}
 	
 	public ParserRule getPojoMethodArgRule() {
@@ -11259,7 +8112,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//QualifiedNameWithWildcard:
 	//	QualifiedName ".*"?;
 	public QualifiedNameWithWildcardElements getQualifiedNameWithWildcardAccess() {
-		return (pQualifiedNameWithWildcard != null) ? pQualifiedNameWithWildcard : (pQualifiedNameWithWildcard = new QualifiedNameWithWildcardElements());
+		return pQualifiedNameWithWildcard;
 	}
 	
 	public ParserRule getQualifiedNameWithWildcardRule() {
@@ -11270,7 +8123,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//QualifiedName:
 	//	IDENT | IDENT_DOT;
 	public QualifiedNameElements getQualifiedNameAccess() {
-		return (pQualifiedName != null) ? pQualifiedName : (pQualifiedName = new QualifiedNameElements());
+		return pQualifiedName;
 	}
 	
 	public ParserRule getQualifiedNameRule() {

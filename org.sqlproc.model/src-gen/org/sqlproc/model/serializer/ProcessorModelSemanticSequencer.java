@@ -17,18 +17,13 @@ import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Annotation;
 import org.sqlproc.model.processorModel.AnnotationProperty;
 import org.sqlproc.model.processorModel.Artifacts;
-import org.sqlproc.model.processorModel.Column;
 import org.sqlproc.model.processorModel.ColumnAssignement;
 import org.sqlproc.model.processorModel.ColumnTypeAssignement;
-import org.sqlproc.model.processorModel.Constant;
-import org.sqlproc.model.processorModel.ConstantOperator;
 import org.sqlproc.model.processorModel.DaogenProperty;
 import org.sqlproc.model.processorModel.DatabaseCatalogAssignement;
-import org.sqlproc.model.processorModel.DatabaseColumn;
 import org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement;
 import org.sqlproc.model.processorModel.DatabaseProperty;
 import org.sqlproc.model.processorModel.DatabaseSchemaAssignement;
-import org.sqlproc.model.processorModel.DatabaseTable;
 import org.sqlproc.model.processorModel.DatabaseTypeAssignement;
 import org.sqlproc.model.processorModel.DebugLevelAssignement;
 import org.sqlproc.model.processorModel.DriverMetaInfoAssignement;
@@ -38,21 +33,11 @@ import org.sqlproc.model.processorModel.EnumEntityModifier1;
 import org.sqlproc.model.processorModel.EnumEntityModifier2;
 import org.sqlproc.model.processorModel.EnumProperty;
 import org.sqlproc.model.processorModel.ExportAssignement;
-import org.sqlproc.model.processorModel.ExtendedColumn;
-import org.sqlproc.model.processorModel.ExtendedColumnName;
-import org.sqlproc.model.processorModel.ExtendedMappingItem;
 import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.ExtendsAssignement;
 import org.sqlproc.model.processorModel.ExtendsAssignementGenerics;
 import org.sqlproc.model.processorModel.FunctionDefinition;
 import org.sqlproc.model.processorModel.FunctionPojoAssignement;
-import org.sqlproc.model.processorModel.Identifier;
-import org.sqlproc.model.processorModel.IdentifierOperator;
-import org.sqlproc.model.processorModel.IfMetaSql;
-import org.sqlproc.model.processorModel.IfSql;
-import org.sqlproc.model.processorModel.IfSqlBool;
-import org.sqlproc.model.processorModel.IfSqlCond;
-import org.sqlproc.model.processorModel.IfSqlFragment;
 import org.sqlproc.model.processorModel.ImplPackage;
 import org.sqlproc.model.processorModel.Implements;
 import org.sqlproc.model.processorModel.ImplementsAssignement;
@@ -62,18 +47,8 @@ import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
-import org.sqlproc.model.processorModel.Mapping;
-import org.sqlproc.model.processorModel.MappingColumn;
-import org.sqlproc.model.processorModel.MappingColumnName;
-import org.sqlproc.model.processorModel.MappingItem;
-import org.sqlproc.model.processorModel.MappingRule;
-import org.sqlproc.model.processorModel.MetaSql;
-import org.sqlproc.model.processorModel.MetaStatement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
-import org.sqlproc.model.processorModel.OptionalFeature;
-import org.sqlproc.model.processorModel.OrdSql;
-import org.sqlproc.model.processorModel.OrdSql2;
 import org.sqlproc.model.processorModel.PackageDeclaration;
 import org.sqlproc.model.processorModel.PojoAnnotatedProperty;
 import org.sqlproc.model.processorModel.PojoDao;
@@ -94,8 +69,6 @@ import org.sqlproc.model.processorModel.ProcedurePojoAssignement;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
-import org.sqlproc.model.processorModel.Sql;
-import org.sqlproc.model.processorModel.SqlFragment;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
 import org.sqlproc.model.processorModel.TableDefinition;
@@ -135,12 +108,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 					return; 
 				}
 				else break;
-			case ProcessorModelPackage.COLUMN:
-				if(context == grammarAccess.getColumnRule()) {
-					sequence_Column(context, (Column) semanticObject); 
-					return; 
-				}
-				else break;
 			case ProcessorModelPackage.COLUMN_ASSIGNEMENT:
 				if(context == grammarAccess.getColumnAssignementRule()) {
 					sequence_ColumnAssignement(context, (ColumnAssignement) semanticObject); 
@@ -153,18 +120,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 					return; 
 				}
 				else break;
-			case ProcessorModelPackage.CONSTANT:
-				if(context == grammarAccess.getConstantRule()) {
-					sequence_Constant(context, (Constant) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.CONSTANT_OPERATOR:
-				if(context == grammarAccess.getConstantOperatorRule()) {
-					sequence_ConstantOperator(context, (ConstantOperator) semanticObject); 
-					return; 
-				}
-				else break;
 			case ProcessorModelPackage.DAOGEN_PROPERTY:
 				if(context == grammarAccess.getDaogenPropertyRule()) {
 					sequence_DaogenProperty(context, (DaogenProperty) semanticObject); 
@@ -174,12 +129,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 			case ProcessorModelPackage.DATABASE_CATALOG_ASSIGNEMENT:
 				if(context == grammarAccess.getDatabaseCatalogAssignementRule()) {
 					sequence_DatabaseCatalogAssignement(context, (DatabaseCatalogAssignement) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.DATABASE_COLUMN:
-				if(context == grammarAccess.getDatabaseColumnRule()) {
-					sequence_DatabaseColumn(context, (DatabaseColumn) semanticObject); 
 					return; 
 				}
 				else break;
@@ -198,12 +147,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 			case ProcessorModelPackage.DATABASE_SCHEMA_ASSIGNEMENT:
 				if(context == grammarAccess.getDatabaseSchemaAssignementRule()) {
 					sequence_DatabaseSchemaAssignement(context, (DatabaseSchemaAssignement) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.DATABASE_TABLE:
-				if(context == grammarAccess.getDatabaseTableRule()) {
-					sequence_DatabaseTable(context, (DatabaseTable) semanticObject); 
 					return; 
 				}
 				else break;
@@ -262,24 +205,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 					return; 
 				}
 				else break;
-			case ProcessorModelPackage.EXTENDED_COLUMN:
-				if(context == grammarAccess.getExtendedColumnRule()) {
-					sequence_ExtendedColumn(context, (ExtendedColumn) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.EXTENDED_COLUMN_NAME:
-				if(context == grammarAccess.getExtendedColumnNameRule()) {
-					sequence_ExtendedColumnName(context, (ExtendedColumnName) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.EXTENDED_MAPPING_ITEM:
-				if(context == grammarAccess.getExtendedMappingItemRule()) {
-					sequence_ExtendedMappingItem(context, (ExtendedMappingItem) semanticObject); 
-					return; 
-				}
-				else break;
 			case ProcessorModelPackage.EXTENDS:
 				if(context == grammarAccess.getAbstractPojoEntityRule() ||
 				   context == grammarAccess.getExtendsRule()) {
@@ -308,48 +233,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 			case ProcessorModelPackage.FUNCTION_POJO_ASSIGNEMENT:
 				if(context == grammarAccess.getFunctionPojoAssignementRule()) {
 					sequence_FunctionPojoAssignement(context, (FunctionPojoAssignement) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.IDENTIFIER:
-				if(context == grammarAccess.getIdentifierRule()) {
-					sequence_Identifier(context, (Identifier) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.IDENTIFIER_OPERATOR:
-				if(context == grammarAccess.getIdentifierOperatorRule()) {
-					sequence_IdentifierOperator(context, (IdentifierOperator) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.IF_META_SQL:
-				if(context == grammarAccess.getIfMetaSqlRule()) {
-					sequence_IfMetaSql(context, (IfMetaSql) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.IF_SQL:
-				if(context == grammarAccess.getIfSqlRule()) {
-					sequence_IfSql(context, (IfSql) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.IF_SQL_BOOL:
-				if(context == grammarAccess.getIfSqlBoolRule()) {
-					sequence_IfSqlBool(context, (IfSqlBool) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.IF_SQL_COND:
-				if(context == grammarAccess.getIfSqlCondRule()) {
-					sequence_IfSqlCond(context, (IfSqlCond) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.IF_SQL_FRAGMENT:
-				if(context == grammarAccess.getIfSqlFragmentRule()) {
-					sequence_IfSqlFragment(context, (IfSqlFragment) semanticObject); 
 					return; 
 				}
 				else break;
@@ -410,48 +293,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 					return; 
 				}
 				else break;
-			case ProcessorModelPackage.MAPPING:
-				if(context == grammarAccess.getMappingRule()) {
-					sequence_Mapping(context, (Mapping) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.MAPPING_COLUMN:
-				if(context == grammarAccess.getMappingColumnRule()) {
-					sequence_MappingColumn(context, (MappingColumn) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.MAPPING_COLUMN_NAME:
-				if(context == grammarAccess.getMappingColumnNameRule()) {
-					sequence_MappingColumnName(context, (MappingColumnName) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.MAPPING_ITEM:
-				if(context == grammarAccess.getMappingItemRule()) {
-					sequence_MappingItem(context, (MappingItem) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.MAPPING_RULE:
-				if(context == grammarAccess.getMappingRuleRule()) {
-					sequence_MappingRule(context, (MappingRule) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.META_SQL:
-				if(context == grammarAccess.getMetaSqlRule()) {
-					sequence_MetaSql(context, (MetaSql) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.META_STATEMENT:
-				if(context == grammarAccess.getMetaStatementRule()) {
-					sequence_MetaStatement(context, (MetaStatement) semanticObject); 
-					return; 
-				}
-				else break;
 			case ProcessorModelPackage.META_TYPE_ASSIGNEMENT:
 				if(context == grammarAccess.getMetaTypeAssignementRule()) {
 					sequence_MetaTypeAssignement(context, (MetaTypeAssignement) semanticObject); 
@@ -461,24 +302,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 			case ProcessorModelPackage.METAGEN_PROPERTY:
 				if(context == grammarAccess.getMetagenPropertyRule()) {
 					sequence_MetagenProperty(context, (MetagenProperty) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.OPTIONAL_FEATURE:
-				if(context == grammarAccess.getOptionalFeatureRule()) {
-					sequence_OptionalFeature(context, (OptionalFeature) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.ORD_SQL:
-				if(context == grammarAccess.getOrdSqlRule()) {
-					sequence_OrdSql(context, (OrdSql) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.ORD_SQL2:
-				if(context == grammarAccess.getOrdSql2Rule()) {
-					sequence_OrdSql2(context, (OrdSql2) semanticObject); 
 					return; 
 				}
 				else break;
@@ -599,18 +422,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 					return; 
 				}
 				else break;
-			case ProcessorModelPackage.SQL:
-				if(context == grammarAccess.getSqlRule()) {
-					sequence_Sql(context, (Sql) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.SQL_FRAGMENT:
-				if(context == grammarAccess.getSqlFragmentRule()) {
-					sequence_SqlFragment(context, (SqlFragment) semanticObject); 
-					return; 
-				}
-				else break;
 			case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT:
 				if(context == grammarAccess.getSqlTypeAssignementRule()) {
 					sequence_SqlTypeAssignement(context, (SqlTypeAssignement) semanticObject); 
@@ -678,9 +489,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 	 *             tables+=TableDefinition | 
 	 *             procedures+=ProcedureDefinition | 
 	 *             functions+=FunctionDefinition | 
-	 *             statements+=MetaStatement | 
-	 *             mappings+=MappingRule | 
-	 *             features+=OptionalFeature | 
 	 *             pojoPackages+=PackageDeclaration
 	 *         )*
 	 *     )
@@ -730,33 +538,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Constraint:
-	 *     (columns+=ExtendedColumn columns+=ExtendedColumn*)
-	 */
-	protected void sequence_Column(EObject context, Column semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=IDENT | name=EQUALS)
-	 */
-	protected void sequence_ConstantOperator(EObject context, ConstantOperator semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     ((case=PLUS | case=MINUS)? (name=IDENT | name=IDENT_DOT) (modifiers+=Modifier modifiers+=Modifier*)?)
-	 */
-	protected void sequence_Constant(EObject context, Constant semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (
 	 *         (name='ignore-tables' dbTables+=IDENT+) | 
 	 *         (name='only-tables' dbTables+=IDENT*) | 
@@ -790,15 +571,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogPropertyValueParserRuleCall_0(), semanticObject.getDbCatalog());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=IDENT | name=IDENT_DOT)
-	 */
-	protected void sequence_DatabaseColumn(EObject context, DatabaseColumn semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -863,15 +635,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaPropertyValueParserRuleCall_0(), semanticObject.getDbSchema());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=IDENT | name=IDENT_DOT)
-	 */
-	protected void sequence_DatabaseTable(EObject context, DatabaseTable semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1004,33 +767,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT | name=NUMBER | name=IDENT_DOT)
-	 */
-	protected void sequence_ExtendedColumnName(EObject context, ExtendedColumnName semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (col=ExtendedColumnName (modifiers+=Modifier modifiers+=Modifier*)?)
-	 */
-	protected void sequence_ExtendedColumn(EObject context, ExtendedColumn semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (attr=MappingColumnName (modifiers+=MappingItemModifier modifiers+=MappingItemModifier*)?)
-	 */
-	protected void sequence_ExtendedMappingItem(EObject context, ExtendedMappingItem semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (toExtends=[JvmType|QualifiedName] dbTables+=IDENT* dbNotTables+=IDENT*)
 	 */
 	protected void sequence_ExtendsAssignementGenerics(EObject context, ExtendsAssignementGenerics semanticObject) {
@@ -1098,89 +834,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 		feeder.accept(grammarAccess.getFunctionPojoAssignementAccess().getDbFunctionIDENTTerminalRuleCall_0_0(), semanticObject.getDbFunction());
 		feeder.accept(grammarAccess.getFunctionPojoAssignementAccess().getPojoPojoTypeParserRuleCall_2_0(), semanticObject.getPojo());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=IDENT | name=EQUALS)
-	 */
-	protected void sequence_IdentifierOperator(EObject context, IdentifierOperator semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (
-	 *         (mode=EQUALS | mode=LESS_THAN | mode=MORE_THAN)? 
-	 *         (case=PLUS | case=MINUS)? 
-	 *         (name=IDENT | name=NUMBER | name=IDENT_DOT) 
-	 *         (modifiers+=Modifier modifiers+=Modifier*)?
-	 *     )
-	 */
-	protected void sequence_Identifier(EObject context, Identifier semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (
-	 *         (ifs+=IfSql ifs+=IfSql*) | 
-	 *         (type=QUESTI cond=IfSqlCond ifs+=IfSql ifs+=IfSql*) | 
-	 *         (type=BAND ifs+=IfSql ifs+=IfSql*) | 
-	 *         (type=BOR ifs+=IfSql ifs+=IfSql*)
-	 *     )
-	 */
-	protected void sequence_IfMetaSql(EObject context, IfMetaSql semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     ((not?=NOT? cnst=Constant) | (not?=NOT? ident=Identifier) | (not?=NOT? cond=IfSqlCond))
-	 */
-	protected void sequence_IfSqlBool(EObject context, IfSqlBool semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (bool1=IfSqlBool ((oper+=AND | oper+=OR) bool2+=IfSqlBool)*)
-	 */
-	protected void sequence_IfSqlCond(EObject context, IfSqlCond semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (
-	 *         value=IfSqlValue | 
-	 *         col=Column | 
-	 *         cnst=Constant | 
-	 *         ident=Identifier | 
-	 *         cnstOper=ConstantOperator | 
-	 *         identOper=IdentifierOperator | 
-	 *         dbtab=DatabaseTable | 
-	 *         dbcol=DatabaseColumn | 
-	 *         meta=IfMetaSql
-	 *     )
-	 */
-	protected void sequence_IfSqlFragment(EObject context, IfSqlFragment semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     sqls+=IfSqlFragment+
-	 */
-	protected void sequence_IfSql(EObject context, IfSql semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1281,76 +934,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT | name=IDENT_DOT | name=NUMBER)
-	 */
-	protected void sequence_MappingColumnName(EObject context, MappingColumnName semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (items+=ExtendedMappingItem items+=ExtendedMappingItem*)
-	 */
-	protected void sequence_MappingColumn(EObject context, MappingColumn semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     ((name=IDENT | name=NUMBER) attr=MappingColumn?)
-	 */
-	protected void sequence_MappingItem(EObject context, MappingItem semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=IDENT type=MAPPING_TYPE modifiers+=MappingRuleModifier* mapping=Mapping)
-	 */
-	protected void sequence_MappingRule(EObject context, MappingRule semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (mappingItems+=MappingItem mappingItems+=MappingItem*)
-	 */
-	protected void sequence_Mapping(EObject context, Mapping semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (
-	 *         (ifs+=IfSql ifs+=IfSql*) | 
-	 *         (type=QUESTI cond=IfSqlCond ifs+=IfSql ifs+=IfSql*) | 
-	 *         (type=BAND ifs+=IfSql ifs+=IfSql*) | 
-	 *         (type=BOR ifs+=IfSql ifs+=IfSql*) | 
-	 *         (type=EQUALS ftype=IDENT ifs+=IfSql) | 
-	 *         (type=HASH ord=OrdSql)
-	 *     )
-	 */
-	protected void sequence_MetaSql(EObject context, MetaSql semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=IDENT type=STATEMENT_TYPE modifiers+=StatementModifier* statement=Sql)
-	 */
-	protected void sequence_MetaStatement(EObject context, MetaStatement semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (dbColumn=IDENT type=IDENT extension=IDENT?)
 	 */
 	protected void sequence_MetaTypeAssignement(EObject context, MetaTypeAssignement semanticObject) {
@@ -1385,33 +968,6 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 	 *     )
 	 */
 	protected void sequence_MetagenProperty(EObject context, MetagenProperty semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=IDENT type=OPTION_TYPE modifiers+=OptionalFeatureModifier* option=FeatureValue)
-	 */
-	protected void sequence_OptionalFeature(EObject context, OptionalFeature semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (value=OrdSqlValue | cnst=Constant | ident=Identifier | dbcol=DatabaseColumn)
-	 */
-	protected void sequence_OrdSql2(EObject context, OrdSql2 semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     sqls+=OrdSql2+
-	 */
-	protected void sequence_OrdSql(EObject context, OrdSql semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1732,37 +1288,9 @@ public class ProcessorModelSemanticSequencer extends AbstractDelegatingSemanticS
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         value=SqlValue | 
-	 *         col=Column | 
-	 *         cnst=Constant | 
-	 *         ident=Identifier | 
-	 *         cnstOper=ConstantOperator | 
-	 *         identOper=IdentifierOperator | 
-	 *         meta=MetaSql | 
-	 *         dbtab=DatabaseTable | 
-	 *         dbcol=DatabaseColumn
-	 *     )
-	 */
-	protected void sequence_SqlFragment(EObject context, SqlFragment semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (typeName=IDENT size=NUMBER? type=PojoType)
 	 */
 	protected void sequence_SqlTypeAssignement(EObject context, SqlTypeAssignement semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     sqls+=SqlFragment+
-	 */
-	protected void sequence_Sql(EObject context, Sql semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

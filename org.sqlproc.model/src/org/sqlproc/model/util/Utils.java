@@ -28,18 +28,12 @@ import org.sqlproc.model.processorModel.AbstractPojoEntity;
 import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.AnnotationProperty;
 import org.sqlproc.model.processorModel.Artifacts;
-import org.sqlproc.model.processorModel.Column;
 import org.sqlproc.model.processorModel.EnumEntity;
 import org.sqlproc.model.processorModel.EnumEntityModifier1;
 import org.sqlproc.model.processorModel.EnumEntityModifier2;
 import org.sqlproc.model.processorModel.EnumProperty;
-import org.sqlproc.model.processorModel.ExtendedColumn;
-import org.sqlproc.model.processorModel.ExtendedMappingItem;
 import org.sqlproc.model.processorModel.FunctionDefinition;
 import org.sqlproc.model.processorModel.Implements;
-import org.sqlproc.model.processorModel.MappingColumn;
-import org.sqlproc.model.processorModel.MappingRule;
-import org.sqlproc.model.processorModel.MetaStatement;
 import org.sqlproc.model.processorModel.PackageDeclaration;
 import org.sqlproc.model.processorModel.PojoAnnotatedProperty;
 import org.sqlproc.model.processorModel.PojoDao;
@@ -415,86 +409,6 @@ public class Utils {
         return false;
     }
 
-    public static String getTokenFromModifier(MetaStatement statement, String tokenName) {
-        if (statement.getModifiers() == null || statement.getModifiers().isEmpty()) {
-            return null;
-        }
-        for (String filter : statement.getModifiers()) {
-            int ix = filter.indexOf('=');
-            if (ix <= 0)
-                continue;
-            String key = filter.substring(0, ix);
-            String val = filter.substring(ix + 1);
-            if (key.equals(tokenName)) {
-                return val;
-            }
-        }
-        return null;
-    }
-
-    public static String getTokenFromModifier(MappingRule rule, String tokenName) {
-        if (rule.getModifiers() == null || rule.getModifiers().isEmpty()) {
-            return null;
-        }
-        for (String filter : rule.getModifiers()) {
-            int ix = filter.indexOf('=');
-            if (ix <= 0)
-                continue;
-            String key = filter.substring(0, ix);
-            String val = filter.substring(ix + 1);
-            if (key.equals(tokenName)) {
-                return val;
-            }
-        }
-        return null;
-    }
-
-    public static String getTokenFromModifier(MetaStatement statement, String tokenName, String tokenSuffix) {
-        if (statement.getModifiers() == null || statement.getModifiers().isEmpty()) {
-            return null;
-        }
-        for (String filter : statement.getModifiers()) {
-            int ix = filter.indexOf('=');
-            if (ix <= 0)
-                continue;
-            String key = filter.substring(0, ix);
-            String val = filter.substring(ix + 1);
-            if (tokenSuffix != null) {
-                int ix2 = val.indexOf('=');
-                if (ix2 <= 0)
-                    continue;
-                if (!tokenSuffix.equals(val.substring(ix2 + 1)))
-                    continue;
-                val = val.substring(0, ix2);
-            }
-            if (key.equals(tokenName)) {
-                return val;
-            }
-        }
-        return null;
-    }
-
-    public static List<String> getTokensFromModifier(MetaStatement statement, String tokenName) {
-        List<String> result = new ArrayList<String>();
-        if (statement.getModifiers() == null || statement.getModifiers().isEmpty()) {
-            return result;
-        }
-        for (String filter : statement.getModifiers()) {
-            int ix = filter.indexOf('=');
-            if (ix <= 0)
-                continue;
-            String key = filter.substring(0, ix);
-            String val = filter.substring(ix + 1);
-            int ix2 = val.indexOf('=');
-            // String val2 = (ix2 > 0) ? val.substring(ix2 + 1) : null;
-            val = (ix2 > 0) ? val.substring(0, ix2) : val;
-            if (key.equals(tokenName)) {
-                result.add(val);
-            }
-        }
-        return result;
-    }
-
     public static PojoEntity findEntity(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
             IScope scope, String name) {
         Iterable<IEObjectDescription> iterable = scope.getAllElements();
@@ -735,13 +649,6 @@ public class Utils {
         return e2;
     }
 
-    public static boolean isFinal(MetaStatement m) {
-        String finalToken = getTokenFromModifier(m, "final");
-        if (finalToken != null)
-            return true;
-        return false;
-    }
-
     public static PojoProperty getOptLock(PojoEntity e) {
         if (e == null || e.getFeatures() == null)
             return null;
@@ -768,32 +675,6 @@ public class Utils {
     // }
     // return sb.toString();
     // }
-
-    public static String getName(Column column) {
-        StringBuilder sb = new StringBuilder();
-        boolean first = true;
-        for (ExtendedColumn ei : column.getColumns()) {
-            if (first)
-                first = false;
-            else
-                sb.append(".");
-            sb.append(ei.getCol().getName());
-        }
-        return sb.toString();
-    }
-
-    public static String getName(MappingColumn column) {
-        StringBuilder sb = new StringBuilder();
-        boolean first = true;
-        for (ExtendedMappingItem ei : column.getItems()) {
-            if (first)
-                first = false;
-            else
-                sb.append(".");
-            sb.append(ei.getAttr().getName());
-        }
-        return sb.toString();
-    }
 
     public static boolean isNumber(String s) {
         if (s == null)

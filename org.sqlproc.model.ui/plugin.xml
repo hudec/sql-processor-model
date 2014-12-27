@@ -9,7 +9,7 @@
             class="org.sqlproc.model.ui.ProcessorModelExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
-            extensions="qry"
+            extensions="model"
             id="org.sqlproc.model.ProcessorModel"
             name="ProcessorModel Editor">
         </editor>
@@ -213,13 +213,13 @@
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
 			class="org.sqlproc.model.ui.ProcessorModelExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
-			type="qry">
+			type="model">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
             class="org.sqlproc.model.ui.ProcessorModelExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
-            uriExtension="qry">
+            uriExtension="model">
         </resourceServiceProvider>
     </extension>
 
@@ -400,19 +400,19 @@
   <extension point="org.eclipse.compare.contentViewers">
     <viewer id="org.sqlproc.model.ProcessorModel.compare.contentViewers"
             class="org.sqlproc.model.ui.ProcessorModelExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="qry">
+            extensions="model">
     </viewer>
   </extension>
   <extension point="org.eclipse.compare.contentMergeViewers">
     <viewer id="org.sqlproc.model.ProcessorModel.compare.contentMergeViewers"
             class="org.sqlproc.model.ui.ProcessorModelExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="qry" label="ProcessorModel Compare">
+            extensions="model" label="ProcessorModel Compare">
      </viewer>
   </extension>
   <extension point="org.eclipse.ui.editors.documentProviders">
     <provider id="org.sqlproc.model.ProcessorModel.editors.documentProviders"
             class="org.sqlproc.model.ui.ProcessorModelExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
-            extensions="qry">
+            extensions="model">
     </provider>
   </extension>
 

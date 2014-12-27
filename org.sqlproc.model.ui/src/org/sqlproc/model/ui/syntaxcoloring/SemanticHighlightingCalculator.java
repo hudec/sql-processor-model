@@ -2,7 +2,6 @@ package org.sqlproc.model.ui.syntaxcoloring;
 
 import java.util.Iterator;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
@@ -12,20 +11,10 @@ import org.eclipse.xtext.nodemodel.util.NodeTreeIterator;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
-import org.sqlproc.model.processorModel.Constant;
-import org.sqlproc.model.processorModel.DatabaseColumn;
-import org.sqlproc.model.processorModel.DatabaseTable;
 import org.sqlproc.model.processorModel.Entity;
 import org.sqlproc.model.processorModel.EnumEntity;
 import org.sqlproc.model.processorModel.EnumProperty;
-import org.sqlproc.model.processorModel.ExtendedColumn;
-import org.sqlproc.model.processorModel.ExtendedMappingItem;
 import org.sqlproc.model.processorModel.FunctionDefinition;
-import org.sqlproc.model.processorModel.Identifier;
-import org.sqlproc.model.processorModel.MappingItem;
-import org.sqlproc.model.processorModel.MappingRule;
-import org.sqlproc.model.processorModel.MetaStatement;
-import org.sqlproc.model.processorModel.OptionalFeature;
 import org.sqlproc.model.processorModel.PackageDeclaration;
 import org.sqlproc.model.processorModel.PojoDao;
 import org.sqlproc.model.processorModel.PojoDefinition;
@@ -65,64 +54,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
         Iterator<EObject> iter = EcoreUtil.getAllContents(resource, true);
         while (iter.hasNext()) {
             EObject current = iter.next();
-            if (current instanceof MetaStatement) {
-                MetaStatement statement = (MetaStatement) current;
-                if (statement.getName() != null) {
-                    ICompositeNode node = NodeModelUtils.getNode(current);
-                    // Nazev statementu je prvni pole, neni treba vyhledat node
-                    acceptor.addPosition(node.getOffset(), statement.getName().length(), HighlightingConfiguration.NAME);
-                    provideHighlightingForModifiers(statement.getModifiers(), node, acceptor);
-                }
-            } else if (current instanceof MappingRule) {
-                MappingRule rule = (MappingRule) current;
-                if (rule.getName() != null) {
-                    ICompositeNode node = NodeModelUtils.getNode(current);
-                    // Nazev pravidla je prvni pole, neni treba vyhledat node
-                    acceptor.addPosition(node.getOffset(), rule.getName().length(), HighlightingConfiguration.NAME);
-                    provideHighlightingForModifiers(rule.getModifiers(), node, acceptor);
-                }
-            } else if (current instanceof OptionalFeature) {
-                OptionalFeature feature = (OptionalFeature) current;
-                if (feature.getName() != null) {
-                    ICompositeNode node = NodeModelUtils.getNode(current);
-                    // Nazev vlastnosti je prvni pole, neni treba vyhledat node
-                    acceptor.addPosition(node.getOffset(), feature.getName().length(), HighlightingConfiguration.NAME);
-                    provideHighlightingForModifiers(feature.getModifiers(), node, acceptor);
-                }
-            } else if (current instanceof Constant) {
-                Constant constant = (Constant) current;
-                ICompositeNode node = NodeModelUtils.getNode(current);
-                provideHighlightingForFragment(HighlightingConfiguration.CONSTANT, node, constant.getName(),
-                        constant.getModifiers(), acceptor);
-            } else if (current instanceof Identifier) {
-                Identifier identifier = (Identifier) current;
-                ICompositeNode node = NodeModelUtils.getNode(current);
-                provideHighlightingForFragment(HighlightingConfiguration.IDENTIFIER, node, identifier.getName(),
-                        identifier.getModifiers(), acceptor);
-            } else if (current instanceof ExtendedColumn) {
-                ExtendedColumn column = (ExtendedColumn) current;
-                ICompositeNode node = NodeModelUtils.getNode(current);
-                provideHighlightingForFragment(HighlightingConfiguration.COLUMN, node, column.getCol().getName(),
-                        column.getModifiers(), acceptor);
-            } else if (current instanceof MappingItem) {
-                MappingItem item = (MappingItem) current;
-                if (item.getName() != null) {
-                    ICompositeNode node = NodeModelUtils.getNode(current);
-                    // Nazev vlastnosti je prvni pole, neni treba vyhledat node
-                    acceptor.addPosition(node.getOffset(), item.getName().length(), HighlightingConfiguration.COLUMN);
-                }
-            } else if (current instanceof ExtendedMappingItem) {
-                ExtendedMappingItem mappingItem = (ExtendedMappingItem) current;
-                ICompositeNode node = NodeModelUtils.getNode(current);
-                provideHighlightingForFragment(HighlightingConfiguration.COLUMN, node, mappingItem.getAttr().getName(),
-                        mappingItem.getModifiers(), acceptor);
-            } else if (current instanceof DatabaseColumn) {
-                ICompositeNode node = NodeModelUtils.getNode(current);
-                acceptor.addPosition(node.getOffset(), node.getLength(), HighlightingConfiguration.DATABASE_COLUMN);
-            } else if (current instanceof DatabaseTable) {
-                ICompositeNode node = NodeModelUtils.getNode(current);
-                acceptor.addPosition(node.getOffset(), node.getLength(), HighlightingConfiguration.DATABASE_TABLE);
-            } else if (current instanceof PojoDefinition) {
+            if (current instanceof PojoDefinition) {
                 ICompositeNode node = NodeModelUtils.getNode(current);
                 PojoDefinition pojo = (PojoDefinition) current;
                 provideHighlightingForPojo(null, pojo.getName(), node, acceptor);
@@ -194,20 +126,6 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                                 provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
                         }
                     }
-                }
-            }
-        }
-    }
-
-    private void provideHighlightingForModifiers(EList<String> filters, ICompositeNode node,
-            IHighlightedPositionAcceptor acceptor) {
-        if (filters != null && !filters.isEmpty()) {
-            Iterator<INode> iterator = new NodeTreeIterator(node);
-            while (iterator.hasNext()) {
-                INode inode = iterator.next();
-                if (filters.contains(inode.getText())) {
-                    acceptor.addPosition(inode.getOffset(), inode.getLength(),
-                            HighlightingConfiguration.STATEMENT_MODIFIER);
                 }
             }
         }
@@ -330,32 +248,6 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
             if (table != null && table.contains(inode.getText())) {
                 acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.IDENTIFIER);
                 return;
-            }
-        }
-    }
-
-    private void provideHighlightingForFragment(String defaultColor, ICompositeNode node, String name,
-            EList<String> modifiers, IHighlightedPositionAcceptor acceptor) {
-        Iterator<INode> iterator = new NodeTreeIterator(node);
-        boolean afterName = false;
-        boolean inParenthesis = false;
-        while (iterator.hasNext()) {
-            INode inode = iterator.next();
-            if (!afterName) {
-                if (name.equals(inode.getText())) {
-                    acceptor.addPosition(inode.getOffset(), inode.getLength(), defaultColor);
-                    afterName = true;
-                }
-            } else if (!inParenthesis && inode.getText().equals("(")) {
-                inParenthesis = true;
-            } else if (inParenthesis && inode.getText().equals(")")) {
-                inParenthesis = false;
-            } else if (inParenthesis) {
-                if (modifiers != null && !modifiers.isEmpty() && modifiers.contains(inode.getText())) {
-                    acceptor.addPosition(inode.getOffset(), inode.getLength(), HighlightingConfiguration.MODIFIER);
-                }
-            } else {
-                acceptor.addPosition(inode.getOffset(), inode.getLength(), defaultColor);
             }
         }
     }

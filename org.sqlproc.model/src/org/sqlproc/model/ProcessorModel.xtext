@@ -8,7 +8,6 @@ generate processorModel "http://www.sqlproc.org/model/ProcessorModel"
 Artifacts: {Artifacts}
     WS* (properties+=Property WS*|pojos+=PojoDefinition WS*|tables+=TableDefinition WS*
     	|procedures+=ProcedureDefinition WS*|functions+=FunctionDefinition WS*
-    	|statements+=MetaStatement WS*|mappings+=MappingRule WS*|features+=OptionalFeature WS*
     	|pojoPackages+=PackageDeclaration WS*
     )*;
 
@@ -160,8 +159,8 @@ DaogenProperty:
 	);
 
 PropertyValue:
-  (REST|IDENT_DOT|IDENT|NUMBER|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|DOT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)
-  (=> (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|DOT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)*)
+  (REST|IDENT_DOT|IDENT|NUMBER|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|DOT|AND|OR|ESC_CHAR)
+  (=> (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|DOT|AND|OR|ESC_CHAR)*)
   | STRING_VALUE;
 
 PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
@@ -175,143 +174,6 @@ ProcedureDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
 
 FunctionDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
 	'function' name=IDENT table=IDENT SEMICOLON;
-
-MetaStatement:
-	name=IDENT LPAREN type=STATEMENT_TYPE (COMMA modifiers+=StatementModifier)* RPAREN EQUALS statement=Sql SEMICOLON;
-
-Sql: (sqls+=SqlFragment)+;
-
-SqlFragment:
-	value=SqlValue
-    | AT col=Column
-    | STRING cnst=Constant
-    | COLON ident=Identifier
-    | STRING STRING cnstOper=ConstantOperator
-    | COLON COLON identOper=IdentifierOperator
-    | LBRACE meta=MetaSql RBRACE
-    | PERCENT (PERCENT dbtab=DatabaseTable|dbcol=DatabaseColumn)
-    ;
-
-SqlValue: //~(COLON | STRING | AT | LBRACE | SEMICOLON)
-  (REST|IDENT_DOT|IDENT|NUMBER|WS|COMMA|MINUS|PLUS|LPAREN|RPAREN|RBRACE|QUESTI|NOT|BAND|BOR|HASH|CARET|EQUALS|LESS_THAN|MORE_THAN|DOT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)
-  (=> (REST|IDENT_DOT|IDENT|NUMBER|WS|COMMA|MINUS|PLUS|LPAREN|RPAREN|RBRACE|QUESTI|NOT|BAND|BOR|HASH|CARET|EQUALS|LESS_THAN|MORE_THAN|DOT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)*);
-
-
-MetaSql:
-    WS ifs+=IfSql (BOR ifs+=IfSql)*
-    | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)*
-    | type=BAND ifs+=IfSql (BOR ifs+=IfSql)*
-    | type=BOR ifs+=IfSql (BOR ifs+=IfSql)*
-    | type=EQUALS WS* ftype=IDENT ifs+=IfSql
-    | type=HASH NUMBER ord=OrdSql
-    ;
-
-IfSql: (sqls+=IfSqlFragment)+;
-
-IfSqlFragment:
-	value=IfSqlValue
-    | AT col=Column
-    | STRING cnst=Constant
-    | COLON ident=Identifier
-    | STRING STRING cnstOper=ConstantOperator
-    | COLON COLON identOper=IdentifierOperator
-    | PERCENT (PERCENT dbtab=DatabaseTable|dbcol=DatabaseColumn)
-    | LBRACE meta=IfMetaSql RBRACE
-    ;
-
-IfSqlValue: //~(COLON | STRING | AT | LBRACE | BOR | RBRACE)
-  (REST|IDENT_DOT|IDENT|NUMBER|WS|SEMICOLON|COMMA|MINUS|PLUS|LPAREN|RPAREN|QUESTI|NOT|BAND|HASH|CARET|EQUALS|LESS_THAN|MORE_THAN|DOT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)
-  (=> (REST|IDENT_DOT|IDENT|NUMBER|WS|SEMICOLON|COMMA|MINUS|PLUS|LPAREN|RPAREN|QUESTI|NOT|BAND|HASH|CARET|EQUALS|LESS_THAN|MORE_THAN|DOT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)*);
-
-IfMetaSql:
-    WS ifs+=IfSql (BOR ifs+=IfSql)*
-    | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)*
-    | type=BAND ifs+=IfSql (BOR ifs+=IfSql)*
-    | type=BOR ifs+=IfSql (BOR ifs+=IfSql)*
-    ;
-
-IfSqlCond:
-    WS* bool1=IfSqlBool WS* (oper+=(AND|OR) WS* bool2+=IfSqlBool WS*)*;
-
-IfSqlBool:
-    (not?=NOT)? STRING cnst=Constant
-    | (not?=NOT)? COLON ident=Identifier
-    | (not?=NOT)? LPAREN cond=IfSqlCond RPAREN
-    ;
-
-OrdSql: (sqls+=OrdSql2)+;
-
-OrdSql2:
-    value=OrdSqlValue
-    | STRING cnst=Constant
-    | COLON ident=Identifier
-    | PERCENT dbcol=DatabaseColumn
-    ;
-
-OrdSqlValue: //~(COLON | STRING | PERCENT | RBRACE)
-  (REST|IDENT_DOT|IDENT|NUMBER|WS|SEMICOLON|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|DOT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)
-  (=> (REST|IDENT_DOT|IDENT|NUMBER|WS|SEMICOLON|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|DOT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)*);
-
-Column:
-    columns += ExtendedColumn (=> columns += ExtendedColumn)*;
-
-ExtendedColumn: 
-	col=ExtendedColumnName (=> LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
-
-ExtendedColumnName: 
-	name=(IDENT|NUMBER|IDENT_DOT);
-
-Constant:
-    (case=(PLUS|MINUS))? name=(IDENT|IDENT_DOT)
-    (=> LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
-
-Identifier:
-    (mode=(EQUALS|LESS_THAN|MORE_THAN))? (case=(PLUS|MINUS))? name=(IDENT|NUMBER|IDENT_DOT)
-    (=> LPAREN modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
-
-ConstantOperator:
-	name=(IDENT|EQUALS);
-
-IdentifierOperator:
-	name=(IDENT|EQUALS);
-	
-DatabaseColumn:
-    name=(IDENT|IDENT_DOT);
-
-DatabaseTable:
-    name=(IDENT|IDENT_DOT);
-
-MappingRule:
-	name=IDENT LPAREN type=MAPPING_TYPE (COMMA modifiers+=MappingRuleModifier)* RPAREN EQUALS mapping=Mapping SEMICOLON;
-
-Mapping:
-	WS* mappingItems+=MappingItem (WS+ mappingItems+=MappingItem)* WS*;
-
-MappingItem:
-	name=(IDENT|NUMBER) (STRING attr = MappingColumn)?;
-
-MappingColumn:
-	items += ExtendedMappingItem (=> items += ExtendedMappingItem)*;
-	
-ExtendedMappingItem:
-	attr=MappingColumnName (=> LPAREN modifiers+=MappingItemModifier (COMMA modifiers+=MappingItemModifier)* RPAREN)?;
-
-MappingColumnName:
-    name=(IDENT|IDENT_DOT|NUMBER);
-
-OptionalFeature:
-	name=IDENT LPAREN type=OPTION_TYPE (COMMA modifiers+=OptionalFeatureModifier)* RPAREN EQUALS option=FeatureValue SEMICOLON;
-
-StatementModifier: (IDENT | NUMBER);
-MappingRuleModifier: (IDENT | NUMBER);
-MappingItemModifier: (IDENT | NUMBER);
-OptionalFeatureModifier: (IDENT | NUMBER);
-Modifier: (NOT? (IDENT | NUMBER));
-
-terminal ON_OFF: 'ON'|'OFF';
-terminal STATEMENT_TYPE: 'QRY'|'CRUD'|'CALL';
-terminal MAPPING_TYPE: 'OUT';
-terminal OPTION_TYPE: 'OPT'|'LOPT'|'IOPT'|'SOPT'|'BOPT'|'MOPT';
 
 //terminal IDENT_TYPE: IDENT LPAREN NUMBER (COMMA NUMBER)? RPAREN;
 terminal IDENT_DOT: IDENT (DOT IDENT)+;
@@ -355,7 +217,7 @@ terminal STRING_VALUE : '\"' -> '\"' ;
 
 
 FeatureValue:
-  (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)+;
+  (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR)+;
 
 //SimpleType:
 //	(native = ('_void'|'_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') |

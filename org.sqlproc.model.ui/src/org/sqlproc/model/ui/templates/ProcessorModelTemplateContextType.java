@@ -1,7 +1,5 @@
 package org.sqlproc.model.ui.templates;
 
-import static org.sqlproc.model.util.Constants.TABLE_USAGE;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -20,18 +18,15 @@ import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContext;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
 import org.sqlproc.model.generator.TableDaoGenerator;
-import org.sqlproc.model.generator.TableMetaGenerator;
 import org.sqlproc.model.generator.TablePojoGenerator;
 import org.sqlproc.model.processorModel.AbstractPojoEntity;
 import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.EnumEntity;
-import org.sqlproc.model.processorModel.MetaStatement;
 import org.sqlproc.model.processorModel.PackageDeclaration;
 import org.sqlproc.model.processorModel.PojoDao;
 import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.processorModel.TableDefinition;
 import org.sqlproc.model.property.ModelProperty;
 import org.sqlproc.model.resolver.DbResolver;
 import org.sqlproc.model.resolver.DbResolver.DbType;
@@ -67,21 +62,11 @@ public class ProcessorModelTemplateContextType extends XtextTemplateContextType 
     @Override
     protected void addDefaultTemplateVariables() {
         super.addDefaultTemplateVariables();
-        super.addResolver(new DbTableResolver());
-        super.addResolver(new PojoColumnResolver());
-        super.addResolver(new DbSelectColumnResolver());
-        super.addResolver(new DbInsertColumnResolver());
-        super.addResolver(new DbUpdateColumnResolver());
-        super.addResolver(new DbCondColumnResolver());
-        super.addResolver(new DbVerUpdateColumnResolver());
-        super.addResolver(new DbOptUpdateColumnResolver());
-        super.addResolver(new DbOptCondColumnResolver());
         super.addResolver(new PojoDefinitionsResolver());
         super.addResolver(new TablesDefinitionsResolver());
         super.addResolver(new ProceduresDefinitionsResolver());
         super.addResolver(new FunctionsDefinitionsResolver());
         super.addResolver(new PojoGeneratorResolver());
-        super.addResolver(new MetaGeneratorResolver());
         super.addResolver(new DaoGeneratorResolver());
     }
 
@@ -94,37 +79,12 @@ public class ProcessorModelTemplateContextType extends XtextTemplateContextType 
         return EcoreUtil2.getContainerOfType(object, Artifacts.class);
     }
 
-    protected MetaStatement getMetaStatement(XtextTemplateContext xtextTemplateContext) {
-        if (xtextTemplateContext == null)
-            return null;
-        EObject object = xtextTemplateContext.getContentAssistContext().getCurrentModel();
-        MetaStatement statement = EcoreUtil2.getContainerOfType(object, MetaStatement.class);
-        return statement;
-    }
-
     protected PackageDeclaration getPackage(XtextTemplateContext xtextTemplateContext) {
         if (xtextTemplateContext == null)
             return null;
         EObject object = xtextTemplateContext.getContentAssistContext().getCurrentModel();
         PackageDeclaration packagex = EcoreUtil2.getContainerOfType(object, PackageDeclaration.class);
         return packagex;
-    }
-
-    protected TableDefinition getTableDefinition(MetaStatement statement) {
-        if (statement == null)
-            return null;
-        Artifacts artifacts = EcoreUtil2.getContainerOfType(statement, Artifacts.class);
-
-        TableDefinition tableDefinition = null;
-        List<String> vals = Utils.getTokensFromModifier(statement, TABLE_USAGE);
-        for (String val : vals) {
-            tableDefinition = Utils.findTable(null, artifacts,
-                    scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__TABLES), val);
-            if (tableDefinition != null)
-                return tableDefinition;
-        }
-
-        return null;
     }
 
     protected String toCamelCase(String value) {
@@ -356,221 +316,6 @@ public class ProcessorModelTemplateContextType extends XtextTemplateContextType 
     /*
      * Template variable resolvers
      */
-    public class DbTableResolver extends SimpleTemplateVariableResolver {
-
-        public static final String NAME = "dbTable";
-
-        public DbTableResolver() {
-            super(NAME, "DbTable");
-        }
-
-        @Override
-        protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                return "%%" + tableDefinition.getTable();
-            }
-            return super.resolve(context);
-        }
-
-        @Override
-        protected boolean isUnambiguous(TemplateContext context) {
-            return true;
-        }
-    }
-
-    public class DbSelectColumnResolver extends SimpleTemplateVariableResolver {
-
-        public static final String NAME = "dbSelectColumn";
-
-        public DbSelectColumnResolver() {
-            super(NAME, "DbSelectColumn");
-        }
-
-        @Override
-        protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
-                return getSelectColumns(dbColumns);
-            }
-            return super.resolve(context);
-        }
-
-        @Override
-        protected boolean isUnambiguous(TemplateContext context) {
-            return true;
-        }
-    }
-
-    public class PojoColumnResolver extends SimpleTemplateVariableResolver {
-
-        public static final String NAME = "pojoColumn";
-
-        public PojoColumnResolver() {
-            super(NAME, "PojoColumn");
-        }
-
-        @Override
-        protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
-                return getPojoColumns(dbColumns);
-            }
-            return super.resolve(context);
-        }
-
-        @Override
-        protected boolean isUnambiguous(TemplateContext context) {
-            return true;
-        }
-    }
-
-    public class DbInsertColumnResolver extends SimpleTemplateVariableResolver {
-
-        public static final String NAME = "dbInsertColumn";
-
-        public DbInsertColumnResolver() {
-            super(NAME, "DbInsertColumn");
-        }
-
-        @Override
-        protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
-                return getInsertColumns(dbColumns);
-            }
-            return super.resolve(context);
-        }
-
-        @Override
-        protected boolean isUnambiguous(TemplateContext context) {
-            return true;
-        }
-    }
-
-    public class DbUpdateColumnResolver extends SimpleTemplateVariableResolver {
-
-        public static final String NAME = "dbUpdateColumn";
-
-        public DbUpdateColumnResolver() {
-            super(NAME, "DbUpdateColumn");
-        }
-
-        @Override
-        protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
-                return getUpdateColumns(dbColumns);
-            }
-            return super.resolve(context);
-        }
-
-        @Override
-        protected boolean isUnambiguous(TemplateContext context) {
-            return true;
-        }
-    }
-
-    public class DbCondColumnResolver extends SimpleTemplateVariableResolver {
-
-        public static final String NAME = "dbCondColumn";
-
-        public DbCondColumnResolver() {
-            super(NAME, "DbCondColumn");
-        }
-
-        @Override
-        protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
-                return getCondColumns(dbColumns);
-            }
-            return super.resolve(context);
-        }
-
-        @Override
-        protected boolean isUnambiguous(TemplateContext context) {
-            return true;
-        }
-    }
-
-    public class DbVerUpdateColumnResolver extends SimpleTemplateVariableResolver {
-
-        public static final String NAME = "dbVerUpdateColumn";
-
-        public DbVerUpdateColumnResolver() {
-            super(NAME, "DbVerUpdateColumn");
-        }
-
-        @Override
-        protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
-                return getVerUpdateColumns(dbColumns);
-            }
-            return super.resolve(context);
-        }
-
-        @Override
-        protected boolean isUnambiguous(TemplateContext context) {
-            return true;
-        }
-    }
-
-    public class DbOptUpdateColumnResolver extends SimpleTemplateVariableResolver {
-
-        public static final String NAME = "dbOptUpdateColumn";
-
-        public DbOptUpdateColumnResolver() {
-            super(NAME, "DbOptUpdateColumn");
-        }
-
-        @Override
-        protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
-                return getOptUpdateColumns(dbColumns);
-            }
-            return super.resolve(context);
-        }
-
-        @Override
-        protected boolean isUnambiguous(TemplateContext context) {
-            return true;
-        }
-    }
-
-    public class DbOptCondColumnResolver extends SimpleTemplateVariableResolver {
-
-        public static final String NAME = "dbOptCondColumn";
-
-        public DbOptCondColumnResolver() {
-            super(NAME, "DbOptCondColumn");
-        }
-
-        @Override
-        protected String resolve(TemplateContext context) {
-            TableDefinition tableDefinition = getTableDefinition(getMetaStatement((XtextTemplateContext) context));
-            if (tableDefinition != null && dbResolver.isResolveDb(tableDefinition)) {
-                List<String> dbColumns = dbResolver.getColumns(tableDefinition, tableDefinition.getTable());
-                return getOptCondColumns(dbColumns);
-            }
-            return super.resolve(context);
-        }
-
-        @Override
-        protected boolean isUnambiguous(TemplateContext context) {
-            return true;
-        }
-    }
-
     public class PojoDefinitionsResolver extends SimpleTemplateVariableResolver {
 
         public static final String NAME = "pojoDefinitions";
@@ -725,44 +470,6 @@ public class ProcessorModelTemplateContextType extends XtextTemplateContextType 
                         annotations, dbSequences, dbType);
                 if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
                     return generator.getPojoDefinitions(modelProperty, artifacts);
-            }
-            return super.resolve(context);
-        }
-
-        @Override
-        protected boolean isUnambiguous(TemplateContext context) {
-            return true;
-        }
-    }
-
-    public class MetaGeneratorResolver extends SimpleTemplateVariableResolver {
-
-        public static final String NAME = "metaGenerator";
-
-        public MetaGeneratorResolver() {
-            super(NAME, "MetaGenerator");
-        }
-
-        @Override
-        protected String resolve(TemplateContext context) {
-            Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
-            if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-
-                Map<String, String> finalMetas = new HashMap<String, String>();
-                for (MetaStatement meta : artifacts.getStatements()) {
-                    if (Utils.isFinal(meta)) {
-                        ISerializer serializer = ((XtextResource) meta.eResource()).getSerializer();
-                        finalMetas.put(meta.getName(), serializer.serialize(meta));
-                    }
-                }
-
-                // List<String> tables = dbResolver.getTables(artifacts);
-                List<String> dbSequences = dbResolver.getSequences(artifacts);
-                DbType dbType = Utils.getDbType(dbResolver, artifacts);
-                TableMetaGenerator generator = new TableMetaGenerator(modelProperty, artifacts, scopeProvider,
-                        finalMetas, dbSequences, dbType);
-                if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
-                    return generator.getMetaDefinitions(modelProperty, artifacts);
             }
             return super.resolve(context);
         }
