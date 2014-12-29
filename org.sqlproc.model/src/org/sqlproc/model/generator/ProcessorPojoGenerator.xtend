@@ -63,6 +63,7 @@ class ProcessorPojoGenerator {
 	'''
 	
 	def compile(EnumEntity e, ImportManager im, EnumProperty ea) '''
+	@org.sqlproc.engine.annotation.Pojo
 	public enum «e.name» «compileImplements(e)»{
 	
 		«FOR f:e.features.filter(x| x.value!=null) SEPARATOR ", "»«f.name»(«f.value»)«ENDFOR»;
@@ -140,6 +141,7 @@ class ProcessorPojoGenerator {
 	«FOR a:ae.annotations»
 	@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, im)»«ENDFOR»)«ENDIF»
 	«ENDFOR»
+	@org.sqlproc.engine.annotation.Pojo
 	public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e, im)»«compileImplements(e)»{
 		«IF getSernum(e) != null»
 		

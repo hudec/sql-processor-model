@@ -139,6 +139,8 @@ public class ProcessorPojoGenerator {
   
   public CharSequence compile(final EnumEntity e, final ImportManager im, final EnumProperty ea) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("@org.sqlproc.engine.annotation.Pojo");
+    _builder.newLine();
     _builder.append("public enum ");
     String _name = e.getName();
     _builder.append(_name, "");
@@ -460,6 +462,8 @@ public class ProcessorPojoGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("@org.sqlproc.engine.annotation.Pojo");
+    _builder.newLine();
     _builder.append("public ");
     {
       boolean _isAbstract = Utils.isAbstract(e);
