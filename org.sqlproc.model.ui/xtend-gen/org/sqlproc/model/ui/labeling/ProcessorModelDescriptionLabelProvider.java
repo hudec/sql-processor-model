@@ -3,8 +3,6 @@
  */
 package org.sqlproc.model.ui.labeling;
 
-import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider;
 
 /**
@@ -14,8 +12,4 @@ import org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider;
  */
 @SuppressWarnings("all")
 public class ProcessorModelDescriptionLabelProvider extends DefaultDescriptionLabelProvider {
-  public Object text(final IEObjectDescription ele) {
-    QualifiedName _name = ele.getName();
-    return ("" + _name);
-  }
 }

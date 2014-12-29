@@ -62,7 +62,6 @@ public class Main {
         String control = null;
         String pojo = null;
         String dao = null;
-        String sql = null;
         String ddl = null;
         boolean merge = true;
         boolean generate = true;
@@ -80,8 +79,6 @@ public class Main {
                 pojo = args[++i];
             else if ("-dao".equals(arg) && i < args.length - 1)
                 dao = args[++i];
-            else if ("-sql".equals(arg) && i < args.length - 1)
-                sql = args[++i];
             else if ("-ddl".equals(arg) && i < args.length - 1)
                 ddl = args[++i];
             else if ("-nomerge".equals(arg))
@@ -93,7 +90,7 @@ public class Main {
                 return;
             }
         }
-        if (models == null && (control == null || pojo == null || dao == null || sql == null)) {
+        if (models == null && (control == null || pojo == null || dao == null)) {
             usage(null);
             return;
         }
@@ -113,7 +110,7 @@ public class Main {
         if (models != null) {
             main.runGenerator(models, source, target, generate);
         } else if (control != null) {
-            main.runGenerator(control, pojo, dao, sql, ddl, source, target, merge);
+            main.runGenerator(control, pojo, dao, ddl, source, target, merge);
         }
     }
 
@@ -127,23 +124,22 @@ public class Main {
         System.out
                 .println("  java -jar sqlep.jar -models modelsFile1,modelsFile2... [-source sourceDir] [-target targetDir] [-verify]");
         System.out.println("For example:");
-        System.out.println("  java -jar sqlep.jar -models pojo.qry,dao.qry -target src-gen");
-        System.out.println("Mode 2: POJO, DAO and META SQL models generation using control directives:");
+        System.out.println("  java -jar sqlep.jar -models pojo.model,dao.model -target src-gen");
+        System.out.println("Mode 2: POJO and DAO models generation using control directives:");
         System.out
                 .println("  java -jar sqlep.jar -control controlDirectivesFile -pojo pojoModelsFile -dao daoModelsFile -sql metaSqlsFile [-ddl ddlsFile] [-source sourceDir] [-target targetDir] [-nomerge]");
         System.out.println("For example:");
         System.out
-                .println("  java -jar sqlep.jar -control definitions.qry -pojo pojo.qry -dao dao.qry -sql statements.qry");
+                .println("  java -jar sqlep.jar -control definitions.model -pojo pojo.model -dao dao.model -sql statements.model");
         System.out.println();
         System.out.println("Arguments:");
         System.out
-                .println("  -models filename[.filename] - comma separated list of model files names (eg. pojo.qry,dao.qry)");
+                .println("  -models filename[.filename] - comma separated list of model files names (eg. pojo.model,dao.model)");
         System.out.println("  -target dirname - a target directory (eg. src-gen)");
         System.out.println("  -source dirname - a source directory (eg. src/main/resources)");
         System.out.println("  -control filename - a control directives file name");
         System.out.println("  -pojo filename - a POJO models file name");
         System.out.println("  -dao filename - a DAO models file name");
-        System.out.println("  -sql filename - a META SQLs file name");
         System.out.println("  -ddl filename - a DDLs file name");
         System.out.println("  -nomerge - do not merge generated artefacts with existing ones");
         System.out.println("  -verify - do not generate Java source files, only verify models files");
@@ -175,8 +171,8 @@ public class Main {
         }
     }
 
-    protected void runGenerator(String control, String pojo, String dao, String sql, String ddl, String source,
-            String target, boolean merge) throws IOException, ClassNotFoundException {
+    protected void runGenerator(String control, String pojo, String dao, String ddl, String source, String target,
+            boolean merge) throws IOException, ClassNotFoundException {
 
         ResourceSet set = resourceSetProvider.get();
         Resource controlResource = set.getResource(URI.createURI(getFile(source, control)), true);
@@ -193,16 +189,9 @@ public class Main {
             daoResource = set.getResource(URI.createURI(getFile(source, dao)), true);
             set.getResources().add(daoResource);
         }
-        Resource sqlResource = null;
-        File sqlFile = new File(URI.createURI(getFile(source, sql)).toFileString());
-        if (sqlFile.canRead()) {
-            sqlResource = set.getResource(URI.createURI(getFile(source, sql)), true);
-            set.getResources().add(sqlResource);
-        }
 
         if (!isValid(controlResource) || (merge && pojoResource != null && !isValid(pojoResource))
-                || (merge && daoResource != null && !isValid(daoResource))
-                || (merge && sqlResource != null && !isValid(sqlResource)))
+                || (merge && daoResource != null && !isValid(daoResource)))
             return;
         System.out.println("Resource(s) validation finished.");
 
