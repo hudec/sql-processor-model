@@ -175,7 +175,8 @@ public class ProcessorModelValidator extends AbstractProcessorModelValidator {
     }
     int _length = param.length();
     int i = (_length - 1);
-    while ((i >= 0)) {
+    boolean _while = (i >= 0);
+    while (_while) {
       {
         char _charAt = param.charAt(i);
         boolean _isDigit = Character.isDigit(_charAt);
@@ -185,6 +186,7 @@ public class ProcessorModelValidator extends AbstractProcessorModelValidator {
         }
         i = (i - 1);
       }
+      _while = (i >= 0);
     }
     return true;
   }
