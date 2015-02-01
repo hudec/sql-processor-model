@@ -39,7 +39,8 @@ public class ProcessorModelUiModule extends org.sqlproc.model.ui.AbstractProcess
         return WorkspacePojoResolverImpl.class;
     }
 
-    public Class<? extends IHighlightingConfiguration> bindISemanticHighlightingConfiguration() {
+    @Override
+    public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
         return HighlightingConfiguration.class;
     }
 
@@ -47,6 +48,7 @@ public class ProcessorModelUiModule extends org.sqlproc.model.ui.AbstractProcess
         return TokenToIdMapper.class;
     }
 
+    @Override
     public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
         return SemanticHighlightingCalculator.class;
     }

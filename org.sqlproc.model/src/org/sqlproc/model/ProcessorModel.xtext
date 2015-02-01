@@ -30,15 +30,15 @@ ImportAssignement: dbColumn=ValidID '->' pkTable=ValidID ('->' pkColumn=ValidID)
 ExportAssignement: dbColumn=ValidID '->' fkTable=ValidID ('->' fkColumn=ValidID)?;
 InheritanceAssignement: discriminator=ValidID '->' dbTable=ValidID ('->' dbColumns+=ValidID)+;
 ManyToManyAssignement: pkColumn=ValidID '->' pkTable=ValidID ('->' fkColumn=ValidID)?;
-DebugLevelAssignement: debug=ValidID (WS+ scope=PropertyValue)?;
+DebugLevelAssignement: debug=ValidID (scope=PropertyValue)?;
 ProcedurePojoAssignement: dbProcedure=ValidID '->' pojo=PojoType;
 FunctionPojoAssignement: dbFunction=ValidID '->' pojo=PojoType;
-ImplementsAssignement: ':' toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?;
+ImplementsAssignement: ':' toImplement=[jvmTypes::JvmType|QualifiedName] ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
 ExtendsAssignement: ':' toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?;
 ImplementsAssignementGenerics: ':' toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?;
 ExtendsAssignementGenerics: ':' toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?;
 
-Property hidden(ML_COMMENT, SL_COMMENT):
+Property:
 	(name='resolve-pojo-on'
 	|name='resolve-pojo-off'
 	|name='database-' database=DatabaseProperty
@@ -54,7 +54,7 @@ Property hidden(ML_COMMENT, SL_COMMENT):
 //	'{' WS* name=ValidID WS+ '=' WS+ value=(ValidID | INT) WS* '}'
 //;
 
-DatabaseProperty hidden(ML_COMMENT, SL_COMMENT):
+DatabaseProperty:
 	(name='is-online'
 	|name='is-offline'
 	|name='has-url' WS+ dbUrl=PropertyValue
@@ -79,7 +79,7 @@ DatabaseProperty hidden(ML_COMMENT, SL_COMMENT):
 	|name='uppercase-names'
 	);
 
-PojogenProperty hidden(ML_COMMENT, SL_COMMENT):
+PojogenProperty:
 	(name='types-sqltypes' (WS+ sqlTypes+=SqlTypeAssignement)+
 	|name='types-in-table' WS+ dbTable=ValidID (WS+ sqlTypes+=SqlTypeAssignement)+
 	|name='types-for-columns' WS+ dbTable=ValidID (WS+ columnTypes+=ColumnTypeAssignement)+
@@ -126,7 +126,7 @@ PojogenProperty hidden(ML_COMMENT, SL_COMMENT):
 
 MetaTypeAssignement: dbColumn=ValidID '->' type=ValidID ('->' extension=ValidID)?;
 
-MetagenProperty hidden(ML_COMMENT, SL_COMMENT):
+MetagenProperty:
 	(name='global-sequence' WS+ sequence=ValidID (type=ValidID)? (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?
 	|name='table-sequence' WS+ dbTable=ValidID WS+ sequence=ValidID (WS+ type=ValidID)?
 	|name='global-identity' (WS+ identity=ValidID (type=ValidID)?)? (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?
@@ -150,7 +150,7 @@ MetagenProperty hidden(ML_COMMENT, SL_COMMENT):
 	|name='active-filter' WS+ activeFilter=PropertyValue
 	);
 
-DaogenProperty hidden(ML_COMMENT, SL_COMMENT):
+DaogenProperty:
 	(name='ignore-tables' (WS+ dbTables+=ValidID)+
 	|name='only-tables' (WS+ dbTables+=ValidID)*
 	|name='implements-interfaces' WS+ toImplements=ImplementsAssignement
@@ -164,16 +164,16 @@ DaogenProperty hidden(ML_COMMENT, SL_COMMENT):
 	|name='package' WS+ pckg=PropertyValue
 	);
 
-PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+PojoDefinition:
 	'pojo' name=ValidID (class=(QualifiedName) | ':' classx=[jvmTypes::JvmType|QualifiedName]) ';';
 
-TableDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+TableDefinition:
 	'table' name=ValidID table=ValidID ';';
 
-ProcedureDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+ProcedureDefinition:
 	'procedure' name=ValidID table=ValidID ';';
 
-FunctionDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
+FunctionDefinition:
 	'function' name=ValidID table=ValidID ';';
 
 ValueType:
@@ -184,18 +184,18 @@ PojoType:
 	(':' type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoEntity|ValidID])
 	('<' (':' gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|ValidID]) '>')? (array ?= '[]')?;
 
-PackageDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+PackageDirective: 
 	{PackageDirectiveSuffix} '#Suffix' '(' suffix=(ValidID) ')'
 	| {PackageDirectiveImplementation} '#Implementation' '(' implementation=(QualifiedName) ')'
 ;
 
-Package hidden(ML_COMMENT, SL_COMMENT, WS):
+Package:
 	directives+=PackageDirective*
 	'package' name=(QualifiedName) '{'
 		elements+=AbstractPojoEntity*
 	'}';
 
-AnnotationDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+AnnotationDirective: 
 	{AnnotationDirectiveConflict} '#Conflict'
 	| {AnnotationDirectiveStatic} '#Static'
 	| {AnnotationDirectiveConstructor} '#Constructor'
@@ -218,15 +218,15 @@ Entity: PojoEntity | EnumEntity;
 
 AnnotatedEntity: (annotations+=Annotation)* entity=Entity;
 
-AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
+AbstractPojoEntity:
 	Package | AnnotatedEntity | Import | Implements | Extends | PojoDao
 ;
 
-Import hidden(ML_COMMENT, SL_COMMENT, WS):
+Import:
 	'import' importedNamespace = QualifiedNameWithWildcard
 ;
 
-ImplementsExtendsDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+ImplementsExtendsDirective: 
 	{ImplementsExtendsDirectiveGenerics} '#Generics'
 	| {ImplementsExtendsDirectiveOnlyPojos} '#OnlyPojos' onlyPojos+=[PojoEntity|ValidID]*
 	| {ImplementsExtendsDirectiveOnlyDaos} '#OnlyDaos' onlyDaos+=[PojoDao|ValidID]*
@@ -234,23 +234,23 @@ ImplementsExtendsDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {ImplementsExtendsDirectiveExceptDaos} '#ExceptDaos' exceptDaos+=[PojoDao|ValidID]*
 ;
 
-Implements hidden(ML_COMMENT, SL_COMMENT, WS):
+Implements:
 	directives+=ImplementsExtendsDirective*
 	'implements' ':' implements = [jvmTypes::JvmType|QualifiedName] 
 ;
 
-Extends hidden(ML_COMMENT, SL_COMMENT, WS):
+Extends:
 	directives+=ImplementsExtendsDirective*
 	'extends' ':' extends = [jvmTypes::JvmType|QualifiedName] 
 ;
 
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));
 
-DirectiveProperties hidden(ML_COMMENT, SL_COMMENT, WS):
+DirectiveProperties:
 	features+=[PojoProperty|ValidID] (',' features+=[PojoProperty|ValidID])*
 ;
 
-PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+PojoDirective: 
 	{PojoDirectiveToString} '#ToString' '(' proplist=DirectiveProperties ')'
 	| {PojoDirectiveIndex} '#Index' '(' index=INT ',' proplist=DirectiveProperties ')'
 	| {PojoDirectiveOperators} '#Operators' ('(' operatorsSuffix=ValidID ')')?
@@ -262,7 +262,7 @@ PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 
 PojoEntityModifier2: ('extends' superType=[PojoEntity|ValidID]);
 
-PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
+PojoEntity:
 	directives+=PojoDirective*
 	(modifiers1+=PojoEntityModifier1)* 'pojo' name=ValidID (modifiers2+=PojoEntityModifier2)* 
 	'{'
@@ -272,7 +272,7 @@ PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 
 PojoAnnotatedProperty: (annotations+=Annotation)* feature=PojoProperty;
 
-PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+PojoPropertyDirective: 
 	{PojoPropertyDirectiveRequired} '#Required'
 	| {PojoPropertyDirectivePrimaryKey} '#PrimaryKey'
 	| {PojoPropertyDirectiveDiscriminator} '#InheritanceDiscriminator'
@@ -286,7 +286,7 @@ PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {PojoPropertyDirectiveEnumDef} '#EnumDef'
 ;
 
-PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
+PojoProperty:
 	directives+=PojoPropertyDirective*
 	name=ValidID (':' type=[jvmTypes::JvmType|QualifiedName] | ref=[Entity|ValidID])
 	('<' (':' gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|ValidID]) '>')? (array ?= '[]')?
@@ -296,7 +296,7 @@ EnumEntityModifier1: ((final?='final'));
 
 EnumEntityModifier2: ('extends' superType=[PojoEntity|ValidID]);
 
-EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
+EnumEntity:
 	directives+=PojoDirective*
 	(modifiers1+=EnumEntityModifier1)* 'enum' name=ValidID (modifiers2+=EnumEntityModifier2)* 
 	'{'
@@ -306,23 +306,23 @@ EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 
 EnumPropertyValue: name=ValidID '=' value = ValueType;
 
-EnumPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
+EnumPropertyDirective:
 	{EnumPropertyDirectiveValues} '#Values' '(' values+=EnumPropertyValue (',' values+=EnumPropertyValue)* ')'
 ;
 
-EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
+EnumProperty:
 	directives+=EnumPropertyDirective name=ValidID ':' type=[jvmTypes::JvmType|QualifiedName]
 ;
 
-DaoDirectiveParameters hidden(ML_COMMENT, SL_COMMENT, WS):
+DaoDirectiveParameters:
 	out=PojoType (',' ins+=PojoType)*
 ;
 
-DescendantAssignment hidden(ML_COMMENT, SL_COMMENT, WS):
+DescendantAssignment:
 	value = ValueType '=' descendant=PojoType
 ;
 
-FunProcType  hidden(ML_COMMENT, SL_COMMENT, WS):
+FunProcType :
 	{FunctionCallQuery} "#FunctionCallQuery" | 
 	{ProcedureCallQuery} "#ProcedureCallQuery" | 
 	{FunctionCall} "#FunctionCall" | 
@@ -330,7 +330,7 @@ FunProcType  hidden(ML_COMMENT, SL_COMMENT, WS):
 	{FunctionQuery} "#FunctionQuery"
 ;
 
-DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
+DaoDirective:
 	{DaoDirectiveSerializable} '#Serializable' '(' sernum=INT ')'
 	| {DaoDirectiveDiscriminator} '#InheritanceHandler' '(' ancestor=[PojoProperty|ValidID] (',' descendants+=DescendantAssignment)+ ')'
 	| {DaoDirectiveCrud} '#CRUD' (=> '(' pojo=PojoType ')')?
@@ -340,7 +340,7 @@ DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 
 PojoDaoModifier: ('extends' superType=[PojoDao|ValidID]);
 
-PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
+PojoDao:
 	directives+=DaoDirective*
 	(modifiers1+=PojoEntityModifier1)* 'dao' name=ValidID
 	  (modifiers2+=PojoDaoModifier)* 
