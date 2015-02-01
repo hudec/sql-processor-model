@@ -30,9 +30,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAnnotatedPropertyImpl#getSetterAnnotations <em>Setter Annotations</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAnnotatedPropertyImpl#getGetterAnnotations <em>Getter Annotations</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAnnotatedPropertyImpl#getAttributeAnnotations <em>Attribute Annotations</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAnnotatedPropertyImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAnnotatedPropertyImpl#getFeature <em>Feature</em>}</li>
  * </ul>
  * </p>
@@ -42,34 +40,14 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
 public class PojoAnnotatedPropertyImpl extends MinimalEObjectImpl.Container implements PojoAnnotatedProperty
 {
   /**
-   * The cached value of the '{@link #getSetterAnnotations() <em>Setter Annotations</em>}' containment reference list.
+   * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSetterAnnotations()
+   * @see #getAnnotations()
    * @generated
    * @ordered
    */
-  protected EList<Annotation> setterAnnotations;
-
-  /**
-   * The cached value of the '{@link #getGetterAnnotations() <em>Getter Annotations</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getGetterAnnotations()
-   * @generated
-   * @ordered
-   */
-  protected EList<Annotation> getterAnnotations;
-
-  /**
-   * The cached value of the '{@link #getAttributeAnnotations() <em>Attribute Annotations</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAttributeAnnotations()
-   * @generated
-   * @ordered
-   */
-  protected EList<Annotation> attributeAnnotations;
+  protected EList<Annotation> annotations;
 
   /**
    * The cached value of the '{@link #getFeature() <em>Feature</em>}' containment reference.
@@ -107,41 +85,13 @@ public class PojoAnnotatedPropertyImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Annotation> getSetterAnnotations()
+  public EList<Annotation> getAnnotations()
   {
-    if (setterAnnotations == null)
+    if (annotations == null)
     {
-      setterAnnotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__SETTER_ANNOTATIONS);
+      annotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__ANNOTATIONS);
     }
-    return setterAnnotations;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Annotation> getGetterAnnotations()
-  {
-    if (getterAnnotations == null)
-    {
-      getterAnnotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__GETTER_ANNOTATIONS);
-    }
-    return getterAnnotations;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Annotation> getAttributeAnnotations()
-  {
-    if (attributeAnnotations == null)
-    {
-      attributeAnnotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__ATTRIBUTE_ANNOTATIONS);
-    }
-    return attributeAnnotations;
+    return annotations;
   }
 
   /**
@@ -202,12 +152,8 @@ public class PojoAnnotatedPropertyImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__SETTER_ANNOTATIONS:
-        return ((InternalEList<?>)getSetterAnnotations()).basicRemove(otherEnd, msgs);
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__GETTER_ANNOTATIONS:
-        return ((InternalEList<?>)getGetterAnnotations()).basicRemove(otherEnd, msgs);
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__ATTRIBUTE_ANNOTATIONS:
-        return ((InternalEList<?>)getAttributeAnnotations()).basicRemove(otherEnd, msgs);
+      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__ANNOTATIONS:
+        return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
       case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__FEATURE:
         return basicSetFeature(null, msgs);
     }
@@ -224,12 +170,8 @@ public class PojoAnnotatedPropertyImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__SETTER_ANNOTATIONS:
-        return getSetterAnnotations();
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__GETTER_ANNOTATIONS:
-        return getGetterAnnotations();
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__ATTRIBUTE_ANNOTATIONS:
-        return getAttributeAnnotations();
+      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__ANNOTATIONS:
+        return getAnnotations();
       case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__FEATURE:
         return getFeature();
     }
@@ -247,17 +189,9 @@ public class PojoAnnotatedPropertyImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__SETTER_ANNOTATIONS:
-        getSetterAnnotations().clear();
-        getSetterAnnotations().addAll((Collection<? extends Annotation>)newValue);
-        return;
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__GETTER_ANNOTATIONS:
-        getGetterAnnotations().clear();
-        getGetterAnnotations().addAll((Collection<? extends Annotation>)newValue);
-        return;
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__ATTRIBUTE_ANNOTATIONS:
-        getAttributeAnnotations().clear();
-        getAttributeAnnotations().addAll((Collection<? extends Annotation>)newValue);
+      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__ANNOTATIONS:
+        getAnnotations().clear();
+        getAnnotations().addAll((Collection<? extends Annotation>)newValue);
         return;
       case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__FEATURE:
         setFeature((PojoProperty)newValue);
@@ -276,14 +210,8 @@ public class PojoAnnotatedPropertyImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__SETTER_ANNOTATIONS:
-        getSetterAnnotations().clear();
-        return;
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__GETTER_ANNOTATIONS:
-        getGetterAnnotations().clear();
-        return;
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__ATTRIBUTE_ANNOTATIONS:
-        getAttributeAnnotations().clear();
+      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__ANNOTATIONS:
+        getAnnotations().clear();
         return;
       case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__FEATURE:
         setFeature((PojoProperty)null);
@@ -302,12 +230,8 @@ public class PojoAnnotatedPropertyImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__SETTER_ANNOTATIONS:
-        return setterAnnotations != null && !setterAnnotations.isEmpty();
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__GETTER_ANNOTATIONS:
-        return getterAnnotations != null && !getterAnnotations.isEmpty();
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__ATTRIBUTE_ANNOTATIONS:
-        return attributeAnnotations != null && !attributeAnnotations.isEmpty();
+      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__ANNOTATIONS:
+        return annotations != null && !annotations.isEmpty();
       case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY__FEATURE:
         return feature != null;
     }

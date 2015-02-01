@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.model.processorModel.Artifacts#getTables <em>Tables</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Artifacts#getProcedures <em>Procedures</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Artifacts#getFunctions <em>Functions</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.Artifacts#getPojoPackages <em>Pojo Packages</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.Artifacts#getPackages <em>Packages</em>}</li>
  * </ul>
  * </p>
  *
@@ -110,19 +110,19 @@ public interface Artifacts extends EObject
   EList<FunctionDefinition> getFunctions();
 
   /**
-   * Returns the value of the '<em><b>Pojo Packages</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.PackageDeclaration}.
+   * Returns the value of the '<em><b>Packages</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.model.processorModel.Package}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Pojo Packages</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Packages</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Pojo Packages</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getArtifacts_PojoPackages()
+   * @return the value of the '<em>Packages</em>' containment reference list.
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getArtifacts_Packages()
    * @model containment="true"
    * @generated
    */
-  EList<PackageDeclaration> getPojoPackages();
+  EList<org.sqlproc.model.processorModel.Package> getPackages();
 
 } // Artifacts

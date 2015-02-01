@@ -60,7 +60,7 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    * @ordered
    */
-  protected static final String SIZE_EDEFAULT = null;
+  protected static final int SIZE_EDEFAULT = 0;
 
   /**
    * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -70,7 +70,7 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    * @ordered
    */
-  protected String size = SIZE_EDEFAULT;
+  protected int size = SIZE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -131,7 +131,7 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getSize()
+  public int getSize()
   {
     return size;
   }
@@ -141,9 +141,9 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSize(String newSize)
+  public void setSize(int newSize)
   {
-    String oldSize = size;
+    int oldSize = size;
     size = newSize;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SIZE, oldSize, size));
@@ -247,7 +247,7 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
         setTypeName((String)newValue);
         return;
       case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SIZE:
-        setSize((String)newValue);
+        setSize((Integer)newValue);
         return;
       case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE:
         setType((PojoType)newValue);
@@ -292,7 +292,7 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
       case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE_NAME:
         return TYPE_NAME_EDEFAULT == null ? typeName != null : !TYPE_NAME_EDEFAULT.equals(typeName);
       case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SIZE:
-        return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
+        return size != SIZE_EDEFAULT;
       case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE:
         return type != null;
     }

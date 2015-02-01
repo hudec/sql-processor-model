@@ -26,14 +26,12 @@ class ProcessorModelFormatter extends AbstractDeclarativeFormatter {
 		c.setLinewrap(0, 1, 2).before(ML_COMMENTRule)
 		c.setLinewrap(0, 1, 1).after(ML_COMMENTRule)
 		
-		c.setNoSpace().before(SEMICOLONRule);
-
         c.setLinewrap(1, 1, 2).after(artifactsRule);
         c.setLinewrap(1, 1, 2).after(propertyRule);
         c.setLinewrap(1, 1, 2).after(pojoDefinitionRule);
         c.setLinewrap(1, 1, 2).after(tableDefinitionRule);
         c.setLinewrap(1, 1, 2).after(procedureDefinitionRule);
         c.setLinewrap(1, 1, 2).after(functionDefinitionRule);
-        c.setLinewrap(1, 1, 2).after(packageDeclarationRule);
+        c.setLinewrap(1, 1, 2).after(packageRule);
 	}
 }

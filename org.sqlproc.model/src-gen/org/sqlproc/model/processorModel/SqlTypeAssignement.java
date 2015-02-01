@@ -59,12 +59,12 @@ public interface SqlTypeAssignement extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Size</em>' attribute.
-   * @see #setSize(String)
+   * @see #setSize(int)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getSqlTypeAssignement_Size()
    * @model
    * @generated
    */
-  String getSize();
+  int getSize();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.SqlTypeAssignement#getSize <em>Size</em>}' attribute.
@@ -74,7 +74,7 @@ public interface SqlTypeAssignement extends EObject
    * @see #getSize()
    * @generated
    */
-  void setSize(String value);
+  void setSize(int value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

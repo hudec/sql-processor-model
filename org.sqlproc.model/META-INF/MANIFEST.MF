@@ -36,4 +36,6 @@ Export-Package: org.sqlproc.model,
  org.sqlproc.model.serializer,
  org.sqlproc.model.services,
  org.sqlproc.model.util,
- org.sqlproc.model.validation
+ org.sqlproc.model.validation,
+ org.sqlproc.model.jvmmodel
+

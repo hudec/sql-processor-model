@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sqlproc.model/src-gen" editDirectory="//home/hudec/git/sql-processor-model/org.sqlproc.model.edit/src"
-    editorDirectory="//home/hudec/git/sql-processor-model/org.sqlproc.model.editor/src"
-    modelPluginID="org.sqlproc.model" forceOverwrite="true" modelName="ProcessorModel"
-    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sqlproc.model/src-gen" editDirectory="/org.sqlproc.model.edit/src"
+    editorDirectory="/org.sqlproc.model.editor/src" modelPluginID="org.sqlproc.model"
+    forceOverwrite="true" modelName="ProcessorModel" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.sqlproc.model.edit"
-    editorPluginID="org.sqlproc.model.edit" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
+    editorPluginID="org.sqlproc.model.editor" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="ProcessorModel" basePackage="org.sqlproc.model" disposableProviderFactory="true"
       fileExtensions="model" ecorePackage="ProcessorModel.ecore#/">
     <genClasses ecoreClass="ProcessorModel.ecore#//Artifacts">
@@ -14,7 +13,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Artifacts/tables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Artifacts/procedures"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Artifacts/functions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Artifacts/pojoPackages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Artifacts/packages"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DatabaseCatalogAssignement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DatabaseCatalogAssignement/dbCatalog"/>
@@ -164,7 +163,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojogenProperty/toExtends"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojogenProperty/toImplementsGenerics"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojogenProperty/toExtendsGenerics"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojogenProperty/implPackage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojogenProperty/version"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojogenProperty/dbNotTables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojogenProperty/debug"/>
@@ -200,7 +198,6 @@
     <genClasses ecoreClass="ProcessorModel.ecore#//DaogenProperty">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DaogenProperty/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DaogenProperty/dbTables"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DaogenProperty/implPackage"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaogenProperty/toImplements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaogenProperty/toExtends"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaogenProperty/toImplementsGenerics"/>
@@ -228,38 +225,41 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//FunctionDefinition/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//FunctionDefinition/table"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//ValueType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//ValueType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//ValueType/number"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//ValueType/id"/>
+    </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoType/native"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoType/ref"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoType/type"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoType/gref"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoType/ref"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoType/gtype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoType/gref"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoType/array"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PackageDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PackageDeclaration/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PackageDeclaration/suffix"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PackageDeclaration/elements"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PackageDirective"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//Package">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Package/directives"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Package/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Package/elements"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationDirective"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//Annotation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Annotation/directives"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Annotation/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Annotation/features"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationProperty">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//AnnotationProperty/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//AnnotationProperty/ref"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//AnnotationProperty/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//AnnotationProperty/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//AnnotationProperty/number"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//AnnotationProperty/value"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//AnnotationProperty/constant"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//AnnotationProperty/ref"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//Entity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Entity/directives"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Entity/name"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//AnnotatedEntity">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//AnnotatedEntity/conflictAnnotations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//AnnotatedEntity/staticAnnotations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//AnnotatedEntity/constructorAnnotations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//AnnotatedEntity/annotations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//AnnotatedEntity/entity"/>
     </genClasses>
@@ -267,35 +267,33 @@
     <genClasses ecoreClass="ProcessorModel.ecore#//Import">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Import/importedNamespace"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//ImplementsExtendsDirective"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//Implements">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Implements/directives"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Implements/implements"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Implements/generics"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Implements/onlyPojos"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Implements/onlyDaos"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Implements/exceptPojos"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Implements/exceptDaos"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//Extends">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Extends/directives"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Extends/extends"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Extends/generics"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Extends/onlyPojos"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Extends/onlyDaos"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Extends/exceptPojos"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Extends/exceptDaos"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//ImplPackage">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//ImplPackage/name"/>
-    </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoEntityModifier1">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoEntityModifier1/final"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoEntityModifier1/abstract"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//DirectiveProperties">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DirectiveProperties/features"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoDirective"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoEntityModifier2">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoEntityModifier2/superType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoEntityModifier2/discriminator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoEntityModifier2/operators"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoEntityModifier2/operatorsSuffix"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoEntityModifier2/sernum"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoEntity">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoEntity/modifiers1"/>
@@ -303,84 +301,138 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoEntity/features"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAnnotatedProperty">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAnnotatedProperty/setterAnnotations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAnnotatedProperty/getterAnnotations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAnnotatedProperty/attributeAnnotations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAnnotatedProperty/annotations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAnnotatedProperty/feature"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyModifier">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyModifier/required"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyModifier/discriminator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyModifier/primaryKey"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyModifier/index"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyModifier/version"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyModifier/updateColumn1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyModifier/updateColumn2"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyModifier/createColumn1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyModifier/createColumn2"/>
-    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirective"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoProperty">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProperty/directives"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoProperty/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoProperty/native"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProperty/attrs"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProperty/ref"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProperty/type"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProperty/gref"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProperty/ref"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProperty/gtype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProperty/gref"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoProperty/array"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProperty/modifiers"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//EnumEntityModifier1">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//EnumEntityModifier1/final"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//EnumEntityModifier2">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumEntityModifier2/superType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//EnumEntityModifier2/sernum"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//EnumEntity">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumEntity/modifiers1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumEntity/modifiers2"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumEntity/features"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//EnumPropertyValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//EnumPropertyValue/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumPropertyValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//EnumPropertyDirective"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//EnumProperty">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumProperty/directives"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//EnumProperty/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//EnumProperty/native"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//EnumProperty/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumProperty/type"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//DaoDirectiveParameters">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectiveParameters/out"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectiveParameters/ins"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//DescendantAssignment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DescendantAssignment/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DescendantAssignment/descendant"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//FunProcType"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//DaoDirective"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoDaoModifier">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDaoModifier/superType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoDaoModifier/sernum"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoDao">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDao/directives"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDao/modifiers1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoDao/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoDao/pojoGenerics"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDao/pojo"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDao/modifiers2"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDao/methods"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDao/toInits"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoMethodModifier">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoMethodModifier/callFunction"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoMethodModifier/callUpdate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoMethodModifier/callQuery"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoMethodModifier/callQueryFunction"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoMethodModifier/callSelectFunction"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PackageDirectiveSuffix">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PackageDirectiveSuffix/suffix"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoMethod">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoMethod/modifiers1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoMethod/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoMethod/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoMethod/args"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PackageDirectiveImplementation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PackageDirectiveImplementation/implementation"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//ToInitMethod">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//ToInitMethod/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//ToInitMethod/args"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationDirectiveConflict"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationDirectiveStatic"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationDirectiveConstructor"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationDirectiveStandard"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationDirectiveSetter"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationDirectiveGetter"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationDirectiveAttribute"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//ImplementsExtendsDirectiveGenerics"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoDirectiveToString">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDirectiveToString/proplist"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoMethodArg">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoMethodArg/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoMethodArg/type"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoDirectiveIndex">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoDirectiveIndex/index"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDirectiveIndex/proplist"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoDirectiveOperators">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoDirectiveOperators/operatorsSuffix"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoDirectiveSerializable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoDirectiveSerializable/sernum"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoDirectiveDiscriminator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoDirectiveDiscriminator/discriminator"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoDirectiveEquals">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDirectiveEquals/proplist"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoDirectiveHashCode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDirectiveHashCode/proplist"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveRequired"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectivePrimaryKey"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveDiscriminator"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveIndex">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyDirectiveIndex/index"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveVersion"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveUpdateCol">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyDirectiveUpdateCol/updateColumn1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyDirectiveUpdateCol/updateColumn2"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveCreateCol">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyDirectiveCreateCol/createColumn1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyDirectiveCreateCol/createColumn2"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveToInit"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveEnumInit"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveIsDef"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveEnumDef"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//EnumPropertyDirectiveValues">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumPropertyDirectiveValues/values"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//FunctionCallQuery"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//ProcedureCallQuery"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//FunctionCall"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//ProcedureUpdate"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//FunctionQuery"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//DaoDirectiveSerializable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DaoDirectiveSerializable/sernum"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//DaoDirectiveDiscriminator">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectiveDiscriminator/ancestor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectiveDiscriminator/descendants"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//DaoDirectiveCrud">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectiveCrud/pojo"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//DaoDirectiveQuery">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectiveQuery/pojo"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//FunProcDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//FunProcDirective/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//FunProcDirective/paramlist"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

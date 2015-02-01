@@ -3,9 +3,7 @@ package org.sqlproc.model.util;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -23,33 +21,28 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.sqlproc.model.ImportManager;
 import org.sqlproc.model.processorModel.AbstractPojoEntity;
 import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.AnnotationProperty;
 import org.sqlproc.model.processorModel.Artifacts;
+import org.sqlproc.model.processorModel.DescendantAssignment;
 import org.sqlproc.model.processorModel.EnumEntity;
-import org.sqlproc.model.processorModel.EnumEntityModifier1;
-import org.sqlproc.model.processorModel.EnumEntityModifier2;
 import org.sqlproc.model.processorModel.EnumProperty;
+import org.sqlproc.model.processorModel.EnumPropertyValue;
 import org.sqlproc.model.processorModel.FunctionDefinition;
-import org.sqlproc.model.processorModel.Implements;
-import org.sqlproc.model.processorModel.PackageDeclaration;
+import org.sqlproc.model.processorModel.Package;
+import org.sqlproc.model.processorModel.PackageDirective;
+import org.sqlproc.model.processorModel.PackageDirectiveImplementation;
+import org.sqlproc.model.processorModel.PackageDirectiveSuffix;
 import org.sqlproc.model.processorModel.PojoAnnotatedProperty;
 import org.sqlproc.model.processorModel.PojoDao;
-import org.sqlproc.model.processorModel.PojoDaoModifier;
 import org.sqlproc.model.processorModel.PojoDefinition;
 import org.sqlproc.model.processorModel.PojoEntity;
-import org.sqlproc.model.processorModel.PojoEntityModifier1;
-import org.sqlproc.model.processorModel.PojoEntityModifier2;
-import org.sqlproc.model.processorModel.PojoMethod;
-import org.sqlproc.model.processorModel.PojoMethodArg;
-import org.sqlproc.model.processorModel.PojoMethodModifier;
 import org.sqlproc.model.processorModel.PojoProperty;
-import org.sqlproc.model.processorModel.PojoPropertyModifier;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
 import org.sqlproc.model.processorModel.TableDefinition;
-import org.sqlproc.model.processorModel.ToInitMethod;
 import org.sqlproc.model.resolver.DbResolver;
 import org.sqlproc.model.resolver.DbResolver.DbType;
 
@@ -67,29 +60,21 @@ public class Utils {
         return null;
     }
 
-    // public static boolean isAnnotationEnum(AnnotationProperty a) {
-    // if (a.getType() != null) {
-    // String qname = a.getType().getQualifiedName();
-    // if (qname.indexOf("java.") >= 0) // TODO - better
-    // return false;
-    // return true;
-    // }
-    // return false;
-    // }
-
     public static String getAnnotationValue(AnnotationProperty a) {
-        String value = a.getNumber();
-        if (value != null)
-            return value;
-        value = a.getValue();
-        if (value != null)
-            return value;
-        value = a.getConstant();
-        if (value != null)
-            value = value.replaceAll("___", ".");
-        if (a.getType() != null || a.getRef() != null)
-            return "." + value;
-        return value;
+        if (a.getValue() != null) {
+            String value = a.getValue().getValue();
+            if (value != null)
+                return value;
+            value = a.getValue().getId();
+            if (value != null) {
+                value = value.replaceAll("___", ".");
+                if (a.getType() != null || a.getRef() != null)
+                    return "." + value;
+                return value;
+            }
+            return "" + a.getValue().getNumber();
+        }
+        return "";
     }
 
     public static String resourceDir(Resource resource) {
@@ -104,305 +89,6 @@ public class Utils {
         return dir;
     }
 
-    public static boolean isList(PojoProperty f) {
-        if (f.getType() == null)
-            return false;
-        if (f.getType().getSimpleName().equals("List"))
-            return true;
-        return false;
-    }
-
-    public static boolean isRequired(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return false;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.isRequired())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isAttribute(PojoProperty f) {
-        if (f.getAttrs() == null || f.getAttrs().isEmpty())
-            return true;
-        return false;
-    }
-
-    public static String getIndex(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return null;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.getIndex() != null)
-                return modifier.getIndex();
-        }
-        return null;
-    }
-
-    public static String getUpdateColumn1(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return null;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.getUpdateColumn1() != null)
-                return modifier.getUpdateColumn1();
-        }
-        return null;
-    }
-
-    public static String getUpdateColumn2(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return null;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.getUpdateColumn2() != null)
-                return modifier.getUpdateColumn2();
-        }
-        return null;
-    }
-
-    public static String getCreateColumn1(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return null;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.getCreateColumn1() != null)
-                return modifier.getCreateColumn1();
-        }
-        return null;
-    }
-
-    public static String getCreateColumn2(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return null;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.getCreateColumn2() != null)
-                return modifier.getCreateColumn2();
-        }
-        return null;
-    }
-
-    public static boolean isDiscriminator(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return false;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.isDiscriminator())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isPrimaryKey(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return false;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.isPrimaryKey())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isAbstract(PojoEntity e) {
-        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
-            return false;
-        for (PojoEntityModifier1 modifier : e.getModifiers1()) {
-            if (modifier.isAbstract())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean hasOperators(PojoEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return false;
-        for (PojoEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getOperators() != null)
-                return true;
-        }
-        return false;
-    }
-
-    public static String getOperatorsSuffix(PojoEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return null;
-        for (PojoEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getOperatorsSuffix() != null)
-                return modifier.getOperatorsSuffix();
-        }
-        return null;
-    }
-
-    public static boolean isOptLock(PojoProperty f) {
-        if (f.getModifiers() == null || f.getModifiers().isEmpty())
-            return false;
-        for (PojoPropertyModifier modifier : f.getModifiers()) {
-            if (modifier.isVersion())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isAbstract(PojoDao e) {
-        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
-            return false;
-        for (PojoEntityModifier1 modifier : e.getModifiers1()) {
-            if (modifier.isAbstract())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isFinal(PojoEntity e) {
-        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
-            return false;
-        for (PojoEntityModifier1 modifier : e.getModifiers1()) {
-            if (modifier.isFinal())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isFinal(EnumEntity e) {
-        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
-            return false;
-        for (EnumEntityModifier1 modifier : e.getModifiers1()) {
-            if (modifier.isFinal())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isFinal(PojoDao d) {
-        if (d.getModifiers1() == null || d.getModifiers1().isEmpty())
-            return false;
-        for (PojoEntityModifier1 modifier : d.getModifiers1()) {
-            if (modifier.isFinal())
-                return true;
-        }
-        return false;
-    }
-
-    public static PojoEntity getSuperType(EnumEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return null;
-        for (EnumEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getSuperType() != null)
-                return modifier.getSuperType();
-        }
-        return null;
-    }
-
-    public static PojoEntity getSuperType(PojoEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return null;
-        for (PojoEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getSuperType() != null) {
-                return modifier.getSuperType();
-            }
-        }
-        return null;
-    }
-
-    public static String getDaoImplements(PojoDao dao, Implements impl) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(impl.getImplements().getSimpleName());
-        if (dao.isPojoGenerics() && impl.isGenerics())
-            sb.append("<").append(dao.getPojo().getName()).append(">");
-        return sb.toString();
-    }
-
-    public static PojoDao getSuperType(PojoDao e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return null;
-        for (PojoDaoModifier modifier : e.getModifiers2()) {
-            if (modifier.getSuperType() != null)
-                return modifier.getSuperType();
-        }
-        return null;
-    }
-
-    public static String getDiscriminator(PojoEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return null;
-        for (PojoEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getDiscriminator() != null)
-                return modifier.getDiscriminator();
-        }
-        return null;
-    }
-
-    public static String getSernum(EnumEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return null;
-        for (EnumEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getSernum() != null)
-                return modifier.getSernum();
-        }
-        return null;
-    }
-
-    public static String getSernum(PojoEntity e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return null;
-        for (PojoEntityModifier2 modifier : e.getModifiers2()) {
-            if (modifier.getSernum() != null)
-                return modifier.getSernum();
-        }
-        return null;
-    }
-
-    public static String getSernum(PojoDao e) {
-        if (e.getModifiers2() == null || e.getModifiers2().isEmpty())
-            return null;
-        for (PojoDaoModifier modifier : e.getModifiers2()) {
-            if (modifier.getSernum() != null)
-                return modifier.getSernum();
-        }
-        return null;
-    }
-
-    public static List<PojoProperty> requiredFeatures(PojoEntity e) {
-        List<PojoProperty> features = new ArrayList<PojoProperty>();
-        if (e == null || e.getFeatures() == null)
-            return features;
-        for (PojoAnnotatedProperty af : e.getFeatures()) {
-            PojoProperty f = af.getFeature();
-            if (isRequired(f))
-                features.add(f);
-        }
-        PojoEntity s = getSuperType(e);
-        if (s == null)
-            return features;
-        features.addAll(requiredFeatures(s));
-        return features;
-    }
-
-    public static List<PojoProperty> attributes(PojoEntity e) {
-        List<PojoProperty> features = new ArrayList<PojoProperty>();
-        if (e == null || e.getFeatures() == null)
-            return features;
-        for (PojoAnnotatedProperty af : e.getFeatures()) {
-            PojoProperty f = af.getFeature();
-            if (isAttribute(f))
-                features.add(f);
-        }
-        PojoEntity s = getSuperType(e);
-        if (s == null)
-            return features;
-        features.addAll(attributes(s));
-        return features;
-    }
-
-    public static PojoProperty getAttribute(PojoEntity e, String name) {
-        if (e == null || e.getFeatures() == null)
-            return null;
-        for (PojoAnnotatedProperty af : e.getFeatures()) {
-            PojoProperty f = af.getFeature();
-            if (isAttribute(f) && f.getName().equals(name))
-                return f;
-        }
-        PojoEntity s = getSuperType(e);
-        if (s == null)
-            return null;
-        return getAttribute(s, name);
-    }
-
     public static boolean hasName(PojoProperty f, String name) {
         if (f.getName().equals(name))
             return true;
@@ -414,7 +100,7 @@ public class Utils {
         Iterable<IEObjectDescription> iterable = scope.getAllElements();
         for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
             IEObjectDescription description = iter.next();
-            PackageDeclaration packageDeclaration = (PackageDeclaration) artifacts.eResource().getResourceSet()
+            Package packageDeclaration = (Package) artifacts.eResource().getResourceSet()
                     .getEObject(description.getEObjectURI(), true);
             for (AbstractPojoEntity aEntity : packageDeclaration.getElements()) {
                 if (aEntity instanceof AnnotatedEntity) {
@@ -504,10 +190,10 @@ public class Utils {
         return constName(f.getName());
     }
 
-    public static String constName2(PojoProperty f) {
+    public static String constName(List<PojoProperty> l) {
         StringBuilder result = new StringBuilder("");
         boolean first = true;
-        for (PojoProperty p : f.getAttrs()) {
+        for (PojoProperty p : l) {
             if (first)
                 first = false;
             else
@@ -548,25 +234,30 @@ public class Utils {
         return result.startsWith("_") ? result.substring(1) : result;
     }
 
-    public static String dbName(PojoMethod e) {
+    public static String dbName(PojoDao e) {
+        String name = StringExtensions.toFirstLower(e.getName());
+        if (name.endsWith("Dao"))
+            name = name.substring(0, name.length() - 3);
         String result = "";
         int last = 0;
         boolean lastDigit = false;
-        for (int i = 0, l = e.getName().length(); i < l; i++) {
-            char c = e.getName().charAt(i);
+        for (int i = 0, l = name.length(); i < l; i++) {
+            char c = name.charAt(i);
             if (Character.isUpperCase(c) || (Character.isDigit(c) && !lastDigit)) {
                 result = result + e.getName().substring(last, i).toUpperCase() + "_";
                 last = i;
             }
             lastDigit = Character.isDigit(c);
         }
-        if (last < e.getName().length())
-            result = result + e.getName().substring(last).toUpperCase();
+        if (last < name.length())
+            result = result + name.substring(last).toUpperCase();
         return result.startsWith("_") ? result.substring(1) : result;
     }
 
     public static String getPackage(PojoEntity e) {
-        PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(e, PackageDeclaration.class);
+        Package packageDeclaration = EcoreUtil2.getContainerOfType(e, Package.class);
+        if (packageDeclaration == null)
+            System.out.println("XXXXXXXXXX " + e.getName());
         return packageDeclaration.getName();
     }
 
@@ -582,7 +273,7 @@ public class Utils {
     }
 
     public static String getPackage(EnumEntity e) {
-        PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(e, PackageDeclaration.class);
+        Package packageDeclaration = EcoreUtil2.getContainerOfType(e, Package.class);
         return packageDeclaration.getName();
     }
 
@@ -598,7 +289,7 @@ public class Utils {
     }
 
     public static String getPackage(PojoDao e) {
-        PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(e, PackageDeclaration.class);
+        Package packageDeclaration = EcoreUtil2.getContainerOfType(e, Package.class);
         return packageDeclaration.getName();
     }
 
@@ -614,7 +305,7 @@ public class Utils {
     }
 
     public static String getPackage(PojoAnnotatedProperty e) {
-        PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(e, PackageDeclaration.class);
+        Package packageDeclaration = EcoreUtil2.getContainerOfType(e, Package.class);
         return packageDeclaration.getName();
     }
 
@@ -629,53 +320,6 @@ public class Utils {
         return qn2;
     }
 
-    public static Map<String, List<PojoMethodArg>> getToInits(PojoDao d) {
-        Map<String, List<PojoMethodArg>> result = new LinkedHashMap<String, List<PojoMethodArg>>();
-        for (ToInitMethod m : d.getToInits()) {
-            if (m.getArgs() != null && !m.getArgs().isEmpty()) {
-                result.put(m.getName(), new ArrayList<PojoMethodArg>());
-                for (PojoMethodArg a : m.getArgs()) {
-                    result.get(m.getName()).add(a);
-                }
-            }
-        }
-        return result;
-    }
-
-    public static PojoEntity getParent(PojoEntity e) {
-        if (getDiscriminator(e) != null)
-            return null;
-        PojoEntity e2 = getSuperType(e);
-        return e2;
-    }
-
-    public static PojoProperty getOptLock(PojoEntity e) {
-        if (e == null || e.getFeatures() == null)
-            return null;
-        for (PojoAnnotatedProperty af : e.getFeatures()) {
-            PojoProperty f = af.getFeature();
-            if (isOptLock(f))
-                return f;
-        }
-        PojoEntity s = getSuperType(e);
-        if (s == null)
-            return null;
-        return getOptLock(s);
-    }
-
-    // public static String getName(Identifier identifier) {
-    // StringBuilder sb = new StringBuilder();
-    // boolean first = true;
-    // for (ExtendedIdentifier ei : identifier.getIdentifiers()) {
-    // if (first)
-    // first = false;
-    // else
-    // sb.append(".");
-    // sb.append(ei.getName());
-    // }
-    // return sb.toString();
-    // }
-
     public static boolean isNumber(String s) {
         if (s == null)
             return false;
@@ -688,56 +332,6 @@ public class Utils {
         return true;
     }
 
-    public static boolean isCallUpdate(PojoMethod f) {
-        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-            return false;
-        for (PojoMethodModifier modifier : f.getModifiers1()) {
-            if (modifier.isCallUpdate())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isCallFunction(PojoMethod f) {
-        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-            return false;
-        for (PojoMethodModifier modifier : f.getModifiers1()) {
-            if (modifier.isCallFunction())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isCallQuery(PojoMethod f) {
-        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-            return false;
-        for (PojoMethodModifier modifier : f.getModifiers1()) {
-            if (modifier.isCallQuery())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isCallQueryFunction(PojoMethod f) {
-        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-            return false;
-        for (PojoMethodModifier modifier : f.getModifiers1()) {
-            if (modifier.isCallQueryFunction())
-                return true;
-        }
-        return false;
-    }
-
-    public static boolean isCallSelectFunction(PojoMethod f) {
-        if (f.getModifiers1() == null || f.getModifiers1().isEmpty())
-            return false;
-        for (PojoMethodModifier modifier : f.getModifiers1()) {
-            if (modifier.isCallSelectFunction())
-                return true;
-        }
-        return false;
-    }
-
     public static EnumProperty getEnumAttr(EnumEntity e) {
         for (EnumProperty attr : e.getFeatures()) {
             if (attr.getType() != null)
@@ -746,10 +340,26 @@ public class Utils {
         return null;
     }
 
-    public static String getValue(EnumProperty p) {
+    public static String getValue(EnumPropertyValue p) {
         if (p.getValue() == null)
             return null;
-        return p.getValue().replaceAll("'", "\"");
+        if (p.getValue().getValue() != null)
+            return p.getValue().getValue().replaceAll("'", "\"");
+        else if (p.getValue().getId() != null)
+            return p.getValue().getId();
+        else
+            return "" + p.getValue().getNumber();
+    }
+
+    public static String getValue(DescendantAssignment p) {
+        if (p.getValue() == null)
+            return null;
+        if (p.getValue().getValue() != null)
+            return p.getValue().getValue().replaceAll("'", "\"");
+        else if (p.getValue().getId() != null)
+            return p.getValue().getId();
+        else
+            return "" + p.getValue().getNumber();
     }
 
     public static JvmType pojoMethod2jvmType(final PojoEntity e) {
@@ -893,5 +503,27 @@ public class Utils {
                 dbType = dbTypes[0];
         }
         return dbType;
+    }
+
+    public static String getSuffix(Package pkg) {
+        if (pkg.getDirectives() == null || pkg.getDirectives().isEmpty())
+            return null;
+        for (PackageDirective dir : pkg.getDirectives()) {
+            if (dir instanceof PackageDirectiveSuffix)
+                return ((PackageDirectiveSuffix) dir).getSuffix();
+        }
+        return null;
+    }
+
+    public static String getImplPackage(PojoDao d) {
+        Package packageDeclaration = EcoreUtil2.getContainerOfType(d, Package.class);
+        if (packageDeclaration == null || packageDeclaration.getDirectives() == null
+                || packageDeclaration.getDirectives().isEmpty())
+            return null;
+        for (PackageDirective dir : packageDeclaration.getDirectives()) {
+            if (dir instanceof PackageDirectiveImplementation)
+                return ((PackageDirectiveImplementation) dir).getImplementation();
+        }
+        return null;
     }
 }

@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.DaogenProperty#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.DaogenProperty#getDbTables <em>Db Tables</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.DaogenProperty#getImplPackage <em>Impl Package</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.DaogenProperty#getToImplements <em>To Implements</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.DaogenProperty#getToExtends <em>To Extends</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.DaogenProperty#getToImplementsGenerics <em>To Implements Generics</em>}</li>
@@ -76,32 +75,6 @@ public interface DaogenProperty extends EObject
    * @generated
    */
   EList<String> getDbTables();
-
-  /**
-   * Returns the value of the '<em><b>Impl Package</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Impl Package</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Impl Package</em>' attribute.
-   * @see #setImplPackage(String)
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDaogenProperty_ImplPackage()
-   * @model
-   * @generated
-   */
-  String getImplPackage();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.DaogenProperty#getImplPackage <em>Impl Package</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Impl Package</em>' attribute.
-   * @see #getImplPackage()
-   * @generated
-   */
-  void setImplPackage(String value);
 
   /**
    * Returns the value of the '<em><b>To Implements</b></em>' containment reference.

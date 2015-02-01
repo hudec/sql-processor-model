@@ -1,63 +1,70 @@
-grammar org.sqlproc.model.ProcessorModel hidden(ML_COMMENT, SL_COMMENT)
-
-import "http://www.eclipse.org/emf/2002/Ecore" as ecore
-import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
+grammar org.sqlproc.model.ProcessorModel with org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations
 
 generate processorModel "http://www.sqlproc.org/model/ProcessorModel"
+import "http://www.eclipse.org/Xtext/Xbase/XAnnotations"
+import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
 
 Artifacts: {Artifacts}
-    WS* (properties+=Property WS*|pojos+=PojoDefinition WS*|tables+=TableDefinition WS*
-    	|procedures+=ProcedureDefinition WS*|functions+=FunctionDefinition WS*
-    	|pojoPackages+=PackageDeclaration WS*
+	( properties+=Property 
+	| pojos+=PojoDefinition 
+	| tables+=TableDefinition
+    | procedures+=ProcedureDefinition 
+    | functions+=FunctionDefinition
+    | packages+=Package
     )*;
 
-DatabaseCatalogAssignement: dbCatalog=PropertyValue;
-DatabaseSchemaAssignement: dbSchema=PropertyValue;
-DatabaseTypeAssignement: dbType=IDENT;
-DatabaseMetaInfoAssignement: dbMetaInfo=PropertyValue;
-DriverMetaInfoAssignement: dbDriverInfo=PropertyValue;
-DriverMethodOutputAssignement: driverMethod=IDENT '->' callOutput=PropertyValue;
-SqlTypeAssignement: typeName=IDENT (LPAREN size=NUMBER RPAREN)? '->' type=PojoType;
-ColumnTypeAssignement: dbColumn=IDENT '->' type=PojoType;
-ShowColumnTypeAssignement: dbColumn=IDENT '->' type=PropertyValue;
-TableAssignement: dbTable=IDENT '->' newName=IDENT;
-JoinTableAssignement: dbTable=IDENT ('->' dbTables+=IDENT)+;
-ColumnAssignement: dbColumn=IDENT '->' newName=IDENT;
-ImportAssignement: dbColumn=IDENT '->' pkTable=IDENT ('->' pkColumn=IDENT)?;
-ExportAssignement: dbColumn=IDENT '->' fkTable=IDENT ('->' fkColumn=IDENT)?;
-InheritanceAssignement: discriminator=IDENT '->' dbTable=IDENT ('->' dbColumns+=IDENT)+;
-ManyToManyAssignement: pkColumn=IDENT '->' pkTable=IDENT ('->' fkColumn=IDENT)?;
-DebugLevelAssignement: debug=IDENT (WS+ scope=PropertyValue)?;
-ProcedurePojoAssignement: dbProcedure=IDENT '->' pojo=PojoType;
-FunctionPojoAssignement: dbFunction=IDENT '->' pojo=PojoType;
-ImplementsAssignement: toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ExtendsAssignement: toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ImplementsAssignementGenerics: toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ExtendsAssignementGenerics: toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+DatabaseCatalogAssignement: dbCatalog=PROPERTY_VALUE;
+DatabaseSchemaAssignement: dbSchema=PROPERTY_VALUE;
+DatabaseTypeAssignement: dbType=ValidID;
+DatabaseMetaInfoAssignement: dbMetaInfo=PROPERTY_VALUE;
+DriverMetaInfoAssignement: dbDriverInfo=PROPERTY_VALUE;
+DriverMethodOutputAssignement: driverMethod=ValidID '->' callOutput=PROPERTY_VALUE;
+SqlTypeAssignement: typeName=ValidID ('(' size=INT ')')? '->' type=PojoType;
+ColumnTypeAssignement: dbColumn=ValidID '->' type=PojoType;
+ShowColumnTypeAssignement: dbColumn=ValidID '->' type=PROPERTY_VALUE;
+TableAssignement: dbTable=ValidID '->' newName=ValidID;
+JoinTableAssignement: dbTable=ValidID ('->' dbTables+=ValidID)+;
+ColumnAssignement: dbColumn=ValidID '->' newName=ValidID;
+ImportAssignement: dbColumn=ValidID '->' pkTable=ValidID ('->' pkColumn=ValidID)?;
+ExportAssignement: dbColumn=ValidID '->' fkTable=ValidID ('->' fkColumn=ValidID)?;
+InheritanceAssignement: discriminator=ValidID '->' dbTable=ValidID ('->' dbColumns+=ValidID)+;
+ManyToManyAssignement: pkColumn=ValidID '->' pkTable=ValidID ('->' fkColumn=ValidID)?;
+DebugLevelAssignement: debug=ValidID (WS+ scope=PROPERTY_VALUE)?;
+ProcedurePojoAssignement: dbProcedure=ValidID '->' pojo=PojoType;
+FunctionPojoAssignement: dbFunction=ValidID '->' pojo=PojoType;
+ImplementsAssignement: ':' toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?;
+ExtendsAssignement: ':' toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?;
+ImplementsAssignementGenerics: ':' toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?;
+ExtendsAssignementGenerics: ':' toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?;
 
-Property:
+Property hidden(ML_COMMENT, SL_COMMENT):
 	(name='resolve-pojo-on'
 	|name='resolve-pojo-off'
 	|name='database-' database=DatabaseProperty
 	|name='pojogen-' pojogen=PojogenProperty
 	|name='metagen-' metagen=MetagenProperty
 	|name='daogen-' daogen=DaogenProperty
-	|name='replace-all-regex' WS+ replaceId=IDENT WS+ regex=PropertyValue
-	|name='replace-all-replacement' WS+ replaceId=IDENT WS+ replacement=PropertyValue
-	) SEMICOLON;
+	|name='replace-all-regex' WS+ replaceId=ValidID WS+ regex=PROPERTY_VALUE
+	|name='replace-all-replacement' WS+ replaceId=ValidID WS+ replacement=PROPERTY_VALUE
+	|name='compress-meta-directives'
+	) ';';
 
-DatabaseProperty:
+//PropertyCondition:
+//	'{' WS* name=ValidID WS+ '=' WS+ value=(ValidID | INT) WS* '}'
+//;
+
+DatabaseProperty hidden(ML_COMMENT, SL_COMMENT):
 	(name='is-online'
 	|name='is-offline'
-	|name='has-url' WS+ dbUrl=PropertyValue
-	|name='login-username' WS+ dbUsername=PropertyValue
-	|name='login-password' WS+ dbPassword=PropertyValue
+	|name='has-url' WS+ dbUrl=PROPERTY_VALUE
+	|name='login-username' WS+ dbUsername=PROPERTY_VALUE
+	|name='login-password' WS+ dbPassword=PROPERTY_VALUE
 	|name='in-catalog' WS+ dbCatalog=DatabaseCatalogAssignement
 	|name='active-schema' WS+ dbSchema=DatabaseSchemaAssignement
-	|name='jdbc-driver' WS+ (=> COLON dbDriverx=[jvmTypes::JvmType|QualifiedName]|dbDriver=PropertyValue)
-	|name='ddl-create' WS+ dbExecuteBefore=PropertyValue
-	|name='ddl-drop' WS+ dbExecuteAfter=PropertyValue
-	|name='index-types' WS+ dbIndexTypes=PropertyValue
+	|name='jdbc-driver' WS+ (=> ':' dbDriverx=[jvmTypes::JvmType|QualifiedName]|dbDriver=PROPERTY_VALUE)
+	|name='ddl-create' WS+ dbExecuteBefore=PROPERTY_VALUE
+	|name='ddl-drop' WS+ dbExecuteAfter=PROPERTY_VALUE
+	|name='index-types' WS+ dbIndexTypes=PROPERTY_VALUE
 	|name='skip-indexes'
 	|name='skip-functions-procedures'
 	|name='skip-check-constraints'
@@ -71,260 +78,266 @@ DatabaseProperty:
 	|name='uppercase-names'
 	);
 
-PojogenProperty:
+PojogenProperty hidden(ML_COMMENT, SL_COMMENT):
 	(name='types-sqltypes' (WS+ sqlTypes+=SqlTypeAssignement)+
-	|name='types-in-table' WS+ dbTable=IDENT (WS+ sqlTypes+=SqlTypeAssignement)+
-	|name='types-for-columns' WS+ dbTable=IDENT (WS+ columnTypes+=ColumnTypeAssignement)+
-	|name='types-for-procedure' WS+ dbProcedure=IDENT (WS+ columnTypes+=ColumnTypeAssignement)+
-	|name='types-for-function' WS+ dbFunction=IDENT (WS+ columnTypes+=ColumnTypeAssignement)+
-	|name='show-type-for-column' WS+ dbTable=IDENT WS+ columnType=ShowColumnTypeAssignement
-	|name='show-type-for-procedure' WS+ dbProcedure=IDENT WS+ columnType=ShowColumnTypeAssignement
-	|name='show-type-for-function' WS+ dbFunction=IDENT WS+ columnType=ShowColumnTypeAssignement
-	|name='ignore-tables' (WS+ dbTables+=IDENT)+
-	|name='only-tables' (WS+ dbTables+=IDENT)+
-	|name='not-abstract-tables' (WS+ dbTables+=IDENT)+
+	|name='types-in-table' WS+ dbTable=ValidID (WS+ sqlTypes+=SqlTypeAssignement)+
+	|name='types-for-columns' WS+ dbTable=ValidID (WS+ columnTypes+=ColumnTypeAssignement)+
+	|name='types-for-procedure' WS+ dbProcedure=ValidID (WS+ columnTypes+=ColumnTypeAssignement)+
+	|name='types-for-function' WS+ dbFunction=ValidID (WS+ columnTypes+=ColumnTypeAssignement)+
+	|name='show-type-for-column' WS+ dbTable=ValidID WS+ columnType=ShowColumnTypeAssignement
+	|name='show-type-for-procedure' WS+ dbProcedure=ValidID WS+ columnType=ShowColumnTypeAssignement
+	|name='show-type-for-function' WS+ dbFunction=ValidID WS+ columnType=ShowColumnTypeAssignement
+	|name='ignore-tables' (WS+ dbTables+=ValidID)+
+	|name='only-tables' (WS+ dbTables+=ValidID)+
+	|name='not-abstract-tables' (WS+ dbTables+=ValidID)+
 	|name='join-tables' (WS+ joinTables+=JoinTableAssignement)+
-	|name='ignore-columns' WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+
-	|name='required-columns' WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+
-	|name='not-required-columns' WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+
-	|name='create-columns' WS+ dbTable=IDENT (WS+ columnTypes+=ColumnTypeAssignement)+
+	|name='ignore-columns' WS+ dbTable=ValidID (WS+ dbColumns+=ValidID)+
+	|name='required-columns' WS+ dbTable=ValidID (WS+ dbColumns+=ValidID)+
+	|name='not-required-columns' WS+ dbTable=ValidID (WS+ dbColumns+=ValidID)+
+	|name='create-columns' WS+ dbTable=ValidID (WS+ columnTypes+=ColumnTypeAssignement)+
 	|name='rename-tables' (WS+ tables+=TableAssignement)+
-	|name='rename-columns' WS+ dbTable=IDENT (WS+ columns+=ColumnAssignement)+
-	|name='ignore-one-to-many' WS+ dbTable=IDENT (WS+ exports+=ExportAssignement)+ // exports
-	|name='ignore-many-to-one' WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
-	|name='inherit-many-to-one' WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
-	|name='create-one-to-many' WS+ dbTable=IDENT (WS+ exports+=ExportAssignement)+ // exports
-	|name='create-many-to-one' WS+ dbTable=IDENT (WS+ imports+=ImportAssignement)+ // imports
-	|name='table-many-to-many' WS+ dbTable=IDENT (WS+ many2s+=ManyToManyAssignement)+
-	|name='inherit-discriminator' WS+ dbTable=IDENT WS+ dbColumn=IDENT (WS+ inheritance+=InheritanceAssignement)+
-	|name='generate-methods' (WS+ methods+=IDENT)+
-	|name='generate-operators' (WS+ operatorsSuffix=IDENT)?
+	|name='rename-columns' WS+ dbTable=ValidID (WS+ columns+=ColumnAssignement)+
+	|name='ignore-one-to-many' WS+ dbTable=ValidID (WS+ exports+=ExportAssignement)+ // exports
+	|name='ignore-many-to-one' WS+ dbTable=ValidID (WS+ imports+=ImportAssignement)+ // imports
+	|name='inherit-many-to-one' WS+ dbTable=ValidID (WS+ imports+=ImportAssignement)+ // imports
+	|name='create-one-to-many' WS+ dbTable=ValidID (WS+ exports+=ExportAssignement)+ // exports
+	|name='create-many-to-one' WS+ dbTable=ValidID (WS+ imports+=ImportAssignement)+ // imports
+	|name='table-many-to-many' WS+ dbTable=ValidID (WS+ many2s+=ManyToManyAssignement)+
+	|name='inherit-discriminator' WS+ dbTable=ValidID WS+ dbColumn=ValidID (WS+ inheritance+=InheritanceAssignement)+
+	|name='generate-methods' (WS+ methods+=ValidID)+
+	|name='generate-operators' (WS+ operatorsSuffix=ValidID)?
 	|name='implements-interfaces' WS+ toImplements=ImplementsAssignement 
 	|name='extends-class' WS+ toExtends=ExtendsAssignement
 	|name='implements-interfaces-generics' WS+ toImplementsGenerics=ImplementsAssignementGenerics 
 	|name='extends-class-generics' WS+ toExtendsGenerics=ExtendsAssignementGenerics
 	|name='generate-wrappers'
 	|name='generate-validation-annotations'
-	|name='preserve-foreign-keys' (WS+ dbTables+=IDENT)*
-	|name='implementation-package' WS+ implPackage=IDENT
+	|name='preserve-foreign-keys' (WS+ dbTables+=ValidID)*
 	|name='make-it-final'
-	|name='version-column' WS+ version=IDENT (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
+	|name='version-column' WS+ version=ValidID (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?
 	|name='debug-level' WS+ debug=DebugLevelAssignement
 	|name='pojos-for-procedures' (WS+ procPojos+=ProcedurePojoAssignement)+
 	|name='pojos-for-functions' (WS+ funPojos+=FunctionPojoAssignement)+
-	|name='active-filter' WS+ activeFilter=PropertyValue
-	|name='package' WS+ pckg=PropertyValue
-	|name='enum-for-check-constraints' WS+ enumName=IDENT (WS+ dbCheckConstraints+=IDENT)+
+	|name='active-filter' WS+ activeFilter=PROPERTY_VALUE
+	|name='package' WS+ pckg=PROPERTY_VALUE
+	|name='enum-for-check-constraints' WS+ enumName=ValidID (WS+ dbCheckConstraints+=ValidID)+
 	);
 
-MetaTypeAssignement: dbColumn=IDENT '->' type=IDENT ('->' extension=IDENT)?;
+MetaTypeAssignement: dbColumn=ValidID '->' type=ValidID ('->' extension=ValidID)?;
 
-MetagenProperty:
-	(name='global-sequence' WS+ sequence=IDENT (type=IDENT)? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
-	|name='table-sequence' WS+ dbTable=IDENT WS+ sequence=IDENT (WS+ type=IDENT)?
-	|name='global-identity' (WS+ identity=IDENT (type=IDENT)?)? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
-	|name='table-identity' WS+ dbTable=IDENT WS+ identity=IDENT (WS+ type=IDENT)?
-	|name='column-meta-type' WS+ dbTable=IDENT (WS+ metaTypes+=MetaTypeAssignement)+
-	|name='statement-meta-type' WS+ dbStatement=IDENT (WS+ metaTypes+=MetaTypeAssignement)+
+MetagenProperty hidden(ML_COMMENT, SL_COMMENT):
+	(name='global-sequence' WS+ sequence=ValidID (type=ValidID)? (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?
+	|name='table-sequence' WS+ dbTable=ValidID WS+ sequence=ValidID (WS+ type=ValidID)?
+	|name='global-identity' (WS+ identity=ValidID (type=ValidID)?)? (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?
+	|name='table-identity' WS+ dbTable=ValidID WS+ identity=ValidID (WS+ type=ValidID)?
+	|name='column-meta-type' WS+ dbTable=ValidID (WS+ metaTypes+=MetaTypeAssignement)+
+	|name='statement-meta-type' WS+ dbStatement=ValidID (WS+ metaTypes+=MetaTypeAssignement)+
 	|name='make-it-final'
-	|name='like-columns' (WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+)?
-	|name='not-like-columns' (WS+ dbTable=IDENT (WS+ dbColumns+=IDENT)+)?
+	|name='like-columns' (WS+ dbTable=ValidID (WS+ dbColumns+=ValidID)+)?
+	|name='not-like-columns' (WS+ dbTable=ValidID (WS+ dbColumns+=ValidID)+)?
 	|name='generate-sequences'
 	|name='generate-identities'
 	|name='generate-idgenerators'
 	|name='generate-default-idgenerators'
-	|name='function-result' WS+ dbFunction=IDENT WS+ type=IDENT
-	|name='function-result-set' WS+ dbFunction=IDENT WS+ dbTable=IDENT
-	|name='procedure-result-set' WS+ dbProcedure=IDENT WS+ dbTable=IDENT
+	|name='function-result' WS+ dbFunction=ValidID WS+ type=ValidID
+	|name='function-result-set' WS+ dbFunction=ValidID WS+ dbTable=ValidID
+	|name='procedure-result-set' WS+ dbProcedure=ValidID WS+ dbTable=ValidID
 	|name='debug-level' WS+ debug=DebugLevelAssignement
 	|name='generate-operators'
-	|name='optimize-insert' (WS+ dbTables+=IDENT)*
-	|name='optional-features' WS+ dbStatement=IDENT (WS+ optionalFeatures+=IDENT)+
-	|name='active-filter' WS+ activeFilter=PropertyValue
+	|name='optimize-insert' (WS+ dbTables+=ValidID)*
+	|name='optional-features' WS+ dbStatement=ValidID (WS+ optionalFeatures+=ValidID)+
+	|name='active-filter' WS+ activeFilter=PROPERTY_VALUE
 	);
 
-DaogenProperty:
-	(name='ignore-tables' (WS+ dbTables+=IDENT)+
-	|name='only-tables' (WS+ dbTables+=IDENT)*
-	|name='implementation-package' WS+ implPackage=IDENT
+DaogenProperty hidden(ML_COMMENT, SL_COMMENT):
+	(name='ignore-tables' (WS+ dbTables+=ValidID)+
+	|name='only-tables' (WS+ dbTables+=ValidID)*
 	|name='implements-interfaces' WS+ toImplements=ImplementsAssignement
 	|name='extends-class' WS+ toExtends=ExtendsAssignement
 	|name='implements-interfaces-generics' WS+ toImplementsGenerics=ImplementsAssignementGenerics 
 	|name='extends-class-generics' WS+ toExtendsGenerics=ExtendsAssignementGenerics
 	|name='make-it-final'
-	|name='function-result' WS+ dbFunction=IDENT WS+ resultType=PojoType
+	|name='function-result' WS+ dbFunction=ValidID WS+ resultType=PojoType
 	|name='debug-level' WS+ debug=DebugLevelAssignement
-	|name='active-filter' WS+ activeFilter=PropertyValue
-	|name='package' WS+ pckg=PropertyValue
+	|name='active-filter' WS+ activeFilter=PROPERTY_VALUE
+	|name='package' WS+ pckg=PROPERTY_VALUE
 	);
 
-PropertyValue:
-  (REST|IDENT_DOT|IDENT|NUMBER|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|DOT|AND|OR|ESC_CHAR)
-  (=> (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|DOT|AND|OR|ESC_CHAR)*)
-  | STRING_VALUE;
-
 PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
-	'pojo' name=IDENT (class=(IDENT|IDENT_DOT) | COLON classx=[jvmTypes::JvmType|QualifiedName]) SEMICOLON;
+	'pojo' name=ValidID (class=(QualifiedName) | ':' classx=[jvmTypes::JvmType|QualifiedName]) ';';
 
 TableDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
-	'table' name=IDENT table=IDENT SEMICOLON;
+	'table' name=ValidID table=ValidID ';';
 
 ProcedureDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
-	'procedure' name=IDENT table=IDENT SEMICOLON;
+	'procedure' name=ValidID table=ValidID ';';
 
 FunctionDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
-	'function' name=IDENT table=IDENT SEMICOLON;
+	'function' name=ValidID table=ValidID ';';
 
-//terminal IDENT_TYPE: IDENT LPAREN NUMBER (COMMA NUMBER)? RPAREN;
-terminal IDENT_DOT: IDENT (DOT IDENT)+;
-terminal IDENT: ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'=')*;
-terminal NUMBER: ('0'..'9')+;
-//terminal NEGATIVE_NUMBER: '-'('0'..'9')+;
-
-terminal ESC_CHAR:  '\\' (COLON | SEMICOLON | STRING | LBRACE | RBRACE | BOR | HASH | AT | PERCENT | DOT | '/');
-terminal ML_COMMENT : '/*' -> '*/' ;
-terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
-terminal WS:    (' '|'\t'|'\n'|'\r')+ ;
-terminal AND:   '&' '&' ;
-terminal OR:    '|' '|' ;
-
-terminal COLON:    ':' ;
-terminal SEMICOLON:';' ;
-terminal STRING:   '$' ;
-terminal COMMA:    ',' ;
-terminal MINUS:    '-' ;
-terminal PLUS:     '+' ;
-terminal LPAREN:   '(' ;
-terminal RPAREN:   ')' ;
-terminal LBRACE:   '{' ;
-terminal RBRACE:   '}' ;
-terminal QUESTI:   '?' ;
-terminal NOT:      '!' ;
-terminal BAND:     '&' ;
-terminal BOR:      '|' ;
-terminal HASH:     '#' ;
-terminal AT:	   '@';
-terminal CARET:    '^';
-terminal EQUALS:   '=' ;
-terminal LESS_THAN:'<' ;
-terminal MORE_THAN:'>' ;
-terminal PERCENT:  '%' ;
-terminal DOT:      '.' ;
-
-terminal REST: !(SEMICOLON);
-
-terminal STRING_VALUE : '\"' -> '\"' ;
-
-
-FeatureValue:
-  (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR)+;
-
-//SimpleType:
-//	(native = ('_void'|'_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') |
-//	(COLON (COLON ref=[PojoEntity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]));
+ValueType:
+	value = STRING | number = INT | id = ValidID
+;
 
 PojoType:
-	(native = ('_void'|'_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
-	(COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))
-	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) (array ?= '[]')?;
+	(':' type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoEntity|ValidID])
+	('<' (':' gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|ValidID]) '>')? (array ?= '[]')?;
 
-PackageDeclaration hidden(ML_COMMENT, SL_COMMENT, WS):
-	'package' name=(IDENT|IDENT_DOT) ('suffix' suffix=(IDENT|NUMBER))? LBRACE
+PackageDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{PackageDirectiveSuffix} '#Suffix' '(' suffix=(ValidID) ')'
+	| {PackageDirectiveImplementation} '#Implementation' '(' implementation=(QualifiedName) ')'
+;
+
+Package hidden(ML_COMMENT, SL_COMMENT, WS):
+	directives+=PackageDirective*
+	'package' name=(QualifiedName) '{'
 		elements+=AbstractPojoEntity*
-	RBRACE;
+	'}';
+
+AnnotationDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{AnnotationDirectiveConflict} '#Conflict'
+	| {AnnotationDirectiveStatic} '#Static'
+	| {AnnotationDirectiveConstructor} '#Constructor'
+	| {AnnotationDirectiveStandard} '#Standard'
+	| {AnnotationDirectiveSetter} '#Setter'
+	| {AnnotationDirectiveGetter} '#Getter'
+	| {AnnotationDirectiveAttribute} '#Attribute'
+;
 
 Annotation:
-	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?
+	directives+=AnnotationDirective*
+	'@' type=[jvmTypes::JvmType|QualifiedName] (=> '(' features+=AnnotationProperty (',' features+=AnnotationProperty)* ')')?
 ;
 
 AnnotationProperty:
-	(COMMA)? name=IDENT (COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))? (number=NUMBER|value=STRING_VALUE|constant=IDENT)
+	name=ValidID '=' value = ValueType ((':' type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoEntity|ValidID]))?  
 ;
 
 Entity: PojoEntity | EnumEntity;
 
-AnnotatedEntity: (=> AT (=> AT (=> AT (=> AT conflictAnnotations+=Annotation | staticAnnotations+=Annotation) | constructorAnnotations+=Annotation) | annotations+=Annotation))* entity=Entity;
+AnnotatedEntity: (annotations+=Annotation)* entity=Entity;
 
 AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	PackageDeclaration | AnnotatedEntity | Import | Implements | Extends | ImplPackage | PojoDao;
+	Package | AnnotatedEntity | Import | Implements | Extends | PojoDao;
 
 Import hidden(ML_COMMENT, SL_COMMENT, WS):
 	'import' importedNamespace = QualifiedNameWithWildcard;
 
+ImplementsExtendsDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{ImplementsExtendsDirectiveGenerics} '#Generics'
+;
+
 Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-	'implements' implements = [jvmTypes::JvmType|QualifiedName] (generics ?= '<<>>')? ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
+	directives+=ImplementsExtendsDirective*
+	'implements' ':' implements = [jvmTypes::JvmType|QualifiedName] ('onlyPojos' onlyPojos+=[PojoEntity|ValidID]*)? ('onlyDaos' onlyDaos+=[PojoDao|ValidID]*)? ('exceptPojos' exceptPojos+=[PojoEntity|ValidID]*)? ('exceptDaos' exceptDaos+=[PojoDao|ValidID]*)?;
 
 Extends hidden(ML_COMMENT, SL_COMMENT, WS):
-	'extends' extends = [jvmTypes::JvmType|QualifiedName] (generics ?= '<<>>')? ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
-
-ImplPackage hidden(ML_COMMENT, SL_COMMENT, WS):
-	'implementation-package' name=(IDENT|IDENT_DOT);
+	directives+=ImplementsExtendsDirective*
+	'extends' ':' extends = [jvmTypes::JvmType|QualifiedName] ('onlyPojos' onlyPojos+=[PojoEntity|ValidID]*)? ('onlyDaos' onlyDaos+=[PojoDao|ValidID]*)? ('exceptPojos' exceptPojos+=[PojoEntity|ValidID]*)? ('exceptDaos' exceptDaos+=[PojoDao|ValidID]*)?;
 
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));
 
-PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | (operators='operators' (operatorsSuffix=IDENT)?)| ('serializable' sernum=NUMBER));
+DirectiveProperties hidden(ML_COMMENT, SL_COMMENT, WS):
+	features+=[PojoProperty|ValidID] (',' features+=[PojoProperty|ValidID])*
+;
+
+PojoDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{PojoDirectiveToString} '#ToString' '(' proplist=DirectiveProperties ')'
+	| {PojoDirectiveIndex} '#Index' '(' index=INT ',' proplist=DirectiveProperties ')'
+	| {PojoDirectiveOperators} '#Operators' ('(' operatorsSuffix=ValidID ')')?
+	| {PojoDirectiveSerializable} '#Serializable' '(' sernum=INT ')'
+	| {PojoDirectiveDiscriminator} '#InheritanceChild' '(' discriminator=(ValidID) ')'
+	| {PojoDirectiveEquals} '#Equals' '(' proplist=DirectiveProperties ')'
+	| {PojoDirectiveHashCode} '#HashCode' '(' proplist=DirectiveProperties ')'
+;
+
+PojoEntityModifier2: ('extends' superType=[PojoEntity|ValidID]);
 
 PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	(modifiers1+=PojoEntityModifier1)* 'pojo' name=IDENT (modifiers2+=PojoEntityModifier2)* 
-	LBRACE
+	directives+=PojoDirective*
+	(modifiers1+=PojoEntityModifier1)* 'pojo' name=ValidID (modifiers2+=PojoEntityModifier2)* 
+	'{'
 		features+=PojoAnnotatedProperty*
-	RBRACE;
+	'}';
 
-PojoAnnotatedProperty: (=> AT (=> AT (=> AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation))* feature=PojoProperty;
+PojoAnnotatedProperty: (annotations+=Annotation)* feature=PojoProperty;
 
-PojoPropertyModifier: ((required?='required') | (discriminator?='discriminator') | (primaryKey?='primaryKey') | ('index' index=NUMBER) | (version?='optLock') | 
-	                   ('updateCol' updateColumn1=IDENT '->' updateColumn2=IDENT) | ('createCol' createColumn1=IDENT '->' createColumn2=IDENT) 
-);
+PojoPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
+	{PojoPropertyDirectiveRequired} '#Required'
+	| {PojoPropertyDirectivePrimaryKey} '#PrimaryKey'
+	| {PojoPropertyDirectiveDiscriminator} '#InheritanceDiscriminator'
+	| {PojoPropertyDirectiveIndex} '#Index' '(' index=INT ')'
+	| {PojoPropertyDirectiveVersion} '#Version'
+	| {PojoPropertyDirectiveUpdateCol} '#UpdateCol' '(' updateColumn1=ValidID ',' updateColumn2=ValidID ')'
+	| {PojoPropertyDirectiveCreateCol} '#CreateCol' '(' createColumn1=ValidID ',' createColumn2=ValidID ')'
+	| {PojoPropertyDirectiveToInit} '#ToInit'
+	| {PojoPropertyDirectiveEnumInit} '#EnumInit'
+	| {PojoPropertyDirectiveIsDef} '#IsDef'
+	| {PojoPropertyDirectiveEnumDef} '#EnumDef'
+;
 
 PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
-	name=IDENT (native = ('_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
-	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
-	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) (array ?= '[]')?
-	(modifiers+=PojoPropertyModifier)*
+	directives+=PojoPropertyDirective*
+	name=ValidID (':' type=[jvmTypes::JvmType|QualifiedName] | ref=[Entity|ValidID])
+	('<' (':' gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoEntity|ValidID]) '>')? (array ?= '[]')?
 ;
 
 EnumEntityModifier1: ((final?='final'));
 
-EnumEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('serializable' sernum=NUMBER));
+EnumEntityModifier2: ('extends' superType=[PojoEntity|ValidID]);
 
 EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	(modifiers1+=EnumEntityModifier1)* 'enum' name=IDENT (modifiers2+=EnumEntityModifier2)* 
-	LBRACE
+	directives+=PojoDirective*
+	(modifiers1+=EnumEntityModifier1)* 'enum' name=ValidID (modifiers2+=EnumEntityModifier2)* 
+	'{'
 		features+=EnumProperty*
-	RBRACE;
+	'}';
+
+EnumPropertyValue: name=ValidID '=' value = ValueType;
+
+EnumPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
+	{EnumPropertyDirectiveValues} '#Values' '(' values+=EnumPropertyValue (',' values+=EnumPropertyValue)* ')'
+	;
 
 EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
-	name=IDENT (native = ('_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
-	(COLON (COLON COLON value=(NUMBER|STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName])))
+	directives+=EnumPropertyDirective name=ValidID ':' type=[jvmTypes::JvmType|QualifiedName]
 ;
 
-PojoDaoModifier: (('extends' superType=[PojoDao|IDENT]) | ('serializable' sernum=NUMBER));
+DaoDirectiveParameters hidden(ML_COMMENT, SL_COMMENT, WS):
+	out=PojoType (',' ins+=PojoType)*
+;
+
+DescendantAssignment hidden(ML_COMMENT, SL_COMMENT, WS):
+	value = ValueType '=' descendant=PojoType
+;
+
+FunProcType  hidden(ML_COMMENT, SL_COMMENT, WS):
+	{FunctionCallQuery} "#FunctionCallQuery" | 
+	{ProcedureCallQuery} "#ProcedureCallQuery" | 
+	{FunctionCall} "#FunctionCall" | 
+	{ProcedureUpdate} "#ProcedureUpdate" | 
+	{FunctionQuery} "#FunctionQuery"
+	;
+
+DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
+	{DaoDirectiveSerializable} '#Serializable' '(' sernum=INT ')'
+	| {DaoDirectiveDiscriminator} '#InheritanceHandler' '(' ancestor=[PojoProperty|ValidID] (',' descendants+=DescendantAssignment)+ ')'
+	| {DaoDirectiveCrud} '#CRUD' (=> '(' pojo=PojoType ')')?
+	| {DaoDirectiveQuery} '#Query' (=> '(' pojo=PojoType ')')?
+	| {FunProcDirective} type=FunProcType (=> '(' paramlist=DaoDirectiveParameters ')')?
+	;
+
+PojoDaoModifier: ('extends' superType=[PojoDao|ValidID]);
 
 PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
-	(modifiers1+=PojoEntityModifier1)* 'dao' name=IDENT (COLON COLON ((pojoGenerics ?= COLON)?) pojo=[PojoEntity|IDENT])?
+	directives+=DaoDirective*
+	(modifiers1+=PojoEntityModifier1)* 'dao' name=ValidID
 	  (modifiers2+=PojoDaoModifier)* 
-	LBRACE
-		methods+=PojoMethod*
-		toInits+=ToInitMethod*
-	RBRACE;
+	'{'
+		//methods+=PojoMethod*
+	'}';
 
-PojoMethodModifier: ((callFunction?='callFunction') | (callUpdate?='callUpdate') | (callQuery?='callQuery') | (callQueryFunction?='callQueryFunction') | (callSelectFunction?='callSelectFunction'));
+terminal PROPERTY_VALUE:
+  !(';')+;
 
-PojoMethod hidden(ML_COMMENT, SL_COMMENT, WS):
-		(modifiers1+=PojoMethodModifier)* name=IDENT (type=PojoType COLON COLON COLON (args+=PojoMethodArg)+)?
-;
-
-ToInitMethod hidden(ML_COMMENT, SL_COMMENT, WS):
-		name=IDENT COLON COLON COLON (args+=PojoMethodArg)+
-;
-
-PojoMethodArg hidden(ML_COMMENT, SL_COMMENT, WS):
-	name=IDENT type=PojoType
-;
-
-QualifiedNameWithWildcard:
-  QualifiedName '.*'?; 
-
-QualifiedName: (IDENT|IDENT_DOT);
-
-//     (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|SEMICOLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR)
+	

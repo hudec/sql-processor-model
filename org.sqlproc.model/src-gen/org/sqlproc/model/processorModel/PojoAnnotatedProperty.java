@@ -14,9 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.model.processorModel.PojoAnnotatedProperty#getSetterAnnotations <em>Setter Annotations</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.PojoAnnotatedProperty#getGetterAnnotations <em>Getter Annotations</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.PojoAnnotatedProperty#getAttributeAnnotations <em>Attribute Annotations</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.PojoAnnotatedProperty#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.PojoAnnotatedProperty#getFeature <em>Feature</em>}</li>
  * </ul>
  * </p>
@@ -28,52 +26,20 @@ import org.eclipse.emf.ecore.EObject;
 public interface PojoAnnotatedProperty extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Setter Annotations</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
    * The list contents are of type {@link org.sqlproc.model.processorModel.Annotation}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Setter Annotations</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Annotations</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Setter Annotations</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoAnnotatedProperty_SetterAnnotations()
+   * @return the value of the '<em>Annotations</em>' containment reference list.
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoAnnotatedProperty_Annotations()
    * @model containment="true"
    * @generated
    */
-  EList<Annotation> getSetterAnnotations();
-
-  /**
-   * Returns the value of the '<em><b>Getter Annotations</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.Annotation}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Getter Annotations</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Getter Annotations</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoAnnotatedProperty_GetterAnnotations()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Annotation> getGetterAnnotations();
-
-  /**
-   * Returns the value of the '<em><b>Attribute Annotations</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.Annotation}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Attribute Annotations</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Attribute Annotations</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoAnnotatedProperty_AttributeAnnotations()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Annotation> getAttributeAnnotations();
+  EList<Annotation> getAnnotations();
 
   /**
    * Returns the value of the '<em><b>Feature</b></em>' containment reference.

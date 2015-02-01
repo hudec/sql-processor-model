@@ -3,6 +3,7 @@
 package org.sqlproc.model.processorModel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -15,6 +16,7 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.sqlproc.model.processorModel.AnnotationProperty;
 import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
+import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,11 +26,9 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationPropertyImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationPropertyImpl#getRef <em>Ref</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationPropertyImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationPropertyImpl#getNumber <em>Number</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationPropertyImpl#getValue <em>Value</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationPropertyImpl#getConstant <em>Constant</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationPropertyImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationPropertyImpl#getRef <em>Ref</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,14 +57,14 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRef()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected PojoEntity ref;
+  protected ValueType value;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' reference.
@@ -77,64 +77,14 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
   protected JvmType type;
 
   /**
-   * The default value of the '{@link #getNumber() <em>Number</em>}' attribute.
+   * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNumber()
+   * @see #getRef()
    * @generated
    * @ordered
    */
-  protected static final String NUMBER_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getNumber() <em>Number</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNumber()
-   * @generated
-   * @ordered
-   */
-  protected String number = NUMBER_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected static final String VALUE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected String value = VALUE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getConstant() <em>Constant</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getConstant()
-   * @generated
-   * @ordered
-   */
-  protected static final String CONSTANT_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getConstant() <em>Constant</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getConstant()
-   * @generated
-   * @ordered
-   */
-  protected String constant = CONSTANT_EDEFAULT;
+  protected PojoEntity ref;
 
   /**
    * <!-- begin-user-doc -->
@@ -185,19 +135,9 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoEntity getRef()
+  public ValueType getValue()
   {
-    if (ref != null && ref.eIsProxy())
-    {
-      InternalEObject oldRef = (InternalEObject)ref;
-      ref = (PojoEntity)eResolveProxy(oldRef);
-      if (ref != oldRef)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorModelPackage.ANNOTATION_PROPERTY__REF, oldRef, ref));
-      }
-    }
-    return ref;
+    return value;
   }
 
   /**
@@ -205,22 +145,37 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoEntity basicGetRef()
+  public NotificationChain basicSetValue(ValueType newValue, NotificationChain msgs)
   {
-    return ref;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setRef(PojoEntity newRef)
-  {
-    PojoEntity oldRef = ref;
-    ref = newRef;
+    ValueType oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ANNOTATION_PROPERTY__REF, oldRef, ref));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(ValueType newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE, newValue, newValue));
   }
 
   /**
@@ -271,9 +226,19 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getNumber()
+  public PojoEntity getRef()
   {
-    return number;
+    if (ref != null && ref.eIsProxy())
+    {
+      InternalEObject oldRef = (InternalEObject)ref;
+      ref = (PojoEntity)eResolveProxy(oldRef);
+      if (ref != oldRef)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorModelPackage.ANNOTATION_PROPERTY__REF, oldRef, ref));
+      }
+    }
+    return ref;
   }
 
   /**
@@ -281,12 +246,22 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setNumber(String newNumber)
+  public PojoEntity basicGetRef()
   {
-    String oldNumber = number;
-    number = newNumber;
+    return ref;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setRef(PojoEntity newRef)
+  {
+    PojoEntity oldRef = ref;
+    ref = newRef;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ANNOTATION_PROPERTY__NUMBER, oldNumber, number));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ANNOTATION_PROPERTY__REF, oldRef, ref));
   }
 
   /**
@@ -294,45 +269,15 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getValue()
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setValue(String newValue)
-  {
-    String oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE, oldValue, value));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getConstant()
-  {
-    return constant;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setConstant(String newConstant)
-  {
-    String oldConstant = constant;
-    constant = newConstant;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ANNOTATION_PROPERTY__CONSTANT, oldConstant, constant));
+    switch (featureID)
+    {
+      case ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE:
+        return basicSetValue(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -347,18 +292,14 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
     {
       case ProcessorModelPackage.ANNOTATION_PROPERTY__NAME:
         return getName();
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__REF:
-        if (resolve) return getRef();
-        return basicGetRef();
+      case ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE:
+        return getValue();
       case ProcessorModelPackage.ANNOTATION_PROPERTY__TYPE:
         if (resolve) return getType();
         return basicGetType();
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__NUMBER:
-        return getNumber();
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE:
-        return getValue();
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__CONSTANT:
-        return getConstant();
+      case ProcessorModelPackage.ANNOTATION_PROPERTY__REF:
+        if (resolve) return getRef();
+        return basicGetRef();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -376,20 +317,14 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
       case ProcessorModelPackage.ANNOTATION_PROPERTY__NAME:
         setName((String)newValue);
         return;
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__REF:
-        setRef((PojoEntity)newValue);
+      case ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE:
+        setValue((ValueType)newValue);
         return;
       case ProcessorModelPackage.ANNOTATION_PROPERTY__TYPE:
         setType((JvmType)newValue);
         return;
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__NUMBER:
-        setNumber((String)newValue);
-        return;
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE:
-        setValue((String)newValue);
-        return;
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__CONSTANT:
-        setConstant((String)newValue);
+      case ProcessorModelPackage.ANNOTATION_PROPERTY__REF:
+        setRef((PojoEntity)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -408,20 +343,14 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
       case ProcessorModelPackage.ANNOTATION_PROPERTY__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__REF:
-        setRef((PojoEntity)null);
+      case ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE:
+        setValue((ValueType)null);
         return;
       case ProcessorModelPackage.ANNOTATION_PROPERTY__TYPE:
         setType((JvmType)null);
         return;
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__NUMBER:
-        setNumber(NUMBER_EDEFAULT);
-        return;
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE:
-        setValue(VALUE_EDEFAULT);
-        return;
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__CONSTANT:
-        setConstant(CONSTANT_EDEFAULT);
+      case ProcessorModelPackage.ANNOTATION_PROPERTY__REF:
+        setRef((PojoEntity)null);
         return;
     }
     super.eUnset(featureID);
@@ -439,16 +368,12 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
     {
       case ProcessorModelPackage.ANNOTATION_PROPERTY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__REF:
-        return ref != null;
+      case ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE:
+        return value != null;
       case ProcessorModelPackage.ANNOTATION_PROPERTY__TYPE:
         return type != null;
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__NUMBER:
-        return NUMBER_EDEFAULT == null ? number != null : !NUMBER_EDEFAULT.equals(number);
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-      case ProcessorModelPackage.ANNOTATION_PROPERTY__CONSTANT:
-        return CONSTANT_EDEFAULT == null ? constant != null : !CONSTANT_EDEFAULT.equals(constant);
+      case ProcessorModelPackage.ANNOTATION_PROPERTY__REF:
+        return ref != null;
     }
     return super.eIsSet(featureID);
   }
@@ -466,12 +391,6 @@ public class AnnotationPropertyImpl extends MinimalEObjectImpl.Container impleme
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", number: ");
-    result.append(number);
-    result.append(", value: ");
-    result.append(value);
-    result.append(", constant: ");
-    result.append(constant);
     result.append(')');
     return result.toString();
   }

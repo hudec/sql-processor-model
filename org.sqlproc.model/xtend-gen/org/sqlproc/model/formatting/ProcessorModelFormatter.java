@@ -35,9 +35,6 @@ public class ProcessorModelFormatter extends AbstractDeclarativeFormatter {
     FormattingConfig.LinewrapLocator _setLinewrap_2 = c.setLinewrap(0, 1, 1);
     TerminalRule _mL_COMMENTRule_1 = this._processorModelGrammarAccess.getML_COMMENTRule();
     _setLinewrap_2.after(_mL_COMMENTRule_1);
-    FormattingConfig.NoSpaceLocator _setNoSpace = c.setNoSpace();
-    TerminalRule _sEMICOLONRule = this._processorModelGrammarAccess.getSEMICOLONRule();
-    _setNoSpace.before(_sEMICOLONRule);
     FormattingConfig.LinewrapLocator _setLinewrap_3 = c.setLinewrap(1, 1, 2);
     ParserRule _artifactsRule = this._processorModelGrammarAccess.getArtifactsRule();
     _setLinewrap_3.after(_artifactsRule);
@@ -57,7 +54,7 @@ public class ProcessorModelFormatter extends AbstractDeclarativeFormatter {
     ParserRule _functionDefinitionRule = this._processorModelGrammarAccess.getFunctionDefinitionRule();
     _setLinewrap_8.after(_functionDefinitionRule);
     FormattingConfig.LinewrapLocator _setLinewrap_9 = c.setLinewrap(1, 1, 2);
-    ParserRule _packageDeclarationRule = this._processorModelGrammarAccess.getPackageDeclarationRule();
-    _setLinewrap_9.after(_packageDeclarationRule);
+    ParserRule _packageRule = this._processorModelGrammarAccess.getPackageRule();
+    _setLinewrap_9.after(_packageRule);
   }
 }

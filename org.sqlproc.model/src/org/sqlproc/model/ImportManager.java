@@ -19,7 +19,7 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeParameter;
 import org.eclipse.xtext.common.types.JvmVoid;
 import org.sqlproc.model.processorModel.EnumEntity;
-import org.sqlproc.model.processorModel.PackageDeclaration;
+import org.sqlproc.model.processorModel.Package;
 import org.sqlproc.model.processorModel.PojoAnnotatedProperty;
 import org.sqlproc.model.processorModel.PojoDao;
 import org.sqlproc.model.processorModel.PojoEntity;
@@ -119,7 +119,7 @@ public class ImportManager {
     }
 
     public boolean addImportFor(PojoEntity type) {
-        final PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(type, PackageDeclaration.class);
+        final Package packageDeclaration = EcoreUtil2.getContainerOfType(type, Package.class);
         final String simpleName = type.getName();
         final String qualifiedName = packageDeclaration.getName() + "." + simpleName;
         if (!allowsSimpleName(qualifiedName, simpleName) && !needsQualifiedName(qualifiedName, simpleName)
@@ -131,7 +131,7 @@ public class ImportManager {
     }
 
     public boolean addImportFor(EnumEntity type) {
-        final PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(type, PackageDeclaration.class);
+        final Package packageDeclaration = EcoreUtil2.getContainerOfType(type, Package.class);
         final String simpleName = type.getName();
         final String qualifiedName = packageDeclaration.getName() + "." + simpleName;
         if (!allowsSimpleName(qualifiedName, simpleName) && !needsQualifiedName(qualifiedName, simpleName)
@@ -143,7 +143,7 @@ public class ImportManager {
     }
 
     public boolean addImportFor(PojoDao type) {
-        final PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(type, PackageDeclaration.class);
+        final Package packageDeclaration = EcoreUtil2.getContainerOfType(type, Package.class);
         final String simpleName = type.getName();
         final String qualifiedName = packageDeclaration.getName() + "." + simpleName;
         if (!allowsSimpleName(qualifiedName, simpleName) && !needsQualifiedName(qualifiedName, simpleName)
@@ -155,7 +155,7 @@ public class ImportManager {
     }
 
     public boolean addImportFor(PojoAnnotatedProperty type, String name) {
-        final PackageDeclaration packageDeclaration = EcoreUtil2.getContainerOfType(type, PackageDeclaration.class);
+        final Package packageDeclaration = EcoreUtil2.getContainerOfType(type, Package.class);
         final String simpleName = name;
         final String qualifiedName = packageDeclaration.getName() + "." + simpleName;
         if (!allowsSimpleName(qualifiedName, simpleName) && !needsQualifiedName(qualifiedName, simpleName)

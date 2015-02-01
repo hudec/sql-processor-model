@@ -24,17 +24,20 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
+import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.sqlproc.model.generator.ProcessorGeneratorUtils;
 import org.sqlproc.model.processorModel.AbstractPojoEntity;
 import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.Entity;
 import org.sqlproc.model.processorModel.EnumEntity;
 import org.sqlproc.model.processorModel.EnumProperty;
 import org.sqlproc.model.processorModel.FunctionDefinition;
-import org.sqlproc.model.processorModel.PackageDeclaration;
 import org.sqlproc.model.processorModel.PojoAnnotatedProperty;
 import org.sqlproc.model.processorModel.PojoDao;
 import org.sqlproc.model.processorModel.PojoDefinition;
@@ -66,7 +69,17 @@ public class ProcessorModelValidator extends AbstractProcessorModelValidator {
   private DbResolver dbResolver;
   
   @Inject
+  private IScopeProvider scopeProvider;
+  
+  @Inject
+  private IQualifiedNameConverter qualifiedNameConverter;
+  
+  @Inject
   private ModelProperty modelProperty;
+  
+  @Inject
+  @Extension
+  private ProcessorGeneratorUtils _processorGeneratorUtils;
   
   @Check
   public void checkUniquePojoDefinition(final PojoDefinition pojoDefinition) {
@@ -175,8 +188,7 @@ public class ProcessorModelValidator extends AbstractProcessorModelValidator {
     }
     int _length = param.length();
     int i = (_length - 1);
-    boolean _while = (i >= 0);
-    while (_while) {
+    while ((i >= 0)) {
       {
         char _charAt = param.charAt(i);
         boolean _isDigit = Character.isDigit(_charAt);
@@ -186,7 +198,6 @@ public class ProcessorModelValidator extends AbstractProcessorModelValidator {
         }
         i = (i - 1);
       }
-      _while = (i >= 0);
     }
     return true;
   }
@@ -448,7 +459,7 @@ public class ProcessorModelValidator extends AbstractProcessorModelValidator {
         }
       }
     }
-    PojoEntity superType = Utils.getSuperType(entity);
+    PojoEntity superType = this._processorGeneratorUtils.getSuperType(entity);
     boolean _notEquals = (!Objects.equal(superType, null));
     if (_notEquals) {
       ValidationResult result = this.checkEntityProperty(superType, property);
@@ -464,7 +475,7 @@ public class ProcessorModelValidator extends AbstractProcessorModelValidator {
         return result;
       }
     }
-    boolean _isAbstract = Utils.isAbstract(entity);
+    boolean _isAbstract = this._processorGeneratorUtils.isAbstract(entity);
     if (_isAbstract) {
       return ValidationResult.WARNING;
     } else {
@@ -705,8 +716,8 @@ public class ProcessorModelValidator extends AbstractProcessorModelValidator {
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoEntity);
     final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
-    for (final PackageDeclaration pkg : _pojoPackages) {
+    EList<org.sqlproc.model.processorModel.Package> _packages = artifacts.getPackages();
+    for (final org.sqlproc.model.processorModel.Package pkg : _packages) {
       boolean _notEquals = (!Objects.equal(pkg, null));
       if (_notEquals) {
         EList<AbstractPojoEntity> _elements = pkg.getElements();
@@ -776,8 +787,8 @@ public class ProcessorModelValidator extends AbstractProcessorModelValidator {
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(enumEntity);
     final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
-    for (final PackageDeclaration pkg : _pojoPackages) {
+    EList<org.sqlproc.model.processorModel.Package> _packages = artifacts.getPackages();
+    for (final org.sqlproc.model.processorModel.Package pkg : _packages) {
       boolean _notEquals = (!Objects.equal(pkg, null));
       if (_notEquals) {
         EList<AbstractPojoEntity> _elements = pkg.getElements();
@@ -844,8 +855,8 @@ public class ProcessorModelValidator extends AbstractProcessorModelValidator {
     }
     EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoDao);
     final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
-    for (final PackageDeclaration pkg : _pojoPackages) {
+    EList<org.sqlproc.model.processorModel.Package> _packages = artifacts.getPackages();
+    for (final org.sqlproc.model.processorModel.Package pkg : _packages) {
       boolean _notEquals = (!Objects.equal(pkg, null));
       if (_notEquals) {
         EList<AbstractPojoEntity> _elements = pkg.getElements();

@@ -3,9 +3,7 @@
  */
 package org.sqlproc.model.ui.outline;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
-import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 
 /**
  * Customization of the default outline structure.
@@ -14,6 +12,4 @@ import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
  */
 @SuppressWarnings("all")
 public class ProcessorModelOutlineTreeProvider extends DefaultOutlineTreeProvider {
-  public void _createChildren(final DocumentRootNode parentNode, final EObject rootElement) {
-  }
 }

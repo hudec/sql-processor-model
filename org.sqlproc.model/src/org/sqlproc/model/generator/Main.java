@@ -25,9 +25,11 @@ import org.sqlproc.model.processorModel.AbstractPojoEntity;
 import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.EnumEntity;
-import org.sqlproc.model.processorModel.PackageDeclaration;
+import org.sqlproc.model.processorModel.EnumEntityModifier1;
+import org.sqlproc.model.processorModel.Package;
 import org.sqlproc.model.processorModel.PojoDao;
 import org.sqlproc.model.processorModel.PojoEntity;
+import org.sqlproc.model.processorModel.PojoEntityModifier1;
 import org.sqlproc.model.property.ModelPropertyBean;
 import org.sqlproc.model.property.ModelPropertyBean.ModelValues;
 import org.sqlproc.model.resolver.DbResolver;
@@ -214,15 +216,15 @@ public class Main {
         DbResolver dbResolver = new DbResolverBean(modelProperty, driverClass, dbSqlsBefore, null);
 
         Artifacts pojos = null;
-        PackageDeclaration pojoPackage = null;
+        Package pojoPackage = null;
         String pojoPackageName = null;
         if (!merge) {
             pojoPackageName = modelProperty.getPackage(null);
         } else {
             if (pojoResource != null) {
                 pojos = (Artifacts) pojoResource.getContents().get(0);
-                if (!pojos.getPojoPackages().isEmpty()) {
-                    pojoPackage = pojos.getPojoPackages().get(0);
+                if (!pojos.getPackages().isEmpty()) {
+                    pojoPackage = pojos.getPackages().get(0);
                     pojoPackageName = pojoPackage.getName();
                 }
             } else {
@@ -235,15 +237,15 @@ public class Main {
         }
 
         Artifacts daos = null;
-        PackageDeclaration daoPackage = null;
+        Package daoPackage = null;
         String daoPackageName = null;
         if (!merge) {
             daoPackageName = modelProperty.getDaoPackage(null);
         } else {
             if (daoResource != null) {
                 daos = (Artifacts) daoResource.getContents().get(0);
-                if (!daos.getPojoPackages().isEmpty()) {
-                    daoPackage = daos.getPojoPackages().get(0);
+                if (!daos.getPackages().isEmpty()) {
+                    daoPackage = daos.getPackages().get(0);
                     daoPackageName = daoPackage.getName();
                 }
             } else {
@@ -285,21 +287,21 @@ public class Main {
     }
 
     protected String getPojoDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
-            PackageDeclaration packagex, ISerializer serializer) {
+            Package packagex, ISerializer serializer) {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
             Map<String, String> finalEntities = new HashMap<String, String>();
             Annotations annotations = new Annotations();
             String suffix = null;
             if (packagex != null) {
-                suffix = packagex.getSuffix();
+                suffix = Utils.getSuffix(packagex);
                 for (AbstractPojoEntity ape : packagex.getElements()) {
                     if (ape instanceof AnnotatedEntity) {
                         AnnotatedEntity apojo = (AnnotatedEntity) ape;
                         if (apojo.getEntity() != null && apojo.getEntity() instanceof PojoEntity) {
                             PojoEntity pojo = (PojoEntity) apojo.getEntity();
                             Annotations.grabAnnotations(apojo, pojo, annotations);
-                            if (Utils.isFinal(pojo)) {
+                            if (isFinal(pojo)) {
                                 // if (suffix != null && pojo.getName().endsWith(suffix))
                                 // finalEntities.put(
                                 // pojo.getName().substring(0, pojo.getName().length() - suffix.length()),
@@ -309,7 +311,7 @@ public class Main {
                             }
                         } else if (apojo.getEntity() != null && apojo.getEntity() instanceof EnumEntity) {
                             EnumEntity pojo = (EnumEntity) apojo.getEntity();
-                            if (Utils.isFinal(pojo)) {
+                            if (isFinal(pojo)) {
                                 // if (suffix != null && pojo.getName().endsWith(suffix))
                                 // finalEntities.put(
                                 // pojo.getName().substring(0, pojo.getName().length() - suffix.length()),
@@ -333,17 +335,17 @@ public class Main {
     }
 
     protected String getDaoDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
-            PackageDeclaration packagex, ISerializer serializer) {
+            Package packagex, ISerializer serializer) {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
             Map<String, String> finalDaos = new HashMap<String, String>();
             String suffix = null;
             if (packagex != null) {
-                suffix = packagex.getSuffix();
+                suffix = Utils.getSuffix(packagex);
                 for (AbstractPojoEntity ape : packagex.getElements()) {
                     if (ape instanceof PojoDao) {
                         PojoDao dao = (PojoDao) ape;
-                        if (Utils.isFinal(dao)) {
+                        if (isFinal(dao)) {
                             // if (suffix != null && dao.getName().endsWith(suffix))
                             // finalDaos.put(dao.getName().substring(0, dao.getName().length() - suffix.length()),
                             // serializer.serialize(dao));
@@ -363,5 +365,35 @@ public class Main {
             }
         }
         return null;
+    }
+
+    protected boolean isFinal(PojoEntity e) {
+        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
+            return false;
+        for (PojoEntityModifier1 modifier : e.getModifiers1()) {
+            if (modifier.isFinal())
+                return true;
+        }
+        return false;
+    }
+
+    protected boolean isFinal(EnumEntity e) {
+        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
+            return false;
+        for (EnumEntityModifier1 modifier : e.getModifiers1()) {
+            if (modifier.isFinal())
+                return true;
+        }
+        return false;
+    }
+
+    protected boolean isFinal(PojoDao d) {
+        if (d.getModifiers1() == null || d.getModifiers1().isEmpty())
+            return false;
+        for (PojoEntityModifier1 modifier : d.getModifiers1()) {
+            if (modifier.isFinal())
+                return true;
+        }
+        return false;
     }
 }

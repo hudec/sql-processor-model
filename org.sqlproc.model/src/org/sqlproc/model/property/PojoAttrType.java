@@ -1,5 +1,6 @@
 package org.sqlproc.model.property;
 
+import org.eclipse.xtext.common.types.JvmPrimitiveType;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -9,7 +10,7 @@ import org.sqlproc.model.processorModel.PojoType;
 public class PojoAttrType {
     String name;
     int size;
-    String nativeType;
+    boolean nativeType;
     JvmType type;
     JvmType gtype;
     boolean array;
@@ -17,19 +18,15 @@ public class PojoAttrType {
     PojoEntity gref;
     String text;
 
-    public PojoAttrType(String typeName, String size, PojoType pojoType) {
-        this.nativeType = pojoType.getNative();
+    public PojoAttrType(String typeName, int size, PojoType pojoType) {
         this.type = pojoType.getType();
+        // JvmPrimitiveTypeImplCustom
+        this.nativeType = (type != null && type instanceof JvmPrimitiveType) ? true : false;
         this.ref = pojoType.getRef();
         this.array = pojoType.isArray();
         this.gtype = pojoType.getGtype();
         this.gref = pojoType.getGref();
-        if (size != null) {
-            try {
-                this.size = Integer.parseInt(size);
-            } catch (NumberFormatException ignore) {
-            }
-        }
+        this.size = size;
 
         String name = typeName;
         int ix = name.indexOf('(');
@@ -67,12 +64,8 @@ public class PojoAttrType {
         this.size = size;
     }
 
-    public String getNativeType() {
+    public boolean isNativeType() {
         return nativeType;
-    }
-
-    public void setNativeType(String nativeType) {
-        this.nativeType = nativeType;
     }
 
     public JvmType getType() {

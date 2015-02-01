@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.FunctionDefinition;
-import org.sqlproc.model.processorModel.PackageDeclaration;
 import org.sqlproc.model.processorModel.PojoDefinition;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
@@ -37,7 +36,7 @@ import org.sqlproc.model.processorModel.TableDefinition;
  *   <li>{@link org.sqlproc.model.processorModel.impl.ArtifactsImpl#getTables <em>Tables</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.ArtifactsImpl#getProcedures <em>Procedures</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.ArtifactsImpl#getFunctions <em>Functions</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.ArtifactsImpl#getPojoPackages <em>Pojo Packages</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.ArtifactsImpl#getPackages <em>Packages</em>}</li>
  * </ul>
  * </p>
  *
@@ -96,14 +95,14 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
   protected EList<FunctionDefinition> functions;
 
   /**
-   * The cached value of the '{@link #getPojoPackages() <em>Pojo Packages</em>}' containment reference list.
+   * The cached value of the '{@link #getPackages() <em>Packages</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPojoPackages()
+   * @see #getPackages()
    * @generated
    * @ordered
    */
-  protected EList<PackageDeclaration> pojoPackages;
+  protected EList<org.sqlproc.model.processorModel.Package> packages;
 
   /**
    * <!-- begin-user-doc -->
@@ -201,13 +200,13 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PackageDeclaration> getPojoPackages()
+  public EList<org.sqlproc.model.processorModel.Package> getPackages()
   {
-    if (pojoPackages == null)
+    if (packages == null)
     {
-      pojoPackages = new EObjectContainmentEList<PackageDeclaration>(PackageDeclaration.class, this, ProcessorModelPackage.ARTIFACTS__POJO_PACKAGES);
+      packages = new EObjectContainmentEList<org.sqlproc.model.processorModel.Package>(org.sqlproc.model.processorModel.Package.class, this, ProcessorModelPackage.ARTIFACTS__PACKAGES);
     }
-    return pojoPackages;
+    return packages;
   }
 
   /**
@@ -230,8 +229,8 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
         return ((InternalEList<?>)getProcedures()).basicRemove(otherEnd, msgs);
       case ProcessorModelPackage.ARTIFACTS__FUNCTIONS:
         return ((InternalEList<?>)getFunctions()).basicRemove(otherEnd, msgs);
-      case ProcessorModelPackage.ARTIFACTS__POJO_PACKAGES:
-        return ((InternalEList<?>)getPojoPackages()).basicRemove(otherEnd, msgs);
+      case ProcessorModelPackage.ARTIFACTS__PACKAGES:
+        return ((InternalEList<?>)getPackages()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -256,8 +255,8 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
         return getProcedures();
       case ProcessorModelPackage.ARTIFACTS__FUNCTIONS:
         return getFunctions();
-      case ProcessorModelPackage.ARTIFACTS__POJO_PACKAGES:
-        return getPojoPackages();
+      case ProcessorModelPackage.ARTIFACTS__PACKAGES:
+        return getPackages();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -293,9 +292,9 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
         getFunctions().clear();
         getFunctions().addAll((Collection<? extends FunctionDefinition>)newValue);
         return;
-      case ProcessorModelPackage.ARTIFACTS__POJO_PACKAGES:
-        getPojoPackages().clear();
-        getPojoPackages().addAll((Collection<? extends PackageDeclaration>)newValue);
+      case ProcessorModelPackage.ARTIFACTS__PACKAGES:
+        getPackages().clear();
+        getPackages().addAll((Collection<? extends org.sqlproc.model.processorModel.Package>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -326,8 +325,8 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
       case ProcessorModelPackage.ARTIFACTS__FUNCTIONS:
         getFunctions().clear();
         return;
-      case ProcessorModelPackage.ARTIFACTS__POJO_PACKAGES:
-        getPojoPackages().clear();
+      case ProcessorModelPackage.ARTIFACTS__PACKAGES:
+        getPackages().clear();
         return;
     }
     super.eUnset(featureID);
@@ -353,8 +352,8 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
         return procedures != null && !procedures.isEmpty();
       case ProcessorModelPackage.ARTIFACTS__FUNCTIONS:
         return functions != null && !functions.isEmpty();
-      case ProcessorModelPackage.ARTIFACTS__POJO_PACKAGES:
-        return pojoPackages != null && !pojoPackages.isEmpty();
+      case ProcessorModelPackage.ARTIFACTS__PACKAGES:
+        return packages != null && !packages.isEmpty();
     }
     return super.eIsSet(featureID);
   }

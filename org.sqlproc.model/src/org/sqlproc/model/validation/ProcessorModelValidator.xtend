@@ -4,7 +4,7 @@
 package org.sqlproc.model.validation
 import org.eclipse.xtext.validation.Check
 
-//import static org.sqlproc.model.util.Constants.*
+import static org.sqlproc.model.util.Constants.*
 
 import java.lang.reflect.Modifier
 import java.lang.reflect.ParameterizedType
@@ -12,12 +12,14 @@ import java.util.Collection
 import java.util.List
 
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.scoping.IScopeProvider
 import org.sqlproc.model.processorModel.AbstractPojoEntity
 import org.sqlproc.model.processorModel.Artifacts
 import org.sqlproc.model.processorModel.EnumEntity
 import org.sqlproc.model.processorModel.EnumProperty
 import org.sqlproc.model.processorModel.FunctionDefinition
-import org.sqlproc.model.processorModel.PackageDeclaration
+import org.sqlproc.model.processorModel.Package
 import org.sqlproc.model.processorModel.PojoAnnotatedProperty
 import org.sqlproc.model.processorModel.PojoDao
 import org.sqlproc.model.processorModel.PojoDefinition
@@ -36,6 +38,9 @@ import com.google.inject.Inject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.*
+import org.sqlproc.model.generator.ProcessorGeneratorUtils
+import org.sqlproc.model.processorModel.DirectiveProperties
+import org.sqlproc.model.processorModel.PojoDirective
 
 enum ValidationResult {
 	OK, WARNING, ERROR
@@ -55,7 +60,15 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
     DbResolver dbResolver
 
     @Inject
+    IScopeProvider scopeProvider
+
+    @Inject
+    IQualifiedNameConverter qualifiedNameConverter
+
+    @Inject
     ModelProperty modelProperty
+
+	@Inject extension ProcessorGeneratorUtils
 
     @Check
     def checkUniquePojoDefinition(PojoDefinition pojoDefinition) {
@@ -75,7 +88,6 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
             }
         }
     }
-
     def checkClass(String className) {
         if (className == null || pojoResolverFactory.getPojoResolver() == null)
             return true
@@ -230,13 +242,13 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
                 return ValidationResult.ERROR
             }
         }
-        var superType = Utils.getSuperType(entity)
+        var superType = getSuperType(entity)
         if (superType != null) {
             var result = checkEntityProperty(superType, property)
             if (result == ValidationResult.WARNING || result == ValidationResult.OK)
                 return result
         }
-        if (Utils.isAbstract(entity)) {
+        if (isAbstract(entity)) {
             return ValidationResult.WARNING
         }
         else {
@@ -329,7 +341,7 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
         if (!(pojoEntity.rootContainer instanceof Artifacts))
             return
         val artifacts = pojoEntity.rootContainer as Artifacts
-        for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
+        for (Package pkg : artifacts.getPackages()) {
             if (pkg != null) {
 	            for (AbstractPojoEntity entity : pkg.getElements()) {
 	                if (entity != null && (entity instanceof PojoEntity)) {
@@ -365,7 +377,7 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
         if (!(enumEntity.rootContainer instanceof Artifacts))
             return
         val artifacts = enumEntity.rootContainer as Artifacts
-        for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
+        for (Package pkg : artifacts.getPackages()) {
             if (pkg != null) {
 	            for (AbstractPojoEntity entity : pkg.getElements()) {
 	                if (entity != null && (entity instanceof EnumEntity)) {
@@ -400,7 +412,7 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
         if (!(pojoDao.rootContainer instanceof Artifacts))
             return
         val artifacts = pojoDao.rootContainer as Artifacts
-        for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
+        for (Package pkg : artifacts.getPackages()) {
             if (pkg != null) {
 	            for (AbstractPojoEntity dao : pkg.getElements()) {
 	                if (dao != null && (dao instanceof PojoDao)) {
@@ -416,4 +428,23 @@ class ProcessorModelValidator extends AbstractProcessorModelValidator {
             }
         }
     }
+
+
+	// see ProcessorDslScopeProvider
+//	@Check
+//	def checkDirectiveProperties(DirectiveProperties directiveProperties) {
+//		if (directiveProperties.features == null || directiveProperties.features.empty)
+//			return;
+//        val directive = directiveProperties.getContainerOfType(typeof(PojoDirective))
+//        val entity = directive.getContainerOfType(typeof(PojoEntity))
+//		val attributes = attributesAsMap(entity)
+//        for (PojoProperty prop : directiveProperties.features) {
+//        	if (!attributes.containsKey(prop.name)) {
+//                error("Cannot find property : " + prop.name + "[" + entity.name + "]",
+//                        ProcessorModelPackage.Literals.DIRECTIVE_PROPERTIES__FEATURES)
+//                return
+//        	}
+//        }
+//		return
+//	}
 }
