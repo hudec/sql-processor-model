@@ -23,9 +23,11 @@ import org.sqlproc.model.processorModel.AbstractPojoEntity;
 import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.EnumEntity;
-import org.sqlproc.model.processorModel.PackageDeclaration;
+import org.sqlproc.model.processorModel.EnumEntityModifier1;
+import org.sqlproc.model.processorModel.Package;
 import org.sqlproc.model.processorModel.PojoDao;
 import org.sqlproc.model.processorModel.PojoEntity;
+import org.sqlproc.model.processorModel.PojoEntityModifier1;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.property.ModelProperty;
 import org.sqlproc.model.resolver.DbResolver;
@@ -79,11 +81,11 @@ public class ProcessorModelTemplateContextType extends XtextTemplateContextType 
         return EcoreUtil2.getContainerOfType(object, Artifacts.class);
     }
 
-    protected PackageDeclaration getPackage(XtextTemplateContext xtextTemplateContext) {
+    protected Package getPackage(XtextTemplateContext xtextTemplateContext) {
         if (xtextTemplateContext == null)
             return null;
         EObject object = xtextTemplateContext.getContentAssistContext().getCurrentModel();
-        PackageDeclaration packagex = EcoreUtil2.getContainerOfType(object, PackageDeclaration.class);
+        Package packagex = EcoreUtil2.getContainerOfType(object, Package.class);
         return packagex;
     }
 
@@ -429,19 +431,19 @@ public class ProcessorModelTemplateContextType extends XtextTemplateContextType 
         @Override
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
-            PackageDeclaration packagex = getPackage((XtextTemplateContext) context);
+            Package packagex = getPackage((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
 
                 Map<String, String> finalEntities = new HashMap<String, String>();
                 Annotations annotations = new Annotations();
-                String suffix = packagex.getSuffix();
+                String suffix = Utils.getSuffix(packagex);
                 for (AbstractPojoEntity ape : packagex.getElements()) {
                     if (ape instanceof AnnotatedEntity) {
                         AnnotatedEntity apojo = (AnnotatedEntity) ape;
                         if (apojo.getEntity() != null && apojo.getEntity() instanceof PojoEntity) {
                             PojoEntity pojo = (PojoEntity) apojo.getEntity();
                             Annotations.grabAnnotations(apojo, pojo, annotations);
-                            if (Utils.isFinal(pojo)) {
+                            if (isFinal(pojo)) {
                                 // if (suffix != null && pojo.getName().endsWith(suffix))
                                 // finalEntities.add(pojo.getName()
                                 // .substring(0, pojo.getName().length() - suffix.length()));
@@ -451,7 +453,7 @@ public class ProcessorModelTemplateContextType extends XtextTemplateContextType 
                             }
                         } else if (apojo.getEntity() != null && apojo.getEntity() instanceof EnumEntity) {
                             EnumEntity pojo = (EnumEntity) apojo.getEntity();
-                            if (Utils.isFinal(pojo)) {
+                            if (isFinal(pojo)) {
                                 // if (suffix != null && pojo.getName().endsWith(suffix))
                                 // finalEntities.add(pojo.getName()
                                 // .substring(0, pojo.getName().length() - suffix.length()));
@@ -491,15 +493,15 @@ public class ProcessorModelTemplateContextType extends XtextTemplateContextType 
         @Override
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
-            PackageDeclaration packagex = getPackage((XtextTemplateContext) context);
+            Package packagex = getPackage((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
 
                 Map<String, String> finalDaos = new HashMap<String, String>();
-                String suffix = packagex.getSuffix();
+                String suffix = Utils.getSuffix(packagex);
                 for (AbstractPojoEntity ape : packagex.getElements()) {
                     if (ape instanceof PojoDao) {
                         PojoDao dao = (PojoDao) ape;
-                        if (Utils.isFinal(dao)) {
+                        if (isFinal(dao)) {
                             // if (suffix != null && dao.getName().endsWith(suffix))
                             // finalDaos.add(dao.getName()
                             // .substring(0, dao.getName().length() - suffix.length()));
@@ -526,5 +528,35 @@ public class ProcessorModelTemplateContextType extends XtextTemplateContextType 
         protected boolean isUnambiguous(TemplateContext context) {
             return true;
         }
+    }
+
+    protected boolean isFinal(PojoEntity e) {
+        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
+            return false;
+        for (PojoEntityModifier1 modifier : e.getModifiers1()) {
+            if (modifier.isFinal())
+                return true;
+        }
+        return false;
+    }
+
+    protected boolean isFinal(EnumEntity e) {
+        if (e.getModifiers1() == null || e.getModifiers1().isEmpty())
+            return false;
+        for (EnumEntityModifier1 modifier : e.getModifiers1()) {
+            if (modifier.isFinal())
+                return true;
+        }
+        return false;
+    }
+
+    protected boolean isFinal(PojoDao d) {
+        if (d.getModifiers1() == null || d.getModifiers1().isEmpty())
+            return false;
+        for (PojoEntityModifier1 modifier : d.getModifiers1()) {
+            if (modifier.isFinal())
+                return true;
+        }
+        return false;
     }
 }

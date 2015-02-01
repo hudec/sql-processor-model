@@ -6,7 +6,6 @@ package org.sqlproc.model.ui.labeling;
 import com.google.inject.Inject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
-import org.sqlproc.model.processorModel.Artifacts;
 
 /**
  * Provides labels for a EObjects.
@@ -18,9 +17,5 @@ public class ProcessorModelLabelProvider extends DefaultEObjectLabelProvider {
   @Inject
   public ProcessorModelLabelProvider(final AdapterFactoryLabelProvider delegate) {
     super(delegate);
-  }
-  
-  public String text(final Artifacts ele) {
-    return "MODEL";
   }
 }

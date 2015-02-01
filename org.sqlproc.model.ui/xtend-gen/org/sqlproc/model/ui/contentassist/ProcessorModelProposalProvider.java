@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -31,15 +32,21 @@ import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.sqlproc.model.generator.ProcessorGeneratorUtils;
+import org.sqlproc.model.processorModel.AbstractPojoEntity;
+import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.DatabaseProperty;
 import org.sqlproc.model.processorModel.DriverMethodOutputAssignement;
 import org.sqlproc.model.processorModel.Entity;
@@ -48,6 +55,7 @@ import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
+import org.sqlproc.model.processorModel.PojoAnnotatedProperty;
 import org.sqlproc.model.processorModel.PojoDefinition;
 import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.PojoProperty;
@@ -70,6 +78,13 @@ public class ProcessorModelProposalProvider extends AbstractProcessorModelPropos
   
   @Inject
   private DbResolver dbResolver;
+  
+  @Inject
+  private IQualifiedNameConverter qualifiedNameConverter;
+  
+  @Inject
+  @Extension
+  private ProcessorGeneratorUtils _processorGeneratorUtils;
   
   private final ArrayList<String> DEBUG_LEVELS = CollectionLiterals.<String>newArrayList("DEBUG", "INFO", "FATAL", "ERROR", "WARN", "TRACE");
   
@@ -133,32 +148,134 @@ public class ProcessorModelProposalProvider extends AbstractProcessorModelPropos
   }
   
   protected PojoEntity _getPojoEntity(final PojoEntity baseEntity, final String property) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method attributes is undefined for the type ProcessorModelProposalProvider"
-      + "\nThe method or field name is undefined for the type ProcessorModelProposalProvider"
-      + "\nfindFirst cannot be resolved"
-      + "\n== cannot be resolved"
-      + "\n== cannot be resolved"
-      + "\n|| cannot be resolved"
-      + "\ngetRef cannot be resolved"
-      + "\n== cannot be resolved"
-      + "\n&& cannot be resolved"
-      + "\ngetGref cannot be resolved"
-      + "\n== cannot be resolved"
-      + "\nref cannot be resolved"
-      + "\n?: cannot be resolved"
-      + "\ngref cannot be resolved");
+    PojoEntity _xblockexpression = null;
+    {
+      boolean _or = false;
+      boolean _equals = Objects.equal(baseEntity, null);
+      if (_equals) {
+        _or = true;
+      } else {
+        boolean _equals_1 = Objects.equal(property, null);
+        _or = _equals_1;
+      }
+      if (_or) {
+        return baseEntity;
+      }
+      int _indexOf = property.indexOf(".");
+      boolean _equals_2 = (_indexOf == (-1));
+      if (_equals_2) {
+        return baseEntity;
+      }
+      String checkProperty = property;
+      int pos1 = checkProperty.indexOf("=");
+      if ((pos1 > 0)) {
+        int pos2 = checkProperty.indexOf(".", pos1);
+        if ((pos2 > pos1)) {
+          String _substring = checkProperty.substring(0, pos1);
+          String _substring_1 = checkProperty.substring(pos2);
+          String _plus = (_substring + _substring_1);
+          checkProperty = _plus;
+        }
+      }
+      String innerProperty = ((String) null);
+      int _indexOf_1 = checkProperty.indexOf(".");
+      pos1 = _indexOf_1;
+      if ((pos1 > 0)) {
+        String _substring_2 = checkProperty.substring((pos1 + 1));
+        innerProperty = _substring_2;
+        String _substring_3 = checkProperty.substring(0, pos1);
+        checkProperty = _substring_3;
+      }
+      final String _checkProperty = checkProperty;
+      List<PojoProperty> _attributes = this._processorGeneratorUtils.attributes(baseEntity);
+      final Function1<PojoProperty, Boolean> _function = new Function1<PojoProperty, Boolean>() {
+        public Boolean apply(final PojoProperty it) {
+          String _name = it.getName();
+          return Boolean.valueOf(Objects.equal(_name, _checkProperty));
+        }
+      };
+      PojoProperty innerPojoProperty = IterableExtensions.<PojoProperty>findFirst(_attributes, _function);
+      boolean _or_1 = false;
+      boolean _equals_3 = Objects.equal(innerPojoProperty, null);
+      if (_equals_3) {
+        _or_1 = true;
+      } else {
+        boolean _and = false;
+        Entity _ref = innerPojoProperty.getRef();
+        boolean _equals_4 = Objects.equal(_ref, null);
+        if (!_equals_4) {
+          _and = false;
+        } else {
+          PojoEntity _gref = innerPojoProperty.getGref();
+          boolean _equals_5 = Objects.equal(_gref, null);
+          _and = _equals_5;
+        }
+        _or_1 = _and;
+      }
+      if (_or_1) {
+        return null;
+      }
+      Entity _elvis = null;
+      Entity _ref_1 = innerPojoProperty.getRef();
+      if (_ref_1 != null) {
+        _elvis = _ref_1;
+      } else {
+        PojoEntity _gref_1 = innerPojoProperty.getGref();
+        _elvis = ((Entity) _gref_1);
+      }
+      Entity innerEntity = _elvis;
+      _xblockexpression = this.getPojoEntity(innerEntity, innerProperty);
+    }
+    return _xblockexpression;
   }
   
   public List<PojoProperty> getProperties(final PojoEntity pojoEntity, final List<PojoProperty> inproperties) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field native is undefined for the type ProcessorModelProposalProvider"
-      + "\nThe method getSuperType is undefined for the type ProcessorModelProposalProvider"
-      + "\n!= cannot be resolved"
-      + "\n|| cannot be resolved"
-      + "\n|| cannot be resolved"
-      + "\n== cannot be resolved"
-      + "\ngetProperties cannot be resolved");
+    List<PojoProperty> _elvis = null;
+    if (inproperties != null) {
+      _elvis = inproperties;
+    } else {
+      ArrayList<PojoProperty> _newArrayList = CollectionLiterals.<PojoProperty>newArrayList();
+      _elvis = _newArrayList;
+    }
+    final List<PojoProperty> properties = _elvis;
+    boolean _equals = Objects.equal(pojoEntity, null);
+    if (_equals) {
+      return properties;
+    }
+    EList<PojoAnnotatedProperty> _features = pojoEntity.getFeatures();
+    final Function1<PojoAnnotatedProperty, PojoProperty> _function = new Function1<PojoAnnotatedProperty, PojoProperty>() {
+      public PojoProperty apply(final PojoAnnotatedProperty it) {
+        return it.getFeature();
+      }
+    };
+    List<PojoProperty> _map = ListExtensions.<PojoAnnotatedProperty, PojoProperty>map(_features, _function);
+    final Procedure1<PojoProperty> _function_1 = new Procedure1<PojoProperty>() {
+      public void apply(final PojoProperty it) {
+        boolean _or = false;
+        Entity _ref = it.getRef();
+        boolean _notEquals = (!Objects.equal(_ref, null));
+        if (_notEquals) {
+          _or = true;
+        } else {
+          JvmType _type = it.getType();
+          boolean _notEquals_1 = (!Objects.equal(_type, null));
+          _or = _notEquals_1;
+        }
+        if (_or) {
+          properties.add(it);
+        }
+      }
+    };
+    IterableExtensions.<PojoProperty>forEach(_map, _function_1);
+    final PojoEntity superType = this._processorGeneratorUtils.getSuperType(pojoEntity);
+    List<PojoProperty> _xifexpression = null;
+    boolean _equals_1 = Objects.equal(superType, null);
+    if (_equals_1) {
+      _xifexpression = properties;
+    } else {
+      _xifexpression = this.getProperties(superType, properties);
+    }
+    return _xifexpression;
   }
   
   public boolean isPrimitive(final Class<?> clazz) {
@@ -1207,8 +1324,7 @@ public class ProcessorModelProposalProvider extends AbstractProcessorModelPropos
     }
   }
   
-  private final ArrayList<String> methods = CollectionLiterals.<String>newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", 
-    "enumInit", "index=");
+  private final ArrayList<String> methods = CollectionLiterals.<String>newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", "enumInit", "index=");
   
   public void completePojogenProperty_Methods(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     if ((!(model instanceof PojogenProperty))) {
@@ -1337,11 +1453,38 @@ public class ProcessorModelProposalProvider extends AbstractProcessorModelPropos
   }
   
   public Set<PojoEntity> listEntities(final ResourceSet resourceSet, final IScope scope) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nPackageDeclaration cannot be resolved to a type."
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
-      + "\ngetElements cannot be resolved"
-      + "\nforEach cannot be resolved");
+    final Comparator<PojoEntity> _function = new Comparator<PojoEntity>() {
+      public int compare(final PojoEntity o1, final PojoEntity o2) {
+        String _name = o1.getName();
+        String _name_1 = o2.getName();
+        return _name.compareTo(_name_1);
+      }
+    };
+    final TreeSet<PojoEntity> result = CollectionLiterals.<PojoEntity>newTreeSet(_function);
+    Iterable<IEObjectDescription> _allElements = scope.getAllElements();
+    final Procedure1<IEObjectDescription> _function_1 = new Procedure1<IEObjectDescription>() {
+      public void apply(final IEObjectDescription description) {
+        URI _eObjectURI = description.getEObjectURI();
+        EObject _eObject = resourceSet.getEObject(_eObjectURI, true);
+        final org.sqlproc.model.processorModel.Package packageDeclaration = ((org.sqlproc.model.processorModel.Package) _eObject);
+        EList<AbstractPojoEntity> _elements = packageDeclaration.getElements();
+        final Procedure1<AbstractPojoEntity> _function = new Procedure1<AbstractPojoEntity>() {
+          public void apply(final AbstractPojoEntity aEntity) {
+            if ((aEntity instanceof AnnotatedEntity)) {
+              AnnotatedEntity ae = ((AnnotatedEntity) aEntity);
+              Entity _entity = ae.getEntity();
+              if ((_entity instanceof PojoEntity)) {
+                Entity _entity_1 = ae.getEntity();
+                result.add(((PojoEntity) _entity_1));
+              }
+            }
+          }
+        };
+        IterableExtensions.<AbstractPojoEntity>forEach(_elements, _function);
+      }
+    };
+    IterableExtensions.<IEObjectDescription>forEach(_allElements, _function_1);
+    return result;
   }
   
   public Set<PojoDefinition> listPojos(final ResourceSet resourceSet, final IScope scope) {
@@ -1649,6 +1792,16 @@ public class ProcessorModelProposalProvider extends AbstractProcessorModelPropos
       return;
     }
     this.acceptFunctions(model, context, acceptor);
+  }
+  
+  public void completePojogenProperty_DbCheckConstraints(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    boolean _isResolveDb = this.isResolveDb(model);
+    boolean _not = (!_isResolveDb);
+    if (_not) {
+      super.completePojogenProperty_DbCheckConstraints(model, assignment, context, acceptor);
+      return;
+    }
+    this.acceptCheckConstraints(model, context, acceptor);
   }
   
   public PojoEntity getPojoEntity(final Entity baseEntity, final String property) {
