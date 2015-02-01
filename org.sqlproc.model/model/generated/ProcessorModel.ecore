@@ -20,12 +20,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DatabaseCatalogAssignement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dbCatalog" eType="#//PropertyValue"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbCatalog" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DatabaseSchemaAssignement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dbSchema" eType="#//PropertyValue"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbSchema" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DatabaseTypeAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -95,8 +93,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DebugLevelAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="debug" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="scope" eType="#//PropertyValue"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scope" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcedurePojoAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbProcedure" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -236,8 +233,7 @@
         eType="#//FunctionPojoAssignement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activeFilter" eType="#//PropertyValue"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pckg" eType="#//PropertyValue"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pckg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enumName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbCheckConstraints" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -290,8 +286,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activeFilter" eType="#//PropertyValue"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pckg" eType="#//PropertyValue"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pckg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -173,14 +173,24 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
   protected PropertyValue activeFilter;
 
   /**
-   * The cached value of the '{@link #getPckg() <em>Pckg</em>}' containment reference.
+   * The default value of the '{@link #getPckg() <em>Pckg</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getPckg()
    * @generated
    * @ordered
    */
-  protected PropertyValue pckg;
+  protected static final String PCKG_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getPckg() <em>Pckg</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPckg()
+   * @generated
+   * @ordered
+   */
+  protected String pckg = PCKG_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -604,7 +614,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getPckg()
+  public String getPckg()
   {
     return pckg;
   }
@@ -614,37 +624,12 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPckg(PropertyValue newPckg, NotificationChain msgs)
+  public void setPckg(String newPckg)
   {
-    PropertyValue oldPckg = pckg;
+    String oldPckg = pckg;
     pckg = newPckg;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAOGEN_PROPERTY__PCKG, oldPckg, newPckg);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setPckg(PropertyValue newPckg)
-  {
-    if (newPckg != pckg)
-    {
-      NotificationChain msgs = null;
-      if (pckg != null)
-        msgs = ((InternalEObject)pckg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DAOGEN_PROPERTY__PCKG, null, msgs);
-      if (newPckg != null)
-        msgs = ((InternalEObject)newPckg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DAOGEN_PROPERTY__PCKG, null, msgs);
-      msgs = basicSetPckg(newPckg, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAOGEN_PROPERTY__PCKG, newPckg, newPckg));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAOGEN_PROPERTY__PCKG, oldPckg, pckg));
   }
 
   /**
@@ -671,8 +656,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return basicSetDebug(null, msgs);
       case ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
         return basicSetActiveFilter(null, msgs);
-      case ProcessorModelPackage.DAOGEN_PROPERTY__PCKG:
-        return basicSetPckg(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -756,7 +739,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setActiveFilter((PropertyValue)newValue);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__PCKG:
-        setPckg((PropertyValue)newValue);
+        setPckg((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -803,7 +786,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setActiveFilter((PropertyValue)null);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__PCKG:
-        setPckg((PropertyValue)null);
+        setPckg(PCKG_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -840,7 +823,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       case ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
         return activeFilter != null;
       case ProcessorModelPackage.DAOGEN_PROPERTY__PCKG:
-        return pckg != null;
+        return PCKG_EDEFAULT == null ? pckg != null : !PCKG_EDEFAULT.equals(pckg);
     }
     return super.eIsSet(featureID);
   }
@@ -862,6 +845,8 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
     result.append(dbTables);
     result.append(", dbFunction: ");
     result.append(dbFunction);
+    result.append(", pckg: ");
+    result.append(pckg);
     result.append(')');
     return result.toString();
   }

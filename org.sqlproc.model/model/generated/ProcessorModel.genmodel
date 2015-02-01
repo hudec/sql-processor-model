@@ -19,10 +19,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PropertyValue/value"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DatabaseCatalogAssignement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DatabaseCatalogAssignement/dbCatalog"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DatabaseCatalogAssignement/dbCatalog"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DatabaseSchemaAssignement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DatabaseSchemaAssignement/dbSchema"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DatabaseSchemaAssignement/dbSchema"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DatabaseTypeAssignement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DatabaseTypeAssignement/dbType"/>
@@ -84,7 +84,7 @@
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DebugLevelAssignement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DebugLevelAssignement/debug"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DebugLevelAssignement/scope"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DebugLevelAssignement/scope"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//ProcedurePojoAssignement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//ProcedurePojoAssignement/dbProcedure"/>
@@ -172,7 +172,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojogenProperty/procPojos"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojogenProperty/funPojos"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojogenProperty/activeFilter"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojogenProperty/pckg"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojogenProperty/pckg"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojogenProperty/enumName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojogenProperty/dbCheckConstraints"/>
     </genClasses>
@@ -209,7 +209,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaogenProperty/resultType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaogenProperty/debug"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaogenProperty/activeFilter"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaogenProperty/pckg"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//DaogenProperty/pckg"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoDefinition/name"/>

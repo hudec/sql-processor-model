@@ -2260,7 +2260,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         (name='function-result' dbFunction=ValidID resultType=PojoType) | 
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
 	 *         (name='active-filter' activeFilter=PropertyValue) | 
-	 *         (name='package' pckg=PropertyValue)
+	 *         (name='package' pckg=QualifiedName)
 	 *     )
 	 */
 	protected void sequence_DaogenProperty(EObject context, DaogenProperty semanticObject) {
@@ -2270,7 +2270,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     dbCatalog=PropertyValue
+	 *     dbCatalog=QualifiedName
 	 */
 	protected void sequence_DatabaseCatalogAssignement(EObject context, DatabaseCatalogAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -2279,7 +2279,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogPropertyValueParserRuleCall_0(), semanticObject.getDbCatalog());
+		feeder.accept(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogQualifiedNameParserRuleCall_0(), semanticObject.getDbCatalog());
 		feeder.finish();
 	}
 	
@@ -2334,7 +2334,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     dbSchema=PropertyValue
+	 *     dbSchema=QualifiedName
 	 */
 	protected void sequence_DatabaseSchemaAssignement(EObject context, DatabaseSchemaAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -2343,7 +2343,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaPropertyValueParserRuleCall_0(), semanticObject.getDbSchema());
+		feeder.accept(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaQualifiedNameParserRuleCall_0(), semanticObject.getDbSchema());
 		feeder.finish();
 	}
 	
@@ -2366,7 +2366,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (debug=ValidID scope=PropertyValue?)
+	 *     (debug=ValidID scope=ValidID?)
 	 */
 	protected void sequence_DebugLevelAssignement(EObject context, DebugLevelAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2716,7 +2716,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     importedNamespace=QualifiedNameWithWildcard
+	 *     importedNamespace=QualifiedName
 	 */
 	protected void sequence_Import(EObject context, Import semanticObject) {
 		if(errorAcceptor != null) {
@@ -2725,7 +2725,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getImportAccess().getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0(), semanticObject.getImportedNamespace());
+		feeder.accept(grammarAccess.getImportAccess().getImportedNamespaceQualifiedNameParserRuleCall_1_0(), semanticObject.getImportedNamespace());
 		feeder.finish();
 	}
 	
@@ -3216,7 +3216,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         (name='pojos-for-procedures' procPojos+=ProcedurePojoAssignement+) | 
 	 *         (name='pojos-for-functions' funPojos+=FunctionPojoAssignement+) | 
 	 *         (name='active-filter' activeFilter=PropertyValue) | 
-	 *         (name='package' pckg=PropertyValue) | 
+	 *         (name='package' pckg=QualifiedName) | 
 	 *         (name='enum-for-check-constraints' enumName=ValidID dbCheckConstraints+=ValidID+)
 	 *     )
 	 */

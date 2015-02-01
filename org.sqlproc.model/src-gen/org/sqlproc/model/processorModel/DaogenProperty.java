@@ -285,29 +285,29 @@ public interface DaogenProperty extends EObject
   void setActiveFilter(PropertyValue value);
 
   /**
-   * Returns the value of the '<em><b>Pckg</b></em>' containment reference.
+   * Returns the value of the '<em><b>Pckg</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Pckg</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Pckg</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Pckg</em>' containment reference.
-   * @see #setPckg(PropertyValue)
+   * @return the value of the '<em>Pckg</em>' attribute.
+   * @see #setPckg(String)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDaogenProperty_Pckg()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  PropertyValue getPckg();
+  String getPckg();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.DaogenProperty#getPckg <em>Pckg</em>}' containment reference.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.DaogenProperty#getPckg <em>Pckg</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Pckg</em>' containment reference.
+   * @param value the new value of the '<em>Pckg</em>' attribute.
    * @see #getPckg()
    * @generated
    */
-  void setPckg(PropertyValue value);
+  void setPckg(String value);
 
 } // DaogenProperty

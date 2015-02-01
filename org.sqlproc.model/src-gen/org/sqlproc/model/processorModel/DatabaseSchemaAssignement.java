@@ -23,29 +23,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface DatabaseSchemaAssignement extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Db Schema</b></em>' containment reference.
+   * Returns the value of the '<em><b>Db Schema</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Db Schema</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Db Schema</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Schema</em>' containment reference.
-   * @see #setDbSchema(PropertyValue)
+   * @return the value of the '<em>Db Schema</em>' attribute.
+   * @see #setDbSchema(String)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDatabaseSchemaAssignement_DbSchema()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  PropertyValue getDbSchema();
+  String getDbSchema();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseSchemaAssignement#getDbSchema <em>Db Schema</em>}' containment reference.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseSchemaAssignement#getDbSchema <em>Db Schema</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Db Schema</em>' containment reference.
+   * @param value the new value of the '<em>Db Schema</em>' attribute.
    * @see #getDbSchema()
    * @generated
    */
-  void setDbSchema(PropertyValue value);
+  void setDbSchema(String value);
 
 } // DatabaseSchemaAssignement

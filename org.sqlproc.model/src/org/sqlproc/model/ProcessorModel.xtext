@@ -14,8 +14,8 @@ Artifacts: {Artifacts}
     )*;
 
 PropertyValue: value=STRING;
-DatabaseCatalogAssignement: dbCatalog=PropertyValue;
-DatabaseSchemaAssignement: dbSchema=PropertyValue;
+DatabaseCatalogAssignement: dbCatalog=QualifiedName;
+DatabaseSchemaAssignement: dbSchema=QualifiedName;
 DatabaseTypeAssignement: dbType=ValidID;
 DatabaseMetaInfoAssignement: dbMetaInfo=PropertyValue;
 DriverMetaInfoAssignement: dbDriverInfo=PropertyValue;
@@ -30,13 +30,13 @@ ImportAssignement: dbColumn=ValidID '->' pkTable=ValidID ('->' pkColumn=ValidID)
 ExportAssignement: dbColumn=ValidID '->' fkTable=ValidID ('->' fkColumn=ValidID)?;
 InheritanceAssignement: discriminator=ValidID '->' dbTable=ValidID ('->' dbColumns+=ValidID)+;
 ManyToManyAssignement: pkColumn=ValidID '->' pkTable=ValidID ('->' fkColumn=ValidID)?;
-DebugLevelAssignement: debug=ValidID (scope=PropertyValue)?;
+DebugLevelAssignement: debug=ValidID (scope=ValidID)?;
 ProcedurePojoAssignement: dbProcedure=ValidID '->' pojo=PojoType;
 FunctionPojoAssignement: dbFunction=ValidID '->' pojo=PojoType;
 ImplementsAssignement: ':' toImplement=[jvmTypes::JvmType|QualifiedName] ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
-ExtendsAssignement: ':' toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?;
-ImplementsAssignementGenerics: ':' toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?;
-ExtendsAssignementGenerics: ':' toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?;
+ExtendsAssignement: ':' toExtends=[jvmTypes::JvmType|QualifiedName] ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
+ImplementsAssignementGenerics: ':' toImplement=[jvmTypes::JvmType|QualifiedName] ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
+ExtendsAssignementGenerics: ':' toExtends=[jvmTypes::JvmType|QualifiedName] ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
 
 Property:
 	(name='resolve-pojo-on'
@@ -45,123 +45,123 @@ Property:
 	|name='pojogen-' pojogen=PojogenProperty
 	|name='metagen-' metagen=MetagenProperty
 	|name='daogen-' daogen=DaogenProperty
-	|name='replace-all-regex' WS+ replaceId=ValidID WS+ regex=PropertyValue
-	|name='replace-all-replacement' WS+ replaceId=ValidID WS+ replacement=PropertyValue
+	|name='replace-all-regex' replaceId=ValidID regex=PropertyValue
+	|name='replace-all-replacement' replaceId=ValidID replacement=PropertyValue
 	|name='compress-meta-directives'
 	) ';';
 
 //PropertyCondition:
-//	'{' WS* name=ValidID WS+ '=' WS+ value=(ValidID | INT) WS* '}'
+//	'{' WS* name=ValidID '=' value=(ValidID | INT) WS* '}'
 //;
 
 DatabaseProperty:
 	(name='is-online'
 	|name='is-offline'
-	|name='has-url' WS+ dbUrl=PropertyValue
-	|name='login-username' WS+ dbUsername=PropertyValue
-	|name='login-password' WS+ dbPassword=PropertyValue
-	|name='in-catalog' WS+ dbCatalog=DatabaseCatalogAssignement
-	|name='active-schema' WS+ dbSchema=DatabaseSchemaAssignement
-	|name='jdbc-driver' WS+ (=> ':' dbDriverx=[jvmTypes::JvmType|QualifiedName]|dbDriver=PropertyValue)
-	|name='ddl-create' WS+ dbExecuteBefore=PropertyValue
-	|name='ddl-drop' WS+ dbExecuteAfter=PropertyValue
-	|name='index-types' WS+ dbIndexTypes=PropertyValue
+	|name='has-url' dbUrl=PropertyValue
+	|name='login-username' dbUsername=PropertyValue
+	|name='login-password' dbPassword=PropertyValue
+	|name='in-catalog' dbCatalog=DatabaseCatalogAssignement
+	|name='active-schema' dbSchema=DatabaseSchemaAssignement
+	|name='jdbc-driver' (=> ':' dbDriverx=[jvmTypes::JvmType|QualifiedName]|dbDriver=PropertyValue)
+	|name='ddl-create' dbExecuteBefore=PropertyValue
+	|name='ddl-drop' dbExecuteAfter=PropertyValue
+	|name='index-types' dbIndexTypes=PropertyValue
 	|name='skip-indexes'
 	|name='skip-functions-procedures'
 	|name='skip-check-constraints'
-	|name='is-of-type' WS+ dbType=DatabaseTypeAssignement
-	|name='show-database-info' WS+ dbMetaInfo=DatabaseMetaInfoAssignement
-	|name='show-driver-info' WS+ dbDriverInfo=DriverMetaInfoAssignement
-	|name='show-driver-output' (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+
-	|name='debug-level' WS+ debug=DebugLevelAssignement
+	|name='is-of-type' dbType=DatabaseTypeAssignement
+	|name='show-database-info' dbMetaInfo=DatabaseMetaInfoAssignement
+	|name='show-driver-info' dbDriverInfo=DriverMetaInfoAssignement
+	|name='show-driver-output' (dbMethodsCalls+=DriverMethodOutputAssignement)+
+	|name='debug-level' debug=DebugLevelAssignement
 	|name='take-comments'
 	|name='lowercase-names'
 	|name='uppercase-names'
 	);
 
 PojogenProperty:
-	(name='types-sqltypes' (WS+ sqlTypes+=SqlTypeAssignement)+
-	|name='types-in-table' WS+ dbTable=ValidID (WS+ sqlTypes+=SqlTypeAssignement)+
-	|name='types-for-columns' WS+ dbTable=ValidID (WS+ columnTypes+=ColumnTypeAssignement)+
-	|name='types-for-procedure' WS+ dbProcedure=ValidID (WS+ columnTypes+=ColumnTypeAssignement)+
-	|name='types-for-function' WS+ dbFunction=ValidID (WS+ columnTypes+=ColumnTypeAssignement)+
-	|name='show-type-for-column' WS+ dbTable=ValidID WS+ columnType=ShowColumnTypeAssignement
-	|name='show-type-for-procedure' WS+ dbProcedure=ValidID WS+ columnType=ShowColumnTypeAssignement
-	|name='show-type-for-function' WS+ dbFunction=ValidID WS+ columnType=ShowColumnTypeAssignement
-	|name='ignore-tables' (WS+ dbTables+=ValidID)+
-	|name='only-tables' (WS+ dbTables+=ValidID)+
-	|name='not-abstract-tables' (WS+ dbTables+=ValidID)+
-	|name='join-tables' (WS+ joinTables+=JoinTableAssignement)+
-	|name='ignore-columns' WS+ dbTable=ValidID (WS+ dbColumns+=ValidID)+
-	|name='required-columns' WS+ dbTable=ValidID (WS+ dbColumns+=ValidID)+
-	|name='not-required-columns' WS+ dbTable=ValidID (WS+ dbColumns+=ValidID)+
-	|name='create-columns' WS+ dbTable=ValidID (WS+ columnTypes+=ColumnTypeAssignement)+
-	|name='rename-tables' (WS+ tables+=TableAssignement)+
-	|name='rename-columns' WS+ dbTable=ValidID (WS+ columns+=ColumnAssignement)+
-	|name='ignore-one-to-many' WS+ dbTable=ValidID (WS+ exports+=ExportAssignement)+ // exports
-	|name='ignore-many-to-one' WS+ dbTable=ValidID (WS+ imports+=ImportAssignement)+ // imports
-	|name='inherit-many-to-one' WS+ dbTable=ValidID (WS+ imports+=ImportAssignement)+ // imports
-	|name='create-one-to-many' WS+ dbTable=ValidID (WS+ exports+=ExportAssignement)+ // exports
-	|name='create-many-to-one' WS+ dbTable=ValidID (WS+ imports+=ImportAssignement)+ // imports
-	|name='table-many-to-many' WS+ dbTable=ValidID (WS+ many2s+=ManyToManyAssignement)+
-	|name='inherit-discriminator' WS+ dbTable=ValidID WS+ dbColumn=ValidID (WS+ inheritance+=InheritanceAssignement)+
-	|name='generate-methods' (WS+ methods+=ValidID)+
-	|name='generate-operators' (WS+ operatorsSuffix=ValidID)?
-	|name='implements-interfaces' WS+ toImplements=ImplementsAssignement 
-	|name='extends-class' WS+ toExtends=ExtendsAssignement
-	|name='implements-interfaces-generics' WS+ toImplementsGenerics=ImplementsAssignementGenerics 
-	|name='extends-class-generics' WS+ toExtendsGenerics=ExtendsAssignementGenerics
+	(name='types-sqltypes' (sqlTypes+=SqlTypeAssignement)+
+	|name='types-in-table' dbTable=ValidID (sqlTypes+=SqlTypeAssignement)+
+	|name='types-for-columns' dbTable=ValidID (columnTypes+=ColumnTypeAssignement)+
+	|name='types-for-procedure' dbProcedure=ValidID (columnTypes+=ColumnTypeAssignement)+
+	|name='types-for-function' dbFunction=ValidID (columnTypes+=ColumnTypeAssignement)+
+	|name='show-type-for-column' dbTable=ValidID columnType=ShowColumnTypeAssignement
+	|name='show-type-for-procedure' dbProcedure=ValidID columnType=ShowColumnTypeAssignement
+	|name='show-type-for-function' dbFunction=ValidID columnType=ShowColumnTypeAssignement
+	|name='ignore-tables' (dbTables+=ValidID)+
+	|name='only-tables' (dbTables+=ValidID)+
+	|name='not-abstract-tables' (dbTables+=ValidID)+
+	|name='join-tables' (joinTables+=JoinTableAssignement)+
+	|name='ignore-columns' dbTable=ValidID (dbColumns+=ValidID)+
+	|name='required-columns' dbTable=ValidID (dbColumns+=ValidID)+
+	|name='not-required-columns' dbTable=ValidID (dbColumns+=ValidID)+
+	|name='create-columns' dbTable=ValidID (columnTypes+=ColumnTypeAssignement)+
+	|name='rename-tables' (tables+=TableAssignement)+
+	|name='rename-columns' dbTable=ValidID (columns+=ColumnAssignement)+
+	|name='ignore-one-to-many' dbTable=ValidID (exports+=ExportAssignement)+ // exports
+	|name='ignore-many-to-one' dbTable=ValidID (imports+=ImportAssignement)+ // imports
+	|name='inherit-many-to-one' dbTable=ValidID (imports+=ImportAssignement)+ // imports
+	|name='create-one-to-many' dbTable=ValidID (exports+=ExportAssignement)+ // exports
+	|name='create-many-to-one' dbTable=ValidID (imports+=ImportAssignement)+ // imports
+	|name='table-many-to-many' dbTable=ValidID (many2s+=ManyToManyAssignement)+
+	|name='inherit-discriminator' dbTable=ValidID dbColumn=ValidID (inheritance+=InheritanceAssignement)+
+	|name='generate-methods' (methods+=ValidID)+
+	|name='generate-operators' (operatorsSuffix=ValidID)?
+	|name='implements-interfaces' toImplements=ImplementsAssignement 
+	|name='extends-class' toExtends=ExtendsAssignement
+	|name='implements-interfaces-generics' toImplementsGenerics=ImplementsAssignementGenerics 
+	|name='extends-class-generics' toExtendsGenerics=ExtendsAssignementGenerics
 	|name='generate-wrappers'
 	|name='generate-validation-annotations'
-	|name='preserve-foreign-keys' (WS+ dbTables+=ValidID)*
+	|name='preserve-foreign-keys' (dbTables+=ValidID)*
 	|name='make-it-final'
-	|name='version-column' WS+ version=ValidID (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?
-	|name='debug-level' WS+ debug=DebugLevelAssignement
-	|name='pojos-for-procedures' (WS+ procPojos+=ProcedurePojoAssignement)+
-	|name='pojos-for-functions' (WS+ funPojos+=FunctionPojoAssignement)+
-	|name='active-filter' WS+ activeFilter=PropertyValue
-	|name='package' WS+ pckg=PropertyValue
-	|name='enum-for-check-constraints' WS+ enumName=ValidID (WS+ dbCheckConstraints+=ValidID)+
+	|name='version-column' version=ValidID ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?
+	|name='debug-level' debug=DebugLevelAssignement
+	|name='pojos-for-procedures' (procPojos+=ProcedurePojoAssignement)+
+	|name='pojos-for-functions' (funPojos+=FunctionPojoAssignement)+
+	|name='active-filter' activeFilter=PropertyValue
+	|name='package' pckg=QualifiedName
+	|name='enum-for-check-constraints' enumName=ValidID (dbCheckConstraints+=ValidID)+
 	);
 
 MetaTypeAssignement: dbColumn=ValidID '->' type=ValidID ('->' extension=ValidID)?;
 
 MetagenProperty:
-	(name='global-sequence' WS+ sequence=ValidID (type=ValidID)? (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?
-	|name='table-sequence' WS+ dbTable=ValidID WS+ sequence=ValidID (WS+ type=ValidID)?
-	|name='global-identity' (WS+ identity=ValidID (type=ValidID)?)? (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?
-	|name='table-identity' WS+ dbTable=ValidID WS+ identity=ValidID (WS+ type=ValidID)?
-	|name='column-meta-type' WS+ dbTable=ValidID (WS+ metaTypes+=MetaTypeAssignement)+
-	|name='statement-meta-type' WS+ dbStatement=ValidID (WS+ metaTypes+=MetaTypeAssignement)+
+	(name='global-sequence' sequence=ValidID (type=ValidID)? ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?
+	|name='table-sequence' dbTable=ValidID sequence=ValidID (type=ValidID)?
+	|name='global-identity' (identity=ValidID (type=ValidID)?)? ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?
+	|name='table-identity' dbTable=ValidID identity=ValidID (type=ValidID)?
+	|name='column-meta-type' dbTable=ValidID (metaTypes+=MetaTypeAssignement)+
+	|name='statement-meta-type' dbStatement=ValidID (metaTypes+=MetaTypeAssignement)+
 	|name='make-it-final'
-	|name='like-columns' (WS+ dbTable=ValidID (WS+ dbColumns+=ValidID)+)?
-	|name='not-like-columns' (WS+ dbTable=ValidID (WS+ dbColumns+=ValidID)+)?
+	|name='like-columns' (dbTable=ValidID (dbColumns+=ValidID)+)?
+	|name='not-like-columns' (dbTable=ValidID (dbColumns+=ValidID)+)?
 	|name='generate-sequences'
 	|name='generate-identities'
 	|name='generate-idgenerators'
 	|name='generate-default-idgenerators'
-	|name='function-result' WS+ dbFunction=ValidID WS+ type=ValidID
-	|name='function-result-set' WS+ dbFunction=ValidID WS+ dbTable=ValidID
-	|name='procedure-result-set' WS+ dbProcedure=ValidID WS+ dbTable=ValidID
-	|name='debug-level' WS+ debug=DebugLevelAssignement
+	|name='function-result' dbFunction=ValidID type=ValidID
+	|name='function-result-set' dbFunction=ValidID dbTable=ValidID
+	|name='procedure-result-set' dbProcedure=ValidID dbTable=ValidID
+	|name='debug-level' debug=DebugLevelAssignement
 	|name='generate-operators'
-	|name='optimize-insert' (WS+ dbTables+=ValidID)*
-	|name='optional-features' WS+ dbStatement=ValidID (WS+ optionalFeatures+=ValidID)+
-	|name='active-filter' WS+ activeFilter=PropertyValue
+	|name='optimize-insert' (dbTables+=ValidID)*
+	|name='optional-features' dbStatement=ValidID (optionalFeatures+=ValidID)+
+	|name='active-filter' activeFilter=PropertyValue
 	);
 
 DaogenProperty:
-	(name='ignore-tables' (WS+ dbTables+=ValidID)+
-	|name='only-tables' (WS+ dbTables+=ValidID)*
-	|name='implements-interfaces' WS+ toImplements=ImplementsAssignement
-	|name='extends-class' WS+ toExtends=ExtendsAssignement
-	|name='implements-interfaces-generics' WS+ toImplementsGenerics=ImplementsAssignementGenerics 
-	|name='extends-class-generics' WS+ toExtendsGenerics=ExtendsAssignementGenerics
+	(name='ignore-tables' (dbTables+=ValidID)+
+	|name='only-tables' (dbTables+=ValidID)*
+	|name='implements-interfaces' toImplements=ImplementsAssignement
+	|name='extends-class' toExtends=ExtendsAssignement
+	|name='implements-interfaces-generics' toImplementsGenerics=ImplementsAssignementGenerics 
+	|name='extends-class-generics' toExtendsGenerics=ExtendsAssignementGenerics
 	|name='make-it-final'
-	|name='function-result' WS+ dbFunction=ValidID WS+ resultType=PojoType
-	|name='debug-level' WS+ debug=DebugLevelAssignement
-	|name='active-filter' WS+ activeFilter=PropertyValue
-	|name='package' WS+ pckg=PropertyValue
+	|name='function-result' dbFunction=ValidID resultType=PojoType
+	|name='debug-level' debug=DebugLevelAssignement
+	|name='active-filter' activeFilter=PropertyValue
+	|name='package' pckg=QualifiedName
 	);
 
 PojoDefinition:
@@ -223,7 +223,7 @@ AbstractPojoEntity:
 ;
 
 Import:
-	'import' importedNamespace = QualifiedNameWithWildcard
+	'import' importedNamespace = QualifiedName
 ;
 
 ImplementsExtendsDirective: 

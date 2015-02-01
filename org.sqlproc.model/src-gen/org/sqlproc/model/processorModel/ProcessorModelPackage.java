@@ -168,7 +168,7 @@ public interface ProcessorModelPackage extends EPackage
   int DATABASE_CATALOG_ASSIGNEMENT = 2;
 
   /**
-   * The feature id for the '<em><b>Db Catalog</b></em>' containment reference.
+   * The feature id for the '<em><b>Db Catalog</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -196,7 +196,7 @@ public interface ProcessorModelPackage extends EPackage
   int DATABASE_SCHEMA_ASSIGNEMENT = 3;
 
   /**
-   * The feature id for the '<em><b>Db Schema</b></em>' containment reference.
+   * The feature id for the '<em><b>Db Schema</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -769,7 +769,7 @@ public interface ProcessorModelPackage extends EPackage
   int DEBUG_LEVEL_ASSIGNEMENT__DEBUG = 0;
 
   /**
-   * The feature id for the '<em><b>Scope</b></em>' containment reference.
+   * The feature id for the '<em><b>Scope</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1570,7 +1570,7 @@ public interface ProcessorModelPackage extends EPackage
   int POJOGEN_PROPERTY__ACTIVE_FILTER = 28;
 
   /**
-   * The feature id for the '<em><b>Pckg</b></em>' containment reference.
+   * The feature id for the '<em><b>Pckg</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1906,7 +1906,7 @@ public interface ProcessorModelPackage extends EPackage
   int DAOGEN_PROPERTY__ACTIVE_FILTER = 9;
 
   /**
-   * The feature id for the '<em><b>Pckg</b></em>' containment reference.
+   * The feature id for the '<em><b>Pckg</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -4489,15 +4489,15 @@ public interface ProcessorModelPackage extends EPackage
   EClass getDatabaseCatalogAssignement();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.DatabaseCatalogAssignement#getDbCatalog <em>Db Catalog</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.DatabaseCatalogAssignement#getDbCatalog <em>Db Catalog</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Db Catalog</em>'.
+   * @return the meta object for the attribute '<em>Db Catalog</em>'.
    * @see org.sqlproc.model.processorModel.DatabaseCatalogAssignement#getDbCatalog()
    * @see #getDatabaseCatalogAssignement()
    * @generated
    */
-  EReference getDatabaseCatalogAssignement_DbCatalog();
+  EAttribute getDatabaseCatalogAssignement_DbCatalog();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.DatabaseSchemaAssignement <em>Database Schema Assignement</em>}'.
@@ -4510,15 +4510,15 @@ public interface ProcessorModelPackage extends EPackage
   EClass getDatabaseSchemaAssignement();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.DatabaseSchemaAssignement#getDbSchema <em>Db Schema</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.DatabaseSchemaAssignement#getDbSchema <em>Db Schema</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Db Schema</em>'.
+   * @return the meta object for the attribute '<em>Db Schema</em>'.
    * @see org.sqlproc.model.processorModel.DatabaseSchemaAssignement#getDbSchema()
    * @see #getDatabaseSchemaAssignement()
    * @generated
    */
-  EReference getDatabaseSchemaAssignement_DbSchema();
+  EAttribute getDatabaseSchemaAssignement_DbSchema();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.DatabaseTypeAssignement <em>Database Type Assignement</em>}'.
@@ -5012,15 +5012,15 @@ public interface ProcessorModelPackage extends EPackage
   EAttribute getDebugLevelAssignement_Debug();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.DebugLevelAssignement#getScope <em>Scope</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.DebugLevelAssignement#getScope <em>Scope</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Scope</em>'.
+   * @return the meta object for the attribute '<em>Scope</em>'.
    * @see org.sqlproc.model.processorModel.DebugLevelAssignement#getScope()
    * @see #getDebugLevelAssignement()
    * @generated
    */
-  EReference getDebugLevelAssignement_Scope();
+  EAttribute getDebugLevelAssignement_Scope();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.ProcedurePojoAssignement <em>Procedure Pojo Assignement</em>}'.
@@ -5872,15 +5872,15 @@ public interface ProcessorModelPackage extends EPackage
   EReference getPojogenProperty_ActiveFilter();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.PojogenProperty#getPckg <em>Pckg</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.PojogenProperty#getPckg <em>Pckg</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Pckg</em>'.
+   * @return the meta object for the attribute '<em>Pckg</em>'.
    * @see org.sqlproc.model.processorModel.PojogenProperty#getPckg()
    * @see #getPojogenProperty()
    * @generated
    */
-  EReference getPojogenProperty_Pckg();
+  EAttribute getPojogenProperty_Pckg();
 
   /**
    * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.PojogenProperty#getEnumName <em>Enum Name</em>}'.
@@ -6243,15 +6243,15 @@ public interface ProcessorModelPackage extends EPackage
   EReference getDaogenProperty_ActiveFilter();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.DaogenProperty#getPckg <em>Pckg</em>}'.
+   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.DaogenProperty#getPckg <em>Pckg</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Pckg</em>'.
+   * @return the meta object for the attribute '<em>Pckg</em>'.
    * @see org.sqlproc.model.processorModel.DaogenProperty#getPckg()
    * @see #getDaogenProperty()
    * @generated
    */
-  EReference getDaogenProperty_Pckg();
+  EAttribute getDaogenProperty_Pckg();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.PojoDefinition <em>Pojo Definition</em>}'.
@@ -8251,12 +8251,12 @@ public interface ProcessorModelPackage extends EPackage
     EClass DATABASE_CATALOG_ASSIGNEMENT = eINSTANCE.getDatabaseCatalogAssignement();
 
     /**
-     * The meta object literal for the '<em><b>Db Catalog</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Db Catalog</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG = eINSTANCE.getDatabaseCatalogAssignement_DbCatalog();
+    EAttribute DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG = eINSTANCE.getDatabaseCatalogAssignement_DbCatalog();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.DatabaseSchemaAssignementImpl <em>Database Schema Assignement</em>}' class.
@@ -8269,12 +8269,12 @@ public interface ProcessorModelPackage extends EPackage
     EClass DATABASE_SCHEMA_ASSIGNEMENT = eINSTANCE.getDatabaseSchemaAssignement();
 
     /**
-     * The meta object literal for the '<em><b>Db Schema</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Db Schema</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA = eINSTANCE.getDatabaseSchemaAssignement_DbSchema();
+    EAttribute DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA = eINSTANCE.getDatabaseSchemaAssignement_DbSchema();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.DatabaseTypeAssignementImpl <em>Database Type Assignement</em>}' class.
@@ -8675,12 +8675,12 @@ public interface ProcessorModelPackage extends EPackage
     EAttribute DEBUG_LEVEL_ASSIGNEMENT__DEBUG = eINSTANCE.getDebugLevelAssignement_Debug();
 
     /**
-     * The meta object literal for the '<em><b>Scope</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Scope</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DEBUG_LEVEL_ASSIGNEMENT__SCOPE = eINSTANCE.getDebugLevelAssignement_Scope();
+    EAttribute DEBUG_LEVEL_ASSIGNEMENT__SCOPE = eINSTANCE.getDebugLevelAssignement_Scope();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.ProcedurePojoAssignementImpl <em>Procedure Pojo Assignement</em>}' class.
@@ -9325,12 +9325,12 @@ public interface ProcessorModelPackage extends EPackage
     EReference POJOGEN_PROPERTY__ACTIVE_FILTER = eINSTANCE.getPojogenProperty_ActiveFilter();
 
     /**
-     * The meta object literal for the '<em><b>Pckg</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Pckg</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference POJOGEN_PROPERTY__PCKG = eINSTANCE.getPojogenProperty_Pckg();
+    EAttribute POJOGEN_PROPERTY__PCKG = eINSTANCE.getPojogenProperty_Pckg();
 
     /**
      * The meta object literal for the '<em><b>Enum Name</b></em>' attribute feature.
@@ -9603,12 +9603,12 @@ public interface ProcessorModelPackage extends EPackage
     EReference DAOGEN_PROPERTY__ACTIVE_FILTER = eINSTANCE.getDaogenProperty_ActiveFilter();
 
     /**
-     * The meta object literal for the '<em><b>Pckg</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Pckg</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DAOGEN_PROPERTY__PCKG = eINSTANCE.getDaogenProperty_Pckg();
+    EAttribute DAOGEN_PROPERTY__PCKG = eINSTANCE.getDaogenProperty_Pckg();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.PojoDefinitionImpl <em>Pojo Definition</em>}' class.

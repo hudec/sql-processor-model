@@ -447,14 +447,24 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
   protected PropertyValue activeFilter;
 
   /**
-   * The cached value of the '{@link #getPckg() <em>Pckg</em>}' containment reference.
+   * The default value of the '{@link #getPckg() <em>Pckg</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getPckg()
    * @generated
    * @ordered
    */
-  protected PropertyValue pckg;
+  protected static final String PCKG_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getPckg() <em>Pckg</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPckg()
+   * @generated
+   * @ordered
+   */
+  protected String pckg = PCKG_EDEFAULT;
 
   /**
    * The default value of the '{@link #getEnumName() <em>Enum Name</em>}' attribute.
@@ -1219,7 +1229,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getPckg()
+  public String getPckg()
   {
     return pckg;
   }
@@ -1229,37 +1239,12 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPckg(PropertyValue newPckg, NotificationChain msgs)
+  public void setPckg(String newPckg)
   {
-    PropertyValue oldPckg = pckg;
+    String oldPckg = pckg;
     pckg = newPckg;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJOGEN_PROPERTY__PCKG, oldPckg, newPckg);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setPckg(PropertyValue newPckg)
-  {
-    if (newPckg != pckg)
-    {
-      NotificationChain msgs = null;
-      if (pckg != null)
-        msgs = ((InternalEObject)pckg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.POJOGEN_PROPERTY__PCKG, null, msgs);
-      if (newPckg != null)
-        msgs = ((InternalEObject)newPckg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.POJOGEN_PROPERTY__PCKG, null, msgs);
-      msgs = basicSetPckg(newPckg, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJOGEN_PROPERTY__PCKG, newPckg, newPckg));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJOGEN_PROPERTY__PCKG, oldPckg, pckg));
   }
 
   /**
@@ -1345,8 +1330,6 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return ((InternalEList<?>)getFunPojos()).basicRemove(otherEnd, msgs);
       case ProcessorModelPackage.POJOGEN_PROPERTY__ACTIVE_FILTER:
         return basicSetActiveFilter(null, msgs);
-      case ProcessorModelPackage.POJOGEN_PROPERTY__PCKG:
-        return basicSetPckg(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -1543,7 +1526,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         setActiveFilter((PropertyValue)newValue);
         return;
       case ProcessorModelPackage.POJOGEN_PROPERTY__PCKG:
-        setPckg((PropertyValue)newValue);
+        setPckg((String)newValue);
         return;
       case ProcessorModelPackage.POJOGEN_PROPERTY__ENUM_NAME:
         setEnumName((String)newValue);
@@ -1654,7 +1637,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         setActiveFilter((PropertyValue)null);
         return;
       case ProcessorModelPackage.POJOGEN_PROPERTY__PCKG:
-        setPckg((PropertyValue)null);
+        setPckg(PCKG_EDEFAULT);
         return;
       case ProcessorModelPackage.POJOGEN_PROPERTY__ENUM_NAME:
         setEnumName(ENUM_NAME_EDEFAULT);
@@ -1735,7 +1718,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorModelPackage.POJOGEN_PROPERTY__ACTIVE_FILTER:
         return activeFilter != null;
       case ProcessorModelPackage.POJOGEN_PROPERTY__PCKG:
-        return pckg != null;
+        return PCKG_EDEFAULT == null ? pckg != null : !PCKG_EDEFAULT.equals(pckg);
       case ProcessorModelPackage.POJOGEN_PROPERTY__ENUM_NAME:
         return ENUM_NAME_EDEFAULT == null ? enumName != null : !ENUM_NAME_EDEFAULT.equals(enumName);
       case ProcessorModelPackage.POJOGEN_PROPERTY__DB_CHECK_CONSTRAINTS:
@@ -1777,6 +1760,8 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(version);
     result.append(", dbNotTables: ");
     result.append(dbNotTables);
+    result.append(", pckg: ");
+    result.append(pckg);
     result.append(", enumName: ");
     result.append(enumName);
     result.append(", dbCheckConstraints: ");

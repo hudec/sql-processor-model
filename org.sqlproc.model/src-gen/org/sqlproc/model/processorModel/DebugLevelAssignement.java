@@ -50,29 +50,29 @@ public interface DebugLevelAssignement extends EObject
   void setDebug(String value);
 
   /**
-   * Returns the value of the '<em><b>Scope</b></em>' containment reference.
+   * Returns the value of the '<em><b>Scope</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Scope</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Scope</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Scope</em>' containment reference.
-   * @see #setScope(PropertyValue)
+   * @return the value of the '<em>Scope</em>' attribute.
+   * @see #setScope(String)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDebugLevelAssignement_Scope()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  PropertyValue getScope();
+  String getScope();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.DebugLevelAssignement#getScope <em>Scope</em>}' containment reference.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.DebugLevelAssignement#getScope <em>Scope</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Scope</em>' containment reference.
+   * @param value the new value of the '<em>Scope</em>' attribute.
    * @see #getScope()
    * @generated
    */
-  void setScope(PropertyValue value);
+  void setScope(String value);
 
 } // DebugLevelAssignement
