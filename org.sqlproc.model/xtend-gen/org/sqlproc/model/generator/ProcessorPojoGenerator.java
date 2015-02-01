@@ -3157,11 +3157,11 @@ public class ProcessorPojoGenerator {
     Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
     for (final Extends ext : _filter) {
       {
-        EList<PojoEntity> _onlyPojos = ext.getOnlyPojos();
+        List<PojoEntity> _onlyPojos = this._processorGeneratorUtils.onlyPojos(ext);
         boolean _isEmpty = _onlyPojos.isEmpty();
         boolean _not = (!_isEmpty);
         if (_not) {
-          EList<PojoEntity> _onlyPojos_1 = ext.getOnlyPojos();
+          List<PojoEntity> _onlyPojos_1 = this._processorGeneratorUtils.onlyPojos(ext);
           for (final PojoEntity ee : _onlyPojos_1) {
             String _name = ee.getName();
             String _name_1 = e.getName();
@@ -3172,7 +3172,7 @@ public class ProcessorPojoGenerator {
           }
           return false;
         }
-        EList<PojoEntity> _exceptPojos = ext.getExceptPojos();
+        List<PojoEntity> _exceptPojos = this._processorGeneratorUtils.exceptPojos(ext);
         for (final PojoEntity ee_1 : _exceptPojos) {
           String _name_2 = ee_1.getName();
           String _name_3 = e.getName();
@@ -3188,11 +3188,11 @@ public class ProcessorPojoGenerator {
   }
   
   public boolean isExtends(final PojoEntity e, final Extends ext) {
-    EList<PojoEntity> _onlyPojos = ext.getOnlyPojos();
+    List<PojoEntity> _onlyPojos = this._processorGeneratorUtils.onlyPojos(ext);
     boolean _isEmpty = _onlyPojos.isEmpty();
     boolean _not = (!_isEmpty);
     if (_not) {
-      EList<PojoEntity> _onlyPojos_1 = ext.getOnlyPojos();
+      List<PojoEntity> _onlyPojos_1 = this._processorGeneratorUtils.onlyPojos(ext);
       for (final PojoEntity ee : _onlyPojos_1) {
         String _name = ee.getName();
         String _name_1 = e.getName();
@@ -3203,7 +3203,7 @@ public class ProcessorPojoGenerator {
       }
       return false;
     }
-    EList<PojoEntity> _exceptPojos = ext.getExceptPojos();
+    List<PojoEntity> _exceptPojos = this._processorGeneratorUtils.exceptPojos(ext);
     for (final PojoEntity ee_1 : _exceptPojos) {
       String _name_2 = ee_1.getName();
       String _name_3 = e.getName();
@@ -3237,7 +3237,7 @@ public class ProcessorPojoGenerator {
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements ext : _filter) {
       {
-        EList<PojoEntity> _exceptPojos = ext.getExceptPojos();
+        List<PojoEntity> _exceptPojos = this._processorGeneratorUtils.exceptPojos(ext);
         for (final PojoEntity ee : _exceptPojos) {
           String _name = ee.getName();
           String _name_1 = e.getName();
@@ -3246,11 +3246,11 @@ public class ProcessorPojoGenerator {
             return false;
           }
         }
-        EList<PojoEntity> _onlyPojos = ext.getOnlyPojos();
+        List<PojoEntity> _onlyPojos = this._processorGeneratorUtils.onlyPojos(ext);
         boolean _isEmpty = _onlyPojos.isEmpty();
         boolean _not = (!_isEmpty);
         if (_not) {
-          EList<PojoEntity> _onlyPojos_1 = ext.getOnlyPojos();
+          List<PojoEntity> _onlyPojos_1 = this._processorGeneratorUtils.onlyPojos(ext);
           for (final PojoEntity ee_1 : _onlyPojos_1) {
             String _name_2 = ee_1.getName();
             String _name_3 = e.getName();
@@ -3268,11 +3268,11 @@ public class ProcessorPojoGenerator {
   }
   
   public boolean isImplements(final PojoEntity e, final Implements ext) {
-    EList<PojoEntity> _onlyPojos = ext.getOnlyPojos();
+    List<PojoEntity> _onlyPojos = this._processorGeneratorUtils.onlyPojos(ext);
     boolean _isEmpty = _onlyPojos.isEmpty();
     boolean _not = (!_isEmpty);
     if (_not) {
-      EList<PojoEntity> _onlyPojos_1 = ext.getOnlyPojos();
+      List<PojoEntity> _onlyPojos_1 = this._processorGeneratorUtils.onlyPojos(ext);
       for (final PojoEntity ee : _onlyPojos_1) {
         String _name = ee.getName();
         String _name_1 = e.getName();
@@ -3283,7 +3283,7 @@ public class ProcessorPojoGenerator {
       }
       return false;
     }
-    EList<PojoEntity> _exceptPojos = ext.getExceptPojos();
+    List<PojoEntity> _exceptPojos = this._processorGeneratorUtils.exceptPojos(ext);
     for (final PojoEntity ee_1 : _exceptPojos) {
       String _name_2 = ee_1.getName();
       String _name_3 = e.getName();

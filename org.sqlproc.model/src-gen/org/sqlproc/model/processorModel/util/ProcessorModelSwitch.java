@@ -62,7 +62,11 @@ import org.sqlproc.model.processorModel.Implements;
 import org.sqlproc.model.processorModel.ImplementsAssignement;
 import org.sqlproc.model.processorModel.ImplementsAssignementGenerics;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirective;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
 import org.sqlproc.model.processorModel.Import;
 import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
@@ -747,6 +751,38 @@ public class ProcessorModelSwitch<T> extends Switch<T>
         ImplementsExtendsDirectiveGenerics implementsExtendsDirectiveGenerics = (ImplementsExtendsDirectiveGenerics)theEObject;
         T result = caseImplementsExtendsDirectiveGenerics(implementsExtendsDirectiveGenerics);
         if (result == null) result = caseImplementsExtendsDirective(implementsExtendsDirectiveGenerics);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS:
+      {
+        ImplementsExtendsDirectiveOnlyPojos implementsExtendsDirectiveOnlyPojos = (ImplementsExtendsDirectiveOnlyPojos)theEObject;
+        T result = caseImplementsExtendsDirectiveOnlyPojos(implementsExtendsDirectiveOnlyPojos);
+        if (result == null) result = caseImplementsExtendsDirective(implementsExtendsDirectiveOnlyPojos);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS:
+      {
+        ImplementsExtendsDirectiveOnlyDaos implementsExtendsDirectiveOnlyDaos = (ImplementsExtendsDirectiveOnlyDaos)theEObject;
+        T result = caseImplementsExtendsDirectiveOnlyDaos(implementsExtendsDirectiveOnlyDaos);
+        if (result == null) result = caseImplementsExtendsDirective(implementsExtendsDirectiveOnlyDaos);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_POJOS:
+      {
+        ImplementsExtendsDirectiveExceptPojos implementsExtendsDirectiveExceptPojos = (ImplementsExtendsDirectiveExceptPojos)theEObject;
+        T result = caseImplementsExtendsDirectiveExceptPojos(implementsExtendsDirectiveExceptPojos);
+        if (result == null) result = caseImplementsExtendsDirective(implementsExtendsDirectiveExceptPojos);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS:
+      {
+        ImplementsExtendsDirectiveExceptDaos implementsExtendsDirectiveExceptDaos = (ImplementsExtendsDirectiveExceptDaos)theEObject;
+        T result = caseImplementsExtendsDirectiveExceptDaos(implementsExtendsDirectiveExceptDaos);
+        if (result == null) result = caseImplementsExtendsDirective(implementsExtendsDirectiveExceptDaos);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2246,6 +2282,70 @@ public class ProcessorModelSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseImplementsExtendsDirectiveGenerics(ImplementsExtendsDirectiveGenerics object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Implements Extends Directive Only Pojos</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Implements Extends Directive Only Pojos</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImplementsExtendsDirectiveOnlyPojos(ImplementsExtendsDirectiveOnlyPojos object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Implements Extends Directive Only Daos</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Implements Extends Directive Only Daos</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImplementsExtendsDirectiveOnlyDaos(ImplementsExtendsDirectiveOnlyDaos object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Implements Extends Directive Except Pojos</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Implements Extends Directive Except Pojos</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImplementsExtendsDirectiveExceptPojos(ImplementsExtendsDirectiveExceptPojos object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Implements Extends Directive Except Daos</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Implements Extends Directive Except Daos</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImplementsExtendsDirectiveExceptDaos(ImplementsExtendsDirectiveExceptDaos object)
   {
     return null;
   }

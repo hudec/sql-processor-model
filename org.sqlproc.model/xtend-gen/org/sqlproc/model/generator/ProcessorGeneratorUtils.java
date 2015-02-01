@@ -50,10 +50,15 @@ import org.sqlproc.model.processorModel.EnumEntity;
 import org.sqlproc.model.processorModel.EnumEntityModifier1;
 import org.sqlproc.model.processorModel.EnumEntityModifier2;
 import org.sqlproc.model.processorModel.EnumProperty;
+import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.FunProcDirective;
 import org.sqlproc.model.processorModel.Implements;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirective;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
 import org.sqlproc.model.processorModel.PojoAnnotatedProperty;
 import org.sqlproc.model.processorModel.PojoDao;
 import org.sqlproc.model.processorModel.PojoDaoModifier;
@@ -1808,6 +1813,182 @@ public class ProcessorGeneratorUtils {
     };
     Iterable<Annotation> _filter = IterableExtensions.<Annotation>filter(_annotations, _function);
     return IterableExtensions.<Annotation>toList(_filter);
+  }
+  
+  public List<PojoEntity> onlyPojos(final Extends ext) {
+    final List<PojoEntity> result = CollectionLiterals.<PojoEntity>newArrayList();
+    EList<ImplementsExtendsDirective> _directives = ext.getDirectives();
+    Iterable<ImplementsExtendsDirective> _filter = null;
+    if (_directives!=null) {
+      final Function1<ImplementsExtendsDirective, Boolean> _function = new Function1<ImplementsExtendsDirective, Boolean>() {
+        public Boolean apply(final ImplementsExtendsDirective x) {
+          return Boolean.valueOf((x instanceof ImplementsExtendsDirectiveOnlyPojos));
+        }
+      };
+      _filter=IterableExtensions.<ImplementsExtendsDirective>filter(_directives, _function);
+    }
+    final Procedure1<ImplementsExtendsDirective> _function_1 = new Procedure1<ImplementsExtendsDirective>() {
+      public void apply(final ImplementsExtendsDirective it) {
+        EList<PojoEntity> _onlyPojos = ((ImplementsExtendsDirectiveOnlyPojos) it).getOnlyPojos();
+        result.addAll(_onlyPojos);
+      }
+    };
+    IterableExtensions.<ImplementsExtendsDirective>forEach(_filter, _function_1);
+    return result;
+  }
+  
+  public List<PojoEntity> exceptPojos(final Extends ext) {
+    final List<PojoEntity> result = CollectionLiterals.<PojoEntity>newArrayList();
+    EList<ImplementsExtendsDirective> _directives = ext.getDirectives();
+    Iterable<ImplementsExtendsDirective> _filter = null;
+    if (_directives!=null) {
+      final Function1<ImplementsExtendsDirective, Boolean> _function = new Function1<ImplementsExtendsDirective, Boolean>() {
+        public Boolean apply(final ImplementsExtendsDirective x) {
+          return Boolean.valueOf((x instanceof ImplementsExtendsDirectiveExceptPojos));
+        }
+      };
+      _filter=IterableExtensions.<ImplementsExtendsDirective>filter(_directives, _function);
+    }
+    final Procedure1<ImplementsExtendsDirective> _function_1 = new Procedure1<ImplementsExtendsDirective>() {
+      public void apply(final ImplementsExtendsDirective it) {
+        EList<PojoEntity> _exceptPojos = ((ImplementsExtendsDirectiveExceptPojos) it).getExceptPojos();
+        result.addAll(_exceptPojos);
+      }
+    };
+    IterableExtensions.<ImplementsExtendsDirective>forEach(_filter, _function_1);
+    return result;
+  }
+  
+  public List<PojoEntity> onlyPojos(final Implements imp) {
+    final List<PojoEntity> result = CollectionLiterals.<PojoEntity>newArrayList();
+    EList<ImplementsExtendsDirective> _directives = imp.getDirectives();
+    Iterable<ImplementsExtendsDirective> _filter = null;
+    if (_directives!=null) {
+      final Function1<ImplementsExtendsDirective, Boolean> _function = new Function1<ImplementsExtendsDirective, Boolean>() {
+        public Boolean apply(final ImplementsExtendsDirective x) {
+          return Boolean.valueOf((x instanceof ImplementsExtendsDirectiveOnlyPojos));
+        }
+      };
+      _filter=IterableExtensions.<ImplementsExtendsDirective>filter(_directives, _function);
+    }
+    final Procedure1<ImplementsExtendsDirective> _function_1 = new Procedure1<ImplementsExtendsDirective>() {
+      public void apply(final ImplementsExtendsDirective it) {
+        EList<PojoEntity> _onlyPojos = ((ImplementsExtendsDirectiveOnlyPojos) it).getOnlyPojos();
+        result.addAll(_onlyPojos);
+      }
+    };
+    IterableExtensions.<ImplementsExtendsDirective>forEach(_filter, _function_1);
+    return result;
+  }
+  
+  public List<PojoEntity> exceptPojos(final Implements imp) {
+    final List<PojoEntity> result = CollectionLiterals.<PojoEntity>newArrayList();
+    EList<ImplementsExtendsDirective> _directives = imp.getDirectives();
+    Iterable<ImplementsExtendsDirective> _filter = null;
+    if (_directives!=null) {
+      final Function1<ImplementsExtendsDirective, Boolean> _function = new Function1<ImplementsExtendsDirective, Boolean>() {
+        public Boolean apply(final ImplementsExtendsDirective x) {
+          return Boolean.valueOf((x instanceof ImplementsExtendsDirectiveExceptPojos));
+        }
+      };
+      _filter=IterableExtensions.<ImplementsExtendsDirective>filter(_directives, _function);
+    }
+    final Procedure1<ImplementsExtendsDirective> _function_1 = new Procedure1<ImplementsExtendsDirective>() {
+      public void apply(final ImplementsExtendsDirective it) {
+        EList<PojoEntity> _exceptPojos = ((ImplementsExtendsDirectiveExceptPojos) it).getExceptPojos();
+        result.addAll(_exceptPojos);
+      }
+    };
+    IterableExtensions.<ImplementsExtendsDirective>forEach(_filter, _function_1);
+    return result;
+  }
+  
+  public List<PojoDao> onlyDaos(final Extends ext) {
+    final List<PojoDao> result = CollectionLiterals.<PojoDao>newArrayList();
+    EList<ImplementsExtendsDirective> _directives = ext.getDirectives();
+    Iterable<ImplementsExtendsDirective> _filter = null;
+    if (_directives!=null) {
+      final Function1<ImplementsExtendsDirective, Boolean> _function = new Function1<ImplementsExtendsDirective, Boolean>() {
+        public Boolean apply(final ImplementsExtendsDirective x) {
+          return Boolean.valueOf((x instanceof ImplementsExtendsDirectiveOnlyDaos));
+        }
+      };
+      _filter=IterableExtensions.<ImplementsExtendsDirective>filter(_directives, _function);
+    }
+    final Procedure1<ImplementsExtendsDirective> _function_1 = new Procedure1<ImplementsExtendsDirective>() {
+      public void apply(final ImplementsExtendsDirective it) {
+        EList<PojoDao> _onlyDaos = ((ImplementsExtendsDirectiveOnlyDaos) it).getOnlyDaos();
+        result.addAll(_onlyDaos);
+      }
+    };
+    IterableExtensions.<ImplementsExtendsDirective>forEach(_filter, _function_1);
+    return result;
+  }
+  
+  public List<PojoDao> exceptDaos(final Extends ext) {
+    final List<PojoDao> result = CollectionLiterals.<PojoDao>newArrayList();
+    EList<ImplementsExtendsDirective> _directives = ext.getDirectives();
+    Iterable<ImplementsExtendsDirective> _filter = null;
+    if (_directives!=null) {
+      final Function1<ImplementsExtendsDirective, Boolean> _function = new Function1<ImplementsExtendsDirective, Boolean>() {
+        public Boolean apply(final ImplementsExtendsDirective x) {
+          return Boolean.valueOf((x instanceof ImplementsExtendsDirectiveExceptDaos));
+        }
+      };
+      _filter=IterableExtensions.<ImplementsExtendsDirective>filter(_directives, _function);
+    }
+    final Procedure1<ImplementsExtendsDirective> _function_1 = new Procedure1<ImplementsExtendsDirective>() {
+      public void apply(final ImplementsExtendsDirective it) {
+        EList<PojoDao> _exceptDaos = ((ImplementsExtendsDirectiveExceptDaos) it).getExceptDaos();
+        result.addAll(_exceptDaos);
+      }
+    };
+    IterableExtensions.<ImplementsExtendsDirective>forEach(_filter, _function_1);
+    return result;
+  }
+  
+  public List<PojoDao> onlyDaos(final Implements imp) {
+    final List<PojoDao> result = CollectionLiterals.<PojoDao>newArrayList();
+    EList<ImplementsExtendsDirective> _directives = imp.getDirectives();
+    Iterable<ImplementsExtendsDirective> _filter = null;
+    if (_directives!=null) {
+      final Function1<ImplementsExtendsDirective, Boolean> _function = new Function1<ImplementsExtendsDirective, Boolean>() {
+        public Boolean apply(final ImplementsExtendsDirective x) {
+          return Boolean.valueOf((x instanceof ImplementsExtendsDirectiveOnlyDaos));
+        }
+      };
+      _filter=IterableExtensions.<ImplementsExtendsDirective>filter(_directives, _function);
+    }
+    final Procedure1<ImplementsExtendsDirective> _function_1 = new Procedure1<ImplementsExtendsDirective>() {
+      public void apply(final ImplementsExtendsDirective it) {
+        EList<PojoDao> _onlyDaos = ((ImplementsExtendsDirectiveOnlyDaos) it).getOnlyDaos();
+        result.addAll(_onlyDaos);
+      }
+    };
+    IterableExtensions.<ImplementsExtendsDirective>forEach(_filter, _function_1);
+    return result;
+  }
+  
+  public List<PojoDao> exceptDaos(final Implements imp) {
+    final List<PojoDao> result = CollectionLiterals.<PojoDao>newArrayList();
+    EList<ImplementsExtendsDirective> _directives = imp.getDirectives();
+    Iterable<ImplementsExtendsDirective> _filter = null;
+    if (_directives!=null) {
+      final Function1<ImplementsExtendsDirective, Boolean> _function = new Function1<ImplementsExtendsDirective, Boolean>() {
+        public Boolean apply(final ImplementsExtendsDirective x) {
+          return Boolean.valueOf((x instanceof ImplementsExtendsDirectiveExceptDaos));
+        }
+      };
+      _filter=IterableExtensions.<ImplementsExtendsDirective>filter(_directives, _function);
+    }
+    final Procedure1<ImplementsExtendsDirective> _function_1 = new Procedure1<ImplementsExtendsDirective>() {
+      public void apply(final ImplementsExtendsDirective it) {
+        EList<PojoDao> _exceptDaos = ((ImplementsExtendsDirectiveExceptDaos) it).getExceptDaos();
+        result.addAll(_exceptDaos);
+      }
+    };
+    IterableExtensions.<ImplementsExtendsDirective>forEach(_filter, _function_1);
+    return result;
   }
   
   public PojoEntity getPojo(final PojoDao dao, final DaoDirective pojoDirective) {

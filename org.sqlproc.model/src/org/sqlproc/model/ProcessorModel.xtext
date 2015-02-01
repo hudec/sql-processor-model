@@ -228,24 +228,20 @@ Import hidden(ML_COMMENT, SL_COMMENT, WS):
 
 ImplementsExtendsDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
 	{ImplementsExtendsDirectiveGenerics} '#Generics'
+	| {ImplementsExtendsDirectiveOnlyPojos} '#OnlyPojos' onlyPojos+=[PojoEntity|ValidID]*
+	| {ImplementsExtendsDirectiveOnlyDaos} '#OnlyDaos' onlyDaos+=[PojoDao|ValidID]*
+	| {ImplementsExtendsDirectiveExceptPojos} '#ExceptPojos' exceptPojos+=[PojoEntity|ValidID]*
+	| {ImplementsExtendsDirectiveExceptDaos} '#ExceptDaos' exceptDaos+=[PojoDao|ValidID]*
 ;
 
 Implements hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=ImplementsExtendsDirective*
 	'implements' ':' implements = [jvmTypes::JvmType|QualifiedName] 
-	('onlyPojos' onlyPojos+=[PojoEntity|ValidID]*)? 
-//	('onlyDaos' onlyDaos+=[PojoDao|ValidID]*)? 
-	('exceptPojos' exceptPojos+=[PojoEntity|ValidID]*)? 
-	//('exceptDaos' exceptDaos+=[PojoDao|ValidID]*)?
 ;
 
 Extends hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=ImplementsExtendsDirective*
 	'extends' ':' extends = [jvmTypes::JvmType|QualifiedName] 
-	('onlyPojos' onlyPojos+=[PojoEntity|ValidID]*)? 
-//	('onlyDaos' onlyDaos+=[PojoDao|ValidID]*)? 
-	('exceptPojos' exceptPojos+=[PojoEntity|ValidID]*)? 
-	//('exceptDaos' exceptDaos+=[PojoDao|ValidID]*)?
 ;
 
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));

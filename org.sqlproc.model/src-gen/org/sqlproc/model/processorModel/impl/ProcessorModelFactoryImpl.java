@@ -65,7 +65,11 @@ import org.sqlproc.model.processorModel.Implements;
 import org.sqlproc.model.processorModel.ImplementsAssignement;
 import org.sqlproc.model.processorModel.ImplementsAssignementGenerics;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirective;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
 import org.sqlproc.model.processorModel.Import;
 import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
@@ -251,6 +255,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.ANNOTATION_DIRECTIVE_GETTER: return createAnnotationDirectiveGetter();
       case ProcessorModelPackage.ANNOTATION_DIRECTIVE_ATTRIBUTE: return createAnnotationDirectiveAttribute();
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS: return createImplementsExtendsDirectiveGenerics();
+      case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS: return createImplementsExtendsDirectiveOnlyPojos();
+      case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS: return createImplementsExtendsDirectiveOnlyDaos();
+      case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_POJOS: return createImplementsExtendsDirectiveExceptPojos();
+      case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS: return createImplementsExtendsDirectiveExceptDaos();
       case ProcessorModelPackage.POJO_DIRECTIVE_TO_STRING: return createPojoDirectiveToString();
       case ProcessorModelPackage.POJO_DIRECTIVE_INDEX: return createPojoDirectiveIndex();
       case ProcessorModelPackage.POJO_DIRECTIVE_OPERATORS: return createPojoDirectiveOperators();
@@ -1152,6 +1160,50 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     ImplementsExtendsDirectiveGenericsImpl implementsExtendsDirectiveGenerics = new ImplementsExtendsDirectiveGenericsImpl();
     return implementsExtendsDirectiveGenerics;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ImplementsExtendsDirectiveOnlyPojos createImplementsExtendsDirectiveOnlyPojos()
+  {
+    ImplementsExtendsDirectiveOnlyPojosImpl implementsExtendsDirectiveOnlyPojos = new ImplementsExtendsDirectiveOnlyPojosImpl();
+    return implementsExtendsDirectiveOnlyPojos;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ImplementsExtendsDirectiveOnlyDaos createImplementsExtendsDirectiveOnlyDaos()
+  {
+    ImplementsExtendsDirectiveOnlyDaosImpl implementsExtendsDirectiveOnlyDaos = new ImplementsExtendsDirectiveOnlyDaosImpl();
+    return implementsExtendsDirectiveOnlyDaos;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ImplementsExtendsDirectiveExceptPojos createImplementsExtendsDirectiveExceptPojos()
+  {
+    ImplementsExtendsDirectiveExceptPojosImpl implementsExtendsDirectiveExceptPojos = new ImplementsExtendsDirectiveExceptPojosImpl();
+    return implementsExtendsDirectiveExceptPojos;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ImplementsExtendsDirectiveExceptDaos createImplementsExtendsDirectiveExceptDaos()
+  {
+    ImplementsExtendsDirectiveExceptDaosImpl implementsExtendsDirectiveExceptDaos = new ImplementsExtendsDirectiveExceptDaosImpl();
+    return implementsExtendsDirectiveExceptDaos;
   }
 
   /**

@@ -59,6 +59,11 @@ import org.sqlproc.model.processorModel.PojoDirectiveEquals
 import org.sqlproc.model.processorModel.PojoDirectiveHashCode
 import org.sqlproc.model.processorModel.Package;
 import org.sqlproc.model.processorModel.Entity
+import org.sqlproc.model.processorModel.Extends
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos
 
 class ProcessorGeneratorUtils {
 
@@ -575,5 +580,69 @@ class ProcessorGeneratorUtils {
 		if (prop == null)
 			return newArrayList()
 		return prop.annotations.filter[x|x.isAttribute].toList
+	}
+
+	def List<PojoEntity> onlyPojos(Extends ext) {
+    	val List<PojoEntity> result = newArrayList()
+		ext.directives?.filter[x|x instanceof ImplementsExtendsDirectiveOnlyPojos].forEach[
+			result.addAll((it as ImplementsExtendsDirectiveOnlyPojos).onlyPojos)
+		]
+		return result
+	}
+
+	def List<PojoEntity> exceptPojos(Extends ext) {
+    	val List<PojoEntity> result = newArrayList()
+		ext.directives?.filter[x|x instanceof ImplementsExtendsDirectiveExceptPojos].forEach[
+			result.addAll((it as ImplementsExtendsDirectiveExceptPojos).exceptPojos)
+		]
+		return result
+	}
+
+	def List<PojoEntity> onlyPojos(Implements imp) {
+    	val List<PojoEntity> result = newArrayList()
+		imp.directives?.filter[x|x instanceof ImplementsExtendsDirectiveOnlyPojos].forEach[
+			result.addAll((it as ImplementsExtendsDirectiveOnlyPojos).onlyPojos)
+		]
+		return result
+	}
+
+	def List<PojoEntity> exceptPojos(Implements imp) {
+    	val List<PojoEntity> result = newArrayList()
+		imp.directives?.filter[x|x instanceof ImplementsExtendsDirectiveExceptPojos].forEach[
+			result.addAll((it as ImplementsExtendsDirectiveExceptPojos).exceptPojos)
+		]
+		return result
+	}
+
+	def List<PojoDao> onlyDaos(Extends ext) {
+    	val List<PojoDao> result = newArrayList()
+		ext.directives?.filter[x|x instanceof ImplementsExtendsDirectiveOnlyDaos].forEach[
+			result.addAll((it as ImplementsExtendsDirectiveOnlyDaos).onlyDaos)
+		]
+		return result
+	}
+
+	def List<PojoDao> exceptDaos(Extends ext) {
+    	val List<PojoDao> result = newArrayList()
+		ext.directives?.filter[x|x instanceof ImplementsExtendsDirectiveExceptDaos].forEach[
+			result.addAll((it as ImplementsExtendsDirectiveExceptDaos).exceptDaos)
+		]
+		return result
+	}
+
+	def List<PojoDao> onlyDaos(Implements imp) {
+    	val List<PojoDao> result = newArrayList()
+		imp.directives?.filter[x|x instanceof ImplementsExtendsDirectiveOnlyDaos].forEach[
+			result.addAll((it as ImplementsExtendsDirectiveOnlyDaos).onlyDaos)
+		]
+		return result
+	}
+
+	def List<PojoDao> exceptDaos(Implements imp) {
+    	val List<PojoDao> result = newArrayList()
+		imp.directives?.filter[x|x instanceof ImplementsExtendsDirectiveExceptDaos].forEach[
+			result.addAll((it as ImplementsExtendsDirectiveExceptDaos).exceptDaos)
+		]
+		return result
 	}
 }

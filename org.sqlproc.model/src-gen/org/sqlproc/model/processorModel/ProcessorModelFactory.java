@@ -734,6 +734,42 @@ public interface ProcessorModelFactory extends EFactory
   ImplementsExtendsDirectiveGenerics createImplementsExtendsDirectiveGenerics();
 
   /**
+   * Returns a new object of class '<em>Implements Extends Directive Only Pojos</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Implements Extends Directive Only Pojos</em>'.
+   * @generated
+   */
+  ImplementsExtendsDirectiveOnlyPojos createImplementsExtendsDirectiveOnlyPojos();
+
+  /**
+   * Returns a new object of class '<em>Implements Extends Directive Only Daos</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Implements Extends Directive Only Daos</em>'.
+   * @generated
+   */
+  ImplementsExtendsDirectiveOnlyDaos createImplementsExtendsDirectiveOnlyDaos();
+
+  /**
+   * Returns a new object of class '<em>Implements Extends Directive Except Pojos</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Implements Extends Directive Except Pojos</em>'.
+   * @generated
+   */
+  ImplementsExtendsDirectiveExceptPojos createImplementsExtendsDirectiveExceptPojos();
+
+  /**
+   * Returns a new object of class '<em>Implements Extends Directive Except Daos</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Implements Extends Directive Except Daos</em>'.
+   * @generated
+   */
+  ImplementsExtendsDirectiveExceptDaos createImplementsExtendsDirectiveExceptDaos();
+
+  /**
    * Returns a new object of class '<em>Pojo Directive To String</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

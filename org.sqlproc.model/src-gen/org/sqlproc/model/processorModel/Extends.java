@@ -16,8 +16,6 @@ import org.eclipse.xtext.common.types.JvmType;
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.Extends#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Extends#getExtends <em>Extends</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.Extends#getOnlyPojos <em>Only Pojos</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.Extends#getExceptPojos <em>Except Pojos</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,37 +66,5 @@ public interface Extends extends AbstractPojoEntity
    * @generated
    */
   void setExtends(JvmType value);
-
-  /**
-   * Returns the value of the '<em><b>Only Pojos</b></em>' reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.PojoEntity}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Only Pojos</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Only Pojos</em>' reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getExtends_OnlyPojos()
-   * @model
-   * @generated
-   */
-  EList<PojoEntity> getOnlyPojos();
-
-  /**
-   * Returns the value of the '<em><b>Except Pojos</b></em>' reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.PojoEntity}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Except Pojos</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Except Pojos</em>' reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getExtends_ExceptPojos()
-   * @model
-   * @generated
-   */
-  EList<PojoEntity> getExceptPojos();
 
 } // Extends

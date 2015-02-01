@@ -64,7 +64,11 @@ import org.sqlproc.model.processorModel.Implements;
 import org.sqlproc.model.processorModel.ImplementsAssignement;
 import org.sqlproc.model.processorModel.ImplementsAssignementGenerics;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirective;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
 import org.sqlproc.model.processorModel.Import;
 import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
@@ -575,6 +579,26 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
       public Adapter caseImplementsExtendsDirectiveGenerics(ImplementsExtendsDirectiveGenerics object)
       {
         return createImplementsExtendsDirectiveGenericsAdapter();
+      }
+      @Override
+      public Adapter caseImplementsExtendsDirectiveOnlyPojos(ImplementsExtendsDirectiveOnlyPojos object)
+      {
+        return createImplementsExtendsDirectiveOnlyPojosAdapter();
+      }
+      @Override
+      public Adapter caseImplementsExtendsDirectiveOnlyDaos(ImplementsExtendsDirectiveOnlyDaos object)
+      {
+        return createImplementsExtendsDirectiveOnlyDaosAdapter();
+      }
+      @Override
+      public Adapter caseImplementsExtendsDirectiveExceptPojos(ImplementsExtendsDirectiveExceptPojos object)
+      {
+        return createImplementsExtendsDirectiveExceptPojosAdapter();
+      }
+      @Override
+      public Adapter caseImplementsExtendsDirectiveExceptDaos(ImplementsExtendsDirectiveExceptDaos object)
+      {
+        return createImplementsExtendsDirectiveExceptDaosAdapter();
       }
       @Override
       public Adapter casePojoDirectiveToString(PojoDirectiveToString object)
@@ -1924,6 +1948,66 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createImplementsExtendsDirectiveGenericsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos <em>Implements Extends Directive Only Pojos</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos
+   * @generated
+   */
+  public Adapter createImplementsExtendsDirectiveOnlyPojosAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos <em>Implements Extends Directive Only Daos</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos
+   * @generated
+   */
+  public Adapter createImplementsExtendsDirectiveOnlyDaosAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos <em>Implements Extends Directive Except Pojos</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos
+   * @generated
+   */
+  public Adapter createImplementsExtendsDirectiveExceptPojosAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos <em>Implements Extends Directive Except Daos</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos
+   * @generated
+   */
+  public Adapter createImplementsExtendsDirectiveExceptDaosAdapter()
   {
     return null;
   }

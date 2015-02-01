@@ -66,7 +66,11 @@ import org.sqlproc.model.processorModel.Implements;
 import org.sqlproc.model.processorModel.ImplementsAssignement;
 import org.sqlproc.model.processorModel.ImplementsAssignementGenerics;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirective;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
 import org.sqlproc.model.processorModel.Import;
 import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
@@ -681,6 +685,34 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * @generated
    */
   private EClass implementsExtendsDirectiveGenericsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass implementsExtendsDirectiveOnlyPojosEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass implementsExtendsDirectiveOnlyDaosEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass implementsExtendsDirectiveExceptPojosEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass implementsExtendsDirectiveExceptDaosEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -3196,26 +3228,6 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getImplements_OnlyPojos()
-  {
-    return (EReference)implementsEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getImplements_ExceptPojos()
-  {
-    return (EReference)implementsEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getExtends()
   {
     return extendsEClass;
@@ -3239,26 +3251,6 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
   public EReference getExtends_Extends()
   {
     return (EReference)extendsEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExtends_OnlyPojos()
-  {
-    return (EReference)extendsEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExtends_ExceptPojos()
-  {
-    return (EReference)extendsEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -3929,6 +3921,86 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
   public EClass getImplementsExtendsDirectiveGenerics()
   {
     return implementsExtendsDirectiveGenericsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getImplementsExtendsDirectiveOnlyPojos()
+  {
+    return implementsExtendsDirectiveOnlyPojosEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplementsExtendsDirectiveOnlyPojos_OnlyPojos()
+  {
+    return (EReference)implementsExtendsDirectiveOnlyPojosEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getImplementsExtendsDirectiveOnlyDaos()
+  {
+    return implementsExtendsDirectiveOnlyDaosEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplementsExtendsDirectiveOnlyDaos_OnlyDaos()
+  {
+    return (EReference)implementsExtendsDirectiveOnlyDaosEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getImplementsExtendsDirectiveExceptPojos()
+  {
+    return implementsExtendsDirectiveExceptPojosEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplementsExtendsDirectiveExceptPojos_ExceptPojos()
+  {
+    return (EReference)implementsExtendsDirectiveExceptPojosEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getImplementsExtendsDirectiveExceptDaos()
+  {
+    return implementsExtendsDirectiveExceptDaosEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplementsExtendsDirectiveExceptDaos_ExceptDaos()
+  {
+    return (EReference)implementsExtendsDirectiveExceptDaosEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4732,14 +4804,10 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     implementsEClass = createEClass(IMPLEMENTS);
     createEReference(implementsEClass, IMPLEMENTS__DIRECTIVES);
     createEReference(implementsEClass, IMPLEMENTS__IMPLEMENTS);
-    createEReference(implementsEClass, IMPLEMENTS__ONLY_POJOS);
-    createEReference(implementsEClass, IMPLEMENTS__EXCEPT_POJOS);
 
     extendsEClass = createEClass(EXTENDS);
     createEReference(extendsEClass, EXTENDS__DIRECTIVES);
     createEReference(extendsEClass, EXTENDS__EXTENDS);
-    createEReference(extendsEClass, EXTENDS__ONLY_POJOS);
-    createEReference(extendsEClass, EXTENDS__EXCEPT_POJOS);
 
     pojoEntityModifier1EClass = createEClass(POJO_ENTITY_MODIFIER1);
     createEAttribute(pojoEntityModifier1EClass, POJO_ENTITY_MODIFIER1__FINAL);
@@ -4837,6 +4905,18 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     annotationDirectiveAttributeEClass = createEClass(ANNOTATION_DIRECTIVE_ATTRIBUTE);
 
     implementsExtendsDirectiveGenericsEClass = createEClass(IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS);
+
+    implementsExtendsDirectiveOnlyPojosEClass = createEClass(IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS);
+    createEReference(implementsExtendsDirectiveOnlyPojosEClass, IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS__ONLY_POJOS);
+
+    implementsExtendsDirectiveOnlyDaosEClass = createEClass(IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS);
+    createEReference(implementsExtendsDirectiveOnlyDaosEClass, IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS__ONLY_DAOS);
+
+    implementsExtendsDirectiveExceptPojosEClass = createEClass(IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_POJOS);
+    createEReference(implementsExtendsDirectiveExceptPojosEClass, IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_POJOS__EXCEPT_POJOS);
+
+    implementsExtendsDirectiveExceptDaosEClass = createEClass(IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS);
+    createEReference(implementsExtendsDirectiveExceptDaosEClass, IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS__EXCEPT_DAOS);
 
     pojoDirectiveToStringEClass = createEClass(POJO_DIRECTIVE_TO_STRING);
     createEReference(pojoDirectiveToStringEClass, POJO_DIRECTIVE_TO_STRING__PROPLIST);
@@ -4968,6 +5048,10 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     annotationDirectiveGetterEClass.getESuperTypes().add(this.getAnnotationDirective());
     annotationDirectiveAttributeEClass.getESuperTypes().add(this.getAnnotationDirective());
     implementsExtendsDirectiveGenericsEClass.getESuperTypes().add(this.getImplementsExtendsDirective());
+    implementsExtendsDirectiveOnlyPojosEClass.getESuperTypes().add(this.getImplementsExtendsDirective());
+    implementsExtendsDirectiveOnlyDaosEClass.getESuperTypes().add(this.getImplementsExtendsDirective());
+    implementsExtendsDirectiveExceptPojosEClass.getESuperTypes().add(this.getImplementsExtendsDirective());
+    implementsExtendsDirectiveExceptDaosEClass.getESuperTypes().add(this.getImplementsExtendsDirective());
     pojoDirectiveToStringEClass.getESuperTypes().add(this.getPojoDirective());
     pojoDirectiveIndexEClass.getESuperTypes().add(this.getPojoDirective());
     pojoDirectiveOperatorsEClass.getESuperTypes().add(this.getPojoDirective());
@@ -5270,14 +5354,10 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEClass(implementsEClass, Implements.class, "Implements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getImplements_Directives(), this.getImplementsExtendsDirective(), null, "directives", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getImplements_Implements(), theTypesPackage.getJvmType(), null, "implements", null, 0, 1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getImplements_OnlyPojos(), this.getPojoEntity(), null, "onlyPojos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getImplements_ExceptPojos(), this.getPojoEntity(), null, "exceptPojos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(extendsEClass, Extends.class, "Extends", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExtends_Directives(), this.getImplementsExtendsDirective(), null, "directives", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExtends_Extends(), theTypesPackage.getJvmType(), null, "extends", null, 0, 1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExtends_OnlyPojos(), this.getPojoEntity(), null, "onlyPojos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExtends_ExceptPojos(), this.getPojoEntity(), null, "exceptPojos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoEntityModifier1EClass, PojoEntityModifier1.class, "PojoEntityModifier1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPojoEntityModifier1_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, PojoEntityModifier1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5375,6 +5455,18 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEClass(annotationDirectiveAttributeEClass, AnnotationDirectiveAttribute.class, "AnnotationDirectiveAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(implementsExtendsDirectiveGenericsEClass, ImplementsExtendsDirectiveGenerics.class, "ImplementsExtendsDirectiveGenerics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(implementsExtendsDirectiveOnlyPojosEClass, ImplementsExtendsDirectiveOnlyPojos.class, "ImplementsExtendsDirectiveOnlyPojos", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getImplementsExtendsDirectiveOnlyPojos_OnlyPojos(), this.getPojoEntity(), null, "onlyPojos", null, 0, -1, ImplementsExtendsDirectiveOnlyPojos.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(implementsExtendsDirectiveOnlyDaosEClass, ImplementsExtendsDirectiveOnlyDaos.class, "ImplementsExtendsDirectiveOnlyDaos", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getImplementsExtendsDirectiveOnlyDaos_OnlyDaos(), this.getPojoDao(), null, "onlyDaos", null, 0, -1, ImplementsExtendsDirectiveOnlyDaos.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(implementsExtendsDirectiveExceptPojosEClass, ImplementsExtendsDirectiveExceptPojos.class, "ImplementsExtendsDirectiveExceptPojos", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getImplementsExtendsDirectiveExceptPojos_ExceptPojos(), this.getPojoEntity(), null, "exceptPojos", null, 0, -1, ImplementsExtendsDirectiveExceptPojos.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(implementsExtendsDirectiveExceptDaosEClass, ImplementsExtendsDirectiveExceptDaos.class, "ImplementsExtendsDirectiveExceptDaos", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getImplementsExtendsDirectiveExceptDaos_ExceptDaos(), this.getPojoDao(), null, "exceptDaos", null, 0, -1, ImplementsExtendsDirectiveExceptDaos.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoDirectiveToStringEClass, PojoDirectiveToString.class, "PojoDirectiveToString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPojoDirectiveToString_Proplist(), this.getDirectiveProperties(), null, "proplist", null, 0, 1, PojoDirectiveToString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -15,14 +15,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.common.types.JvmType;
 
 import org.sqlproc.model.processorModel.Implements;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirective;
-import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -34,8 +32,6 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.impl.ImplementsImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.ImplementsImpl#getImplements <em>Implements</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.ImplementsImpl#getOnlyPojos <em>Only Pojos</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.ImplementsImpl#getExceptPojos <em>Except Pojos</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,26 +58,6 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
    * @ordered
    */
   protected JvmType implements_;
-
-  /**
-   * The cached value of the '{@link #getOnlyPojos() <em>Only Pojos</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOnlyPojos()
-   * @generated
-   * @ordered
-   */
-  protected EList<PojoEntity> onlyPojos;
-
-  /**
-   * The cached value of the '{@link #getExceptPojos() <em>Except Pojos</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExceptPojos()
-   * @generated
-   * @ordered
-   */
-  protected EList<PojoEntity> exceptPojos;
 
   /**
    * <!-- begin-user-doc -->
@@ -166,34 +142,6 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoEntity> getOnlyPojos()
-  {
-    if (onlyPojos == null)
-    {
-      onlyPojos = new EObjectResolvingEList<PojoEntity>(PojoEntity.class, this, ProcessorModelPackage.IMPLEMENTS__ONLY_POJOS);
-    }
-    return onlyPojos;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<PojoEntity> getExceptPojos()
-  {
-    if (exceptPojos == null)
-    {
-      exceptPojos = new EObjectResolvingEList<PojoEntity>(PojoEntity.class, this, ProcessorModelPackage.IMPLEMENTS__EXCEPT_POJOS);
-    }
-    return exceptPojos;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -220,10 +168,6 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
       case ProcessorModelPackage.IMPLEMENTS__IMPLEMENTS:
         if (resolve) return getImplements();
         return basicGetImplements();
-      case ProcessorModelPackage.IMPLEMENTS__ONLY_POJOS:
-        return getOnlyPojos();
-      case ProcessorModelPackage.IMPLEMENTS__EXCEPT_POJOS:
-        return getExceptPojos();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -246,14 +190,6 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
       case ProcessorModelPackage.IMPLEMENTS__IMPLEMENTS:
         setImplements((JvmType)newValue);
         return;
-      case ProcessorModelPackage.IMPLEMENTS__ONLY_POJOS:
-        getOnlyPojos().clear();
-        getOnlyPojos().addAll((Collection<? extends PojoEntity>)newValue);
-        return;
-      case ProcessorModelPackage.IMPLEMENTS__EXCEPT_POJOS:
-        getExceptPojos().clear();
-        getExceptPojos().addAll((Collection<? extends PojoEntity>)newValue);
-        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -274,12 +210,6 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
       case ProcessorModelPackage.IMPLEMENTS__IMPLEMENTS:
         setImplements((JvmType)null);
         return;
-      case ProcessorModelPackage.IMPLEMENTS__ONLY_POJOS:
-        getOnlyPojos().clear();
-        return;
-      case ProcessorModelPackage.IMPLEMENTS__EXCEPT_POJOS:
-        getExceptPojos().clear();
-        return;
     }
     super.eUnset(featureID);
   }
@@ -298,10 +228,6 @@ public class ImplementsImpl extends AbstractPojoEntityImpl implements Implements
         return directives != null && !directives.isEmpty();
       case ProcessorModelPackage.IMPLEMENTS__IMPLEMENTS:
         return implements_ != null;
-      case ProcessorModelPackage.IMPLEMENTS__ONLY_POJOS:
-        return onlyPojos != null && !onlyPojos.isEmpty();
-      case ProcessorModelPackage.IMPLEMENTS__EXCEPT_POJOS:
-        return exceptPojos != null && !exceptPojos.isEmpty();
     }
     return super.eIsSet(featureID);
   }

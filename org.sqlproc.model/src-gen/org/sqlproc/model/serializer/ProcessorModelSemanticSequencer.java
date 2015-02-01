@@ -109,7 +109,11 @@ import org.sqlproc.model.processorModel.FunctionQuery;
 import org.sqlproc.model.processorModel.Implements;
 import org.sqlproc.model.processorModel.ImplementsAssignement;
 import org.sqlproc.model.processorModel.ImplementsAssignementGenerics;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
 import org.sqlproc.model.processorModel.Import;
 import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
@@ -461,9 +465,33 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 					return; 
 				}
 				else break;
+			case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS:
+				if(context == grammarAccess.getImplementsExtendsDirectiveRule()) {
+					sequence_ImplementsExtendsDirective(context, (ImplementsExtendsDirectiveExceptDaos) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_POJOS:
+				if(context == grammarAccess.getImplementsExtendsDirectiveRule()) {
+					sequence_ImplementsExtendsDirective(context, (ImplementsExtendsDirectiveExceptPojos) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS:
 				if(context == grammarAccess.getImplementsExtendsDirectiveRule()) {
 					sequence_ImplementsExtendsDirective(context, (ImplementsExtendsDirectiveGenerics) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS:
+				if(context == grammarAccess.getImplementsExtendsDirectiveRule()) {
+					sequence_ImplementsExtendsDirective(context, (ImplementsExtendsDirectiveOnlyDaos) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS:
+				if(context == grammarAccess.getImplementsExtendsDirectiveRule()) {
+					sequence_ImplementsExtendsDirective(context, (ImplementsExtendsDirectiveOnlyPojos) semanticObject); 
 					return; 
 				}
 				else break;
@@ -2515,7 +2543,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (directives+=ImplementsExtendsDirective* extends=[JvmType|QualifiedName] onlyPojos+=[PojoEntity|ValidID]* exceptPojos+=[PojoEntity|ValidID]*)
+	 *     (directives+=ImplementsExtendsDirective* extends=[JvmType|QualifiedName])
 	 */
 	protected void sequence_Extends(EObject context, Extends semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2625,6 +2653,24 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
+	 *     (exceptDaos+=[PojoDao|ValidID]*)
+	 */
+	protected void sequence_ImplementsExtendsDirective(EObject context, ImplementsExtendsDirectiveExceptDaos semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (exceptPojos+=[PojoEntity|ValidID]*)
+	 */
+	protected void sequence_ImplementsExtendsDirective(EObject context, ImplementsExtendsDirectiveExceptPojos semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     {ImplementsExtendsDirectiveGenerics}
 	 */
 	protected void sequence_ImplementsExtendsDirective(EObject context, ImplementsExtendsDirectiveGenerics semanticObject) {
@@ -2634,7 +2680,25 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (directives+=ImplementsExtendsDirective* implements=[JvmType|QualifiedName] onlyPojos+=[PojoEntity|ValidID]* exceptPojos+=[PojoEntity|ValidID]*)
+	 *     (onlyDaos+=[PojoDao|ValidID]*)
+	 */
+	protected void sequence_ImplementsExtendsDirective(EObject context, ImplementsExtendsDirectiveOnlyDaos semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (onlyPojos+=[PojoEntity|ValidID]*)
+	 */
+	protected void sequence_ImplementsExtendsDirective(EObject context, ImplementsExtendsDirectiveOnlyPojos semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (directives+=ImplementsExtendsDirective* implements=[JvmType|QualifiedName])
 	 */
 	protected void sequence_Implements(EObject context, Implements semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

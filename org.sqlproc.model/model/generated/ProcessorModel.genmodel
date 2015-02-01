@@ -274,14 +274,10 @@
     <genClasses ecoreClass="ProcessorModel.ecore#//Implements">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Implements/directives"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Implements/implements"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Implements/onlyPojos"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Implements/exceptPojos"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//Extends">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Extends/directives"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Extends/extends"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Extends/onlyPojos"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//Extends/exceptPojos"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoEntityModifier1">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoEntityModifier1/final"/>
@@ -367,6 +363,18 @@
     <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationDirectiveGetter"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationDirectiveAttribute"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//ImplementsExtendsDirectiveGenerics"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//ImplementsExtendsDirectiveOnlyPojos">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//ImplementsExtendsDirectiveOnlyPojos/onlyPojos"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//ImplementsExtendsDirectiveOnlyDaos">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//ImplementsExtendsDirectiveOnlyDaos/onlyDaos"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//ImplementsExtendsDirectiveExceptPojos">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//ImplementsExtendsDirectiveExceptPojos/exceptPojos"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//ImplementsExtendsDirectiveExceptDaos">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//ImplementsExtendsDirectiveExceptDaos/exceptDaos"/>
+    </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoDirectiveToString">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDirectiveToString/proplist"/>
     </genClasses>

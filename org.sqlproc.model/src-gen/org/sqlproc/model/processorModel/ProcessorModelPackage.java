@@ -2544,31 +2544,13 @@ public interface ProcessorModelPackage extends EPackage
   int IMPLEMENTS__IMPLEMENTS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Only Pojos</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int IMPLEMENTS__ONLY_POJOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>Except Pojos</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int IMPLEMENTS__EXCEPT_POJOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
-
-  /**
    * The number of structural features of the '<em>Implements</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPLEMENTS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
+  int IMPLEMENTS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.ExtendsImpl <em>Extends</em>}' class.
@@ -2599,31 +2581,13 @@ public interface ProcessorModelPackage extends EPackage
   int EXTENDS__EXTENDS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Only Pojos</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTENDS__ONLY_POJOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>Except Pojos</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTENDS__EXCEPT_POJOS = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 3;
-
-  /**
    * The number of structural features of the '<em>Extends</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXTENDS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 4;
+  int EXTENDS_FEATURE_COUNT = ABSTRACT_POJO_ENTITY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.PojoEntityModifier1Impl <em>Pojo Entity Modifier1</em>}' class.
@@ -3565,6 +3529,118 @@ public interface ProcessorModelPackage extends EPackage
   int IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS_FEATURE_COUNT = IMPLEMENTS_EXTENDS_DIRECTIVE_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveOnlyPojosImpl <em>Implements Extends Directive Only Pojos</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveOnlyPojosImpl
+   * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveOnlyPojos()
+   * @generated
+   */
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS = 79;
+
+  /**
+   * The feature id for the '<em><b>Only Pojos</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS__ONLY_POJOS = IMPLEMENTS_EXTENDS_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Implements Extends Directive Only Pojos</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS_FEATURE_COUNT = IMPLEMENTS_EXTENDS_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveOnlyDaosImpl <em>Implements Extends Directive Only Daos</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveOnlyDaosImpl
+   * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveOnlyDaos()
+   * @generated
+   */
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS = 80;
+
+  /**
+   * The feature id for the '<em><b>Only Daos</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS__ONLY_DAOS = IMPLEMENTS_EXTENDS_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Implements Extends Directive Only Daos</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS_FEATURE_COUNT = IMPLEMENTS_EXTENDS_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveExceptPojosImpl <em>Implements Extends Directive Except Pojos</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveExceptPojosImpl
+   * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveExceptPojos()
+   * @generated
+   */
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_POJOS = 81;
+
+  /**
+   * The feature id for the '<em><b>Except Pojos</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_POJOS__EXCEPT_POJOS = IMPLEMENTS_EXTENDS_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Implements Extends Directive Except Pojos</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_POJOS_FEATURE_COUNT = IMPLEMENTS_EXTENDS_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveExceptDaosImpl <em>Implements Extends Directive Except Daos</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveExceptDaosImpl
+   * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveExceptDaos()
+   * @generated
+   */
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS = 82;
+
+  /**
+   * The feature id for the '<em><b>Except Daos</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS__EXCEPT_DAOS = IMPLEMENTS_EXTENDS_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Implements Extends Directive Except Daos</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS_FEATURE_COUNT = IMPLEMENTS_EXTENDS_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.PojoDirectiveToStringImpl <em>Pojo Directive To String</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3572,7 +3648,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveToString()
    * @generated
    */
-  int POJO_DIRECTIVE_TO_STRING = 79;
+  int POJO_DIRECTIVE_TO_STRING = 83;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -3600,7 +3676,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveIndex()
    * @generated
    */
-  int POJO_DIRECTIVE_INDEX = 80;
+  int POJO_DIRECTIVE_INDEX = 84;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -3637,7 +3713,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveOperators()
    * @generated
    */
-  int POJO_DIRECTIVE_OPERATORS = 81;
+  int POJO_DIRECTIVE_OPERATORS = 85;
 
   /**
    * The feature id for the '<em><b>Operators Suffix</b></em>' attribute.
@@ -3665,7 +3741,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveSerializable()
    * @generated
    */
-  int POJO_DIRECTIVE_SERIALIZABLE = 82;
+  int POJO_DIRECTIVE_SERIALIZABLE = 86;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -3693,7 +3769,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveDiscriminator()
    * @generated
    */
-  int POJO_DIRECTIVE_DISCRIMINATOR = 83;
+  int POJO_DIRECTIVE_DISCRIMINATOR = 87;
 
   /**
    * The feature id for the '<em><b>Discriminator</b></em>' attribute.
@@ -3721,7 +3797,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveEquals()
    * @generated
    */
-  int POJO_DIRECTIVE_EQUALS = 84;
+  int POJO_DIRECTIVE_EQUALS = 88;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -3749,7 +3825,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoDirectiveHashCode()
    * @generated
    */
-  int POJO_DIRECTIVE_HASH_CODE = 85;
+  int POJO_DIRECTIVE_HASH_CODE = 89;
 
   /**
    * The feature id for the '<em><b>Proplist</b></em>' containment reference.
@@ -3777,7 +3853,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoPropertyDirectiveRequired()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 86;
+  int POJO_PROPERTY_DIRECTIVE_REQUIRED = 90;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Required</em>' class.
@@ -3796,7 +3872,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoPropertyDirectivePrimaryKey()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 87;
+  int POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY = 91;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Primary Key</em>' class.
@@ -3815,7 +3891,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoPropertyDirectiveDiscriminator()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 88;
+  int POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR = 92;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Discriminator</em>' class.
@@ -3834,7 +3910,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoPropertyDirectiveIndex()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_INDEX = 89;
+  int POJO_PROPERTY_DIRECTIVE_INDEX = 93;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -3862,7 +3938,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoPropertyDirectiveVersion()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_VERSION = 90;
+  int POJO_PROPERTY_DIRECTIVE_VERSION = 94;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Version</em>' class.
@@ -3881,7 +3957,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoPropertyDirectiveUpdateCol()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 91;
+  int POJO_PROPERTY_DIRECTIVE_UPDATE_COL = 95;
 
   /**
    * The feature id for the '<em><b>Update Column1</b></em>' attribute.
@@ -3918,7 +3994,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoPropertyDirectiveCreateCol()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 92;
+  int POJO_PROPERTY_DIRECTIVE_CREATE_COL = 96;
 
   /**
    * The feature id for the '<em><b>Create Column1</b></em>' attribute.
@@ -3955,7 +4031,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoPropertyDirectiveToInit()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_TO_INIT = 93;
+  int POJO_PROPERTY_DIRECTIVE_TO_INIT = 97;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive To Init</em>' class.
@@ -3974,7 +4050,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoPropertyDirectiveEnumInit()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_ENUM_INIT = 94;
+  int POJO_PROPERTY_DIRECTIVE_ENUM_INIT = 98;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Enum Init</em>' class.
@@ -3993,7 +4069,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoPropertyDirectiveIsDef()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_IS_DEF = 95;
+  int POJO_PROPERTY_DIRECTIVE_IS_DEF = 99;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Is Def</em>' class.
@@ -4012,7 +4088,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getPojoPropertyDirectiveEnumDef()
    * @generated
    */
-  int POJO_PROPERTY_DIRECTIVE_ENUM_DEF = 96;
+  int POJO_PROPERTY_DIRECTIVE_ENUM_DEF = 100;
 
   /**
    * The number of structural features of the '<em>Pojo Property Directive Enum Def</em>' class.
@@ -4031,7 +4107,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getEnumPropertyDirectiveValues()
    * @generated
    */
-  int ENUM_PROPERTY_DIRECTIVE_VALUES = 97;
+  int ENUM_PROPERTY_DIRECTIVE_VALUES = 101;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' containment reference list.
@@ -4059,7 +4135,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getFunctionCallQuery()
    * @generated
    */
-  int FUNCTION_CALL_QUERY = 98;
+  int FUNCTION_CALL_QUERY = 102;
 
   /**
    * The number of structural features of the '<em>Function Call Query</em>' class.
@@ -4078,7 +4154,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getProcedureCallQuery()
    * @generated
    */
-  int PROCEDURE_CALL_QUERY = 99;
+  int PROCEDURE_CALL_QUERY = 103;
 
   /**
    * The number of structural features of the '<em>Procedure Call Query</em>' class.
@@ -4097,7 +4173,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getFunctionCall()
    * @generated
    */
-  int FUNCTION_CALL = 100;
+  int FUNCTION_CALL = 104;
 
   /**
    * The number of structural features of the '<em>Function Call</em>' class.
@@ -4116,7 +4192,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getProcedureUpdate()
    * @generated
    */
-  int PROCEDURE_UPDATE = 101;
+  int PROCEDURE_UPDATE = 105;
 
   /**
    * The number of structural features of the '<em>Procedure Update</em>' class.
@@ -4135,7 +4211,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getFunctionQuery()
    * @generated
    */
-  int FUNCTION_QUERY = 102;
+  int FUNCTION_QUERY = 106;
 
   /**
    * The number of structural features of the '<em>Function Query</em>' class.
@@ -4154,7 +4230,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirectiveSerializable()
    * @generated
    */
-  int DAO_DIRECTIVE_SERIALIZABLE = 103;
+  int DAO_DIRECTIVE_SERIALIZABLE = 107;
 
   /**
    * The feature id for the '<em><b>Sernum</b></em>' attribute.
@@ -4182,7 +4258,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirectiveDiscriminator()
    * @generated
    */
-  int DAO_DIRECTIVE_DISCRIMINATOR = 104;
+  int DAO_DIRECTIVE_DISCRIMINATOR = 108;
 
   /**
    * The feature id for the '<em><b>Ancestor</b></em>' reference.
@@ -4219,7 +4295,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirectiveCrud()
    * @generated
    */
-  int DAO_DIRECTIVE_CRUD = 105;
+  int DAO_DIRECTIVE_CRUD = 109;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -4247,7 +4323,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirectiveQuery()
    * @generated
    */
-  int DAO_DIRECTIVE_QUERY = 106;
+  int DAO_DIRECTIVE_QUERY = 110;
 
   /**
    * The feature id for the '<em><b>Pojo</b></em>' containment reference.
@@ -4275,7 +4351,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getFunProcDirective()
    * @generated
    */
-  int FUN_PROC_DIRECTIVE = 107;
+  int FUN_PROC_DIRECTIVE = 111;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -6722,28 +6798,6 @@ public interface ProcessorModelPackage extends EPackage
   EReference getImplements_Implements();
 
   /**
-   * Returns the meta object for the reference list '{@link org.sqlproc.model.processorModel.Implements#getOnlyPojos <em>Only Pojos</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Only Pojos</em>'.
-   * @see org.sqlproc.model.processorModel.Implements#getOnlyPojos()
-   * @see #getImplements()
-   * @generated
-   */
-  EReference getImplements_OnlyPojos();
-
-  /**
-   * Returns the meta object for the reference list '{@link org.sqlproc.model.processorModel.Implements#getExceptPojos <em>Except Pojos</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Except Pojos</em>'.
-   * @see org.sqlproc.model.processorModel.Implements#getExceptPojos()
-   * @see #getImplements()
-   * @generated
-   */
-  EReference getImplements_ExceptPojos();
-
-  /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.Extends <em>Extends</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6774,28 +6828,6 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    */
   EReference getExtends_Extends();
-
-  /**
-   * Returns the meta object for the reference list '{@link org.sqlproc.model.processorModel.Extends#getOnlyPojos <em>Only Pojos</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Only Pojos</em>'.
-   * @see org.sqlproc.model.processorModel.Extends#getOnlyPojos()
-   * @see #getExtends()
-   * @generated
-   */
-  EReference getExtends_OnlyPojos();
-
-  /**
-   * Returns the meta object for the reference list '{@link org.sqlproc.model.processorModel.Extends#getExceptPojos <em>Except Pojos</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Except Pojos</em>'.
-   * @see org.sqlproc.model.processorModel.Extends#getExceptPojos()
-   * @see #getExtends()
-   * @generated
-   */
-  EReference getExtends_ExceptPojos();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.PojoEntityModifier1 <em>Pojo Entity Modifier1</em>}'.
@@ -7503,6 +7535,90 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    */
   EClass getImplementsExtendsDirectiveGenerics();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos <em>Implements Extends Directive Only Pojos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Implements Extends Directive Only Pojos</em>'.
+   * @see org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos
+   * @generated
+   */
+  EClass getImplementsExtendsDirectiveOnlyPojos();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos#getOnlyPojos <em>Only Pojos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Only Pojos</em>'.
+   * @see org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos#getOnlyPojos()
+   * @see #getImplementsExtendsDirectiveOnlyPojos()
+   * @generated
+   */
+  EReference getImplementsExtendsDirectiveOnlyPojos_OnlyPojos();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos <em>Implements Extends Directive Only Daos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Implements Extends Directive Only Daos</em>'.
+   * @see org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos
+   * @generated
+   */
+  EClass getImplementsExtendsDirectiveOnlyDaos();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos#getOnlyDaos <em>Only Daos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Only Daos</em>'.
+   * @see org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos#getOnlyDaos()
+   * @see #getImplementsExtendsDirectiveOnlyDaos()
+   * @generated
+   */
+  EReference getImplementsExtendsDirectiveOnlyDaos_OnlyDaos();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos <em>Implements Extends Directive Except Pojos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Implements Extends Directive Except Pojos</em>'.
+   * @see org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos
+   * @generated
+   */
+  EClass getImplementsExtendsDirectiveExceptPojos();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos#getExceptPojos <em>Except Pojos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Except Pojos</em>'.
+   * @see org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos#getExceptPojos()
+   * @see #getImplementsExtendsDirectiveExceptPojos()
+   * @generated
+   */
+  EReference getImplementsExtendsDirectiveExceptPojos_ExceptPojos();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos <em>Implements Extends Directive Except Daos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Implements Extends Directive Except Daos</em>'.
+   * @see org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos
+   * @generated
+   */
+  EClass getImplementsExtendsDirectiveExceptDaos();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos#getExceptDaos <em>Except Daos</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Except Daos</em>'.
+   * @see org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos#getExceptDaos()
+   * @see #getImplementsExtendsDirectiveExceptDaos()
+   * @generated
+   */
+  EReference getImplementsExtendsDirectiveExceptDaos_ExceptDaos();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.PojoDirectiveToString <em>Pojo Directive To String</em>}'.
@@ -9937,22 +10053,6 @@ public interface ProcessorModelPackage extends EPackage
     EReference IMPLEMENTS__IMPLEMENTS = eINSTANCE.getImplements_Implements();
 
     /**
-     * The meta object literal for the '<em><b>Only Pojos</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IMPLEMENTS__ONLY_POJOS = eINSTANCE.getImplements_OnlyPojos();
-
-    /**
-     * The meta object literal for the '<em><b>Except Pojos</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IMPLEMENTS__EXCEPT_POJOS = eINSTANCE.getImplements_ExceptPojos();
-
-    /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.ExtendsImpl <em>Extends</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9977,22 +10077,6 @@ public interface ProcessorModelPackage extends EPackage
      * @generated
      */
     EReference EXTENDS__EXTENDS = eINSTANCE.getExtends_Extends();
-
-    /**
-     * The meta object literal for the '<em><b>Only Pojos</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDS__ONLY_POJOS = eINSTANCE.getExtends_OnlyPojos();
-
-    /**
-     * The meta object literal for the '<em><b>Except Pojos</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDS__EXCEPT_POJOS = eINSTANCE.getExtends_ExceptPojos();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.PojoEntityModifier1Impl <em>Pojo Entity Modifier1</em>}' class.
@@ -10589,6 +10673,78 @@ public interface ProcessorModelPackage extends EPackage
      * @generated
      */
     EClass IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS = eINSTANCE.getImplementsExtendsDirectiveGenerics();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveOnlyPojosImpl <em>Implements Extends Directive Only Pojos</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveOnlyPojosImpl
+     * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveOnlyPojos()
+     * @generated
+     */
+    EClass IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS = eINSTANCE.getImplementsExtendsDirectiveOnlyPojos();
+
+    /**
+     * The meta object literal for the '<em><b>Only Pojos</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS__ONLY_POJOS = eINSTANCE.getImplementsExtendsDirectiveOnlyPojos_OnlyPojos();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveOnlyDaosImpl <em>Implements Extends Directive Only Daos</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveOnlyDaosImpl
+     * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveOnlyDaos()
+     * @generated
+     */
+    EClass IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS = eINSTANCE.getImplementsExtendsDirectiveOnlyDaos();
+
+    /**
+     * The meta object literal for the '<em><b>Only Daos</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS__ONLY_DAOS = eINSTANCE.getImplementsExtendsDirectiveOnlyDaos_OnlyDaos();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveExceptPojosImpl <em>Implements Extends Directive Except Pojos</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveExceptPojosImpl
+     * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveExceptPojos()
+     * @generated
+     */
+    EClass IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_POJOS = eINSTANCE.getImplementsExtendsDirectiveExceptPojos();
+
+    /**
+     * The meta object literal for the '<em><b>Except Pojos</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_POJOS__EXCEPT_POJOS = eINSTANCE.getImplementsExtendsDirectiveExceptPojos_ExceptPojos();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveExceptDaosImpl <em>Implements Extends Directive Except Daos</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.model.processorModel.impl.ImplementsExtendsDirectiveExceptDaosImpl
+     * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getImplementsExtendsDirectiveExceptDaos()
+     * @generated
+     */
+    EClass IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS = eINSTANCE.getImplementsExtendsDirectiveExceptDaos();
+
+    /**
+     * The meta object literal for the '<em><b>Except Daos</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS__EXCEPT_DAOS = eINSTANCE.getImplementsExtendsDirectiveExceptDaos_ExceptDaos();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.PojoDirectiveToStringImpl <em>Pojo Directive To String</em>}' class.

@@ -23,10 +23,13 @@ import org.sqlproc.model.processorModel.DescendantAssignment;
 import org.sqlproc.model.processorModel.Entity;
 import org.sqlproc.model.processorModel.EnumEntity;
 import org.sqlproc.model.processorModel.EnumProperty;
-import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.FunProcDirective;
 import org.sqlproc.model.processorModel.FunctionDefinition;
-import org.sqlproc.model.processorModel.Implements;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirective;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
+import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
 import org.sqlproc.model.processorModel.PojoDao;
 import org.sqlproc.model.processorModel.PojoDefinition;
 import org.sqlproc.model.processorModel.PojoDirective;
@@ -160,29 +163,22 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                     }
                 }
                 provideSimpleHighlighting(node, acceptor, tokens);
-            } else if (current instanceof Implements) {
+            } else if (current instanceof ImplementsExtendsDirective) {
                 List<Pair<String, String>> tokens = new ArrayList<Pair<String, String>>();
-                Implements imp = (Implements) current;
-                for (PojoEntity pojo : imp.getOnlyPojos())
-                    tokens.add(new Pair<String, String>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
-                for (PojoDao dao : imp.getOnlyDaos())
-                    tokens.add(new Pair<String, String>(dao.getName(), HighlightingConfiguration.DAO_NAME));
-                for (PojoEntity pojo : imp.getExceptPojos())
-                    tokens.add(new Pair<String, String>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
-                for (PojoDao dao : imp.getExceptDaos())
-                    tokens.add(new Pair<String, String>(dao.getName(), HighlightingConfiguration.DAO_NAME));
-                provideSimpleHighlighting(node, acceptor, tokens);
-            } else if (current instanceof Extends) {
-                List<Pair<String, String>> tokens = new ArrayList<Pair<String, String>>();
-                Extends ext = (Extends) current;
-                for (PojoEntity pojo : ext.getOnlyPojos())
-                    tokens.add(new Pair<String, String>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
-                for (PojoDao dao : ext.getOnlyDaos())
-                    tokens.add(new Pair<String, String>(dao.getName(), HighlightingConfiguration.DAO_NAME));
-                for (PojoEntity pojo : ext.getExceptPojos())
-                    tokens.add(new Pair<String, String>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
-                for (PojoDao dao : ext.getExceptDaos())
-                    tokens.add(new Pair<String, String>(dao.getName(), HighlightingConfiguration.DAO_NAME));
+                ImplementsExtendsDirective imp = (ImplementsExtendsDirective) current;
+                if (imp instanceof ImplementsExtendsDirectiveOnlyPojos) {
+                    for (PojoEntity pojo : ((ImplementsExtendsDirectiveOnlyPojos) imp).getOnlyPojos())
+                        tokens.add(new Pair<String, String>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
+                } else if (imp instanceof ImplementsExtendsDirectiveOnlyDaos) {
+                    for (PojoDao dao : ((ImplementsExtendsDirectiveOnlyDaos) imp).getOnlyDaos())
+                        tokens.add(new Pair<String, String>(dao.getName(), HighlightingConfiguration.DAO_NAME));
+                } else if (imp instanceof ImplementsExtendsDirectiveExceptPojos) {
+                    for (PojoEntity pojo : ((ImplementsExtendsDirectiveExceptPojos) imp).getExceptPojos())
+                        tokens.add(new Pair<String, String>(pojo.getName(), HighlightingConfiguration.ENTITY_NAME));
+                } else if (imp instanceof ImplementsExtendsDirectiveExceptDaos) {
+                    for (PojoDao dao : ((ImplementsExtendsDirectiveExceptDaos) imp).getExceptDaos())
+                        tokens.add(new Pair<String, String>(dao.getName(), HighlightingConfiguration.DAO_NAME));
+                }
                 provideSimpleHighlighting(node, acceptor, tokens);
             }
         }

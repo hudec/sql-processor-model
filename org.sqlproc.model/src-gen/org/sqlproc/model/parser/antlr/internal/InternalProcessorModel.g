@@ -7866,17 +7866,121 @@ ruleImplementsExtendsDirective returns [EObject current=null]
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS");
     }
     @after { leaveRule(); }:
-((
+(((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getImplementsExtendsDirectiveAccess().getImplementsExtendsDirectiveGenericsAction_0(),
+            grammarAccess.getImplementsExtendsDirectiveAccess().getImplementsExtendsDirectiveGenericsAction_0_0(),
             $current);
     }
 )	otherlv_1='#Generics' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getImplementsExtendsDirectiveAccess().getGenericsKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getImplementsExtendsDirectiveAccess().getGenericsKeyword_0_1());
     }
 )
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getImplementsExtendsDirectiveAccess().getImplementsExtendsDirectiveOnlyPojosAction_1_0(),
+            $current);
+    }
+)	otherlv_3='#OnlyPojos' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyPojosKeyword_1_1());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsExtendsDirectiveRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyPojosPojoEntityCrossReference_1_2_0()); 
+	    }
+		ruleValidID		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getImplementsExtendsDirectiveAccess().getImplementsExtendsDirectiveOnlyDaosAction_2_0(),
+            $current);
+    }
+)	otherlv_6='#OnlyDaos' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyDaosKeyword_2_1());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsExtendsDirectiveRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getOnlyDaosPojoDaoCrossReference_2_2_0()); 
+	    }
+		ruleValidID		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getImplementsExtendsDirectiveAccess().getImplementsExtendsDirectiveExceptPojosAction_3_0(),
+            $current);
+    }
+)	otherlv_9='#ExceptPojos' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosKeyword_3_1());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsExtendsDirectiveRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosPojoEntityCrossReference_3_2_0()); 
+	    }
+		ruleValidID		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getImplementsExtendsDirectiveAccess().getImplementsExtendsDirectiveExceptDaosAction_4_0(),
+            $current);
+    }
+)	otherlv_12='#ExceptDaos' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosKeyword_4_1());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementsExtendsDirectiveRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosPojoDaoCrossReference_4_2_0()); 
+	    }
+		ruleValidID		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*))
 ;
 finally {
 	myHiddenTokenState.restore();
@@ -7948,45 +8052,7 @@ ruleImplements returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_4='onlyPojos' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getImplementsAccess().getOnlyPojosKeyword_4_0());
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getImplementsRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getImplementsAccess().getOnlyPojosPojoEntityCrossReference_4_1_0()); 
-	    }
-		ruleValidID		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)*)?(	otherlv_6='exceptPojos' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getImplementsAccess().getExceptPojosKeyword_5_0());
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getImplementsRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getImplementsAccess().getExceptPojosPojoEntityCrossReference_5_1_0()); 
-	    }
-		ruleValidID		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)*)?)
+))
 ;
 finally {
 	myHiddenTokenState.restore();
@@ -8058,45 +8124,7 @@ ruleExtends returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_4='onlyPojos' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getExtendsAccess().getOnlyPojosKeyword_4_0());
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getExtendsRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getExtendsAccess().getOnlyPojosPojoEntityCrossReference_4_1_0()); 
-	    }
-		ruleValidID		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)*)?(	otherlv_6='exceptPojos' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getExtendsAccess().getExceptPojosKeyword_5_0());
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getExtendsRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getExtendsAccess().getExceptPojosPojoEntityCrossReference_5_1_0()); 
-	    }
-		ruleValidID		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)*)?)
+))
 ;
 finally {
 	myHiddenTokenState.restore();

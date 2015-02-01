@@ -365,19 +365,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="directives" upperBound="-1"
         eType="#//ImplementsExtendsDirective" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="implements" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="onlyPojos" unique="false"
-        upperBound="-1" eType="#//PojoEntity"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptPojos" unique="false"
-        upperBound="-1" eType="#//PojoEntity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Extends" eSuperTypes="#//AbstractPojoEntity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="directives" upperBound="-1"
         eType="#//ImplementsExtendsDirective" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extends" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="onlyPojos" unique="false"
-        upperBound="-1" eType="#//PojoEntity"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptPojos" unique="false"
-        upperBound="-1" eType="#//PojoEntity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoEntityModifier1">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="final" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -483,6 +475,26 @@
   <eClassifiers xsi:type="ecore:EClass" name="AnnotationDirectiveAttribute" eSuperTypes="#//AnnotationDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="ImplementsExtendsDirectiveGenerics"
       eSuperTypes="#//ImplementsExtendsDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplementsExtendsDirectiveOnlyPojos"
+      eSuperTypes="#//ImplementsExtendsDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onlyPojos" unique="false"
+        upperBound="-1" eType="#//PojoEntity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplementsExtendsDirectiveOnlyDaos"
+      eSuperTypes="#//ImplementsExtendsDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onlyDaos" unique="false"
+        upperBound="-1" eType="#//PojoDao"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplementsExtendsDirectiveExceptPojos"
+      eSuperTypes="#//ImplementsExtendsDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptPojos" unique="false"
+        upperBound="-1" eType="#//PojoEntity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplementsExtendsDirectiveExceptDaos"
+      eSuperTypes="#//ImplementsExtendsDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptDaos" unique="false"
+        upperBound="-1" eType="#//PojoDao"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoDirectiveToString" eSuperTypes="#//PojoDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
         containment="true"/>
