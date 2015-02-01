@@ -3,14 +3,17 @@
 package org.sqlproc.model.processorModel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.model.processorModel.DriverMethodOutputAssignement;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
+import org.sqlproc.model.processorModel.PropertyValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,24 +52,14 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
   protected String driverMethod = DRIVER_METHOD_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getCallOutput() <em>Call Output</em>}' attribute.
+   * The cached value of the '{@link #getCallOutput() <em>Call Output</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getCallOutput()
    * @generated
    * @ordered
    */
-  protected static final String CALL_OUTPUT_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getCallOutput() <em>Call Output</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCallOutput()
-   * @generated
-   * @ordered
-   */
-  protected String callOutput = CALL_OUTPUT_EDEFAULT;
+  protected PropertyValue callOutput;
 
   /**
    * <!-- begin-user-doc -->
@@ -117,7 +110,7 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getCallOutput()
+  public PropertyValue getCallOutput()
   {
     return callOutput;
   }
@@ -127,12 +120,53 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCallOutput(String newCallOutput)
+  public NotificationChain basicSetCallOutput(PropertyValue newCallOutput, NotificationChain msgs)
   {
-    String oldCallOutput = callOutput;
+    PropertyValue oldCallOutput = callOutput;
     callOutput = newCallOutput;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT, oldCallOutput, callOutput));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT, oldCallOutput, newCallOutput);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCallOutput(PropertyValue newCallOutput)
+  {
+    if (newCallOutput != callOutput)
+    {
+      NotificationChain msgs = null;
+      if (callOutput != null)
+        msgs = ((InternalEObject)callOutput).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT, null, msgs);
+      if (newCallOutput != null)
+        msgs = ((InternalEObject)newCallOutput).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT, null, msgs);
+      msgs = basicSetCallOutput(newCallOutput, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT, newCallOutput, newCallOutput));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorModelPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT:
+        return basicSetCallOutput(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -167,7 +201,7 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
         setDriverMethod((String)newValue);
         return;
       case ProcessorModelPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT:
-        setCallOutput((String)newValue);
+        setCallOutput((PropertyValue)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -187,7 +221,7 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
         setDriverMethod(DRIVER_METHOD_EDEFAULT);
         return;
       case ProcessorModelPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT:
-        setCallOutput(CALL_OUTPUT_EDEFAULT);
+        setCallOutput((PropertyValue)null);
         return;
     }
     super.eUnset(featureID);
@@ -206,7 +240,7 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
       case ProcessorModelPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__DRIVER_METHOD:
         return DRIVER_METHOD_EDEFAULT == null ? driverMethod != null : !DRIVER_METHOD_EDEFAULT.equals(driverMethod);
       case ProcessorModelPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT:
-        return CALL_OUTPUT_EDEFAULT == null ? callOutput != null : !CALL_OUTPUT_EDEFAULT.equals(callOutput);
+        return callOutput != null;
     }
     return super.eIsSet(featureID);
   }
@@ -224,8 +258,6 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (driverMethod: ");
     result.append(driverMethod);
-    result.append(", callOutput: ");
-    result.append(callOutput);
     result.append(')');
     return result.toString();
   }

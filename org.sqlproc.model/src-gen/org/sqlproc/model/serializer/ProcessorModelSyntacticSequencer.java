@@ -52,9 +52,7 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 	protected AbstractElementAlias match_ExtendsAssignement_WSTerminalRuleCall_2_2_0_p;
 	protected AbstractElementAlias match_ExtendsAssignement_WSTerminalRuleCall_3_0_p;
 	protected AbstractElementAlias match_ExtendsAssignement_WSTerminalRuleCall_3_2_0_p;
-	protected AbstractElementAlias match_Extends_ExceptDaosKeyword_7_0_q;
-	protected AbstractElementAlias match_Extends_ExceptPojosKeyword_6_0_q;
-	protected AbstractElementAlias match_Extends_OnlyDaosKeyword_5_0_q;
+	protected AbstractElementAlias match_Extends_ExceptPojosKeyword_5_0_q;
 	protected AbstractElementAlias match_Extends_OnlyPojosKeyword_4_0_q;
 	protected AbstractElementAlias match_ImplementsAssignementGenerics_WSTerminalRuleCall_2_0_p;
 	protected AbstractElementAlias match_ImplementsAssignementGenerics_WSTerminalRuleCall_2_2_0_p;
@@ -64,9 +62,7 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 	protected AbstractElementAlias match_ImplementsAssignement_WSTerminalRuleCall_2_2_0_p;
 	protected AbstractElementAlias match_ImplementsAssignement_WSTerminalRuleCall_3_0_p;
 	protected AbstractElementAlias match_ImplementsAssignement_WSTerminalRuleCall_3_2_0_p;
-	protected AbstractElementAlias match_Implements_ExceptDaosKeyword_7_0_q;
-	protected AbstractElementAlias match_Implements_ExceptPojosKeyword_6_0_q;
-	protected AbstractElementAlias match_Implements_OnlyDaosKeyword_5_0_q;
+	protected AbstractElementAlias match_Implements_ExceptPojosKeyword_5_0_q;
 	protected AbstractElementAlias match_Implements_OnlyPojosKeyword_4_0_q;
 	protected AbstractElementAlias match_MetagenProperty_WSTerminalRuleCall_0_1_p;
 	protected AbstractElementAlias match_MetagenProperty_WSTerminalRuleCall_0_4_0_p;
@@ -216,9 +212,7 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 		match_ExtendsAssignement_WSTerminalRuleCall_2_2_0_p = new TokenAlias(true, false, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_2_2_0());
 		match_ExtendsAssignement_WSTerminalRuleCall_3_0_p = new TokenAlias(true, false, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_3_0());
 		match_ExtendsAssignement_WSTerminalRuleCall_3_2_0_p = new TokenAlias(true, false, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_3_2_0());
-		match_Extends_ExceptDaosKeyword_7_0_q = new TokenAlias(false, true, grammarAccess.getExtendsAccess().getExceptDaosKeyword_7_0());
-		match_Extends_ExceptPojosKeyword_6_0_q = new TokenAlias(false, true, grammarAccess.getExtendsAccess().getExceptPojosKeyword_6_0());
-		match_Extends_OnlyDaosKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getExtendsAccess().getOnlyDaosKeyword_5_0());
+		match_Extends_ExceptPojosKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getExtendsAccess().getExceptPojosKeyword_5_0());
 		match_Extends_OnlyPojosKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getExtendsAccess().getOnlyPojosKeyword_4_0());
 		match_ImplementsAssignementGenerics_WSTerminalRuleCall_2_0_p = new TokenAlias(true, false, grammarAccess.getImplementsAssignementGenericsAccess().getWSTerminalRuleCall_2_0());
 		match_ImplementsAssignementGenerics_WSTerminalRuleCall_2_2_0_p = new TokenAlias(true, false, grammarAccess.getImplementsAssignementGenericsAccess().getWSTerminalRuleCall_2_2_0());
@@ -228,9 +222,7 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 		match_ImplementsAssignement_WSTerminalRuleCall_2_2_0_p = new TokenAlias(true, false, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_2_2_0());
 		match_ImplementsAssignement_WSTerminalRuleCall_3_0_p = new TokenAlias(true, false, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_3_0());
 		match_ImplementsAssignement_WSTerminalRuleCall_3_2_0_p = new TokenAlias(true, false, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_3_2_0());
-		match_Implements_ExceptDaosKeyword_7_0_q = new TokenAlias(false, true, grammarAccess.getImplementsAccess().getExceptDaosKeyword_7_0());
-		match_Implements_ExceptPojosKeyword_6_0_q = new TokenAlias(false, true, grammarAccess.getImplementsAccess().getExceptPojosKeyword_6_0());
-		match_Implements_OnlyDaosKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getImplementsAccess().getOnlyDaosKeyword_5_0());
+		match_Implements_ExceptPojosKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getImplementsAccess().getExceptPojosKeyword_5_0());
 		match_Implements_OnlyPojosKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getImplementsAccess().getOnlyPojosKeyword_4_0());
 		match_MetagenProperty_WSTerminalRuleCall_0_1_p = new TokenAlias(true, false, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_0_1());
 		match_MetagenProperty_WSTerminalRuleCall_0_4_0_p = new TokenAlias(true, false, grammarAccess.getMetagenPropertyAccess().getWSTerminalRuleCall_0_4_0());
@@ -460,12 +452,8 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 				emit_ExtendsAssignement_WSTerminalRuleCall_3_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_ExtendsAssignement_WSTerminalRuleCall_3_2_0_p.equals(syntax))
 				emit_ExtendsAssignement_WSTerminalRuleCall_3_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Extends_ExceptDaosKeyword_7_0_q.equals(syntax))
-				emit_Extends_ExceptDaosKeyword_7_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Extends_ExceptPojosKeyword_6_0_q.equals(syntax))
-				emit_Extends_ExceptPojosKeyword_6_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Extends_OnlyDaosKeyword_5_0_q.equals(syntax))
-				emit_Extends_OnlyDaosKeyword_5_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Extends_ExceptPojosKeyword_5_0_q.equals(syntax))
+				emit_Extends_ExceptPojosKeyword_5_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Extends_OnlyPojosKeyword_4_0_q.equals(syntax))
 				emit_Extends_OnlyPojosKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_ImplementsAssignementGenerics_WSTerminalRuleCall_2_0_p.equals(syntax))
@@ -484,12 +472,8 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 				emit_ImplementsAssignement_WSTerminalRuleCall_3_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_ImplementsAssignement_WSTerminalRuleCall_3_2_0_p.equals(syntax))
 				emit_ImplementsAssignement_WSTerminalRuleCall_3_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Implements_ExceptDaosKeyword_7_0_q.equals(syntax))
-				emit_Implements_ExceptDaosKeyword_7_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Implements_ExceptPojosKeyword_6_0_q.equals(syntax))
-				emit_Implements_ExceptPojosKeyword_6_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Implements_OnlyDaosKeyword_5_0_q.equals(syntax))
-				emit_Implements_OnlyDaosKeyword_5_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Implements_ExceptPojosKeyword_5_0_q.equals(syntax))
+				emit_Implements_ExceptPojosKeyword_5_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Implements_OnlyPojosKeyword_4_0_q.equals(syntax))
 				emit_Implements_OnlyPojosKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_MetagenProperty_WSTerminalRuleCall_0_1_p.equals(syntax))
@@ -990,25 +974,9 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 	
 	/**
 	 * Syntax:
-	 *     'exceptDaos'?
-	 */
-	protected void emit_Extends_ExceptDaosKeyword_7_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
 	 *     'exceptPojos'?
 	 */
-	protected void emit_Extends_ExceptPojosKeyword_6_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     'onlyDaos'?
-	 */
-	protected void emit_Extends_OnlyDaosKeyword_5_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Extends_ExceptPojosKeyword_5_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1086,25 +1054,9 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 	
 	/**
 	 * Syntax:
-	 *     'exceptDaos'?
-	 */
-	protected void emit_Implements_ExceptDaosKeyword_7_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
 	 *     'exceptPojos'?
 	 */
-	protected void emit_Implements_ExceptPojosKeyword_6_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     'onlyDaos'?
-	 */
-	protected void emit_Implements_OnlyDaosKeyword_5_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Implements_ExceptPojosKeyword_5_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

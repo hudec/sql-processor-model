@@ -114,6 +114,7 @@ import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelFactory;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
+import org.sqlproc.model.processorModel.PropertyValue;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
@@ -134,6 +135,13 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * @generated
    */
   private EClass artifactsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertyValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1018,6 +1026,26 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPropertyValue()
+  {
+    return propertyValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPropertyValue_Value()
+  {
+    return (EAttribute)propertyValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getDatabaseCatalogAssignement()
   {
     return databaseCatalogAssignementEClass;
@@ -1028,9 +1056,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDatabaseCatalogAssignement_DbCatalog()
+  public EReference getDatabaseCatalogAssignement_DbCatalog()
   {
-    return (EAttribute)databaseCatalogAssignementEClass.getEStructuralFeatures().get(0);
+    return (EReference)databaseCatalogAssignementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1048,9 +1076,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDatabaseSchemaAssignement_DbSchema()
+  public EReference getDatabaseSchemaAssignement_DbSchema()
   {
-    return (EAttribute)databaseSchemaAssignementEClass.getEStructuralFeatures().get(0);
+    return (EReference)databaseSchemaAssignementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1088,9 +1116,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDatabaseMetaInfoAssignement_DbMetaInfo()
+  public EReference getDatabaseMetaInfoAssignement_DbMetaInfo()
   {
-    return (EAttribute)databaseMetaInfoAssignementEClass.getEStructuralFeatures().get(0);
+    return (EReference)databaseMetaInfoAssignementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1108,9 +1136,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDriverMetaInfoAssignement_DbDriverInfo()
+  public EReference getDriverMetaInfoAssignement_DbDriverInfo()
   {
-    return (EAttribute)driverMetaInfoAssignementEClass.getEStructuralFeatures().get(0);
+    return (EReference)driverMetaInfoAssignementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1138,9 +1166,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDriverMethodOutputAssignement_CallOutput()
+  public EReference getDriverMethodOutputAssignement_CallOutput()
   {
-    return (EAttribute)driverMethodOutputAssignementEClass.getEStructuralFeatures().get(1);
+    return (EReference)driverMethodOutputAssignementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1238,9 +1266,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getShowColumnTypeAssignement_Type()
+  public EReference getShowColumnTypeAssignement_Type()
   {
-    return (EAttribute)showColumnTypeAssignementEClass.getEStructuralFeatures().get(1);
+    return (EReference)showColumnTypeAssignementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1518,9 +1546,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDebugLevelAssignement_Scope()
+  public EReference getDebugLevelAssignement_Scope()
   {
-    return (EAttribute)debugLevelAssignementEClass.getEStructuralFeatures().get(1);
+    return (EReference)debugLevelAssignementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1818,9 +1846,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getProperty_Regex()
+  public EReference getProperty_Regex()
   {
-    return (EAttribute)propertyEClass.getEStructuralFeatures().get(6);
+    return (EReference)propertyEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -1828,9 +1856,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getProperty_Replacement()
+  public EReference getProperty_Replacement()
   {
-    return (EAttribute)propertyEClass.getEStructuralFeatures().get(7);
+    return (EReference)propertyEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -1858,9 +1886,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDatabaseProperty_DbUrl()
+  public EReference getDatabaseProperty_DbUrl()
   {
-    return (EAttribute)databasePropertyEClass.getEStructuralFeatures().get(1);
+    return (EReference)databasePropertyEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1868,9 +1896,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDatabaseProperty_DbUsername()
+  public EReference getDatabaseProperty_DbUsername()
   {
-    return (EAttribute)databasePropertyEClass.getEStructuralFeatures().get(2);
+    return (EReference)databasePropertyEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1878,9 +1906,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDatabaseProperty_DbPassword()
+  public EReference getDatabaseProperty_DbPassword()
   {
-    return (EAttribute)databasePropertyEClass.getEStructuralFeatures().get(3);
+    return (EReference)databasePropertyEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1918,9 +1946,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDatabaseProperty_DbDriver()
+  public EReference getDatabaseProperty_DbDriver()
   {
-    return (EAttribute)databasePropertyEClass.getEStructuralFeatures().get(7);
+    return (EReference)databasePropertyEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -1928,9 +1956,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDatabaseProperty_DbExecuteBefore()
+  public EReference getDatabaseProperty_DbExecuteBefore()
   {
-    return (EAttribute)databasePropertyEClass.getEStructuralFeatures().get(8);
+    return (EReference)databasePropertyEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -1938,9 +1966,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDatabaseProperty_DbExecuteAfter()
+  public EReference getDatabaseProperty_DbExecuteAfter()
   {
-    return (EAttribute)databasePropertyEClass.getEStructuralFeatures().get(9);
+    return (EReference)databasePropertyEClass.getEStructuralFeatures().get(9);
   }
 
   /**
@@ -1948,9 +1976,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDatabaseProperty_DbIndexTypes()
+  public EReference getDatabaseProperty_DbIndexTypes()
   {
-    return (EAttribute)databasePropertyEClass.getEStructuralFeatures().get(10);
+    return (EReference)databasePropertyEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -2298,9 +2326,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojogenProperty_ActiveFilter()
+  public EReference getPojogenProperty_ActiveFilter()
   {
-    return (EAttribute)pojogenPropertyEClass.getEStructuralFeatures().get(28);
+    return (EReference)pojogenPropertyEClass.getEStructuralFeatures().get(28);
   }
 
   /**
@@ -2308,9 +2336,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojogenProperty_Pckg()
+  public EReference getPojogenProperty_Pckg()
   {
-    return (EAttribute)pojogenPropertyEClass.getEStructuralFeatures().get(29);
+    return (EReference)pojogenPropertyEClass.getEStructuralFeatures().get(29);
   }
 
   /**
@@ -2528,9 +2556,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMetagenProperty_ActiveFilter()
+  public EReference getMetagenProperty_ActiveFilter()
   {
-    return (EAttribute)metagenPropertyEClass.getEStructuralFeatures().get(14);
+    return (EReference)metagenPropertyEClass.getEStructuralFeatures().get(14);
   }
 
   /**
@@ -2638,9 +2666,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDaogenProperty_ActiveFilter()
+  public EReference getDaogenProperty_ActiveFilter()
   {
-    return (EAttribute)daogenPropertyEClass.getEStructuralFeatures().get(9);
+    return (EReference)daogenPropertyEClass.getEStructuralFeatures().get(9);
   }
 
   /**
@@ -2648,9 +2676,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDaogenProperty_Pckg()
+  public EReference getDaogenProperty_Pckg()
   {
-    return (EAttribute)daogenPropertyEClass.getEStructuralFeatures().get(10);
+    return (EReference)daogenPropertyEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -3178,29 +3206,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getImplements_OnlyDaos()
-  {
-    return (EReference)implementsEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getImplements_ExceptPojos()
   {
-    return (EReference)implementsEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getImplements_ExceptDaos()
-  {
-    return (EReference)implementsEClass.getEStructuralFeatures().get(5);
+    return (EReference)implementsEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -3248,29 +3256,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExtends_OnlyDaos()
-  {
-    return (EReference)extendsEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getExtends_ExceptPojos()
   {
-    return (EReference)extendsEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExtends_ExceptDaos()
-  {
-    return (EReference)extendsEClass.getEStructuralFeatures().get(5);
+    return (EReference)extendsEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -4481,24 +4469,27 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEReference(artifactsEClass, ARTIFACTS__FUNCTIONS);
     createEReference(artifactsEClass, ARTIFACTS__PACKAGES);
 
+    propertyValueEClass = createEClass(PROPERTY_VALUE);
+    createEAttribute(propertyValueEClass, PROPERTY_VALUE__VALUE);
+
     databaseCatalogAssignementEClass = createEClass(DATABASE_CATALOG_ASSIGNEMENT);
-    createEAttribute(databaseCatalogAssignementEClass, DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG);
+    createEReference(databaseCatalogAssignementEClass, DATABASE_CATALOG_ASSIGNEMENT__DB_CATALOG);
 
     databaseSchemaAssignementEClass = createEClass(DATABASE_SCHEMA_ASSIGNEMENT);
-    createEAttribute(databaseSchemaAssignementEClass, DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA);
+    createEReference(databaseSchemaAssignementEClass, DATABASE_SCHEMA_ASSIGNEMENT__DB_SCHEMA);
 
     databaseTypeAssignementEClass = createEClass(DATABASE_TYPE_ASSIGNEMENT);
     createEAttribute(databaseTypeAssignementEClass, DATABASE_TYPE_ASSIGNEMENT__DB_TYPE);
 
     databaseMetaInfoAssignementEClass = createEClass(DATABASE_META_INFO_ASSIGNEMENT);
-    createEAttribute(databaseMetaInfoAssignementEClass, DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO);
+    createEReference(databaseMetaInfoAssignementEClass, DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO);
 
     driverMetaInfoAssignementEClass = createEClass(DRIVER_META_INFO_ASSIGNEMENT);
-    createEAttribute(driverMetaInfoAssignementEClass, DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO);
+    createEReference(driverMetaInfoAssignementEClass, DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO);
 
     driverMethodOutputAssignementEClass = createEClass(DRIVER_METHOD_OUTPUT_ASSIGNEMENT);
     createEAttribute(driverMethodOutputAssignementEClass, DRIVER_METHOD_OUTPUT_ASSIGNEMENT__DRIVER_METHOD);
-    createEAttribute(driverMethodOutputAssignementEClass, DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT);
+    createEReference(driverMethodOutputAssignementEClass, DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT);
 
     sqlTypeAssignementEClass = createEClass(SQL_TYPE_ASSIGNEMENT);
     createEAttribute(sqlTypeAssignementEClass, SQL_TYPE_ASSIGNEMENT__TYPE_NAME);
@@ -4511,7 +4502,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
 
     showColumnTypeAssignementEClass = createEClass(SHOW_COLUMN_TYPE_ASSIGNEMENT);
     createEAttribute(showColumnTypeAssignementEClass, SHOW_COLUMN_TYPE_ASSIGNEMENT__DB_COLUMN);
-    createEAttribute(showColumnTypeAssignementEClass, SHOW_COLUMN_TYPE_ASSIGNEMENT__TYPE);
+    createEReference(showColumnTypeAssignementEClass, SHOW_COLUMN_TYPE_ASSIGNEMENT__TYPE);
 
     tableAssignementEClass = createEClass(TABLE_ASSIGNEMENT);
     createEAttribute(tableAssignementEClass, TABLE_ASSIGNEMENT__DB_TABLE);
@@ -4547,7 +4538,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
 
     debugLevelAssignementEClass = createEClass(DEBUG_LEVEL_ASSIGNEMENT);
     createEAttribute(debugLevelAssignementEClass, DEBUG_LEVEL_ASSIGNEMENT__DEBUG);
-    createEAttribute(debugLevelAssignementEClass, DEBUG_LEVEL_ASSIGNEMENT__SCOPE);
+    createEReference(debugLevelAssignementEClass, DEBUG_LEVEL_ASSIGNEMENT__SCOPE);
 
     procedurePojoAssignementEClass = createEClass(PROCEDURE_POJO_ASSIGNEMENT);
     createEAttribute(procedurePojoAssignementEClass, PROCEDURE_POJO_ASSIGNEMENT__DB_PROCEDURE);
@@ -4584,21 +4575,21 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEReference(propertyEClass, PROPERTY__METAGEN);
     createEReference(propertyEClass, PROPERTY__DAOGEN);
     createEAttribute(propertyEClass, PROPERTY__REPLACE_ID);
-    createEAttribute(propertyEClass, PROPERTY__REGEX);
-    createEAttribute(propertyEClass, PROPERTY__REPLACEMENT);
+    createEReference(propertyEClass, PROPERTY__REGEX);
+    createEReference(propertyEClass, PROPERTY__REPLACEMENT);
 
     databasePropertyEClass = createEClass(DATABASE_PROPERTY);
     createEAttribute(databasePropertyEClass, DATABASE_PROPERTY__NAME);
-    createEAttribute(databasePropertyEClass, DATABASE_PROPERTY__DB_URL);
-    createEAttribute(databasePropertyEClass, DATABASE_PROPERTY__DB_USERNAME);
-    createEAttribute(databasePropertyEClass, DATABASE_PROPERTY__DB_PASSWORD);
+    createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_URL);
+    createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_USERNAME);
+    createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_PASSWORD);
     createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_CATALOG);
     createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_SCHEMA);
     createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_DRIVERX);
-    createEAttribute(databasePropertyEClass, DATABASE_PROPERTY__DB_DRIVER);
-    createEAttribute(databasePropertyEClass, DATABASE_PROPERTY__DB_EXECUTE_BEFORE);
-    createEAttribute(databasePropertyEClass, DATABASE_PROPERTY__DB_EXECUTE_AFTER);
-    createEAttribute(databasePropertyEClass, DATABASE_PROPERTY__DB_INDEX_TYPES);
+    createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_DRIVER);
+    createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_EXECUTE_BEFORE);
+    createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_EXECUTE_AFTER);
+    createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_INDEX_TYPES);
     createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_TYPE);
     createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_META_INFO);
     createEReference(databasePropertyEClass, DATABASE_PROPERTY__DB_DRIVER_INFO);
@@ -4634,8 +4625,8 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEReference(pojogenPropertyEClass, POJOGEN_PROPERTY__DEBUG);
     createEReference(pojogenPropertyEClass, POJOGEN_PROPERTY__PROC_POJOS);
     createEReference(pojogenPropertyEClass, POJOGEN_PROPERTY__FUN_POJOS);
-    createEAttribute(pojogenPropertyEClass, POJOGEN_PROPERTY__ACTIVE_FILTER);
-    createEAttribute(pojogenPropertyEClass, POJOGEN_PROPERTY__PCKG);
+    createEReference(pojogenPropertyEClass, POJOGEN_PROPERTY__ACTIVE_FILTER);
+    createEReference(pojogenPropertyEClass, POJOGEN_PROPERTY__PCKG);
     createEAttribute(pojogenPropertyEClass, POJOGEN_PROPERTY__ENUM_NAME);
     createEAttribute(pojogenPropertyEClass, POJOGEN_PROPERTY__DB_CHECK_CONSTRAINTS);
 
@@ -4659,7 +4650,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__DB_PROCEDURE);
     createEReference(metagenPropertyEClass, METAGEN_PROPERTY__DEBUG);
     createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__OPTIONAL_FEATURES);
-    createEAttribute(metagenPropertyEClass, METAGEN_PROPERTY__ACTIVE_FILTER);
+    createEReference(metagenPropertyEClass, METAGEN_PROPERTY__ACTIVE_FILTER);
 
     daogenPropertyEClass = createEClass(DAOGEN_PROPERTY);
     createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__NAME);
@@ -4671,8 +4662,8 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__DB_FUNCTION);
     createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__RESULT_TYPE);
     createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__DEBUG);
-    createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__ACTIVE_FILTER);
-    createEAttribute(daogenPropertyEClass, DAOGEN_PROPERTY__PCKG);
+    createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__ACTIVE_FILTER);
+    createEReference(daogenPropertyEClass, DAOGEN_PROPERTY__PCKG);
 
     pojoDefinitionEClass = createEClass(POJO_DEFINITION);
     createEAttribute(pojoDefinitionEClass, POJO_DEFINITION__NAME);
@@ -4742,17 +4733,13 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEReference(implementsEClass, IMPLEMENTS__DIRECTIVES);
     createEReference(implementsEClass, IMPLEMENTS__IMPLEMENTS);
     createEReference(implementsEClass, IMPLEMENTS__ONLY_POJOS);
-    createEReference(implementsEClass, IMPLEMENTS__ONLY_DAOS);
     createEReference(implementsEClass, IMPLEMENTS__EXCEPT_POJOS);
-    createEReference(implementsEClass, IMPLEMENTS__EXCEPT_DAOS);
 
     extendsEClass = createEClass(EXTENDS);
     createEReference(extendsEClass, EXTENDS__DIRECTIVES);
     createEReference(extendsEClass, EXTENDS__EXTENDS);
     createEReference(extendsEClass, EXTENDS__ONLY_POJOS);
-    createEReference(extendsEClass, EXTENDS__ONLY_DAOS);
     createEReference(extendsEClass, EXTENDS__EXCEPT_POJOS);
-    createEReference(extendsEClass, EXTENDS__EXCEPT_DAOS);
 
     pojoEntityModifier1EClass = createEClass(POJO_ENTITY_MODIFIER1);
     createEAttribute(pojoEntityModifier1EClass, POJO_ENTITY_MODIFIER1__FINAL);
@@ -5020,24 +5007,27 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEReference(getArtifacts_Functions(), this.getFunctionDefinition(), null, "functions", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getArtifacts_Packages(), this.getPackage(), null, "packages", null, 0, -1, Artifacts.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(propertyValueEClass, PropertyValue.class, "PropertyValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPropertyValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, PropertyValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(databaseCatalogAssignementEClass, DatabaseCatalogAssignement.class, "DatabaseCatalogAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDatabaseCatalogAssignement_DbCatalog(), ecorePackage.getEString(), "dbCatalog", null, 0, 1, DatabaseCatalogAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatabaseCatalogAssignement_DbCatalog(), this.getPropertyValue(), null, "dbCatalog", null, 0, 1, DatabaseCatalogAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(databaseSchemaAssignementEClass, DatabaseSchemaAssignement.class, "DatabaseSchemaAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDatabaseSchemaAssignement_DbSchema(), ecorePackage.getEString(), "dbSchema", null, 0, 1, DatabaseSchemaAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatabaseSchemaAssignement_DbSchema(), this.getPropertyValue(), null, "dbSchema", null, 0, 1, DatabaseSchemaAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(databaseTypeAssignementEClass, DatabaseTypeAssignement.class, "DatabaseTypeAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDatabaseTypeAssignement_DbType(), ecorePackage.getEString(), "dbType", null, 0, 1, DatabaseTypeAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(databaseMetaInfoAssignementEClass, DatabaseMetaInfoAssignement.class, "DatabaseMetaInfoAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDatabaseMetaInfoAssignement_DbMetaInfo(), ecorePackage.getEString(), "dbMetaInfo", null, 0, 1, DatabaseMetaInfoAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatabaseMetaInfoAssignement_DbMetaInfo(), this.getPropertyValue(), null, "dbMetaInfo", null, 0, 1, DatabaseMetaInfoAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(driverMetaInfoAssignementEClass, DriverMetaInfoAssignement.class, "DriverMetaInfoAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDriverMetaInfoAssignement_DbDriverInfo(), ecorePackage.getEString(), "dbDriverInfo", null, 0, 1, DriverMetaInfoAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDriverMetaInfoAssignement_DbDriverInfo(), this.getPropertyValue(), null, "dbDriverInfo", null, 0, 1, DriverMetaInfoAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(driverMethodOutputAssignementEClass, DriverMethodOutputAssignement.class, "DriverMethodOutputAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDriverMethodOutputAssignement_DriverMethod(), ecorePackage.getEString(), "driverMethod", null, 0, 1, DriverMethodOutputAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDriverMethodOutputAssignement_CallOutput(), ecorePackage.getEString(), "callOutput", null, 0, 1, DriverMethodOutputAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDriverMethodOutputAssignement_CallOutput(), this.getPropertyValue(), null, "callOutput", null, 0, 1, DriverMethodOutputAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sqlTypeAssignementEClass, SqlTypeAssignement.class, "SqlTypeAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getSqlTypeAssignement_TypeName(), ecorePackage.getEString(), "typeName", null, 0, 1, SqlTypeAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5050,7 +5040,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
 
     initEClass(showColumnTypeAssignementEClass, ShowColumnTypeAssignement.class, "ShowColumnTypeAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getShowColumnTypeAssignement_DbColumn(), ecorePackage.getEString(), "dbColumn", null, 0, 1, ShowColumnTypeAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getShowColumnTypeAssignement_Type(), ecorePackage.getEString(), "type", null, 0, 1, ShowColumnTypeAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getShowColumnTypeAssignement_Type(), this.getPropertyValue(), null, "type", null, 0, 1, ShowColumnTypeAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(tableAssignementEClass, TableAssignement.class, "TableAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTableAssignement_DbTable(), ecorePackage.getEString(), "dbTable", null, 0, 1, TableAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5086,7 +5076,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
 
     initEClass(debugLevelAssignementEClass, DebugLevelAssignement.class, "DebugLevelAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDebugLevelAssignement_Debug(), ecorePackage.getEString(), "debug", null, 0, 1, DebugLevelAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDebugLevelAssignement_Scope(), ecorePackage.getEString(), "scope", null, 0, 1, DebugLevelAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDebugLevelAssignement_Scope(), this.getPropertyValue(), null, "scope", null, 0, 1, DebugLevelAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(procedurePojoAssignementEClass, ProcedurePojoAssignement.class, "ProcedurePojoAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProcedurePojoAssignement_DbProcedure(), ecorePackage.getEString(), "dbProcedure", null, 0, 1, ProcedurePojoAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5123,21 +5113,21 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEReference(getProperty_Metagen(), this.getMetagenProperty(), null, "metagen", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProperty_Daogen(), this.getDaogenProperty(), null, "daogen", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getProperty_ReplaceId(), ecorePackage.getEString(), "replaceId", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getProperty_Regex(), ecorePackage.getEString(), "regex", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getProperty_Replacement(), ecorePackage.getEString(), "replacement", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProperty_Regex(), this.getPropertyValue(), null, "regex", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProperty_Replacement(), this.getPropertyValue(), null, "replacement", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(databasePropertyEClass, DatabaseProperty.class, "DatabaseProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDatabaseProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDatabaseProperty_DbUrl(), ecorePackage.getEString(), "dbUrl", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDatabaseProperty_DbUsername(), ecorePackage.getEString(), "dbUsername", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDatabaseProperty_DbPassword(), ecorePackage.getEString(), "dbPassword", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatabaseProperty_DbUrl(), this.getPropertyValue(), null, "dbUrl", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatabaseProperty_DbUsername(), this.getPropertyValue(), null, "dbUsername", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatabaseProperty_DbPassword(), this.getPropertyValue(), null, "dbPassword", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDatabaseProperty_DbCatalog(), this.getDatabaseCatalogAssignement(), null, "dbCatalog", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDatabaseProperty_DbSchema(), this.getDatabaseSchemaAssignement(), null, "dbSchema", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDatabaseProperty_DbDriverx(), theTypesPackage.getJvmType(), null, "dbDriverx", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDatabaseProperty_DbDriver(), ecorePackage.getEString(), "dbDriver", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDatabaseProperty_DbExecuteBefore(), ecorePackage.getEString(), "dbExecuteBefore", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDatabaseProperty_DbExecuteAfter(), ecorePackage.getEString(), "dbExecuteAfter", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDatabaseProperty_DbIndexTypes(), ecorePackage.getEString(), "dbIndexTypes", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatabaseProperty_DbDriver(), this.getPropertyValue(), null, "dbDriver", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatabaseProperty_DbExecuteBefore(), this.getPropertyValue(), null, "dbExecuteBefore", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatabaseProperty_DbExecuteAfter(), this.getPropertyValue(), null, "dbExecuteAfter", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatabaseProperty_DbIndexTypes(), this.getPropertyValue(), null, "dbIndexTypes", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDatabaseProperty_DbType(), this.getDatabaseTypeAssignement(), null, "dbType", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDatabaseProperty_DbMetaInfo(), this.getDatabaseMetaInfoAssignement(), null, "dbMetaInfo", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDatabaseProperty_DbDriverInfo(), this.getDriverMetaInfoAssignement(), null, "dbDriverInfo", null, 0, 1, DatabaseProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5173,8 +5163,8 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEReference(getPojogenProperty_Debug(), this.getDebugLevelAssignement(), null, "debug", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojogenProperty_ProcPojos(), this.getProcedurePojoAssignement(), null, "procPojos", null, 0, -1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojogenProperty_FunPojos(), this.getFunctionPojoAssignement(), null, "funPojos", null, 0, -1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojogenProperty_ActiveFilter(), ecorePackage.getEString(), "activeFilter", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojogenProperty_Pckg(), ecorePackage.getEString(), "pckg", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojogenProperty_ActiveFilter(), this.getPropertyValue(), null, "activeFilter", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojogenProperty_Pckg(), this.getPropertyValue(), null, "pckg", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojogenProperty_EnumName(), ecorePackage.getEString(), "enumName", null, 0, 1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojogenProperty_DbCheckConstraints(), ecorePackage.getEString(), "dbCheckConstraints", null, 0, -1, PojogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -5198,7 +5188,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEAttribute(getMetagenProperty_DbProcedure(), ecorePackage.getEString(), "dbProcedure", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMetagenProperty_Debug(), this.getDebugLevelAssignement(), null, "debug", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMetagenProperty_OptionalFeatures(), ecorePackage.getEString(), "optionalFeatures", null, 0, -1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMetagenProperty_ActiveFilter(), ecorePackage.getEString(), "activeFilter", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMetagenProperty_ActiveFilter(), this.getPropertyValue(), null, "activeFilter", null, 0, 1, MetagenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(daogenPropertyEClass, DaogenProperty.class, "DaogenProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDaogenProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5210,8 +5200,8 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEAttribute(getDaogenProperty_DbFunction(), ecorePackage.getEString(), "dbFunction", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDaogenProperty_ResultType(), this.getPojoType(), null, "resultType", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDaogenProperty_Debug(), this.getDebugLevelAssignement(), null, "debug", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDaogenProperty_ActiveFilter(), ecorePackage.getEString(), "activeFilter", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDaogenProperty_Pckg(), ecorePackage.getEString(), "pckg", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDaogenProperty_ActiveFilter(), this.getPropertyValue(), null, "activeFilter", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDaogenProperty_Pckg(), this.getPropertyValue(), null, "pckg", null, 0, 1, DaogenProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoDefinitionEClass, PojoDefinition.class, "PojoDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPojoDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5281,17 +5271,13 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEReference(getImplements_Directives(), this.getImplementsExtendsDirective(), null, "directives", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getImplements_Implements(), theTypesPackage.getJvmType(), null, "implements", null, 0, 1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getImplements_OnlyPojos(), this.getPojoEntity(), null, "onlyPojos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getImplements_OnlyDaos(), this.getPojoDao(), null, "onlyDaos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getImplements_ExceptPojos(), this.getPojoEntity(), null, "exceptPojos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getImplements_ExceptDaos(), this.getPojoDao(), null, "exceptDaos", null, 0, -1, Implements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(extendsEClass, Extends.class, "Extends", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExtends_Directives(), this.getImplementsExtendsDirective(), null, "directives", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExtends_Extends(), theTypesPackage.getJvmType(), null, "extends", null, 0, 1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExtends_OnlyPojos(), this.getPojoEntity(), null, "onlyPojos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExtends_OnlyDaos(), this.getPojoDao(), null, "onlyDaos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExtends_ExceptPojos(), this.getPojoEntity(), null, "exceptPojos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExtends_ExceptDaos(), this.getPojoDao(), null, "exceptDaos", null, 0, -1, Extends.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoEntityModifier1EClass, PojoEntityModifier1.class, "PojoEntityModifier1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPojoEntityModifier1_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, PojoEntityModifier1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

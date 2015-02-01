@@ -50,29 +50,29 @@ public interface DriverMethodOutputAssignement extends EObject
   void setDriverMethod(String value);
 
   /**
-   * Returns the value of the '<em><b>Call Output</b></em>' attribute.
+   * Returns the value of the '<em><b>Call Output</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Call Output</em>' attribute isn't clear,
+   * If the meaning of the '<em>Call Output</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Call Output</em>' attribute.
-   * @see #setCallOutput(String)
+   * @return the value of the '<em>Call Output</em>' containment reference.
+   * @see #setCallOutput(PropertyValue)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDriverMethodOutputAssignement_CallOutput()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getCallOutput();
+  PropertyValue getCallOutput();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.DriverMethodOutputAssignement#getCallOutput <em>Call Output</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.DriverMethodOutputAssignement#getCallOutput <em>Call Output</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Call Output</em>' attribute.
+   * @param value the new value of the '<em>Call Output</em>' containment reference.
    * @see #getCallOutput()
    * @generated
    */
-  void setCallOutput(String value);
+  void setCallOutput(PropertyValue value);
 
 } // DriverMethodOutputAssignement

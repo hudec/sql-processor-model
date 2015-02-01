@@ -29,6 +29,7 @@ import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.Property;
+import org.sqlproc.model.processorModel.PropertyValue;
 import org.sqlproc.model.util.Utils;
 
 import com.google.inject.Singleton;
@@ -528,10 +529,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.doResolvePojo = false;
         } else if (REPLACE_ALL_REGEX.equals(property.getName())) {
             if (property.getRegex() != null && property.getReplaceId() != null)
-                modelValues.replaceAllRegex.put(property.getReplaceId(), property.getRegex());
+                modelValues.replaceAllRegex.put(property.getReplaceId(), getPropertyValue(property.getRegex()));
         } else if (REPLACE_ALL_REPLACEMENT.equals(property.getName())) {
             if (property.getReplacement() != null && property.getReplaceId() != null)
-                modelValues.replaceAllReplacement.put(property.getReplaceId(), property.getReplacement());
+                modelValues.replaceAllReplacement.put(property.getReplaceId(),
+                        getPropertyValue(property.getReplacement()));
         } else if (COMPRESS_META_DIRECTIVES.equals(property.getName())) {
             modelValues.doCompressMetaDirectives = true;
         }
@@ -584,7 +586,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 modelValues.dbType = null;
         } else if (DATABASE_DEBUG_LEVEL.equals(property.getName()) && property.getDebug() != null) {
             modelValues.dbDebugLevel = property.getDebug().getDebug();
-            modelValues.dbDebugScope = property.getDebug().getScope();
+            modelValues.dbDebugScope = getPropertyValue(property.getDebug().getScope());
         } else if (DATABASE_TAKE_COMMENTS.equals(property.getName())) {
             modelValues.dbTakeComments = true;
         } else if (DATABASE_LOWERCASE_NAMES.equals(property.getName())) {
@@ -592,17 +594,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (DATABASE_UPPERCASE_NAMES.equals(property.getName())) {
             modelValues.dbUppercaseNames = true;
         }
-    }
-
-    private static String getPropertyValue(String value) {
-        if (value == null)
-            return null;
-        value = value.trim();
-        if (value.startsWith("\""))
-            value = value.substring(1);
-        if (value.endsWith("\""))
-            value = value.substring(0, value.length() - 1);
-        return value;
     }
 
     private static void setValue(ModelValues modelValues, PojogenProperty property) {
@@ -879,7 +870,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             }
         } else if (POJOGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug().getDebug() != null) {
             modelValues.debugLevel = property.getDebug().getDebug();
-            modelValues.debugScope = property.getDebug().getScope();
+            modelValues.debugScope = getPropertyValue(property.getDebug().getScope());
         } else if (POJOGEN_PRESERVE_FOREIGN_KEYS.equals(property.getName())) {
             if (property.getDbTables().isEmpty()) {
                 modelValues.preserveForeignKeys.add("_ALL_");
@@ -899,9 +890,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                         .get(i).getPojo());
             }
         } else if (POJOGEN_ACTIVE_FILTER.equals(property.getName())) {
-            modelValues.activeFilter = property.getActiveFilter();
+            modelValues.activeFilter = getPropertyValue(property.getActiveFilter());
         } else if (POJOGEN_PACKAGE.equals(property.getName())) {
-            modelValues.pckg = property.getPckg();
+            modelValues.pckg = getPropertyValue(property.getPckg());
         } else if (POJOGEN_ENUM_FOR_CHECK_CONSTRAINTS.equals(property.getName())) {
             for (int i = 0, m = property.getDbCheckConstraints().size(); i < m; i++) {
                 if (i == 0)
@@ -992,7 +983,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.metaProceduresResultSet.put(property.getDbProcedure(), property.getDbTable());
         } else if (METAGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug() != null) {
             modelValues.metaDebugLevel = property.getDebug().getDebug();
-            modelValues.metaDebugScope = property.getDebug().getScope();
+            modelValues.metaDebugScope = getPropertyValue(property.getDebug().getScope());
         } else if (METAGEN_GENERATE_OPERATORS.equals(property.getName())) {
             modelValues.metaGenerateOperators = true;
         } else if (METAGEN_OPTIMIZE_INSERT.equals(property.getName())) {
@@ -1011,7 +1002,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 modelValues.metaOptionalFeatures.get(property.getDbStatement()).add(optionalFeature);
             }
         } else if (METAGEN_ACTIVE_FILTER.equals(property.getName())) {
-            modelValues.metaActiveFilter = property.getActiveFilter();
+            modelValues.metaActiveFilter = getPropertyValue(property.getActiveFilter());
         }
     }
 
@@ -1049,11 +1040,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.daoFunctionsResult.put(property.getDbFunction(), property.getResultType());
         } else if (DAOGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug().getDebug() != null) {
             modelValues.daoDebugLevel = property.getDebug().getDebug();
-            modelValues.daoDebugScope = property.getDebug().getScope();
+            modelValues.daoDebugScope = getPropertyValue(property.getDebug().getScope());
         } else if (DAOGEN_ACTIVE_FILTER.equals(property.getName())) {
-            modelValues.daoActiveFilter = property.getActiveFilter();
+            modelValues.daoActiveFilter = getPropertyValue(property.getActiveFilter());
         } else if (DAOGEN_PACKAGE.equals(property.getName())) {
-            modelValues.daoPckg = property.getPckg();
+            modelValues.daoPckg = getPropertyValue(property.getPckg());
         }
     }
 
@@ -1591,5 +1582,30 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     @Override
     public String toString() {
         return "ModelPropertyBean [dirs2models=" + dirs2models + "]";
+    }
+
+    private static String getPropertyValue(String value) {
+        if (value == null)
+            return null;
+        value = value.trim();
+        if (value.startsWith("\""))
+            value = value.substring(1);
+        if (value.endsWith("\""))
+            value = value.substring(0, value.length() - 1);
+        return value;
+    }
+
+    private static String getPropertyValue(PropertyValue pv) {
+        if (pv == null)
+            return null;
+        String s = pv.getValue();
+        if (s == null)
+            return null;
+        s = s.trim();
+        if (s.startsWith("\""))
+            s = s.substring(1);
+        if (s.endsWith("\""))
+            s = s.substring(0, s.length() - 1);
+        return s;
     }
 }

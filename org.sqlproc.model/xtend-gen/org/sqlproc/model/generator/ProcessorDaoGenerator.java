@@ -4028,67 +4028,29 @@ public class ProcessorDaoGenerator {
   }
   
   public boolean isExtends(final PojoDao e) {
-    EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
-    Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
-    for (final Extends ext : _filter) {
-      {
-        EList<PojoDao> _onlyDaos = ext.getOnlyDaos();
-        boolean _isEmpty = _onlyDaos.isEmpty();
-        boolean _not = (!_isEmpty);
-        if (_not) {
-          EList<PojoDao> _onlyDaos_1 = ext.getOnlyDaos();
-          for (final PojoDao ee : _onlyDaos_1) {
-            String _name = ee.getName();
-            String _name_1 = e.getName();
-            boolean _equals = Objects.equal(_name, _name_1);
-            if (_equals) {
-              return true;
-            }
-          }
-          return false;
-        }
-        EList<PojoDao> _exceptDaos = ext.getExceptDaos();
-        for (final PojoDao ee_1 : _exceptDaos) {
-          String _name_2 = ee_1.getName();
-          String _name_3 = e.getName();
-          boolean _equals_1 = Objects.equal(_name_2, _name_3);
-          if (_equals_1) {
-            return false;
-          }
-        }
-        return true;
-      }
-    }
-    return false;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method onlyDaos is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method onlyDaos is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method exceptDaos is undefined for the type ProcessorDaoGenerator"
+      + "\nempty cannot be resolved"
+      + "\n! cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved");
   }
   
   public boolean isExtends(final PojoDao e, final Extends ext) {
-    EList<PojoDao> _onlyDaos = ext.getOnlyDaos();
-    boolean _isEmpty = _onlyDaos.isEmpty();
-    boolean _not = (!_isEmpty);
-    if (_not) {
-      EList<PojoDao> _onlyDaos_1 = ext.getOnlyDaos();
-      for (final PojoDao ee : _onlyDaos_1) {
-        String _name = ee.getName();
-        String _name_1 = e.getName();
-        boolean _equals = Objects.equal(_name, _name_1);
-        if (_equals) {
-          return true;
-        }
-      }
-      return false;
-    }
-    EList<PojoDao> _exceptDaos = ext.getExceptDaos();
-    for (final PojoDao ee_1 : _exceptDaos) {
-      String _name_2 = ee_1.getName();
-      String _name_3 = e.getName();
-      boolean _equals_1 = Objects.equal(_name_2, _name_3);
-      if (_equals_1) {
-        return false;
-      }
-    }
-    return true;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method onlyDaos is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method onlyDaos is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method exceptDaos is undefined for the type ProcessorDaoGenerator"
+      + "\nempty cannot be resolved"
+      + "\n! cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved");
   }
   
   public String getExtends(final PojoDao e) {
@@ -4106,67 +4068,29 @@ public class ProcessorDaoGenerator {
   }
   
   public boolean isImplements(final PojoDao e) {
-    EObject _eContainer = e.eContainer();
-    EList<EObject> _eContents = _eContainer.eContents();
-    Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
-    for (final Implements ext : _filter) {
-      {
-        EList<PojoDao> _exceptDaos = ext.getExceptDaos();
-        for (final PojoDao ee : _exceptDaos) {
-          String _name = ee.getName();
-          String _name_1 = e.getName();
-          boolean _equals = Objects.equal(_name, _name_1);
-          if (_equals) {
-            return false;
-          }
-        }
-        EList<PojoDao> _onlyDaos = ext.getOnlyDaos();
-        boolean _isEmpty = _onlyDaos.isEmpty();
-        boolean _not = (!_isEmpty);
-        if (_not) {
-          EList<PojoDao> _onlyDaos_1 = ext.getOnlyDaos();
-          for (final PojoDao ee_1 : _onlyDaos_1) {
-            String _name_2 = ee_1.getName();
-            String _name_3 = e.getName();
-            boolean _equals_1 = Objects.equal(_name_2, _name_3);
-            if (_equals_1) {
-              return true;
-            }
-          }
-        } else {
-          return true;
-        }
-      }
-    }
-    return false;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method exceptDaos is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method onlyDaos is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method onlyDaos is undefined for the type ProcessorDaoGenerator"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nempty cannot be resolved"
+      + "\n! cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved");
   }
   
   public boolean isImplements(final PojoDao e, final Implements ext) {
-    EList<PojoDao> _onlyDaos = ext.getOnlyDaos();
-    boolean _isEmpty = _onlyDaos.isEmpty();
-    boolean _not = (!_isEmpty);
-    if (_not) {
-      EList<PojoDao> _onlyDaos_1 = ext.getOnlyDaos();
-      for (final PojoDao ee : _onlyDaos_1) {
-        String _name = ee.getName();
-        String _name_1 = e.getName();
-        boolean _equals = Objects.equal(_name, _name_1);
-        if (_equals) {
-          return true;
-        }
-      }
-      return false;
-    }
-    EList<PojoDao> _exceptDaos = ext.getExceptDaos();
-    for (final PojoDao ee_1 : _exceptDaos) {
-      String _name_2 = ee_1.getName();
-      String _name_3 = e.getName();
-      boolean _equals_1 = Objects.equal(_name_2, _name_3);
-      if (_equals_1) {
-        return false;
-      }
-    }
-    return true;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method onlyDaos is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method onlyDaos is undefined for the type ProcessorDaoGenerator"
+      + "\nThe method exceptDaos is undefined for the type ProcessorDaoGenerator"
+      + "\nempty cannot be resolved"
+      + "\n! cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved");
   }
   
   public ArrayList<Implements> getImplements(final PojoDao e) {

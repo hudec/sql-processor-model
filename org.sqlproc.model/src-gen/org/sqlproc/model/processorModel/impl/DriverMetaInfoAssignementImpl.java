@@ -3,14 +3,17 @@
 package org.sqlproc.model.processorModel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.model.processorModel.DriverMetaInfoAssignement;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
+import org.sqlproc.model.processorModel.PropertyValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,24 +31,14 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
 public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container implements DriverMetaInfoAssignement
 {
   /**
-   * The default value of the '{@link #getDbDriverInfo() <em>Db Driver Info</em>}' attribute.
+   * The cached value of the '{@link #getDbDriverInfo() <em>Db Driver Info</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDbDriverInfo()
    * @generated
    * @ordered
    */
-  protected static final String DB_DRIVER_INFO_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getDbDriverInfo() <em>Db Driver Info</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbDriverInfo()
-   * @generated
-   * @ordered
-   */
-  protected String dbDriverInfo = DB_DRIVER_INFO_EDEFAULT;
+  protected PropertyValue dbDriverInfo;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,7 +66,7 @@ public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getDbDriverInfo()
+  public PropertyValue getDbDriverInfo()
   {
     return dbDriverInfo;
   }
@@ -83,12 +76,53 @@ public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbDriverInfo(String newDbDriverInfo)
+  public NotificationChain basicSetDbDriverInfo(PropertyValue newDbDriverInfo, NotificationChain msgs)
   {
-    String oldDbDriverInfo = dbDriverInfo;
+    PropertyValue oldDbDriverInfo = dbDriverInfo;
     dbDriverInfo = newDbDriverInfo;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO, oldDbDriverInfo, dbDriverInfo));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO, oldDbDriverInfo, newDbDriverInfo);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDbDriverInfo(PropertyValue newDbDriverInfo)
+  {
+    if (newDbDriverInfo != dbDriverInfo)
+    {
+      NotificationChain msgs = null;
+      if (dbDriverInfo != null)
+        msgs = ((InternalEObject)dbDriverInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO, null, msgs);
+      if (newDbDriverInfo != null)
+        msgs = ((InternalEObject)newDbDriverInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO, null, msgs);
+      msgs = basicSetDbDriverInfo(newDbDriverInfo, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO, newDbDriverInfo, newDbDriverInfo));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorModelPackage.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO:
+        return basicSetDbDriverInfo(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -118,7 +152,7 @@ public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container 
     switch (featureID)
     {
       case ProcessorModelPackage.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO:
-        setDbDriverInfo((String)newValue);
+        setDbDriverInfo((PropertyValue)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,7 +169,7 @@ public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container 
     switch (featureID)
     {
       case ProcessorModelPackage.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO:
-        setDbDriverInfo(DB_DRIVER_INFO_EDEFAULT);
+        setDbDriverInfo((PropertyValue)null);
         return;
     }
     super.eUnset(featureID);
@@ -152,26 +186,9 @@ public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container 
     switch (featureID)
     {
       case ProcessorModelPackage.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO:
-        return DB_DRIVER_INFO_EDEFAULT == null ? dbDriverInfo != null : !DB_DRIVER_INFO_EDEFAULT.equals(dbDriverInfo);
+        return dbDriverInfo != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (dbDriverInfo: ");
-    result.append(dbDriverInfo);
-    result.append(')');
-    return result.toString();
   }
 
 } //DriverMetaInfoAssignementImpl

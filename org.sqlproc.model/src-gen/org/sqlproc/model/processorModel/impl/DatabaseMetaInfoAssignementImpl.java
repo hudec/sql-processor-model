@@ -3,14 +3,17 @@
 package org.sqlproc.model.processorModel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
+import org.sqlproc.model.processorModel.PropertyValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,24 +31,14 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
 public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Container implements DatabaseMetaInfoAssignement
 {
   /**
-   * The default value of the '{@link #getDbMetaInfo() <em>Db Meta Info</em>}' attribute.
+   * The cached value of the '{@link #getDbMetaInfo() <em>Db Meta Info</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDbMetaInfo()
    * @generated
    * @ordered
    */
-  protected static final String DB_META_INFO_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getDbMetaInfo() <em>Db Meta Info</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbMetaInfo()
-   * @generated
-   * @ordered
-   */
-  protected String dbMetaInfo = DB_META_INFO_EDEFAULT;
+  protected PropertyValue dbMetaInfo;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,7 +66,7 @@ public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Containe
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getDbMetaInfo()
+  public PropertyValue getDbMetaInfo()
   {
     return dbMetaInfo;
   }
@@ -83,12 +76,53 @@ public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Containe
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbMetaInfo(String newDbMetaInfo)
+  public NotificationChain basicSetDbMetaInfo(PropertyValue newDbMetaInfo, NotificationChain msgs)
   {
-    String oldDbMetaInfo = dbMetaInfo;
+    PropertyValue oldDbMetaInfo = dbMetaInfo;
     dbMetaInfo = newDbMetaInfo;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO, oldDbMetaInfo, dbMetaInfo));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO, oldDbMetaInfo, newDbMetaInfo);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDbMetaInfo(PropertyValue newDbMetaInfo)
+  {
+    if (newDbMetaInfo != dbMetaInfo)
+    {
+      NotificationChain msgs = null;
+      if (dbMetaInfo != null)
+        msgs = ((InternalEObject)dbMetaInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO, null, msgs);
+      if (newDbMetaInfo != null)
+        msgs = ((InternalEObject)newDbMetaInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO, null, msgs);
+      msgs = basicSetDbMetaInfo(newDbMetaInfo, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO, newDbMetaInfo, newDbMetaInfo));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorModelPackage.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO:
+        return basicSetDbMetaInfo(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -118,7 +152,7 @@ public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Containe
     switch (featureID)
     {
       case ProcessorModelPackage.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO:
-        setDbMetaInfo((String)newValue);
+        setDbMetaInfo((PropertyValue)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,7 +169,7 @@ public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Containe
     switch (featureID)
     {
       case ProcessorModelPackage.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO:
-        setDbMetaInfo(DB_META_INFO_EDEFAULT);
+        setDbMetaInfo((PropertyValue)null);
         return;
     }
     super.eUnset(featureID);
@@ -152,26 +186,9 @@ public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Containe
     switch (featureID)
     {
       case ProcessorModelPackage.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO:
-        return DB_META_INFO_EDEFAULT == null ? dbMetaInfo != null : !DB_META_INFO_EDEFAULT.equals(dbMetaInfo);
+        return dbMetaInfo != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (dbMetaInfo: ");
-    result.append(dbMetaInfo);
-    result.append(')');
-    return result.toString();
   }
 
 } //DatabaseMetaInfoAssignementImpl

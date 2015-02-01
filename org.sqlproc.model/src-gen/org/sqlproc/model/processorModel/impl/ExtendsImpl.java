@@ -22,7 +22,6 @@ import org.eclipse.xtext.common.types.JvmType;
 
 import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirective;
-import org.sqlproc.model.processorModel.PojoDao;
 import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
@@ -36,9 +35,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  *   <li>{@link org.sqlproc.model.processorModel.impl.ExtendsImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.ExtendsImpl#getExtends <em>Extends</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.ExtendsImpl#getOnlyPojos <em>Only Pojos</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.ExtendsImpl#getOnlyDaos <em>Only Daos</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.ExtendsImpl#getExceptPojos <em>Except Pojos</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.ExtendsImpl#getExceptDaos <em>Except Daos</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,16 +74,6 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
   protected EList<PojoEntity> onlyPojos;
 
   /**
-   * The cached value of the '{@link #getOnlyDaos() <em>Only Daos</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOnlyDaos()
-   * @generated
-   * @ordered
-   */
-  protected EList<PojoDao> onlyDaos;
-
-  /**
    * The cached value of the '{@link #getExceptPojos() <em>Except Pojos</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -95,16 +82,6 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
    * @ordered
    */
   protected EList<PojoEntity> exceptPojos;
-
-  /**
-   * The cached value of the '{@link #getExceptDaos() <em>Except Daos</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExceptDaos()
-   * @generated
-   * @ordered
-   */
-  protected EList<PojoDao> exceptDaos;
 
   /**
    * <!-- begin-user-doc -->
@@ -203,20 +180,6 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoDao> getOnlyDaos()
-  {
-    if (onlyDaos == null)
-    {
-      onlyDaos = new EObjectResolvingEList<PojoDao>(PojoDao.class, this, ProcessorModelPackage.EXTENDS__ONLY_DAOS);
-    }
-    return onlyDaos;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EList<PojoEntity> getExceptPojos()
   {
     if (exceptPojos == null)
@@ -224,20 +187,6 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
       exceptPojos = new EObjectResolvingEList<PojoEntity>(PojoEntity.class, this, ProcessorModelPackage.EXTENDS__EXCEPT_POJOS);
     }
     return exceptPojos;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<PojoDao> getExceptDaos()
-  {
-    if (exceptDaos == null)
-    {
-      exceptDaos = new EObjectResolvingEList<PojoDao>(PojoDao.class, this, ProcessorModelPackage.EXTENDS__EXCEPT_DAOS);
-    }
-    return exceptDaos;
   }
 
   /**
@@ -273,12 +222,8 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
         return basicGetExtends();
       case ProcessorModelPackage.EXTENDS__ONLY_POJOS:
         return getOnlyPojos();
-      case ProcessorModelPackage.EXTENDS__ONLY_DAOS:
-        return getOnlyDaos();
       case ProcessorModelPackage.EXTENDS__EXCEPT_POJOS:
         return getExceptPojos();
-      case ProcessorModelPackage.EXTENDS__EXCEPT_DAOS:
-        return getExceptDaos();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -305,17 +250,9 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
         getOnlyPojos().clear();
         getOnlyPojos().addAll((Collection<? extends PojoEntity>)newValue);
         return;
-      case ProcessorModelPackage.EXTENDS__ONLY_DAOS:
-        getOnlyDaos().clear();
-        getOnlyDaos().addAll((Collection<? extends PojoDao>)newValue);
-        return;
       case ProcessorModelPackage.EXTENDS__EXCEPT_POJOS:
         getExceptPojos().clear();
         getExceptPojos().addAll((Collection<? extends PojoEntity>)newValue);
-        return;
-      case ProcessorModelPackage.EXTENDS__EXCEPT_DAOS:
-        getExceptDaos().clear();
-        getExceptDaos().addAll((Collection<? extends PojoDao>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -340,14 +277,8 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
       case ProcessorModelPackage.EXTENDS__ONLY_POJOS:
         getOnlyPojos().clear();
         return;
-      case ProcessorModelPackage.EXTENDS__ONLY_DAOS:
-        getOnlyDaos().clear();
-        return;
       case ProcessorModelPackage.EXTENDS__EXCEPT_POJOS:
         getExceptPojos().clear();
-        return;
-      case ProcessorModelPackage.EXTENDS__EXCEPT_DAOS:
-        getExceptDaos().clear();
         return;
     }
     super.eUnset(featureID);
@@ -369,12 +300,8 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
         return extends_ != null;
       case ProcessorModelPackage.EXTENDS__ONLY_POJOS:
         return onlyPojos != null && !onlyPojos.isEmpty();
-      case ProcessorModelPackage.EXTENDS__ONLY_DAOS:
-        return onlyDaos != null && !onlyDaos.isEmpty();
       case ProcessorModelPackage.EXTENDS__EXCEPT_POJOS:
         return exceptPojos != null && !exceptPojos.isEmpty();
-      case ProcessorModelPackage.EXTENDS__EXCEPT_DAOS:
-        return exceptDaos != null && !exceptDaos.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -186,55 +186,55 @@ public interface Property extends EObject
   void setReplaceId(String value);
 
   /**
-   * Returns the value of the '<em><b>Regex</b></em>' attribute.
+   * Returns the value of the '<em><b>Regex</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Regex</em>' attribute isn't clear,
+   * If the meaning of the '<em>Regex</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Regex</em>' attribute.
-   * @see #setRegex(String)
+   * @return the value of the '<em>Regex</em>' containment reference.
+   * @see #setRegex(PropertyValue)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getProperty_Regex()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getRegex();
+  PropertyValue getRegex();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.Property#getRegex <em>Regex</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.Property#getRegex <em>Regex</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Regex</em>' attribute.
+   * @param value the new value of the '<em>Regex</em>' containment reference.
    * @see #getRegex()
    * @generated
    */
-  void setRegex(String value);
+  void setRegex(PropertyValue value);
 
   /**
-   * Returns the value of the '<em><b>Replacement</b></em>' attribute.
+   * Returns the value of the '<em><b>Replacement</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Replacement</em>' attribute isn't clear,
+   * If the meaning of the '<em>Replacement</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Replacement</em>' attribute.
-   * @see #setReplacement(String)
+   * @return the value of the '<em>Replacement</em>' containment reference.
+   * @see #setReplacement(PropertyValue)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getProperty_Replacement()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getReplacement();
+  PropertyValue getReplacement();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.Property#getReplacement <em>Replacement</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.Property#getReplacement <em>Replacement</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Replacement</em>' attribute.
+   * @param value the new value of the '<em>Replacement</em>' containment reference.
    * @see #getReplacement()
    * @generated
    */
-  void setReplacement(String value);
+  void setReplacement(PropertyValue value);
 
 } // Property

@@ -13,15 +13,16 @@ Artifacts: {Artifacts}
     | packages+=Package
     )*;
 
-DatabaseCatalogAssignement: dbCatalog=PROPERTY_VALUE;
-DatabaseSchemaAssignement: dbSchema=PROPERTY_VALUE;
+PropertyValue: value=STRING;
+DatabaseCatalogAssignement: dbCatalog=PropertyValue;
+DatabaseSchemaAssignement: dbSchema=PropertyValue;
 DatabaseTypeAssignement: dbType=ValidID;
-DatabaseMetaInfoAssignement: dbMetaInfo=PROPERTY_VALUE;
-DriverMetaInfoAssignement: dbDriverInfo=PROPERTY_VALUE;
-DriverMethodOutputAssignement: driverMethod=ValidID '->' callOutput=PROPERTY_VALUE;
+DatabaseMetaInfoAssignement: dbMetaInfo=PropertyValue;
+DriverMetaInfoAssignement: dbDriverInfo=PropertyValue;
+DriverMethodOutputAssignement: driverMethod=ValidID '->' callOutput=PropertyValue;
 SqlTypeAssignement: typeName=ValidID ('(' size=INT ')')? '->' type=PojoType;
 ColumnTypeAssignement: dbColumn=ValidID '->' type=PojoType;
-ShowColumnTypeAssignement: dbColumn=ValidID '->' type=PROPERTY_VALUE;
+ShowColumnTypeAssignement: dbColumn=ValidID '->' type=PropertyValue;
 TableAssignement: dbTable=ValidID '->' newName=ValidID;
 JoinTableAssignement: dbTable=ValidID ('->' dbTables+=ValidID)+;
 ColumnAssignement: dbColumn=ValidID '->' newName=ValidID;
@@ -29,7 +30,7 @@ ImportAssignement: dbColumn=ValidID '->' pkTable=ValidID ('->' pkColumn=ValidID)
 ExportAssignement: dbColumn=ValidID '->' fkTable=ValidID ('->' fkColumn=ValidID)?;
 InheritanceAssignement: discriminator=ValidID '->' dbTable=ValidID ('->' dbColumns+=ValidID)+;
 ManyToManyAssignement: pkColumn=ValidID '->' pkTable=ValidID ('->' fkColumn=ValidID)?;
-DebugLevelAssignement: debug=ValidID (WS+ scope=PROPERTY_VALUE)?;
+DebugLevelAssignement: debug=ValidID (WS+ scope=PropertyValue)?;
 ProcedurePojoAssignement: dbProcedure=ValidID '->' pojo=PojoType;
 FunctionPojoAssignement: dbFunction=ValidID '->' pojo=PojoType;
 ImplementsAssignement: ':' toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ '+' (WS+ dbTables+=ValidID)+)? (WS+ '-' (WS+ dbNotTables+=ValidID)+)?;
@@ -44,8 +45,8 @@ Property hidden(ML_COMMENT, SL_COMMENT):
 	|name='pojogen-' pojogen=PojogenProperty
 	|name='metagen-' metagen=MetagenProperty
 	|name='daogen-' daogen=DaogenProperty
-	|name='replace-all-regex' WS+ replaceId=ValidID WS+ regex=PROPERTY_VALUE
-	|name='replace-all-replacement' WS+ replaceId=ValidID WS+ replacement=PROPERTY_VALUE
+	|name='replace-all-regex' WS+ replaceId=ValidID WS+ regex=PropertyValue
+	|name='replace-all-replacement' WS+ replaceId=ValidID WS+ replacement=PropertyValue
 	|name='compress-meta-directives'
 	) ';';
 
@@ -56,15 +57,15 @@ Property hidden(ML_COMMENT, SL_COMMENT):
 DatabaseProperty hidden(ML_COMMENT, SL_COMMENT):
 	(name='is-online'
 	|name='is-offline'
-	|name='has-url' WS+ dbUrl=PROPERTY_VALUE
-	|name='login-username' WS+ dbUsername=PROPERTY_VALUE
-	|name='login-password' WS+ dbPassword=PROPERTY_VALUE
+	|name='has-url' WS+ dbUrl=PropertyValue
+	|name='login-username' WS+ dbUsername=PropertyValue
+	|name='login-password' WS+ dbPassword=PropertyValue
 	|name='in-catalog' WS+ dbCatalog=DatabaseCatalogAssignement
 	|name='active-schema' WS+ dbSchema=DatabaseSchemaAssignement
-	|name='jdbc-driver' WS+ (=> ':' dbDriverx=[jvmTypes::JvmType|QualifiedName]|dbDriver=PROPERTY_VALUE)
-	|name='ddl-create' WS+ dbExecuteBefore=PROPERTY_VALUE
-	|name='ddl-drop' WS+ dbExecuteAfter=PROPERTY_VALUE
-	|name='index-types' WS+ dbIndexTypes=PROPERTY_VALUE
+	|name='jdbc-driver' WS+ (=> ':' dbDriverx=[jvmTypes::JvmType|QualifiedName]|dbDriver=PropertyValue)
+	|name='ddl-create' WS+ dbExecuteBefore=PropertyValue
+	|name='ddl-drop' WS+ dbExecuteAfter=PropertyValue
+	|name='index-types' WS+ dbIndexTypes=PropertyValue
 	|name='skip-indexes'
 	|name='skip-functions-procedures'
 	|name='skip-check-constraints'
@@ -118,8 +119,8 @@ PojogenProperty hidden(ML_COMMENT, SL_COMMENT):
 	|name='debug-level' WS+ debug=DebugLevelAssignement
 	|name='pojos-for-procedures' (WS+ procPojos+=ProcedurePojoAssignement)+
 	|name='pojos-for-functions' (WS+ funPojos+=FunctionPojoAssignement)+
-	|name='active-filter' WS+ activeFilter=PROPERTY_VALUE
-	|name='package' WS+ pckg=PROPERTY_VALUE
+	|name='active-filter' WS+ activeFilter=PropertyValue
+	|name='package' WS+ pckg=PropertyValue
 	|name='enum-for-check-constraints' WS+ enumName=ValidID (WS+ dbCheckConstraints+=ValidID)+
 	);
 
@@ -146,7 +147,7 @@ MetagenProperty hidden(ML_COMMENT, SL_COMMENT):
 	|name='generate-operators'
 	|name='optimize-insert' (WS+ dbTables+=ValidID)*
 	|name='optional-features' WS+ dbStatement=ValidID (WS+ optionalFeatures+=ValidID)+
-	|name='active-filter' WS+ activeFilter=PROPERTY_VALUE
+	|name='active-filter' WS+ activeFilter=PropertyValue
 	);
 
 DaogenProperty hidden(ML_COMMENT, SL_COMMENT):
@@ -159,8 +160,8 @@ DaogenProperty hidden(ML_COMMENT, SL_COMMENT):
 	|name='make-it-final'
 	|name='function-result' WS+ dbFunction=ValidID WS+ resultType=PojoType
 	|name='debug-level' WS+ debug=DebugLevelAssignement
-	|name='active-filter' WS+ activeFilter=PROPERTY_VALUE
-	|name='package' WS+ pckg=PROPERTY_VALUE
+	|name='active-filter' WS+ activeFilter=PropertyValue
+	|name='package' WS+ pckg=PropertyValue
 	);
 
 PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
@@ -218,10 +219,12 @@ Entity: PojoEntity | EnumEntity;
 AnnotatedEntity: (annotations+=Annotation)* entity=Entity;
 
 AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	Package | AnnotatedEntity | Import | Implements | Extends | PojoDao;
+	Package | AnnotatedEntity | Import | Implements | Extends | PojoDao
+;
 
 Import hidden(ML_COMMENT, SL_COMMENT, WS):
-	'import' importedNamespace = QualifiedNameWithWildcard;
+	'import' importedNamespace = QualifiedNameWithWildcard
+;
 
 ImplementsExtendsDirective hidden(ML_COMMENT, SL_COMMENT, WS): 
 	{ImplementsExtendsDirectiveGenerics} '#Generics'
@@ -229,11 +232,21 @@ ImplementsExtendsDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 
 Implements hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=ImplementsExtendsDirective*
-	'implements' ':' implements = [jvmTypes::JvmType|QualifiedName] ('onlyPojos' onlyPojos+=[PojoEntity|ValidID]*)? ('onlyDaos' onlyDaos+=[PojoDao|ValidID]*)? ('exceptPojos' exceptPojos+=[PojoEntity|ValidID]*)? ('exceptDaos' exceptDaos+=[PojoDao|ValidID]*)?;
+	'implements' ':' implements = [jvmTypes::JvmType|QualifiedName] 
+	('onlyPojos' onlyPojos+=[PojoEntity|ValidID]*)? 
+//	('onlyDaos' onlyDaos+=[PojoDao|ValidID]*)? 
+	('exceptPojos' exceptPojos+=[PojoEntity|ValidID]*)? 
+	//('exceptDaos' exceptDaos+=[PojoDao|ValidID]*)?
+;
 
 Extends hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=ImplementsExtendsDirective*
-	'extends' ':' extends = [jvmTypes::JvmType|QualifiedName] ('onlyPojos' onlyPojos+=[PojoEntity|ValidID]*)? ('onlyDaos' onlyDaos+=[PojoDao|ValidID]*)? ('exceptPojos' exceptPojos+=[PojoEntity|ValidID]*)? ('exceptDaos' exceptDaos+=[PojoDao|ValidID]*)?;
+	'extends' ':' extends = [jvmTypes::JvmType|QualifiedName] 
+	('onlyPojos' onlyPojos+=[PojoEntity|ValidID]*)? 
+//	('onlyDaos' onlyDaos+=[PojoDao|ValidID]*)? 
+	('exceptPojos' exceptPojos+=[PojoEntity|ValidID]*)? 
+	//('exceptDaos' exceptDaos+=[PojoDao|ValidID]*)?
+;
 
 PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));
 
@@ -258,7 +271,8 @@ PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 	(modifiers1+=PojoEntityModifier1)* 'pojo' name=ValidID (modifiers2+=PojoEntityModifier2)* 
 	'{'
 		features+=PojoAnnotatedProperty*
-	'}';
+	'}'
+;
 
 PojoAnnotatedProperty: (annotations+=Annotation)* feature=PojoProperty;
 
@@ -291,13 +305,14 @@ EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
 	(modifiers1+=EnumEntityModifier1)* 'enum' name=ValidID (modifiers2+=EnumEntityModifier2)* 
 	'{'
 		features+=EnumProperty*
-	'}';
+	'}'
+;
 
 EnumPropertyValue: name=ValidID '=' value = ValueType;
 
 EnumPropertyDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	{EnumPropertyDirectiveValues} '#Values' '(' values+=EnumPropertyValue (',' values+=EnumPropertyValue)* ')'
-	;
+;
 
 EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
 	directives+=EnumPropertyDirective name=ValidID ':' type=[jvmTypes::JvmType|QualifiedName]
@@ -317,7 +332,7 @@ FunProcType  hidden(ML_COMMENT, SL_COMMENT, WS):
 	{FunctionCall} "#FunctionCall" | 
 	{ProcedureUpdate} "#ProcedureUpdate" | 
 	{FunctionQuery} "#FunctionQuery"
-	;
+;
 
 DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	{DaoDirectiveSerializable} '#Serializable' '(' sernum=INT ')'
@@ -325,7 +340,7 @@ DaoDirective hidden(ML_COMMENT, SL_COMMENT, WS):
 	| {DaoDirectiveCrud} '#CRUD' (=> '(' pojo=PojoType ')')?
 	| {DaoDirectiveQuery} '#Query' (=> '(' pojo=PojoType ')')?
 	| {FunProcDirective} type=FunProcType (=> '(' paramlist=DaoDirectiveParameters ')')?
-	;
+;
 
 PojoDaoModifier: ('extends' superType=[PojoDao|ValidID]);
 
@@ -335,9 +350,5 @@ PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
 	  (modifiers2+=PojoDaoModifier)* 
 	'{'
 		//methods+=PojoMethod*
-	'}';
-
-terminal PROPERTY_VALUE:
-  !(';')+;
-
-	
+	'}'
+;

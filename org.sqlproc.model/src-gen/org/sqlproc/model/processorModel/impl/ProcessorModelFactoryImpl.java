@@ -113,6 +113,7 @@ import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelFactory;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
+import org.sqlproc.model.processorModel.PropertyValue;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
@@ -172,6 +173,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
     switch (eClass.getClassifierID())
     {
       case ProcessorModelPackage.ARTIFACTS: return createArtifacts();
+      case ProcessorModelPackage.PROPERTY_VALUE: return createPropertyValue();
       case ProcessorModelPackage.DATABASE_CATALOG_ASSIGNEMENT: return createDatabaseCatalogAssignement();
       case ProcessorModelPackage.DATABASE_SCHEMA_ASSIGNEMENT: return createDatabaseSchemaAssignement();
       case ProcessorModelPackage.DATABASE_TYPE_ASSIGNEMENT: return createDatabaseTypeAssignement();
@@ -292,6 +294,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     ArtifactsImpl artifacts = new ArtifactsImpl();
     return artifacts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyValue createPropertyValue()
+  {
+    PropertyValueImpl propertyValue = new PropertyValueImpl();
+    return propertyValue;
   }
 
   /**

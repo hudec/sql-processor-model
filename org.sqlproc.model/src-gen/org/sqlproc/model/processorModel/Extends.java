@@ -17,9 +17,7 @@ import org.eclipse.xtext.common.types.JvmType;
  *   <li>{@link org.sqlproc.model.processorModel.Extends#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Extends#getExtends <em>Extends</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Extends#getOnlyPojos <em>Only Pojos</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.Extends#getOnlyDaos <em>Only Daos</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Extends#getExceptPojos <em>Except Pojos</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.Extends#getExceptDaos <em>Except Daos</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,22 +86,6 @@ public interface Extends extends AbstractPojoEntity
   EList<PojoEntity> getOnlyPojos();
 
   /**
-   * Returns the value of the '<em><b>Only Daos</b></em>' reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.PojoDao}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Only Daos</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Only Daos</em>' reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getExtends_OnlyDaos()
-   * @model
-   * @generated
-   */
-  EList<PojoDao> getOnlyDaos();
-
-  /**
    * Returns the value of the '<em><b>Except Pojos</b></em>' reference list.
    * The list contents are of type {@link org.sqlproc.model.processorModel.PojoEntity}.
    * <!-- begin-user-doc -->
@@ -118,21 +100,5 @@ public interface Extends extends AbstractPojoEntity
    * @generated
    */
   EList<PojoEntity> getExceptPojos();
-
-  /**
-   * Returns the value of the '<em><b>Except Daos</b></em>' reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.PojoDao}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Except Daos</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Except Daos</em>' reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getExtends_ExceptDaos()
-   * @model
-   * @generated
-   */
-  EList<PojoDao> getExceptDaos();
 
 } // Extends

@@ -23,29 +23,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface DatabaseMetaInfoAssignement extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Db Meta Info</b></em>' attribute.
+   * Returns the value of the '<em><b>Db Meta Info</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Db Meta Info</em>' attribute isn't clear,
+   * If the meaning of the '<em>Db Meta Info</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Meta Info</em>' attribute.
-   * @see #setDbMetaInfo(String)
+   * @return the value of the '<em>Db Meta Info</em>' containment reference.
+   * @see #setDbMetaInfo(PropertyValue)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDatabaseMetaInfoAssignement_DbMetaInfo()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getDbMetaInfo();
+  PropertyValue getDbMetaInfo();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement#getDbMetaInfo <em>Db Meta Info</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement#getDbMetaInfo <em>Db Meta Info</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Db Meta Info</em>' attribute.
+   * @param value the new value of the '<em>Db Meta Info</em>' containment reference.
    * @see #getDbMetaInfo()
    * @generated
    */
-  void setDbMetaInfo(String value);
+  void setDbMetaInfo(PropertyValue value);
 
 } // DatabaseMetaInfoAssignement

@@ -17,6 +17,7 @@ import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
+import org.sqlproc.model.processorModel.PropertyValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -121,44 +122,24 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   protected String replaceId = REPLACE_ID_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getRegex() <em>Regex</em>}' attribute.
+   * The cached value of the '{@link #getRegex() <em>Regex</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getRegex()
    * @generated
    * @ordered
    */
-  protected static final String REGEX_EDEFAULT = null;
+  protected PropertyValue regex;
 
   /**
-   * The cached value of the '{@link #getRegex() <em>Regex</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRegex()
-   * @generated
-   * @ordered
-   */
-  protected String regex = REGEX_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getReplacement() <em>Replacement</em>}' attribute.
+   * The cached value of the '{@link #getReplacement() <em>Replacement</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getReplacement()
    * @generated
    * @ordered
    */
-  protected static final String REPLACEMENT_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getReplacement() <em>Replacement</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getReplacement()
-   * @generated
-   * @ordered
-   */
-  protected String replacement = REPLACEMENT_EDEFAULT;
+  protected PropertyValue replacement;
 
   /**
    * <!-- begin-user-doc -->
@@ -424,7 +405,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getRegex()
+  public PropertyValue getRegex()
   {
     return regex;
   }
@@ -434,12 +415,16 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRegex(String newRegex)
+  public NotificationChain basicSetRegex(PropertyValue newRegex, NotificationChain msgs)
   {
-    String oldRegex = regex;
+    PropertyValue oldRegex = regex;
     regex = newRegex;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.PROPERTY__REGEX, oldRegex, regex));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.PROPERTY__REGEX, oldRegex, newRegex);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -447,7 +432,28 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getReplacement()
+  public void setRegex(PropertyValue newRegex)
+  {
+    if (newRegex != regex)
+    {
+      NotificationChain msgs = null;
+      if (regex != null)
+        msgs = ((InternalEObject)regex).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.PROPERTY__REGEX, null, msgs);
+      if (newRegex != null)
+        msgs = ((InternalEObject)newRegex).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.PROPERTY__REGEX, null, msgs);
+      msgs = basicSetRegex(newRegex, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.PROPERTY__REGEX, newRegex, newRegex));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyValue getReplacement()
   {
     return replacement;
   }
@@ -457,12 +463,37 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setReplacement(String newReplacement)
+  public NotificationChain basicSetReplacement(PropertyValue newReplacement, NotificationChain msgs)
   {
-    String oldReplacement = replacement;
+    PropertyValue oldReplacement = replacement;
     replacement = newReplacement;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.PROPERTY__REPLACEMENT, oldReplacement, replacement));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.PROPERTY__REPLACEMENT, oldReplacement, newReplacement);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setReplacement(PropertyValue newReplacement)
+  {
+    if (newReplacement != replacement)
+    {
+      NotificationChain msgs = null;
+      if (replacement != null)
+        msgs = ((InternalEObject)replacement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.PROPERTY__REPLACEMENT, null, msgs);
+      if (newReplacement != null)
+        msgs = ((InternalEObject)newReplacement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.PROPERTY__REPLACEMENT, null, msgs);
+      msgs = basicSetReplacement(newReplacement, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.PROPERTY__REPLACEMENT, newReplacement, newReplacement));
   }
 
   /**
@@ -483,6 +514,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return basicSetMetagen(null, msgs);
       case ProcessorModelPackage.PROPERTY__DAOGEN:
         return basicSetDaogen(null, msgs);
+      case ProcessorModelPackage.PROPERTY__REGEX:
+        return basicSetRegex(null, msgs);
+      case ProcessorModelPackage.PROPERTY__REPLACEMENT:
+        return basicSetReplacement(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -546,10 +581,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         setReplaceId((String)newValue);
         return;
       case ProcessorModelPackage.PROPERTY__REGEX:
-        setRegex((String)newValue);
+        setRegex((PropertyValue)newValue);
         return;
       case ProcessorModelPackage.PROPERTY__REPLACEMENT:
-        setReplacement((String)newValue);
+        setReplacement((PropertyValue)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -584,10 +619,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         setReplaceId(REPLACE_ID_EDEFAULT);
         return;
       case ProcessorModelPackage.PROPERTY__REGEX:
-        setRegex(REGEX_EDEFAULT);
+        setRegex((PropertyValue)null);
         return;
       case ProcessorModelPackage.PROPERTY__REPLACEMENT:
-        setReplacement(REPLACEMENT_EDEFAULT);
+        setReplacement((PropertyValue)null);
         return;
     }
     super.eUnset(featureID);
@@ -616,9 +651,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
       case ProcessorModelPackage.PROPERTY__REPLACE_ID:
         return REPLACE_ID_EDEFAULT == null ? replaceId != null : !REPLACE_ID_EDEFAULT.equals(replaceId);
       case ProcessorModelPackage.PROPERTY__REGEX:
-        return REGEX_EDEFAULT == null ? regex != null : !REGEX_EDEFAULT.equals(regex);
+        return regex != null;
       case ProcessorModelPackage.PROPERTY__REPLACEMENT:
-        return REPLACEMENT_EDEFAULT == null ? replacement != null : !REPLACEMENT_EDEFAULT.equals(replacement);
+        return replacement != null;
     }
     return super.eIsSet(featureID);
   }
@@ -638,10 +673,6 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
     result.append(name);
     result.append(", replaceId: ");
     result.append(replaceId);
-    result.append(", regex: ");
-    result.append(regex);
-    result.append(", replacement: ");
-    result.append(replacement);
     result.append(')');
     return result.toString();
   }

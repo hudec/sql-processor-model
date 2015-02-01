@@ -32,6 +32,15 @@ public interface ProcessorModelFactory extends EFactory
   Artifacts createArtifacts();
 
   /**
+   * Returns a new object of class '<em>Property Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Value</em>'.
+   * @generated
+   */
+  PropertyValue createPropertyValue();
+
+  /**
    * Returns a new object of class '<em>Database Catalog Assignement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

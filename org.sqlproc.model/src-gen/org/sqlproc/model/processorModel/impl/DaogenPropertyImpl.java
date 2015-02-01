@@ -25,6 +25,7 @@ import org.sqlproc.model.processorModel.ImplementsAssignement;
 import org.sqlproc.model.processorModel.ImplementsAssignementGenerics;
 import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
+import org.sqlproc.model.processorModel.PropertyValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -162,44 +163,24 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
   protected DebugLevelAssignement debug;
 
   /**
-   * The default value of the '{@link #getActiveFilter() <em>Active Filter</em>}' attribute.
+   * The cached value of the '{@link #getActiveFilter() <em>Active Filter</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getActiveFilter()
    * @generated
    * @ordered
    */
-  protected static final String ACTIVE_FILTER_EDEFAULT = null;
+  protected PropertyValue activeFilter;
 
   /**
-   * The cached value of the '{@link #getActiveFilter() <em>Active Filter</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getActiveFilter()
-   * @generated
-   * @ordered
-   */
-  protected String activeFilter = ACTIVE_FILTER_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getPckg() <em>Pckg</em>}' attribute.
+   * The cached value of the '{@link #getPckg() <em>Pckg</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getPckg()
    * @generated
    * @ordered
    */
-  protected static final String PCKG_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getPckg() <em>Pckg</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPckg()
-   * @generated
-   * @ordered
-   */
-  protected String pckg = PCKG_EDEFAULT;
+  protected PropertyValue pckg;
 
   /**
    * <!-- begin-user-doc -->
@@ -575,7 +556,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getActiveFilter()
+  public PropertyValue getActiveFilter()
   {
     return activeFilter;
   }
@@ -585,12 +566,16 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setActiveFilter(String newActiveFilter)
+  public NotificationChain basicSetActiveFilter(PropertyValue newActiveFilter, NotificationChain msgs)
   {
-    String oldActiveFilter = activeFilter;
+    PropertyValue oldActiveFilter = activeFilter;
     activeFilter = newActiveFilter;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER, oldActiveFilter, activeFilter));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER, oldActiveFilter, newActiveFilter);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -598,7 +583,28 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getPckg()
+  public void setActiveFilter(PropertyValue newActiveFilter)
+  {
+    if (newActiveFilter != activeFilter)
+    {
+      NotificationChain msgs = null;
+      if (activeFilter != null)
+        msgs = ((InternalEObject)activeFilter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER, null, msgs);
+      if (newActiveFilter != null)
+        msgs = ((InternalEObject)newActiveFilter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER, null, msgs);
+      msgs = basicSetActiveFilter(newActiveFilter, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER, newActiveFilter, newActiveFilter));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyValue getPckg()
   {
     return pckg;
   }
@@ -608,12 +614,37 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPckg(String newPckg)
+  public NotificationChain basicSetPckg(PropertyValue newPckg, NotificationChain msgs)
   {
-    String oldPckg = pckg;
+    PropertyValue oldPckg = pckg;
     pckg = newPckg;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAOGEN_PROPERTY__PCKG, oldPckg, pckg));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAOGEN_PROPERTY__PCKG, oldPckg, newPckg);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPckg(PropertyValue newPckg)
+  {
+    if (newPckg != pckg)
+    {
+      NotificationChain msgs = null;
+      if (pckg != null)
+        msgs = ((InternalEObject)pckg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DAOGEN_PROPERTY__PCKG, null, msgs);
+      if (newPckg != null)
+        msgs = ((InternalEObject)newPckg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DAOGEN_PROPERTY__PCKG, null, msgs);
+      msgs = basicSetPckg(newPckg, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAOGEN_PROPERTY__PCKG, newPckg, newPckg));
   }
 
   /**
@@ -638,6 +669,10 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return basicSetResultType(null, msgs);
       case ProcessorModelPackage.DAOGEN_PROPERTY__DEBUG:
         return basicSetDebug(null, msgs);
+      case ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
+        return basicSetActiveFilter(null, msgs);
+      case ProcessorModelPackage.DAOGEN_PROPERTY__PCKG:
+        return basicSetPckg(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -718,10 +753,10 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setDebug((DebugLevelAssignement)newValue);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
-        setActiveFilter((String)newValue);
+        setActiveFilter((PropertyValue)newValue);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__PCKG:
-        setPckg((String)newValue);
+        setPckg((PropertyValue)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -765,10 +800,10 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setDebug((DebugLevelAssignement)null);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
-        setActiveFilter(ACTIVE_FILTER_EDEFAULT);
+        setActiveFilter((PropertyValue)null);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__PCKG:
-        setPckg(PCKG_EDEFAULT);
+        setPckg((PropertyValue)null);
         return;
     }
     super.eUnset(featureID);
@@ -803,9 +838,9 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       case ProcessorModelPackage.DAOGEN_PROPERTY__DEBUG:
         return debug != null;
       case ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
-        return ACTIVE_FILTER_EDEFAULT == null ? activeFilter != null : !ACTIVE_FILTER_EDEFAULT.equals(activeFilter);
+        return activeFilter != null;
       case ProcessorModelPackage.DAOGEN_PROPERTY__PCKG:
-        return PCKG_EDEFAULT == null ? pckg != null : !PCKG_EDEFAULT.equals(pckg);
+        return pckg != null;
     }
     return super.eIsSet(featureID);
   }
@@ -827,10 +862,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
     result.append(dbTables);
     result.append(", dbFunction: ");
     result.append(dbFunction);
-    result.append(", activeFilter: ");
-    result.append(activeFilter);
-    result.append(", pckg: ");
-    result.append(pckg);
     result.append(')');
     return result.toString();
   }
