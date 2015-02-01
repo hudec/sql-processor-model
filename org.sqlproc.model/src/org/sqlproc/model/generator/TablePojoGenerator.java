@@ -925,57 +925,81 @@ public class TablePojoGenerator {
                         isSerializable = true;
                         continue;
                     }
-                    buffer.append(NLINDENT).append("implements :").append(type.getIdentifier());
                     if (ie.isGenerics())
-                        buffer.append(" <<>>");
+                        buffer.append(NLINDENT).append("#Generics");
                     if (!ie.getDbTables().isEmpty()) {
-                        buffer.append(" onlyPojos");
+                        buffer.append(NLINDENT).append("#OnlyPojos(");
+                        boolean first = false;
                         for (String dbTable : ie.getDbTables()) {
+                            if (!first)
+                                buffer.append(",");
+                            else
+                                first = false;
                             String pojoName = tableNames.get(dbTable);
                             if (pojoName == null)
                                 pojoName = dbTable;
                             String realPojoName = tableToCamelCase(pojoName);
-                            buffer.append(" ").append(realPojoName);
+                            buffer.append(realPojoName);
                         }
+                        buffer.append(")");
                     }
                     if (!ie.getDbNotTables().isEmpty()) {
-                        buffer.append(" exceptPojos");
+                        buffer.append(NLINDENT).append("#ExceptPojos(");
+                        boolean first = false;
                         for (String dbTable : ie.getDbNotTables()) {
+                            if (!first)
+                                buffer.append(",");
+                            else
+                                first = false;
                             String pojoName = tableNames.get(dbTable);
                             if (pojoName == null)
                                 pojoName = dbTable;
                             String realPojoName = tableToCamelCase(pojoName);
-                            buffer.append(" ").append(realPojoName);
+                            buffer.append(realPojoName);
                         }
+                        buffer.append(")");
                     }
+                    buffer.append(NLINDENT).append("implements :").append(type.getIdentifier());
                 }
                 oneMoreLine = true;
             }
             if (toExtends != null) {
-                JvmType type = toExtends.getToImplement();
-                buffer.append(NLINDENT).append("extends :").append(type.getIdentifier());
                 if (toExtends.isGenerics())
-                    buffer.append(" <<>>");
+                    buffer.append(NLINDENT).append("#Generics");
                 if (!toExtends.getDbTables().isEmpty()) {
-                    buffer.append(" onlyPojos");
+                    buffer.append(NLINDENT).append("#OnlyPojos(");
+                    boolean first = false;
                     for (String dbTable : toExtends.getDbTables()) {
+                        if (!first)
+                            buffer.append(",");
+                        else
+                            first = false;
                         String pojoName = tableNames.get(dbTable);
                         if (pojoName == null)
                             pojoName = dbTable;
                         String realPojoName = tableToCamelCase(pojoName);
-                        buffer.append(" ").append(realPojoName);
+                        buffer.append(realPojoName);
                     }
+                    buffer.append(")");
                 }
                 if (!toExtends.getDbNotTables().isEmpty()) {
-                    buffer.append(" exceptPojos");
+                    buffer.append(NLINDENT).append("#ExceptPojos(");
+                    boolean first = false;
                     for (String dbTable : toExtends.getDbNotTables()) {
+                        if (!first)
+                            buffer.append(",");
+                        else
+                            first = false;
                         String pojoName = tableNames.get(dbTable);
                         if (pojoName == null)
                             pojoName = dbTable;
                         String realPojoName = tableToCamelCase(pojoName);
-                        buffer.append(" ").append(realPojoName);
+                        buffer.append(realPojoName);
                     }
+                    buffer.append(")");
                 }
+                JvmType type = toExtends.getToImplement();
+                buffer.append(NLINDENT).append("extends :").append(type.getIdentifier());
                 oneMoreLine = true;
             }
             if (oneMoreLine) {

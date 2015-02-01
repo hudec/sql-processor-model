@@ -38,8 +38,6 @@ public class TableDaoGenerator extends TablePojoGenerator {
     protected ImplementsExtends daoToExtends = null;
     protected boolean daoMakeItFinal;
     protected Map<String, PojoType> daoFunctionsResult = new HashMap<String, PojoType>();
-    protected Set<String> notGenerics;
-    protected Set<String> generics;
     protected Filter daoActiveFilter = null;
 
     public TableDaoGenerator() {
@@ -152,68 +150,81 @@ public class TableDaoGenerator extends TablePojoGenerator {
                     }
                     if (ie.isGenerics()) {
                         buffer.append(NLINDENT).append("#Generics");
-                        if (notGenerics == null)
-                            notGenerics = new HashSet<String>();
-                        if (generics == null)
-                            generics = new HashSet<String>();
                     }
-                    buffer.append(NLINDENT).append("implements :").append(type.getIdentifier());
                     if (!ie.getDbTables().isEmpty()) {
-                        buffer.append(" onlyDaos");
+                        buffer.append(NLINDENT).append("#OnlyDaos(");
+                        boolean first = false;
                         for (String dbColumn : ie.getDbTables()) {
+                            if (!first)
+                                buffer.append(",");
+                            else
+                                first = false;
                             String pojoName = tableNames.get(dbColumn);
                             if (pojoName == null)
                                 pojoName = dbColumn;
                             String daoName = tableToCamelCase(pojoName) + "Dao";
-                            if (generics != null)
-                                generics.add(daoName);
-                            buffer.append(" ").append(daoName);
+                            buffer.append(daoName);
                         }
+                        buffer.append(")");
                     }
                     if (!ie.getDbNotTables().isEmpty()) {
-                        buffer.append(" exceptDaos");
+                        buffer.append(NLINDENT).append("#ExceptDaos(");
+                        boolean first = false;
                         for (String dbColumn : ie.getDbNotTables()) {
+                            if (!first)
+                                buffer.append(",");
+                            else
+                                first = false;
                             String pojoName = tableNames.get(dbColumn);
                             if (pojoName == null)
                                 pojoName = dbColumn;
                             String daoName = tableToCamelCase(pojoName) + "Dao";
-                            if (notGenerics != null)
-                                notGenerics.add(daoName);
-                            buffer.append(" ").append(daoName);
+                            buffer.append(daoName);
                         }
+                        buffer.append(")");
                     }
+                    buffer.append(NLINDENT).append("implements :").append(type.getIdentifier());
                 }
                 oneMoreLine = true;
-            }
-            if (generics != null && notGenerics != null) {
-                notGenerics.removeAll(generics);
             }
             if (daoToExtends != null) {
-                JvmType type = daoToExtends.getToImplement();
                 if (daoToExtends.isGenerics())
                     buffer.append(NLINDENT).append("#Generics");
-                buffer.append(NLINDENT).append("extends :").append(type.getIdentifier());
                 if (!daoToExtends.getDbTables().isEmpty()) {
-                    buffer.append(" onlyDaos");
+                    buffer.append(NLINDENT).append("#OnlyDaos(");
+                    boolean first = false;
                     for (String dbColumn : daoToExtends.getDbTables()) {
+                        if (!first)
+                            buffer.append(",");
+                        else
+                            first = false;
                         String pojoName = tableNames.get(dbColumn);
                         if (pojoName == null)
                             pojoName = dbColumn;
                         String daoName = tableToCamelCase(pojoName) + "Dao";
-                        buffer.append(" ").append(daoName);
+                        buffer.append(daoName);
                     }
+                    buffer.append(")");
                 }
                 if (!daoToExtends.getDbNotTables().isEmpty()) {
-                    buffer.append(" exceptDaos");
+                    buffer.append(NLINDENT).append("#ExceptDaos(");
+                    boolean first = false;
                     for (String dbColumn : daoToExtends.getDbNotTables()) {
+                        if (!first)
+                            buffer.append(",");
+                        else
+                            first = false;
                         String pojoName = tableNames.get(dbColumn);
                         if (pojoName == null)
                             pojoName = dbColumn;
                         String daoName = tableToCamelCase(pojoName) + "Dao";
-                        buffer.append(" ").append(daoName);
+                        buffer.append(daoName);
                     }
+                    buffer.append(")");
                 }
                 oneMoreLine = true;
+                JvmType type = daoToExtends.getToImplement();
+                buffer.append(NLINDENT).append("extends :").append(type.getIdentifier());
             }
             if (oneMoreLine) {
                 buffer.append(NL);
@@ -272,13 +283,6 @@ public class TableDaoGenerator extends TablePojoGenerator {
                     }
                     bufferMeta.append(nlindent()).append("#CRUD(").append(tableToCamelCase(pojoName)).append(")");
                     bufferMeta.append(nlindent()).append("#Query(").append(tableToCamelCase(pojoName)).append(")");
-                    // if (generics == null && notGenerics == null) {
-                    // } else if (generics != null && !generics.isEmpty() && generics.contains(daoName)) {
-                    // bufferMeta.append(nlindent()).append("#Generics");
-                    // } else if (notGenerics != null && !notGenerics.isEmpty() && notGenerics.contains(daoName)) {
-                    // } else {
-                    // bufferMeta.append(nlindent()).append("#Generics");
-                    // }
                 }
                 if (bufferMeta.length() > 0 && bufferMeta.charAt(0) == ' ')
                     buffer.append(NLINDENT).append(bufferMeta.substring(1));
