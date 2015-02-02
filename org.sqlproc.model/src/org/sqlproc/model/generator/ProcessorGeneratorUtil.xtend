@@ -57,13 +57,14 @@ import org.sqlproc.model.processorModel.PojoPropertyDirectiveEnumDef
 import org.sqlproc.model.processorModel.PojoDirectiveToString
 import org.sqlproc.model.processorModel.PojoDirectiveEquals
 import org.sqlproc.model.processorModel.PojoDirectiveHashCode
-import org.sqlproc.model.processorModel.Package;
+import org.sqlproc.model.processorModel.Package
 import org.sqlproc.model.processorModel.Entity
 import org.sqlproc.model.processorModel.Extends
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos
+import org.sqlproc.model.processorModel.ValueType
 
 class ProcessorGeneratorUtils {
 
@@ -211,7 +212,7 @@ class ProcessorGeneratorUtils {
 
     def PojoEntity getParent(PojoEntity pojo) {
         if (getDiscriminator(pojo) != null)
-            return null;
+            return null
         return pojo.superType
     }
 
@@ -364,7 +365,7 @@ class ProcessorGeneratorUtils {
     }
 
     def String getSuffix(Entity pojo) {
-        val Package packageDeclaration = getContainerOfType(pojo, Package);
+        val Package packageDeclaration = getContainerOfType(pojo, Package)
         return getSuffix(packageDeclaration)
     }
 
@@ -466,9 +467,9 @@ class ProcessorGeneratorUtils {
         if (isGenerics(impl)) {
         	val pojo = getPojo(dao)
         	if (pojo != null)
-        	sb.append("<").append(pojo.getName()).append(">");
+        	sb.append("<").append(pojo.getName()).append(">")
         }
-        return sb.toString();
+        return sb.toString()
     }
 
     def isCRUD(PojoDao dao) {
@@ -490,7 +491,7 @@ class ProcessorGeneratorUtils {
     }
 
     def String getSuffix(PojoDao dao) {
-        val Package packageDeclaration = getContainerOfType(dao, Package);
+        val Package packageDeclaration = getContainerOfType(dao, Package)
         return getSuffix(packageDeclaration)
     }
 
@@ -645,4 +646,21 @@ class ProcessorGeneratorUtils {
 		]
 		return result
 	}
+	
+    def String value(ValueType pv) {
+        if (pv == null)
+            return null
+        var String s = pv.getValue()
+        if (s != null) {
+            s = s.trim()
+            if (!s.startsWith("\""))
+                s = "\"" + s
+            if (!s.endsWith("\""))
+                s = s + "\""
+            return s
+        } else if (pv.getId() != null)
+            return pv.getId()
+        else
+            return "" + pv.getNumber()
+    }
 }

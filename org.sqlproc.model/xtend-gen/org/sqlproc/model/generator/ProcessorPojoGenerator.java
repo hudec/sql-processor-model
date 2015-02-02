@@ -192,7 +192,8 @@ public class ProcessorPojoGenerator {
                 _builder.append(_name_1, "\t");
                 _builder.append("(");
                 ValueType _value = v.getValue();
-                _builder.append(_value, "\t");
+                String _value_1 = this._processorGeneratorUtils.value(_value);
+                _builder.append(_value_1, "\t");
                 _builder.append(")");
               }
             }

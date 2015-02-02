@@ -87,6 +87,7 @@ import org.sqlproc.model.processorModel.PojoPropertyDirectiveUpdateCol;
 import org.sqlproc.model.processorModel.PojoPropertyDirectiveVersion;
 import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
+import org.sqlproc.model.processorModel.ValueType;
 import org.sqlproc.model.util.Utils;
 
 @SuppressWarnings("all")
@@ -1989,6 +1990,39 @@ public class ProcessorGeneratorUtils {
     };
     IterableExtensions.<ImplementsExtendsDirective>forEach(_filter, _function_1);
     return result;
+  }
+  
+  public String value(final ValueType pv) {
+    boolean _equals = Objects.equal(pv, null);
+    if (_equals) {
+      return null;
+    }
+    String s = pv.getValue();
+    boolean _notEquals = (!Objects.equal(s, null));
+    if (_notEquals) {
+      String _trim = s.trim();
+      s = _trim;
+      boolean _startsWith = s.startsWith("\"");
+      boolean _not = (!_startsWith);
+      if (_not) {
+        s = ("\"" + s);
+      }
+      boolean _endsWith = s.endsWith("\"");
+      boolean _not_1 = (!_endsWith);
+      if (_not_1) {
+        s = (s + "\"");
+      }
+      return s;
+    } else {
+      String _id = pv.getId();
+      boolean _notEquals_1 = (!Objects.equal(_id, null));
+      if (_notEquals_1) {
+        return pv.getId();
+      } else {
+        int _number = pv.getNumber();
+        return ("" + Integer.valueOf(_number));
+      }
+    }
   }
   
   public PojoEntity getPojo(final PojoDao dao, final DaoDirective pojoDirective) {

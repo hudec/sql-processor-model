@@ -67,7 +67,7 @@ class ProcessorPojoGenerator {
 	public enum «e.name» «compileImplements(e)»{
 	
 		«FOR fe:e.features SEPARATOR ", "»
-		«FOR f:fe.directives.filter(x| x instanceof EnumPropertyDirectiveValues) SEPARATOR ", "»«FOR v:(f as EnumPropertyDirectiveValues).values SEPARATOR ", "»«v.name»(«v.value»)«ENDFOR»«ENDFOR»;
+		«FOR f:fe.directives.filter(x| x instanceof EnumPropertyDirectiveValues) SEPARATOR ", "»«FOR v:(f as EnumPropertyDirectiveValues).values SEPARATOR ", "»«v.name»(«value(v.value)»)«ENDFOR»«ENDFOR»;
 		«ENDFOR»
 		«IF getSernum(e) != null»
 			

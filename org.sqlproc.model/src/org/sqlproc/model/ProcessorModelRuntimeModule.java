@@ -3,8 +3,10 @@
  */
 package org.sqlproc.model;
 
+import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.resource.IResourceFactory;
 import org.sqlproc.model.generator.IGenerator2;
+import org.sqlproc.model.generator.ProcessorModelGenerator;
 import org.sqlproc.model.generator.ProcessorModelGenerator2;
 import org.sqlproc.model.property.ModelProperty;
 import org.sqlproc.model.property.ModelPropertyBean;
@@ -38,6 +40,11 @@ public class ProcessorModelRuntimeModule extends org.sqlproc.model.AbstractProce
     @Override
     public Class<? extends IResourceFactory> bindIResourceFactory() {
         return ProcessorResourceFactory.class;
+    }
+
+    @Override
+    public Class<? extends IGenerator> bindIGenerator() {
+        return ProcessorModelGenerator.class;
     }
 
     public Class<? extends IGenerator2> bindIGenerator2() {
