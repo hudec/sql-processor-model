@@ -29,7 +29,7 @@ import org.sqlproc.model.processorModel.DebugLevelAssignement;
 import org.sqlproc.model.processorModel.DriverMetaInfoAssignement;
 import org.sqlproc.model.processorModel.DriverMethodOutputAssignement;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.processorModel.PropertyValue;
+import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -89,7 +89,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected PropertyValue dbUrl;
+  protected ValueType dbUrl;
 
   /**
    * The cached value of the '{@link #getDbUsername() <em>Db Username</em>}' containment reference.
@@ -99,7 +99,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected PropertyValue dbUsername;
+  protected ValueType dbUsername;
 
   /**
    * The cached value of the '{@link #getDbPassword() <em>Db Password</em>}' containment reference.
@@ -109,7 +109,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected PropertyValue dbPassword;
+  protected ValueType dbPassword;
 
   /**
    * The cached value of the '{@link #getDbCatalog() <em>Db Catalog</em>}' containment reference.
@@ -149,7 +149,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected PropertyValue dbDriver;
+  protected ValueType dbDriver;
 
   /**
    * The cached value of the '{@link #getDbExecuteBefore() <em>Db Execute Before</em>}' containment reference.
@@ -159,7 +159,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected PropertyValue dbExecuteBefore;
+  protected ValueType dbExecuteBefore;
 
   /**
    * The cached value of the '{@link #getDbExecuteAfter() <em>Db Execute After</em>}' containment reference.
@@ -169,7 +169,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected PropertyValue dbExecuteAfter;
+  protected ValueType dbExecuteAfter;
 
   /**
    * The cached value of the '{@link #getDbIndexTypes() <em>Db Index Types</em>}' containment reference.
@@ -179,7 +179,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected PropertyValue dbIndexTypes;
+  protected ValueType dbIndexTypes;
 
   /**
    * The cached value of the '{@link #getDbType() <em>Db Type</em>}' containment reference.
@@ -280,7 +280,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getDbUrl()
+  public ValueType getDbUrl()
   {
     return dbUrl;
   }
@@ -290,9 +290,9 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDbUrl(PropertyValue newDbUrl, NotificationChain msgs)
+  public NotificationChain basicSetDbUrl(ValueType newDbUrl, NotificationChain msgs)
   {
-    PropertyValue oldDbUrl = dbUrl;
+    ValueType oldDbUrl = dbUrl;
     dbUrl = newDbUrl;
     if (eNotificationRequired())
     {
@@ -307,7 +307,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbUrl(PropertyValue newDbUrl)
+  public void setDbUrl(ValueType newDbUrl)
   {
     if (newDbUrl != dbUrl)
     {
@@ -328,7 +328,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getDbUsername()
+  public ValueType getDbUsername()
   {
     return dbUsername;
   }
@@ -338,9 +338,9 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDbUsername(PropertyValue newDbUsername, NotificationChain msgs)
+  public NotificationChain basicSetDbUsername(ValueType newDbUsername, NotificationChain msgs)
   {
-    PropertyValue oldDbUsername = dbUsername;
+    ValueType oldDbUsername = dbUsername;
     dbUsername = newDbUsername;
     if (eNotificationRequired())
     {
@@ -355,7 +355,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbUsername(PropertyValue newDbUsername)
+  public void setDbUsername(ValueType newDbUsername)
   {
     if (newDbUsername != dbUsername)
     {
@@ -376,7 +376,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getDbPassword()
+  public ValueType getDbPassword()
   {
     return dbPassword;
   }
@@ -386,9 +386,9 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDbPassword(PropertyValue newDbPassword, NotificationChain msgs)
+  public NotificationChain basicSetDbPassword(ValueType newDbPassword, NotificationChain msgs)
   {
-    PropertyValue oldDbPassword = dbPassword;
+    ValueType oldDbPassword = dbPassword;
     dbPassword = newDbPassword;
     if (eNotificationRequired())
     {
@@ -403,7 +403,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbPassword(PropertyValue newDbPassword)
+  public void setDbPassword(ValueType newDbPassword)
   {
     if (newDbPassword != dbPassword)
     {
@@ -563,7 +563,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getDbDriver()
+  public ValueType getDbDriver()
   {
     return dbDriver;
   }
@@ -573,9 +573,9 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDbDriver(PropertyValue newDbDriver, NotificationChain msgs)
+  public NotificationChain basicSetDbDriver(ValueType newDbDriver, NotificationChain msgs)
   {
-    PropertyValue oldDbDriver = dbDriver;
+    ValueType oldDbDriver = dbDriver;
     dbDriver = newDbDriver;
     if (eNotificationRequired())
     {
@@ -590,7 +590,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbDriver(PropertyValue newDbDriver)
+  public void setDbDriver(ValueType newDbDriver)
   {
     if (newDbDriver != dbDriver)
     {
@@ -611,7 +611,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getDbExecuteBefore()
+  public ValueType getDbExecuteBefore()
   {
     return dbExecuteBefore;
   }
@@ -621,9 +621,9 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDbExecuteBefore(PropertyValue newDbExecuteBefore, NotificationChain msgs)
+  public NotificationChain basicSetDbExecuteBefore(ValueType newDbExecuteBefore, NotificationChain msgs)
   {
-    PropertyValue oldDbExecuteBefore = dbExecuteBefore;
+    ValueType oldDbExecuteBefore = dbExecuteBefore;
     dbExecuteBefore = newDbExecuteBefore;
     if (eNotificationRequired())
     {
@@ -638,7 +638,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbExecuteBefore(PropertyValue newDbExecuteBefore)
+  public void setDbExecuteBefore(ValueType newDbExecuteBefore)
   {
     if (newDbExecuteBefore != dbExecuteBefore)
     {
@@ -659,7 +659,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getDbExecuteAfter()
+  public ValueType getDbExecuteAfter()
   {
     return dbExecuteAfter;
   }
@@ -669,9 +669,9 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDbExecuteAfter(PropertyValue newDbExecuteAfter, NotificationChain msgs)
+  public NotificationChain basicSetDbExecuteAfter(ValueType newDbExecuteAfter, NotificationChain msgs)
   {
-    PropertyValue oldDbExecuteAfter = dbExecuteAfter;
+    ValueType oldDbExecuteAfter = dbExecuteAfter;
     dbExecuteAfter = newDbExecuteAfter;
     if (eNotificationRequired())
     {
@@ -686,7 +686,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbExecuteAfter(PropertyValue newDbExecuteAfter)
+  public void setDbExecuteAfter(ValueType newDbExecuteAfter)
   {
     if (newDbExecuteAfter != dbExecuteAfter)
     {
@@ -707,7 +707,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getDbIndexTypes()
+  public ValueType getDbIndexTypes()
   {
     return dbIndexTypes;
   }
@@ -717,9 +717,9 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDbIndexTypes(PropertyValue newDbIndexTypes, NotificationChain msgs)
+  public NotificationChain basicSetDbIndexTypes(ValueType newDbIndexTypes, NotificationChain msgs)
   {
-    PropertyValue oldDbIndexTypes = dbIndexTypes;
+    ValueType oldDbIndexTypes = dbIndexTypes;
     dbIndexTypes = newDbIndexTypes;
     if (eNotificationRequired())
     {
@@ -734,7 +734,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbIndexTypes(PropertyValue newDbIndexTypes)
+  public void setDbIndexTypes(ValueType newDbIndexTypes)
   {
     if (newDbIndexTypes != dbIndexTypes)
     {
@@ -1060,13 +1060,13 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         setName((String)newValue);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_URL:
-        setDbUrl((PropertyValue)newValue);
+        setDbUrl((ValueType)newValue);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_USERNAME:
-        setDbUsername((PropertyValue)newValue);
+        setDbUsername((ValueType)newValue);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_PASSWORD:
-        setDbPassword((PropertyValue)newValue);
+        setDbPassword((ValueType)newValue);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_CATALOG:
         setDbCatalog((DatabaseCatalogAssignement)newValue);
@@ -1078,16 +1078,16 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         setDbDriverx((JvmType)newValue);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVER:
-        setDbDriver((PropertyValue)newValue);
+        setDbDriver((ValueType)newValue);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
-        setDbExecuteBefore((PropertyValue)newValue);
+        setDbExecuteBefore((ValueType)newValue);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_EXECUTE_AFTER:
-        setDbExecuteAfter((PropertyValue)newValue);
+        setDbExecuteAfter((ValueType)newValue);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_INDEX_TYPES:
-        setDbIndexTypes((PropertyValue)newValue);
+        setDbIndexTypes((ValueType)newValue);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_TYPE:
         setDbType((DatabaseTypeAssignement)newValue);
@@ -1123,13 +1123,13 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         setName(NAME_EDEFAULT);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_URL:
-        setDbUrl((PropertyValue)null);
+        setDbUrl((ValueType)null);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_USERNAME:
-        setDbUsername((PropertyValue)null);
+        setDbUsername((ValueType)null);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_PASSWORD:
-        setDbPassword((PropertyValue)null);
+        setDbPassword((ValueType)null);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_CATALOG:
         setDbCatalog((DatabaseCatalogAssignement)null);
@@ -1141,16 +1141,16 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         setDbDriverx((JvmType)null);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVER:
-        setDbDriver((PropertyValue)null);
+        setDbDriver((ValueType)null);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
-        setDbExecuteBefore((PropertyValue)null);
+        setDbExecuteBefore((ValueType)null);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_EXECUTE_AFTER:
-        setDbExecuteAfter((PropertyValue)null);
+        setDbExecuteAfter((ValueType)null);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_INDEX_TYPES:
-        setDbIndexTypes((PropertyValue)null);
+        setDbIndexTypes((ValueType)null);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_TYPE:
         setDbType((DatabaseTypeAssignement)null);

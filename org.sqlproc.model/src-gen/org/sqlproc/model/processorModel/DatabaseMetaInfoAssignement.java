@@ -31,12 +31,12 @@ public interface DatabaseMetaInfoAssignement extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Db Meta Info</em>' containment reference.
-   * @see #setDbMetaInfo(PropertyValue)
+   * @see #setDbMetaInfo(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDatabaseMetaInfoAssignement_DbMetaInfo()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getDbMetaInfo();
+  ValueType getDbMetaInfo();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement#getDbMetaInfo <em>Db Meta Info</em>}' containment reference.
@@ -46,6 +46,6 @@ public interface DatabaseMetaInfoAssignement extends EObject
    * @see #getDbMetaInfo()
    * @generated
    */
-  void setDbMetaInfo(PropertyValue value);
+  void setDbMetaInfo(ValueType value);
 
 } // DatabaseMetaInfoAssignement

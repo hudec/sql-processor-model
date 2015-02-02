@@ -115,7 +115,6 @@ import org.sqlproc.model.processorModel.ProcedurePojoAssignement;
 import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
-import org.sqlproc.model.processorModel.PropertyValue;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
@@ -191,9 +190,9 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
         return createArtifactsAdapter();
       }
       @Override
-      public Adapter casePropertyValue(PropertyValue object)
+      public Adapter caseValueType(ValueType object)
       {
-        return createPropertyValueAdapter();
+        return createValueTypeAdapter();
       }
       @Override
       public Adapter caseDatabaseCatalogAssignement(DatabaseCatalogAssignement object)
@@ -359,11 +358,6 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
       public Adapter caseFunctionDefinition(FunctionDefinition object)
       {
         return createFunctionDefinitionAdapter();
-      }
-      @Override
-      public Adapter caseValueType(ValueType object)
-      {
-        return createValueTypeAdapter();
       }
       @Override
       public Adapter casePojoType(PojoType object)
@@ -783,16 +777,16 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.PropertyValue <em>Property Value</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.ValueType <em>Value Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.model.processorModel.PropertyValue
+   * @see org.sqlproc.model.processorModel.ValueType
    * @generated
    */
-  public Adapter createPropertyValueAdapter()
+  public Adapter createValueTypeAdapter()
   {
     return null;
   }
@@ -1288,21 +1282,6 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFunctionDefinitionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.ValueType <em>Value Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.sqlproc.model.processorModel.ValueType
-   * @generated
-   */
-  public Adapter createValueTypeAdapter()
   {
     return null;
   }

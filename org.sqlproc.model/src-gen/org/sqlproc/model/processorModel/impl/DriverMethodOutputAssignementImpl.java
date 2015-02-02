@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.model.processorModel.DriverMethodOutputAssignement;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.processorModel.PropertyValue;
+import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +59,7 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
    * @generated
    * @ordered
    */
-  protected PropertyValue callOutput;
+  protected ValueType callOutput;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,7 +110,7 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getCallOutput()
+  public ValueType getCallOutput()
   {
     return callOutput;
   }
@@ -120,9 +120,9 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetCallOutput(PropertyValue newCallOutput, NotificationChain msgs)
+  public NotificationChain basicSetCallOutput(ValueType newCallOutput, NotificationChain msgs)
   {
-    PropertyValue oldCallOutput = callOutput;
+    ValueType oldCallOutput = callOutput;
     callOutput = newCallOutput;
     if (eNotificationRequired())
     {
@@ -137,7 +137,7 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCallOutput(PropertyValue newCallOutput)
+  public void setCallOutput(ValueType newCallOutput)
   {
     if (newCallOutput != callOutput)
     {
@@ -201,7 +201,7 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
         setDriverMethod((String)newValue);
         return;
       case ProcessorModelPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT:
-        setCallOutput((PropertyValue)newValue);
+        setCallOutput((ValueType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,7 +221,7 @@ public class DriverMethodOutputAssignementImpl extends MinimalEObjectImpl.Contai
         setDriverMethod(DRIVER_METHOD_EDEFAULT);
         return;
       case ProcessorModelPackage.DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT:
-        setCallOutput((PropertyValue)null);
+        setCallOutput((ValueType)null);
         return;
     }
     super.eUnset(featureID);

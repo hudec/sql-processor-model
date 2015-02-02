@@ -16,8 +16,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="packages" upperBound="-1"
         eType="#//Package" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyValue">
+  <eClassifiers xsi:type="ecore:EClass" name="ValueType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DatabaseCatalogAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbCatalog" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -29,16 +31,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DatabaseMetaInfoAssignement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dbMetaInfo" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dbMetaInfo" eType="#//ValueType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DriverMetaInfoAssignement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dbDriverInfo" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dbDriverInfo" eType="#//ValueType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DriverMethodOutputAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="driverMethod" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="callOutput" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="callOutput" eType="#//ValueType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SqlTypeAssignement">
@@ -54,7 +56,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ShowColumnTypeAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ValueType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TableAssignement">
@@ -144,31 +146,31 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="daogen" eType="#//DaogenProperty"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="replaceId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="regex" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="regex" eType="#//ValueType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="replacement" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="replacement" eType="#//ValueType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DatabaseProperty">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dbUrl" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dbUrl" eType="#//ValueType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dbUsername" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dbUsername" eType="#//ValueType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dbPassword" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dbPassword" eType="#//ValueType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dbCatalog" eType="#//DatabaseCatalogAssignement"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dbSchema" eType="#//DatabaseSchemaAssignement"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dbDriverx" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dbDriver" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dbDriver" eType="#//ValueType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dbExecuteBefore" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dbExecuteBefore" eType="#//ValueType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dbExecuteAfter" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dbExecuteAfter" eType="#//ValueType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dbIndexTypes" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dbIndexTypes" eType="#//ValueType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dbType" eType="#//DatabaseTypeAssignement"
         containment="true"/>
@@ -231,7 +233,7 @@
         eType="#//ProcedurePojoAssignement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="funPojos" upperBound="-1"
         eType="#//FunctionPojoAssignement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activeFilter" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activeFilter" eType="#//ValueType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pckg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enumName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -264,7 +266,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="optionalFeatures" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activeFilter" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activeFilter" eType="#//ValueType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DaogenProperty">
@@ -284,7 +286,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="debug" eType="#//DebugLevelAssignement"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activeFilter" eType="#//PropertyValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activeFilter" eType="#//ValueType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pckg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -304,11 +306,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="FunctionDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="table" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ValueType">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PojoType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>

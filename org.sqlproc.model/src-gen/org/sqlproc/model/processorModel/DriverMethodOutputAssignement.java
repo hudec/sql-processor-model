@@ -58,12 +58,12 @@ public interface DriverMethodOutputAssignement extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Call Output</em>' containment reference.
-   * @see #setCallOutput(PropertyValue)
+   * @see #setCallOutput(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDriverMethodOutputAssignement_CallOutput()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getCallOutput();
+  ValueType getCallOutput();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DriverMethodOutputAssignement#getCallOutput <em>Call Output</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface DriverMethodOutputAssignement extends EObject
    * @see #getCallOutput()
    * @generated
    */
-  void setCallOutput(PropertyValue value);
+  void setCallOutput(ValueType value);
 
 } // DriverMethodOutputAssignement

@@ -361,12 +361,12 @@ public interface MetagenProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Active Filter</em>' containment reference.
-   * @see #setActiveFilter(PropertyValue)
+   * @see #setActiveFilter(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getMetagenProperty_ActiveFilter()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getActiveFilter();
+  ValueType getActiveFilter();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.MetagenProperty#getActiveFilter <em>Active Filter</em>}' containment reference.
@@ -376,6 +376,6 @@ public interface MetagenProperty extends EObject
    * @see #getActiveFilter()
    * @generated
    */
-  void setActiveFilter(PropertyValue value);
+  void setActiveFilter(ValueType value);
 
 } // MetagenProperty

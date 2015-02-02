@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.processorModel.PropertyValue;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
+import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +59,7 @@ public class ShowColumnTypeAssignementImpl extends MinimalEObjectImpl.Container 
    * @generated
    * @ordered
    */
-  protected PropertyValue type;
+  protected ValueType type;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,7 +110,7 @@ public class ShowColumnTypeAssignementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getType()
+  public ValueType getType()
   {
     return type;
   }
@@ -120,9 +120,9 @@ public class ShowColumnTypeAssignementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(PropertyValue newType, NotificationChain msgs)
+  public NotificationChain basicSetType(ValueType newType, NotificationChain msgs)
   {
-    PropertyValue oldType = type;
+    ValueType oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
@@ -137,7 +137,7 @@ public class ShowColumnTypeAssignementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(PropertyValue newType)
+  public void setType(ValueType newType)
   {
     if (newType != type)
     {
@@ -201,7 +201,7 @@ public class ShowColumnTypeAssignementImpl extends MinimalEObjectImpl.Container 
         setDbColumn((String)newValue);
         return;
       case ProcessorModelPackage.SHOW_COLUMN_TYPE_ASSIGNEMENT__TYPE:
-        setType((PropertyValue)newValue);
+        setType((ValueType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,7 +221,7 @@ public class ShowColumnTypeAssignementImpl extends MinimalEObjectImpl.Container 
         setDbColumn(DB_COLUMN_EDEFAULT);
         return;
       case ProcessorModelPackage.SHOW_COLUMN_TYPE_ASSIGNEMENT__TYPE:
-        setType((PropertyValue)null);
+        setType((ValueType)null);
         return;
     }
     super.eUnset(featureID);

@@ -31,12 +31,12 @@ public interface DriverMetaInfoAssignement extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Db Driver Info</em>' containment reference.
-   * @see #setDbDriverInfo(PropertyValue)
+   * @see #setDbDriverInfo(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDriverMetaInfoAssignement_DbDriverInfo()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getDbDriverInfo();
+  ValueType getDbDriverInfo();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DriverMetaInfoAssignement#getDbDriverInfo <em>Db Driver Info</em>}' containment reference.
@@ -46,6 +46,6 @@ public interface DriverMetaInfoAssignement extends EObject
    * @see #getDbDriverInfo()
    * @generated
    */
-  void setDbDriverInfo(PropertyValue value);
+  void setDbDriverInfo(ValueType value);
 
 } // DriverMetaInfoAssignement

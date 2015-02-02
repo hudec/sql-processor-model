@@ -23,7 +23,7 @@ import org.sqlproc.model.processorModel.DebugLevelAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.processorModel.PropertyValue;
+import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -282,7 +282,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected PropertyValue activeFilter;
+  protected ValueType activeFilter;
 
   /**
    * <!-- begin-user-doc -->
@@ -612,7 +612,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getActiveFilter()
+  public ValueType getActiveFilter()
   {
     return activeFilter;
   }
@@ -622,9 +622,9 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetActiveFilter(PropertyValue newActiveFilter, NotificationChain msgs)
+  public NotificationChain basicSetActiveFilter(ValueType newActiveFilter, NotificationChain msgs)
   {
-    PropertyValue oldActiveFilter = activeFilter;
+    ValueType oldActiveFilter = activeFilter;
     activeFilter = newActiveFilter;
     if (eNotificationRequired())
     {
@@ -639,7 +639,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setActiveFilter(PropertyValue newActiveFilter)
+  public void setActiveFilter(ValueType newActiveFilter)
   {
     if (newActiveFilter != activeFilter)
     {
@@ -778,7 +778,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         getOptionalFeatures().addAll((Collection<? extends String>)newValue);
         return;
       case ProcessorModelPackage.METAGEN_PROPERTY__ACTIVE_FILTER:
-        setActiveFilter((PropertyValue)newValue);
+        setActiveFilter((ValueType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -837,7 +837,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         getOptionalFeatures().clear();
         return;
       case ProcessorModelPackage.METAGEN_PROPERTY__ACTIVE_FILTER:
-        setActiveFilter((PropertyValue)null);
+        setActiveFilter((ValueType)null);
         return;
     }
     super.eUnset(featureID);

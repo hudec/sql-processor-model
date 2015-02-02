@@ -32,13 +32,13 @@ public interface ProcessorModelFactory extends EFactory
   Artifacts createArtifacts();
 
   /**
-   * Returns a new object of class '<em>Property Value</em>'.
+   * Returns a new object of class '<em>Value Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Property Value</em>'.
+   * @return a new object of class '<em>Value Type</em>'.
    * @generated
    */
-  PropertyValue createPropertyValue();
+  ValueType createValueType();
 
   /**
    * Returns a new object of class '<em>Database Catalog Assignement</em>'.
@@ -336,15 +336,6 @@ public interface ProcessorModelFactory extends EFactory
    * @generated
    */
   FunctionDefinition createFunctionDefinition();
-
-  /**
-   * Returns a new object of class '<em>Value Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Value Type</em>'.
-   * @generated
-   */
-  ValueType createValueType();
 
   /**
    * Returns a new object of class '<em>Pojo Type</em>'.

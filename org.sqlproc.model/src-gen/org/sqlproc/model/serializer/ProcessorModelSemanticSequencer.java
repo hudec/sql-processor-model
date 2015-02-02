@@ -157,7 +157,6 @@ import org.sqlproc.model.processorModel.ProcedurePojoAssignement;
 import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
-import org.sqlproc.model.processorModel.PropertyValue;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
@@ -754,12 +753,6 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 			case ProcessorModelPackage.PROPERTY:
 				if(context == grammarAccess.getPropertyRule()) {
 					sequence_Property(context, (Property) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.PROPERTY_VALUE:
-				if(context == grammarAccess.getPropertyValueRule()) {
-					sequence_PropertyValue(context, (PropertyValue) semanticObject); 
 					return; 
 				}
 				else break;
@@ -2259,7 +2252,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         name='make-it-final' | 
 	 *         (name='function-result' dbFunction=ValidID resultType=PojoType) | 
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
-	 *         (name='active-filter' activeFilter=PropertyValue) | 
+	 *         (name='active-filter' activeFilter=ValueType) | 
 	 *         (name='package' pckg=QualifiedName)
 	 *     )
 	 */
@@ -2286,7 +2279,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     dbMetaInfo=PropertyValue
+	 *     dbMetaInfo=ValueType
 	 */
 	protected void sequence_DatabaseMetaInfoAssignement(EObject context, DatabaseMetaInfoAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -2295,7 +2288,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDatabaseMetaInfoAssignementAccess().getDbMetaInfoPropertyValueParserRuleCall_0(), semanticObject.getDbMetaInfo());
+		feeder.accept(grammarAccess.getDatabaseMetaInfoAssignementAccess().getDbMetaInfoValueTypeParserRuleCall_0(), semanticObject.getDbMetaInfo());
 		feeder.finish();
 	}
 	
@@ -2305,15 +2298,15 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *     (
 	 *         name='is-online' | 
 	 *         name='is-offline' | 
-	 *         (name='has-url' dbUrl=PropertyValue) | 
-	 *         (name='login-username' dbUsername=PropertyValue) | 
-	 *         (name='login-password' dbPassword=PropertyValue) | 
+	 *         (name='has-url' dbUrl=ValueType) | 
+	 *         (name='login-username' dbUsername=ValueType) | 
+	 *         (name='login-password' dbPassword=ValueType) | 
 	 *         (name='in-catalog' dbCatalog=DatabaseCatalogAssignement) | 
 	 *         (name='active-schema' dbSchema=DatabaseSchemaAssignement) | 
-	 *         (name='jdbc-driver' (dbDriverx=[JvmType|QualifiedName] | dbDriver=PropertyValue)) | 
-	 *         (name='ddl-create' dbExecuteBefore=PropertyValue) | 
-	 *         (name='ddl-drop' dbExecuteAfter=PropertyValue) | 
-	 *         (name='index-types' dbIndexTypes=PropertyValue) | 
+	 *         (name='jdbc-driver' (dbDriverx=[JvmType|QualifiedName] | dbDriver=ValueType)) | 
+	 *         (name='ddl-create' dbExecuteBefore=ValueType) | 
+	 *         (name='ddl-drop' dbExecuteAfter=ValueType) | 
+	 *         (name='index-types' dbIndexTypes=ValueType) | 
 	 *         name='skip-indexes' | 
 	 *         name='skip-functions-procedures' | 
 	 *         name='skip-check-constraints' | 
@@ -2403,7 +2396,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     dbDriverInfo=PropertyValue
+	 *     dbDriverInfo=ValueType
 	 */
 	protected void sequence_DriverMetaInfoAssignement(EObject context, DriverMetaInfoAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -2412,14 +2405,14 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDriverMetaInfoAssignementAccess().getDbDriverInfoPropertyValueParserRuleCall_0(), semanticObject.getDbDriverInfo());
+		feeder.accept(grammarAccess.getDriverMetaInfoAssignementAccess().getDbDriverInfoValueTypeParserRuleCall_0(), semanticObject.getDbDriverInfo());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (driverMethod=ValidID callOutput=PropertyValue)
+	 *     (driverMethod=ValidID callOutput=ValueType)
 	 */
 	protected void sequence_DriverMethodOutputAssignement(EObject context, DriverMethodOutputAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -2431,7 +2424,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getDriverMethodOutputAssignementAccess().getDriverMethodValidIDParserRuleCall_0_0(), semanticObject.getDriverMethod());
-		feeder.accept(grammarAccess.getDriverMethodOutputAssignementAccess().getCallOutputPropertyValueParserRuleCall_2_0(), semanticObject.getCallOutput());
+		feeder.accept(grammarAccess.getDriverMethodOutputAssignementAccess().getCallOutputValueTypeParserRuleCall_2_0(), semanticObject.getCallOutput());
 		feeder.finish();
 	}
 	
@@ -2789,7 +2782,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         name='generate-operators' | 
 	 *         (name='optimize-insert' dbTables+=ValidID*) | 
 	 *         (name='optional-features' dbStatement=ValidID optionalFeatures+=ValidID+) | 
-	 *         (name='active-filter' activeFilter=PropertyValue)
+	 *         (name='active-filter' activeFilter=ValueType)
 	 *     )
 	 */
 	protected void sequence_MetagenProperty(EObject context, MetagenProperty semanticObject) {
@@ -3215,7 +3208,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
 	 *         (name='pojos-for-procedures' procPojos+=ProcedurePojoAssignement+) | 
 	 *         (name='pojos-for-functions' funPojos+=FunctionPojoAssignement+) | 
-	 *         (name='active-filter' activeFilter=PropertyValue) | 
+	 *         (name='active-filter' activeFilter=ValueType) | 
 	 *         (name='package' pckg=QualifiedName) | 
 	 *         (name='enum-for-check-constraints' enumName=ValidID dbCheckConstraints+=ValidID+)
 	 *     )
@@ -3265,22 +3258,6 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     value=STRING
-	 */
-	protected void sequence_PropertyValue(EObject context, PropertyValue semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.PROPERTY_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.PROPERTY_VALUE__VALUE));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPropertyValueAccess().getValueSTRINGTerminalRuleCall_0(), semanticObject.getValue());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (
 	 *         name='resolve-pojo-on' | 
 	 *         name='resolve-pojo-off' | 
@@ -3288,8 +3265,8 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         (name='pojogen-' pojogen=PojogenProperty) | 
 	 *         (name='metagen-' metagen=MetagenProperty) | 
 	 *         (name='daogen-' daogen=DaogenProperty) | 
-	 *         (name='replace-all-regex' replaceId=ValidID regex=PropertyValue) | 
-	 *         (name='replace-all-replacement' replaceId=ValidID replacement=PropertyValue) | 
+	 *         (name='replace-all-regex' replaceId=ValidID regex=ValueType) | 
+	 *         (name='replace-all-replacement' replaceId=ValidID replacement=ValueType) | 
 	 *         name='compress-meta-directives'
 	 *     )
 	 */
@@ -3300,7 +3277,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (dbColumn=ValidID type=PropertyValue)
+	 *     (dbColumn=ValidID type=ValueType)
 	 */
 	protected void sequence_ShowColumnTypeAssignement(EObject context, ShowColumnTypeAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -3312,7 +3289,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getShowColumnTypeAssignementAccess().getDbColumnValidIDParserRuleCall_0_0(), semanticObject.getDbColumn());
-		feeder.accept(grammarAccess.getShowColumnTypeAssignementAccess().getTypePropertyValueParserRuleCall_2_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getShowColumnTypeAssignementAccess().getTypeValueTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
@@ -3366,7 +3343,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (value=STRING | number=INT | id=ValidID)
+	 *     (value=STRING | number=INT | id=QualifiedName)
 	 */
 	protected void sequence_ValueType(EObject context, ValueType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

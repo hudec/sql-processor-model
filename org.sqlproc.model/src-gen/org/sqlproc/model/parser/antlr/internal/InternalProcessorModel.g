@@ -203,29 +203,29 @@ ruleArtifacts returns [EObject current=null]
 
 
 
-// Entry rule entryRulePropertyValue
-entryRulePropertyValue returns [EObject current=null] 
+// Entry rule entryRuleValueType
+entryRuleValueType returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getPropertyValueRule()); }
-	 iv_rulePropertyValue=rulePropertyValue 
-	 { $current=$iv_rulePropertyValue.current; } 
+	{ newCompositeNode(grammarAccess.getValueTypeRule()); }
+	 iv_ruleValueType=ruleValueType 
+	 { $current=$iv_ruleValueType.current; } 
 	 EOF 
 ;
 
-// Rule PropertyValue
-rulePropertyValue returns [EObject current=null] 
+// Rule ValueType
+ruleValueType returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(
+((
 (
 		lv_value_0_0=RULE_STRING
 		{
-			newLeafNode(lv_value_0_0, grammarAccess.getPropertyValueAccess().getValueSTRINGTerminalRuleCall_0()); 
+			newLeafNode(lv_value_0_0, grammarAccess.getValueTypeAccess().getValueSTRINGTerminalRuleCall_0_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPropertyValueRule());
+	            $current = createModelElement(grammarAccess.getValueTypeRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -236,6 +236,44 @@ rulePropertyValue returns [EObject current=null]
 
 )
 )
+    |(
+(
+		lv_number_1_0=RULE_INT
+		{
+			newLeafNode(lv_number_1_0, grammarAccess.getValueTypeAccess().getNumberINTTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getValueTypeRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"number",
+        		lv_number_1_0, 
+        		"INT");
+	    }
+
+)
+)
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getValueTypeAccess().getIdQualifiedNameParserRuleCall_2_0()); 
+	    }
+		lv_id_2_0=ruleQualifiedName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getValueTypeRule());
+	        }
+       		set(
+       			$current, 
+       			"id",
+        		lv_id_2_0, 
+        		"QualifiedName");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
 ;
 
 
@@ -376,9 +414,9 @@ ruleDatabaseMetaInfoAssignement returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDatabaseMetaInfoAssignementAccess().getDbMetaInfoPropertyValueParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getDatabaseMetaInfoAssignementAccess().getDbMetaInfoValueTypeParserRuleCall_0()); 
 	    }
-		lv_dbMetaInfo_0_0=rulePropertyValue		{
+		lv_dbMetaInfo_0_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabaseMetaInfoAssignementRule());
 	        }
@@ -386,7 +424,7 @@ ruleDatabaseMetaInfoAssignement returns [EObject current=null]
        			$current, 
        			"dbMetaInfo",
         		lv_dbMetaInfo_0_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -415,9 +453,9 @@ ruleDriverMetaInfoAssignement returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDriverMetaInfoAssignementAccess().getDbDriverInfoPropertyValueParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getDriverMetaInfoAssignementAccess().getDbDriverInfoValueTypeParserRuleCall_0()); 
 	    }
-		lv_dbDriverInfo_0_0=rulePropertyValue		{
+		lv_dbDriverInfo_0_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDriverMetaInfoAssignementRule());
 	        }
@@ -425,7 +463,7 @@ ruleDriverMetaInfoAssignement returns [EObject current=null]
        			$current, 
        			"dbDriverInfo",
         		lv_dbDriverInfo_0_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -476,9 +514,9 @@ ruleDriverMethodOutputAssignement returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDriverMethodOutputAssignementAccess().getCallOutputPropertyValueParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getDriverMethodOutputAssignementAccess().getCallOutputValueTypeParserRuleCall_2_0()); 
 	    }
-		lv_callOutput_2_0=rulePropertyValue		{
+		lv_callOutput_2_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDriverMethodOutputAssignementRule());
 	        }
@@ -486,7 +524,7 @@ ruleDriverMethodOutputAssignement returns [EObject current=null]
        			$current, 
        			"callOutput",
         		lv_callOutput_2_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -685,9 +723,9 @@ ruleShowColumnTypeAssignement returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getShowColumnTypeAssignementAccess().getTypePropertyValueParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getShowColumnTypeAssignementAccess().getTypeValueTypeParserRuleCall_2_0()); 
 	    }
-		lv_type_2_0=rulePropertyValue		{
+		lv_type_2_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getShowColumnTypeAssignementRule());
 	        }
@@ -695,7 +733,7 @@ ruleShowColumnTypeAssignement returns [EObject current=null]
        			$current, 
        			"type",
         		lv_type_2_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1955,9 +1993,9 @@ ruleProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPropertyAccess().getRegexPropertyValueParserRuleCall_0_6_2_0()); 
+	        newCompositeNode(grammarAccess.getPropertyAccess().getRegexValueTypeParserRuleCall_0_6_2_0()); 
 	    }
-		lv_regex_12_0=rulePropertyValue		{
+		lv_regex_12_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPropertyRule());
 	        }
@@ -1965,7 +2003,7 @@ ruleProperty returns [EObject current=null]
        			$current, 
        			"regex",
         		lv_regex_12_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2007,9 +2045,9 @@ ruleProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPropertyAccess().getReplacementPropertyValueParserRuleCall_0_7_2_0()); 
+	        newCompositeNode(grammarAccess.getPropertyAccess().getReplacementValueTypeParserRuleCall_0_7_2_0()); 
 	    }
-		lv_replacement_15_0=rulePropertyValue		{
+		lv_replacement_15_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPropertyRule());
 	        }
@@ -2017,7 +2055,7 @@ ruleProperty returns [EObject current=null]
        			$current, 
        			"replacement",
         		lv_replacement_15_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2113,9 +2151,9 @@ ruleDatabaseProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbUrlPropertyValueParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbUrlValueTypeParserRuleCall_2_1_0()); 
 	    }
-		lv_dbUrl_3_0=rulePropertyValue		{
+		lv_dbUrl_3_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
@@ -2123,7 +2161,7 @@ ruleDatabaseProperty returns [EObject current=null]
        			$current, 
        			"dbUrl",
         		lv_dbUrl_3_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2147,9 +2185,9 @@ ruleDatabaseProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbUsernamePropertyValueParserRuleCall_3_1_0()); 
+	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbUsernameValueTypeParserRuleCall_3_1_0()); 
 	    }
-		lv_dbUsername_5_0=rulePropertyValue		{
+		lv_dbUsername_5_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
@@ -2157,7 +2195,7 @@ ruleDatabaseProperty returns [EObject current=null]
        			$current, 
        			"dbUsername",
         		lv_dbUsername_5_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2181,9 +2219,9 @@ ruleDatabaseProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbPasswordPropertyValueParserRuleCall_4_1_0()); 
+	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbPasswordValueTypeParserRuleCall_4_1_0()); 
 	    }
-		lv_dbPassword_7_0=rulePropertyValue		{
+		lv_dbPassword_7_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
@@ -2191,7 +2229,7 @@ ruleDatabaseProperty returns [EObject current=null]
        			$current, 
        			"dbPassword",
         		lv_dbPassword_7_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2304,9 +2342,9 @@ ruleDatabaseProperty returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbDriverPropertyValueParserRuleCall_7_1_1_0()); 
+	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbDriverValueTypeParserRuleCall_7_1_1_0()); 
 	    }
-		lv_dbDriver_15_0=rulePropertyValue		{
+		lv_dbDriver_15_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
@@ -2314,7 +2352,7 @@ ruleDatabaseProperty returns [EObject current=null]
        			$current, 
        			"dbDriver",
         		lv_dbDriver_15_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2338,9 +2376,9 @@ ruleDatabaseProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbExecuteBeforePropertyValueParserRuleCall_8_1_0()); 
+	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbExecuteBeforeValueTypeParserRuleCall_8_1_0()); 
 	    }
-		lv_dbExecuteBefore_17_0=rulePropertyValue		{
+		lv_dbExecuteBefore_17_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
@@ -2348,7 +2386,7 @@ ruleDatabaseProperty returns [EObject current=null]
        			$current, 
        			"dbExecuteBefore",
         		lv_dbExecuteBefore_17_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2372,9 +2410,9 @@ ruleDatabaseProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbExecuteAfterPropertyValueParserRuleCall_9_1_0()); 
+	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbExecuteAfterValueTypeParserRuleCall_9_1_0()); 
 	    }
-		lv_dbExecuteAfter_19_0=rulePropertyValue		{
+		lv_dbExecuteAfter_19_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
@@ -2382,7 +2420,7 @@ ruleDatabaseProperty returns [EObject current=null]
        			$current, 
        			"dbExecuteAfter",
         		lv_dbExecuteAfter_19_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2406,9 +2444,9 @@ ruleDatabaseProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbIndexTypesPropertyValueParserRuleCall_10_1_0()); 
+	        newCompositeNode(grammarAccess.getDatabasePropertyAccess().getDbIndexTypesValueTypeParserRuleCall_10_1_0()); 
 	    }
-		lv_dbIndexTypes_21_0=rulePropertyValue		{
+		lv_dbIndexTypes_21_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDatabasePropertyRule());
 	        }
@@ -2416,7 +2454,7 @@ ruleDatabaseProperty returns [EObject current=null]
        			$current, 
        			"dbIndexTypes",
         		lv_dbIndexTypes_21_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4402,9 +4440,9 @@ rulePojogenProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPojogenPropertyAccess().getActiveFilterPropertyValueParserRuleCall_39_1_0()); 
+	        newCompositeNode(grammarAccess.getPojogenPropertyAccess().getActiveFilterValueTypeParserRuleCall_39_1_0()); 
 	    }
-		lv_activeFilter_100_0=rulePropertyValue		{
+		lv_activeFilter_100_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPojogenPropertyRule());
 	        }
@@ -4412,7 +4450,7 @@ rulePojogenProperty returns [EObject current=null]
        			$current, 
        			"activeFilter",
         		lv_activeFilter_100_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5537,9 +5575,9 @@ ruleMetagenProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getActiveFilterPropertyValueParserRuleCall_20_1_0()); 
+	        newCompositeNode(grammarAccess.getMetagenPropertyAccess().getActiveFilterValueTypeParserRuleCall_20_1_0()); 
 	    }
-		lv_activeFilter_57_0=rulePropertyValue		{
+		lv_activeFilter_57_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMetagenPropertyRule());
 	        }
@@ -5547,7 +5585,7 @@ ruleMetagenProperty returns [EObject current=null]
        			$current, 
        			"activeFilter",
         		lv_activeFilter_57_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5897,9 +5935,9 @@ ruleDaogenProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDaogenPropertyAccess().getActiveFilterPropertyValueParserRuleCall_9_1_0()); 
+	        newCompositeNode(grammarAccess.getDaogenPropertyAccess().getActiveFilterValueTypeParserRuleCall_9_1_0()); 
 	    }
-		lv_activeFilter_19_0=rulePropertyValue		{
+		lv_activeFilter_19_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDaogenPropertyRule());
 	        }
@@ -5907,7 +5945,7 @@ ruleDaogenProperty returns [EObject current=null]
        			$current, 
        			"activeFilter",
         		lv_activeFilter_19_0, 
-        		"PropertyValue");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6227,83 +6265,6 @@ ruleFunctionDefinition returns [EObject current=null]
     	newLeafNode(otherlv_3, grammarAccess.getFunctionDefinitionAccess().getSemicolonKeyword_3());
     }
 )
-;
-
-
-
-
-
-// Entry rule entryRuleValueType
-entryRuleValueType returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getValueTypeRule()); }
-	 iv_ruleValueType=ruleValueType 
-	 { $current=$iv_ruleValueType.current; } 
-	 EOF 
-;
-
-// Rule ValueType
-ruleValueType returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-(
-		lv_value_0_0=RULE_STRING
-		{
-			newLeafNode(lv_value_0_0, grammarAccess.getValueTypeAccess().getValueSTRINGTerminalRuleCall_0_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getValueTypeRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"value",
-        		lv_value_0_0, 
-        		"STRING");
-	    }
-
-)
-)
-    |(
-(
-		lv_number_1_0=RULE_INT
-		{
-			newLeafNode(lv_number_1_0, grammarAccess.getValueTypeAccess().getNumberINTTerminalRuleCall_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getValueTypeRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"number",
-        		lv_number_1_0, 
-        		"INT");
-	    }
-
-)
-)
-    |(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getValueTypeAccess().getIdValidIDParserRuleCall_2_0()); 
-	    }
-		lv_id_2_0=ruleValidID		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getValueTypeRule());
-	        }
-       		set(
-       			$current, 
-       			"id",
-        		lv_id_2_0, 
-        		"ValidID");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
 ;
 
 

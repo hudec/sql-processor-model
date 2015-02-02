@@ -29,7 +29,7 @@ import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.Property;
-import org.sqlproc.model.processorModel.PropertyValue;
+import org.sqlproc.model.processorModel.ValueType;
 import org.sqlproc.model.util.Utils;
 
 import com.google.inject.Singleton;
@@ -1595,17 +1595,20 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         return value;
     }
 
-    private static String getPropertyValue(PropertyValue pv) {
+    private static String getPropertyValue(ValueType pv) {
         if (pv == null)
             return null;
         String s = pv.getValue();
-        if (s == null)
-            return null;
-        s = s.trim();
-        if (s.startsWith("\""))
-            s = s.substring(1);
-        if (s.endsWith("\""))
-            s = s.substring(0, s.length() - 1);
-        return s;
+        if (s != null) {
+            s = s.trim();
+            if (s.startsWith("\""))
+                s = s.substring(1);
+            if (s.endsWith("\""))
+                s = s.substring(0, s.length() - 1);
+            return s;
+        } else if (pv.getId() != null)
+            return pv.getId();
+        else
+            return "" + pv.getNumber();
     }
 }

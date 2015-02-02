@@ -117,7 +117,6 @@ import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelFactory;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
-import org.sqlproc.model.processorModel.PropertyValue;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
@@ -177,7 +176,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
     switch (eClass.getClassifierID())
     {
       case ProcessorModelPackage.ARTIFACTS: return createArtifacts();
-      case ProcessorModelPackage.PROPERTY_VALUE: return createPropertyValue();
+      case ProcessorModelPackage.VALUE_TYPE: return createValueType();
       case ProcessorModelPackage.DATABASE_CATALOG_ASSIGNEMENT: return createDatabaseCatalogAssignement();
       case ProcessorModelPackage.DATABASE_SCHEMA_ASSIGNEMENT: return createDatabaseSchemaAssignement();
       case ProcessorModelPackage.DATABASE_TYPE_ASSIGNEMENT: return createDatabaseTypeAssignement();
@@ -211,7 +210,6 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.TABLE_DEFINITION: return createTableDefinition();
       case ProcessorModelPackage.PROCEDURE_DEFINITION: return createProcedureDefinition();
       case ProcessorModelPackage.FUNCTION_DEFINITION: return createFunctionDefinition();
-      case ProcessorModelPackage.VALUE_TYPE: return createValueType();
       case ProcessorModelPackage.POJO_TYPE: return createPojoType();
       case ProcessorModelPackage.PACKAGE_DIRECTIVE: return createPackageDirective();
       case ProcessorModelPackage.PACKAGE: return createPackage();
@@ -309,10 +307,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue createPropertyValue()
+  public ValueType createValueType()
   {
-    PropertyValueImpl propertyValue = new PropertyValueImpl();
-    return propertyValue;
+    ValueTypeImpl valueType = new ValueTypeImpl();
+    return valueType;
   }
 
   /**
@@ -676,17 +674,6 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     FunctionDefinitionImpl functionDefinition = new FunctionDefinitionImpl();
     return functionDefinition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ValueType createValueType()
-  {
-    ValueTypeImpl valueType = new ValueTypeImpl();
-    return valueType;
   }
 
   /**

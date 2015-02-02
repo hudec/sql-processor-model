@@ -35,10 +35,10 @@ import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedurePojoAssignement;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.processorModel.PropertyValue;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
+import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -444,7 +444,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected PropertyValue activeFilter;
+  protected ValueType activeFilter;
 
   /**
    * The default value of the '{@link #getPckg() <em>Pckg</em>}' attribute.
@@ -1181,7 +1181,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getActiveFilter()
+  public ValueType getActiveFilter()
   {
     return activeFilter;
   }
@@ -1191,9 +1191,9 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetActiveFilter(PropertyValue newActiveFilter, NotificationChain msgs)
+  public NotificationChain basicSetActiveFilter(ValueType newActiveFilter, NotificationChain msgs)
   {
-    PropertyValue oldActiveFilter = activeFilter;
+    ValueType oldActiveFilter = activeFilter;
     activeFilter = newActiveFilter;
     if (eNotificationRequired())
     {
@@ -1208,7 +1208,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setActiveFilter(PropertyValue newActiveFilter)
+  public void setActiveFilter(ValueType newActiveFilter)
   {
     if (newActiveFilter != activeFilter)
     {
@@ -1523,7 +1523,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         getFunPojos().addAll((Collection<? extends FunctionPojoAssignement>)newValue);
         return;
       case ProcessorModelPackage.POJOGEN_PROPERTY__ACTIVE_FILTER:
-        setActiveFilter((PropertyValue)newValue);
+        setActiveFilter((ValueType)newValue);
         return;
       case ProcessorModelPackage.POJOGEN_PROPERTY__PCKG:
         setPckg((String)newValue);
@@ -1634,7 +1634,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         getFunPojos().clear();
         return;
       case ProcessorModelPackage.POJOGEN_PROPERTY__ACTIVE_FILTER:
-        setActiveFilter((PropertyValue)null);
+        setActiveFilter((ValueType)null);
         return;
       case ProcessorModelPackage.POJOGEN_PROPERTY__PCKG:
         setPckg(PCKG_EDEFAULT);

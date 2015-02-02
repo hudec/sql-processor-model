@@ -267,12 +267,12 @@ public interface DaogenProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Active Filter</em>' containment reference.
-   * @see #setActiveFilter(PropertyValue)
+   * @see #setActiveFilter(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDaogenProperty_ActiveFilter()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getActiveFilter();
+  ValueType getActiveFilter();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DaogenProperty#getActiveFilter <em>Active Filter</em>}' containment reference.
@@ -282,7 +282,7 @@ public interface DaogenProperty extends EObject
    * @see #getActiveFilter()
    * @generated
    */
-  void setActiveFilter(PropertyValue value);
+  void setActiveFilter(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Pckg</b></em>' attribute.

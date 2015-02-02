@@ -113,7 +113,6 @@ import org.sqlproc.model.processorModel.ProcedurePojoAssignement;
 import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
-import org.sqlproc.model.processorModel.PropertyValue;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
@@ -190,10 +189,10 @@ public class ProcessorModelSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorModelPackage.PROPERTY_VALUE:
+      case ProcessorModelPackage.VALUE_TYPE:
       {
-        PropertyValue propertyValue = (PropertyValue)theEObject;
-        T result = casePropertyValue(propertyValue);
+        ValueType valueType = (ValueType)theEObject;
+        T result = caseValueType(valueType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -425,13 +424,6 @@ public class ProcessorModelSwitch<T> extends Switch<T>
       {
         FunctionDefinition functionDefinition = (FunctionDefinition)theEObject;
         T result = caseFunctionDefinition(functionDefinition);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorModelPackage.VALUE_TYPE:
-      {
-        ValueType valueType = (ValueType)theEObject;
-        T result = caseValueType(valueType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1039,17 +1031,17 @@ public class ProcessorModelSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Property Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Value Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Property Value</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Value Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePropertyValue(PropertyValue object)
+  public T caseValueType(ValueType object)
   {
     return null;
   }
@@ -1578,22 +1570,6 @@ public class ProcessorModelSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFunctionDefinition(FunctionDefinition object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Value Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Value Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseValueType(ValueType object)
   {
     return null;
   }

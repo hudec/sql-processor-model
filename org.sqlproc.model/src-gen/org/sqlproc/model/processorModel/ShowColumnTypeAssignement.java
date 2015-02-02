@@ -58,12 +58,12 @@ public interface ShowColumnTypeAssignement extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(PropertyValue)
+   * @see #setType(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getShowColumnTypeAssignement_Type()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getType();
+  ValueType getType();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.ShowColumnTypeAssignement#getType <em>Type</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface ShowColumnTypeAssignement extends EObject
    * @see #getType()
    * @generated
    */
-  void setType(PropertyValue value);
+  void setType(ValueType value);
 
 } // ShowColumnTypeAssignement

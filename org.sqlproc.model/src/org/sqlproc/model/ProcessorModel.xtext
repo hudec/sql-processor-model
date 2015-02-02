@@ -13,16 +13,16 @@ Artifacts: {Artifacts}
     | packages+=Package
     )*;
 
-PropertyValue: value=STRING;
+ValueType: value = STRING | number = INT | id = QualifiedName;
 DatabaseCatalogAssignement: dbCatalog=QualifiedName;
 DatabaseSchemaAssignement: dbSchema=QualifiedName;
 DatabaseTypeAssignement: dbType=ValidID;
-DatabaseMetaInfoAssignement: dbMetaInfo=PropertyValue;
-DriverMetaInfoAssignement: dbDriverInfo=PropertyValue;
-DriverMethodOutputAssignement: driverMethod=ValidID '->' callOutput=PropertyValue;
+DatabaseMetaInfoAssignement: dbMetaInfo=ValueType;
+DriverMetaInfoAssignement: dbDriverInfo=ValueType;
+DriverMethodOutputAssignement: driverMethod=ValidID '->' callOutput=ValueType;
 SqlTypeAssignement: typeName=ValidID ('(' size=INT ')')? '->' type=PojoType;
 ColumnTypeAssignement: dbColumn=ValidID '->' type=PojoType;
-ShowColumnTypeAssignement: dbColumn=ValidID '->' type=PropertyValue;
+ShowColumnTypeAssignement: dbColumn=ValidID '->' type=ValueType;
 TableAssignement: dbTable=ValidID '->' newName=ValidID;
 JoinTableAssignement: dbTable=ValidID ('->' dbTables+=ValidID)+;
 ColumnAssignement: dbColumn=ValidID '->' newName=ValidID;
@@ -45,8 +45,8 @@ Property:
 	|name='pojogen-' pojogen=PojogenProperty
 	|name='metagen-' metagen=MetagenProperty
 	|name='daogen-' daogen=DaogenProperty
-	|name='replace-all-regex' replaceId=ValidID regex=PropertyValue
-	|name='replace-all-replacement' replaceId=ValidID replacement=PropertyValue
+	|name='replace-all-regex' replaceId=ValidID regex=ValueType
+	|name='replace-all-replacement' replaceId=ValidID replacement=ValueType
 	|name='compress-meta-directives'
 	) ';';
 
@@ -57,15 +57,15 @@ Property:
 DatabaseProperty:
 	(name='is-online'
 	|name='is-offline'
-	|name='has-url' dbUrl=PropertyValue
-	|name='login-username' dbUsername=PropertyValue
-	|name='login-password' dbPassword=PropertyValue
+	|name='has-url' dbUrl=ValueType
+	|name='login-username' dbUsername=ValueType
+	|name='login-password' dbPassword=ValueType
 	|name='in-catalog' dbCatalog=DatabaseCatalogAssignement
 	|name='active-schema' dbSchema=DatabaseSchemaAssignement
-	|name='jdbc-driver' (=> ':' dbDriverx=[jvmTypes::JvmType|QualifiedName]|dbDriver=PropertyValue)
-	|name='ddl-create' dbExecuteBefore=PropertyValue
-	|name='ddl-drop' dbExecuteAfter=PropertyValue
-	|name='index-types' dbIndexTypes=PropertyValue
+	|name='jdbc-driver' (=> ':' dbDriverx=[jvmTypes::JvmType|QualifiedName]|dbDriver=ValueType)
+	|name='ddl-create' dbExecuteBefore=ValueType
+	|name='ddl-drop' dbExecuteAfter=ValueType
+	|name='index-types' dbIndexTypes=ValueType
 	|name='skip-indexes'
 	|name='skip-functions-procedures'
 	|name='skip-check-constraints'
@@ -119,7 +119,7 @@ PojogenProperty:
 	|name='debug-level' debug=DebugLevelAssignement
 	|name='pojos-for-procedures' (procPojos+=ProcedurePojoAssignement)+
 	|name='pojos-for-functions' (funPojos+=FunctionPojoAssignement)+
-	|name='active-filter' activeFilter=PropertyValue
+	|name='active-filter' activeFilter=ValueType
 	|name='package' pckg=QualifiedName
 	|name='enum-for-check-constraints' enumName=ValidID (dbCheckConstraints+=ValidID)+
 	);
@@ -147,7 +147,7 @@ MetagenProperty:
 	|name='generate-operators'
 	|name='optimize-insert' (dbTables+=ValidID)*
 	|name='optional-features' dbStatement=ValidID (optionalFeatures+=ValidID)+
-	|name='active-filter' activeFilter=PropertyValue
+	|name='active-filter' activeFilter=ValueType
 	);
 
 DaogenProperty:
@@ -160,7 +160,7 @@ DaogenProperty:
 	|name='make-it-final'
 	|name='function-result' dbFunction=ValidID resultType=PojoType
 	|name='debug-level' debug=DebugLevelAssignement
-	|name='active-filter' activeFilter=PropertyValue
+	|name='active-filter' activeFilter=ValueType
 	|name='package' pckg=QualifiedName
 	);
 
@@ -175,10 +175,6 @@ ProcedureDefinition:
 
 FunctionDefinition:
 	'function' name=ValidID table=ValidID ';';
-
-ValueType:
-	value = STRING | number = INT | id = ValidID
-;
 
 PojoType:
 	(':' type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoEntity|ValidID])

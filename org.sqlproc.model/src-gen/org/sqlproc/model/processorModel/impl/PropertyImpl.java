@@ -17,7 +17,7 @@ import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
-import org.sqlproc.model.processorModel.PropertyValue;
+import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -129,7 +129,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    * @ordered
    */
-  protected PropertyValue regex;
+  protected ValueType regex;
 
   /**
    * The cached value of the '{@link #getReplacement() <em>Replacement</em>}' containment reference.
@@ -139,7 +139,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @generated
    * @ordered
    */
-  protected PropertyValue replacement;
+  protected ValueType replacement;
 
   /**
    * <!-- begin-user-doc -->
@@ -405,7 +405,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getRegex()
+  public ValueType getRegex()
   {
     return regex;
   }
@@ -415,9 +415,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRegex(PropertyValue newRegex, NotificationChain msgs)
+  public NotificationChain basicSetRegex(ValueType newRegex, NotificationChain msgs)
   {
-    PropertyValue oldRegex = regex;
+    ValueType oldRegex = regex;
     regex = newRegex;
     if (eNotificationRequired())
     {
@@ -432,7 +432,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRegex(PropertyValue newRegex)
+  public void setRegex(ValueType newRegex)
   {
     if (newRegex != regex)
     {
@@ -453,7 +453,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getReplacement()
+  public ValueType getReplacement()
   {
     return replacement;
   }
@@ -463,9 +463,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetReplacement(PropertyValue newReplacement, NotificationChain msgs)
+  public NotificationChain basicSetReplacement(ValueType newReplacement, NotificationChain msgs)
   {
-    PropertyValue oldReplacement = replacement;
+    ValueType oldReplacement = replacement;
     replacement = newReplacement;
     if (eNotificationRequired())
     {
@@ -480,7 +480,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setReplacement(PropertyValue newReplacement)
+  public void setReplacement(ValueType newReplacement)
   {
     if (newReplacement != replacement)
     {
@@ -581,10 +581,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         setReplaceId((String)newValue);
         return;
       case ProcessorModelPackage.PROPERTY__REGEX:
-        setRegex((PropertyValue)newValue);
+        setRegex((ValueType)newValue);
         return;
       case ProcessorModelPackage.PROPERTY__REPLACEMENT:
-        setReplacement((PropertyValue)newValue);
+        setReplacement((ValueType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -619,10 +619,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         setReplaceId(REPLACE_ID_EDEFAULT);
         return;
       case ProcessorModelPackage.PROPERTY__REGEX:
-        setRegex((PropertyValue)null);
+        setRegex((ValueType)null);
         return;
       case ProcessorModelPackage.PROPERTY__REPLACEMENT:
-        setReplacement((PropertyValue)null);
+        setReplacement((ValueType)null);
         return;
     }
     super.eUnset(featureID);

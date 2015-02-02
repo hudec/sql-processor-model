@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.model.processorModel.DriverMetaInfoAssignement;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.processorModel.PropertyValue;
+import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container 
    * @generated
    * @ordered
    */
-  protected PropertyValue dbDriverInfo;
+  protected ValueType dbDriverInfo;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getDbDriverInfo()
+  public ValueType getDbDriverInfo()
   {
     return dbDriverInfo;
   }
@@ -76,9 +76,9 @@ public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDbDriverInfo(PropertyValue newDbDriverInfo, NotificationChain msgs)
+  public NotificationChain basicSetDbDriverInfo(ValueType newDbDriverInfo, NotificationChain msgs)
   {
-    PropertyValue oldDbDriverInfo = dbDriverInfo;
+    ValueType oldDbDriverInfo = dbDriverInfo;
     dbDriverInfo = newDbDriverInfo;
     if (eNotificationRequired())
     {
@@ -93,7 +93,7 @@ public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbDriverInfo(PropertyValue newDbDriverInfo)
+  public void setDbDriverInfo(ValueType newDbDriverInfo)
   {
     if (newDbDriverInfo != dbDriverInfo)
     {
@@ -152,7 +152,7 @@ public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container 
     switch (featureID)
     {
       case ProcessorModelPackage.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO:
-        setDbDriverInfo((PropertyValue)newValue);
+        setDbDriverInfo((ValueType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,7 +169,7 @@ public class DriverMetaInfoAssignementImpl extends MinimalEObjectImpl.Container 
     switch (featureID)
     {
       case ProcessorModelPackage.DRIVER_META_INFO_ASSIGNEMENT__DB_DRIVER_INFO:
-        setDbDriverInfo((PropertyValue)null);
+        setDbDriverInfo((ValueType)null);
         return;
     }
     super.eUnset(featureID);

@@ -194,12 +194,12 @@ public interface Property extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Regex</em>' containment reference.
-   * @see #setRegex(PropertyValue)
+   * @see #setRegex(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getProperty_Regex()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getRegex();
+  ValueType getRegex();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.Property#getRegex <em>Regex</em>}' containment reference.
@@ -209,7 +209,7 @@ public interface Property extends EObject
    * @see #getRegex()
    * @generated
    */
-  void setRegex(PropertyValue value);
+  void setRegex(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Replacement</b></em>' containment reference.
@@ -220,12 +220,12 @@ public interface Property extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Replacement</em>' containment reference.
-   * @see #setReplacement(PropertyValue)
+   * @see #setReplacement(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getProperty_Replacement()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getReplacement();
+  ValueType getReplacement();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.Property#getReplacement <em>Replacement</em>}' containment reference.
@@ -235,6 +235,6 @@ public interface Property extends EObject
    * @see #getReplacement()
    * @generated
    */
-  void setReplacement(PropertyValue value);
+  void setReplacement(ValueType value);
 
 } // Property

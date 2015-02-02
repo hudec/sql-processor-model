@@ -76,12 +76,12 @@ public interface DatabaseProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Db Url</em>' containment reference.
-   * @see #setDbUrl(PropertyValue)
+   * @see #setDbUrl(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDatabaseProperty_DbUrl()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getDbUrl();
+  ValueType getDbUrl();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseProperty#getDbUrl <em>Db Url</em>}' containment reference.
@@ -91,7 +91,7 @@ public interface DatabaseProperty extends EObject
    * @see #getDbUrl()
    * @generated
    */
-  void setDbUrl(PropertyValue value);
+  void setDbUrl(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Db Username</b></em>' containment reference.
@@ -102,12 +102,12 @@ public interface DatabaseProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Db Username</em>' containment reference.
-   * @see #setDbUsername(PropertyValue)
+   * @see #setDbUsername(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDatabaseProperty_DbUsername()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getDbUsername();
+  ValueType getDbUsername();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseProperty#getDbUsername <em>Db Username</em>}' containment reference.
@@ -117,7 +117,7 @@ public interface DatabaseProperty extends EObject
    * @see #getDbUsername()
    * @generated
    */
-  void setDbUsername(PropertyValue value);
+  void setDbUsername(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Db Password</b></em>' containment reference.
@@ -128,12 +128,12 @@ public interface DatabaseProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Db Password</em>' containment reference.
-   * @see #setDbPassword(PropertyValue)
+   * @see #setDbPassword(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDatabaseProperty_DbPassword()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getDbPassword();
+  ValueType getDbPassword();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseProperty#getDbPassword <em>Db Password</em>}' containment reference.
@@ -143,7 +143,7 @@ public interface DatabaseProperty extends EObject
    * @see #getDbPassword()
    * @generated
    */
-  void setDbPassword(PropertyValue value);
+  void setDbPassword(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Db Catalog</b></em>' containment reference.
@@ -232,12 +232,12 @@ public interface DatabaseProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Db Driver</em>' containment reference.
-   * @see #setDbDriver(PropertyValue)
+   * @see #setDbDriver(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDatabaseProperty_DbDriver()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getDbDriver();
+  ValueType getDbDriver();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseProperty#getDbDriver <em>Db Driver</em>}' containment reference.
@@ -247,7 +247,7 @@ public interface DatabaseProperty extends EObject
    * @see #getDbDriver()
    * @generated
    */
-  void setDbDriver(PropertyValue value);
+  void setDbDriver(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Db Execute Before</b></em>' containment reference.
@@ -258,12 +258,12 @@ public interface DatabaseProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Db Execute Before</em>' containment reference.
-   * @see #setDbExecuteBefore(PropertyValue)
+   * @see #setDbExecuteBefore(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDatabaseProperty_DbExecuteBefore()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getDbExecuteBefore();
+  ValueType getDbExecuteBefore();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseProperty#getDbExecuteBefore <em>Db Execute Before</em>}' containment reference.
@@ -273,7 +273,7 @@ public interface DatabaseProperty extends EObject
    * @see #getDbExecuteBefore()
    * @generated
    */
-  void setDbExecuteBefore(PropertyValue value);
+  void setDbExecuteBefore(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Db Execute After</b></em>' containment reference.
@@ -284,12 +284,12 @@ public interface DatabaseProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Db Execute After</em>' containment reference.
-   * @see #setDbExecuteAfter(PropertyValue)
+   * @see #setDbExecuteAfter(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDatabaseProperty_DbExecuteAfter()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getDbExecuteAfter();
+  ValueType getDbExecuteAfter();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseProperty#getDbExecuteAfter <em>Db Execute After</em>}' containment reference.
@@ -299,7 +299,7 @@ public interface DatabaseProperty extends EObject
    * @see #getDbExecuteAfter()
    * @generated
    */
-  void setDbExecuteAfter(PropertyValue value);
+  void setDbExecuteAfter(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Db Index Types</b></em>' containment reference.
@@ -310,12 +310,12 @@ public interface DatabaseProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Db Index Types</em>' containment reference.
-   * @see #setDbIndexTypes(PropertyValue)
+   * @see #setDbIndexTypes(ValueType)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDatabaseProperty_DbIndexTypes()
    * @model containment="true"
    * @generated
    */
-  PropertyValue getDbIndexTypes();
+  ValueType getDbIndexTypes();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseProperty#getDbIndexTypes <em>Db Index Types</em>}' containment reference.
@@ -325,7 +325,7 @@ public interface DatabaseProperty extends EObject
    * @see #getDbIndexTypes()
    * @generated
    */
-  void setDbIndexTypes(PropertyValue value);
+  void setDbIndexTypes(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Db Type</b></em>' containment reference.

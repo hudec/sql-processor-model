@@ -25,7 +25,7 @@ import org.sqlproc.model.processorModel.ImplementsAssignement;
 import org.sqlproc.model.processorModel.ImplementsAssignementGenerics;
 import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.processorModel.PropertyValue;
+import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -170,7 +170,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected PropertyValue activeFilter;
+  protected ValueType activeFilter;
 
   /**
    * The default value of the '{@link #getPckg() <em>Pckg</em>}' attribute.
@@ -566,7 +566,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getActiveFilter()
+  public ValueType getActiveFilter()
   {
     return activeFilter;
   }
@@ -576,9 +576,9 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetActiveFilter(PropertyValue newActiveFilter, NotificationChain msgs)
+  public NotificationChain basicSetActiveFilter(ValueType newActiveFilter, NotificationChain msgs)
   {
-    PropertyValue oldActiveFilter = activeFilter;
+    ValueType oldActiveFilter = activeFilter;
     activeFilter = newActiveFilter;
     if (eNotificationRequired())
     {
@@ -593,7 +593,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setActiveFilter(PropertyValue newActiveFilter)
+  public void setActiveFilter(ValueType newActiveFilter)
   {
     if (newActiveFilter != activeFilter)
     {
@@ -736,7 +736,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setDebug((DebugLevelAssignement)newValue);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
-        setActiveFilter((PropertyValue)newValue);
+        setActiveFilter((ValueType)newValue);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__PCKG:
         setPckg((String)newValue);
@@ -783,7 +783,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setDebug((DebugLevelAssignement)null);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__ACTIVE_FILTER:
-        setActiveFilter((PropertyValue)null);
+        setActiveFilter((ValueType)null);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__PCKG:
         setPckg(PCKG_EDEFAULT);

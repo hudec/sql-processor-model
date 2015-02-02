@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.processorModel.PropertyValue;
+import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Containe
    * @generated
    * @ordered
    */
-  protected PropertyValue dbMetaInfo;
+  protected ValueType dbMetaInfo;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Containe
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyValue getDbMetaInfo()
+  public ValueType getDbMetaInfo()
   {
     return dbMetaInfo;
   }
@@ -76,9 +76,9 @@ public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Containe
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDbMetaInfo(PropertyValue newDbMetaInfo, NotificationChain msgs)
+  public NotificationChain basicSetDbMetaInfo(ValueType newDbMetaInfo, NotificationChain msgs)
   {
-    PropertyValue oldDbMetaInfo = dbMetaInfo;
+    ValueType oldDbMetaInfo = dbMetaInfo;
     dbMetaInfo = newDbMetaInfo;
     if (eNotificationRequired())
     {
@@ -93,7 +93,7 @@ public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Containe
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbMetaInfo(PropertyValue newDbMetaInfo)
+  public void setDbMetaInfo(ValueType newDbMetaInfo)
   {
     if (newDbMetaInfo != dbMetaInfo)
     {
@@ -152,7 +152,7 @@ public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Containe
     switch (featureID)
     {
       case ProcessorModelPackage.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO:
-        setDbMetaInfo((PropertyValue)newValue);
+        setDbMetaInfo((ValueType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,7 +169,7 @@ public class DatabaseMetaInfoAssignementImpl extends MinimalEObjectImpl.Containe
     switch (featureID)
     {
       case ProcessorModelPackage.DATABASE_META_INFO_ASSIGNEMENT__DB_META_INFO:
-        setDbMetaInfo((PropertyValue)null);
+        setDbMetaInfo((ValueType)null);
         return;
     }
     super.eUnset(featureID);
