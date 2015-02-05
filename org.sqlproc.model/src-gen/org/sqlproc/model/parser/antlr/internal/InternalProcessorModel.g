@@ -7843,7 +7843,7 @@ rulePojoEntity returns [EObject current=null]
 	    }
 
 )
-)*	otherlv_2='pojo' 
+)*	otherlv_2='#Pojo' 
     {
     	newLeafNode(otherlv_2, grammarAccess.getPojoEntityAccess().getPojoKeyword_2());
     }
@@ -8512,7 +8512,7 @@ ruleEnumEntity returns [EObject current=null]
 	    }
 
 )
-)*	otherlv_2='enum' 
+)*	otherlv_2='#Enum' 
     {
     	newLeafNode(otherlv_2, grammarAccess.getEnumEntityAccess().getEnumKeyword_2());
     }
@@ -9329,7 +9329,7 @@ rulePojoDao returns [EObject current=null]
 	    }
 
 )
-)*	otherlv_2='dao' 
+)*	otherlv_2='#Dao' 
     {
     	newLeafNode(otherlv_2, grammarAccess.getPojoDaoAccess().getDaoKeyword_2());
     }

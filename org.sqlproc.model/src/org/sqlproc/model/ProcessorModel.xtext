@@ -260,7 +260,7 @@ PojoEntityModifier2: ('extends' superType=[PojoEntity|ValidID]);
 
 PojoEntity:
 	directives+=PojoDirective*
-	(modifiers1+=PojoEntityModifier1)* 'pojo' name=ValidID (modifiers2+=PojoEntityModifier2)* 
+	(modifiers1+=PojoEntityModifier1)* '#Pojo' name=ValidID (modifiers2+=PojoEntityModifier2)* 
 	'{'
 		features+=PojoAnnotatedProperty*
 	'}'
@@ -294,7 +294,7 @@ EnumEntityModifier2: ('extends' superType=[PojoEntity|ValidID]);
 
 EnumEntity:
 	directives+=PojoDirective*
-	(modifiers1+=EnumEntityModifier1)* 'enum' name=ValidID (modifiers2+=EnumEntityModifier2)* 
+	(modifiers1+=EnumEntityModifier1)* '#Enum' name=ValidID (modifiers2+=EnumEntityModifier2)* 
 	'{'
 		features+=EnumProperty*
 	'}'
@@ -338,7 +338,7 @@ PojoDaoModifier: ('extends' superType=[PojoDao|ValidID]);
 
 PojoDao:
 	directives+=DaoDirective*
-	(modifiers1+=PojoEntityModifier1)* 'dao' name=ValidID
+	(modifiers1+=PojoEntityModifier1)* '#Dao' name=ValidID
 	  (modifiers2+=PojoDaoModifier)* 
 	'{'
 		//methods+=PojoMethod*

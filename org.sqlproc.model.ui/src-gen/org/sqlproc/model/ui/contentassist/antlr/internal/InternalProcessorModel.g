@@ -22011,7 +22011,7 @@ rule__PojoEntity__Group__2__Impl
 (
 { before(grammarAccess.getPojoEntityAccess().getPojoKeyword_2()); }
 
-	'pojo' 
+	'#Pojo' 
 
 { after(grammarAccess.getPojoEntityAccess().getPojoKeyword_2()); }
 )
@@ -23898,7 +23898,7 @@ rule__EnumEntity__Group__2__Impl
 (
 { before(grammarAccess.getEnumEntityAccess().getEnumKeyword_2()); }
 
-	'enum' 
+	'#Enum' 
 
 { after(grammarAccess.getEnumEntityAccess().getEnumKeyword_2()); }
 )
@@ -26231,7 +26231,7 @@ rule__PojoDao__Group__2__Impl
 (
 { before(grammarAccess.getPojoDaoAccess().getDaoKeyword_2()); }
 
-	'dao' 
+	'#Dao' 
 
 { after(grammarAccess.getPojoDaoAccess().getDaoKeyword_2()); }
 )

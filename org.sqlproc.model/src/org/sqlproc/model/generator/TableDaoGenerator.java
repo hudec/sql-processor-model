@@ -291,7 +291,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 buffer.append(NLINDENT);
                 if (daoMakeItFinal)
                     buffer.append("final ");
-                buffer.append("dao ");
+                buffer.append("#Dao ");
                 buffer.append(daoName);
                 buffer.append(" {");
                 buffer.append(NLINDENT).append("}\n");
@@ -354,7 +354,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 buffer.append(NLINDENT);
                 if (daoMakeItFinal)
                     buffer.append("final ");
-                buffer.append("dao ");
+                buffer.append("#Dao ");
                 buffer.append(daoName);
                 buffer.append(" {");
                 buffer.append(NLINDENT).append("}\n");
@@ -421,7 +421,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 buffer.append(NLINDENT);
                 if (daoMakeItFinal)
                     buffer.append("final ");
-                buffer.append("dao ");
+                buffer.append("#Dao ");
                 buffer.append(daoName);
                 buffer.append(" {");
                 buffer.append(NLINDENT).append("}\n");
@@ -492,7 +492,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 buffer.append(NLINDENT);
                 if (daoMakeItFinal)
                     buffer.append("final ");
-                buffer.append("dao ");
+                buffer.append("#Dao ");
                 buffer.append(daoName);
                 buffer.append(" {");
                 buffer.append(NLINDENT).append("}\n");

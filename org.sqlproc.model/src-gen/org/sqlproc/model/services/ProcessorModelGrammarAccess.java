@@ -4791,11 +4791,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//PojoEntity:
-		//	directives+=PojoDirective* modifiers1+=PojoEntityModifier1* "pojo" name=ValidID modifiers2+=PojoEntityModifier2* "{"
+		//	directives+=PojoDirective* modifiers1+=PojoEntityModifier1* "#Pojo" name=ValidID modifiers2+=PojoEntityModifier2* "{"
 		//	features+=PojoAnnotatedProperty* "}";
 		public ParserRule getRule() { return rule; }
 
-		//directives+=PojoDirective* modifiers1+=PojoEntityModifier1* "pojo" name=ValidID modifiers2+=PojoEntityModifier2* "{"
+		//directives+=PojoDirective* modifiers1+=PojoEntityModifier1* "#Pojo" name=ValidID modifiers2+=PojoEntityModifier2* "{"
 		//features+=PojoAnnotatedProperty* "}"
 		public Group getGroup() { return cGroup; }
 
@@ -4811,7 +4811,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//PojoEntityModifier1
 		public RuleCall getModifiers1PojoEntityModifier1ParserRuleCall_1_0() { return cModifiers1PojoEntityModifier1ParserRuleCall_1_0; }
 
-		//"pojo"
+		//"#Pojo"
 		public Keyword getPojoKeyword_2() { return cPojoKeyword_2; }
 
 		//name=ValidID
@@ -5279,11 +5279,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//EnumEntity:
-		//	directives+=PojoDirective* modifiers1+=EnumEntityModifier1* "enum" name=ValidID modifiers2+=EnumEntityModifier2* "{"
+		//	directives+=PojoDirective* modifiers1+=EnumEntityModifier1* "#Enum" name=ValidID modifiers2+=EnumEntityModifier2* "{"
 		//	features+=EnumProperty* "}";
 		public ParserRule getRule() { return rule; }
 
-		//directives+=PojoDirective* modifiers1+=EnumEntityModifier1* "enum" name=ValidID modifiers2+=EnumEntityModifier2* "{"
+		//directives+=PojoDirective* modifiers1+=EnumEntityModifier1* "#Enum" name=ValidID modifiers2+=EnumEntityModifier2* "{"
 		//features+=EnumProperty* "}"
 		public Group getGroup() { return cGroup; }
 
@@ -5299,7 +5299,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//EnumEntityModifier1
 		public RuleCall getModifiers1EnumEntityModifier1ParserRuleCall_1_0() { return cModifiers1EnumEntityModifier1ParserRuleCall_1_0; }
 
-		//"enum"
+		//"#Enum"
 		public Keyword getEnumKeyword_2() { return cEnumKeyword_2; }
 
 		//name=ValidID
@@ -5836,11 +5836,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//PojoDao:
-		//	directives+=DaoDirective* modifiers1+=PojoEntityModifier1* "dao" name=ValidID modifiers2+=PojoDaoModifier* "{" //methods+=PojoMethod*
+		//	directives+=DaoDirective* modifiers1+=PojoEntityModifier1* "#Dao" name=ValidID modifiers2+=PojoDaoModifier* "{" //methods+=PojoMethod*
 		//	"}";
 		public ParserRule getRule() { return rule; }
 
-		//directives+=DaoDirective* modifiers1+=PojoEntityModifier1* "dao" name=ValidID modifiers2+=PojoDaoModifier* "{" //methods+=PojoMethod*
+		//directives+=DaoDirective* modifiers1+=PojoEntityModifier1* "#Dao" name=ValidID modifiers2+=PojoDaoModifier* "{" //methods+=PojoMethod*
 		//"}"
 		public Group getGroup() { return cGroup; }
 
@@ -5856,7 +5856,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//PojoEntityModifier1
 		public RuleCall getModifiers1PojoEntityModifier1ParserRuleCall_1_0() { return cModifiers1PojoEntityModifier1ParserRuleCall_1_0; }
 
-		//"dao"
+		//"#Dao"
 		public Keyword getDaoKeyword_2() { return cDaoKeyword_2; }
 
 		//name=ValidID
@@ -6647,7 +6647,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoEntity:
-	//	directives+=PojoDirective* modifiers1+=PojoEntityModifier1* "pojo" name=ValidID modifiers2+=PojoEntityModifier2* "{"
+	//	directives+=PojoDirective* modifiers1+=PojoEntityModifier1* "#Pojo" name=ValidID modifiers2+=PojoEntityModifier2* "{"
 	//	features+=PojoAnnotatedProperty* "}";
 	public PojoEntityElements getPojoEntityAccess() {
 		return pPojoEntity;
@@ -6715,7 +6715,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EnumEntity:
-	//	directives+=PojoDirective* modifiers1+=EnumEntityModifier1* "enum" name=ValidID modifiers2+=EnumEntityModifier2* "{"
+	//	directives+=PojoDirective* modifiers1+=EnumEntityModifier1* "#Enum" name=ValidID modifiers2+=EnumEntityModifier2* "{"
 	//	features+=EnumProperty* "}";
 	public EnumEntityElements getEnumEntityAccess() {
 		return pEnumEntity;
@@ -6810,7 +6810,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoDao:
-	//	directives+=DaoDirective* modifiers1+=PojoEntityModifier1* "dao" name=ValidID modifiers2+=PojoDaoModifier* "{" //methods+=PojoMethod*
+	//	directives+=DaoDirective* modifiers1+=PojoEntityModifier1* "#Dao" name=ValidID modifiers2+=PojoDaoModifier* "{" //methods+=PojoMethod*
 	//	"}";
 	public PojoDaoElements getPojoDaoAccess() {
 		return pPojoDao;
