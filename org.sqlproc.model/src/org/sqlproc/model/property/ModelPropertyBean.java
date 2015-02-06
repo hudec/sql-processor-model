@@ -344,6 +344,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         }
     }
 
+    public static boolean isNull(PropertyCondition condition) {
+        if (condition == null || condition.getName() == null || condition.getValue() == null)
+            return true;
+        return false;
+    }
+
     public static boolean isValid(PropertyCondition condition) {
         if (condition == null || condition.getName() == null || condition.getValue() == null)
             return false;
@@ -370,63 +376,83 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         try {
             for (Property property : artifacts.getProperties()) {
                 PropertyCondition condition = property.getCondition();
-                boolean condIsValid = isValid(condition);
 
                 if (property.getName().startsWith(DATABASE)) {
                     if (firstDatabase) {
                         firstDatabase = false;
                         initDatabaseModel(modelValues);
                     }
-                    if (condIsValid) {
-                        setValue(modelValues, property.getDatabase());
-                        modelValues.conditionalAttrs.get(DATABASE).add(property.getDatabase().getName());
-                    } else if (!modelValues.defaultAttrs.get(DATABASE).contains(property.getDatabase().getName())) {
-                        setValue(modelValues, property.getDatabase());
-                        modelValues.defaultAttrs.get(DATABASE).add(property.getDatabase().getName());
-                    }
+                    if (!isNull(condition))
+                        continue;
+                    setValue(modelValues, property.getDatabase());
+                    modelValues.defaultAttrs.get(DATABASE).add(property.getDatabase().getName());
                 } else if (property.getName().startsWith(POJOGEN)) {
                     if (firstPojogen) {
                         firstPojogen = false;
                         initPojogenModel(modelValues);
                     }
-                    if (condIsValid) {
-                        setValue(modelValues, property.getPojogen());
-                        modelValues.conditionalAttrs.get(POJOGEN).add(property.getPojogen().getName());
-                    } else if (!modelValues.defaultAttrs.get(POJOGEN).contains(property.getPojogen().getName())) {
-                        setValue(modelValues, property.getPojogen());
-                        modelValues.defaultAttrs.get(POJOGEN).add(property.getPojogen().getName());
-                    }
+                    if (!isNull(condition))
+                        continue;
+                    setValue(modelValues, property.getPojogen());
+                    modelValues.defaultAttrs.get(POJOGEN).add(property.getPojogen().getName());
                 } else if (property.getName().startsWith(METAGEN)) {
                     if (firstMetagen) {
                         firstMetagen = false;
                         initMetagenModel(modelValues);
                     }
-                    if (condIsValid) {
-                        setValue(modelValues, property.getMetagen());
-                        modelValues.conditionalAttrs.get(METAGEN).add(property.getMetagen().getName());
-                    } else if (!modelValues.defaultAttrs.get(METAGEN).contains(property.getMetagen().getName())) {
-                        setValue(modelValues, property.getMetagen());
-                        modelValues.defaultAttrs.get(METAGEN).add(property.getMetagen().getName());
-                    }
+                    if (!isNull(condition))
+                        continue;
+                    setValue(modelValues, property.getMetagen());
+                    modelValues.defaultAttrs.get(METAGEN).add(property.getMetagen().getName());
                 } else if (property.getName().startsWith(DAOGEN)) {
                     if (firstDaogen) {
                         firstDaogen = false;
                         initDaogenModel(modelValues);
                     }
+                    if (!isNull(condition))
+                        continue;
+                    setValue(modelValues, property.getDaogen());
+                    modelValues.defaultAttrs.get(DAOGEN).add(property.getDaogen().getName());
+                } else {
+                    if (!isNull(condition))
+                        continue;
+                    setValue(modelValues, property);
+                    modelValues.defaultAttrs.get(GLOBAL).add(property.getName());
+                }
+            }
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            for (Property property : artifacts.getProperties()) {
+                PropertyCondition condition = property.getCondition();
+                boolean condIsValid = isValid(condition);
+
+                if (property.getName().startsWith(DATABASE)) {
+                    if (condIsValid) {
+                        setValue(modelValues, property.getDatabase());
+                        modelValues.conditionalAttrs.get(DATABASE).add(property.getDatabase().getName());
+                    }
+                } else if (property.getName().startsWith(POJOGEN)) {
+                    if (condIsValid) {
+                        setValue(modelValues, property.getPojogen());
+                        modelValues.conditionalAttrs.get(POJOGEN).add(property.getPojogen().getName());
+                    }
+                } else if (property.getName().startsWith(METAGEN)) {
+                    if (condIsValid) {
+                        setValue(modelValues, property.getMetagen());
+                        modelValues.conditionalAttrs.get(METAGEN).add(property.getMetagen().getName());
+                    }
+                } else if (property.getName().startsWith(DAOGEN)) {
                     if (condIsValid) {
                         setValue(modelValues, property.getDaogen());
                         modelValues.conditionalAttrs.get(DAOGEN).add(property.getDaogen().getName());
-                    } else if (!modelValues.defaultAttrs.get(DAOGEN).contains(property.getDaogen().getName())) {
-                        setValue(modelValues, property.getDaogen());
-                        modelValues.defaultAttrs.get(DAOGEN).add(property.getDaogen().getName());
                     }
                 } else {
                     if (condIsValid) {
                         setValue(modelValues, property);
                         modelValues.conditionalAttrs.get(GLOBAL).add(property.getName());
-                    } else if (!modelValues.defaultAttrs.get(GLOBAL).contains(property.getName())) {
-                        setValue(modelValues, property);
-                        modelValues.defaultAttrs.get(GLOBAL).add(property.getName());
                     }
                 }
             }
