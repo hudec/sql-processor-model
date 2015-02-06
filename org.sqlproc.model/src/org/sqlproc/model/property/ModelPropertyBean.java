@@ -29,6 +29,7 @@ import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.Property;
+import org.sqlproc.model.processorModel.PropertyCondition;
 import org.sqlproc.model.processorModel.ValueType;
 import org.sqlproc.model.util.Utils;
 
@@ -255,6 +256,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public String daoDebugScope;
         public String daoActiveFilter;
         public String daoPckg;
+
+        public Map<String, Set<String>> defaultAttrs = new HashMap<String, Set<String>>();
+        public Map<String, Set<String>> conditionalAttrs = new HashMap<String, Set<String>>();
     }
 
     private ModelValues modelValues = null;
@@ -308,8 +312,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 }
 
                 Artifacts artifacts = (Artifacts) rootASTElement;
-                if (loadModel(modelValues, artifacts) == null)
+                if ((modelValues = loadModel(modelValues, artifacts)) == null)
                     return;
+
+                System.out.println("defaultAttrs = " + modelValues.defaultAttrs);
+                System.out.println("conditionalAttrs = " + modelValues.conditionalAttrs);
 
                 LOGGER.debug("MODEL " + modelValues.toString());
             }
@@ -337,6 +344,16 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         }
     }
 
+    public static boolean isValid(PropertyCondition condition) {
+        if (condition == null || condition.getName() == null || condition.getValue() == null)
+            return false;
+        String envValue = System.getenv(condition.getName());
+        String propValue = getPropertyValue(condition.getValue());
+        if (envValue == null || propValue == null || !envValue.equals(propValue))
+            return false;
+        return true;
+    }
+
     public static ModelValues loadModel(ModelValues modelValues, Artifacts artifacts) {
 
         if (artifacts.getProperties().isEmpty())
@@ -345,58 +362,72 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues = new ModelValues();
 
         initModel(modelValues);
-        boolean reloadDatabase = false;
-        for (Property property : artifacts.getProperties()) {
-            if (property.getName().startsWith(DATABASE)) {
-                reloadDatabase = true;
-                break;
-            }
-        }
-        if (reloadDatabase) {
-            initDatabaseModel(modelValues);
-        }
-        boolean reloadPojogen = false;
-        for (Property property : artifacts.getProperties()) {
-            if (property.getName().startsWith(POJOGEN)) {
-                reloadPojogen = true;
-                break;
-            }
-        }
-        if (reloadPojogen) {
-            initPojogenModel(modelValues);
-        }
-        boolean reloadMetagen = false;
-        for (Property property : artifacts.getProperties()) {
-            if (property.getName().startsWith(METAGEN)) {
-                reloadMetagen = true;
-                break;
-            }
-        }
-        if (reloadMetagen) {
-            initMetagenModel(modelValues);
-        }
-        boolean reloadDaogen = false;
-        for (Property property : artifacts.getProperties()) {
-            if (property.getName().startsWith(DAOGEN)) {
-                reloadDaogen = true;
-                break;
-            }
-        }
-        if (reloadDaogen) {
-            initDaogenModel(modelValues);
-        }
+
+        boolean firstDatabase = true;
+        boolean firstPojogen = true;
+        boolean firstMetagen = true;
+        boolean firstDaogen = true;
         try {
             for (Property property : artifacts.getProperties()) {
+                PropertyCondition condition = property.getCondition();
+                boolean condIsValid = isValid(condition);
+
                 if (property.getName().startsWith(DATABASE)) {
-                    setValue(modelValues, property.getDatabase());
+                    if (firstDatabase) {
+                        firstDatabase = false;
+                        initDatabaseModel(modelValues);
+                    }
+                    if (condIsValid) {
+                        setValue(modelValues, property.getDatabase());
+                        modelValues.conditionalAttrs.get(DATABASE).add(property.getDatabase().getName());
+                    } else if (!modelValues.defaultAttrs.get(DATABASE).contains(property.getDatabase().getName())) {
+                        setValue(modelValues, property.getDatabase());
+                        modelValues.defaultAttrs.get(DATABASE).add(property.getDatabase().getName());
+                    }
                 } else if (property.getName().startsWith(POJOGEN)) {
-                    setValue(modelValues, property.getPojogen());
+                    if (firstPojogen) {
+                        firstPojogen = false;
+                        initPojogenModel(modelValues);
+                    }
+                    if (condIsValid) {
+                        setValue(modelValues, property.getPojogen());
+                        modelValues.conditionalAttrs.get(POJOGEN).add(property.getPojogen().getName());
+                    } else if (!modelValues.defaultAttrs.get(POJOGEN).contains(property.getPojogen().getName())) {
+                        setValue(modelValues, property.getPojogen());
+                        modelValues.defaultAttrs.get(POJOGEN).add(property.getPojogen().getName());
+                    }
                 } else if (property.getName().startsWith(METAGEN)) {
-                    setValue(modelValues, property.getMetagen());
+                    if (firstMetagen) {
+                        firstMetagen = false;
+                        initMetagenModel(modelValues);
+                    }
+                    if (condIsValid) {
+                        setValue(modelValues, property.getMetagen());
+                        modelValues.conditionalAttrs.get(METAGEN).add(property.getMetagen().getName());
+                    } else if (!modelValues.defaultAttrs.get(METAGEN).contains(property.getMetagen().getName())) {
+                        setValue(modelValues, property.getMetagen());
+                        modelValues.defaultAttrs.get(METAGEN).add(property.getMetagen().getName());
+                    }
                 } else if (property.getName().startsWith(DAOGEN)) {
-                    setValue(modelValues, property.getDaogen());
+                    if (firstDaogen) {
+                        firstDaogen = false;
+                        initDaogenModel(modelValues);
+                    }
+                    if (condIsValid) {
+                        setValue(modelValues, property.getDaogen());
+                        modelValues.conditionalAttrs.get(DAOGEN).add(property.getDaogen().getName());
+                    } else if (!modelValues.defaultAttrs.get(DAOGEN).contains(property.getDaogen().getName())) {
+                        setValue(modelValues, property.getDaogen());
+                        modelValues.defaultAttrs.get(DAOGEN).add(property.getDaogen().getName());
+                    }
                 } else {
-                    setValue(modelValues, property);
+                    if (condIsValid) {
+                        setValue(modelValues, property);
+                        modelValues.conditionalAttrs.get(GLOBAL).add(property.getName());
+                    } else if (!modelValues.defaultAttrs.get(GLOBAL).contains(property.getName())) {
+                        setValue(modelValues, property);
+                        modelValues.defaultAttrs.get(GLOBAL).add(property.getName());
+                    }
                 }
             }
         } catch (RuntimeException e) {
@@ -410,6 +441,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.replaceAllRegex = new HashMap<String, String>();
         modelValues.replaceAllReplacement = new HashMap<String, String>();
         modelValues.doCompressMetaDirectives = false;
+        modelValues.defaultAttrs.put(GLOBAL, new HashSet<String>());
+        modelValues.conditionalAttrs.put(GLOBAL, new HashSet<String>());
     }
 
     private static void initDatabaseModel(ModelValues modelValues) {
@@ -432,6 +465,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.dbTakeComments = false;
         modelValues.dbLowercaseNames = false;
         modelValues.dbUppercaseNames = false;
+        modelValues.defaultAttrs.put(DATABASE, new HashSet<String>());
+        modelValues.conditionalAttrs.put(DATABASE, new HashSet<String>());
     }
 
     private static void initPojogenModel(ModelValues modelValues) {
@@ -476,6 +511,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.activeFilter = null;
         modelValues.pckg = null;
         modelValues.enumForCheckConstraints = new HashMap<String, String>();
+        modelValues.defaultAttrs.put(POJOGEN, new HashSet<String>());
+        modelValues.conditionalAttrs.put(POJOGEN, new HashSet<String>());
     }
 
     private static void initMetagenModel(ModelValues modelValues) {
@@ -505,6 +542,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.metaOptimizeInsert = new HashSet<String>();
         modelValues.metaOptionalFeatures = new HashMap<String, Set<String>>();
         modelValues.metaActiveFilter = null;
+        modelValues.defaultAttrs.put(METAGEN, new HashSet<String>());
+        modelValues.conditionalAttrs.put(METAGEN, new HashSet<String>());
     }
 
     private static void initDaogenModel(ModelValues modelValues) {
@@ -518,6 +557,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.daoDebugScope = null;
         modelValues.daoActiveFilter = null;
         modelValues.daoPckg = null;
+        modelValues.defaultAttrs.put(DAOGEN, new HashSet<String>());
+        modelValues.conditionalAttrs.put(DAOGEN, new HashSet<String>());
     }
 
     public static void setValue(ModelValues modelValues, Property property) {
@@ -1554,6 +1595,114 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public String getDaoPackage(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.daoPckg : null;
+    }
+
+    @Override
+    public String getDbDriver(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbDriver : null;
+    }
+
+    @Override
+    public String getDbUrl(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbUrl : null;
+    }
+
+    @Override
+    public String getDbUsername(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbUsername : null;
+    }
+
+    @Override
+    public String getDbPassword(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbPassword : null;
+    }
+
+    @Override
+    public String getDbCatalog(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbCatalog : null;
+    }
+
+    @Override
+    public String getDbSchema(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbSchema : null;
+    }
+
+    @Override
+    public String getDbSqlsBefore(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbSqlsBefore : null;
+    }
+
+    @Override
+    public String getDbSqlsAfter(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbSqlsAfter : null;
+    }
+
+    @Override
+    public String getDbIndexTypes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbIndexTypes : null;
+    }
+
+    @Override
+    public boolean getDbSkipIndexes(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbSkipIndexes : false;
+    }
+
+    @Override
+    public boolean getDbSkipProcedures(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbSkipProcedures : false;
+    }
+
+    @Override
+    public boolean getDbSkipCheckConstraints(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbSkipCheckConstraints : false;
+    }
+
+    @Override
+    public String getDbType(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbType : null;
+    }
+
+    @Override
+    public String getDbDebugLevel(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbDebugLevel : null;
+    }
+
+    @Override
+    public String getDbDebugScope(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbDebugScope : null;
+    }
+
+    @Override
+    public boolean getDbTakeComments(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbTakeComments : false;
+    }
+
+    @Override
+    public boolean getDbLowercaseNames(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbLowercaseNames : false;
+    }
+
+    @Override
+    public boolean getDbUppercaseNames(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.dbUppercaseNames : false;
     }
 
     @Override

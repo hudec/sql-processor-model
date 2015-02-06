@@ -20,7 +20,7 @@
 '#Generics'=73
 '#Getter'=69
 '#HashCode'=85
-'#Implementation'=60
+'#Implementation'=62
 '#Index'=80
 '#InheritanceChild'=83
 '#InheritanceDiscriminator'=89
@@ -39,7 +39,7 @@
 '#Setter'=68
 '#Standard'=67
 '#Static'=65
-'#Suffix'=59
+'#Suffix'=61
 '#ToInit'=93
 '#ToString'=79
 '#UpdateCol'=91
@@ -69,7 +69,7 @@
 '/='=19
 ':'=53
 '::'=223
-';'=54
+';'=56
 '<'=27
 '<>'=32
 '='=13
@@ -113,7 +113,7 @@
 'final'=221
 'finally'=127
 'for'=118
-'function'=58
+'function'=60
 'function-result'=215
 'function-result-set'=216
 'generate-default-idgenerators'=214
@@ -160,13 +160,13 @@
 'only-tables'=172
 'optimize-insert'=218
 'optional-features'=219
-'package'=61
-'pojo'=55
+'package'=63
+'pojo'=57
 'pojogen-'=135
 'pojos-for-functions'=200
 'pojos-for-procedures'=199
 'preserve-foreign-keys'=196
-'procedure'=57
+'procedure'=59
 'procedure-result-set'=217
 'rename-columns'=180
 'rename-tables'=179
@@ -190,7 +190,7 @@
 'super'=49
 'switch'=115
 'synchronized'=128
-'table'=56
+'table'=58
 'table-identity'=206
 'table-many-to-many'=186
 'table-sequence'=204
@@ -209,10 +209,10 @@
 'var'=226
 'version-column'=198
 'while'=119
-'{'=62
+'{'=54
 '|'=225
 '||'=14
-'}'=63
+'}'=55
 RULE_ANY_OTHER=12
 RULE_DECIMAL=7
 RULE_HEX=5

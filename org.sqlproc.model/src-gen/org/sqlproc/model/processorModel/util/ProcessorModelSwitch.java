@@ -113,6 +113,7 @@ import org.sqlproc.model.processorModel.ProcedurePojoAssignement;
 import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
+import org.sqlproc.model.processorModel.PropertyCondition;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
@@ -354,6 +355,13 @@ public class ProcessorModelSwitch<T> extends Switch<T>
       {
         ExtendsAssignementGenerics extendsAssignementGenerics = (ExtendsAssignementGenerics)theEObject;
         T result = caseExtendsAssignementGenerics(extendsAssignementGenerics);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorModelPackage.PROPERTY_CONDITION:
+      {
+        PropertyCondition propertyCondition = (PropertyCondition)theEObject;
+        T result = casePropertyCondition(propertyCondition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1410,6 +1418,22 @@ public class ProcessorModelSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExtendsAssignementGenerics(ExtendsAssignementGenerics object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Property Condition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Property Condition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePropertyCondition(PropertyCondition object)
   {
     return null;
   }

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.sqlproc.model.processorModel.Property#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Property#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Property#getDatabase <em>Database</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Property#getPojogen <em>Pojogen</em>}</li>
@@ -29,6 +30,32 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Property extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Condition</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Condition</em>' containment reference.
+   * @see #setCondition(PropertyCondition)
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getProperty_Condition()
+   * @model containment="true"
+   * @generated
+   */
+  PropertyCondition getCondition();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.Property#getCondition <em>Condition</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Condition</em>' containment reference.
+   * @see #getCondition()
+   * @generated
+   */
+  void setCondition(PropertyCondition value);
+
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->

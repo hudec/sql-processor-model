@@ -115,6 +115,7 @@ import org.sqlproc.model.processorModel.ProcedurePojoAssignement;
 import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
+import org.sqlproc.model.processorModel.PropertyCondition;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
@@ -308,6 +309,11 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
       public Adapter caseExtendsAssignementGenerics(ExtendsAssignementGenerics object)
       {
         return createExtendsAssignementGenericsAdapter();
+      }
+      @Override
+      public Adapter casePropertyCondition(PropertyCondition object)
+      {
+        return createPropertyConditionAdapter();
       }
       @Override
       public Adapter caseProperty(Property object)
@@ -1132,6 +1138,21 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExtendsAssignementGenericsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.PropertyCondition <em>Property Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.PropertyCondition
+   * @generated
+   */
+  public Adapter createPropertyConditionAdapter()
   {
     return null;
   }

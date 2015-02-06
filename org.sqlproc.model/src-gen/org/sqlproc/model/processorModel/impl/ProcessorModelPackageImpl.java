@@ -118,6 +118,7 @@ import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelFactory;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
+import org.sqlproc.model.processorModel.PropertyCondition;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
@@ -306,6 +307,13 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * @generated
    */
   private EClass extendsAssignementGenericsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertyConditionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1820,6 +1828,36 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPropertyCondition()
+  {
+    return propertyConditionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPropertyCondition_Name()
+  {
+    return (EAttribute)propertyConditionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyCondition_Value()
+  {
+    return (EReference)propertyConditionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getProperty()
   {
     return propertyEClass;
@@ -1830,9 +1868,19 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getProperty_Condition()
+  {
+    return (EReference)propertyEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getProperty_Name()
   {
-    return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)propertyEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1842,7 +1890,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    */
   public EReference getProperty_Database()
   {
-    return (EReference)propertyEClass.getEStructuralFeatures().get(1);
+    return (EReference)propertyEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1852,7 +1900,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    */
   public EReference getProperty_Pojogen()
   {
-    return (EReference)propertyEClass.getEStructuralFeatures().get(2);
+    return (EReference)propertyEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1862,7 +1910,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    */
   public EReference getProperty_Metagen()
   {
-    return (EReference)propertyEClass.getEStructuralFeatures().get(3);
+    return (EReference)propertyEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1872,7 +1920,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    */
   public EReference getProperty_Daogen()
   {
-    return (EReference)propertyEClass.getEStructuralFeatures().get(4);
+    return (EReference)propertyEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -1882,7 +1930,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    */
   public EAttribute getProperty_ReplaceId()
   {
-    return (EAttribute)propertyEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)propertyEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -1892,7 +1940,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    */
   public EReference getProperty_Regex()
   {
-    return (EReference)propertyEClass.getEStructuralFeatures().get(6);
+    return (EReference)propertyEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -1902,7 +1950,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    */
   public EReference getProperty_Replacement()
   {
-    return (EReference)propertyEClass.getEStructuralFeatures().get(7);
+    return (EReference)propertyEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -4614,7 +4662,12 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEAttribute(extendsAssignementGenericsEClass, EXTENDS_ASSIGNEMENT_GENERICS__DB_TABLES);
     createEAttribute(extendsAssignementGenericsEClass, EXTENDS_ASSIGNEMENT_GENERICS__DB_NOT_TABLES);
 
+    propertyConditionEClass = createEClass(PROPERTY_CONDITION);
+    createEAttribute(propertyConditionEClass, PROPERTY_CONDITION__NAME);
+    createEReference(propertyConditionEClass, PROPERTY_CONDITION__VALUE);
+
     propertyEClass = createEClass(PROPERTY);
+    createEReference(propertyEClass, PROPERTY__CONDITION);
     createEAttribute(propertyEClass, PROPERTY__NAME);
     createEReference(propertyEClass, PROPERTY__DATABASE);
     createEReference(propertyEClass, PROPERTY__POJOGEN);
@@ -5161,7 +5214,12 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEAttribute(getExtendsAssignementGenerics_DbTables(), ecorePackage.getEString(), "dbTables", null, 0, -1, ExtendsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExtendsAssignementGenerics_DbNotTables(), ecorePackage.getEString(), "dbNotTables", null, 0, -1, ExtendsAssignementGenerics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(propertyConditionEClass, PropertyCondition.class, "PropertyCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPropertyCondition_Name(), ecorePackage.getEString(), "name", null, 0, 1, PropertyCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyCondition_Value(), this.getValueType(), null, "value", null, 0, 1, PropertyCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getProperty_Condition(), this.getPropertyCondition(), null, "condition", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProperty_Database(), this.getDatabaseProperty(), null, "database", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProperty_Pojogen(), this.getPojogenProperty(), null, "pojogen", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

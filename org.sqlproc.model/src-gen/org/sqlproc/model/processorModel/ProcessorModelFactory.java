@@ -248,6 +248,15 @@ public interface ProcessorModelFactory extends EFactory
   ExtendsAssignementGenerics createExtendsAssignementGenerics();
 
   /**
+   * Returns a new object of class '<em>Property Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Condition</em>'.
+   * @generated
+   */
+  PropertyCondition createPropertyCondition();
+
+  /**
    * Returns a new object of class '<em>Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

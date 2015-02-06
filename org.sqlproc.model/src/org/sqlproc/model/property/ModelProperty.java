@@ -175,4 +175,40 @@ public interface ModelProperty extends Adapter {
     Map<String, String> getEnumForCheckConstraints(EObject model);
 
     boolean isCompressMetaDirectives(EObject model);
+
+    String getDbPassword(EObject model);
+
+    String getDbCatalog(EObject model);
+
+    String getDbSchema(EObject model);
+
+    String getDbSqlsBefore(EObject model);
+
+    String getDbSqlsAfter(EObject model);
+
+    String getDbIndexTypes(EObject model);
+
+    boolean getDbSkipIndexes(EObject model);
+
+    boolean getDbSkipProcedures(EObject model);
+
+    boolean getDbSkipCheckConstraints(EObject model);
+
+    String getDbType(EObject model);
+
+    String getDbDebugLevel(EObject model);
+
+    String getDbDebugScope(EObject model);
+
+    boolean getDbTakeComments(EObject model);
+
+    boolean getDbLowercaseNames(EObject model);
+
+    boolean getDbUppercaseNames(EObject model);
+
+    String getDbDriver(EObject model);
+
+    String getDbUrl(EObject model);
+
+    String getDbUsername(EObject model);
 }

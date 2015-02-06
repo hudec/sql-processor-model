@@ -163,7 +163,8 @@ public class DbResolverBean implements DbResolver {
             connections.put(modelModelValues.dir, modelDatabaseValues);
         }
 
-        if (!modelModelValues.doResolveDb) {
+        boolean doResolveDb = modelProperty.isDoResolveDb(model);
+        if (!doResolveDb) {
             debug.trace(m, "DB CLOSE");
             closeConnection(modelDatabaseValues);
             return null;
@@ -173,9 +174,10 @@ public class DbResolverBean implements DbResolver {
 
         debug = new Debug(modelModelValues.dbDebugLevel, modelModelValues.dbDebugScope, LOGGER);
 
-        if (modelModelValues.dbDriver != null) {
-            if (!modelModelValues.dbDriver.equals(modelDatabaseValues.dbDriver)) {
-                modelDatabaseValues.dbDriver = modelModelValues.dbDriver;
+        String dbDriver = modelProperty.getDbDriver(model);
+        if (dbDriver != null) {
+            if (!dbDriver.equals(modelDatabaseValues.dbDriver)) {
+                modelDatabaseValues.dbDriver = dbDriver;
                 modelDatabaseValues.doReconnect = true;
             }
         } else {
@@ -183,9 +185,10 @@ public class DbResolverBean implements DbResolver {
             closeConnection(modelDatabaseValues);
             return null;
         }
-        if (modelModelValues.dbUrl != null) {
-            if (!modelModelValues.dbUrl.equals(modelDatabaseValues.dbUrl)) {
-                modelDatabaseValues.dbUrl = modelModelValues.dbUrl;
+        String dbUrl = modelProperty.getDbUrl(model);
+        if (dbUrl != null) {
+            if (!dbUrl.equals(modelDatabaseValues.dbUrl)) {
+                modelDatabaseValues.dbUrl = dbUrl;
                 modelDatabaseValues.doReconnect = true;
             }
         } else {
@@ -194,9 +197,10 @@ public class DbResolverBean implements DbResolver {
             return null;
         }
 
-        if (modelModelValues.dbUsername != null) {
-            if (!modelModelValues.dbUsername.equals(modelDatabaseValues.dbUsername)) {
-                modelDatabaseValues.dbUsername = modelModelValues.dbUsername;
+        String dbUsername = modelProperty.getDbUsername(model);
+        if (dbUsername != null) {
+            if (!dbUsername.equals(modelDatabaseValues.dbUsername)) {
+                modelDatabaseValues.dbUsername = dbUsername;
                 modelDatabaseValues.doReconnect = true;
             }
         } else {
@@ -204,9 +208,10 @@ public class DbResolverBean implements DbResolver {
             closeConnection(modelDatabaseValues);
             return null;
         }
-        if (modelModelValues.dbPassword != null) {
-            if (!modelModelValues.dbPassword.equals(modelDatabaseValues.dbPassword)) {
-                modelDatabaseValues.dbPassword = modelModelValues.dbPassword;
+        String dbPassword = modelProperty.getDbPassword(model);
+        if (dbPassword != null) {
+            if (!dbPassword.equals(modelDatabaseValues.dbPassword)) {
+                modelDatabaseValues.dbPassword = dbPassword;
                 modelDatabaseValues.doReconnect = true;
             }
         } else {
@@ -214,36 +219,41 @@ public class DbResolverBean implements DbResolver {
             closeConnection(modelDatabaseValues);
             return null;
         }
-        if (modelModelValues.dbCatalog != null) {
-            if (!modelModelValues.dbCatalog.equals(modelDatabaseValues.dbCatalog)) {
-                modelDatabaseValues.dbCatalog = modelModelValues.dbCatalog;
+        String dbCatalog = modelProperty.getDbCatalog(model);
+        if (dbCatalog != null) {
+            if (!dbCatalog.equals(modelDatabaseValues.dbCatalog)) {
+                modelDatabaseValues.dbCatalog = dbCatalog;
                 modelDatabaseValues.doReconnect = true;
             }
         } else
             modelDatabaseValues.dbCatalog = null;
-        if (modelModelValues.dbSchema != null) {
-            if (!modelModelValues.dbSchema.equals(modelDatabaseValues.dbSchema)) {
-                modelDatabaseValues.dbSchema = modelModelValues.dbSchema;
+        String dbSchema = modelProperty.getDbSchema(model);
+        if (dbSchema != null) {
+            if (!dbSchema.equals(modelDatabaseValues.dbSchema)) {
+                modelDatabaseValues.dbSchema = dbSchema;
                 modelDatabaseValues.doReconnect = true;
             }
         } else
             modelDatabaseValues.dbSchema = null;
-        if (modelModelValues.dbSqlsBefore != null) {
-            if (!modelModelValues.dbSqlsBefore.equals(modelDatabaseValues.dbSqlsBefore)) {
-                modelDatabaseValues.dbSqlsBefore = modelModelValues.dbSqlsBefore;
+        String dbSqlsBefore = modelProperty.getDbSqlsBefore(model);
+        if (dbSqlsBefore != null) {
+            if (!dbSqlsBefore.equals(modelDatabaseValues.dbSqlsBefore)) {
+                modelDatabaseValues.dbSqlsBefore = dbSqlsBefore;
             }
         } else
             modelDatabaseValues.dbSqlsBefore = null;
-        if (modelModelValues.dbSqlsAfter != null) {
-            if (!modelModelValues.dbSqlsAfter.equals(modelDatabaseValues.dbSqlsAfter)) {
-                modelDatabaseValues.dbSqlsAfter = modelModelValues.dbSqlsAfter;
+        String dbSqlsAfter = modelProperty.getDbSqlsAfter(model);
+        if (dbSqlsAfter != null) {
+            if (!dbSqlsAfter.equals(modelDatabaseValues.dbSqlsAfter)) {
+                modelDatabaseValues.dbSqlsAfter = dbSqlsAfter;
             }
         } else
             modelDatabaseValues.dbSqlsAfter = null;
-        if (modelModelValues.dbIndexTypes != null) {
-            if (!modelModelValues.dbIndexTypes.equals(modelDatabaseValues.dbIndexTypes)) {
-                modelDatabaseValues.dbIndexTypes = modelModelValues.dbIndexTypes;
-                String[] ss = modelModelValues.dbIndexTypes.split(",");
+        String dbIndexTypes = modelProperty.getDbIndexTypes(model);
+        if (dbIndexTypes != null) {
+            if (!dbIndexTypes.equals(modelDatabaseValues.dbIndexTypes)) {
+                modelDatabaseValues.dbIndexTypes = dbIndexTypes;
+                String[] ss = dbIndexTypes.split(",");
                 modelDatabaseValues.indexTypes = new HashSet<Short>();
                 for (String s : ss) {
                     if (s.trim().length() > 0) {
@@ -261,28 +271,34 @@ public class DbResolverBean implements DbResolver {
             modelDatabaseValues.indexTypes.add((short) 1);
             modelDatabaseValues.indexTypes.add((short) 3);
         }
-        if (modelModelValues.dbSkipIndexes != modelDatabaseValues.dbSkipIndexes) {
-            modelDatabaseValues.dbSkipIndexes = modelModelValues.dbSkipIndexes;
+        boolean dbSkipIndexes = modelProperty.getDbSkipIndexes(model);
+        if (dbSkipIndexes != modelDatabaseValues.dbSkipIndexes) {
+            modelDatabaseValues.dbSkipIndexes = dbSkipIndexes;
         }
-        if (modelModelValues.dbSkipCheckConstraints != modelDatabaseValues.dbSkipCheckConstraints) {
-            modelDatabaseValues.dbSkipCheckConstraints = modelModelValues.dbSkipCheckConstraints;
+        boolean dbSkipCheckConstraints = modelProperty.getDbSkipCheckConstraints(model);
+        if (dbSkipCheckConstraints != modelDatabaseValues.dbSkipCheckConstraints) {
+            modelDatabaseValues.dbSkipCheckConstraints = dbSkipCheckConstraints;
         }
-        if (modelModelValues.dbSkipProcedures != modelDatabaseValues.dbSkipProcedures) {
-            modelDatabaseValues.dbSkipProcedures = modelModelValues.dbSkipProcedures;
+        boolean dbSkipProcedures = modelProperty.getDbSkipProcedures(model);
+        if (dbSkipProcedures != modelDatabaseValues.dbSkipProcedures) {
+            modelDatabaseValues.dbSkipProcedures = dbSkipProcedures;
         }
-        if (modelModelValues.dbTakeComments != modelDatabaseValues.dbTakeComments) {
-            modelDatabaseValues.dbTakeComments = modelModelValues.dbTakeComments;
+        boolean dbTakeComments = modelProperty.getDbTakeComments(model);
+        if (dbTakeComments != modelDatabaseValues.dbTakeComments) {
+            modelDatabaseValues.dbTakeComments = dbTakeComments;
         }
-        if (modelModelValues.dbLowercaseNames != modelDatabaseValues.dbLowercaseNames) {
-            modelDatabaseValues.dbLowercaseNames = modelModelValues.dbLowercaseNames;
+        boolean dbLowercaseNames = modelProperty.getDbLowercaseNames(model);
+        if (dbLowercaseNames != modelDatabaseValues.dbLowercaseNames) {
+            modelDatabaseValues.dbLowercaseNames = dbLowercaseNames;
         }
-        if (modelModelValues.dbUppercaseNames != modelDatabaseValues.dbUppercaseNames) {
-            modelDatabaseValues.dbUppercaseNames = modelModelValues.dbUppercaseNames;
+        boolean dbUppercaseNames = modelProperty.getDbUppercaseNames(model);
+        if (dbUppercaseNames != modelDatabaseValues.dbUppercaseNames) {
+            modelDatabaseValues.dbUppercaseNames = dbUppercaseNames;
         }
-        if (modelModelValues.dbType != null) {
-            if (modelDatabaseValues.dbType == null
-                    || !modelModelValues.dbType.equals(modelDatabaseValues.dbType.getValue())) {
-                modelDatabaseValues.dbType = DbType.fromValue(modelModelValues.dbType);
+        String dbType = modelProperty.getDbType(model);
+        if (dbType != null) {
+            if (modelDatabaseValues.dbType == null || !dbType.equals(modelDatabaseValues.dbType.getValue())) {
+                modelDatabaseValues.dbType = DbType.fromValue(dbType);
             }
         } else {
             modelDatabaseValues.dbType = null;

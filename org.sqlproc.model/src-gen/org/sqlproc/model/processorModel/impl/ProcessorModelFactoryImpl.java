@@ -117,6 +117,7 @@ import org.sqlproc.model.processorModel.ProcedureUpdate;
 import org.sqlproc.model.processorModel.ProcessorModelFactory;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
+import org.sqlproc.model.processorModel.PropertyCondition;
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
 import org.sqlproc.model.processorModel.TableAssignement;
@@ -200,6 +201,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT: return createExtendsAssignement();
       case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS: return createImplementsAssignementGenerics();
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT_GENERICS: return createExtendsAssignementGenerics();
+      case ProcessorModelPackage.PROPERTY_CONDITION: return createPropertyCondition();
       case ProcessorModelPackage.PROPERTY: return createProperty();
       case ProcessorModelPackage.DATABASE_PROPERTY: return createDatabaseProperty();
       case ProcessorModelPackage.POJOGEN_PROPERTY: return createPojogenProperty();
@@ -564,6 +566,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     ExtendsAssignementGenericsImpl extendsAssignementGenerics = new ExtendsAssignementGenericsImpl();
     return extendsAssignementGenerics;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyCondition createPropertyCondition()
+  {
+    PropertyConditionImpl propertyCondition = new PropertyConditionImpl();
+    return propertyCondition;
   }
 
   /**

@@ -979,193 +979,241 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getDbNotTablesValidIDParserRuleCall_3_1_0() { return cDbNotTablesValidIDParserRuleCall_3_1_0; }
 	}
 
+	public class PropertyConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyCondition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cValueValueTypeParserRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//PropertyCondition:
+		//	"{" name=ValidID "=" value=ValueType "}";
+		public ParserRule getRule() { return rule; }
+
+		//"{" name=ValidID "=" value=ValueType "}"
+		public Group getGroup() { return cGroup; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
+
+		//name=ValidID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//ValidID
+		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+
+		//value=ValueType
+		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+
+		//ValueType
+		public RuleCall getValueValueTypeParserRuleCall_3_0() { return cValueValueTypeParserRuleCall_3_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+	}
+
 	public class PropertyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Property");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
-		private final Keyword cNameResolvePojoOnKeyword_0_0_0 = (Keyword)cNameAssignment_0_0.eContents().get(0);
-		private final Assignment cNameAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
-		private final Keyword cNameResolvePojoOffKeyword_0_1_0 = (Keyword)cNameAssignment_0_1.eContents().get(0);
-		private final Group cGroup_0_2 = (Group)cAlternatives_0.eContents().get(2);
-		private final Assignment cNameAssignment_0_2_0 = (Assignment)cGroup_0_2.eContents().get(0);
-		private final Keyword cNameDatabaseKeyword_0_2_0_0 = (Keyword)cNameAssignment_0_2_0.eContents().get(0);
-		private final Assignment cDatabaseAssignment_0_2_1 = (Assignment)cGroup_0_2.eContents().get(1);
-		private final RuleCall cDatabaseDatabasePropertyParserRuleCall_0_2_1_0 = (RuleCall)cDatabaseAssignment_0_2_1.eContents().get(0);
-		private final Group cGroup_0_3 = (Group)cAlternatives_0.eContents().get(3);
-		private final Assignment cNameAssignment_0_3_0 = (Assignment)cGroup_0_3.eContents().get(0);
-		private final Keyword cNamePojogenKeyword_0_3_0_0 = (Keyword)cNameAssignment_0_3_0.eContents().get(0);
-		private final Assignment cPojogenAssignment_0_3_1 = (Assignment)cGroup_0_3.eContents().get(1);
-		private final RuleCall cPojogenPojogenPropertyParserRuleCall_0_3_1_0 = (RuleCall)cPojogenAssignment_0_3_1.eContents().get(0);
-		private final Group cGroup_0_4 = (Group)cAlternatives_0.eContents().get(4);
-		private final Assignment cNameAssignment_0_4_0 = (Assignment)cGroup_0_4.eContents().get(0);
-		private final Keyword cNameMetagenKeyword_0_4_0_0 = (Keyword)cNameAssignment_0_4_0.eContents().get(0);
-		private final Assignment cMetagenAssignment_0_4_1 = (Assignment)cGroup_0_4.eContents().get(1);
-		private final RuleCall cMetagenMetagenPropertyParserRuleCall_0_4_1_0 = (RuleCall)cMetagenAssignment_0_4_1.eContents().get(0);
-		private final Group cGroup_0_5 = (Group)cAlternatives_0.eContents().get(5);
-		private final Assignment cNameAssignment_0_5_0 = (Assignment)cGroup_0_5.eContents().get(0);
-		private final Keyword cNameDaogenKeyword_0_5_0_0 = (Keyword)cNameAssignment_0_5_0.eContents().get(0);
-		private final Assignment cDaogenAssignment_0_5_1 = (Assignment)cGroup_0_5.eContents().get(1);
-		private final RuleCall cDaogenDaogenPropertyParserRuleCall_0_5_1_0 = (RuleCall)cDaogenAssignment_0_5_1.eContents().get(0);
-		private final Group cGroup_0_6 = (Group)cAlternatives_0.eContents().get(6);
-		private final Assignment cNameAssignment_0_6_0 = (Assignment)cGroup_0_6.eContents().get(0);
-		private final Keyword cNameReplaceAllRegexKeyword_0_6_0_0 = (Keyword)cNameAssignment_0_6_0.eContents().get(0);
-		private final Assignment cReplaceIdAssignment_0_6_1 = (Assignment)cGroup_0_6.eContents().get(1);
-		private final RuleCall cReplaceIdValidIDParserRuleCall_0_6_1_0 = (RuleCall)cReplaceIdAssignment_0_6_1.eContents().get(0);
-		private final Assignment cRegexAssignment_0_6_2 = (Assignment)cGroup_0_6.eContents().get(2);
-		private final RuleCall cRegexValueTypeParserRuleCall_0_6_2_0 = (RuleCall)cRegexAssignment_0_6_2.eContents().get(0);
-		private final Group cGroup_0_7 = (Group)cAlternatives_0.eContents().get(7);
-		private final Assignment cNameAssignment_0_7_0 = (Assignment)cGroup_0_7.eContents().get(0);
-		private final Keyword cNameReplaceAllReplacementKeyword_0_7_0_0 = (Keyword)cNameAssignment_0_7_0.eContents().get(0);
-		private final Assignment cReplaceIdAssignment_0_7_1 = (Assignment)cGroup_0_7.eContents().get(1);
-		private final RuleCall cReplaceIdValidIDParserRuleCall_0_7_1_0 = (RuleCall)cReplaceIdAssignment_0_7_1.eContents().get(0);
-		private final Assignment cReplacementAssignment_0_7_2 = (Assignment)cGroup_0_7.eContents().get(2);
-		private final RuleCall cReplacementValueTypeParserRuleCall_0_7_2_0 = (RuleCall)cReplacementAssignment_0_7_2.eContents().get(0);
-		private final Assignment cNameAssignment_0_8 = (Assignment)cAlternatives_0.eContents().get(8);
-		private final Keyword cNameCompressMetaDirectivesKeyword_0_8_0 = (Keyword)cNameAssignment_0_8.eContents().get(0);
-		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cConditionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cConditionPropertyConditionParserRuleCall_0_0 = (RuleCall)cConditionAssignment_0.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final Keyword cNameResolvePojoOnKeyword_1_0_0 = (Keyword)cNameAssignment_1_0.eContents().get(0);
+		private final Assignment cNameAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final Keyword cNameResolvePojoOffKeyword_1_1_0 = (Keyword)cNameAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
+		private final Assignment cNameAssignment_1_2_0 = (Assignment)cGroup_1_2.eContents().get(0);
+		private final Keyword cNameDatabaseKeyword_1_2_0_0 = (Keyword)cNameAssignment_1_2_0.eContents().get(0);
+		private final Assignment cDatabaseAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cDatabaseDatabasePropertyParserRuleCall_1_2_1_0 = (RuleCall)cDatabaseAssignment_1_2_1.eContents().get(0);
+		private final Group cGroup_1_3 = (Group)cAlternatives_1.eContents().get(3);
+		private final Assignment cNameAssignment_1_3_0 = (Assignment)cGroup_1_3.eContents().get(0);
+		private final Keyword cNamePojogenKeyword_1_3_0_0 = (Keyword)cNameAssignment_1_3_0.eContents().get(0);
+		private final Assignment cPojogenAssignment_1_3_1 = (Assignment)cGroup_1_3.eContents().get(1);
+		private final RuleCall cPojogenPojogenPropertyParserRuleCall_1_3_1_0 = (RuleCall)cPojogenAssignment_1_3_1.eContents().get(0);
+		private final Group cGroup_1_4 = (Group)cAlternatives_1.eContents().get(4);
+		private final Assignment cNameAssignment_1_4_0 = (Assignment)cGroup_1_4.eContents().get(0);
+		private final Keyword cNameMetagenKeyword_1_4_0_0 = (Keyword)cNameAssignment_1_4_0.eContents().get(0);
+		private final Assignment cMetagenAssignment_1_4_1 = (Assignment)cGroup_1_4.eContents().get(1);
+		private final RuleCall cMetagenMetagenPropertyParserRuleCall_1_4_1_0 = (RuleCall)cMetagenAssignment_1_4_1.eContents().get(0);
+		private final Group cGroup_1_5 = (Group)cAlternatives_1.eContents().get(5);
+		private final Assignment cNameAssignment_1_5_0 = (Assignment)cGroup_1_5.eContents().get(0);
+		private final Keyword cNameDaogenKeyword_1_5_0_0 = (Keyword)cNameAssignment_1_5_0.eContents().get(0);
+		private final Assignment cDaogenAssignment_1_5_1 = (Assignment)cGroup_1_5.eContents().get(1);
+		private final RuleCall cDaogenDaogenPropertyParserRuleCall_1_5_1_0 = (RuleCall)cDaogenAssignment_1_5_1.eContents().get(0);
+		private final Group cGroup_1_6 = (Group)cAlternatives_1.eContents().get(6);
+		private final Assignment cNameAssignment_1_6_0 = (Assignment)cGroup_1_6.eContents().get(0);
+		private final Keyword cNameReplaceAllRegexKeyword_1_6_0_0 = (Keyword)cNameAssignment_1_6_0.eContents().get(0);
+		private final Assignment cReplaceIdAssignment_1_6_1 = (Assignment)cGroup_1_6.eContents().get(1);
+		private final RuleCall cReplaceIdValidIDParserRuleCall_1_6_1_0 = (RuleCall)cReplaceIdAssignment_1_6_1.eContents().get(0);
+		private final Assignment cRegexAssignment_1_6_2 = (Assignment)cGroup_1_6.eContents().get(2);
+		private final RuleCall cRegexValueTypeParserRuleCall_1_6_2_0 = (RuleCall)cRegexAssignment_1_6_2.eContents().get(0);
+		private final Group cGroup_1_7 = (Group)cAlternatives_1.eContents().get(7);
+		private final Assignment cNameAssignment_1_7_0 = (Assignment)cGroup_1_7.eContents().get(0);
+		private final Keyword cNameReplaceAllReplacementKeyword_1_7_0_0 = (Keyword)cNameAssignment_1_7_0.eContents().get(0);
+		private final Assignment cReplaceIdAssignment_1_7_1 = (Assignment)cGroup_1_7.eContents().get(1);
+		private final RuleCall cReplaceIdValidIDParserRuleCall_1_7_1_0 = (RuleCall)cReplaceIdAssignment_1_7_1.eContents().get(0);
+		private final Assignment cReplacementAssignment_1_7_2 = (Assignment)cGroup_1_7.eContents().get(2);
+		private final RuleCall cReplacementValueTypeParserRuleCall_1_7_2_0 = (RuleCall)cReplacementAssignment_1_7_2.eContents().get(0);
+		private final Assignment cNameAssignment_1_8 = (Assignment)cAlternatives_1.eContents().get(8);
+		private final Keyword cNameCompressMetaDirectivesKeyword_1_8_0 = (Keyword)cNameAssignment_1_8.eContents().get(0);
+		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//Property:
-		//	(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
-		//	pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
-		//	name="replace-all-regex" replaceId=ValidID regex=ValueType | name="replace-all-replacement" replaceId=ValidID
-		//	replacement=ValueType | name="compress-meta-directives") ";";
+		//	condition=PropertyCondition? (name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-"
+		//	database=DatabaseProperty | name="pojogen-" pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty |
+		//	name="daogen-" daogen=DaogenProperty | name="replace-all-regex" replaceId=ValidID regex=ValueType |
+		//	name="replace-all-replacement" replaceId=ValidID replacement=ValueType | name="compress-meta-directives") ";";
 		public ParserRule getRule() { return rule; }
 
-		//(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
-		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
-		//name="replace-all-regex" replaceId=ValidID regex=ValueType | name="replace-all-replacement" replaceId=ValidID
-		//replacement=ValueType | name="compress-meta-directives") ";"
+		//condition=PropertyCondition? (name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-"
+		//database=DatabaseProperty | name="pojogen-" pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty |
+		//name="daogen-" daogen=DaogenProperty | name="replace-all-regex" replaceId=ValidID regex=ValueType |
+		//name="replace-all-replacement" replaceId=ValidID replacement=ValueType | name="compress-meta-directives") ";"
 		public Group getGroup() { return cGroup; }
+
+		//condition=PropertyCondition?
+		public Assignment getConditionAssignment_0() { return cConditionAssignment_0; }
+
+		//PropertyCondition
+		public RuleCall getConditionPropertyConditionParserRuleCall_0_0() { return cConditionPropertyConditionParserRuleCall_0_0; }
 
 		//name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
 		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
 		//name="replace-all-regex" replaceId=ValidID regex=ValueType | name="replace-all-replacement" replaceId=ValidID
 		//replacement=ValueType | name="compress-meta-directives"
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//name="resolve-pojo-on"
-		public Assignment getNameAssignment_0_0() { return cNameAssignment_0_0; }
+		public Assignment getNameAssignment_1_0() { return cNameAssignment_1_0; }
 
 		//"resolve-pojo-on"
-		public Keyword getNameResolvePojoOnKeyword_0_0_0() { return cNameResolvePojoOnKeyword_0_0_0; }
+		public Keyword getNameResolvePojoOnKeyword_1_0_0() { return cNameResolvePojoOnKeyword_1_0_0; }
 
 		//name="resolve-pojo-off"
-		public Assignment getNameAssignment_0_1() { return cNameAssignment_0_1; }
+		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
 
 		//"resolve-pojo-off"
-		public Keyword getNameResolvePojoOffKeyword_0_1_0() { return cNameResolvePojoOffKeyword_0_1_0; }
+		public Keyword getNameResolvePojoOffKeyword_1_1_0() { return cNameResolvePojoOffKeyword_1_1_0; }
 
 		//name="database-" database=DatabaseProperty
-		public Group getGroup_0_2() { return cGroup_0_2; }
+		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//name="database-"
-		public Assignment getNameAssignment_0_2_0() { return cNameAssignment_0_2_0; }
+		public Assignment getNameAssignment_1_2_0() { return cNameAssignment_1_2_0; }
 
 		//"database-"
-		public Keyword getNameDatabaseKeyword_0_2_0_0() { return cNameDatabaseKeyword_0_2_0_0; }
+		public Keyword getNameDatabaseKeyword_1_2_0_0() { return cNameDatabaseKeyword_1_2_0_0; }
 
 		//database=DatabaseProperty
-		public Assignment getDatabaseAssignment_0_2_1() { return cDatabaseAssignment_0_2_1; }
+		public Assignment getDatabaseAssignment_1_2_1() { return cDatabaseAssignment_1_2_1; }
 
 		//DatabaseProperty
-		public RuleCall getDatabaseDatabasePropertyParserRuleCall_0_2_1_0() { return cDatabaseDatabasePropertyParserRuleCall_0_2_1_0; }
+		public RuleCall getDatabaseDatabasePropertyParserRuleCall_1_2_1_0() { return cDatabaseDatabasePropertyParserRuleCall_1_2_1_0; }
 
 		//name="pojogen-" pojogen=PojogenProperty
-		public Group getGroup_0_3() { return cGroup_0_3; }
+		public Group getGroup_1_3() { return cGroup_1_3; }
 
 		//name="pojogen-"
-		public Assignment getNameAssignment_0_3_0() { return cNameAssignment_0_3_0; }
+		public Assignment getNameAssignment_1_3_0() { return cNameAssignment_1_3_0; }
 
 		//"pojogen-"
-		public Keyword getNamePojogenKeyword_0_3_0_0() { return cNamePojogenKeyword_0_3_0_0; }
+		public Keyword getNamePojogenKeyword_1_3_0_0() { return cNamePojogenKeyword_1_3_0_0; }
 
 		//pojogen=PojogenProperty
-		public Assignment getPojogenAssignment_0_3_1() { return cPojogenAssignment_0_3_1; }
+		public Assignment getPojogenAssignment_1_3_1() { return cPojogenAssignment_1_3_1; }
 
 		//PojogenProperty
-		public RuleCall getPojogenPojogenPropertyParserRuleCall_0_3_1_0() { return cPojogenPojogenPropertyParserRuleCall_0_3_1_0; }
+		public RuleCall getPojogenPojogenPropertyParserRuleCall_1_3_1_0() { return cPojogenPojogenPropertyParserRuleCall_1_3_1_0; }
 
 		//name="metagen-" metagen=MetagenProperty
-		public Group getGroup_0_4() { return cGroup_0_4; }
+		public Group getGroup_1_4() { return cGroup_1_4; }
 
 		//name="metagen-"
-		public Assignment getNameAssignment_0_4_0() { return cNameAssignment_0_4_0; }
+		public Assignment getNameAssignment_1_4_0() { return cNameAssignment_1_4_0; }
 
 		//"metagen-"
-		public Keyword getNameMetagenKeyword_0_4_0_0() { return cNameMetagenKeyword_0_4_0_0; }
+		public Keyword getNameMetagenKeyword_1_4_0_0() { return cNameMetagenKeyword_1_4_0_0; }
 
 		//metagen=MetagenProperty
-		public Assignment getMetagenAssignment_0_4_1() { return cMetagenAssignment_0_4_1; }
+		public Assignment getMetagenAssignment_1_4_1() { return cMetagenAssignment_1_4_1; }
 
 		//MetagenProperty
-		public RuleCall getMetagenMetagenPropertyParserRuleCall_0_4_1_0() { return cMetagenMetagenPropertyParserRuleCall_0_4_1_0; }
+		public RuleCall getMetagenMetagenPropertyParserRuleCall_1_4_1_0() { return cMetagenMetagenPropertyParserRuleCall_1_4_1_0; }
 
 		//name="daogen-" daogen=DaogenProperty
-		public Group getGroup_0_5() { return cGroup_0_5; }
+		public Group getGroup_1_5() { return cGroup_1_5; }
 
 		//name="daogen-"
-		public Assignment getNameAssignment_0_5_0() { return cNameAssignment_0_5_0; }
+		public Assignment getNameAssignment_1_5_0() { return cNameAssignment_1_5_0; }
 
 		//"daogen-"
-		public Keyword getNameDaogenKeyword_0_5_0_0() { return cNameDaogenKeyword_0_5_0_0; }
+		public Keyword getNameDaogenKeyword_1_5_0_0() { return cNameDaogenKeyword_1_5_0_0; }
 
 		//daogen=DaogenProperty
-		public Assignment getDaogenAssignment_0_5_1() { return cDaogenAssignment_0_5_1; }
+		public Assignment getDaogenAssignment_1_5_1() { return cDaogenAssignment_1_5_1; }
 
 		//DaogenProperty
-		public RuleCall getDaogenDaogenPropertyParserRuleCall_0_5_1_0() { return cDaogenDaogenPropertyParserRuleCall_0_5_1_0; }
+		public RuleCall getDaogenDaogenPropertyParserRuleCall_1_5_1_0() { return cDaogenDaogenPropertyParserRuleCall_1_5_1_0; }
 
 		//name="replace-all-regex" replaceId=ValidID regex=ValueType
-		public Group getGroup_0_6() { return cGroup_0_6; }
+		public Group getGroup_1_6() { return cGroup_1_6; }
 
 		//name="replace-all-regex"
-		public Assignment getNameAssignment_0_6_0() { return cNameAssignment_0_6_0; }
+		public Assignment getNameAssignment_1_6_0() { return cNameAssignment_1_6_0; }
 
 		//"replace-all-regex"
-		public Keyword getNameReplaceAllRegexKeyword_0_6_0_0() { return cNameReplaceAllRegexKeyword_0_6_0_0; }
+		public Keyword getNameReplaceAllRegexKeyword_1_6_0_0() { return cNameReplaceAllRegexKeyword_1_6_0_0; }
 
 		//replaceId=ValidID
-		public Assignment getReplaceIdAssignment_0_6_1() { return cReplaceIdAssignment_0_6_1; }
+		public Assignment getReplaceIdAssignment_1_6_1() { return cReplaceIdAssignment_1_6_1; }
 
 		//ValidID
-		public RuleCall getReplaceIdValidIDParserRuleCall_0_6_1_0() { return cReplaceIdValidIDParserRuleCall_0_6_1_0; }
+		public RuleCall getReplaceIdValidIDParserRuleCall_1_6_1_0() { return cReplaceIdValidIDParserRuleCall_1_6_1_0; }
 
 		//regex=ValueType
-		public Assignment getRegexAssignment_0_6_2() { return cRegexAssignment_0_6_2; }
+		public Assignment getRegexAssignment_1_6_2() { return cRegexAssignment_1_6_2; }
 
 		//ValueType
-		public RuleCall getRegexValueTypeParserRuleCall_0_6_2_0() { return cRegexValueTypeParserRuleCall_0_6_2_0; }
+		public RuleCall getRegexValueTypeParserRuleCall_1_6_2_0() { return cRegexValueTypeParserRuleCall_1_6_2_0; }
 
 		//name="replace-all-replacement" replaceId=ValidID replacement=ValueType
-		public Group getGroup_0_7() { return cGroup_0_7; }
+		public Group getGroup_1_7() { return cGroup_1_7; }
 
 		//name="replace-all-replacement"
-		public Assignment getNameAssignment_0_7_0() { return cNameAssignment_0_7_0; }
+		public Assignment getNameAssignment_1_7_0() { return cNameAssignment_1_7_0; }
 
 		//"replace-all-replacement"
-		public Keyword getNameReplaceAllReplacementKeyword_0_7_0_0() { return cNameReplaceAllReplacementKeyword_0_7_0_0; }
+		public Keyword getNameReplaceAllReplacementKeyword_1_7_0_0() { return cNameReplaceAllReplacementKeyword_1_7_0_0; }
 
 		//replaceId=ValidID
-		public Assignment getReplaceIdAssignment_0_7_1() { return cReplaceIdAssignment_0_7_1; }
+		public Assignment getReplaceIdAssignment_1_7_1() { return cReplaceIdAssignment_1_7_1; }
 
 		//ValidID
-		public RuleCall getReplaceIdValidIDParserRuleCall_0_7_1_0() { return cReplaceIdValidIDParserRuleCall_0_7_1_0; }
+		public RuleCall getReplaceIdValidIDParserRuleCall_1_7_1_0() { return cReplaceIdValidIDParserRuleCall_1_7_1_0; }
 
 		//replacement=ValueType
-		public Assignment getReplacementAssignment_0_7_2() { return cReplacementAssignment_0_7_2; }
+		public Assignment getReplacementAssignment_1_7_2() { return cReplacementAssignment_1_7_2; }
 
 		//ValueType
-		public RuleCall getReplacementValueTypeParserRuleCall_0_7_2_0() { return cReplacementValueTypeParserRuleCall_0_7_2_0; }
+		public RuleCall getReplacementValueTypeParserRuleCall_1_7_2_0() { return cReplacementValueTypeParserRuleCall_1_7_2_0; }
 
 		//name="compress-meta-directives"
-		public Assignment getNameAssignment_0_8() { return cNameAssignment_0_8; }
+		public Assignment getNameAssignment_1_8() { return cNameAssignment_1_8; }
 
 		//"compress-meta-directives"
-		public Keyword getNameCompressMetaDirectivesKeyword_0_8_0() { return cNameCompressMetaDirectivesKeyword_0_8_0; }
+		public Keyword getNameCompressMetaDirectivesKeyword_1_8_0() { return cNameCompressMetaDirectivesKeyword_1_8_0; }
 
 		//";"
-		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
+		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
 	}
 
 	public class DatabasePropertyElements extends AbstractParserRuleElementFinder {
@@ -5905,6 +5953,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	private final ExtendsAssignementElements pExtendsAssignement;
 	private final ImplementsAssignementGenericsElements pImplementsAssignementGenerics;
 	private final ExtendsAssignementGenericsElements pExtendsAssignementGenerics;
+	private final PropertyConditionElements pPropertyCondition;
 	private final PropertyElements pProperty;
 	private final DatabasePropertyElements pDatabaseProperty;
 	private final PojogenPropertyElements pPojogenProperty;
@@ -5983,6 +6032,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		this.pExtendsAssignement = new ExtendsAssignementElements();
 		this.pImplementsAssignementGenerics = new ImplementsAssignementGenericsElements();
 		this.pExtendsAssignementGenerics = new ExtendsAssignementGenericsElements();
+		this.pPropertyCondition = new PropertyConditionElements();
 		this.pProperty = new PropertyElements();
 		this.pDatabaseProperty = new DatabasePropertyElements();
 		this.pPojogenProperty = new PojogenPropertyElements();
@@ -6306,11 +6356,21 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		return getExtendsAssignementGenericsAccess().getRule();
 	}
 
+	//PropertyCondition:
+	//	"{" name=ValidID "=" value=ValueType "}";
+	public PropertyConditionElements getPropertyConditionAccess() {
+		return pPropertyCondition;
+	}
+	
+	public ParserRule getPropertyConditionRule() {
+		return getPropertyConditionAccess().getRule();
+	}
+
 	//Property:
-	//	(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
-	//	pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
-	//	name="replace-all-regex" replaceId=ValidID regex=ValueType | name="replace-all-replacement" replaceId=ValidID
-	//	replacement=ValueType | name="compress-meta-directives") ";";
+	//	condition=PropertyCondition? (name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-"
+	//	database=DatabaseProperty | name="pojogen-" pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty |
+	//	name="daogen-" daogen=DaogenProperty | name="replace-all-regex" replaceId=ValidID regex=ValueType |
+	//	name="replace-all-replacement" replaceId=ValidID replacement=ValueType | name="compress-meta-directives") ";";
 	public PropertyElements getPropertyAccess() {
 		return pProperty;
 	}

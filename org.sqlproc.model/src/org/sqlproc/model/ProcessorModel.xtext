@@ -38,7 +38,11 @@ ExtendsAssignement: ':' toExtends=[jvmTypes::JvmType|QualifiedName] ('+' (dbTabl
 ImplementsAssignementGenerics: ':' toImplement=[jvmTypes::JvmType|QualifiedName] ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
 ExtendsAssignementGenerics: ':' toExtends=[jvmTypes::JvmType|QualifiedName] ('+' (dbTables+=ValidID)+)? ('-' (dbNotTables+=ValidID)+)?;
 
-Property:
+PropertyCondition:
+	'{' name=ValidID '=' value=ValueType '}'
+;
+
+Property: (condition=PropertyCondition)?
 	(name='resolve-pojo-on'
 	|name='resolve-pojo-off'
 	|name='database-' database=DatabaseProperty
