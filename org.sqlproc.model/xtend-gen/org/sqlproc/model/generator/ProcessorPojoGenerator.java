@@ -446,6 +446,8 @@ public class ProcessorPojoGenerator {
         _builder.newLine();
       }
     }
+    _builder.append("import org.sqlproc.engine.annotation.Pojo;");
+    _builder.newLine();
     _builder.newLine();
     _builder.append(classBody, "");
     _builder.newLineIfNotEmpty();
@@ -486,6 +488,8 @@ public class ProcessorPojoGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("@Pojo");
+    _builder.newLine();
     _builder.append("public ");
     {
       boolean _isAbstract = this._processorGeneratorUtils.isAbstract(e);

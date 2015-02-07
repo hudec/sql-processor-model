@@ -107,7 +107,7 @@ class ProcessorGeneratorUtils {
 
 	def Integer getIndex(PojoProperty f) {
 		val d = f.directives?.findFirst[x|x instanceof PojoPropertyDirectiveIndex] as PojoPropertyDirectiveIndex
-		return d?.index
+		return if (d != null) d.index else null
 	}
 
 	def getUpdateColumn1(PojoProperty f) {
@@ -192,7 +192,7 @@ class ProcessorGeneratorUtils {
 
     def Integer getSernum(PojoEntity pojo) {
 		val d = pojo.directives?.findFirst[x|x instanceof PojoDirectiveSerializable] as PojoDirectiveSerializable
-		return d?.sernum
+		return if (d != null) d.sernum else null
     }
     
     def getDiscriminator(PojoEntity pojo) {
@@ -382,7 +382,7 @@ class ProcessorGeneratorUtils {
 
     def Integer getSernum(EnumEntity ^enum) {
 		val d = ^enum.directives?.findFirst[x|x instanceof PojoDirectiveSerializable] as PojoDirectiveSerializable
-		return d?.sernum
+		return if (d != null) d.sernum else null
     }
 
 	// PojoDao
@@ -398,7 +398,7 @@ class ProcessorGeneratorUtils {
 
     def Integer getSernum(PojoDao dao) {
 		val d = dao.directives?.findFirst[x|x instanceof PojoDirectiveSerializable] as PojoDirectiveSerializable
-		return d?.sernum
+		return if (d != null) d.sernum else null
     }
 
     def PojoDao getSuperType(PojoDao dao) {

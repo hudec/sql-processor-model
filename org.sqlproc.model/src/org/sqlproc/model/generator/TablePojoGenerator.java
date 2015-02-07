@@ -66,7 +66,7 @@ public class TablePojoGenerator {
     protected static final String METHOD_IS_DEF = "isDef";
     protected static final String ENUM_IS_DEF = "enumDef";
     protected static final String METHOD_TO_INIT = "toInit";
-    protected static final String METHOD_INDEX = "index=";
+    protected static final String METHOD_INDEX = "index";
     protected static final String ENUM_TO_INIT = "enumInit";
     protected static final String COLLECTION_LIST = "java.util.List";
     protected static final String ANNOTATION_NOT_NULL = "javax.validation.constraints.NotNull";

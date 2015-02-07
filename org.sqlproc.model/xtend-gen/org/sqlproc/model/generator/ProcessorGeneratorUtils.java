@@ -281,11 +281,14 @@ public class ProcessorGeneratorUtils {
       _findFirst=IterableExtensions.<PojoPropertyDirective>findFirst(_directives, _function);
     }
     final PojoPropertyDirectiveIndex d = ((PojoPropertyDirectiveIndex) _findFirst);
-    int _index = 0;
-    if (d!=null) {
-      _index=d.getIndex();
+    Integer _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(d, null));
+    if (_notEquals) {
+      _xifexpression = Integer.valueOf(d.getIndex());
+    } else {
+      _xifexpression = null;
     }
-    return Integer.valueOf(_index);
+    return _xifexpression;
   }
   
   public String getUpdateColumn1(final PojoProperty f) {
@@ -603,11 +606,14 @@ public class ProcessorGeneratorUtils {
       _findFirst=IterableExtensions.<PojoDirective>findFirst(_directives, _function);
     }
     final PojoDirectiveSerializable d = ((PojoDirectiveSerializable) _findFirst);
-    int _sernum = 0;
-    if (d!=null) {
-      _sernum=d.getSernum();
+    Integer _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(d, null));
+    if (_notEquals) {
+      _xifexpression = Integer.valueOf(d.getSernum());
+    } else {
+      _xifexpression = null;
     }
-    return Integer.valueOf(_sernum);
+    return _xifexpression;
   }
   
   public String getDiscriminator(final PojoEntity pojo) {
@@ -1174,11 +1180,14 @@ public class ProcessorGeneratorUtils {
       _findFirst=IterableExtensions.<PojoDirective>findFirst(_directives, _function);
     }
     final PojoDirectiveSerializable d = ((PojoDirectiveSerializable) _findFirst);
-    int _sernum = 0;
-    if (d!=null) {
-      _sernum=d.getSernum();
+    Integer _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(d, null));
+    if (_notEquals) {
+      _xifexpression = Integer.valueOf(d.getSernum());
+    } else {
+      _xifexpression = null;
     }
-    return Integer.valueOf(_sernum);
+    return _xifexpression;
   }
   
   public boolean isFinal(final PojoDao dao) {
@@ -1237,11 +1246,14 @@ public class ProcessorGeneratorUtils {
       _findFirst=IterableExtensions.<DaoDirective>findFirst(_directives, _function);
     }
     final PojoDirectiveSerializable d = ((PojoDirectiveSerializable) _findFirst);
-    int _sernum = 0;
-    if (d!=null) {
-      _sernum=d.getSernum();
+    Integer _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(d, null));
+    if (_notEquals) {
+      _xifexpression = Integer.valueOf(d.getSernum());
+    } else {
+      _xifexpression = null;
     }
-    return Integer.valueOf(_sernum);
+    return _xifexpression;
   }
   
   public PojoDao getSuperType(final PojoDao dao) {

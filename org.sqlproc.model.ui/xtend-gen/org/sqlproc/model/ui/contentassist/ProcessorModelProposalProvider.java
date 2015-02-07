@@ -1367,7 +1367,7 @@ public class ProcessorModelProposalProvider extends AbstractProcessorModelPropos
     }
   }
   
-  private final ArrayList<String> methods = CollectionLiterals.<String>newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", "enumInit", "index=");
+  private final ArrayList<String> methods = CollectionLiterals.<String>newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", "enumInit", "index");
   
   public void completePojogenProperty_Methods(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     if ((!(model instanceof PojogenProperty))) {
@@ -1691,7 +1691,11 @@ public class ProcessorModelProposalProvider extends AbstractProcessorModelPropos
       super.completeDatabaseMetaInfoAssignement_DbMetaInfo(model, assignment, context, acceptor);
       return;
     }
-    final String dbMetaInfo = this.dbResolver.getDbMetaInfo(model);
+    String dbMetaInfo = this.dbResolver.getDbMetaInfo(model);
+    boolean _notEquals = (!Objects.equal(dbMetaInfo, null));
+    if (_notEquals) {
+      dbMetaInfo = (("\"" + dbMetaInfo) + "\"");
+    }
     IValueConverterService _valueConverter = this.getValueConverter();
     final String proposal = _valueConverter.toString(dbMetaInfo, "PropertyValue");
     ICompletionProposal _createCompletionProposal = this.createCompletionProposal(proposal, context);
@@ -1705,7 +1709,11 @@ public class ProcessorModelProposalProvider extends AbstractProcessorModelPropos
       super.completeDriverMetaInfoAssignement_DbDriverInfo(model, assignment, context, acceptor);
       return;
     }
-    final String dbDriverInfo = this.dbResolver.getDbDriverInfo(model);
+    String dbDriverInfo = this.dbResolver.getDbDriverInfo(model);
+    boolean _notEquals = (!Objects.equal(dbDriverInfo, null));
+    if (_notEquals) {
+      dbDriverInfo = (("\"" + dbDriverInfo) + "\"");
+    }
     IValueConverterService _valueConverter = this.getValueConverter();
     final String proposal = _valueConverter.toString(dbDriverInfo, "PropertyValue");
     ICompletionProposal _createCompletionProposal = this.createCompletionProposal(proposal, context);
@@ -1759,9 +1767,9 @@ public class ProcessorModelProposalProvider extends AbstractProcessorModelPropos
     } else {
       _elvis = "null";
     }
-    final Object methodCallOutput = _elvis;
+    Object methodCallOutput = _elvis;
     IValueConverterService _valueConverter = this.getValueConverter();
-    final String proposal = _valueConverter.toString(("" + methodCallOutput), "PropertyValue");
+    final String proposal = _valueConverter.toString((("\"" + methodCallOutput) + "\""), "PropertyValue");
     ICompletionProposal _createCompletionProposal = this.createCompletionProposal(proposal, context);
     acceptor.accept(_createCompletionProposal);
   }

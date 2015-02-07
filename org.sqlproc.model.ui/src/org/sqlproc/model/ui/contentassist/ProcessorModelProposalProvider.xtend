@@ -662,7 +662,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 		}
 	}
 
-	val methods = newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", "enumInit", "index=")
+	val methods = newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef", "enumInit", "index")
 
 	override completePojogenProperty_Methods(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
@@ -845,7 +845,9 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 			super.completeDatabaseMetaInfoAssignement_DbMetaInfo(model, assignment, context, acceptor)
 			return
 		}
-		val dbMetaInfo = dbResolver.getDbMetaInfo(model)
+		var String dbMetaInfo = dbResolver.getDbMetaInfo(model)
+		if (dbMetaInfo != null)
+			dbMetaInfo = '"'+dbMetaInfo+'"'
 		val proposal = getValueConverter().toString(dbMetaInfo, "PropertyValue")
 		acceptor.accept(createCompletionProposal(proposal, context))
 	}
@@ -856,7 +858,9 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 			super.completeDriverMetaInfoAssignement_DbDriverInfo(model, assignment, context, acceptor)
 			return
 		}
-		val dbDriverInfo = dbResolver.getDbDriverInfo(model)
+		var String dbDriverInfo = dbResolver.getDbDriverInfo(model)
+		if (dbDriverInfo != null)
+			dbDriverInfo = '"'+dbDriverInfo+'"'
 		val proposal = getValueConverter().toString(dbDriverInfo, "PropertyValue")
 		acceptor.accept(createCompletionProposal(proposal, context))
 	}
@@ -880,8 +884,8 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 			return
 		}
 		val prop = model as DriverMethodOutputAssignement
-		val methodCallOutput = dbResolver.getDriverMethodOutput(model, prop.getDriverMethod()) ?: "null"
-		val proposal = getValueConverter().toString("" + methodCallOutput, "PropertyValue")
+		var methodCallOutput = dbResolver.getDriverMethodOutput(model, prop.getDriverMethod()) ?: "null"
+		val proposal = getValueConverter().toString('"' + methodCallOutput + '"', "PropertyValue")
 		acceptor.accept(createCompletionProposal(proposal, context))
 	}
 

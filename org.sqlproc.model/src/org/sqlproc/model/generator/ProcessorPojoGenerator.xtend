@@ -135,6 +135,7 @@ class ProcessorPojoGenerator {
 	import java.util.Map;
 	import java.util.HashMap;
 	«ENDIF»
+	import org.sqlproc.engine.annotation.Pojo;
 	
 	«classBody»
 	'''
@@ -143,6 +144,7 @@ class ProcessorPojoGenerator {
 	«FOR a:ae.standardAnnotations»
 	@«im.serialize(a.getType)»«IF !a.features.isEmpty»(«FOR f:a.features SEPARATOR ", "»«compileAnnotationProperty(f, im)»«ENDFOR»)«ENDIF»
 	«ENDFOR»
+	@Pojo
 	public «IF isAbstract(e)»abstract «ENDIF»class «e.name» «compileExtends(e, im)»«compileImplements(e)»{
 		«IF getSernum(e) != null»
 		
