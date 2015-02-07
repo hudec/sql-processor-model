@@ -36,6 +36,7 @@ import org.sqlproc.model.processorModel.PojogenProperty
 import org.sqlproc.model.processorModel.ProcessorModelPackage
 import org.sqlproc.model.processorModel.ShowColumnTypeAssignement
 import org.sqlproc.model.processorModel.TableDefinition
+import org.sqlproc.model.processorModel.Property
 import org.sqlproc.model.resolver.DbResolver
 import org.sqlproc.model.resolver.DbResolver.DbType
 import org.sqlproc.model.resolver.PojoResolver
@@ -364,11 +365,11 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completePojogenProperty_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
-			super.completePojogenProperty_DbColumn(model, assignment, context, acceptor)
+		if (!isResolveDb(model) || (!(model instanceof PojogenProperty) && !(model instanceof Property))) {
+			super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
-		val prop = model as PojogenProperty
+		val prop = if (model instanceof Property) (model as Property).pojogen else model as PojogenProperty
 		if (prop.dbTable != null) {
 			acceptColumns(dbResolver.getColumns(model, prop.dbTable), context, acceptor, null, null)
 		}
@@ -376,11 +377,11 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completePojogenProperty_DbColumns(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
-			super.completePojogenProperty_DbColumns(model, assignment, context, acceptor)
+		if (!isResolveDb(model) || (!(model instanceof PojogenProperty) && !(model instanceof Property))) {
+			super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
-		val prop = model as PojogenProperty
+		val prop = if (model instanceof Property) (model as Property).pojogen else model as PojogenProperty
 		if (prop.dbTable != null) {
 			acceptColumns(dbResolver.getColumns(model, prop.dbTable), context, acceptor, null, null)
 		}
@@ -476,11 +477,11 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeColumnTypeAssignement_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
+		if (!isResolveDb(model) || (!(model instanceof PojogenProperty) && !(model instanceof Property))) {
 			super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
-		val prop = model as PojogenProperty
+		val prop = if (model instanceof Property) (model as Property).pojogen else model as PojogenProperty
 		if (prop.getDbTable() != null) {
 			acceptColumns(dbResolver.getColumns(model, prop.dbTable), context, acceptor, null, "->")
 		} else if (prop.getDbProcedure() != null) {
@@ -492,11 +493,11 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeColumnAssignement_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
-			super.completeColumnAssignement_DbColumn(model, assignment, context, acceptor)
+		if (!isResolveDb(model) || (!(model instanceof PojogenProperty) && !(model instanceof Property))) {
+			super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
-		val prop = model as PojogenProperty
+		val prop = if (model instanceof Property) (model as Property).pojogen else model as PojogenProperty
 		if (prop.getDbTable() != null) {
 			acceptColumns(dbResolver.getColumns(model, prop.dbTable), context, acceptor, null, "->")
 			acceptColumns(dbResolver.getCheckColumns(model, prop.dbTable), context, acceptor, null, "->")
@@ -505,7 +506,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeImportAssignement_PkTable(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof ImportAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof ImportAssignement)) {
 			super.completeImportAssignement_PkTable(model, assignment, context, acceptor)
 			return
 		}
@@ -527,7 +528,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeImportAssignement_PkColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof ImportAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof ImportAssignement)) {
 			super.completeImportAssignement_PkColumn(model, assignment, context, acceptor)
 			return
 		}
@@ -551,11 +552,11 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeImportAssignement_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
-			super.completeImportAssignement_DbColumn(model, assignment, context, acceptor)
+		if (!isResolveDb(model) || (!(model instanceof PojogenProperty) && !(model instanceof Property))) {
+			super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
-		val prop = model as PojogenProperty
+		val prop = if (model instanceof Property) (model as Property).pojogen else model as PojogenProperty
 		if (prop.getDbTable() != null) {
 			acceptColumns(dbResolver.getColumns(model, prop.getDbTable()), context, acceptor, null, "->")
 		}
@@ -563,7 +564,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeExportAssignement_FkTable(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof ExportAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof ExportAssignement)) {
 			super.completeExportAssignement_FkTable(model, assignment, context, acceptor)
 			return
 		}
@@ -585,7 +586,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeExportAssignement_FkColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof ExportAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof ExportAssignement)) {
 			super.completeExportAssignement_FkColumn(model, assignment, context, acceptor)
 			return
 		}
@@ -609,11 +610,11 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeExportAssignement_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
-			super.completeExportAssignement_DbColumn(model, assignment, context, acceptor)
+		if (!isResolveDb(model) || (!(model instanceof PojogenProperty) && !(model instanceof Property))) {
+			super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
-		val prop = model as PojogenProperty
+		val prop = if (model instanceof Property) (model as Property).pojogen else model as PojogenProperty
 		if (prop.getDbTable() != null) {
 			acceptColumns(dbResolver.getColumns(model, prop.getDbTable()), context, acceptor, null, "->")
 		}
@@ -621,11 +622,11 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeManyToManyAssignement_PkColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
-			super.completeManyToManyAssignement_PkColumn(model, assignment, context, acceptor)
+		if (!isResolveDb(model) || (!(model instanceof PojogenProperty) && !(model instanceof Property))) {
+			super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
-		val prop = model as PojogenProperty
+		val prop = if (model instanceof Property) (model as Property).pojogen else model as PojogenProperty
 		if (prop.getDbTable() != null) {
 			acceptColumns(dbResolver.getColumns(model, prop.getDbTable()), context, acceptor, null, "->")
 		}
@@ -633,7 +634,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeManyToManyAssignement_PkTable(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof ManyToManyAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof ManyToManyAssignement)) {
 			super.completeManyToManyAssignement_PkTable(model, assignment, context, acceptor)
 			return
 		}
@@ -651,7 +652,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeInheritanceAssignement_DbColumns(EObject model, Assignment assignment,
 		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof InheritanceAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof InheritanceAssignement)) {
 			super.completeInheritanceAssignement_DbColumns(model, assignment, context, acceptor)
 			return
 		}
@@ -677,11 +678,11 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeShowColumnTypeAssignement_DbColumn(EObject model, Assignment assignment,
 		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof PojogenProperty)) {
-			super.completeShowColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
+		if (!isResolveDb(model) || (!(model instanceof PojogenProperty) && !(model instanceof Property))) {
+			super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
-		val prop = model as PojogenProperty
+		val prop = if (model instanceof Property) (model as Property).pojogen else model as PojogenProperty
 		if (prop.getDbTable() != null) {
 			acceptColumns(dbResolver.getColumns(model, prop.dbTable), context, acceptor, null, "->")
 		} else if (prop.getDbProcedure() != null) {
@@ -693,7 +694,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeShowColumnTypeAssignement_Type(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof ShowColumnTypeAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof ShowColumnTypeAssignement)) {
 			super.completeShowColumnTypeAssignement_Type(model, assignment, context, acceptor)
 			return
 		}
@@ -811,11 +812,11 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeMetaTypeAssignement_DbColumn(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof MetagenProperty)) {
-			super.completeMetaTypeAssignement_DbColumn(model, assignment, context, acceptor)
+		if (!isResolveDb(model) || (!(model instanceof MetagenProperty) && !(model instanceof Property))) {
+			super.completeColumnTypeAssignement_DbColumn(model, assignment, context, acceptor)
 			return
 		}
-		val prop = model as PojogenProperty
+		val prop = if (model instanceof Property) (model as Property).metagen else model as MetagenProperty
 		acceptColumns(dbResolver.getColumns(model, prop.dbTable), context, acceptor, null, null)
 	}
 
@@ -830,7 +831,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeMetagenProperty_DbColumns(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof MetagenProperty)) {
+		if (!isResolveDb(model) || !(model instanceof MetagenProperty)) {
 			super.completeMetagenProperty_DbColumns(model, assignment, context, acceptor)
 			return
 		}
@@ -862,7 +863,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeDriverMethodOutputAssignement_DriverMethod(EObject model, Assignment assignment,
 		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof DatabaseProperty)) {
+		if (!isResolveDb(model) || !(model instanceof DatabaseProperty)) {
 			super.completeDriverMethodOutputAssignement_DriverMethod(model, assignment, context, acceptor)
 			return
 		}
@@ -874,7 +875,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 
 	override completeDriverMethodOutputAssignement_CallOutput(EObject model, Assignment assignment,
 		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (!isResolveDb(model) && !(model instanceof DriverMethodOutputAssignement)) {
+		if (!isResolveDb(model) || !(model instanceof DriverMethodOutputAssignement)) {
 			super.completeDriverMethodOutputAssignement_CallOutput(model, assignment, context, acceptor)
 			return
 		}
