@@ -62,6 +62,49 @@ public class ProcessorTemplateProposalProvider extends DefaultTemplateProposalPr
                     getRelevance(template));
             acceptor.accept(tp);
         }
+
+        if (templateContext.getContextType().getId().equals(helper.getId(ga.getPropertyRule()))) {
+
+            Template template = new Template("pojos", "Pojos definitions", "pojosTemplateID", "${pojoDefinitions}",
+                    false);// auto-insertable?
+            TemplateProposal tp = createProposal(template, templateContext, context, getImage(template),
+                    getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("tables", "Tables definitions", "uniqueTemplateID", "${tableDefinitions}", false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("metagen", "Meta SQL generator", "metagenTemplateID", "${metaGenerator}", false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("procedures", "Procedures definitions", "uniqueTemplateID",
+                    "${procedureDefinitions}", false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("functions", "Functions definitions", "uniqueTemplateID", "${functionDefinitions}",
+                    false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("hsqldb", "HSQLDB initial control directives", "uniqueTemplateID", HSQLDB, false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("postgresql", "PostgreSQL initial control directives", "uniqueTemplateID",
+                    POSTGRESQL, false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("mysql", "MySQL initial control directives", "uniqueTemplateID", MYSQL, false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("oracle", "Oracle initial control directives", "uniqueTemplateID", ORACLE, false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("db2", "DB2 initial control directives", "uniqueTemplateID", DB2, false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+            template = new Template("informix", "Informix initial control directives", "uniqueTemplateID", INFORMIX,
+                    false);// auto-insertable?
+            tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
+            acceptor.accept(tp);
+        }
     }
 
     static final String HSQLDB = "resolve-pojo-on;\n" + "database-is-online;\n"
