@@ -11,9 +11,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.xtext.xbase.XExpression;
+
 import org.sqlproc.model.processorModel.EnumPropertyValue;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +60,7 @@ public class EnumPropertyValueImpl extends MinimalEObjectImpl.Container implemen
    * @generated
    * @ordered
    */
-  protected ValueType value;
+  protected XExpression value;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,7 +111,7 @@ public class EnumPropertyValueImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public ValueType getValue()
+  public XExpression getValue()
   {
     return value;
   }
@@ -120,9 +121,9 @@ public class EnumPropertyValueImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(ValueType newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(XExpression newValue, NotificationChain msgs)
   {
-    ValueType oldValue = value;
+    XExpression oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -137,7 +138,7 @@ public class EnumPropertyValueImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(ValueType newValue)
+  public void setValue(XExpression newValue)
   {
     if (newValue != value)
     {
@@ -201,7 +202,7 @@ public class EnumPropertyValueImpl extends MinimalEObjectImpl.Container implemen
         setName((String)newValue);
         return;
       case ProcessorModelPackage.ENUM_PROPERTY_VALUE__VALUE:
-        setValue((ValueType)newValue);
+        setValue((XExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,7 +222,7 @@ public class EnumPropertyValueImpl extends MinimalEObjectImpl.Container implemen
         setName(NAME_EDEFAULT);
         return;
       case ProcessorModelPackage.ENUM_PROPERTY_VALUE__VALUE:
-        setValue((ValueType)null);
+        setValue((XExpression)null);
         return;
     }
     super.eUnset(featureID);

@@ -5,6 +5,7 @@ package org.sqlproc.model.processorModel.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -16,7 +17,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
-import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 
 import org.sqlproc.model.processorModel.ExtendsAssignement;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
@@ -39,14 +40,14 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
 public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container implements ExtendsAssignement
 {
   /**
-   * The cached value of the '{@link #getToExtends() <em>To Extends</em>}' reference.
+   * The cached value of the '{@link #getToExtends() <em>To Extends</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getToExtends()
    * @generated
    * @ordered
    */
-  protected JvmType toExtends;
+  protected JvmParameterizedTypeReference toExtends;
 
   /**
    * The cached value of the '{@link #getDbTables() <em>Db Tables</em>}' attribute list.
@@ -94,27 +95,7 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType getToExtends()
-  {
-    if (toExtends != null && toExtends.eIsProxy())
-    {
-      InternalEObject oldToExtends = (InternalEObject)toExtends;
-      toExtends = (JvmType)eResolveProxy(oldToExtends);
-      if (toExtends != oldToExtends)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorModelPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS, oldToExtends, toExtends));
-      }
-    }
-    return toExtends;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType basicGetToExtends()
+  public JvmParameterizedTypeReference getToExtends()
   {
     return toExtends;
   }
@@ -124,12 +105,37 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setToExtends(JvmType newToExtends)
+  public NotificationChain basicSetToExtends(JvmParameterizedTypeReference newToExtends, NotificationChain msgs)
   {
-    JvmType oldToExtends = toExtends;
+    JvmParameterizedTypeReference oldToExtends = toExtends;
     toExtends = newToExtends;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS, oldToExtends, toExtends));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS, oldToExtends, newToExtends);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setToExtends(JvmParameterizedTypeReference newToExtends)
+  {
+    if (newToExtends != toExtends)
+    {
+      NotificationChain msgs = null;
+      if (toExtends != null)
+        msgs = ((InternalEObject)toExtends).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS, null, msgs);
+      if (newToExtends != null)
+        msgs = ((InternalEObject)newToExtends).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS, null, msgs);
+      msgs = basicSetToExtends(newToExtends, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS, newToExtends, newToExtends));
   }
 
   /**
@@ -166,13 +172,28 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    */
   @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorModelPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS:
+        return basicSetToExtends(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS:
-        if (resolve) return getToExtends();
-        return basicGetToExtends();
+        return getToExtends();
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT__DB_TABLES:
         return getDbTables();
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT__DB_NOT_TABLES:
@@ -193,7 +214,7 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
     switch (featureID)
     {
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS:
-        setToExtends((JvmType)newValue);
+        setToExtends((JvmParameterizedTypeReference)newValue);
         return;
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT__DB_TABLES:
         getDbTables().clear();
@@ -218,7 +239,7 @@ public class ExtendsAssignementImpl extends MinimalEObjectImpl.Container impleme
     switch (featureID)
     {
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT__TO_EXTENDS:
-        setToExtends((JvmType)null);
+        setToExtends((JvmParameterizedTypeReference)null);
         return;
       case ProcessorModelPackage.EXTENDS_ASSIGNEMENT__DB_TABLES:
         getDbTables().clear();

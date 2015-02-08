@@ -20,7 +20,7 @@ package org.sqlproc.model.processorModel;
  * @model
  * @generated
  */
-public interface PojoPropertyDirectiveUpdateCol extends PojoPropertyDirective
+public interface PojoPropertyDirectiveUpdateCol extends PojoAttributeDirective
 {
   /**
    * Returns the value of the '<em><b>Update Column1</b></em>' attribute.

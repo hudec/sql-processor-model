@@ -25,7 +25,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  *
  * @generated
  */
-public class PojoPropertyDirectiveUpdateColImpl extends PojoPropertyDirectiveImpl implements PojoPropertyDirectiveUpdateCol
+public class PojoPropertyDirectiveUpdateColImpl extends PojoAttributeDirectiveImpl implements PojoPropertyDirectiveUpdateCol
 {
   /**
    * The default value of the '{@link #getUpdateColumn1() <em>Update Column1</em>}' attribute.

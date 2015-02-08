@@ -4,7 +4,7 @@ package org.sqlproc.model.processorModel;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +23,7 @@ import org.eclipse.xtext.common.types.JvmType;
  * @model
  * @generated
  */
-public interface Extends extends AbstractPojoEntity
+public interface Extends extends AbstractEntity
 {
   /**
    * Returns the value of the '<em><b>Directives</b></em>' containment reference list.
@@ -42,29 +42,29 @@ public interface Extends extends AbstractPojoEntity
   EList<ImplementsExtendsDirective> getDirectives();
 
   /**
-   * Returns the value of the '<em><b>Extends</b></em>' reference.
+   * Returns the value of the '<em><b>Extends</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Extends</em>' reference isn't clear,
+   * If the meaning of the '<em>Extends</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Extends</em>' reference.
-   * @see #setExtends(JvmType)
+   * @return the value of the '<em>Extends</em>' containment reference.
+   * @see #setExtends(JvmParameterizedTypeReference)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getExtends_Extends()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  JvmType getExtends();
+  JvmParameterizedTypeReference getExtends();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.Extends#getExtends <em>Extends</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.Extends#getExtends <em>Extends</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Extends</em>' reference.
+   * @param value the new value of the '<em>Extends</em>' containment reference.
    * @see #getExtends()
    * @generated
    */
-  void setExtends(JvmType value);
+  void setExtends(JvmParameterizedTypeReference value);
 
 } // Extends

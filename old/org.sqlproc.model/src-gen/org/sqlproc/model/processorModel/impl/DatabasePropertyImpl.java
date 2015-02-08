@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 
 import org.sqlproc.model.processorModel.DatabaseCatalogAssignement;
 import org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement;
@@ -132,14 +132,14 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
   protected DatabaseSchemaAssignement dbSchema;
 
   /**
-   * The cached value of the '{@link #getDbDriverx() <em>Db Driverx</em>}' reference.
+   * The cached value of the '{@link #getDbDriverx() <em>Db Driverx</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDbDriverx()
    * @generated
    * @ordered
    */
-  protected JvmType dbDriverx;
+  protected JvmParameterizedTypeReference dbDriverx;
 
   /**
    * The cached value of the '{@link #getDbDriver() <em>Db Driver</em>}' containment reference.
@@ -520,27 +520,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType getDbDriverx()
-  {
-    if (dbDriverx != null && dbDriverx.eIsProxy())
-    {
-      InternalEObject oldDbDriverx = (InternalEObject)dbDriverx;
-      dbDriverx = (JvmType)eResolveProxy(oldDbDriverx);
-      if (dbDriverx != oldDbDriverx)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX, oldDbDriverx, dbDriverx));
-      }
-    }
-    return dbDriverx;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType basicGetDbDriverx()
+  public JvmParameterizedTypeReference getDbDriverx()
   {
     return dbDriverx;
   }
@@ -550,12 +530,37 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbDriverx(JvmType newDbDriverx)
+  public NotificationChain basicSetDbDriverx(JvmParameterizedTypeReference newDbDriverx, NotificationChain msgs)
   {
-    JvmType oldDbDriverx = dbDriverx;
+    JvmParameterizedTypeReference oldDbDriverx = dbDriverx;
     dbDriverx = newDbDriverx;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX, oldDbDriverx, dbDriverx));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX, oldDbDriverx, newDbDriverx);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDbDriverx(JvmParameterizedTypeReference newDbDriverx)
+  {
+    if (newDbDriverx != dbDriverx)
+    {
+      NotificationChain msgs = null;
+      if (dbDriverx != null)
+        msgs = ((InternalEObject)dbDriverx).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX, null, msgs);
+      if (newDbDriverx != null)
+        msgs = ((InternalEObject)newDbDriverx).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX, null, msgs);
+      msgs = basicSetDbDriverx(newDbDriverx, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX, newDbDriverx, newDbDriverx));
   }
 
   /**
@@ -976,6 +981,8 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         return basicSetDbCatalog(null, msgs);
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_SCHEMA:
         return basicSetDbSchema(null, msgs);
+      case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX:
+        return basicSetDbDriverx(null, msgs);
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVER:
         return basicSetDbDriver(null, msgs);
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
@@ -1021,8 +1028,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_SCHEMA:
         return getDbSchema();
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX:
-        if (resolve) return getDbDriverx();
-        return basicGetDbDriverx();
+        return getDbDriverx();
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVER:
         return getDbDriver();
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
@@ -1075,7 +1081,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         setDbSchema((DatabaseSchemaAssignement)newValue);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX:
-        setDbDriverx((JvmType)newValue);
+        setDbDriverx((JvmParameterizedTypeReference)newValue);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVER:
         setDbDriver((ValueType)newValue);
@@ -1138,7 +1144,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         setDbSchema((DatabaseSchemaAssignement)null);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVERX:
-        setDbDriverx((JvmType)null);
+        setDbDriverx((JvmParameterizedTypeReference)null);
         return;
       case ProcessorModelPackage.DATABASE_PROPERTY__DB_DRIVER:
         setDbDriver((ValueType)null);

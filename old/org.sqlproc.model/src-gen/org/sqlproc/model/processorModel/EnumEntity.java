@@ -12,9 +12,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.model.processorModel.EnumEntity#getModifiers1 <em>Modifiers1</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.EnumEntity#getModifiers2 <em>Modifiers2</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.EnumEntity#getFeatures <em>Features</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.EnumEntity#getDirectives <em>Directives</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.EnumEntity#getAttribute <em>Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,51 +24,45 @@ import org.eclipse.emf.common.util.EList;
 public interface EnumEntity extends Entity
 {
   /**
-   * Returns the value of the '<em><b>Modifiers1</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.EnumEntityModifier1}.
+   * Returns the value of the '<em><b>Directives</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.model.processorModel.EnumDirective}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Modifiers1</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Directives</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Modifiers1</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getEnumEntity_Modifiers1()
+   * @return the value of the '<em>Directives</em>' containment reference list.
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getEnumEntity_Directives()
    * @model containment="true"
    * @generated
    */
-  EList<EnumEntityModifier1> getModifiers1();
+  EList<EnumDirective> getDirectives();
 
   /**
-   * Returns the value of the '<em><b>Modifiers2</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.EnumEntityModifier2}.
+   * Returns the value of the '<em><b>Attribute</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Modifiers2</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Attribute</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Modifiers2</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getEnumEntity_Modifiers2()
+   * @return the value of the '<em>Attribute</em>' containment reference.
+   * @see #setAttribute(EnumProperty)
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getEnumEntity_Attribute()
    * @model containment="true"
    * @generated
    */
-  EList<EnumEntityModifier2> getModifiers2();
+  EnumProperty getAttribute();
 
   /**
-   * Returns the value of the '<em><b>Features</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.EnumProperty}.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.EnumEntity#getAttribute <em>Attribute</em>}' containment reference.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Features</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Features</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getEnumEntity_Features()
-   * @model containment="true"
+   * @param value the new value of the '<em>Attribute</em>' containment reference.
+   * @see #getAttribute()
    * @generated
    */
-  EList<EnumProperty> getFeatures();
+  void setAttribute(EnumProperty value);
 
 } // EnumEntity

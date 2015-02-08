@@ -2,9 +2,6 @@
  */
 package org.sqlproc.model.processorModel;
 
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +11,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.model.processorModel.Entity#getDirectives <em>Directives</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.Entity#isFinal <em>Final</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Entity#getName <em>Name</em>}</li>
  * </ul>
  * </p>
@@ -23,23 +20,33 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Entity extends EObject
+public interface Entity extends AbstractEntity
 {
   /**
-   * Returns the value of the '<em><b>Directives</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.PojoDirective}.
+   * Returns the value of the '<em><b>Final</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Directives</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Final</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Directives</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getEntity_Directives()
-   * @model containment="true"
+   * @return the value of the '<em>Final</em>' attribute.
+   * @see #setFinal(boolean)
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getEntity_Final()
+   * @model
    * @generated
    */
-  EList<PojoDirective> getDirectives();
+  boolean isFinal();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.Entity#isFinal <em>Final</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Final</em>' attribute.
+   * @see #isFinal()
+   * @generated
+   */
+  void setFinal(boolean value);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

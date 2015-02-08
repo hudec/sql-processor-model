@@ -18,8 +18,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
+
 import org.sqlproc.model.processorModel.DaoDirectiveParameters;
-import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -46,7 +47,7 @@ public class DaoDirectiveParametersImpl extends MinimalEObjectImpl.Container imp
    * @generated
    * @ordered
    */
-  protected PojoType out;
+  protected JvmParameterizedTypeReference out;
 
   /**
    * The cached value of the '{@link #getIns() <em>Ins</em>}' containment reference list.
@@ -56,7 +57,7 @@ public class DaoDirectiveParametersImpl extends MinimalEObjectImpl.Container imp
    * @generated
    * @ordered
    */
-  protected EList<PojoType> ins;
+  protected EList<JvmParameterizedTypeReference> ins;
 
   /**
    * <!-- begin-user-doc -->
@@ -84,7 +85,7 @@ public class DaoDirectiveParametersImpl extends MinimalEObjectImpl.Container imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoType getOut()
+  public JvmParameterizedTypeReference getOut()
   {
     return out;
   }
@@ -94,9 +95,9 @@ public class DaoDirectiveParametersImpl extends MinimalEObjectImpl.Container imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetOut(PojoType newOut, NotificationChain msgs)
+  public NotificationChain basicSetOut(JvmParameterizedTypeReference newOut, NotificationChain msgs)
   {
-    PojoType oldOut = out;
+    JvmParameterizedTypeReference oldOut = out;
     out = newOut;
     if (eNotificationRequired())
     {
@@ -111,7 +112,7 @@ public class DaoDirectiveParametersImpl extends MinimalEObjectImpl.Container imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setOut(PojoType newOut)
+  public void setOut(JvmParameterizedTypeReference newOut)
   {
     if (newOut != out)
     {
@@ -132,11 +133,11 @@ public class DaoDirectiveParametersImpl extends MinimalEObjectImpl.Container imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoType> getIns()
+  public EList<JvmParameterizedTypeReference> getIns()
   {
     if (ins == null)
     {
-      ins = new EObjectContainmentEList<PojoType>(PojoType.class, this, ProcessorModelPackage.DAO_DIRECTIVE_PARAMETERS__INS);
+      ins = new EObjectContainmentEList<JvmParameterizedTypeReference>(JvmParameterizedTypeReference.class, this, ProcessorModelPackage.DAO_DIRECTIVE_PARAMETERS__INS);
     }
     return ins;
   }
@@ -189,11 +190,11 @@ public class DaoDirectiveParametersImpl extends MinimalEObjectImpl.Container imp
     switch (featureID)
     {
       case ProcessorModelPackage.DAO_DIRECTIVE_PARAMETERS__OUT:
-        setOut((PojoType)newValue);
+        setOut((JvmParameterizedTypeReference)newValue);
         return;
       case ProcessorModelPackage.DAO_DIRECTIVE_PARAMETERS__INS:
         getIns().clear();
-        getIns().addAll((Collection<? extends PojoType>)newValue);
+        getIns().addAll((Collection<? extends JvmParameterizedTypeReference>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -210,7 +211,7 @@ public class DaoDirectiveParametersImpl extends MinimalEObjectImpl.Container imp
     switch (featureID)
     {
       case ProcessorModelPackage.DAO_DIRECTIVE_PARAMETERS__OUT:
-        setOut((PojoType)null);
+        setOut((JvmParameterizedTypeReference)null);
         return;
       case ProcessorModelPackage.DAO_DIRECTIVE_PARAMETERS__INS:
         getIns().clear();

@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.model.processorModel.DaogenProperty;
 import org.sqlproc.model.processorModel.DatabaseProperty;
-import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.Property;
@@ -31,7 +30,6 @@ import org.sqlproc.model.processorModel.ValueType;
  *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getDatabase <em>Database</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getPojogen <em>Pojogen</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getMetagen <em>Metagen</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getDaogen <em>Daogen</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getReplaceId <em>Replace Id</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PropertyImpl#getRegex <em>Regex</em>}</li>
@@ -92,16 +90,6 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * @ordered
    */
   protected PojogenProperty pojogen;
-
-  /**
-   * The cached value of the '{@link #getMetagen() <em>Metagen</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMetagen()
-   * @generated
-   * @ordered
-   */
-  protected MetagenProperty metagen;
 
   /**
    * The cached value of the '{@link #getDaogen() <em>Daogen</em>}' containment reference.
@@ -346,54 +334,6 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    * <!-- end-user-doc -->
    * @generated
    */
-  public MetagenProperty getMetagen()
-  {
-    return metagen;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetMetagen(MetagenProperty newMetagen, NotificationChain msgs)
-  {
-    MetagenProperty oldMetagen = metagen;
-    metagen = newMetagen;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.PROPERTY__METAGEN, oldMetagen, newMetagen);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setMetagen(MetagenProperty newMetagen)
-  {
-    if (newMetagen != metagen)
-    {
-      NotificationChain msgs = null;
-      if (metagen != null)
-        msgs = ((InternalEObject)metagen).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.PROPERTY__METAGEN, null, msgs);
-      if (newMetagen != null)
-        msgs = ((InternalEObject)newMetagen).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.PROPERTY__METAGEN, null, msgs);
-      msgs = basicSetMetagen(newMetagen, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.PROPERTY__METAGEN, newMetagen, newMetagen));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public DaogenProperty getDaogen()
   {
     return daogen;
@@ -572,8 +512,6 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return basicSetDatabase(null, msgs);
       case ProcessorModelPackage.PROPERTY__POJOGEN:
         return basicSetPojogen(null, msgs);
-      case ProcessorModelPackage.PROPERTY__METAGEN:
-        return basicSetMetagen(null, msgs);
       case ProcessorModelPackage.PROPERTY__DAOGEN:
         return basicSetDaogen(null, msgs);
       case ProcessorModelPackage.PROPERTY__REGEX:
@@ -602,8 +540,6 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return getDatabase();
       case ProcessorModelPackage.PROPERTY__POJOGEN:
         return getPojogen();
-      case ProcessorModelPackage.PROPERTY__METAGEN:
-        return getMetagen();
       case ProcessorModelPackage.PROPERTY__DAOGEN:
         return getDaogen();
       case ProcessorModelPackage.PROPERTY__REPLACE_ID:
@@ -637,9 +573,6 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return;
       case ProcessorModelPackage.PROPERTY__POJOGEN:
         setPojogen((PojogenProperty)newValue);
-        return;
-      case ProcessorModelPackage.PROPERTY__METAGEN:
-        setMetagen((MetagenProperty)newValue);
         return;
       case ProcessorModelPackage.PROPERTY__DAOGEN:
         setDaogen((DaogenProperty)newValue);
@@ -679,9 +612,6 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
       case ProcessorModelPackage.PROPERTY__POJOGEN:
         setPojogen((PojogenProperty)null);
         return;
-      case ProcessorModelPackage.PROPERTY__METAGEN:
-        setMetagen((MetagenProperty)null);
-        return;
       case ProcessorModelPackage.PROPERTY__DAOGEN:
         setDaogen((DaogenProperty)null);
         return;
@@ -716,8 +646,6 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
         return database != null;
       case ProcessorModelPackage.PROPERTY__POJOGEN:
         return pojogen != null;
-      case ProcessorModelPackage.PROPERTY__METAGEN:
-        return metagen != null;
       case ProcessorModelPackage.PROPERTY__DAOGEN:
         return daogen != null;
       case ProcessorModelPackage.PROPERTY__REPLACE_ID:

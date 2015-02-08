@@ -18,11 +18,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 
 import org.sqlproc.model.processorModel.Annotation;
 import org.sqlproc.model.processorModel.AnnotationDirective;
-import org.sqlproc.model.processorModel.AnnotationProperty;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -33,8 +32,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationImpl#getDirectives <em>Directives</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationImpl#getFeatures <em>Features</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.AnnotationImpl#getAnnotation <em>Annotation</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,24 +51,14 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
   protected EList<AnnotationDirective> directives;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * The cached value of the '{@link #getAnnotation() <em>Annotation</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getAnnotation()
    * @generated
    * @ordered
    */
-  protected JvmType type;
-
-  /**
-   * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFeatures()
-   * @generated
-   * @ordered
-   */
-  protected EList<AnnotationProperty> features;
+  protected XAnnotation annotation;
 
   /**
    * <!-- begin-user-doc -->
@@ -112,19 +100,9 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType getType()
+  public XAnnotation getAnnotation()
   {
-    if (type != null && type.eIsProxy())
-    {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (JvmType)eResolveProxy(oldType);
-      if (type != oldType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorModelPackage.ANNOTATION__TYPE, oldType, type));
-      }
-    }
-    return type;
+    return annotation;
   }
 
   /**
@@ -132,22 +110,16 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType basicGetType()
+  public NotificationChain basicSetAnnotation(XAnnotation newAnnotation, NotificationChain msgs)
   {
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setType(JvmType newType)
-  {
-    JvmType oldType = type;
-    type = newType;
+    XAnnotation oldAnnotation = annotation;
+    annotation = newAnnotation;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ANNOTATION__TYPE, oldType, type));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ANNOTATION__ANNOTATION, oldAnnotation, newAnnotation);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -155,13 +127,20 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<AnnotationProperty> getFeatures()
+  public void setAnnotation(XAnnotation newAnnotation)
   {
-    if (features == null)
+    if (newAnnotation != annotation)
     {
-      features = new EObjectContainmentEList<AnnotationProperty>(AnnotationProperty.class, this, ProcessorModelPackage.ANNOTATION__FEATURES);
+      NotificationChain msgs = null;
+      if (annotation != null)
+        msgs = ((InternalEObject)annotation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.ANNOTATION__ANNOTATION, null, msgs);
+      if (newAnnotation != null)
+        msgs = ((InternalEObject)newAnnotation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.ANNOTATION__ANNOTATION, null, msgs);
+      msgs = basicSetAnnotation(newAnnotation, msgs);
+      if (msgs != null) msgs.dispatch();
     }
-    return features;
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ANNOTATION__ANNOTATION, newAnnotation, newAnnotation));
   }
 
   /**
@@ -176,8 +155,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
     {
       case ProcessorModelPackage.ANNOTATION__DIRECTIVES:
         return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
-      case ProcessorModelPackage.ANNOTATION__FEATURES:
-        return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
+      case ProcessorModelPackage.ANNOTATION__ANNOTATION:
+        return basicSetAnnotation(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -194,11 +173,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
     {
       case ProcessorModelPackage.ANNOTATION__DIRECTIVES:
         return getDirectives();
-      case ProcessorModelPackage.ANNOTATION__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
-      case ProcessorModelPackage.ANNOTATION__FEATURES:
-        return getFeatures();
+      case ProcessorModelPackage.ANNOTATION__ANNOTATION:
+        return getAnnotation();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -218,12 +194,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
         getDirectives().clear();
         getDirectives().addAll((Collection<? extends AnnotationDirective>)newValue);
         return;
-      case ProcessorModelPackage.ANNOTATION__TYPE:
-        setType((JvmType)newValue);
-        return;
-      case ProcessorModelPackage.ANNOTATION__FEATURES:
-        getFeatures().clear();
-        getFeatures().addAll((Collection<? extends AnnotationProperty>)newValue);
+      case ProcessorModelPackage.ANNOTATION__ANNOTATION:
+        setAnnotation((XAnnotation)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -242,11 +214,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
       case ProcessorModelPackage.ANNOTATION__DIRECTIVES:
         getDirectives().clear();
         return;
-      case ProcessorModelPackage.ANNOTATION__TYPE:
-        setType((JvmType)null);
-        return;
-      case ProcessorModelPackage.ANNOTATION__FEATURES:
-        getFeatures().clear();
+      case ProcessorModelPackage.ANNOTATION__ANNOTATION:
+        setAnnotation((XAnnotation)null);
         return;
     }
     super.eUnset(featureID);
@@ -264,10 +233,8 @@ public class AnnotationImpl extends MinimalEObjectImpl.Container implements Anno
     {
       case ProcessorModelPackage.ANNOTATION__DIRECTIVES:
         return directives != null && !directives.isEmpty();
-      case ProcessorModelPackage.ANNOTATION__TYPE:
-        return type != null;
-      case ProcessorModelPackage.ANNOTATION__FEATURES:
-        return features != null && !features.isEmpty();
+      case ProcessorModelPackage.ANNOTATION__ANNOTATION:
+        return annotation != null;
     }
     return super.eIsSet(featureID);
   }

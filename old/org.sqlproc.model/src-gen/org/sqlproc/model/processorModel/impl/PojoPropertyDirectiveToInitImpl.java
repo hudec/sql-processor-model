@@ -16,7 +16,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  *
  * @generated
  */
-public class PojoPropertyDirectiveToInitImpl extends PojoPropertyDirectiveImpl implements PojoPropertyDirectiveToInit
+public class PojoPropertyDirectiveToInitImpl extends PojoAttributeDirectiveImpl implements PojoPropertyDirectiveToInit
 {
   /**
    * <!-- begin-user-doc -->

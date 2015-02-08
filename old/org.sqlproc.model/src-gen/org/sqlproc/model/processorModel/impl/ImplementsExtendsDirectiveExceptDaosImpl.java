@@ -10,8 +10,8 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.sqlproc.model.processorModel.DaoEntity;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos;
-import org.sqlproc.model.processorModel.PojoDao;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -37,7 +37,7 @@ public class ImplementsExtendsDirectiveExceptDaosImpl extends ImplementsExtendsD
    * @generated
    * @ordered
    */
-  protected EList<PojoDao> exceptDaos;
+  protected EList<DaoEntity> exceptDaos;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,11 +65,11 @@ public class ImplementsExtendsDirectiveExceptDaosImpl extends ImplementsExtendsD
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoDao> getExceptDaos()
+  public EList<DaoEntity> getExceptDaos()
   {
     if (exceptDaos == null)
     {
-      exceptDaos = new EObjectResolvingEList<PojoDao>(PojoDao.class, this, ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS__EXCEPT_DAOS);
+      exceptDaos = new EObjectResolvingEList<DaoEntity>(DaoEntity.class, this, ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS__EXCEPT_DAOS);
     }
     return exceptDaos;
   }
@@ -103,7 +103,7 @@ public class ImplementsExtendsDirectiveExceptDaosImpl extends ImplementsExtendsD
     {
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_EXCEPT_DAOS__EXCEPT_DAOS:
         getExceptDaos().clear();
-        getExceptDaos().addAll((Collection<? extends PojoDao>)newValue);
+        getExceptDaos().addAll((Collection<? extends DaoEntity>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

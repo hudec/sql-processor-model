@@ -13,6 +13,6 @@ package org.sqlproc.model.processorModel;
  * @model
  * @generated
  */
-public interface PojoPropertyDirectiveEnumInit extends PojoPropertyDirective
+public interface PojoPropertyDirectiveEnumInit extends PojoAttributeDirective
 {
 } // PojoPropertyDirectiveEnumInit

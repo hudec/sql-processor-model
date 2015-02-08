@@ -4,6 +4,8 @@ package org.sqlproc.model.processorModel;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Procedure Pojo Assignement</b></em>'.
@@ -58,12 +60,12 @@ public interface ProcedurePojoAssignement extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Pojo</em>' containment reference.
-   * @see #setPojo(PojoType)
+   * @see #setPojo(JvmParameterizedTypeReference)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getProcedurePojoAssignement_Pojo()
    * @model containment="true"
    * @generated
    */
-  PojoType getPojo();
+  JvmParameterizedTypeReference getPojo();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.ProcedurePojoAssignement#getPojo <em>Pojo</em>}' containment reference.
@@ -73,6 +75,6 @@ public interface ProcedurePojoAssignement extends EObject
    * @see #getPojo()
    * @generated
    */
-  void setPojo(PojoType value);
+  void setPojo(JvmParameterizedTypeReference value);
 
 } // ProcedurePojoAssignement

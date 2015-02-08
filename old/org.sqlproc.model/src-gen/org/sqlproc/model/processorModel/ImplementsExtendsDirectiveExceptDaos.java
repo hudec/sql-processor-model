@@ -24,7 +24,7 @@ public interface ImplementsExtendsDirectiveExceptDaos extends ImplementsExtendsD
 {
   /**
    * Returns the value of the '<em><b>Except Daos</b></em>' reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.PojoDao}.
+   * The list contents are of type {@link org.sqlproc.model.processorModel.DaoEntity}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Except Daos</em>' reference list isn't clear,
@@ -36,6 +36,6 @@ public interface ImplementsExtendsDirectiveExceptDaos extends ImplementsExtendsD
    * @model
    * @generated
    */
-  EList<PojoDao> getExceptDaos();
+  EList<DaoEntity> getExceptDaos();
 
 } // ImplementsExtendsDirectiveExceptDaos

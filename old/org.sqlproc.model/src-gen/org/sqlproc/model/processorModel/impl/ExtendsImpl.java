@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 
 import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirective;
@@ -37,7 +37,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  *
  * @generated
  */
-public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
+public class ExtendsImpl extends AbstractEntityImpl implements Extends
 {
   /**
    * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
@@ -50,14 +50,14 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
   protected EList<ImplementsExtendsDirective> directives;
 
   /**
-   * The cached value of the '{@link #getExtends() <em>Extends</em>}' reference.
+   * The cached value of the '{@link #getExtends() <em>Extends</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getExtends()
    * @generated
    * @ordered
    */
-  protected JvmType extends_;
+  protected JvmParameterizedTypeReference extends_;
 
   /**
    * <!-- begin-user-doc -->
@@ -99,27 +99,7 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType getExtends()
-  {
-    if (extends_ != null && extends_.eIsProxy())
-    {
-      InternalEObject oldExtends = (InternalEObject)extends_;
-      extends_ = (JvmType)eResolveProxy(oldExtends);
-      if (extends_ != oldExtends)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorModelPackage.EXTENDS__EXTENDS, oldExtends, extends_));
-      }
-    }
-    return extends_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType basicGetExtends()
+  public JvmParameterizedTypeReference getExtends()
   {
     return extends_;
   }
@@ -129,12 +109,37 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExtends(JvmType newExtends)
+  public NotificationChain basicSetExtends(JvmParameterizedTypeReference newExtends, NotificationChain msgs)
   {
-    JvmType oldExtends = extends_;
+    JvmParameterizedTypeReference oldExtends = extends_;
     extends_ = newExtends;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.EXTENDS__EXTENDS, oldExtends, extends_));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.EXTENDS__EXTENDS, oldExtends, newExtends);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExtends(JvmParameterizedTypeReference newExtends)
+  {
+    if (newExtends != extends_)
+    {
+      NotificationChain msgs = null;
+      if (extends_ != null)
+        msgs = ((InternalEObject)extends_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.EXTENDS__EXTENDS, null, msgs);
+      if (newExtends != null)
+        msgs = ((InternalEObject)newExtends).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.EXTENDS__EXTENDS, null, msgs);
+      msgs = basicSetExtends(newExtends, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.EXTENDS__EXTENDS, newExtends, newExtends));
   }
 
   /**
@@ -149,6 +154,8 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
     {
       case ProcessorModelPackage.EXTENDS__DIRECTIVES:
         return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
+      case ProcessorModelPackage.EXTENDS__EXTENDS:
+        return basicSetExtends(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -166,8 +173,7 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
       case ProcessorModelPackage.EXTENDS__DIRECTIVES:
         return getDirectives();
       case ProcessorModelPackage.EXTENDS__EXTENDS:
-        if (resolve) return getExtends();
-        return basicGetExtends();
+        return getExtends();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -188,7 +194,7 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
         getDirectives().addAll((Collection<? extends ImplementsExtendsDirective>)newValue);
         return;
       case ProcessorModelPackage.EXTENDS__EXTENDS:
-        setExtends((JvmType)newValue);
+        setExtends((JvmParameterizedTypeReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -208,7 +214,7 @@ public class ExtendsImpl extends AbstractPojoEntityImpl implements Extends
         getDirectives().clear();
         return;
       case ProcessorModelPackage.EXTENDS__EXTENDS:
-        setExtends((JvmType)null);
+        setExtends((JvmParameterizedTypeReference)null);
         return;
     }
     super.eUnset(featureID);

@@ -16,7 +16,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  *
  * @generated
  */
-public class PojoPropertyDirectiveRequiredImpl extends PojoPropertyDirectiveImpl implements PojoPropertyDirectiveRequired
+public class PojoPropertyDirectiveRequiredImpl extends PojoAttributeDirectiveImpl implements PojoPropertyDirectiveRequired
 {
   /**
    * <!-- begin-user-doc -->

@@ -11,8 +11,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
+
 import org.sqlproc.model.processorModel.ColumnTypeAssignement;
-import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -59,7 +60,7 @@ public class ColumnTypeAssignementImpl extends MinimalEObjectImpl.Container impl
    * @generated
    * @ordered
    */
-  protected PojoType type;
+  protected JvmParameterizedTypeReference type;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,7 +111,7 @@ public class ColumnTypeAssignementImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoType getType()
+  public JvmParameterizedTypeReference getType()
   {
     return type;
   }
@@ -120,9 +121,9 @@ public class ColumnTypeAssignementImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(PojoType newType, NotificationChain msgs)
+  public NotificationChain basicSetType(JvmParameterizedTypeReference newType, NotificationChain msgs)
   {
-    PojoType oldType = type;
+    JvmParameterizedTypeReference oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
@@ -137,7 +138,7 @@ public class ColumnTypeAssignementImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(PojoType newType)
+  public void setType(JvmParameterizedTypeReference newType)
   {
     if (newType != type)
     {
@@ -201,7 +202,7 @@ public class ColumnTypeAssignementImpl extends MinimalEObjectImpl.Container impl
         setDbColumn((String)newValue);
         return;
       case ProcessorModelPackage.COLUMN_TYPE_ASSIGNEMENT__TYPE:
-        setType((PojoType)newValue);
+        setType((JvmParameterizedTypeReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,7 +222,7 @@ public class ColumnTypeAssignementImpl extends MinimalEObjectImpl.Container impl
         setDbColumn(DB_COLUMN_EDEFAULT);
         return;
       case ProcessorModelPackage.COLUMN_TYPE_ASSIGNEMENT__TYPE:
-        setType((PojoType)null);
+        setType((JvmParameterizedTypeReference)null);
         return;
     }
     super.eUnset(featureID);

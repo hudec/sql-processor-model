@@ -13,6 +13,6 @@ package org.sqlproc.model.processorModel;
  * @model
  * @generated
  */
-public interface PojoPropertyDirectiveDiscriminator extends PojoPropertyDirective
+public interface PojoPropertyDirectiveDiscriminator extends PojoAttributeDirective
 {
 } // PojoPropertyDirectiveDiscriminator

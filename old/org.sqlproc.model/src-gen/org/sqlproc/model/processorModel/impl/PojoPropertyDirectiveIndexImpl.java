@@ -24,7 +24,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  *
  * @generated
  */
-public class PojoPropertyDirectiveIndexImpl extends PojoPropertyDirectiveImpl implements PojoPropertyDirectiveIndex
+public class PojoPropertyDirectiveIndexImpl extends PojoAttributeDirectiveImpl implements PojoPropertyDirectiveIndex
 {
   /**
    * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.

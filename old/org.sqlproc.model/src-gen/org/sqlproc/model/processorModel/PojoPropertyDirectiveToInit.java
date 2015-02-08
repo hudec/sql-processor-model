@@ -13,6 +13,6 @@ package org.sqlproc.model.processorModel;
  * @model
  * @generated
  */
-public interface PojoPropertyDirectiveToInit extends PojoPropertyDirective
+public interface PojoPropertyDirectiveToInit extends PojoAttributeDirective
 {
 } // PojoPropertyDirectiveToInit

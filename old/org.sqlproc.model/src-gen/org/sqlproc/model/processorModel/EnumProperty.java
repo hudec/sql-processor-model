@@ -6,7 +6,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.JvmTypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,8 +17,8 @@ import org.eclipse.xtext.common.types.JvmType;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.EnumProperty#getDirectives <em>Directives</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.EnumProperty#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.EnumProperty#getType <em>Type</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.EnumProperty#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,6 +45,32 @@ public interface EnumProperty extends EObject
   EList<EnumPropertyDirective> getDirectives();
 
   /**
+   * Returns the value of the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Type</em>' containment reference.
+   * @see #setType(JvmTypeReference)
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getEnumProperty_Type()
+   * @model containment="true"
+   * @generated
+   */
+  JvmTypeReference getType();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.EnumProperty#getType <em>Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' containment reference.
+   * @see #getType()
+   * @generated
+   */
+  void setType(JvmTypeReference value);
+
+  /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
@@ -69,31 +95,5 @@ public interface EnumProperty extends EObject
    * @generated
    */
   void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Type</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Type</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(JvmType)
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getEnumProperty_Type()
-   * @model
-   * @generated
-   */
-  JvmType getType();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.EnumProperty#getType <em>Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' reference.
-   * @see #getType()
-   * @generated
-   */
-  void setType(JvmType value);
 
 } // EnumProperty

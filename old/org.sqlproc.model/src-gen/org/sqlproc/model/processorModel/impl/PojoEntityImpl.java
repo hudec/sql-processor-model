@@ -4,6 +4,7 @@ package org.sqlproc.model.processorModel.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,13 +12,16 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.sqlproc.model.processorModel.PojoAnnotatedProperty;
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
+
+import org.sqlproc.model.processorModel.PojoAttribute;
+import org.sqlproc.model.processorModel.PojoDirective;
 import org.sqlproc.model.processorModel.PojoEntity;
-import org.sqlproc.model.processorModel.PojoEntityModifier1;
-import org.sqlproc.model.processorModel.PojoEntityModifier2;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -27,9 +31,10 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.model.processorModel.impl.PojoEntityImpl#getModifiers1 <em>Modifiers1</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.PojoEntityImpl#getModifiers2 <em>Modifiers2</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.PojoEntityImpl#getFeatures <em>Features</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PojoEntityImpl#getDirectives <em>Directives</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PojoEntityImpl#isAbstract <em>Abstract</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PojoEntityImpl#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PojoEntityImpl#getAttributes <em>Attributes</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,34 +43,54 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
 public class PojoEntityImpl extends EntityImpl implements PojoEntity
 {
   /**
-   * The cached value of the '{@link #getModifiers1() <em>Modifiers1</em>}' containment reference list.
+   * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getModifiers1()
+   * @see #getDirectives()
    * @generated
    * @ordered
    */
-  protected EList<PojoEntityModifier1> modifiers1;
+  protected EList<PojoDirective> directives;
 
   /**
-   * The cached value of the '{@link #getModifiers2() <em>Modifiers2</em>}' containment reference list.
+   * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getModifiers2()
+   * @see #isAbstract()
    * @generated
    * @ordered
    */
-  protected EList<PojoEntityModifier2> modifiers2;
+  protected static final boolean ABSTRACT_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
+   * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFeatures()
+   * @see #isAbstract()
    * @generated
    * @ordered
    */
-  protected EList<PojoAnnotatedProperty> features;
+  protected boolean abstract_ = ABSTRACT_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getSuperType() <em>Super Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSuperType()
+   * @generated
+   * @ordered
+   */
+  protected JvmParameterizedTypeReference superType;
+
+  /**
+   * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAttributes()
+   * @generated
+   * @ordered
+   */
+  protected EList<PojoAttribute> attributes;
 
   /**
    * <!-- begin-user-doc -->
@@ -93,13 +118,13 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoEntityModifier1> getModifiers1()
+  public EList<PojoDirective> getDirectives()
   {
-    if (modifiers1 == null)
+    if (directives == null)
     {
-      modifiers1 = new EObjectContainmentEList<PojoEntityModifier1>(PojoEntityModifier1.class, this, ProcessorModelPackage.POJO_ENTITY__MODIFIERS1);
+      directives = new EObjectContainmentEList<PojoDirective>(PojoDirective.class, this, ProcessorModelPackage.POJO_ENTITY__DIRECTIVES);
     }
-    return modifiers1;
+    return directives;
   }
 
   /**
@@ -107,13 +132,9 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoEntityModifier2> getModifiers2()
+  public boolean isAbstract()
   {
-    if (modifiers2 == null)
-    {
-      modifiers2 = new EObjectContainmentEList<PojoEntityModifier2>(PojoEntityModifier2.class, this, ProcessorModelPackage.POJO_ENTITY__MODIFIERS2);
-    }
-    return modifiers2;
+    return abstract_;
   }
 
   /**
@@ -121,13 +142,74 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoAnnotatedProperty> getFeatures()
+  public void setAbstract(boolean newAbstract)
   {
-    if (features == null)
+    boolean oldAbstract = abstract_;
+    abstract_ = newAbstract;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_ENTITY__ABSTRACT, oldAbstract, abstract_));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public JvmParameterizedTypeReference getSuperType()
+  {
+    return superType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetSuperType(JvmParameterizedTypeReference newSuperType, NotificationChain msgs)
+  {
+    JvmParameterizedTypeReference oldSuperType = superType;
+    superType = newSuperType;
+    if (eNotificationRequired())
     {
-      features = new EObjectContainmentEList<PojoAnnotatedProperty>(PojoAnnotatedProperty.class, this, ProcessorModelPackage.POJO_ENTITY__FEATURES);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_ENTITY__SUPER_TYPE, oldSuperType, newSuperType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return features;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSuperType(JvmParameterizedTypeReference newSuperType)
+  {
+    if (newSuperType != superType)
+    {
+      NotificationChain msgs = null;
+      if (superType != null)
+        msgs = ((InternalEObject)superType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.POJO_ENTITY__SUPER_TYPE, null, msgs);
+      if (newSuperType != null)
+        msgs = ((InternalEObject)newSuperType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.POJO_ENTITY__SUPER_TYPE, null, msgs);
+      msgs = basicSetSuperType(newSuperType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_ENTITY__SUPER_TYPE, newSuperType, newSuperType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<PojoAttribute> getAttributes()
+  {
+    if (attributes == null)
+    {
+      attributes = new EObjectContainmentEList<PojoAttribute>(PojoAttribute.class, this, ProcessorModelPackage.POJO_ENTITY__ATTRIBUTES);
+    }
+    return attributes;
   }
 
   /**
@@ -140,12 +222,12 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.POJO_ENTITY__MODIFIERS1:
-        return ((InternalEList<?>)getModifiers1()).basicRemove(otherEnd, msgs);
-      case ProcessorModelPackage.POJO_ENTITY__MODIFIERS2:
-        return ((InternalEList<?>)getModifiers2()).basicRemove(otherEnd, msgs);
-      case ProcessorModelPackage.POJO_ENTITY__FEATURES:
-        return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
+      case ProcessorModelPackage.POJO_ENTITY__DIRECTIVES:
+        return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
+      case ProcessorModelPackage.POJO_ENTITY__SUPER_TYPE:
+        return basicSetSuperType(null, msgs);
+      case ProcessorModelPackage.POJO_ENTITY__ATTRIBUTES:
+        return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -160,12 +242,14 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.POJO_ENTITY__MODIFIERS1:
-        return getModifiers1();
-      case ProcessorModelPackage.POJO_ENTITY__MODIFIERS2:
-        return getModifiers2();
-      case ProcessorModelPackage.POJO_ENTITY__FEATURES:
-        return getFeatures();
+      case ProcessorModelPackage.POJO_ENTITY__DIRECTIVES:
+        return getDirectives();
+      case ProcessorModelPackage.POJO_ENTITY__ABSTRACT:
+        return isAbstract();
+      case ProcessorModelPackage.POJO_ENTITY__SUPER_TYPE:
+        return getSuperType();
+      case ProcessorModelPackage.POJO_ENTITY__ATTRIBUTES:
+        return getAttributes();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -181,17 +265,19 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.POJO_ENTITY__MODIFIERS1:
-        getModifiers1().clear();
-        getModifiers1().addAll((Collection<? extends PojoEntityModifier1>)newValue);
+      case ProcessorModelPackage.POJO_ENTITY__DIRECTIVES:
+        getDirectives().clear();
+        getDirectives().addAll((Collection<? extends PojoDirective>)newValue);
         return;
-      case ProcessorModelPackage.POJO_ENTITY__MODIFIERS2:
-        getModifiers2().clear();
-        getModifiers2().addAll((Collection<? extends PojoEntityModifier2>)newValue);
+      case ProcessorModelPackage.POJO_ENTITY__ABSTRACT:
+        setAbstract((Boolean)newValue);
         return;
-      case ProcessorModelPackage.POJO_ENTITY__FEATURES:
-        getFeatures().clear();
-        getFeatures().addAll((Collection<? extends PojoAnnotatedProperty>)newValue);
+      case ProcessorModelPackage.POJO_ENTITY__SUPER_TYPE:
+        setSuperType((JvmParameterizedTypeReference)newValue);
+        return;
+      case ProcessorModelPackage.POJO_ENTITY__ATTRIBUTES:
+        getAttributes().clear();
+        getAttributes().addAll((Collection<? extends PojoAttribute>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -207,14 +293,17 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.POJO_ENTITY__MODIFIERS1:
-        getModifiers1().clear();
+      case ProcessorModelPackage.POJO_ENTITY__DIRECTIVES:
+        getDirectives().clear();
         return;
-      case ProcessorModelPackage.POJO_ENTITY__MODIFIERS2:
-        getModifiers2().clear();
+      case ProcessorModelPackage.POJO_ENTITY__ABSTRACT:
+        setAbstract(ABSTRACT_EDEFAULT);
         return;
-      case ProcessorModelPackage.POJO_ENTITY__FEATURES:
-        getFeatures().clear();
+      case ProcessorModelPackage.POJO_ENTITY__SUPER_TYPE:
+        setSuperType((JvmParameterizedTypeReference)null);
+        return;
+      case ProcessorModelPackage.POJO_ENTITY__ATTRIBUTES:
+        getAttributes().clear();
         return;
     }
     super.eUnset(featureID);
@@ -230,14 +319,33 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.POJO_ENTITY__MODIFIERS1:
-        return modifiers1 != null && !modifiers1.isEmpty();
-      case ProcessorModelPackage.POJO_ENTITY__MODIFIERS2:
-        return modifiers2 != null && !modifiers2.isEmpty();
-      case ProcessorModelPackage.POJO_ENTITY__FEATURES:
-        return features != null && !features.isEmpty();
+      case ProcessorModelPackage.POJO_ENTITY__DIRECTIVES:
+        return directives != null && !directives.isEmpty();
+      case ProcessorModelPackage.POJO_ENTITY__ABSTRACT:
+        return abstract_ != ABSTRACT_EDEFAULT;
+      case ProcessorModelPackage.POJO_ENTITY__SUPER_TYPE:
+        return superType != null;
+      case ProcessorModelPackage.POJO_ENTITY__ATTRIBUTES:
+        return attributes != null && !attributes.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (abstract: ");
+    result.append(abstract_);
+    result.append(')');
+    return result.toString();
   }
 
 } //PojoEntityImpl

@@ -4,6 +4,8 @@ package org.sqlproc.model.processorModel;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.xtext.xbase.XExpression;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Enum Property Value</b></em>'.
@@ -58,12 +60,12 @@ public interface EnumPropertyValue extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(ValueType)
+   * @see #setValue(XExpression)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getEnumPropertyValue_Value()
    * @model containment="true"
    * @generated
    */
-  ValueType getValue();
+  XExpression getValue();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.EnumPropertyValue#getValue <em>Value</em>}' containment reference.
@@ -73,6 +75,6 @@ public interface EnumPropertyValue extends EObject
    * @see #getValue()
    * @generated
    */
-  void setValue(ValueType value);
+  void setValue(XExpression value);
 
 } // EnumPropertyValue

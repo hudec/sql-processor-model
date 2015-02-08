@@ -6,6 +6,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Dao Directive Parameters</b></em>'.
@@ -34,12 +36,12 @@ public interface DaoDirectiveParameters extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Out</em>' containment reference.
-   * @see #setOut(PojoType)
+   * @see #setOut(JvmParameterizedTypeReference)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDaoDirectiveParameters_Out()
    * @model containment="true"
    * @generated
    */
-  PojoType getOut();
+  JvmParameterizedTypeReference getOut();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DaoDirectiveParameters#getOut <em>Out</em>}' containment reference.
@@ -49,11 +51,11 @@ public interface DaoDirectiveParameters extends EObject
    * @see #getOut()
    * @generated
    */
-  void setOut(PojoType value);
+  void setOut(JvmParameterizedTypeReference value);
 
   /**
    * Returns the value of the '<em><b>Ins</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.PojoType}.
+   * The list contents are of type {@link org.eclipse.xtext.common.types.JvmParameterizedTypeReference}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Ins</em>' containment reference list isn't clear,
@@ -65,6 +67,6 @@ public interface DaoDirectiveParameters extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<PojoType> getIns();
+  EList<JvmParameterizedTypeReference> getIns();
 
 } // DaoDirectiveParameters

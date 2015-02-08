@@ -19,7 +19,7 @@ package org.sqlproc.model.processorModel;
  * @model
  * @generated
  */
-public interface PojoPropertyDirectiveIndex extends PojoPropertyDirective
+public interface PojoPropertyDirectiveIndex extends PojoAttributeDirective
 {
   /**
    * Returns the value of the '<em><b>Index</b></em>' attribute.

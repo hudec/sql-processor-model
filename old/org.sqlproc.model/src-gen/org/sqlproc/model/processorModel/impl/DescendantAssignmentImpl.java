@@ -11,10 +11,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
+
 import org.sqlproc.model.processorModel.DescendantAssignment;
-import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
-import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,14 +33,24 @@ import org.sqlproc.model.processorModel.ValueType;
 public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container implements DescendantAssignment
 {
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected ValueType value;
+  protected static final String VALUE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getDescendant() <em>Descendant</em>}' containment reference.
@@ -50,7 +60,7 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
    * @generated
    * @ordered
    */
-  protected PojoType descendant;
+  protected JvmParameterizedTypeReference descendant;
 
   /**
    * <!-- begin-user-doc -->
@@ -78,7 +88,7 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public ValueType getValue()
+  public String getValue()
   {
     return value;
   }
@@ -88,16 +98,12 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(ValueType newValue, NotificationChain msgs)
+  public void setValue(String newValue)
   {
-    ValueType oldValue = value;
+    String oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE, oldValue, newValue);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE, oldValue, value));
   }
 
   /**
@@ -105,28 +111,7 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(ValueType newValue)
-  {
-    if (newValue != value)
-    {
-      NotificationChain msgs = null;
-      if (value != null)
-        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE, null, msgs);
-      if (newValue != null)
-        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE, null, msgs);
-      msgs = basicSetValue(newValue, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE, newValue, newValue));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PojoType getDescendant()
+  public JvmParameterizedTypeReference getDescendant()
   {
     return descendant;
   }
@@ -136,9 +121,9 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDescendant(PojoType newDescendant, NotificationChain msgs)
+  public NotificationChain basicSetDescendant(JvmParameterizedTypeReference newDescendant, NotificationChain msgs)
   {
-    PojoType oldDescendant = descendant;
+    JvmParameterizedTypeReference oldDescendant = descendant;
     descendant = newDescendant;
     if (eNotificationRequired())
     {
@@ -153,7 +138,7 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDescendant(PojoType newDescendant)
+  public void setDescendant(JvmParameterizedTypeReference newDescendant)
   {
     if (newDescendant != descendant)
     {
@@ -179,8 +164,6 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE:
-        return basicSetValue(null, msgs);
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__DESCENDANT:
         return basicSetDescendant(null, msgs);
     }
@@ -216,10 +199,10 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
     switch (featureID)
     {
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE:
-        setValue((ValueType)newValue);
+        setValue((String)newValue);
         return;
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__DESCENDANT:
-        setDescendant((PojoType)newValue);
+        setDescendant((JvmParameterizedTypeReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -236,10 +219,10 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
     switch (featureID)
     {
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE:
-        setValue((ValueType)null);
+        setValue(VALUE_EDEFAULT);
         return;
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__DESCENDANT:
-        setDescendant((PojoType)null);
+        setDescendant((JvmParameterizedTypeReference)null);
         return;
     }
     super.eUnset(featureID);
@@ -256,11 +239,28 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
     switch (featureID)
     {
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE:
-        return value != null;
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__DESCENDANT:
         return descendant != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (value: ");
+    result.append(value);
+    result.append(')');
+    return result.toString();
   }
 
 } //DescendantAssignmentImpl

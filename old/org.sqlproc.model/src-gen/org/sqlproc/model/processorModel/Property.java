@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.model.processorModel.Property#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Property#getDatabase <em>Database</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Property#getPojogen <em>Pojogen</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.Property#getMetagen <em>Metagen</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Property#getDaogen <em>Daogen</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Property#getReplaceId <em>Replace Id</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Property#getRegex <em>Regex</em>}</li>
@@ -133,32 +132,6 @@ public interface Property extends EObject
    * @generated
    */
   void setPojogen(PojogenProperty value);
-
-  /**
-   * Returns the value of the '<em><b>Metagen</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Metagen</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Metagen</em>' containment reference.
-   * @see #setMetagen(MetagenProperty)
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getProperty_Metagen()
-   * @model containment="true"
-   * @generated
-   */
-  MetagenProperty getMetagen();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.Property#getMetagen <em>Metagen</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Metagen</em>' containment reference.
-   * @see #getMetagen()
-   * @generated
-   */
-  void setMetagen(MetagenProperty value);
 
   /**
    * Returns the value of the '<em><b>Daogen</b></em>' containment reference.

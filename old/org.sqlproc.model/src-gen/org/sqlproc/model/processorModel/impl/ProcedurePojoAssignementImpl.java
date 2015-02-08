@@ -11,7 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.sqlproc.model.processorModel.PojoType;
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
+
 import org.sqlproc.model.processorModel.ProcedurePojoAssignement;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
@@ -59,7 +60,7 @@ public class ProcedurePojoAssignementImpl extends MinimalEObjectImpl.Container i
    * @generated
    * @ordered
    */
-  protected PojoType pojo;
+  protected JvmParameterizedTypeReference pojo;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,7 +111,7 @@ public class ProcedurePojoAssignementImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoType getPojo()
+  public JvmParameterizedTypeReference getPojo()
   {
     return pojo;
   }
@@ -120,9 +121,9 @@ public class ProcedurePojoAssignementImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPojo(PojoType newPojo, NotificationChain msgs)
+  public NotificationChain basicSetPojo(JvmParameterizedTypeReference newPojo, NotificationChain msgs)
   {
-    PojoType oldPojo = pojo;
+    JvmParameterizedTypeReference oldPojo = pojo;
     pojo = newPojo;
     if (eNotificationRequired())
     {
@@ -137,7 +138,7 @@ public class ProcedurePojoAssignementImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPojo(PojoType newPojo)
+  public void setPojo(JvmParameterizedTypeReference newPojo)
   {
     if (newPojo != pojo)
     {
@@ -201,7 +202,7 @@ public class ProcedurePojoAssignementImpl extends MinimalEObjectImpl.Container i
         setDbProcedure((String)newValue);
         return;
       case ProcessorModelPackage.PROCEDURE_POJO_ASSIGNEMENT__POJO:
-        setPojo((PojoType)newValue);
+        setPojo((JvmParameterizedTypeReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,7 +222,7 @@ public class ProcedurePojoAssignementImpl extends MinimalEObjectImpl.Container i
         setDbProcedure(DB_PROCEDURE_EDEFAULT);
         return;
       case ProcessorModelPackage.PROCEDURE_POJO_ASSIGNEMENT__POJO:
-        setPojo((PojoType)null);
+        setPojo((JvmParameterizedTypeReference)null);
         return;
     }
     super.eUnset(featureID);

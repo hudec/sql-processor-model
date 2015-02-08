@@ -4,6 +4,10 @@ package org.sqlproc.model.processorModel;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.xtext.xtype.XImportSection;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Package</b></em>'.
@@ -12,8 +16,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.model.processorModel.Package#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Package#getName <em>Name</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.Package#getImportSection <em>Import Section</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Package#getElements <em>Elements</em>}</li>
  * </ul>
  * </p>
@@ -22,24 +26,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Package extends AbstractPojoEntity
+public interface Package extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Directives</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.PackageDirective}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Directives</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Directives</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPackage_Directives()
-   * @model containment="true"
-   * @generated
-   */
-  EList<PackageDirective> getDirectives();
-
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
@@ -67,8 +55,34 @@ public interface Package extends AbstractPojoEntity
   void setName(String value);
 
   /**
+   * Returns the value of the '<em><b>Import Section</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Import Section</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Import Section</em>' containment reference.
+   * @see #setImportSection(XImportSection)
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPackage_ImportSection()
+   * @model containment="true"
+   * @generated
+   */
+  XImportSection getImportSection();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.Package#getImportSection <em>Import Section</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Import Section</em>' containment reference.
+   * @see #getImportSection()
+   * @generated
+   */
+  void setImportSection(XImportSection value);
+
+  /**
    * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.AbstractPojoEntity}.
+   * The list contents are of type {@link org.sqlproc.model.processorModel.AbstractEntity}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Elements</em>' containment reference list isn't clear,
@@ -80,6 +94,6 @@ public interface Package extends AbstractPojoEntity
    * @model containment="true"
    * @generated
    */
-  EList<AbstractPojoEntity> getElements();
+  EList<AbstractEntity> getElements();
 
 } // Package

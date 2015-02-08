@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.sqlproc.model.processorModel.AbstractPojoEntity;
+import org.sqlproc.model.processorModel.AbstractEntity;
 import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Annotation;
 import org.sqlproc.model.processorModel.AnnotationDirective;
@@ -21,7 +21,6 @@ import org.sqlproc.model.processorModel.AnnotationDirectiveGetter;
 import org.sqlproc.model.processorModel.AnnotationDirectiveSetter;
 import org.sqlproc.model.processorModel.AnnotationDirectiveStandard;
 import org.sqlproc.model.processorModel.AnnotationDirectiveStatic;
-import org.sqlproc.model.processorModel.AnnotationProperty;
 import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.ColumnAssignement;
 import org.sqlproc.model.processorModel.ColumnTypeAssignement;
@@ -31,6 +30,7 @@ import org.sqlproc.model.processorModel.DaoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.DaoDirectiveParameters;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoDirectiveSerializable;
+import org.sqlproc.model.processorModel.DaoEntity;
 import org.sqlproc.model.processorModel.DaogenProperty;
 import org.sqlproc.model.processorModel.DatabaseCatalogAssignement;
 import org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement;
@@ -43,9 +43,9 @@ import org.sqlproc.model.processorModel.DirectiveProperties;
 import org.sqlproc.model.processorModel.DriverMetaInfoAssignement;
 import org.sqlproc.model.processorModel.DriverMethodOutputAssignement;
 import org.sqlproc.model.processorModel.Entity;
+import org.sqlproc.model.processorModel.EnumDirective;
+import org.sqlproc.model.processorModel.EnumDirectiveSerializable;
 import org.sqlproc.model.processorModel.EnumEntity;
-import org.sqlproc.model.processorModel.EnumEntityModifier1;
-import org.sqlproc.model.processorModel.EnumEntityModifier2;
 import org.sqlproc.model.processorModel.EnumProperty;
 import org.sqlproc.model.processorModel.EnumPropertyDirective;
 import org.sqlproc.model.processorModel.EnumPropertyDirectiveValues;
@@ -70,19 +70,12 @@ import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
-import org.sqlproc.model.processorModel.Import;
 import org.sqlproc.model.processorModel.ImportAssignement;
 import org.sqlproc.model.processorModel.InheritanceAssignement;
 import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
-import org.sqlproc.model.processorModel.MetaTypeAssignement;
-import org.sqlproc.model.processorModel.MetagenProperty;
-import org.sqlproc.model.processorModel.PackageDirective;
-import org.sqlproc.model.processorModel.PackageDirectiveImplementation;
-import org.sqlproc.model.processorModel.PackageDirectiveSuffix;
-import org.sqlproc.model.processorModel.PojoAnnotatedProperty;
-import org.sqlproc.model.processorModel.PojoDao;
-import org.sqlproc.model.processorModel.PojoDaoModifier;
+import org.sqlproc.model.processorModel.PojoAttribute;
+import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoDefinition;
 import org.sqlproc.model.processorModel.PojoDirective;
 import org.sqlproc.model.processorModel.PojoDirectiveDiscriminator;
@@ -93,10 +86,6 @@ import org.sqlproc.model.processorModel.PojoDirectiveOperators;
 import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
-import org.sqlproc.model.processorModel.PojoEntityModifier1;
-import org.sqlproc.model.processorModel.PojoEntityModifier2;
-import org.sqlproc.model.processorModel.PojoProperty;
-import org.sqlproc.model.processorModel.PojoPropertyDirective;
 import org.sqlproc.model.processorModel.PojoPropertyDirectiveCreateCol;
 import org.sqlproc.model.processorModel.PojoPropertyDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.PojoPropertyDirectiveEnumDef;
@@ -108,7 +97,6 @@ import org.sqlproc.model.processorModel.PojoPropertyDirectiveRequired;
 import org.sqlproc.model.processorModel.PojoPropertyDirectiveToInit;
 import org.sqlproc.model.processorModel.PojoPropertyDirectiveUpdateCol;
 import org.sqlproc.model.processorModel.PojoPropertyDirectiveVersion;
-import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
@@ -205,36 +193,24 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.PROPERTY: return createProperty();
       case ProcessorModelPackage.DATABASE_PROPERTY: return createDatabaseProperty();
       case ProcessorModelPackage.POJOGEN_PROPERTY: return createPojogenProperty();
-      case ProcessorModelPackage.META_TYPE_ASSIGNEMENT: return createMetaTypeAssignement();
-      case ProcessorModelPackage.METAGEN_PROPERTY: return createMetagenProperty();
       case ProcessorModelPackage.DAOGEN_PROPERTY: return createDaogenProperty();
       case ProcessorModelPackage.POJO_DEFINITION: return createPojoDefinition();
       case ProcessorModelPackage.TABLE_DEFINITION: return createTableDefinition();
       case ProcessorModelPackage.PROCEDURE_DEFINITION: return createProcedureDefinition();
       case ProcessorModelPackage.FUNCTION_DEFINITION: return createFunctionDefinition();
-      case ProcessorModelPackage.POJO_TYPE: return createPojoType();
-      case ProcessorModelPackage.PACKAGE_DIRECTIVE: return createPackageDirective();
       case ProcessorModelPackage.PACKAGE: return createPackage();
-      case ProcessorModelPackage.ANNOTATION_DIRECTIVE: return createAnnotationDirective();
-      case ProcessorModelPackage.ANNOTATION: return createAnnotation();
-      case ProcessorModelPackage.ANNOTATION_PROPERTY: return createAnnotationProperty();
-      case ProcessorModelPackage.ENTITY: return createEntity();
-      case ProcessorModelPackage.ANNOTATED_ENTITY: return createAnnotatedEntity();
-      case ProcessorModelPackage.ABSTRACT_POJO_ENTITY: return createAbstractPojoEntity();
-      case ProcessorModelPackage.IMPORT: return createImport();
+      case ProcessorModelPackage.ABSTRACT_ENTITY: return createAbstractEntity();
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE: return createImplementsExtendsDirective();
       case ProcessorModelPackage.IMPLEMENTS: return createImplements();
       case ProcessorModelPackage.EXTENDS: return createExtends();
-      case ProcessorModelPackage.POJO_ENTITY_MODIFIER1: return createPojoEntityModifier1();
+      case ProcessorModelPackage.ANNOTATED_ENTITY: return createAnnotatedEntity();
+      case ProcessorModelPackage.ENTITY: return createEntity();
       case ProcessorModelPackage.DIRECTIVE_PROPERTIES: return createDirectiveProperties();
       case ProcessorModelPackage.POJO_DIRECTIVE: return createPojoDirective();
-      case ProcessorModelPackage.POJO_ENTITY_MODIFIER2: return createPojoEntityModifier2();
       case ProcessorModelPackage.POJO_ENTITY: return createPojoEntity();
-      case ProcessorModelPackage.POJO_ANNOTATED_PROPERTY: return createPojoAnnotatedProperty();
-      case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE: return createPojoPropertyDirective();
-      case ProcessorModelPackage.POJO_PROPERTY: return createPojoProperty();
-      case ProcessorModelPackage.ENUM_ENTITY_MODIFIER1: return createEnumEntityModifier1();
-      case ProcessorModelPackage.ENUM_ENTITY_MODIFIER2: return createEnumEntityModifier2();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE: return createPojoAttributeDirective();
+      case ProcessorModelPackage.POJO_ATTRIBUTE: return createPojoAttribute();
+      case ProcessorModelPackage.ENUM_DIRECTIVE: return createEnumDirective();
       case ProcessorModelPackage.ENUM_ENTITY: return createEnumEntity();
       case ProcessorModelPackage.ENUM_PROPERTY_VALUE: return createEnumPropertyValue();
       case ProcessorModelPackage.ENUM_PROPERTY_DIRECTIVE: return createEnumPropertyDirective();
@@ -243,17 +219,9 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT: return createDescendantAssignment();
       case ProcessorModelPackage.FUN_PROC_TYPE: return createFunProcType();
       case ProcessorModelPackage.DAO_DIRECTIVE: return createDaoDirective();
-      case ProcessorModelPackage.POJO_DAO_MODIFIER: return createPojoDaoModifier();
-      case ProcessorModelPackage.POJO_DAO: return createPojoDao();
-      case ProcessorModelPackage.PACKAGE_DIRECTIVE_SUFFIX: return createPackageDirectiveSuffix();
-      case ProcessorModelPackage.PACKAGE_DIRECTIVE_IMPLEMENTATION: return createPackageDirectiveImplementation();
-      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_CONFLICT: return createAnnotationDirectiveConflict();
-      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_STATIC: return createAnnotationDirectiveStatic();
-      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_CONSTRUCTOR: return createAnnotationDirectiveConstructor();
-      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_STANDARD: return createAnnotationDirectiveStandard();
-      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_SETTER: return createAnnotationDirectiveSetter();
-      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_GETTER: return createAnnotationDirectiveGetter();
-      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_ATTRIBUTE: return createAnnotationDirectiveAttribute();
+      case ProcessorModelPackage.DAO_ENTITY: return createDaoEntity();
+      case ProcessorModelPackage.ANNOTATION_DIRECTIVE: return createAnnotationDirective();
+      case ProcessorModelPackage.ANNOTATION: return createAnnotation();
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS: return createImplementsExtendsDirectiveGenerics();
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS: return createImplementsExtendsDirectiveOnlyPojos();
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS: return createImplementsExtendsDirectiveOnlyDaos();
@@ -277,6 +245,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_ENUM_INIT: return createPojoPropertyDirectiveEnumInit();
       case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_IS_DEF: return createPojoPropertyDirectiveIsDef();
       case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_ENUM_DEF: return createPojoPropertyDirectiveEnumDef();
+      case ProcessorModelPackage.ENUM_DIRECTIVE_SERIALIZABLE: return createEnumDirectiveSerializable();
       case ProcessorModelPackage.ENUM_PROPERTY_DIRECTIVE_VALUES: return createEnumPropertyDirectiveValues();
       case ProcessorModelPackage.FUNCTION_CALL_QUERY: return createFunctionCallQuery();
       case ProcessorModelPackage.PROCEDURE_CALL_QUERY: return createProcedureCallQuery();
@@ -288,6 +257,13 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.DAO_DIRECTIVE_CRUD: return createDaoDirectiveCrud();
       case ProcessorModelPackage.DAO_DIRECTIVE_QUERY: return createDaoDirectiveQuery();
       case ProcessorModelPackage.FUN_PROC_DIRECTIVE: return createFunProcDirective();
+      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_CONFLICT: return createAnnotationDirectiveConflict();
+      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_STATIC: return createAnnotationDirectiveStatic();
+      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_CONSTRUCTOR: return createAnnotationDirectiveConstructor();
+      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_STANDARD: return createAnnotationDirectiveStandard();
+      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_SETTER: return createAnnotationDirectiveSetter();
+      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_GETTER: return createAnnotationDirectiveGetter();
+      case ProcessorModelPackage.ANNOTATION_DIRECTIVE_ATTRIBUTE: return createAnnotationDirectiveAttribute();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -617,28 +593,6 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public MetaTypeAssignement createMetaTypeAssignement()
-  {
-    MetaTypeAssignementImpl metaTypeAssignement = new MetaTypeAssignementImpl();
-    return metaTypeAssignement;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public MetagenProperty createMetagenProperty()
-  {
-    MetagenPropertyImpl metagenProperty = new MetagenPropertyImpl();
-    return metagenProperty;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public DaogenProperty createDaogenProperty()
   {
     DaogenPropertyImpl daogenProperty = new DaogenPropertyImpl();
@@ -694,28 +648,6 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoType createPojoType()
-  {
-    PojoTypeImpl pojoType = new PojoTypeImpl();
-    return pojoType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PackageDirective createPackageDirective()
-  {
-    PackageDirectiveImpl packageDirective = new PackageDirectiveImpl();
-    return packageDirective;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public org.sqlproc.model.processorModel.Package createPackage()
   {
     PackageImpl package_ = new PackageImpl();
@@ -727,76 +659,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public AnnotationDirective createAnnotationDirective()
+  public AbstractEntity createAbstractEntity()
   {
-    AnnotationDirectiveImpl annotationDirective = new AnnotationDirectiveImpl();
-    return annotationDirective;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Annotation createAnnotation()
-  {
-    AnnotationImpl annotation = new AnnotationImpl();
-    return annotation;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AnnotationProperty createAnnotationProperty()
-  {
-    AnnotationPropertyImpl annotationProperty = new AnnotationPropertyImpl();
-    return annotationProperty;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Entity createEntity()
-  {
-    EntityImpl entity = new EntityImpl();
-    return entity;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AnnotatedEntity createAnnotatedEntity()
-  {
-    AnnotatedEntityImpl annotatedEntity = new AnnotatedEntityImpl();
-    return annotatedEntity;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AbstractPojoEntity createAbstractPojoEntity()
-  {
-    AbstractPojoEntityImpl abstractPojoEntity = new AbstractPojoEntityImpl();
-    return abstractPojoEntity;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Import createImport()
-  {
-    ImportImpl import_ = new ImportImpl();
-    return import_;
+    AbstractEntityImpl abstractEntity = new AbstractEntityImpl();
+    return abstractEntity;
   }
 
   /**
@@ -837,10 +703,21 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoEntityModifier1 createPojoEntityModifier1()
+  public AnnotatedEntity createAnnotatedEntity()
   {
-    PojoEntityModifier1Impl pojoEntityModifier1 = new PojoEntityModifier1Impl();
-    return pojoEntityModifier1;
+    AnnotatedEntityImpl annotatedEntity = new AnnotatedEntityImpl();
+    return annotatedEntity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Entity createEntity()
+  {
+    EntityImpl entity = new EntityImpl();
+    return entity;
   }
 
   /**
@@ -870,17 +747,6 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoEntityModifier2 createPojoEntityModifier2()
-  {
-    PojoEntityModifier2Impl pojoEntityModifier2 = new PojoEntityModifier2Impl();
-    return pojoEntityModifier2;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public PojoEntity createPojoEntity()
   {
     PojoEntityImpl pojoEntity = new PojoEntityImpl();
@@ -892,10 +758,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoAnnotatedProperty createPojoAnnotatedProperty()
+  public PojoAttributeDirective createPojoAttributeDirective()
   {
-    PojoAnnotatedPropertyImpl pojoAnnotatedProperty = new PojoAnnotatedPropertyImpl();
-    return pojoAnnotatedProperty;
+    PojoAttributeDirectiveImpl pojoAttributeDirective = new PojoAttributeDirectiveImpl();
+    return pojoAttributeDirective;
   }
 
   /**
@@ -903,10 +769,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoPropertyDirective createPojoPropertyDirective()
+  public PojoAttribute createPojoAttribute()
   {
-    PojoPropertyDirectiveImpl pojoPropertyDirective = new PojoPropertyDirectiveImpl();
-    return pojoPropertyDirective;
+    PojoAttributeImpl pojoAttribute = new PojoAttributeImpl();
+    return pojoAttribute;
   }
 
   /**
@@ -914,32 +780,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoProperty createPojoProperty()
+  public EnumDirective createEnumDirective()
   {
-    PojoPropertyImpl pojoProperty = new PojoPropertyImpl();
-    return pojoProperty;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EnumEntityModifier1 createEnumEntityModifier1()
-  {
-    EnumEntityModifier1Impl enumEntityModifier1 = new EnumEntityModifier1Impl();
-    return enumEntityModifier1;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EnumEntityModifier2 createEnumEntityModifier2()
-  {
-    EnumEntityModifier2Impl enumEntityModifier2 = new EnumEntityModifier2Impl();
-    return enumEntityModifier2;
+    EnumDirectiveImpl enumDirective = new EnumDirectiveImpl();
+    return enumDirective;
   }
 
   /**
@@ -1035,10 +879,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDaoModifier createPojoDaoModifier()
+  public DaoEntity createDaoEntity()
   {
-    PojoDaoModifierImpl pojoDaoModifier = new PojoDaoModifierImpl();
-    return pojoDaoModifier;
+    DaoEntityImpl daoEntity = new DaoEntityImpl();
+    return daoEntity;
   }
 
   /**
@@ -1046,10 +890,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDao createPojoDao()
+  public AnnotationDirective createAnnotationDirective()
   {
-    PojoDaoImpl pojoDao = new PojoDaoImpl();
-    return pojoDao;
+    AnnotationDirectiveImpl annotationDirective = new AnnotationDirectiveImpl();
+    return annotationDirective;
   }
 
   /**
@@ -1057,98 +901,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PackageDirectiveSuffix createPackageDirectiveSuffix()
+  public Annotation createAnnotation()
   {
-    PackageDirectiveSuffixImpl packageDirectiveSuffix = new PackageDirectiveSuffixImpl();
-    return packageDirectiveSuffix;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PackageDirectiveImplementation createPackageDirectiveImplementation()
-  {
-    PackageDirectiveImplementationImpl packageDirectiveImplementation = new PackageDirectiveImplementationImpl();
-    return packageDirectiveImplementation;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AnnotationDirectiveConflict createAnnotationDirectiveConflict()
-  {
-    AnnotationDirectiveConflictImpl annotationDirectiveConflict = new AnnotationDirectiveConflictImpl();
-    return annotationDirectiveConflict;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AnnotationDirectiveStatic createAnnotationDirectiveStatic()
-  {
-    AnnotationDirectiveStaticImpl annotationDirectiveStatic = new AnnotationDirectiveStaticImpl();
-    return annotationDirectiveStatic;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AnnotationDirectiveConstructor createAnnotationDirectiveConstructor()
-  {
-    AnnotationDirectiveConstructorImpl annotationDirectiveConstructor = new AnnotationDirectiveConstructorImpl();
-    return annotationDirectiveConstructor;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AnnotationDirectiveStandard createAnnotationDirectiveStandard()
-  {
-    AnnotationDirectiveStandardImpl annotationDirectiveStandard = new AnnotationDirectiveStandardImpl();
-    return annotationDirectiveStandard;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AnnotationDirectiveSetter createAnnotationDirectiveSetter()
-  {
-    AnnotationDirectiveSetterImpl annotationDirectiveSetter = new AnnotationDirectiveSetterImpl();
-    return annotationDirectiveSetter;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AnnotationDirectiveGetter createAnnotationDirectiveGetter()
-  {
-    AnnotationDirectiveGetterImpl annotationDirectiveGetter = new AnnotationDirectiveGetterImpl();
-    return annotationDirectiveGetter;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AnnotationDirectiveAttribute createAnnotationDirectiveAttribute()
-  {
-    AnnotationDirectiveAttributeImpl annotationDirectiveAttribute = new AnnotationDirectiveAttributeImpl();
-    return annotationDirectiveAttribute;
+    AnnotationImpl annotation = new AnnotationImpl();
+    return annotation;
   }
 
   /**
@@ -1409,6 +1165,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public EnumDirectiveSerializable createEnumDirectiveSerializable()
+  {
+    EnumDirectiveSerializableImpl enumDirectiveSerializable = new EnumDirectiveSerializableImpl();
+    return enumDirectiveSerializable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EnumPropertyDirectiveValues createEnumPropertyDirectiveValues()
   {
     EnumPropertyDirectiveValuesImpl enumPropertyDirectiveValues = new EnumPropertyDirectiveValuesImpl();
@@ -1523,6 +1290,83 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     FunProcDirectiveImpl funProcDirective = new FunProcDirectiveImpl();
     return funProcDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveConflict createAnnotationDirectiveConflict()
+  {
+    AnnotationDirectiveConflictImpl annotationDirectiveConflict = new AnnotationDirectiveConflictImpl();
+    return annotationDirectiveConflict;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveStatic createAnnotationDirectiveStatic()
+  {
+    AnnotationDirectiveStaticImpl annotationDirectiveStatic = new AnnotationDirectiveStaticImpl();
+    return annotationDirectiveStatic;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveConstructor createAnnotationDirectiveConstructor()
+  {
+    AnnotationDirectiveConstructorImpl annotationDirectiveConstructor = new AnnotationDirectiveConstructorImpl();
+    return annotationDirectiveConstructor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveStandard createAnnotationDirectiveStandard()
+  {
+    AnnotationDirectiveStandardImpl annotationDirectiveStandard = new AnnotationDirectiveStandardImpl();
+    return annotationDirectiveStandard;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveSetter createAnnotationDirectiveSetter()
+  {
+    AnnotationDirectiveSetterImpl annotationDirectiveSetter = new AnnotationDirectiveSetterImpl();
+    return annotationDirectiveSetter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveGetter createAnnotationDirectiveGetter()
+  {
+    AnnotationDirectiveGetterImpl annotationDirectiveGetter = new AnnotationDirectiveGetterImpl();
+    return annotationDirectiveGetter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AnnotationDirectiveAttribute createAnnotationDirectiveAttribute()
+  {
+    AnnotationDirectiveAttributeImpl annotationDirectiveAttribute = new AnnotationDirectiveAttributeImpl();
+    return annotationDirectiveAttribute;
   }
 
   /**

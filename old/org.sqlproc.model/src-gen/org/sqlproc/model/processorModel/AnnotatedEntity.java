@@ -4,6 +4,8 @@ package org.sqlproc.model.processorModel;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Annotated Entity</b></em>'.
@@ -21,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface AnnotatedEntity extends AbstractPojoEntity
+public interface AnnotatedEntity extends EObject
 {
   /**
    * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.

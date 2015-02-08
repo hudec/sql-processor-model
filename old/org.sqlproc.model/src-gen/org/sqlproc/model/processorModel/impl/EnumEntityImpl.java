@@ -4,6 +4,7 @@ package org.sqlproc.model.processorModel.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,12 +12,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sqlproc.model.processorModel.EnumDirective;
 import org.sqlproc.model.processorModel.EnumEntity;
-import org.sqlproc.model.processorModel.EnumEntityModifier1;
-import org.sqlproc.model.processorModel.EnumEntityModifier2;
 import org.sqlproc.model.processorModel.EnumProperty;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
@@ -27,9 +29,8 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.model.processorModel.impl.EnumEntityImpl#getModifiers1 <em>Modifiers1</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.EnumEntityImpl#getModifiers2 <em>Modifiers2</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.EnumEntityImpl#getFeatures <em>Features</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.EnumEntityImpl#getDirectives <em>Directives</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.EnumEntityImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,34 +39,24 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
 public class EnumEntityImpl extends EntityImpl implements EnumEntity
 {
   /**
-   * The cached value of the '{@link #getModifiers1() <em>Modifiers1</em>}' containment reference list.
+   * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getModifiers1()
+   * @see #getDirectives()
    * @generated
    * @ordered
    */
-  protected EList<EnumEntityModifier1> modifiers1;
+  protected EList<EnumDirective> directives;
 
   /**
-   * The cached value of the '{@link #getModifiers2() <em>Modifiers2</em>}' containment reference list.
+   * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getModifiers2()
+   * @see #getAttribute()
    * @generated
    * @ordered
    */
-  protected EList<EnumEntityModifier2> modifiers2;
-
-  /**
-   * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFeatures()
-   * @generated
-   * @ordered
-   */
-  protected EList<EnumProperty> features;
+  protected EnumProperty attribute;
 
   /**
    * <!-- begin-user-doc -->
@@ -93,13 +84,13 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EnumEntityModifier1> getModifiers1()
+  public EList<EnumDirective> getDirectives()
   {
-    if (modifiers1 == null)
+    if (directives == null)
     {
-      modifiers1 = new EObjectContainmentEList<EnumEntityModifier1>(EnumEntityModifier1.class, this, ProcessorModelPackage.ENUM_ENTITY__MODIFIERS1);
+      directives = new EObjectContainmentEList<EnumDirective>(EnumDirective.class, this, ProcessorModelPackage.ENUM_ENTITY__DIRECTIVES);
     }
-    return modifiers1;
+    return directives;
   }
 
   /**
@@ -107,13 +98,9 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EnumEntityModifier2> getModifiers2()
+  public EnumProperty getAttribute()
   {
-    if (modifiers2 == null)
-    {
-      modifiers2 = new EObjectContainmentEList<EnumEntityModifier2>(EnumEntityModifier2.class, this, ProcessorModelPackage.ENUM_ENTITY__MODIFIERS2);
-    }
-    return modifiers2;
+    return attribute;
   }
 
   /**
@@ -121,13 +108,37 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EnumProperty> getFeatures()
+  public NotificationChain basicSetAttribute(EnumProperty newAttribute, NotificationChain msgs)
   {
-    if (features == null)
+    EnumProperty oldAttribute = attribute;
+    attribute = newAttribute;
+    if (eNotificationRequired())
     {
-      features = new EObjectContainmentEList<EnumProperty>(EnumProperty.class, this, ProcessorModelPackage.ENUM_ENTITY__FEATURES);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ENUM_ENTITY__ATTRIBUTE, oldAttribute, newAttribute);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return features;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setAttribute(EnumProperty newAttribute)
+  {
+    if (newAttribute != attribute)
+    {
+      NotificationChain msgs = null;
+      if (attribute != null)
+        msgs = ((InternalEObject)attribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.ENUM_ENTITY__ATTRIBUTE, null, msgs);
+      if (newAttribute != null)
+        msgs = ((InternalEObject)newAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.ENUM_ENTITY__ATTRIBUTE, null, msgs);
+      msgs = basicSetAttribute(newAttribute, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ENUM_ENTITY__ATTRIBUTE, newAttribute, newAttribute));
   }
 
   /**
@@ -140,12 +151,10 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.ENUM_ENTITY__MODIFIERS1:
-        return ((InternalEList<?>)getModifiers1()).basicRemove(otherEnd, msgs);
-      case ProcessorModelPackage.ENUM_ENTITY__MODIFIERS2:
-        return ((InternalEList<?>)getModifiers2()).basicRemove(otherEnd, msgs);
-      case ProcessorModelPackage.ENUM_ENTITY__FEATURES:
-        return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
+      case ProcessorModelPackage.ENUM_ENTITY__DIRECTIVES:
+        return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
+      case ProcessorModelPackage.ENUM_ENTITY__ATTRIBUTE:
+        return basicSetAttribute(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -160,12 +169,10 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.ENUM_ENTITY__MODIFIERS1:
-        return getModifiers1();
-      case ProcessorModelPackage.ENUM_ENTITY__MODIFIERS2:
-        return getModifiers2();
-      case ProcessorModelPackage.ENUM_ENTITY__FEATURES:
-        return getFeatures();
+      case ProcessorModelPackage.ENUM_ENTITY__DIRECTIVES:
+        return getDirectives();
+      case ProcessorModelPackage.ENUM_ENTITY__ATTRIBUTE:
+        return getAttribute();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -181,17 +188,12 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.ENUM_ENTITY__MODIFIERS1:
-        getModifiers1().clear();
-        getModifiers1().addAll((Collection<? extends EnumEntityModifier1>)newValue);
+      case ProcessorModelPackage.ENUM_ENTITY__DIRECTIVES:
+        getDirectives().clear();
+        getDirectives().addAll((Collection<? extends EnumDirective>)newValue);
         return;
-      case ProcessorModelPackage.ENUM_ENTITY__MODIFIERS2:
-        getModifiers2().clear();
-        getModifiers2().addAll((Collection<? extends EnumEntityModifier2>)newValue);
-        return;
-      case ProcessorModelPackage.ENUM_ENTITY__FEATURES:
-        getFeatures().clear();
-        getFeatures().addAll((Collection<? extends EnumProperty>)newValue);
+      case ProcessorModelPackage.ENUM_ENTITY__ATTRIBUTE:
+        setAttribute((EnumProperty)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -207,14 +209,11 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.ENUM_ENTITY__MODIFIERS1:
-        getModifiers1().clear();
+      case ProcessorModelPackage.ENUM_ENTITY__DIRECTIVES:
+        getDirectives().clear();
         return;
-      case ProcessorModelPackage.ENUM_ENTITY__MODIFIERS2:
-        getModifiers2().clear();
-        return;
-      case ProcessorModelPackage.ENUM_ENTITY__FEATURES:
-        getFeatures().clear();
+      case ProcessorModelPackage.ENUM_ENTITY__ATTRIBUTE:
+        setAttribute((EnumProperty)null);
         return;
     }
     super.eUnset(featureID);
@@ -230,12 +229,10 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.ENUM_ENTITY__MODIFIERS1:
-        return modifiers1 != null && !modifiers1.isEmpty();
-      case ProcessorModelPackage.ENUM_ENTITY__MODIFIERS2:
-        return modifiers2 != null && !modifiers2.isEmpty();
-      case ProcessorModelPackage.ENUM_ENTITY__FEATURES:
-        return features != null && !features.isEmpty();
+      case ProcessorModelPackage.ENUM_ENTITY__DIRECTIVES:
+        return directives != null && !directives.isEmpty();
+      case ProcessorModelPackage.ENUM_ENTITY__ATTRIBUTE:
+        return attribute != null;
     }
     return super.eIsSet(featureID);
   }

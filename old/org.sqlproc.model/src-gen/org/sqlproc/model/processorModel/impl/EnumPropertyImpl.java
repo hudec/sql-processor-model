@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.JvmTypeReference;
 
 import org.sqlproc.model.processorModel.EnumProperty;
 import org.sqlproc.model.processorModel.EnumPropertyDirective;
@@ -32,8 +32,8 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.impl.EnumPropertyImpl#getDirectives <em>Directives</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.EnumPropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.EnumPropertyImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.EnumPropertyImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,6 +50,16 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
    * @ordered
    */
   protected EList<EnumPropertyDirective> directives;
+
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected JvmTypeReference type;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -70,16 +80,6 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected JvmType type;
 
   /**
    * <!-- begin-user-doc -->
@@ -121,6 +121,54 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
    * <!-- end-user-doc -->
    * @generated
    */
+  public JvmTypeReference getType()
+  {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetType(JvmTypeReference newType, NotificationChain msgs)
+  {
+    JvmTypeReference oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ENUM_PROPERTY__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(JvmTypeReference newType)
+  {
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.ENUM_PROPERTY__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.ENUM_PROPERTY__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ENUM_PROPERTY__TYPE, newType, newType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getName()
   {
     return name;
@@ -144,49 +192,6 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType getType()
-  {
-    if (type != null && type.eIsProxy())
-    {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (JvmType)eResolveProxy(oldType);
-      if (type != oldType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorModelPackage.ENUM_PROPERTY__TYPE, oldType, type));
-      }
-    }
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType basicGetType()
-  {
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setType(JvmType newType)
-  {
-    JvmType oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ENUM_PROPERTY__TYPE, oldType, type));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -194,6 +199,8 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
     {
       case ProcessorModelPackage.ENUM_PROPERTY__DIRECTIVES:
         return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
+      case ProcessorModelPackage.ENUM_PROPERTY__TYPE:
+        return basicSetType(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -210,11 +217,10 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
     {
       case ProcessorModelPackage.ENUM_PROPERTY__DIRECTIVES:
         return getDirectives();
+      case ProcessorModelPackage.ENUM_PROPERTY__TYPE:
+        return getType();
       case ProcessorModelPackage.ENUM_PROPERTY__NAME:
         return getName();
-      case ProcessorModelPackage.ENUM_PROPERTY__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -234,11 +240,11 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
         getDirectives().clear();
         getDirectives().addAll((Collection<? extends EnumPropertyDirective>)newValue);
         return;
+      case ProcessorModelPackage.ENUM_PROPERTY__TYPE:
+        setType((JvmTypeReference)newValue);
+        return;
       case ProcessorModelPackage.ENUM_PROPERTY__NAME:
         setName((String)newValue);
-        return;
-      case ProcessorModelPackage.ENUM_PROPERTY__TYPE:
-        setType((JvmType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -257,11 +263,11 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
       case ProcessorModelPackage.ENUM_PROPERTY__DIRECTIVES:
         getDirectives().clear();
         return;
+      case ProcessorModelPackage.ENUM_PROPERTY__TYPE:
+        setType((JvmTypeReference)null);
+        return;
       case ProcessorModelPackage.ENUM_PROPERTY__NAME:
         setName(NAME_EDEFAULT);
-        return;
-      case ProcessorModelPackage.ENUM_PROPERTY__TYPE:
-        setType((JvmType)null);
         return;
     }
     super.eUnset(featureID);
@@ -279,10 +285,10 @@ public class EnumPropertyImpl extends MinimalEObjectImpl.Container implements En
     {
       case ProcessorModelPackage.ENUM_PROPERTY__DIRECTIVES:
         return directives != null && !directives.isEmpty();
-      case ProcessorModelPackage.ENUM_PROPERTY__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProcessorModelPackage.ENUM_PROPERTY__TYPE:
         return type != null;
+      case ProcessorModelPackage.ENUM_PROPERTY__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
   }

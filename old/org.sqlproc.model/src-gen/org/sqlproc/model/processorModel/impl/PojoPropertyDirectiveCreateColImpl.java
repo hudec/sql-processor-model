@@ -25,7 +25,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  *
  * @generated
  */
-public class PojoPropertyDirectiveCreateColImpl extends PojoPropertyDirectiveImpl implements PojoPropertyDirectiveCreateCol
+public class PojoPropertyDirectiveCreateColImpl extends PojoAttributeDirectiveImpl implements PojoPropertyDirectiveCreateCol
 {
   /**
    * The default value of the '{@link #getCreateColumn1() <em>Create Column1</em>}' attribute.

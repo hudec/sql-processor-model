@@ -17,13 +17,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
+
 import org.sqlproc.model.processorModel.DaogenProperty;
 import org.sqlproc.model.processorModel.DebugLevelAssignement;
 import org.sqlproc.model.processorModel.ExtendsAssignement;
 import org.sqlproc.model.processorModel.ExtendsAssignementGenerics;
 import org.sqlproc.model.processorModel.ImplementsAssignement;
 import org.sqlproc.model.processorModel.ImplementsAssignementGenerics;
-import org.sqlproc.model.processorModel.PojoType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.ValueType;
 
@@ -150,7 +151,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected PojoType resultType;
+  protected JvmParameterizedTypeReference resultType;
 
   /**
    * The cached value of the '{@link #getDebug() <em>Debug</em>}' containment reference.
@@ -470,7 +471,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoType getResultType()
+  public JvmParameterizedTypeReference getResultType()
   {
     return resultType;
   }
@@ -480,9 +481,9 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetResultType(PojoType newResultType, NotificationChain msgs)
+  public NotificationChain basicSetResultType(JvmParameterizedTypeReference newResultType, NotificationChain msgs)
   {
-    PojoType oldResultType = resultType;
+    JvmParameterizedTypeReference oldResultType = resultType;
     resultType = newResultType;
     if (eNotificationRequired())
     {
@@ -497,7 +498,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setResultType(PojoType newResultType)
+  public void setResultType(JvmParameterizedTypeReference newResultType)
   {
     if (newResultType != resultType)
     {
@@ -730,7 +731,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setDbFunction((String)newValue);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__RESULT_TYPE:
-        setResultType((PojoType)newValue);
+        setResultType((JvmParameterizedTypeReference)newValue);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__DEBUG:
         setDebug((DebugLevelAssignement)newValue);
@@ -777,7 +778,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setDbFunction(DB_FUNCTION_EDEFAULT);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__RESULT_TYPE:
-        setResultType((PojoType)null);
+        setResultType((JvmParameterizedTypeReference)null);
         return;
       case ProcessorModelPackage.DAOGEN_PROPERTY__DEBUG:
         setDebug((DebugLevelAssignement)null);

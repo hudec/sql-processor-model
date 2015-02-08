@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sqlproc.model.processorModel.DaoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.DescendantAssignment;
-import org.sqlproc.model.processorModel.PojoProperty;
+import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -46,7 +46,7 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
    * @generated
    * @ordered
    */
-  protected PojoProperty ancestor;
+  protected PojoAttribute ancestor;
 
   /**
    * The cached value of the '{@link #getDescendants() <em>Descendants</em>}' containment reference list.
@@ -84,12 +84,12 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoProperty getAncestor()
+  public PojoAttribute getAncestor()
   {
     if (ancestor != null && ancestor.eIsProxy())
     {
       InternalEObject oldAncestor = (InternalEObject)ancestor;
-      ancestor = (PojoProperty)eResolveProxy(oldAncestor);
+      ancestor = (PojoAttribute)eResolveProxy(oldAncestor);
       if (ancestor != oldAncestor)
       {
         if (eNotificationRequired())
@@ -104,7 +104,7 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoProperty basicGetAncestor()
+  public PojoAttribute basicGetAncestor()
   {
     return ancestor;
   }
@@ -114,9 +114,9 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAncestor(PojoProperty newAncestor)
+  public void setAncestor(PojoAttribute newAncestor)
   {
-    PojoProperty oldAncestor = ancestor;
+    PojoAttribute oldAncestor = ancestor;
     ancestor = newAncestor;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR, oldAncestor, ancestor));
@@ -183,7 +183,7 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
     switch (featureID)
     {
       case ProcessorModelPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR:
-        setAncestor((PojoProperty)newValue);
+        setAncestor((PojoAttribute)newValue);
         return;
       case ProcessorModelPackage.DAO_DIRECTIVE_DISCRIMINATOR__DESCENDANTS:
         getDescendants().clear();
@@ -204,7 +204,7 @@ public class DaoDirectiveDiscriminatorImpl extends DaoDirectiveImpl implements D
     switch (featureID)
     {
       case ProcessorModelPackage.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR:
-        setAncestor((PojoProperty)null);
+        setAncestor((PojoAttribute)null);
         return;
       case ProcessorModelPackage.DAO_DIRECTIVE_DISCRIMINATOR__DESCENDANTS:
         getDescendants().clear();

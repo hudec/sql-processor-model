@@ -284,24 +284,6 @@ public interface ProcessorModelFactory extends EFactory
   PojogenProperty createPojogenProperty();
 
   /**
-   * Returns a new object of class '<em>Meta Type Assignement</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Meta Type Assignement</em>'.
-   * @generated
-   */
-  MetaTypeAssignement createMetaTypeAssignement();
-
-  /**
-   * Returns a new object of class '<em>Metagen Property</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Metagen Property</em>'.
-   * @generated
-   */
-  MetagenProperty createMetagenProperty();
-
-  /**
    * Returns a new object of class '<em>Daogen Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -347,24 +329,6 @@ public interface ProcessorModelFactory extends EFactory
   FunctionDefinition createFunctionDefinition();
 
   /**
-   * Returns a new object of class '<em>Pojo Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Type</em>'.
-   * @generated
-   */
-  PojoType createPojoType();
-
-  /**
-   * Returns a new object of class '<em>Package Directive</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Package Directive</em>'.
-   * @generated
-   */
-  PackageDirective createPackageDirective();
-
-  /**
    * Returns a new object of class '<em>Package</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -374,67 +338,13 @@ public interface ProcessorModelFactory extends EFactory
   Package createPackage();
 
   /**
-   * Returns a new object of class '<em>Annotation Directive</em>'.
+   * Returns a new object of class '<em>Abstract Entity</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation Directive</em>'.
+   * @return a new object of class '<em>Abstract Entity</em>'.
    * @generated
    */
-  AnnotationDirective createAnnotationDirective();
-
-  /**
-   * Returns a new object of class '<em>Annotation</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation</em>'.
-   * @generated
-   */
-  Annotation createAnnotation();
-
-  /**
-   * Returns a new object of class '<em>Annotation Property</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation Property</em>'.
-   * @generated
-   */
-  AnnotationProperty createAnnotationProperty();
-
-  /**
-   * Returns a new object of class '<em>Entity</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Entity</em>'.
-   * @generated
-   */
-  Entity createEntity();
-
-  /**
-   * Returns a new object of class '<em>Annotated Entity</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotated Entity</em>'.
-   * @generated
-   */
-  AnnotatedEntity createAnnotatedEntity();
-
-  /**
-   * Returns a new object of class '<em>Abstract Pojo Entity</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Abstract Pojo Entity</em>'.
-   * @generated
-   */
-  AbstractPojoEntity createAbstractPojoEntity();
-
-  /**
-   * Returns a new object of class '<em>Import</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Import</em>'.
-   * @generated
-   */
-  Import createImport();
+  AbstractEntity createAbstractEntity();
 
   /**
    * Returns a new object of class '<em>Implements Extends Directive</em>'.
@@ -464,13 +374,22 @@ public interface ProcessorModelFactory extends EFactory
   Extends createExtends();
 
   /**
-   * Returns a new object of class '<em>Pojo Entity Modifier1</em>'.
+   * Returns a new object of class '<em>Annotated Entity</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Entity Modifier1</em>'.
+   * @return a new object of class '<em>Annotated Entity</em>'.
    * @generated
    */
-  PojoEntityModifier1 createPojoEntityModifier1();
+  AnnotatedEntity createAnnotatedEntity();
+
+  /**
+   * Returns a new object of class '<em>Entity</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Entity</em>'.
+   * @generated
+   */
+  Entity createEntity();
 
   /**
    * Returns a new object of class '<em>Directive Properties</em>'.
@@ -491,15 +410,6 @@ public interface ProcessorModelFactory extends EFactory
   PojoDirective createPojoDirective();
 
   /**
-   * Returns a new object of class '<em>Pojo Entity Modifier2</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Entity Modifier2</em>'.
-   * @generated
-   */
-  PojoEntityModifier2 createPojoEntityModifier2();
-
-  /**
    * Returns a new object of class '<em>Pojo Entity</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -509,49 +419,31 @@ public interface ProcessorModelFactory extends EFactory
   PojoEntity createPojoEntity();
 
   /**
-   * Returns a new object of class '<em>Pojo Annotated Property</em>'.
+   * Returns a new object of class '<em>Pojo Attribute Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Annotated Property</em>'.
+   * @return a new object of class '<em>Pojo Attribute Directive</em>'.
    * @generated
    */
-  PojoAnnotatedProperty createPojoAnnotatedProperty();
+  PojoAttributeDirective createPojoAttributeDirective();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Directive</em>'.
+   * Returns a new object of class '<em>Pojo Attribute</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Directive</em>'.
+   * @return a new object of class '<em>Pojo Attribute</em>'.
    * @generated
    */
-  PojoPropertyDirective createPojoPropertyDirective();
+  PojoAttribute createPojoAttribute();
 
   /**
-   * Returns a new object of class '<em>Pojo Property</em>'.
+   * Returns a new object of class '<em>Enum Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property</em>'.
+   * @return a new object of class '<em>Enum Directive</em>'.
    * @generated
    */
-  PojoProperty createPojoProperty();
-
-  /**
-   * Returns a new object of class '<em>Enum Entity Modifier1</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum Entity Modifier1</em>'.
-   * @generated
-   */
-  EnumEntityModifier1 createEnumEntityModifier1();
-
-  /**
-   * Returns a new object of class '<em>Enum Entity Modifier2</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum Entity Modifier2</em>'.
-   * @generated
-   */
-  EnumEntityModifier2 createEnumEntityModifier2();
+  EnumDirective createEnumDirective();
 
   /**
    * Returns a new object of class '<em>Enum Entity</em>'.
@@ -626,103 +518,31 @@ public interface ProcessorModelFactory extends EFactory
   DaoDirective createDaoDirective();
 
   /**
-   * Returns a new object of class '<em>Pojo Dao Modifier</em>'.
+   * Returns a new object of class '<em>Dao Entity</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Dao Modifier</em>'.
+   * @return a new object of class '<em>Dao Entity</em>'.
    * @generated
    */
-  PojoDaoModifier createPojoDaoModifier();
+  DaoEntity createDaoEntity();
 
   /**
-   * Returns a new object of class '<em>Pojo Dao</em>'.
+   * Returns a new object of class '<em>Annotation Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Dao</em>'.
+   * @return a new object of class '<em>Annotation Directive</em>'.
    * @generated
    */
-  PojoDao createPojoDao();
+  AnnotationDirective createAnnotationDirective();
 
   /**
-   * Returns a new object of class '<em>Package Directive Suffix</em>'.
+   * Returns a new object of class '<em>Annotation</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Package Directive Suffix</em>'.
+   * @return a new object of class '<em>Annotation</em>'.
    * @generated
    */
-  PackageDirectiveSuffix createPackageDirectiveSuffix();
-
-  /**
-   * Returns a new object of class '<em>Package Directive Implementation</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Package Directive Implementation</em>'.
-   * @generated
-   */
-  PackageDirectiveImplementation createPackageDirectiveImplementation();
-
-  /**
-   * Returns a new object of class '<em>Annotation Directive Conflict</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation Directive Conflict</em>'.
-   * @generated
-   */
-  AnnotationDirectiveConflict createAnnotationDirectiveConflict();
-
-  /**
-   * Returns a new object of class '<em>Annotation Directive Static</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation Directive Static</em>'.
-   * @generated
-   */
-  AnnotationDirectiveStatic createAnnotationDirectiveStatic();
-
-  /**
-   * Returns a new object of class '<em>Annotation Directive Constructor</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation Directive Constructor</em>'.
-   * @generated
-   */
-  AnnotationDirectiveConstructor createAnnotationDirectiveConstructor();
-
-  /**
-   * Returns a new object of class '<em>Annotation Directive Standard</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation Directive Standard</em>'.
-   * @generated
-   */
-  AnnotationDirectiveStandard createAnnotationDirectiveStandard();
-
-  /**
-   * Returns a new object of class '<em>Annotation Directive Setter</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation Directive Setter</em>'.
-   * @generated
-   */
-  AnnotationDirectiveSetter createAnnotationDirectiveSetter();
-
-  /**
-   * Returns a new object of class '<em>Annotation Directive Getter</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation Directive Getter</em>'.
-   * @generated
-   */
-  AnnotationDirectiveGetter createAnnotationDirectiveGetter();
-
-  /**
-   * Returns a new object of class '<em>Annotation Directive Attribute</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Annotation Directive Attribute</em>'.
-   * @generated
-   */
-  AnnotationDirectiveAttribute createAnnotationDirectiveAttribute();
+  Annotation createAnnotation();
 
   /**
    * Returns a new object of class '<em>Implements Extends Directive Generics</em>'.
@@ -932,6 +752,15 @@ public interface ProcessorModelFactory extends EFactory
   PojoPropertyDirectiveEnumDef createPojoPropertyDirectiveEnumDef();
 
   /**
+   * Returns a new object of class '<em>Enum Directive Serializable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Directive Serializable</em>'.
+   * @generated
+   */
+  EnumDirectiveSerializable createEnumDirectiveSerializable();
+
+  /**
    * Returns a new object of class '<em>Enum Property Directive Values</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1029,6 +858,69 @@ public interface ProcessorModelFactory extends EFactory
    * @generated
    */
   FunProcDirective createFunProcDirective();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Conflict</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Conflict</em>'.
+   * @generated
+   */
+  AnnotationDirectiveConflict createAnnotationDirectiveConflict();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Static</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Static</em>'.
+   * @generated
+   */
+  AnnotationDirectiveStatic createAnnotationDirectiveStatic();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Constructor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Constructor</em>'.
+   * @generated
+   */
+  AnnotationDirectiveConstructor createAnnotationDirectiveConstructor();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Standard</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Standard</em>'.
+   * @generated
+   */
+  AnnotationDirectiveStandard createAnnotationDirectiveStandard();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Setter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Setter</em>'.
+   * @generated
+   */
+  AnnotationDirectiveSetter createAnnotationDirectiveSetter();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Getter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Getter</em>'.
+   * @generated
+   */
+  AnnotationDirectiveGetter createAnnotationDirectiveGetter();
+
+  /**
+   * Returns a new object of class '<em>Annotation Directive Attribute</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Annotation Directive Attribute</em>'.
+   * @generated
+   */
+  AnnotationDirectiveAttribute createAnnotationDirectiveAttribute();
 
   /**
    * Returns the package supported by this factory.

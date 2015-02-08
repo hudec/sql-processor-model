@@ -2,24 +2,13 @@
  */
 package org.sqlproc.model.processorModel.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.sqlproc.model.processorModel.Entity;
-import org.sqlproc.model.processorModel.PojoDirective;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -29,24 +18,34 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.model.processorModel.impl.EntityImpl#getDirectives <em>Directives</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.EntityImpl#isFinal <em>Final</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.EntityImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EntityImpl extends MinimalEObjectImpl.Container implements Entity
+public class EntityImpl extends AbstractEntityImpl implements Entity
 {
   /**
-   * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
+   * The default value of the '{@link #isFinal() <em>Final</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDirectives()
+   * @see #isFinal()
    * @generated
    * @ordered
    */
-  protected EList<PojoDirective> directives;
+  protected static final boolean FINAL_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isFinal() <em>Final</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isFinal()
+   * @generated
+   * @ordered
+   */
+  protected boolean final_ = FINAL_EDEFAULT;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -94,13 +93,22 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoDirective> getDirectives()
+  public boolean isFinal()
   {
-    if (directives == null)
-    {
-      directives = new EObjectContainmentEList<PojoDirective>(PojoDirective.class, this, ProcessorModelPackage.ENTITY__DIRECTIVES);
-    }
-    return directives;
+    return final_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFinal(boolean newFinal)
+  {
+    boolean oldFinal = final_;
+    final_ = newFinal;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ENTITY__FINAL, oldFinal, final_));
   }
 
   /**
@@ -132,28 +140,12 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity
    * @generated
    */
   @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ProcessorModelPackage.ENTITY__DIRECTIVES:
-        return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.ENTITY__DIRECTIVES:
-        return getDirectives();
+      case ProcessorModelPackage.ENTITY__FINAL:
+        return isFinal();
       case ProcessorModelPackage.ENTITY__NAME:
         return getName();
     }
@@ -165,15 +157,13 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.ENTITY__DIRECTIVES:
-        getDirectives().clear();
-        getDirectives().addAll((Collection<? extends PojoDirective>)newValue);
+      case ProcessorModelPackage.ENTITY__FINAL:
+        setFinal((Boolean)newValue);
         return;
       case ProcessorModelPackage.ENTITY__NAME:
         setName((String)newValue);
@@ -192,8 +182,8 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.ENTITY__DIRECTIVES:
-        getDirectives().clear();
+      case ProcessorModelPackage.ENTITY__FINAL:
+        setFinal(FINAL_EDEFAULT);
         return;
       case ProcessorModelPackage.ENTITY__NAME:
         setName(NAME_EDEFAULT);
@@ -212,8 +202,8 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.ENTITY__DIRECTIVES:
-        return directives != null && !directives.isEmpty();
+      case ProcessorModelPackage.ENTITY__FINAL:
+        return final_ != FINAL_EDEFAULT;
       case ProcessorModelPackage.ENTITY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
@@ -231,7 +221,9 @@ public class EntityImpl extends MinimalEObjectImpl.Container implements Entity
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (final: ");
+    result.append(final_);
+    result.append(", name: ");
     result.append(name);
     result.append(')');
     return result.toString();

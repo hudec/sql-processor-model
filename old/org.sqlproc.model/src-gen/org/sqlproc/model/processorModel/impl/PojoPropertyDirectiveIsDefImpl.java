@@ -16,7 +16,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  *
  * @generated
  */
-public class PojoPropertyDirectiveIsDefImpl extends PojoPropertyDirectiveImpl implements PojoPropertyDirectiveIsDef
+public class PojoPropertyDirectiveIsDefImpl extends PojoAttributeDirectiveImpl implements PojoPropertyDirectiveIsDef
 {
   /**
    * <!-- begin-user-doc -->

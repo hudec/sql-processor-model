@@ -16,7 +16,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  *
  * @generated
  */
-public class PojoPropertyDirectiveEnumDefImpl extends PojoPropertyDirectiveImpl implements PojoPropertyDirectiveEnumDef
+public class PojoPropertyDirectiveEnumDefImpl extends PojoAttributeDirectiveImpl implements PojoPropertyDirectiveEnumDef
 {
   /**
    * <!-- begin-user-doc -->

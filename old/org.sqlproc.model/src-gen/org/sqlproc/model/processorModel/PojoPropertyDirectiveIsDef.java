@@ -13,6 +13,6 @@ package org.sqlproc.model.processorModel;
  * @model
  * @generated
  */
-public interface PojoPropertyDirectiveIsDef extends PojoPropertyDirective
+public interface PojoPropertyDirectiveIsDef extends PojoAttributeDirective
 {
 } // PojoPropertyDirectiveIsDef

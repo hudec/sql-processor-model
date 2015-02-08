@@ -32,12 +32,12 @@ public interface DaoDirectiveDiscriminator extends DaoDirective
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Ancestor</em>' reference.
-   * @see #setAncestor(PojoProperty)
+   * @see #setAncestor(PojoAttribute)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDaoDirectiveDiscriminator_Ancestor()
    * @model
    * @generated
    */
-  PojoProperty getAncestor();
+  PojoAttribute getAncestor();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DaoDirectiveDiscriminator#getAncestor <em>Ancestor</em>}' reference.
@@ -47,7 +47,7 @@ public interface DaoDirectiveDiscriminator extends DaoDirective
    * @see #getAncestor()
    * @generated
    */
-  void setAncestor(PojoProperty value);
+  void setAncestor(PojoAttribute value);
 
   /**
    * Returns the value of the '<em><b>Descendants</b></em>' containment reference list.

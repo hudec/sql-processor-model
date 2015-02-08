@@ -10,8 +10,8 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.sqlproc.model.processorModel.DaoEntity;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
-import org.sqlproc.model.processorModel.PojoDao;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -37,7 +37,7 @@ public class ImplementsExtendsDirectiveOnlyDaosImpl extends ImplementsExtendsDir
    * @generated
    * @ordered
    */
-  protected EList<PojoDao> onlyDaos;
+  protected EList<DaoEntity> onlyDaos;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,11 +65,11 @@ public class ImplementsExtendsDirectiveOnlyDaosImpl extends ImplementsExtendsDir
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoDao> getOnlyDaos()
+  public EList<DaoEntity> getOnlyDaos()
   {
     if (onlyDaos == null)
     {
-      onlyDaos = new EObjectResolvingEList<PojoDao>(PojoDao.class, this, ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS__ONLY_DAOS);
+      onlyDaos = new EObjectResolvingEList<DaoEntity>(DaoEntity.class, this, ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS__ONLY_DAOS);
     }
     return onlyDaos;
   }
@@ -103,7 +103,7 @@ public class ImplementsExtendsDirectiveOnlyDaosImpl extends ImplementsExtendsDir
     {
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS__ONLY_DAOS:
         getOnlyDaos().clear();
-        getOnlyDaos().addAll((Collection<? extends PojoDao>)newValue);
+        getOnlyDaos().addAll((Collection<? extends DaoEntity>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

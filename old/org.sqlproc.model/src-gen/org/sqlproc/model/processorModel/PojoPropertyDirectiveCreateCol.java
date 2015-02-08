@@ -20,7 +20,7 @@ package org.sqlproc.model.processorModel;
  * @model
  * @generated
  */
-public interface PojoPropertyDirectiveCreateCol extends PojoPropertyDirective
+public interface PojoPropertyDirectiveCreateCol extends PojoAttributeDirective
 {
   /**
    * Returns the value of the '<em><b>Create Column1</b></em>' attribute.

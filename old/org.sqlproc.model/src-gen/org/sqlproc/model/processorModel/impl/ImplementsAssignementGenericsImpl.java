@@ -5,6 +5,7 @@ package org.sqlproc.model.processorModel.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -16,7 +17,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
-import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 
 import org.sqlproc.model.processorModel.ImplementsAssignementGenerics;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
@@ -39,14 +40,14 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
 public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Container implements ImplementsAssignementGenerics
 {
   /**
-   * The cached value of the '{@link #getToImplement() <em>To Implement</em>}' reference.
+   * The cached value of the '{@link #getToImplement() <em>To Implement</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getToImplement()
    * @generated
    * @ordered
    */
-  protected JvmType toImplement;
+  protected JvmParameterizedTypeReference toImplement;
 
   /**
    * The cached value of the '{@link #getDbTables() <em>Db Tables</em>}' attribute list.
@@ -94,27 +95,7 @@ public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmType getToImplement()
-  {
-    if (toImplement != null && toImplement.eIsProxy())
-    {
-      InternalEObject oldToImplement = (InternalEObject)toImplement;
-      toImplement = (JvmType)eResolveProxy(oldToImplement);
-      if (toImplement != oldToImplement)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT, oldToImplement, toImplement));
-      }
-    }
-    return toImplement;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JvmType basicGetToImplement()
+  public JvmParameterizedTypeReference getToImplement()
   {
     return toImplement;
   }
@@ -124,12 +105,37 @@ public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setToImplement(JvmType newToImplement)
+  public NotificationChain basicSetToImplement(JvmParameterizedTypeReference newToImplement, NotificationChain msgs)
   {
-    JvmType oldToImplement = toImplement;
+    JvmParameterizedTypeReference oldToImplement = toImplement;
     toImplement = newToImplement;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT, oldToImplement, toImplement));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT, oldToImplement, newToImplement);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setToImplement(JvmParameterizedTypeReference newToImplement)
+  {
+    if (newToImplement != toImplement)
+    {
+      NotificationChain msgs = null;
+      if (toImplement != null)
+        msgs = ((InternalEObject)toImplement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT, null, msgs);
+      if (newToImplement != null)
+        msgs = ((InternalEObject)newToImplement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT, null, msgs);
+      msgs = basicSetToImplement(newToImplement, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT, newToImplement, newToImplement));
   }
 
   /**
@@ -166,13 +172,28 @@ public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Contai
    * @generated
    */
   @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT:
+        return basicSetToImplement(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT:
-        if (resolve) return getToImplement();
-        return basicGetToImplement();
+        return getToImplement();
       case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_TABLES:
         return getDbTables();
       case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_NOT_TABLES:
@@ -193,7 +214,7 @@ public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Contai
     switch (featureID)
     {
       case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT:
-        setToImplement((JvmType)newValue);
+        setToImplement((JvmParameterizedTypeReference)newValue);
         return;
       case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_TABLES:
         getDbTables().clear();
@@ -218,7 +239,7 @@ public class ImplementsAssignementGenericsImpl extends MinimalEObjectImpl.Contai
     switch (featureID)
     {
       case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__TO_IMPLEMENT:
-        setToImplement((JvmType)null);
+        setToImplement((JvmParameterizedTypeReference)null);
         return;
       case ProcessorModelPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS__DB_TABLES:
         getDbTables().clear();

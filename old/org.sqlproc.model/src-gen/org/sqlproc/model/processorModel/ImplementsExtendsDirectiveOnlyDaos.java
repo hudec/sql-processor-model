@@ -24,7 +24,7 @@ public interface ImplementsExtendsDirectiveOnlyDaos extends ImplementsExtendsDir
 {
   /**
    * Returns the value of the '<em><b>Only Daos</b></em>' reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.PojoDao}.
+   * The list contents are of type {@link org.sqlproc.model.processorModel.DaoEntity}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Only Daos</em>' reference list isn't clear,
@@ -36,6 +36,6 @@ public interface ImplementsExtendsDirectiveOnlyDaos extends ImplementsExtendsDir
    * @model
    * @generated
    */
-  EList<PojoDao> getOnlyDaos();
+  EList<DaoEntity> getOnlyDaos();
 
 } // ImplementsExtendsDirectiveOnlyDaos

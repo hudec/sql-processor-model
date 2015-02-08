@@ -4,6 +4,8 @@ package org.sqlproc.model.processorModel;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Descendant Assignment</b></em>'.
@@ -24,30 +26,30 @@ import org.eclipse.emf.ecore.EObject;
 public interface DescendantAssignment extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Value</b></em>' containment reference.
+   * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Value</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Value</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(ValueType)
+   * @return the value of the '<em>Value</em>' attribute.
+   * @see #setValue(String)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDescendantAssignment_Value()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  ValueType getValue();
+  String getValue();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.DescendantAssignment#getValue <em>Value</em>}' containment reference.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.DescendantAssignment#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' containment reference.
+   * @param value the new value of the '<em>Value</em>' attribute.
    * @see #getValue()
    * @generated
    */
-  void setValue(ValueType value);
+  void setValue(String value);
 
   /**
    * Returns the value of the '<em><b>Descendant</b></em>' containment reference.
@@ -58,12 +60,12 @@ public interface DescendantAssignment extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Descendant</em>' containment reference.
-   * @see #setDescendant(PojoType)
+   * @see #setDescendant(JvmParameterizedTypeReference)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDescendantAssignment_Descendant()
    * @model containment="true"
    * @generated
    */
-  PojoType getDescendant();
+  JvmParameterizedTypeReference getDescendant();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.DescendantAssignment#getDescendant <em>Descendant</em>}' containment reference.
@@ -73,6 +75,6 @@ public interface DescendantAssignment extends EObject
    * @see #getDescendant()
    * @generated
    */
-  void setDescendant(PojoType value);
+  void setDescendant(JvmParameterizedTypeReference value);
 
 } // DescendantAssignment

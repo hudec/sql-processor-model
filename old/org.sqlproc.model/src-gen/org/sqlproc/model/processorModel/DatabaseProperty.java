@@ -6,7 +6,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -198,30 +198,30 @@ public interface DatabaseProperty extends EObject
   void setDbSchema(DatabaseSchemaAssignement value);
 
   /**
-   * Returns the value of the '<em><b>Db Driverx</b></em>' reference.
+   * Returns the value of the '<em><b>Db Driverx</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Db Driverx</em>' reference isn't clear,
+   * If the meaning of the '<em>Db Driverx</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Driverx</em>' reference.
-   * @see #setDbDriverx(JvmType)
+   * @return the value of the '<em>Db Driverx</em>' containment reference.
+   * @see #setDbDriverx(JvmParameterizedTypeReference)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDatabaseProperty_DbDriverx()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  JvmType getDbDriverx();
+  JvmParameterizedTypeReference getDbDriverx();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseProperty#getDbDriverx <em>Db Driverx</em>}' reference.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.DatabaseProperty#getDbDriverx <em>Db Driverx</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Db Driverx</em>' reference.
+   * @param value the new value of the '<em>Db Driverx</em>' containment reference.
    * @see #getDbDriverx()
    * @generated
    */
-  void setDbDriverx(JvmType value);
+  void setDbDriverx(JvmParameterizedTypeReference value);
 
   /**
    * Returns the value of the '<em><b>Db Driver</b></em>' containment reference.
