@@ -164,7 +164,8 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == ProcessorModelPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case ProcessorModelPackage.ANNOTATED_ENTITY:
-				if(context == grammarAccess.getAnnotatedEntityRule()) {
+				if(context == grammarAccess.getAbstractEntityRule() ||
+				   context == grammarAccess.getAnnotatedEntityRule()) {
 					sequence_AnnotatedEntity(context, (AnnotatedEntity) semanticObject); 
 					return; 
 				}
@@ -266,8 +267,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 				}
 				else break;
 			case ProcessorModelPackage.DAO_ENTITY:
-				if(context == grammarAccess.getAbstractEntityRule() ||
-				   context == grammarAccess.getDaoEntityRule() ||
+				if(context == grammarAccess.getDaoEntityRule() ||
 				   context == grammarAccess.getEntityRule()) {
 					sequence_DaoEntity(context, (DaoEntity) semanticObject); 
 					return; 
@@ -346,8 +346,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 				}
 				else break;
 			case ProcessorModelPackage.ENUM_ENTITY:
-				if(context == grammarAccess.getAbstractEntityRule() ||
-				   context == grammarAccess.getEntityRule() ||
+				if(context == grammarAccess.getEntityRule() ||
 				   context == grammarAccess.getEnumEntityRule()) {
 					sequence_EnumEntity(context, (EnumEntity) semanticObject); 
 					return; 
@@ -578,8 +577,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 				}
 				else break;
 			case ProcessorModelPackage.POJO_ENTITY:
-				if(context == grammarAccess.getAbstractEntityRule() ||
-				   context == grammarAccess.getEntityRule() ||
+				if(context == grammarAccess.getEntityRule() ||
 				   context == grammarAccess.getPojoEntityRule()) {
 					sequence_PojoEntity(context, (PojoEntity) semanticObject); 
 					return; 
@@ -2170,7 +2168,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (directives+=DaoDirective* final?='final' name=ValidID superType=JvmParameterizedTypeReference?)
+	 *     (directives+=DaoDirective* final?='final'? name=ValidID superType=JvmParameterizedTypeReference?)
 	 */
 	protected void sequence_DaoEntity(EObject context, DaoEntity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2384,7 +2382,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (directives+=EnumDirective* final?='final' name=ValidID attribute=EnumProperty)
+	 *     (directives+=EnumDirective* final?='final'? name=ValidID attribute=EnumProperty)
 	 */
 	protected void sequence_EnumEntity(EObject context, EnumEntity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2959,8 +2957,12 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	/**
 	 * Constraint:
 	 *     (
-	 *         (directives+=PojoDirective* final?='final') | 
-	 *         (abstract?='abstract' name=ValidID superType=JvmParameterizedTypeReference? attributes+=PojoAttribute*)
+	 *         directives+=PojoDirective* 
+	 *         final?='final'? 
+	 *         abstract?='abstract'? 
+	 *         name=ValidID 
+	 *         superType=JvmParameterizedTypeReference? 
+	 *         attributes+=PojoAttribute*
 	 *     )
 	 */
 	protected void sequence_PojoEntity(EObject context, PojoEntity semanticObject) {

@@ -183,7 +183,7 @@ Package:
 	'}';
 
 AbstractEntity:
-	Implements | Extends | Entity	
+	Implements | Extends | AnnotatedEntity	
 ;
 
 ImplementsExtendsDirective: 
@@ -229,7 +229,7 @@ PojoDirective:
 
 PojoEntity:
 	directives+=PojoDirective*
-	(final?='final') | (abstract?='abstract')
+	(final?='final')? (abstract?='abstract')?
 	'#Pojo' name=ValidID ('extends' superType=JvmParameterizedTypeReference)?
 	'{'
 		attributes+=PojoAttribute*
@@ -261,7 +261,7 @@ EnumDirective:
 
 EnumEntity:
 	directives+=EnumDirective*
-	(final?='final')
+	(final?='final')?
 	'#Enum' name=ValidID 
 	'{'
 		attribute=EnumProperty
@@ -306,7 +306,7 @@ DaoDirective:
 
 DaoEntity:
 	directives+=DaoDirective*
-	(final?='final')
+	(final?='final')?
 	'#Dao' name=ValidID ('extends' superType=JvmParameterizedTypeReference)?
 	'{'
 	'}'

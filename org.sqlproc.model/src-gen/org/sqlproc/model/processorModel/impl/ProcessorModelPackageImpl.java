@@ -4601,7 +4601,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     // Add supertypes to classes
     implementsEClass.getESuperTypes().add(this.getAbstractEntity());
     extendsEClass.getESuperTypes().add(this.getAbstractEntity());
-    entityEClass.getESuperTypes().add(this.getAbstractEntity());
+    annotatedEntityEClass.getESuperTypes().add(this.getAbstractEntity());
     pojoEntityEClass.getESuperTypes().add(this.getEntity());
     enumEntityEClass.getESuperTypes().add(this.getEntity());
     daoEntityEClass.getESuperTypes().add(this.getEntity());

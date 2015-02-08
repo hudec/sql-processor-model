@@ -7,6 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.model.processorModel.Entity;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
@@ -25,7 +26,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  *
  * @generated
  */
-public class EntityImpl extends AbstractEntityImpl implements Entity
+public class EntityImpl extends MinimalEObjectImpl.Container implements Entity
 {
   /**
    * The default value of the '{@link #isFinal() <em>Final</em>}' attribute.

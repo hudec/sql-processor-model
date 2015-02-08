@@ -2,6 +2,7 @@
  */
 package org.sqlproc.model.processorModel;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ package org.sqlproc.model.processorModel;
  * @model
  * @generated
  */
-public interface Entity extends AbstractEntity
+public interface Entity extends EObject
 {
   /**
    * Returns the value of the '<em><b>Final</b></em>' attribute.

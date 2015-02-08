@@ -2319,7 +2319,7 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY__ANNOTATIONS = 0;
+  int ANNOTATED_ENTITY__ANNOTATIONS = ABSTRACT_ENTITY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Entity</b></em>' containment reference.
@@ -2328,7 +2328,7 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY__ENTITY = 1;
+  int ANNOTATED_ENTITY__ENTITY = ABSTRACT_ENTITY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Annotated Entity</em>' class.
@@ -2337,7 +2337,7 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ANNOTATED_ENTITY_FEATURE_COUNT = 2;
+  int ANNOTATED_ENTITY_FEATURE_COUNT = ABSTRACT_ENTITY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.EntityImpl <em>Entity</em>}' class.
@@ -2356,7 +2356,7 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY__FINAL = ABSTRACT_ENTITY_FEATURE_COUNT + 0;
+  int ENTITY__FINAL = 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2365,7 +2365,7 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY__NAME = ABSTRACT_ENTITY_FEATURE_COUNT + 1;
+  int ENTITY__NAME = 1;
 
   /**
    * The number of structural features of the '<em>Entity</em>' class.
@@ -2374,7 +2374,7 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY_FEATURE_COUNT = ABSTRACT_ENTITY_FEATURE_COUNT + 2;
+  int ENTITY_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.DirectivePropertiesImpl <em>Directive Properties</em>}' class.

@@ -466,6 +466,7 @@ public class ProcessorModelSwitch<T> extends Switch<T>
       {
         AnnotatedEntity annotatedEntity = (AnnotatedEntity)theEObject;
         T result = caseAnnotatedEntity(annotatedEntity);
+        if (result == null) result = caseAbstractEntity(annotatedEntity);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -473,7 +474,6 @@ public class ProcessorModelSwitch<T> extends Switch<T>
       {
         Entity entity = (Entity)theEObject;
         T result = caseEntity(entity);
-        if (result == null) result = caseAbstractEntity(entity);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -496,7 +496,6 @@ public class ProcessorModelSwitch<T> extends Switch<T>
         PojoEntity pojoEntity = (PojoEntity)theEObject;
         T result = casePojoEntity(pojoEntity);
         if (result == null) result = caseEntity(pojoEntity);
-        if (result == null) result = caseAbstractEntity(pojoEntity);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -526,7 +525,6 @@ public class ProcessorModelSwitch<T> extends Switch<T>
         EnumEntity enumEntity = (EnumEntity)theEObject;
         T result = caseEnumEntity(enumEntity);
         if (result == null) result = caseEntity(enumEntity);
-        if (result == null) result = caseAbstractEntity(enumEntity);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -584,7 +582,6 @@ public class ProcessorModelSwitch<T> extends Switch<T>
         DaoEntity daoEntity = (DaoEntity)theEObject;
         T result = caseDaoEntity(daoEntity);
         if (result == null) result = caseEntity(daoEntity);
-        if (result == null) result = caseAbstractEntity(daoEntity);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
