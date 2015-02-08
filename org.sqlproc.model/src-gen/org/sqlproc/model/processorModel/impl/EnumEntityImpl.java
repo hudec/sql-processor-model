@@ -17,9 +17,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.sqlproc.model.processorModel.EnumAttribute;
 import org.sqlproc.model.processorModel.EnumDirective;
 import org.sqlproc.model.processorModel.EnumEntity;
-import org.sqlproc.model.processorModel.EnumProperty;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -56,7 +56,7 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
    * @generated
    * @ordered
    */
-  protected EnumProperty attribute;
+  protected EnumAttribute attribute;
 
   /**
    * <!-- begin-user-doc -->
@@ -98,7 +98,7 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EnumProperty getAttribute()
+  public EnumAttribute getAttribute()
   {
     return attribute;
   }
@@ -108,9 +108,9 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAttribute(EnumProperty newAttribute, NotificationChain msgs)
+  public NotificationChain basicSetAttribute(EnumAttribute newAttribute, NotificationChain msgs)
   {
-    EnumProperty oldAttribute = attribute;
+    EnumAttribute oldAttribute = attribute;
     attribute = newAttribute;
     if (eNotificationRequired())
     {
@@ -125,7 +125,7 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAttribute(EnumProperty newAttribute)
+  public void setAttribute(EnumAttribute newAttribute)
   {
     if (newAttribute != attribute)
     {
@@ -193,7 +193,7 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
         getDirectives().addAll((Collection<? extends EnumDirective>)newValue);
         return;
       case ProcessorModelPackage.ENUM_ENTITY__ATTRIBUTE:
-        setAttribute((EnumProperty)newValue);
+        setAttribute((EnumAttribute)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -213,7 +213,7 @@ public class EnumEntityImpl extends EntityImpl implements EnumEntity
         getDirectives().clear();
         return;
       case ProcessorModelPackage.ENUM_ENTITY__ATTRIBUTE:
-        setAttribute((EnumProperty)null);
+        setAttribute((EnumAttribute)null);
         return;
     }
     super.eUnset(featureID);

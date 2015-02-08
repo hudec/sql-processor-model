@@ -43,13 +43,13 @@ import org.sqlproc.model.processorModel.DirectiveProperties;
 import org.sqlproc.model.processorModel.DriverMetaInfoAssignement;
 import org.sqlproc.model.processorModel.DriverMethodOutputAssignement;
 import org.sqlproc.model.processorModel.Entity;
+import org.sqlproc.model.processorModel.EnumAttribute;
+import org.sqlproc.model.processorModel.EnumAttributeDirective;
+import org.sqlproc.model.processorModel.EnumAttributeDirectiveValues;
+import org.sqlproc.model.processorModel.EnumAttributeValue;
 import org.sqlproc.model.processorModel.EnumDirective;
 import org.sqlproc.model.processorModel.EnumDirectiveSerializable;
 import org.sqlproc.model.processorModel.EnumEntity;
-import org.sqlproc.model.processorModel.EnumProperty;
-import org.sqlproc.model.processorModel.EnumPropertyDirective;
-import org.sqlproc.model.processorModel.EnumPropertyDirectiveValues;
-import org.sqlproc.model.processorModel.EnumPropertyValue;
 import org.sqlproc.model.processorModel.ExportAssignement;
 import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.ExtendsAssignement;
@@ -78,6 +78,17 @@ import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirective;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveDiscriminator;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumDef;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumInit;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveIndex;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveIsDef;
+import org.sqlproc.model.processorModel.PojoAttributeDirectivePrimaryKey;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveRequired;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveToInit;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveVersion;
 import org.sqlproc.model.processorModel.PojoDefinition;
 import org.sqlproc.model.processorModel.PojoDirective;
 import org.sqlproc.model.processorModel.PojoDirectiveDiscriminator;
@@ -88,17 +99,6 @@ import org.sqlproc.model.processorModel.PojoDirectiveOperators;
 import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveCreateCol;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveDiscriminator;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveEnumDef;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveEnumInit;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveIndex;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveIsDef;
-import org.sqlproc.model.processorModel.PojoPropertyDirectivePrimaryKey;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveRequired;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveToInit;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveUpdateCol;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveVersion;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
@@ -216,9 +216,9 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.POJO_ATTRIBUTE: return createPojoAttribute();
       case ProcessorModelPackage.ENUM_DIRECTIVE: return createEnumDirective();
       case ProcessorModelPackage.ENUM_ENTITY: return createEnumEntity();
-      case ProcessorModelPackage.ENUM_PROPERTY_VALUE: return createEnumPropertyValue();
-      case ProcessorModelPackage.ENUM_PROPERTY_DIRECTIVE: return createEnumPropertyDirective();
-      case ProcessorModelPackage.ENUM_PROPERTY: return createEnumProperty();
+      case ProcessorModelPackage.ENUM_ATTRIBUTE_VALUE: return createEnumAttributeValue();
+      case ProcessorModelPackage.ENUM_ATTRIBUTE_DIRECTIVE: return createEnumAttributeDirective();
+      case ProcessorModelPackage.ENUM_ATTRIBUTE: return createEnumAttribute();
       case ProcessorModelPackage.DAO_DIRECTIVE_PARAMETERS: return createDaoDirectiveParameters();
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT: return createDescendantAssignment();
       case ProcessorModelPackage.FUN_PROC_TYPE: return createFunProcType();
@@ -238,19 +238,19 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.POJO_DIRECTIVE_DISCRIMINATOR: return createPojoDirectiveDiscriminator();
       case ProcessorModelPackage.POJO_DIRECTIVE_EQUALS: return createPojoDirectiveEquals();
       case ProcessorModelPackage.POJO_DIRECTIVE_HASH_CODE: return createPojoDirectiveHashCode();
-      case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_REQUIRED: return createPojoPropertyDirectiveRequired();
-      case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY: return createPojoPropertyDirectivePrimaryKey();
-      case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR: return createPojoPropertyDirectiveDiscriminator();
-      case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_INDEX: return createPojoPropertyDirectiveIndex();
-      case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_VERSION: return createPojoPropertyDirectiveVersion();
-      case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_UPDATE_COL: return createPojoPropertyDirectiveUpdateCol();
-      case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_CREATE_COL: return createPojoPropertyDirectiveCreateCol();
-      case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_TO_INIT: return createPojoPropertyDirectiveToInit();
-      case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_ENUM_INIT: return createPojoPropertyDirectiveEnumInit();
-      case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_IS_DEF: return createPojoPropertyDirectiveIsDef();
-      case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_ENUM_DEF: return createPojoPropertyDirectiveEnumDef();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_REQUIRED: return createPojoAttributeDirectiveRequired();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY: return createPojoAttributeDirectivePrimaryKey();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_DISCRIMINATOR: return createPojoAttributeDirectiveDiscriminator();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_INDEX: return createPojoAttributeDirectiveIndex();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_VERSION: return createPojoAttributeDirectiveVersion();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL: return createPojoAttributeDirectiveUpdateCol();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL: return createPojoAttributeDirectiveCreateCol();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_TO_INIT: return createPojoAttributeDirectiveToInit();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_ENUM_INIT: return createPojoAttributeDirectiveEnumInit();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_IS_DEF: return createPojoAttributeDirectiveIsDef();
+      case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_ENUM_DEF: return createPojoAttributeDirectiveEnumDef();
       case ProcessorModelPackage.ENUM_DIRECTIVE_SERIALIZABLE: return createEnumDirectiveSerializable();
-      case ProcessorModelPackage.ENUM_PROPERTY_DIRECTIVE_VALUES: return createEnumPropertyDirectiveValues();
+      case ProcessorModelPackage.ENUM_ATTRIBUTE_DIRECTIVE_VALUES: return createEnumAttributeDirectiveValues();
       case ProcessorModelPackage.FUNCTION_CALL_QUERY: return createFunctionCallQuery();
       case ProcessorModelPackage.PROCEDURE_CALL_QUERY: return createProcedureCallQuery();
       case ProcessorModelPackage.FUNCTION_CALL: return createFunctionCall();
@@ -828,10 +828,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EnumPropertyValue createEnumPropertyValue()
+  public EnumAttributeValue createEnumAttributeValue()
   {
-    EnumPropertyValueImpl enumPropertyValue = new EnumPropertyValueImpl();
-    return enumPropertyValue;
+    EnumAttributeValueImpl enumAttributeValue = new EnumAttributeValueImpl();
+    return enumAttributeValue;
   }
 
   /**
@@ -839,10 +839,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EnumPropertyDirective createEnumPropertyDirective()
+  public EnumAttributeDirective createEnumAttributeDirective()
   {
-    EnumPropertyDirectiveImpl enumPropertyDirective = new EnumPropertyDirectiveImpl();
-    return enumPropertyDirective;
+    EnumAttributeDirectiveImpl enumAttributeDirective = new EnumAttributeDirectiveImpl();
+    return enumAttributeDirective;
   }
 
   /**
@@ -850,10 +850,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EnumProperty createEnumProperty()
+  public EnumAttribute createEnumAttribute()
   {
-    EnumPropertyImpl enumProperty = new EnumPropertyImpl();
-    return enumProperty;
+    EnumAttributeImpl enumAttribute = new EnumAttributeImpl();
+    return enumAttribute;
   }
 
   /**
@@ -1070,10 +1070,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoPropertyDirectiveRequired createPojoPropertyDirectiveRequired()
+  public PojoAttributeDirectiveRequired createPojoAttributeDirectiveRequired()
   {
-    PojoPropertyDirectiveRequiredImpl pojoPropertyDirectiveRequired = new PojoPropertyDirectiveRequiredImpl();
-    return pojoPropertyDirectiveRequired;
+    PojoAttributeDirectiveRequiredImpl pojoAttributeDirectiveRequired = new PojoAttributeDirectiveRequiredImpl();
+    return pojoAttributeDirectiveRequired;
   }
 
   /**
@@ -1081,10 +1081,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoPropertyDirectivePrimaryKey createPojoPropertyDirectivePrimaryKey()
+  public PojoAttributeDirectivePrimaryKey createPojoAttributeDirectivePrimaryKey()
   {
-    PojoPropertyDirectivePrimaryKeyImpl pojoPropertyDirectivePrimaryKey = new PojoPropertyDirectivePrimaryKeyImpl();
-    return pojoPropertyDirectivePrimaryKey;
+    PojoAttributeDirectivePrimaryKeyImpl pojoAttributeDirectivePrimaryKey = new PojoAttributeDirectivePrimaryKeyImpl();
+    return pojoAttributeDirectivePrimaryKey;
   }
 
   /**
@@ -1092,10 +1092,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoPropertyDirectiveDiscriminator createPojoPropertyDirectiveDiscriminator()
+  public PojoAttributeDirectiveDiscriminator createPojoAttributeDirectiveDiscriminator()
   {
-    PojoPropertyDirectiveDiscriminatorImpl pojoPropertyDirectiveDiscriminator = new PojoPropertyDirectiveDiscriminatorImpl();
-    return pojoPropertyDirectiveDiscriminator;
+    PojoAttributeDirectiveDiscriminatorImpl pojoAttributeDirectiveDiscriminator = new PojoAttributeDirectiveDiscriminatorImpl();
+    return pojoAttributeDirectiveDiscriminator;
   }
 
   /**
@@ -1103,10 +1103,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoPropertyDirectiveIndex createPojoPropertyDirectiveIndex()
+  public PojoAttributeDirectiveIndex createPojoAttributeDirectiveIndex()
   {
-    PojoPropertyDirectiveIndexImpl pojoPropertyDirectiveIndex = new PojoPropertyDirectiveIndexImpl();
-    return pojoPropertyDirectiveIndex;
+    PojoAttributeDirectiveIndexImpl pojoAttributeDirectiveIndex = new PojoAttributeDirectiveIndexImpl();
+    return pojoAttributeDirectiveIndex;
   }
 
   /**
@@ -1114,10 +1114,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoPropertyDirectiveVersion createPojoPropertyDirectiveVersion()
+  public PojoAttributeDirectiveVersion createPojoAttributeDirectiveVersion()
   {
-    PojoPropertyDirectiveVersionImpl pojoPropertyDirectiveVersion = new PojoPropertyDirectiveVersionImpl();
-    return pojoPropertyDirectiveVersion;
+    PojoAttributeDirectiveVersionImpl pojoAttributeDirectiveVersion = new PojoAttributeDirectiveVersionImpl();
+    return pojoAttributeDirectiveVersion;
   }
 
   /**
@@ -1125,10 +1125,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoPropertyDirectiveUpdateCol createPojoPropertyDirectiveUpdateCol()
+  public PojoAttributeDirectiveUpdateCol createPojoAttributeDirectiveUpdateCol()
   {
-    PojoPropertyDirectiveUpdateColImpl pojoPropertyDirectiveUpdateCol = new PojoPropertyDirectiveUpdateColImpl();
-    return pojoPropertyDirectiveUpdateCol;
+    PojoAttributeDirectiveUpdateColImpl pojoAttributeDirectiveUpdateCol = new PojoAttributeDirectiveUpdateColImpl();
+    return pojoAttributeDirectiveUpdateCol;
   }
 
   /**
@@ -1136,10 +1136,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoPropertyDirectiveCreateCol createPojoPropertyDirectiveCreateCol()
+  public PojoAttributeDirectiveCreateCol createPojoAttributeDirectiveCreateCol()
   {
-    PojoPropertyDirectiveCreateColImpl pojoPropertyDirectiveCreateCol = new PojoPropertyDirectiveCreateColImpl();
-    return pojoPropertyDirectiveCreateCol;
+    PojoAttributeDirectiveCreateColImpl pojoAttributeDirectiveCreateCol = new PojoAttributeDirectiveCreateColImpl();
+    return pojoAttributeDirectiveCreateCol;
   }
 
   /**
@@ -1147,10 +1147,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoPropertyDirectiveToInit createPojoPropertyDirectiveToInit()
+  public PojoAttributeDirectiveToInit createPojoAttributeDirectiveToInit()
   {
-    PojoPropertyDirectiveToInitImpl pojoPropertyDirectiveToInit = new PojoPropertyDirectiveToInitImpl();
-    return pojoPropertyDirectiveToInit;
+    PojoAttributeDirectiveToInitImpl pojoAttributeDirectiveToInit = new PojoAttributeDirectiveToInitImpl();
+    return pojoAttributeDirectiveToInit;
   }
 
   /**
@@ -1158,10 +1158,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoPropertyDirectiveEnumInit createPojoPropertyDirectiveEnumInit()
+  public PojoAttributeDirectiveEnumInit createPojoAttributeDirectiveEnumInit()
   {
-    PojoPropertyDirectiveEnumInitImpl pojoPropertyDirectiveEnumInit = new PojoPropertyDirectiveEnumInitImpl();
-    return pojoPropertyDirectiveEnumInit;
+    PojoAttributeDirectiveEnumInitImpl pojoAttributeDirectiveEnumInit = new PojoAttributeDirectiveEnumInitImpl();
+    return pojoAttributeDirectiveEnumInit;
   }
 
   /**
@@ -1169,10 +1169,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoPropertyDirectiveIsDef createPojoPropertyDirectiveIsDef()
+  public PojoAttributeDirectiveIsDef createPojoAttributeDirectiveIsDef()
   {
-    PojoPropertyDirectiveIsDefImpl pojoPropertyDirectiveIsDef = new PojoPropertyDirectiveIsDefImpl();
-    return pojoPropertyDirectiveIsDef;
+    PojoAttributeDirectiveIsDefImpl pojoAttributeDirectiveIsDef = new PojoAttributeDirectiveIsDefImpl();
+    return pojoAttributeDirectiveIsDef;
   }
 
   /**
@@ -1180,10 +1180,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoPropertyDirectiveEnumDef createPojoPropertyDirectiveEnumDef()
+  public PojoAttributeDirectiveEnumDef createPojoAttributeDirectiveEnumDef()
   {
-    PojoPropertyDirectiveEnumDefImpl pojoPropertyDirectiveEnumDef = new PojoPropertyDirectiveEnumDefImpl();
-    return pojoPropertyDirectiveEnumDef;
+    PojoAttributeDirectiveEnumDefImpl pojoAttributeDirectiveEnumDef = new PojoAttributeDirectiveEnumDefImpl();
+    return pojoAttributeDirectiveEnumDef;
   }
 
   /**
@@ -1202,10 +1202,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EnumPropertyDirectiveValues createEnumPropertyDirectiveValues()
+  public EnumAttributeDirectiveValues createEnumAttributeDirectiveValues()
   {
-    EnumPropertyDirectiveValuesImpl enumPropertyDirectiveValues = new EnumPropertyDirectiveValuesImpl();
-    return enumPropertyDirectiveValues;
+    EnumAttributeDirectiveValuesImpl enumAttributeDirectiveValues = new EnumAttributeDirectiveValuesImpl();
+    return enumAttributeDirectiveValues;
   }
 
   /**

@@ -473,31 +473,31 @@ public interface ProcessorModelFactory extends EFactory
   EnumEntity createEnumEntity();
 
   /**
-   * Returns a new object of class '<em>Enum Property Value</em>'.
+   * Returns a new object of class '<em>Enum Attribute Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum Property Value</em>'.
+   * @return a new object of class '<em>Enum Attribute Value</em>'.
    * @generated
    */
-  EnumPropertyValue createEnumPropertyValue();
+  EnumAttributeValue createEnumAttributeValue();
 
   /**
-   * Returns a new object of class '<em>Enum Property Directive</em>'.
+   * Returns a new object of class '<em>Enum Attribute Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum Property Directive</em>'.
+   * @return a new object of class '<em>Enum Attribute Directive</em>'.
    * @generated
    */
-  EnumPropertyDirective createEnumPropertyDirective();
+  EnumAttributeDirective createEnumAttributeDirective();
 
   /**
-   * Returns a new object of class '<em>Enum Property</em>'.
+   * Returns a new object of class '<em>Enum Attribute</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum Property</em>'.
+   * @return a new object of class '<em>Enum Attribute</em>'.
    * @generated
    */
-  EnumProperty createEnumProperty();
+  EnumAttribute createEnumAttribute();
 
   /**
    * Returns a new object of class '<em>Dao Directive Parameters</em>'.
@@ -671,103 +671,103 @@ public interface ProcessorModelFactory extends EFactory
   PojoDirectiveHashCode createPojoDirectiveHashCode();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Directive Required</em>'.
+   * Returns a new object of class '<em>Pojo Attribute Directive Required</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Directive Required</em>'.
+   * @return a new object of class '<em>Pojo Attribute Directive Required</em>'.
    * @generated
    */
-  PojoPropertyDirectiveRequired createPojoPropertyDirectiveRequired();
+  PojoAttributeDirectiveRequired createPojoAttributeDirectiveRequired();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Directive Primary Key</em>'.
+   * Returns a new object of class '<em>Pojo Attribute Directive Primary Key</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Directive Primary Key</em>'.
+   * @return a new object of class '<em>Pojo Attribute Directive Primary Key</em>'.
    * @generated
    */
-  PojoPropertyDirectivePrimaryKey createPojoPropertyDirectivePrimaryKey();
+  PojoAttributeDirectivePrimaryKey createPojoAttributeDirectivePrimaryKey();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Directive Discriminator</em>'.
+   * Returns a new object of class '<em>Pojo Attribute Directive Discriminator</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Directive Discriminator</em>'.
+   * @return a new object of class '<em>Pojo Attribute Directive Discriminator</em>'.
    * @generated
    */
-  PojoPropertyDirectiveDiscriminator createPojoPropertyDirectiveDiscriminator();
+  PojoAttributeDirectiveDiscriminator createPojoAttributeDirectiveDiscriminator();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Directive Index</em>'.
+   * Returns a new object of class '<em>Pojo Attribute Directive Index</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Directive Index</em>'.
+   * @return a new object of class '<em>Pojo Attribute Directive Index</em>'.
    * @generated
    */
-  PojoPropertyDirectiveIndex createPojoPropertyDirectiveIndex();
+  PojoAttributeDirectiveIndex createPojoAttributeDirectiveIndex();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Directive Version</em>'.
+   * Returns a new object of class '<em>Pojo Attribute Directive Version</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Directive Version</em>'.
+   * @return a new object of class '<em>Pojo Attribute Directive Version</em>'.
    * @generated
    */
-  PojoPropertyDirectiveVersion createPojoPropertyDirectiveVersion();
+  PojoAttributeDirectiveVersion createPojoAttributeDirectiveVersion();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Directive Update Col</em>'.
+   * Returns a new object of class '<em>Pojo Attribute Directive Update Col</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Directive Update Col</em>'.
+   * @return a new object of class '<em>Pojo Attribute Directive Update Col</em>'.
    * @generated
    */
-  PojoPropertyDirectiveUpdateCol createPojoPropertyDirectiveUpdateCol();
+  PojoAttributeDirectiveUpdateCol createPojoAttributeDirectiveUpdateCol();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Directive Create Col</em>'.
+   * Returns a new object of class '<em>Pojo Attribute Directive Create Col</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Directive Create Col</em>'.
+   * @return a new object of class '<em>Pojo Attribute Directive Create Col</em>'.
    * @generated
    */
-  PojoPropertyDirectiveCreateCol createPojoPropertyDirectiveCreateCol();
+  PojoAttributeDirectiveCreateCol createPojoAttributeDirectiveCreateCol();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Directive To Init</em>'.
+   * Returns a new object of class '<em>Pojo Attribute Directive To Init</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Directive To Init</em>'.
+   * @return a new object of class '<em>Pojo Attribute Directive To Init</em>'.
    * @generated
    */
-  PojoPropertyDirectiveToInit createPojoPropertyDirectiveToInit();
+  PojoAttributeDirectiveToInit createPojoAttributeDirectiveToInit();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Directive Enum Init</em>'.
+   * Returns a new object of class '<em>Pojo Attribute Directive Enum Init</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Directive Enum Init</em>'.
+   * @return a new object of class '<em>Pojo Attribute Directive Enum Init</em>'.
    * @generated
    */
-  PojoPropertyDirectiveEnumInit createPojoPropertyDirectiveEnumInit();
+  PojoAttributeDirectiveEnumInit createPojoAttributeDirectiveEnumInit();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Directive Is Def</em>'.
+   * Returns a new object of class '<em>Pojo Attribute Directive Is Def</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Directive Is Def</em>'.
+   * @return a new object of class '<em>Pojo Attribute Directive Is Def</em>'.
    * @generated
    */
-  PojoPropertyDirectiveIsDef createPojoPropertyDirectiveIsDef();
+  PojoAttributeDirectiveIsDef createPojoAttributeDirectiveIsDef();
 
   /**
-   * Returns a new object of class '<em>Pojo Property Directive Enum Def</em>'.
+   * Returns a new object of class '<em>Pojo Attribute Directive Enum Def</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pojo Property Directive Enum Def</em>'.
+   * @return a new object of class '<em>Pojo Attribute Directive Enum Def</em>'.
    * @generated
    */
-  PojoPropertyDirectiveEnumDef createPojoPropertyDirectiveEnumDef();
+  PojoAttributeDirectiveEnumDef createPojoAttributeDirectiveEnumDef();
 
   /**
    * Returns a new object of class '<em>Enum Directive Serializable</em>'.
@@ -779,13 +779,13 @@ public interface ProcessorModelFactory extends EFactory
   EnumDirectiveSerializable createEnumDirectiveSerializable();
 
   /**
-   * Returns a new object of class '<em>Enum Property Directive Values</em>'.
+   * Returns a new object of class '<em>Enum Attribute Directive Values</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum Property Directive Values</em>'.
+   * @return a new object of class '<em>Enum Attribute Directive Values</em>'.
    * @generated
    */
-  EnumPropertyDirectiveValues createEnumPropertyDirectiveValues();
+  EnumAttributeDirectiveValues createEnumAttributeDirectiveValues();
 
   /**
    * Returns a new object of class '<em>Function Call Query</em>'.

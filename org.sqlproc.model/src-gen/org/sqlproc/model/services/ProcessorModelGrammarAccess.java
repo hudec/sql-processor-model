@@ -4366,26 +4366,26 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PojoAttributeDirective");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cPojoPropertyDirectiveRequiredAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Action cPojoAttributeDirectiveRequiredAction_0_0 = (Action)cGroup_0.eContents().get(0);
 		private final Keyword cRequiredKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Action cPojoPropertyDirectivePrimaryKeyAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Action cPojoAttributeDirectivePrimaryKeyAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cPrimaryKeyKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Action cPojoPropertyDirectiveDiscriminatorAction_2_0 = (Action)cGroup_2.eContents().get(0);
+		private final Action cPojoAttributeDirectiveDiscriminatorAction_2_0 = (Action)cGroup_2.eContents().get(0);
 		private final Keyword cInheritanceDiscriminatorKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final Action cPojoPropertyDirectiveIndexAction_3_0 = (Action)cGroup_3.eContents().get(0);
+		private final Action cPojoAttributeDirectiveIndexAction_3_0 = (Action)cGroup_3.eContents().get(0);
 		private final Keyword cIndexKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
 		private final Assignment cIndexAssignment_3_3 = (Assignment)cGroup_3.eContents().get(3);
 		private final RuleCall cIndexINTTerminalRuleCall_3_3_0 = (RuleCall)cIndexAssignment_3_3.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final Action cPojoPropertyDirectiveVersionAction_4_0 = (Action)cGroup_4.eContents().get(0);
+		private final Action cPojoAttributeDirectiveVersionAction_4_0 = (Action)cGroup_4.eContents().get(0);
 		private final Keyword cVersionKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
-		private final Action cPojoPropertyDirectiveUpdateColAction_5_0 = (Action)cGroup_5.eContents().get(0);
+		private final Action cPojoAttributeDirectiveUpdateColAction_5_0 = (Action)cGroup_5.eContents().get(0);
 		private final Keyword cUpdateColKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		private final Assignment cUpdateColumn1Assignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
@@ -4395,7 +4395,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUpdateColumn2ValidIDParserRuleCall_5_5_0 = (RuleCall)cUpdateColumn2Assignment_5_5.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5_6 = (Keyword)cGroup_5.eContents().get(6);
 		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
-		private final Action cPojoPropertyDirectiveCreateColAction_6_0 = (Action)cGroup_6.eContents().get(0);
+		private final Action cPojoAttributeDirectiveCreateColAction_6_0 = (Action)cGroup_6.eContents().get(0);
 		private final Keyword cCreateColKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
 		private final Assignment cCreateColumn1Assignment_6_3 = (Assignment)cGroup_6.eContents().get(3);
@@ -4405,69 +4405,69 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCreateColumn2ValidIDParserRuleCall_6_5_0 = (RuleCall)cCreateColumn2Assignment_6_5.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6_6 = (Keyword)cGroup_6.eContents().get(6);
 		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
-		private final Action cPojoPropertyDirectiveToInitAction_7_0 = (Action)cGroup_7.eContents().get(0);
+		private final Action cPojoAttributeDirectiveToInitAction_7_0 = (Action)cGroup_7.eContents().get(0);
 		private final Keyword cToInitKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
 		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
-		private final Action cPojoPropertyDirectiveEnumInitAction_8_0 = (Action)cGroup_8.eContents().get(0);
+		private final Action cPojoAttributeDirectiveEnumInitAction_8_0 = (Action)cGroup_8.eContents().get(0);
 		private final Keyword cEnumInitKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
 		private final Group cGroup_9 = (Group)cAlternatives.eContents().get(9);
-		private final Action cPojoPropertyDirectiveIsDefAction_9_0 = (Action)cGroup_9.eContents().get(0);
+		private final Action cPojoAttributeDirectiveIsDefAction_9_0 = (Action)cGroup_9.eContents().get(0);
 		private final Keyword cIsDefKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
 		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
-		private final Action cPojoPropertyDirectiveEnumDefAction_10_0 = (Action)cGroup_10.eContents().get(0);
+		private final Action cPojoAttributeDirectiveEnumDefAction_10_0 = (Action)cGroup_10.eContents().get(0);
 		private final Keyword cEnumDefKeyword_10_1 = (Keyword)cGroup_10.eContents().get(1);
 		
 		//PojoAttributeDirective:
-		//	{PojoPropertyDirectiveRequired} "#Required" | {PojoPropertyDirectivePrimaryKey} "#PrimaryKey" |
-		//	{PojoPropertyDirectiveDiscriminator} "#InheritanceDiscriminator" | {PojoPropertyDirectiveIndex} "#Index" "(" index=INT
-		//	")" | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateCol" "("
-		//	updateColumn1=ValidID "," updateColumn2=ValidID ")" | {PojoPropertyDirectiveCreateCol} "#CreateCol" "("
-		//	createColumn1=ValidID "," createColumn2=ValidID ")" | {PojoPropertyDirectiveToInit} "#ToInit" |
-		//	{PojoPropertyDirectiveEnumInit} "#EnumInit" | {PojoPropertyDirectiveIsDef} "#IsDef" | {PojoPropertyDirectiveEnumDef}
-		//	"#EnumDef";
+		//	{PojoAttributeDirectiveRequired} "#Required" | {PojoAttributeDirectivePrimaryKey} "#PrimaryKey" |
+		//	{PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator" | {PojoAttributeDirectiveIndex} "#Index" "("
+		//	index=INT ")" | {PojoAttributeDirectiveVersion} "#Version" | {PojoAttributeDirectiveUpdateCol} "#UpdateCol" "("
+		//	updateColumn1=ValidID "," updateColumn2=ValidID ")" | {PojoAttributeDirectiveCreateCol} "#CreateCol" "("
+		//	createColumn1=ValidID "," createColumn2=ValidID ")" | {PojoAttributeDirectiveToInit} "#ToInit" |
+		//	{PojoAttributeDirectiveEnumInit} "#EnumInit" | {PojoAttributeDirectiveIsDef} "#IsDef" |
+		//	{PojoAttributeDirectiveEnumDef} "#EnumDef";
 		public ParserRule getRule() { return rule; }
 
-		//{PojoPropertyDirectiveRequired} "#Required" | {PojoPropertyDirectivePrimaryKey} "#PrimaryKey" |
-		//{PojoPropertyDirectiveDiscriminator} "#InheritanceDiscriminator" | {PojoPropertyDirectiveIndex} "#Index" "(" index=INT
-		//")" | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateCol" "("
-		//updateColumn1=ValidID "," updateColumn2=ValidID ")" | {PojoPropertyDirectiveCreateCol} "#CreateCol" "("
-		//createColumn1=ValidID "," createColumn2=ValidID ")" | {PojoPropertyDirectiveToInit} "#ToInit" |
-		//{PojoPropertyDirectiveEnumInit} "#EnumInit" | {PojoPropertyDirectiveIsDef} "#IsDef" | {PojoPropertyDirectiveEnumDef}
+		//{PojoAttributeDirectiveRequired} "#Required" | {PojoAttributeDirectivePrimaryKey} "#PrimaryKey" |
+		//{PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator" | {PojoAttributeDirectiveIndex} "#Index" "("
+		//index=INT ")" | {PojoAttributeDirectiveVersion} "#Version" | {PojoAttributeDirectiveUpdateCol} "#UpdateCol" "("
+		//updateColumn1=ValidID "," updateColumn2=ValidID ")" | {PojoAttributeDirectiveCreateCol} "#CreateCol" "("
+		//createColumn1=ValidID "," createColumn2=ValidID ")" | {PojoAttributeDirectiveToInit} "#ToInit" |
+		//{PojoAttributeDirectiveEnumInit} "#EnumInit" | {PojoAttributeDirectiveIsDef} "#IsDef" | {PojoAttributeDirectiveEnumDef}
 		//"#EnumDef"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{PojoPropertyDirectiveRequired} "#Required"
+		//{PojoAttributeDirectiveRequired} "#Required"
 		public Group getGroup_0() { return cGroup_0; }
 
-		//{PojoPropertyDirectiveRequired}
-		public Action getPojoPropertyDirectiveRequiredAction_0_0() { return cPojoPropertyDirectiveRequiredAction_0_0; }
+		//{PojoAttributeDirectiveRequired}
+		public Action getPojoAttributeDirectiveRequiredAction_0_0() { return cPojoAttributeDirectiveRequiredAction_0_0; }
 
 		//"#Required"
 		public Keyword getRequiredKeyword_0_1() { return cRequiredKeyword_0_1; }
 
-		//{PojoPropertyDirectivePrimaryKey} "#PrimaryKey"
+		//{PojoAttributeDirectivePrimaryKey} "#PrimaryKey"
 		public Group getGroup_1() { return cGroup_1; }
 
-		//{PojoPropertyDirectivePrimaryKey}
-		public Action getPojoPropertyDirectivePrimaryKeyAction_1_0() { return cPojoPropertyDirectivePrimaryKeyAction_1_0; }
+		//{PojoAttributeDirectivePrimaryKey}
+		public Action getPojoAttributeDirectivePrimaryKeyAction_1_0() { return cPojoAttributeDirectivePrimaryKeyAction_1_0; }
 
 		//"#PrimaryKey"
 		public Keyword getPrimaryKeyKeyword_1_1() { return cPrimaryKeyKeyword_1_1; }
 
-		//{PojoPropertyDirectiveDiscriminator} "#InheritanceDiscriminator"
+		//{PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator"
 		public Group getGroup_2() { return cGroup_2; }
 
-		//{PojoPropertyDirectiveDiscriminator}
-		public Action getPojoPropertyDirectiveDiscriminatorAction_2_0() { return cPojoPropertyDirectiveDiscriminatorAction_2_0; }
+		//{PojoAttributeDirectiveDiscriminator}
+		public Action getPojoAttributeDirectiveDiscriminatorAction_2_0() { return cPojoAttributeDirectiveDiscriminatorAction_2_0; }
 
 		//"#InheritanceDiscriminator"
 		public Keyword getInheritanceDiscriminatorKeyword_2_1() { return cInheritanceDiscriminatorKeyword_2_1; }
 
-		//{PojoPropertyDirectiveIndex} "#Index" "(" index=INT ")"
+		//{PojoAttributeDirectiveIndex} "#Index" "(" index=INT ")"
 		public Group getGroup_3() { return cGroup_3; }
 
-		//{PojoPropertyDirectiveIndex}
-		public Action getPojoPropertyDirectiveIndexAction_3_0() { return cPojoPropertyDirectiveIndexAction_3_0; }
+		//{PojoAttributeDirectiveIndex}
+		public Action getPojoAttributeDirectiveIndexAction_3_0() { return cPojoAttributeDirectiveIndexAction_3_0; }
 
 		//"#Index"
 		public Keyword getIndexKeyword_3_1() { return cIndexKeyword_3_1; }
@@ -4484,20 +4484,20 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//")"
 		public Keyword getRightParenthesisKeyword_3_4() { return cRightParenthesisKeyword_3_4; }
 
-		//{PojoPropertyDirectiveVersion} "#Version"
+		//{PojoAttributeDirectiveVersion} "#Version"
 		public Group getGroup_4() { return cGroup_4; }
 
-		//{PojoPropertyDirectiveVersion}
-		public Action getPojoPropertyDirectiveVersionAction_4_0() { return cPojoPropertyDirectiveVersionAction_4_0; }
+		//{PojoAttributeDirectiveVersion}
+		public Action getPojoAttributeDirectiveVersionAction_4_0() { return cPojoAttributeDirectiveVersionAction_4_0; }
 
 		//"#Version"
 		public Keyword getVersionKeyword_4_1() { return cVersionKeyword_4_1; }
 
-		//{PojoPropertyDirectiveUpdateCol} "#UpdateCol" "(" updateColumn1=ValidID "," updateColumn2=ValidID ")"
+		//{PojoAttributeDirectiveUpdateCol} "#UpdateCol" "(" updateColumn1=ValidID "," updateColumn2=ValidID ")"
 		public Group getGroup_5() { return cGroup_5; }
 
-		//{PojoPropertyDirectiveUpdateCol}
-		public Action getPojoPropertyDirectiveUpdateColAction_5_0() { return cPojoPropertyDirectiveUpdateColAction_5_0; }
+		//{PojoAttributeDirectiveUpdateCol}
+		public Action getPojoAttributeDirectiveUpdateColAction_5_0() { return cPojoAttributeDirectiveUpdateColAction_5_0; }
 
 		//"#UpdateCol"
 		public Keyword getUpdateColKeyword_5_1() { return cUpdateColKeyword_5_1; }
@@ -4523,11 +4523,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//")"
 		public Keyword getRightParenthesisKeyword_5_6() { return cRightParenthesisKeyword_5_6; }
 
-		//{PojoPropertyDirectiveCreateCol} "#CreateCol" "(" createColumn1=ValidID "," createColumn2=ValidID ")"
+		//{PojoAttributeDirectiveCreateCol} "#CreateCol" "(" createColumn1=ValidID "," createColumn2=ValidID ")"
 		public Group getGroup_6() { return cGroup_6; }
 
-		//{PojoPropertyDirectiveCreateCol}
-		public Action getPojoPropertyDirectiveCreateColAction_6_0() { return cPojoPropertyDirectiveCreateColAction_6_0; }
+		//{PojoAttributeDirectiveCreateCol}
+		public Action getPojoAttributeDirectiveCreateColAction_6_0() { return cPojoAttributeDirectiveCreateColAction_6_0; }
 
 		//"#CreateCol"
 		public Keyword getCreateColKeyword_6_1() { return cCreateColKeyword_6_1; }
@@ -4553,38 +4553,38 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//")"
 		public Keyword getRightParenthesisKeyword_6_6() { return cRightParenthesisKeyword_6_6; }
 
-		//{PojoPropertyDirectiveToInit} "#ToInit"
+		//{PojoAttributeDirectiveToInit} "#ToInit"
 		public Group getGroup_7() { return cGroup_7; }
 
-		//{PojoPropertyDirectiveToInit}
-		public Action getPojoPropertyDirectiveToInitAction_7_0() { return cPojoPropertyDirectiveToInitAction_7_0; }
+		//{PojoAttributeDirectiveToInit}
+		public Action getPojoAttributeDirectiveToInitAction_7_0() { return cPojoAttributeDirectiveToInitAction_7_0; }
 
 		//"#ToInit"
 		public Keyword getToInitKeyword_7_1() { return cToInitKeyword_7_1; }
 
-		//{PojoPropertyDirectiveEnumInit} "#EnumInit"
+		//{PojoAttributeDirectiveEnumInit} "#EnumInit"
 		public Group getGroup_8() { return cGroup_8; }
 
-		//{PojoPropertyDirectiveEnumInit}
-		public Action getPojoPropertyDirectiveEnumInitAction_8_0() { return cPojoPropertyDirectiveEnumInitAction_8_0; }
+		//{PojoAttributeDirectiveEnumInit}
+		public Action getPojoAttributeDirectiveEnumInitAction_8_0() { return cPojoAttributeDirectiveEnumInitAction_8_0; }
 
 		//"#EnumInit"
 		public Keyword getEnumInitKeyword_8_1() { return cEnumInitKeyword_8_1; }
 
-		//{PojoPropertyDirectiveIsDef} "#IsDef"
+		//{PojoAttributeDirectiveIsDef} "#IsDef"
 		public Group getGroup_9() { return cGroup_9; }
 
-		//{PojoPropertyDirectiveIsDef}
-		public Action getPojoPropertyDirectiveIsDefAction_9_0() { return cPojoPropertyDirectiveIsDefAction_9_0; }
+		//{PojoAttributeDirectiveIsDef}
+		public Action getPojoAttributeDirectiveIsDefAction_9_0() { return cPojoAttributeDirectiveIsDefAction_9_0; }
 
 		//"#IsDef"
 		public Keyword getIsDefKeyword_9_1() { return cIsDefKeyword_9_1; }
 
-		//{PojoPropertyDirectiveEnumDef} "#EnumDef"
+		//{PojoAttributeDirectiveEnumDef} "#EnumDef"
 		public Group getGroup_10() { return cGroup_10; }
 
-		//{PojoPropertyDirectiveEnumDef}
-		public Action getPojoPropertyDirectiveEnumDefAction_10_0() { return cPojoPropertyDirectiveEnumDefAction_10_0; }
+		//{PojoAttributeDirectiveEnumDef}
+		public Action getPojoAttributeDirectiveEnumDefAction_10_0() { return cPojoAttributeDirectiveEnumDefAction_10_0; }
 
 		//"#EnumDef"
 		public Keyword getEnumDefKeyword_10_1() { return cEnumDefKeyword_10_1; }
@@ -4704,14 +4704,14 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameValidIDParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cAttributeAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cAttributeEnumPropertyParserRuleCall_5_0 = (RuleCall)cAttributeAssignment_5.eContents().get(0);
+		private final RuleCall cAttributeEnumAttributeParserRuleCall_5_0 = (RuleCall)cAttributeAssignment_5.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//EnumEntity:
-		//	directives+=EnumDirective* final?="final"? "#Enum" name=ValidID "{" attribute=EnumProperty "}";
+		//	directives+=EnumDirective* final?="final"? "#Enum" name=ValidID "{" attribute=EnumAttribute "}";
 		public ParserRule getRule() { return rule; }
 
-		//directives+=EnumDirective* final?="final"? "#Enum" name=ValidID "{" attribute=EnumProperty "}"
+		//directives+=EnumDirective* final?="final"? "#Enum" name=ValidID "{" attribute=EnumAttribute "}"
 		public Group getGroup() { return cGroup; }
 
 		//directives+=EnumDirective*
@@ -4738,18 +4738,18 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 
-		//attribute=EnumProperty
+		//attribute=EnumAttribute
 		public Assignment getAttributeAssignment_5() { return cAttributeAssignment_5; }
 
-		//EnumProperty
-		public RuleCall getAttributeEnumPropertyParserRuleCall_5_0() { return cAttributeEnumPropertyParserRuleCall_5_0; }
+		//EnumAttribute
+		public RuleCall getAttributeEnumAttributeParserRuleCall_5_0() { return cAttributeEnumAttributeParserRuleCall_5_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 
-	public class EnumPropertyValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumPropertyValue");
+	public class EnumAttributeValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumAttributeValue");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameValidIDParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -4757,7 +4757,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cValueXExpressionParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
-		//EnumPropertyValue:
+		//EnumAttributeValue:
 		//	name=ValidID "=" value=XExpression;
 		public ParserRule getRule() { return rule; }
 
@@ -4780,29 +4780,29 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getValueXExpressionParserRuleCall_2_0() { return cValueXExpressionParserRuleCall_2_0; }
 	}
 
-	public class EnumPropertyDirectiveElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumPropertyDirective");
+	public class EnumAttributeDirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumAttributeDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cEnumPropertyDirectiveValuesAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cEnumAttributeDirectiveValuesAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cValuesKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cValuesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cValuesEnumPropertyValueParserRuleCall_3_0 = (RuleCall)cValuesAssignment_3.eContents().get(0);
+		private final RuleCall cValuesEnumAttributeValueParserRuleCall_3_0 = (RuleCall)cValuesAssignment_3.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cValuesAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cValuesEnumPropertyValueParserRuleCall_4_1_0 = (RuleCall)cValuesAssignment_4_1.eContents().get(0);
+		private final RuleCall cValuesEnumAttributeValueParserRuleCall_4_1_0 = (RuleCall)cValuesAssignment_4_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		//EnumPropertyDirective:
-		//	{EnumPropertyDirectiveValues} "#Values" "(" values+=EnumPropertyValue ("," values+=EnumPropertyValue)* ")";
+		//EnumAttributeDirective:
+		//	{EnumAttributeDirectiveValues} "#Values" "(" values+=EnumAttributeValue ("," values+=EnumAttributeValue)* ")";
 		public ParserRule getRule() { return rule; }
 
-		//{EnumPropertyDirectiveValues} "#Values" "(" values+=EnumPropertyValue ("," values+=EnumPropertyValue)* ")"
+		//{EnumAttributeDirectiveValues} "#Values" "(" values+=EnumAttributeValue ("," values+=EnumAttributeValue)* ")"
 		public Group getGroup() { return cGroup; }
 
-		//{EnumPropertyDirectiveValues}
-		public Action getEnumPropertyDirectiveValuesAction_0() { return cEnumPropertyDirectiveValuesAction_0; }
+		//{EnumAttributeDirectiveValues}
+		public Action getEnumAttributeDirectiveValuesAction_0() { return cEnumAttributeDirectiveValuesAction_0; }
 
 		//"#Values"
 		public Keyword getValuesKeyword_1() { return cValuesKeyword_1; }
@@ -4810,51 +4810,51 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 
-		//values+=EnumPropertyValue
+		//values+=EnumAttributeValue
 		public Assignment getValuesAssignment_3() { return cValuesAssignment_3; }
 
-		//EnumPropertyValue
-		public RuleCall getValuesEnumPropertyValueParserRuleCall_3_0() { return cValuesEnumPropertyValueParserRuleCall_3_0; }
+		//EnumAttributeValue
+		public RuleCall getValuesEnumAttributeValueParserRuleCall_3_0() { return cValuesEnumAttributeValueParserRuleCall_3_0; }
 
-		//("," values+=EnumPropertyValue)*
+		//("," values+=EnumAttributeValue)*
 		public Group getGroup_4() { return cGroup_4; }
 
 		//","
 		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
 
-		//values+=EnumPropertyValue
+		//values+=EnumAttributeValue
 		public Assignment getValuesAssignment_4_1() { return cValuesAssignment_4_1; }
 
-		//EnumPropertyValue
-		public RuleCall getValuesEnumPropertyValueParserRuleCall_4_1_0() { return cValuesEnumPropertyValueParserRuleCall_4_1_0; }
+		//EnumAttributeValue
+		public RuleCall getValuesEnumAttributeValueParserRuleCall_4_1_0() { return cValuesEnumAttributeValueParserRuleCall_4_1_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 	}
 
-	public class EnumPropertyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumProperty");
+	public class EnumAttributeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumAttribute");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDirectivesAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cDirectivesEnumPropertyDirectiveParserRuleCall_0_0 = (RuleCall)cDirectivesAssignment_0.eContents().get(0);
+		private final RuleCall cDirectivesEnumAttributeDirectiveParserRuleCall_0_0 = (RuleCall)cDirectivesAssignment_0.eContents().get(0);
 		private final Keyword cAttrKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTypeJvmTypeReferenceParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cNameValidIDParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
 		
-		//EnumProperty:
-		//	directives+=EnumPropertyDirective "#Attr" type=JvmTypeReference name=ValidID;
+		//EnumAttribute:
+		//	directives+=EnumAttributeDirective "#Attr" type=JvmTypeReference name=ValidID;
 		public ParserRule getRule() { return rule; }
 
-		//directives+=EnumPropertyDirective "#Attr" type=JvmTypeReference name=ValidID
+		//directives+=EnumAttributeDirective "#Attr" type=JvmTypeReference name=ValidID
 		public Group getGroup() { return cGroup; }
 
-		//directives+=EnumPropertyDirective
+		//directives+=EnumAttributeDirective
 		public Assignment getDirectivesAssignment_0() { return cDirectivesAssignment_0; }
 
-		//EnumPropertyDirective
-		public RuleCall getDirectivesEnumPropertyDirectiveParserRuleCall_0_0() { return cDirectivesEnumPropertyDirectiveParserRuleCall_0_0; }
+		//EnumAttributeDirective
+		public RuleCall getDirectivesEnumAttributeDirectiveParserRuleCall_0_0() { return cDirectivesEnumAttributeDirectiveParserRuleCall_0_0; }
 
 		//"#Attr"
 		public Keyword getAttrKeyword_1() { return cAttrKeyword_1; }
@@ -5454,9 +5454,9 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	private final PojoAttributeElements pPojoAttribute;
 	private final EnumDirectiveElements pEnumDirective;
 	private final EnumEntityElements pEnumEntity;
-	private final EnumPropertyValueElements pEnumPropertyValue;
-	private final EnumPropertyDirectiveElements pEnumPropertyDirective;
-	private final EnumPropertyElements pEnumProperty;
+	private final EnumAttributeValueElements pEnumAttributeValue;
+	private final EnumAttributeDirectiveElements pEnumAttributeDirective;
+	private final EnumAttributeElements pEnumAttribute;
 	private final DaoDirectiveParametersElements pDaoDirectiveParameters;
 	private final DescendantAssignmentElements pDescendantAssignment;
 	private final FunProcTypeElements pFunProcType;
@@ -5524,9 +5524,9 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPojoAttribute = new PojoAttributeElements();
 		this.pEnumDirective = new EnumDirectiveElements();
 		this.pEnumEntity = new EnumEntityElements();
-		this.pEnumPropertyValue = new EnumPropertyValueElements();
-		this.pEnumPropertyDirective = new EnumPropertyDirectiveElements();
-		this.pEnumProperty = new EnumPropertyElements();
+		this.pEnumAttributeValue = new EnumAttributeValueElements();
+		this.pEnumAttributeDirective = new EnumAttributeDirectiveElements();
+		this.pEnumAttribute = new EnumAttributeElements();
 		this.pDaoDirectiveParameters = new DaoDirectiveParametersElements();
 		this.pDescendantAssignment = new DescendantAssignmentElements();
 		this.pFunProcType = new FunProcTypeElements();
@@ -6088,13 +6088,13 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoAttributeDirective:
-	//	{PojoPropertyDirectiveRequired} "#Required" | {PojoPropertyDirectivePrimaryKey} "#PrimaryKey" |
-	//	{PojoPropertyDirectiveDiscriminator} "#InheritanceDiscriminator" | {PojoPropertyDirectiveIndex} "#Index" "(" index=INT
-	//	")" | {PojoPropertyDirectiveVersion} "#Version" | {PojoPropertyDirectiveUpdateCol} "#UpdateCol" "("
-	//	updateColumn1=ValidID "," updateColumn2=ValidID ")" | {PojoPropertyDirectiveCreateCol} "#CreateCol" "("
-	//	createColumn1=ValidID "," createColumn2=ValidID ")" | {PojoPropertyDirectiveToInit} "#ToInit" |
-	//	{PojoPropertyDirectiveEnumInit} "#EnumInit" | {PojoPropertyDirectiveIsDef} "#IsDef" | {PojoPropertyDirectiveEnumDef}
-	//	"#EnumDef";
+	//	{PojoAttributeDirectiveRequired} "#Required" | {PojoAttributeDirectivePrimaryKey} "#PrimaryKey" |
+	//	{PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator" | {PojoAttributeDirectiveIndex} "#Index" "("
+	//	index=INT ")" | {PojoAttributeDirectiveVersion} "#Version" | {PojoAttributeDirectiveUpdateCol} "#UpdateCol" "("
+	//	updateColumn1=ValidID "," updateColumn2=ValidID ")" | {PojoAttributeDirectiveCreateCol} "#CreateCol" "("
+	//	createColumn1=ValidID "," createColumn2=ValidID ")" | {PojoAttributeDirectiveToInit} "#ToInit" |
+	//	{PojoAttributeDirectiveEnumInit} "#EnumInit" | {PojoAttributeDirectiveIsDef} "#IsDef" |
+	//	{PojoAttributeDirectiveEnumDef} "#EnumDef";
 	public PojoAttributeDirectiveElements getPojoAttributeDirectiveAccess() {
 		return pPojoAttributeDirective;
 	}
@@ -6125,7 +6125,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EnumEntity:
-	//	directives+=EnumDirective* final?="final"? "#Enum" name=ValidID "{" attribute=EnumProperty "}";
+	//	directives+=EnumDirective* final?="final"? "#Enum" name=ValidID "{" attribute=EnumAttribute "}";
 	public EnumEntityElements getEnumEntityAccess() {
 		return pEnumEntity;
 	}
@@ -6134,34 +6134,34 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		return getEnumEntityAccess().getRule();
 	}
 
-	//EnumPropertyValue:
+	//EnumAttributeValue:
 	//	name=ValidID "=" value=XExpression;
-	public EnumPropertyValueElements getEnumPropertyValueAccess() {
-		return pEnumPropertyValue;
+	public EnumAttributeValueElements getEnumAttributeValueAccess() {
+		return pEnumAttributeValue;
 	}
 	
-	public ParserRule getEnumPropertyValueRule() {
-		return getEnumPropertyValueAccess().getRule();
+	public ParserRule getEnumAttributeValueRule() {
+		return getEnumAttributeValueAccess().getRule();
 	}
 
-	//EnumPropertyDirective:
-	//	{EnumPropertyDirectiveValues} "#Values" "(" values+=EnumPropertyValue ("," values+=EnumPropertyValue)* ")";
-	public EnumPropertyDirectiveElements getEnumPropertyDirectiveAccess() {
-		return pEnumPropertyDirective;
+	//EnumAttributeDirective:
+	//	{EnumAttributeDirectiveValues} "#Values" "(" values+=EnumAttributeValue ("," values+=EnumAttributeValue)* ")";
+	public EnumAttributeDirectiveElements getEnumAttributeDirectiveAccess() {
+		return pEnumAttributeDirective;
 	}
 	
-	public ParserRule getEnumPropertyDirectiveRule() {
-		return getEnumPropertyDirectiveAccess().getRule();
+	public ParserRule getEnumAttributeDirectiveRule() {
+		return getEnumAttributeDirectiveAccess().getRule();
 	}
 
-	//EnumProperty:
-	//	directives+=EnumPropertyDirective "#Attr" type=JvmTypeReference name=ValidID;
-	public EnumPropertyElements getEnumPropertyAccess() {
-		return pEnumProperty;
+	//EnumAttribute:
+	//	directives+=EnumAttributeDirective "#Attr" type=JvmTypeReference name=ValidID;
+	public EnumAttributeElements getEnumAttributeAccess() {
+		return pEnumAttribute;
 	}
 	
-	public ParserRule getEnumPropertyRule() {
-		return getEnumPropertyAccess().getRule();
+	public ParserRule getEnumAttributeRule() {
+		return getEnumAttributeAccess().getRule();
 	}
 
 	//DaoDirectiveParameters:

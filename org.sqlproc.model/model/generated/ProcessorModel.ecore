@@ -381,18 +381,18 @@
   <eClassifiers xsi:type="ecore:EClass" name="EnumEntity" eSuperTypes="#//Entity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="directives" upperBound="-1"
         eType="#//EnumDirective" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//EnumProperty"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//EnumAttribute"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumPropertyValue">
+  <eClassifiers xsi:type="ecore:EClass" name="EnumAttributeValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumPropertyDirective"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumProperty">
+  <eClassifiers xsi:type="ecore:EClass" name="EnumAttributeDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumAttribute">
     <eStructuralFeatures xsi:type="ecore:EReference" name="directives" upperBound="-1"
-        eType="#//EnumPropertyDirective" containment="true"/>
+        eType="#//EnumAttributeDirective" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmTypeReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -471,32 +471,32 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="proplist" eType="#//DirectiveProperties"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveRequired" eSuperTypes="#//PojoAttributeDirective"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectivePrimaryKey" eSuperTypes="#//PojoAttributeDirective"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveDiscriminator"
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveRequired" eSuperTypes="#//PojoAttributeDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectivePrimaryKey" eSuperTypes="#//PojoAttributeDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveDiscriminator"
       eSuperTypes="#//PojoAttributeDirective"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveIndex" eSuperTypes="#//PojoAttributeDirective">
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveIndex" eSuperTypes="#//PojoAttributeDirective">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveVersion" eSuperTypes="#//PojoAttributeDirective"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveUpdateCol" eSuperTypes="#//PojoAttributeDirective">
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveVersion" eSuperTypes="#//PojoAttributeDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveUpdateCol" eSuperTypes="#//PojoAttributeDirective">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateColumn1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateColumn2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveCreateCol" eSuperTypes="#//PojoAttributeDirective">
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveCreateCol" eSuperTypes="#//PojoAttributeDirective">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="createColumn1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="createColumn2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveToInit" eSuperTypes="#//PojoAttributeDirective"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveEnumInit" eSuperTypes="#//PojoAttributeDirective"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveIsDef" eSuperTypes="#//PojoAttributeDirective"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PojoPropertyDirectiveEnumDef" eSuperTypes="#//PojoAttributeDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveToInit" eSuperTypes="#//PojoAttributeDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveEnumInit" eSuperTypes="#//PojoAttributeDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveIsDef" eSuperTypes="#//PojoAttributeDirective"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoAttributeDirectiveEnumDef" eSuperTypes="#//PojoAttributeDirective"/>
   <eClassifiers xsi:type="ecore:EClass" name="EnumDirectiveSerializable" eSuperTypes="#//EnumDirective">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sernum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumPropertyDirectiveValues" eSuperTypes="#//EnumPropertyDirective">
+  <eClassifiers xsi:type="ecore:EClass" name="EnumAttributeDirectiveValues" eSuperTypes="#//EnumAttributeDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
-        eType="#//EnumPropertyValue" containment="true"/>
+        eType="#//EnumAttributeValue" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionCallQuery" eSuperTypes="#//FunProcType"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProcedureCallQuery" eSuperTypes="#//FunProcType"/>

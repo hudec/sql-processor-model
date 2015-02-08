@@ -281,15 +281,15 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumEntity/directives"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumEntity/attribute"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//EnumPropertyValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//EnumPropertyValue/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumPropertyValue/value"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//EnumAttributeValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//EnumAttributeValue/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumAttributeValue/value"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//EnumPropertyDirective"/>
-    <genClasses ecoreClass="ProcessorModel.ecore#//EnumProperty">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumProperty/directives"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumProperty/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//EnumProperty/name"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//EnumAttributeDirective"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//EnumAttribute">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumAttribute/directives"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumAttribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//EnumAttribute/name"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DaoDirectiveParameters">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectiveParameters/out"/>
@@ -345,30 +345,30 @@
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoDirectiveHashCode">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoDirectiveHashCode/proplist"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveRequired"/>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectivePrimaryKey"/>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveDiscriminator"/>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveIndex">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyDirectiveIndex/index"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveRequired"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectivePrimaryKey"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveDiscriminator"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveIndex">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectiveIndex/index"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveVersion"/>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveUpdateCol">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyDirectiveUpdateCol/updateColumn1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyDirectiveUpdateCol/updateColumn2"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveVersion"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveUpdateCol">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectiveUpdateCol/updateColumn1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectiveUpdateCol/updateColumn2"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveCreateCol">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyDirectiveCreateCol/createColumn1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoPropertyDirectiveCreateCol/createColumn2"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveCreateCol">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectiveCreateCol/createColumn1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttributeDirectiveCreateCol/createColumn2"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveToInit"/>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveEnumInit"/>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveIsDef"/>
-    <genClasses ecoreClass="ProcessorModel.ecore#//PojoPropertyDirectiveEnumDef"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveToInit"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveEnumInit"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveIsDef"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirectiveEnumDef"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//EnumDirectiveSerializable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//EnumDirectiveSerializable/sernum"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//EnumPropertyDirectiveValues">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumPropertyDirectiveValues/values"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//EnumAttributeDirectiveValues">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//EnumAttributeDirectiveValues/values"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//FunctionCallQuery"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//ProcedureCallQuery"/>

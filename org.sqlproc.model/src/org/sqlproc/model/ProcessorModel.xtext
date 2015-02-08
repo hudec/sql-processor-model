@@ -237,17 +237,17 @@ PojoEntity:
 ;
 
 PojoAttributeDirective: 
-	{PojoPropertyDirectiveRequired} '#Required'
-	| {PojoPropertyDirectivePrimaryKey} '#PrimaryKey'
-	| {PojoPropertyDirectiveDiscriminator} '#InheritanceDiscriminator'
-	| {PojoPropertyDirectiveIndex} '#Index' '(' index=INT ')'
-	| {PojoPropertyDirectiveVersion} '#Version'
-	| {PojoPropertyDirectiveUpdateCol} '#UpdateCol' '(' updateColumn1=ValidID ',' updateColumn2=ValidID ')'
-	| {PojoPropertyDirectiveCreateCol} '#CreateCol' '(' createColumn1=ValidID ',' createColumn2=ValidID ')'
-	| {PojoPropertyDirectiveToInit} '#ToInit'
-	| {PojoPropertyDirectiveEnumInit} '#EnumInit'
-	| {PojoPropertyDirectiveIsDef} '#IsDef'
-	| {PojoPropertyDirectiveEnumDef} '#EnumDef'
+	{PojoAttributeDirectiveRequired} '#Required'
+	| {PojoAttributeDirectivePrimaryKey} '#PrimaryKey'
+	| {PojoAttributeDirectiveDiscriminator} '#InheritanceDiscriminator'
+	| {PojoAttributeDirectiveIndex} '#Index' '(' index=INT ')'
+	| {PojoAttributeDirectiveVersion} '#Version'
+	| {PojoAttributeDirectiveUpdateCol} '#UpdateCol' '(' updateColumn1=ValidID ',' updateColumn2=ValidID ')'
+	| {PojoAttributeDirectiveCreateCol} '#CreateCol' '(' createColumn1=ValidID ',' createColumn2=ValidID ')'
+	| {PojoAttributeDirectiveToInit} '#ToInit'
+	| {PojoAttributeDirectiveEnumInit} '#EnumInit'
+	| {PojoAttributeDirectiveIsDef} '#IsDef'
+	| {PojoAttributeDirectiveEnumDef} '#EnumDef'
 ;
 
 PojoAttribute:
@@ -264,18 +264,18 @@ EnumEntity:
 	(final?='final')?
 	'#Enum' name=ValidID 
 	'{'
-		attribute=EnumProperty
+		attribute=EnumAttribute
 	'}'
 ;
 
-EnumPropertyValue: name=ValidID '=' value = XExpression;
+EnumAttributeValue: name=ValidID '=' value = XExpression;
 
-EnumPropertyDirective:
-	{EnumPropertyDirectiveValues} '#Values' '(' values+=EnumPropertyValue (',' values+=EnumPropertyValue)* ')'
+EnumAttributeDirective:
+	{EnumAttributeDirectiveValues} '#Values' '(' values+=EnumAttributeValue (',' values+=EnumAttributeValue)* ')'
 ;
 
-EnumProperty:
-	directives+=EnumPropertyDirective 
+EnumAttribute:
+	directives+=EnumAttributeDirective 
 	'#Attr' type=JvmTypeReference name=ValidID
 ;
 

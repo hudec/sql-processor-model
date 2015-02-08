@@ -7397,7 +7397,7 @@ rulePojoAttributeDirective returns [EObject current=null]
 (((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveRequiredAction_0_0(),
+            grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveRequiredAction_0_0(),
             $current);
     }
 )	otherlv_1='#Required' 
@@ -7408,7 +7408,7 @@ rulePojoAttributeDirective returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectivePrimaryKeyAction_1_0(),
+            grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectivePrimaryKeyAction_1_0(),
             $current);
     }
 )	otherlv_3='#PrimaryKey' 
@@ -7419,7 +7419,7 @@ rulePojoAttributeDirective returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveDiscriminatorAction_2_0(),
+            grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveDiscriminatorAction_2_0(),
             $current);
     }
 )	otherlv_5='#InheritanceDiscriminator' 
@@ -7430,7 +7430,7 @@ rulePojoAttributeDirective returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveIndexAction_3_0(),
+            grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveIndexAction_3_0(),
             $current);
     }
 )	otherlv_7='#Index' 
@@ -7467,7 +7467,7 @@ rulePojoAttributeDirective returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveVersionAction_4_0(),
+            grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveVersionAction_4_0(),
             $current);
     }
 )	otherlv_12='#Version' 
@@ -7478,7 +7478,7 @@ rulePojoAttributeDirective returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveUpdateColAction_5_0(),
+            grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveUpdateColAction_5_0(),
             $current);
     }
 )	otherlv_14='#UpdateCol' 
@@ -7537,7 +7537,7 @@ rulePojoAttributeDirective returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveCreateColAction_6_0(),
+            grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveCreateColAction_6_0(),
             $current);
     }
 )	otherlv_21='#CreateCol' 
@@ -7596,7 +7596,7 @@ rulePojoAttributeDirective returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveToInitAction_7_0(),
+            grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveToInitAction_7_0(),
             $current);
     }
 )	otherlv_28='#ToInit' 
@@ -7607,7 +7607,7 @@ rulePojoAttributeDirective returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveEnumInitAction_8_0(),
+            grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveEnumInitAction_8_0(),
             $current);
     }
 )	otherlv_30='#EnumInit' 
@@ -7618,7 +7618,7 @@ rulePojoAttributeDirective returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveIsDefAction_9_0(),
+            grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveIsDefAction_9_0(),
             $current);
     }
 )	otherlv_32='#IsDef' 
@@ -7629,7 +7629,7 @@ rulePojoAttributeDirective returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveEnumDefAction_10_0(),
+            grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveEnumDefAction_10_0(),
             $current);
     }
 )	otherlv_34='#EnumDef' 
@@ -7895,9 +7895,9 @@ ruleEnumEntity returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumEntityAccess().getAttributeEnumPropertyParserRuleCall_5_0()); 
+	        newCompositeNode(grammarAccess.getEnumEntityAccess().getAttributeEnumAttributeParserRuleCall_5_0()); 
 	    }
-		lv_attribute_5_0=ruleEnumProperty		{
+		lv_attribute_5_0=ruleEnumAttribute		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getEnumEntityRule());
 	        }
@@ -7905,7 +7905,7 @@ ruleEnumEntity returns [EObject current=null]
        			$current, 
        			"attribute",
         		lv_attribute_5_0, 
-        		"EnumProperty");
+        		"EnumAttribute");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7921,28 +7921,28 @@ ruleEnumEntity returns [EObject current=null]
 
 
 
-// Entry rule entryRuleEnumPropertyValue
-entryRuleEnumPropertyValue returns [EObject current=null] 
+// Entry rule entryRuleEnumAttributeValue
+entryRuleEnumAttributeValue returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getEnumPropertyValueRule()); }
-	 iv_ruleEnumPropertyValue=ruleEnumPropertyValue 
-	 { $current=$iv_ruleEnumPropertyValue.current; } 
+	{ newCompositeNode(grammarAccess.getEnumAttributeValueRule()); }
+	 iv_ruleEnumAttributeValue=ruleEnumAttributeValue 
+	 { $current=$iv_ruleEnumAttributeValue.current; } 
 	 EOF 
 ;
 
-// Rule EnumPropertyValue
-ruleEnumPropertyValue returns [EObject current=null] 
+// Rule EnumAttributeValue
+ruleEnumAttributeValue returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumPropertyValueAccess().getNameValidIDParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getEnumAttributeValueAccess().getNameValidIDParserRuleCall_0_0()); 
 	    }
 		lv_name_0_0=ruleValidID		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getEnumPropertyValueRule());
+	            $current = createModelElementForParent(grammarAccess.getEnumAttributeValueRule());
 	        }
        		set(
        			$current, 
@@ -7955,16 +7955,16 @@ ruleEnumPropertyValue returns [EObject current=null]
 )
 )	otherlv_1='=' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getEnumPropertyValueAccess().getEqualsSignKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getEnumAttributeValueAccess().getEqualsSignKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumPropertyValueAccess().getValueXExpressionParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getEnumAttributeValueAccess().getValueXExpressionParserRuleCall_2_0()); 
 	    }
 		lv_value_2_0=ruleXExpression		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getEnumPropertyValueRule());
+	            $current = createModelElementForParent(grammarAccess.getEnumAttributeValueRule());
 	        }
        		set(
        			$current, 
@@ -7982,77 +7982,77 @@ ruleEnumPropertyValue returns [EObject current=null]
 
 
 
-// Entry rule entryRuleEnumPropertyDirective
-entryRuleEnumPropertyDirective returns [EObject current=null] 
+// Entry rule entryRuleEnumAttributeDirective
+entryRuleEnumAttributeDirective returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getEnumPropertyDirectiveRule()); }
-	 iv_ruleEnumPropertyDirective=ruleEnumPropertyDirective 
-	 { $current=$iv_ruleEnumPropertyDirective.current; } 
+	{ newCompositeNode(grammarAccess.getEnumAttributeDirectiveRule()); }
+	 iv_ruleEnumAttributeDirective=ruleEnumAttributeDirective 
+	 { $current=$iv_ruleEnumAttributeDirective.current; } 
 	 EOF 
 ;
 
-// Rule EnumPropertyDirective
-ruleEnumPropertyDirective returns [EObject current=null] 
+// Rule EnumAttributeDirective
+ruleEnumAttributeDirective returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getEnumPropertyDirectiveAccess().getEnumPropertyDirectiveValuesAction_0(),
+            grammarAccess.getEnumAttributeDirectiveAccess().getEnumAttributeDirectiveValuesAction_0(),
             $current);
     }
 )	otherlv_1='#Values' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getEnumPropertyDirectiveAccess().getValuesKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getEnumAttributeDirectiveAccess().getValuesKeyword_1());
     }
 	otherlv_2='(' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getEnumPropertyDirectiveAccess().getLeftParenthesisKeyword_2());
+    	newLeafNode(otherlv_2, grammarAccess.getEnumAttributeDirectiveAccess().getLeftParenthesisKeyword_2());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumPropertyDirectiveAccess().getValuesEnumPropertyValueParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getEnumAttributeDirectiveAccess().getValuesEnumAttributeValueParserRuleCall_3_0()); 
 	    }
-		lv_values_3_0=ruleEnumPropertyValue		{
+		lv_values_3_0=ruleEnumAttributeValue		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getEnumPropertyDirectiveRule());
+	            $current = createModelElementForParent(grammarAccess.getEnumAttributeDirectiveRule());
 	        }
        		add(
        			$current, 
        			"values",
         		lv_values_3_0, 
-        		"EnumPropertyValue");
+        		"EnumAttributeValue");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )(	otherlv_4=',' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getEnumPropertyDirectiveAccess().getCommaKeyword_4_0());
+    	newLeafNode(otherlv_4, grammarAccess.getEnumAttributeDirectiveAccess().getCommaKeyword_4_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumPropertyDirectiveAccess().getValuesEnumPropertyValueParserRuleCall_4_1_0()); 
+	        newCompositeNode(grammarAccess.getEnumAttributeDirectiveAccess().getValuesEnumAttributeValueParserRuleCall_4_1_0()); 
 	    }
-		lv_values_5_0=ruleEnumPropertyValue		{
+		lv_values_5_0=ruleEnumAttributeValue		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getEnumPropertyDirectiveRule());
+	            $current = createModelElementForParent(grammarAccess.getEnumAttributeDirectiveRule());
 	        }
        		add(
        			$current, 
        			"values",
         		lv_values_5_0, 
-        		"EnumPropertyValue");
+        		"EnumAttributeValue");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 ))*	otherlv_6=')' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getEnumPropertyDirectiveAccess().getRightParenthesisKeyword_5());
+    	newLeafNode(otherlv_6, grammarAccess.getEnumAttributeDirectiveAccess().getRightParenthesisKeyword_5());
     }
 )
 ;
@@ -8061,50 +8061,50 @@ ruleEnumPropertyDirective returns [EObject current=null]
 
 
 
-// Entry rule entryRuleEnumProperty
-entryRuleEnumProperty returns [EObject current=null] 
+// Entry rule entryRuleEnumAttribute
+entryRuleEnumAttribute returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getEnumPropertyRule()); }
-	 iv_ruleEnumProperty=ruleEnumProperty 
-	 { $current=$iv_ruleEnumProperty.current; } 
+	{ newCompositeNode(grammarAccess.getEnumAttributeRule()); }
+	 iv_ruleEnumAttribute=ruleEnumAttribute 
+	 { $current=$iv_ruleEnumAttribute.current; } 
 	 EOF 
 ;
 
-// Rule EnumProperty
-ruleEnumProperty returns [EObject current=null] 
+// Rule EnumAttribute
+ruleEnumAttribute returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumPropertyAccess().getDirectivesEnumPropertyDirectiveParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getEnumAttributeAccess().getDirectivesEnumAttributeDirectiveParserRuleCall_0_0()); 
 	    }
-		lv_directives_0_0=ruleEnumPropertyDirective		{
+		lv_directives_0_0=ruleEnumAttributeDirective		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getEnumPropertyRule());
+	            $current = createModelElementForParent(grammarAccess.getEnumAttributeRule());
 	        }
        		add(
        			$current, 
        			"directives",
         		lv_directives_0_0, 
-        		"EnumPropertyDirective");
+        		"EnumAttributeDirective");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )	otherlv_1='#Attr' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getEnumPropertyAccess().getAttrKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getEnumAttributeAccess().getAttrKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumPropertyAccess().getTypeJvmTypeReferenceParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getEnumAttributeAccess().getTypeJvmTypeReferenceParserRuleCall_2_0()); 
 	    }
 		lv_type_2_0=ruleJvmTypeReference		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getEnumPropertyRule());
+	            $current = createModelElementForParent(grammarAccess.getEnumAttributeRule());
 	        }
        		set(
        			$current, 
@@ -8118,11 +8118,11 @@ ruleEnumProperty returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumPropertyAccess().getNameValidIDParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getEnumAttributeAccess().getNameValidIDParserRuleCall_3_0()); 
 	    }
 		lv_name_3_0=ruleValidID		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getEnumPropertyRule());
+	            $current = createModelElementForParent(grammarAccess.getEnumAttributeRule());
 	        }
        		set(
        			$current, 

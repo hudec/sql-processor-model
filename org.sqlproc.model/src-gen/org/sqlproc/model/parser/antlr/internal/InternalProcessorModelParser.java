@@ -20379,7 +20379,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                               current = forceCreateModelElement(
-                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveRequiredAction_0_0(),
+                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveRequiredAction_0_0(),
                                   current);
                           
                     }
@@ -20410,7 +20410,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                               current = forceCreateModelElement(
-                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectivePrimaryKeyAction_1_0(),
+                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectivePrimaryKeyAction_1_0(),
                                   current);
                           
                     }
@@ -20441,7 +20441,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                               current = forceCreateModelElement(
-                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveDiscriminatorAction_2_0(),
+                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveDiscriminatorAction_2_0(),
                                   current);
                           
                     }
@@ -20472,7 +20472,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                               current = forceCreateModelElement(
-                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveIndexAction_3_0(),
+                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveIndexAction_3_0(),
                                   current);
                           
                     }
@@ -20545,7 +20545,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                               current = forceCreateModelElement(
-                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveVersionAction_4_0(),
+                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveVersionAction_4_0(),
                                   current);
                           
                     }
@@ -20576,7 +20576,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                               current = forceCreateModelElement(
-                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveUpdateColAction_5_0(),
+                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveUpdateColAction_5_0(),
                                   current);
                           
                     }
@@ -20695,7 +20695,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                               current = forceCreateModelElement(
-                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveCreateColAction_6_0(),
+                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveCreateColAction_6_0(),
                                   current);
                           
                     }
@@ -20814,7 +20814,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                               current = forceCreateModelElement(
-                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveToInitAction_7_0(),
+                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveToInitAction_7_0(),
                                   current);
                           
                     }
@@ -20845,7 +20845,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                               current = forceCreateModelElement(
-                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveEnumInitAction_8_0(),
+                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveEnumInitAction_8_0(),
                                   current);
                           
                     }
@@ -20876,7 +20876,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                               current = forceCreateModelElement(
-                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveIsDefAction_9_0(),
+                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveIsDefAction_9_0(),
                                   current);
                           
                     }
@@ -20907,7 +20907,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                               current = forceCreateModelElement(
-                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoPropertyDirectiveEnumDefAction_10_0(),
+                                  grammarAccess.getPojoAttributeDirectiveAccess().getPojoAttributeDirectiveEnumDefAction_10_0(),
                                   current);
                           
                     }
@@ -21478,7 +21478,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEnumEntity"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7832:1: ruleEnumEntity returns [EObject current=null] : ( ( (lv_directives_0_0= ruleEnumDirective ) )* ( (lv_final_1_0= 'final' ) )? otherlv_2= '#Enum' ( (lv_name_3_0= ruleValidID ) ) otherlv_4= '{' ( (lv_attribute_5_0= ruleEnumProperty ) ) otherlv_6= '}' ) ;
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7832:1: ruleEnumEntity returns [EObject current=null] : ( ( (lv_directives_0_0= ruleEnumDirective ) )* ( (lv_final_1_0= 'final' ) )? otherlv_2= '#Enum' ( (lv_name_3_0= ruleValidID ) ) otherlv_4= '{' ( (lv_attribute_5_0= ruleEnumAttribute ) ) otherlv_6= '}' ) ;
     public final EObject ruleEnumEntity() throws RecognitionException {
         EObject current = null;
 
@@ -21496,11 +21496,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7835:28: ( ( ( (lv_directives_0_0= ruleEnumDirective ) )* ( (lv_final_1_0= 'final' ) )? otherlv_2= '#Enum' ( (lv_name_3_0= ruleValidID ) ) otherlv_4= '{' ( (lv_attribute_5_0= ruleEnumProperty ) ) otherlv_6= '}' ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7836:1: ( ( (lv_directives_0_0= ruleEnumDirective ) )* ( (lv_final_1_0= 'final' ) )? otherlv_2= '#Enum' ( (lv_name_3_0= ruleValidID ) ) otherlv_4= '{' ( (lv_attribute_5_0= ruleEnumProperty ) ) otherlv_6= '}' )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7835:28: ( ( ( (lv_directives_0_0= ruleEnumDirective ) )* ( (lv_final_1_0= 'final' ) )? otherlv_2= '#Enum' ( (lv_name_3_0= ruleValidID ) ) otherlv_4= '{' ( (lv_attribute_5_0= ruleEnumAttribute ) ) otherlv_6= '}' ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7836:1: ( ( (lv_directives_0_0= ruleEnumDirective ) )* ( (lv_final_1_0= 'final' ) )? otherlv_2= '#Enum' ( (lv_name_3_0= ruleValidID ) ) otherlv_4= '{' ( (lv_attribute_5_0= ruleEnumAttribute ) ) otherlv_6= '}' )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7836:1: ( ( (lv_directives_0_0= ruleEnumDirective ) )* ( (lv_final_1_0= 'final' ) )? otherlv_2= '#Enum' ( (lv_name_3_0= ruleValidID ) ) otherlv_4= '{' ( (lv_attribute_5_0= ruleEnumProperty ) ) otherlv_6= '}' )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7836:2: ( (lv_directives_0_0= ruleEnumDirective ) )* ( (lv_final_1_0= 'final' ) )? otherlv_2= '#Enum' ( (lv_name_3_0= ruleValidID ) ) otherlv_4= '{' ( (lv_attribute_5_0= ruleEnumProperty ) ) otherlv_6= '}'
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7836:1: ( ( (lv_directives_0_0= ruleEnumDirective ) )* ( (lv_final_1_0= 'final' ) )? otherlv_2= '#Enum' ( (lv_name_3_0= ruleValidID ) ) otherlv_4= '{' ( (lv_attribute_5_0= ruleEnumAttribute ) ) otherlv_6= '}' )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7836:2: ( (lv_directives_0_0= ruleEnumDirective ) )* ( (lv_final_1_0= 'final' ) )? otherlv_2= '#Enum' ( (lv_name_3_0= ruleValidID ) ) otherlv_4= '{' ( (lv_attribute_5_0= ruleEnumAttribute ) ) otherlv_6= '}'
             {
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7836:2: ( (lv_directives_0_0= ruleEnumDirective ) )*
             loop116:
@@ -21639,19 +21639,19 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                   	newLeafNode(otherlv_4, grammarAccess.getEnumEntityAccess().getLeftCurlyBracketKeyword_4());
                   
             }
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7895:1: ( (lv_attribute_5_0= ruleEnumProperty ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7896:1: (lv_attribute_5_0= ruleEnumProperty )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7895:1: ( (lv_attribute_5_0= ruleEnumAttribute ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7896:1: (lv_attribute_5_0= ruleEnumAttribute )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7896:1: (lv_attribute_5_0= ruleEnumProperty )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7897:3: lv_attribute_5_0= ruleEnumProperty
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7896:1: (lv_attribute_5_0= ruleEnumAttribute )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7897:3: lv_attribute_5_0= ruleEnumAttribute
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getEnumEntityAccess().getAttributeEnumPropertyParserRuleCall_5_0()); 
+              	        newCompositeNode(grammarAccess.getEnumEntityAccess().getAttributeEnumAttributeParserRuleCall_5_0()); 
               	    
             }
-            pushFollow(FollowSets001.FOLLOW_ruleEnumProperty_in_ruleEnumEntity15030);
-            lv_attribute_5_0=ruleEnumProperty();
+            pushFollow(FollowSets001.FOLLOW_ruleEnumAttribute_in_ruleEnumEntity15030);
+            lv_attribute_5_0=ruleEnumAttribute();
 
             state._fsp--;
             if (state.failed) return current;
@@ -21664,7 +21664,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"attribute",
                       		lv_attribute_5_0, 
-                      		"EnumProperty");
+                      		"EnumAttribute");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -21702,30 +21702,30 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleEnumEntity"
 
 
-    // $ANTLR start "entryRuleEnumPropertyValue"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7925:1: entryRuleEnumPropertyValue returns [EObject current=null] : iv_ruleEnumPropertyValue= ruleEnumPropertyValue EOF ;
-    public final EObject entryRuleEnumPropertyValue() throws RecognitionException {
+    // $ANTLR start "entryRuleEnumAttributeValue"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7925:1: entryRuleEnumAttributeValue returns [EObject current=null] : iv_ruleEnumAttributeValue= ruleEnumAttributeValue EOF ;
+    public final EObject entryRuleEnumAttributeValue() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleEnumPropertyValue = null;
+        EObject iv_ruleEnumAttributeValue = null;
 
 
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7926:2: (iv_ruleEnumPropertyValue= ruleEnumPropertyValue EOF )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7927:2: iv_ruleEnumPropertyValue= ruleEnumPropertyValue EOF
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7926:2: (iv_ruleEnumAttributeValue= ruleEnumAttributeValue EOF )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7927:2: iv_ruleEnumAttributeValue= ruleEnumAttributeValue EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getEnumPropertyValueRule()); 
+               newCompositeNode(grammarAccess.getEnumAttributeValueRule()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleEnumPropertyValue_in_entryRuleEnumPropertyValue15078);
-            iv_ruleEnumPropertyValue=ruleEnumPropertyValue();
+            pushFollow(FollowSets001.FOLLOW_ruleEnumAttributeValue_in_entryRuleEnumAttributeValue15078);
+            iv_ruleEnumAttributeValue=ruleEnumAttributeValue();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleEnumPropertyValue; 
+               current =iv_ruleEnumAttributeValue; 
             }
-            match(input,EOF,FollowSets001.FOLLOW_EOF_in_entryRuleEnumPropertyValue15088); if (state.failed) return current;
+            match(input,EOF,FollowSets001.FOLLOW_EOF_in_entryRuleEnumAttributeValue15088); if (state.failed) return current;
 
             }
 
@@ -21739,12 +21739,12 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleEnumPropertyValue"
+    // $ANTLR end "entryRuleEnumAttributeValue"
 
 
-    // $ANTLR start "ruleEnumPropertyValue"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7934:1: ruleEnumPropertyValue returns [EObject current=null] : ( ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleXExpression ) ) ) ;
-    public final EObject ruleEnumPropertyValue() throws RecognitionException {
+    // $ANTLR start "ruleEnumAttributeValue"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7934:1: ruleEnumAttributeValue returns [EObject current=null] : ( ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleXExpression ) ) ) ;
+    public final EObject ruleEnumAttributeValue() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
@@ -21770,10 +21770,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getEnumPropertyValueAccess().getNameValidIDParserRuleCall_0_0()); 
+              	        newCompositeNode(grammarAccess.getEnumAttributeValueAccess().getNameValidIDParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FollowSets001.FOLLOW_ruleValidID_in_ruleEnumPropertyValue15134);
+            pushFollow(FollowSets001.FOLLOW_ruleValidID_in_ruleEnumAttributeValue15134);
             lv_name_0_0=ruleValidID();
 
             state._fsp--;
@@ -21781,7 +21781,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getEnumPropertyValueRule());
+              	            current = createModelElementForParent(grammarAccess.getEnumAttributeValueRule());
               	        }
                      		set(
                      			current, 
@@ -21797,10 +21797,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,20,FollowSets001.FOLLOW_20_in_ruleEnumPropertyValue15146); if (state.failed) return current;
+            otherlv_1=(Token)match(input,20,FollowSets001.FOLLOW_20_in_ruleEnumAttributeValue15146); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_1, grammarAccess.getEnumPropertyValueAccess().getEqualsSignKeyword_1());
+                  	newLeafNode(otherlv_1, grammarAccess.getEnumAttributeValueAccess().getEqualsSignKeyword_1());
                   
             }
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7960:1: ( (lv_value_2_0= ruleXExpression ) )
@@ -21811,10 +21811,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getEnumPropertyValueAccess().getValueXExpressionParserRuleCall_2_0()); 
+              	        newCompositeNode(grammarAccess.getEnumAttributeValueAccess().getValueXExpressionParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FollowSets001.FOLLOW_ruleXExpression_in_ruleEnumPropertyValue15167);
+            pushFollow(FollowSets001.FOLLOW_ruleXExpression_in_ruleEnumAttributeValue15167);
             lv_value_2_0=ruleXExpression();
 
             state._fsp--;
@@ -21822,7 +21822,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getEnumPropertyValueRule());
+              	            current = createModelElementForParent(grammarAccess.getEnumAttributeValueRule());
               	        }
                      		set(
                      			current, 
@@ -21857,33 +21857,33 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleEnumPropertyValue"
+    // $ANTLR end "ruleEnumAttributeValue"
 
 
-    // $ANTLR start "entryRuleEnumPropertyDirective"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7986:1: entryRuleEnumPropertyDirective returns [EObject current=null] : iv_ruleEnumPropertyDirective= ruleEnumPropertyDirective EOF ;
-    public final EObject entryRuleEnumPropertyDirective() throws RecognitionException {
+    // $ANTLR start "entryRuleEnumAttributeDirective"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7986:1: entryRuleEnumAttributeDirective returns [EObject current=null] : iv_ruleEnumAttributeDirective= ruleEnumAttributeDirective EOF ;
+    public final EObject entryRuleEnumAttributeDirective() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleEnumPropertyDirective = null;
+        EObject iv_ruleEnumAttributeDirective = null;
 
 
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7987:2: (iv_ruleEnumPropertyDirective= ruleEnumPropertyDirective EOF )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7988:2: iv_ruleEnumPropertyDirective= ruleEnumPropertyDirective EOF
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7987:2: (iv_ruleEnumAttributeDirective= ruleEnumAttributeDirective EOF )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7988:2: iv_ruleEnumAttributeDirective= ruleEnumAttributeDirective EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getEnumPropertyDirectiveRule()); 
+               newCompositeNode(grammarAccess.getEnumAttributeDirectiveRule()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleEnumPropertyDirective_in_entryRuleEnumPropertyDirective15203);
-            iv_ruleEnumPropertyDirective=ruleEnumPropertyDirective();
+            pushFollow(FollowSets001.FOLLOW_ruleEnumAttributeDirective_in_entryRuleEnumAttributeDirective15203);
+            iv_ruleEnumAttributeDirective=ruleEnumAttributeDirective();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleEnumPropertyDirective; 
+               current =iv_ruleEnumAttributeDirective; 
             }
-            match(input,EOF,FollowSets001.FOLLOW_EOF_in_entryRuleEnumPropertyDirective15213); if (state.failed) return current;
+            match(input,EOF,FollowSets001.FOLLOW_EOF_in_entryRuleEnumAttributeDirective15213); if (state.failed) return current;
 
             }
 
@@ -21897,12 +21897,12 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleEnumPropertyDirective"
+    // $ANTLR end "entryRuleEnumAttributeDirective"
 
 
-    // $ANTLR start "ruleEnumPropertyDirective"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7995:1: ruleEnumPropertyDirective returns [EObject current=null] : ( () otherlv_1= '#Values' otherlv_2= '(' ( (lv_values_3_0= ruleEnumPropertyValue ) ) (otherlv_4= ',' ( (lv_values_5_0= ruleEnumPropertyValue ) ) )* otherlv_6= ')' ) ;
-    public final EObject ruleEnumPropertyDirective() throws RecognitionException {
+    // $ANTLR start "ruleEnumAttributeDirective"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7995:1: ruleEnumAttributeDirective returns [EObject current=null] : ( () otherlv_1= '#Values' otherlv_2= '(' ( (lv_values_3_0= ruleEnumAttributeValue ) ) (otherlv_4= ',' ( (lv_values_5_0= ruleEnumAttributeValue ) ) )* otherlv_6= ')' ) ;
+    public final EObject ruleEnumAttributeDirective() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
@@ -21917,11 +21917,11 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7998:28: ( ( () otherlv_1= '#Values' otherlv_2= '(' ( (lv_values_3_0= ruleEnumPropertyValue ) ) (otherlv_4= ',' ( (lv_values_5_0= ruleEnumPropertyValue ) ) )* otherlv_6= ')' ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7999:1: ( () otherlv_1= '#Values' otherlv_2= '(' ( (lv_values_3_0= ruleEnumPropertyValue ) ) (otherlv_4= ',' ( (lv_values_5_0= ruleEnumPropertyValue ) ) )* otherlv_6= ')' )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7998:28: ( ( () otherlv_1= '#Values' otherlv_2= '(' ( (lv_values_3_0= ruleEnumAttributeValue ) ) (otherlv_4= ',' ( (lv_values_5_0= ruleEnumAttributeValue ) ) )* otherlv_6= ')' ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7999:1: ( () otherlv_1= '#Values' otherlv_2= '(' ( (lv_values_3_0= ruleEnumAttributeValue ) ) (otherlv_4= ',' ( (lv_values_5_0= ruleEnumAttributeValue ) ) )* otherlv_6= ')' )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7999:1: ( () otherlv_1= '#Values' otherlv_2= '(' ( (lv_values_3_0= ruleEnumPropertyValue ) ) (otherlv_4= ',' ( (lv_values_5_0= ruleEnumPropertyValue ) ) )* otherlv_6= ')' )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7999:2: () otherlv_1= '#Values' otherlv_2= '(' ( (lv_values_3_0= ruleEnumPropertyValue ) ) (otherlv_4= ',' ( (lv_values_5_0= ruleEnumPropertyValue ) ) )* otherlv_6= ')'
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7999:1: ( () otherlv_1= '#Values' otherlv_2= '(' ( (lv_values_3_0= ruleEnumAttributeValue ) ) (otherlv_4= ',' ( (lv_values_5_0= ruleEnumAttributeValue ) ) )* otherlv_6= ')' )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7999:2: () otherlv_1= '#Values' otherlv_2= '(' ( (lv_values_3_0= ruleEnumAttributeValue ) ) (otherlv_4= ',' ( (lv_values_5_0= ruleEnumAttributeValue ) ) )* otherlv_6= ')'
             {
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:7999:2: ()
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8000:5: 
@@ -21929,51 +21929,51 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
                       current = forceCreateModelElement(
-                          grammarAccess.getEnumPropertyDirectiveAccess().getEnumPropertyDirectiveValuesAction_0(),
+                          grammarAccess.getEnumAttributeDirectiveAccess().getEnumAttributeDirectiveValuesAction_0(),
                           current);
                   
             }
 
             }
 
-            otherlv_1=(Token)match(input,146,FollowSets001.FOLLOW_146_in_ruleEnumPropertyDirective15259); if (state.failed) return current;
+            otherlv_1=(Token)match(input,146,FollowSets001.FOLLOW_146_in_ruleEnumAttributeDirective15259); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_1, grammarAccess.getEnumPropertyDirectiveAccess().getValuesKeyword_1());
+                  	newLeafNode(otherlv_1, grammarAccess.getEnumAttributeDirectiveAccess().getValuesKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,14,FollowSets001.FOLLOW_14_in_ruleEnumPropertyDirective15271); if (state.failed) return current;
+            otherlv_2=(Token)match(input,14,FollowSets001.FOLLOW_14_in_ruleEnumAttributeDirective15271); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_2, grammarAccess.getEnumPropertyDirectiveAccess().getLeftParenthesisKeyword_2());
+                  	newLeafNode(otherlv_2, grammarAccess.getEnumAttributeDirectiveAccess().getLeftParenthesisKeyword_2());
                   
             }
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8013:1: ( (lv_values_3_0= ruleEnumPropertyValue ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8014:1: (lv_values_3_0= ruleEnumPropertyValue )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8013:1: ( (lv_values_3_0= ruleEnumAttributeValue ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8014:1: (lv_values_3_0= ruleEnumAttributeValue )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8014:1: (lv_values_3_0= ruleEnumPropertyValue )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8015:3: lv_values_3_0= ruleEnumPropertyValue
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8014:1: (lv_values_3_0= ruleEnumAttributeValue )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8015:3: lv_values_3_0= ruleEnumAttributeValue
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getEnumPropertyDirectiveAccess().getValuesEnumPropertyValueParserRuleCall_3_0()); 
+              	        newCompositeNode(grammarAccess.getEnumAttributeDirectiveAccess().getValuesEnumAttributeValueParserRuleCall_3_0()); 
               	    
             }
-            pushFollow(FollowSets001.FOLLOW_ruleEnumPropertyValue_in_ruleEnumPropertyDirective15292);
-            lv_values_3_0=ruleEnumPropertyValue();
+            pushFollow(FollowSets001.FOLLOW_ruleEnumAttributeValue_in_ruleEnumAttributeDirective15292);
+            lv_values_3_0=ruleEnumAttributeValue();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getEnumPropertyDirectiveRule());
+              	            current = createModelElementForParent(grammarAccess.getEnumAttributeDirectiveRule());
               	        }
                      		add(
                      			current, 
                      			"values",
                       		lv_values_3_0, 
-                      		"EnumPropertyValue");
+                      		"EnumAttributeValue");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -21983,7 +21983,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8031:2: (otherlv_4= ',' ( (lv_values_5_0= ruleEnumPropertyValue ) ) )*
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8031:2: (otherlv_4= ',' ( (lv_values_5_0= ruleEnumAttributeValue ) ) )*
             loop118:
             do {
                 int alt118=2;
@@ -21996,40 +21996,40 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
                 switch (alt118) {
             	case 1 :
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8031:4: otherlv_4= ',' ( (lv_values_5_0= ruleEnumPropertyValue ) )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8031:4: otherlv_4= ',' ( (lv_values_5_0= ruleEnumAttributeValue ) )
             	    {
-            	    otherlv_4=(Token)match(input,123,FollowSets001.FOLLOW_123_in_ruleEnumPropertyDirective15305); if (state.failed) return current;
+            	    otherlv_4=(Token)match(input,123,FollowSets001.FOLLOW_123_in_ruleEnumAttributeDirective15305); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	          	newLeafNode(otherlv_4, grammarAccess.getEnumPropertyDirectiveAccess().getCommaKeyword_4_0());
+            	          	newLeafNode(otherlv_4, grammarAccess.getEnumAttributeDirectiveAccess().getCommaKeyword_4_0());
             	          
             	    }
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8035:1: ( (lv_values_5_0= ruleEnumPropertyValue ) )
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8036:1: (lv_values_5_0= ruleEnumPropertyValue )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8035:1: ( (lv_values_5_0= ruleEnumAttributeValue ) )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8036:1: (lv_values_5_0= ruleEnumAttributeValue )
             	    {
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8036:1: (lv_values_5_0= ruleEnumPropertyValue )
-            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8037:3: lv_values_5_0= ruleEnumPropertyValue
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8036:1: (lv_values_5_0= ruleEnumAttributeValue )
+            	    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8037:3: lv_values_5_0= ruleEnumAttributeValue
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getEnumPropertyDirectiveAccess().getValuesEnumPropertyValueParserRuleCall_4_1_0()); 
+            	      	        newCompositeNode(grammarAccess.getEnumAttributeDirectiveAccess().getValuesEnumAttributeValueParserRuleCall_4_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FollowSets001.FOLLOW_ruleEnumPropertyValue_in_ruleEnumPropertyDirective15326);
-            	    lv_values_5_0=ruleEnumPropertyValue();
+            	    pushFollow(FollowSets001.FOLLOW_ruleEnumAttributeValue_in_ruleEnumAttributeDirective15326);
+            	    lv_values_5_0=ruleEnumAttributeValue();
 
             	    state._fsp--;
             	    if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getEnumPropertyDirectiveRule());
+            	      	            current = createModelElementForParent(grammarAccess.getEnumAttributeDirectiveRule());
             	      	        }
             	             		add(
             	             			current, 
             	             			"values",
             	              		lv_values_5_0, 
-            	              		"EnumPropertyValue");
+            	              		"EnumAttributeValue");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -22048,10 +22048,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_6=(Token)match(input,15,FollowSets001.FOLLOW_15_in_ruleEnumPropertyDirective15340); if (state.failed) return current;
+            otherlv_6=(Token)match(input,15,FollowSets001.FOLLOW_15_in_ruleEnumAttributeDirective15340); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_6, grammarAccess.getEnumPropertyDirectiveAccess().getRightParenthesisKeyword_5());
+                  	newLeafNode(otherlv_6, grammarAccess.getEnumAttributeDirectiveAccess().getRightParenthesisKeyword_5());
                   
             }
 
@@ -22073,33 +22073,33 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleEnumPropertyDirective"
+    // $ANTLR end "ruleEnumAttributeDirective"
 
 
-    // $ANTLR start "entryRuleEnumProperty"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8065:1: entryRuleEnumProperty returns [EObject current=null] : iv_ruleEnumProperty= ruleEnumProperty EOF ;
-    public final EObject entryRuleEnumProperty() throws RecognitionException {
+    // $ANTLR start "entryRuleEnumAttribute"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8065:1: entryRuleEnumAttribute returns [EObject current=null] : iv_ruleEnumAttribute= ruleEnumAttribute EOF ;
+    public final EObject entryRuleEnumAttribute() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleEnumProperty = null;
+        EObject iv_ruleEnumAttribute = null;
 
 
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8066:2: (iv_ruleEnumProperty= ruleEnumProperty EOF )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8067:2: iv_ruleEnumProperty= ruleEnumProperty EOF
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8066:2: (iv_ruleEnumAttribute= ruleEnumAttribute EOF )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8067:2: iv_ruleEnumAttribute= ruleEnumAttribute EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getEnumPropertyRule()); 
+               newCompositeNode(grammarAccess.getEnumAttributeRule()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleEnumProperty_in_entryRuleEnumProperty15376);
-            iv_ruleEnumProperty=ruleEnumProperty();
+            pushFollow(FollowSets001.FOLLOW_ruleEnumAttribute_in_entryRuleEnumAttribute15376);
+            iv_ruleEnumAttribute=ruleEnumAttribute();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleEnumProperty; 
+               current =iv_ruleEnumAttribute; 
             }
-            match(input,EOF,FollowSets001.FOLLOW_EOF_in_entryRuleEnumProperty15386); if (state.failed) return current;
+            match(input,EOF,FollowSets001.FOLLOW_EOF_in_entryRuleEnumAttribute15386); if (state.failed) return current;
 
             }
 
@@ -22113,12 +22113,12 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleEnumProperty"
+    // $ANTLR end "entryRuleEnumAttribute"
 
 
-    // $ANTLR start "ruleEnumProperty"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8074:1: ruleEnumProperty returns [EObject current=null] : ( ( (lv_directives_0_0= ruleEnumPropertyDirective ) ) otherlv_1= '#Attr' ( (lv_type_2_0= ruleJvmTypeReference ) ) ( (lv_name_3_0= ruleValidID ) ) ) ;
-    public final EObject ruleEnumProperty() throws RecognitionException {
+    // $ANTLR start "ruleEnumAttribute"
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8074:1: ruleEnumAttribute returns [EObject current=null] : ( ( (lv_directives_0_0= ruleEnumAttributeDirective ) ) otherlv_1= '#Attr' ( (lv_type_2_0= ruleJvmTypeReference ) ) ( (lv_name_3_0= ruleValidID ) ) ) ;
+    public final EObject ruleEnumAttribute() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
@@ -22132,38 +22132,38 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8077:28: ( ( ( (lv_directives_0_0= ruleEnumPropertyDirective ) ) otherlv_1= '#Attr' ( (lv_type_2_0= ruleJvmTypeReference ) ) ( (lv_name_3_0= ruleValidID ) ) ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8078:1: ( ( (lv_directives_0_0= ruleEnumPropertyDirective ) ) otherlv_1= '#Attr' ( (lv_type_2_0= ruleJvmTypeReference ) ) ( (lv_name_3_0= ruleValidID ) ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8077:28: ( ( ( (lv_directives_0_0= ruleEnumAttributeDirective ) ) otherlv_1= '#Attr' ( (lv_type_2_0= ruleJvmTypeReference ) ) ( (lv_name_3_0= ruleValidID ) ) ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8078:1: ( ( (lv_directives_0_0= ruleEnumAttributeDirective ) ) otherlv_1= '#Attr' ( (lv_type_2_0= ruleJvmTypeReference ) ) ( (lv_name_3_0= ruleValidID ) ) )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8078:1: ( ( (lv_directives_0_0= ruleEnumPropertyDirective ) ) otherlv_1= '#Attr' ( (lv_type_2_0= ruleJvmTypeReference ) ) ( (lv_name_3_0= ruleValidID ) ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8078:2: ( (lv_directives_0_0= ruleEnumPropertyDirective ) ) otherlv_1= '#Attr' ( (lv_type_2_0= ruleJvmTypeReference ) ) ( (lv_name_3_0= ruleValidID ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8078:1: ( ( (lv_directives_0_0= ruleEnumAttributeDirective ) ) otherlv_1= '#Attr' ( (lv_type_2_0= ruleJvmTypeReference ) ) ( (lv_name_3_0= ruleValidID ) ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8078:2: ( (lv_directives_0_0= ruleEnumAttributeDirective ) ) otherlv_1= '#Attr' ( (lv_type_2_0= ruleJvmTypeReference ) ) ( (lv_name_3_0= ruleValidID ) )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8078:2: ( (lv_directives_0_0= ruleEnumPropertyDirective ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8079:1: (lv_directives_0_0= ruleEnumPropertyDirective )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8078:2: ( (lv_directives_0_0= ruleEnumAttributeDirective ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8079:1: (lv_directives_0_0= ruleEnumAttributeDirective )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8079:1: (lv_directives_0_0= ruleEnumPropertyDirective )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8080:3: lv_directives_0_0= ruleEnumPropertyDirective
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8079:1: (lv_directives_0_0= ruleEnumAttributeDirective )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8080:3: lv_directives_0_0= ruleEnumAttributeDirective
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getEnumPropertyAccess().getDirectivesEnumPropertyDirectiveParserRuleCall_0_0()); 
+              	        newCompositeNode(grammarAccess.getEnumAttributeAccess().getDirectivesEnumAttributeDirectiveParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FollowSets001.FOLLOW_ruleEnumPropertyDirective_in_ruleEnumProperty15432);
-            lv_directives_0_0=ruleEnumPropertyDirective();
+            pushFollow(FollowSets001.FOLLOW_ruleEnumAttributeDirective_in_ruleEnumAttribute15432);
+            lv_directives_0_0=ruleEnumAttributeDirective();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getEnumPropertyRule());
+              	            current = createModelElementForParent(grammarAccess.getEnumAttributeRule());
               	        }
                      		add(
                      			current, 
                      			"directives",
                       		lv_directives_0_0, 
-                      		"EnumPropertyDirective");
+                      		"EnumAttributeDirective");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -22173,10 +22173,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,144,FollowSets001.FOLLOW_144_in_ruleEnumProperty15444); if (state.failed) return current;
+            otherlv_1=(Token)match(input,144,FollowSets001.FOLLOW_144_in_ruleEnumAttribute15444); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_1, grammarAccess.getEnumPropertyAccess().getAttrKeyword_1());
+                  	newLeafNode(otherlv_1, grammarAccess.getEnumAttributeAccess().getAttrKeyword_1());
                   
             }
             // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8100:1: ( (lv_type_2_0= ruleJvmTypeReference ) )
@@ -22187,10 +22187,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getEnumPropertyAccess().getTypeJvmTypeReferenceParserRuleCall_2_0()); 
+              	        newCompositeNode(grammarAccess.getEnumAttributeAccess().getTypeJvmTypeReferenceParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FollowSets001.FOLLOW_ruleJvmTypeReference_in_ruleEnumProperty15465);
+            pushFollow(FollowSets001.FOLLOW_ruleJvmTypeReference_in_ruleEnumAttribute15465);
             lv_type_2_0=ruleJvmTypeReference();
 
             state._fsp--;
@@ -22198,7 +22198,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getEnumPropertyRule());
+              	            current = createModelElementForParent(grammarAccess.getEnumAttributeRule());
               	        }
                      		set(
                      			current, 
@@ -22222,10 +22222,10 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getEnumPropertyAccess().getNameValidIDParserRuleCall_3_0()); 
+              	        newCompositeNode(grammarAccess.getEnumAttributeAccess().getNameValidIDParserRuleCall_3_0()); 
               	    
             }
-            pushFollow(FollowSets001.FOLLOW_ruleValidID_in_ruleEnumProperty15486);
+            pushFollow(FollowSets001.FOLLOW_ruleValidID_in_ruleEnumAttribute15486);
             lv_name_3_0=ruleValidID();
 
             state._fsp--;
@@ -22233,7 +22233,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getEnumPropertyRule());
+              	            current = createModelElementForParent(grammarAccess.getEnumAttributeRule());
               	        }
                      		set(
                      			current, 
@@ -22268,7 +22268,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleEnumProperty"
+    // $ANTLR end "ruleEnumAttribute"
 
 
     // $ANTLR start "entryRuleDaoDirectiveParameters"
@@ -50150,27 +50150,27 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_145_in_ruleEnumEntity14976 = new BitSet(new long[]{0x0000000000000130L});
         public static final BitSet FOLLOW_ruleValidID_in_ruleEnumEntity14997 = new BitSet(new long[]{0x0000000000080000L});
         public static final BitSet FOLLOW_19_in_ruleEnumEntity15009 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000040000L});
-        public static final BitSet FOLLOW_ruleEnumProperty_in_ruleEnumEntity15030 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_ruleEnumAttribute_in_ruleEnumEntity15030 = new BitSet(new long[]{0x0000000000200000L});
         public static final BitSet FOLLOW_21_in_ruleEnumEntity15042 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEnumPropertyValue_in_entryRuleEnumPropertyValue15078 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleEnumPropertyValue15088 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleEnumPropertyValue15134 = new BitSet(new long[]{0x0000000000100000L});
-        public static final BitSet FOLLOW_20_in_ruleEnumPropertyValue15146 = new BitSet(new long[]{0x00000000000E41F0L,0x0400000000000000L,0x8000103000000000L,0x000000005FFE7280L});
-        public static final BitSet FOLLOW_ruleXExpression_in_ruleEnumPropertyValue15167 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEnumPropertyDirective_in_entryRuleEnumPropertyDirective15203 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleEnumPropertyDirective15213 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_146_in_ruleEnumPropertyDirective15259 = new BitSet(new long[]{0x0000000000004000L});
-        public static final BitSet FOLLOW_14_in_ruleEnumPropertyDirective15271 = new BitSet(new long[]{0x0000000000000130L});
-        public static final BitSet FOLLOW_ruleEnumPropertyValue_in_ruleEnumPropertyDirective15292 = new BitSet(new long[]{0x0000000000008000L,0x0800000000000000L});
-        public static final BitSet FOLLOW_123_in_ruleEnumPropertyDirective15305 = new BitSet(new long[]{0x0000000000000130L});
-        public static final BitSet FOLLOW_ruleEnumPropertyValue_in_ruleEnumPropertyDirective15326 = new BitSet(new long[]{0x0000000000008000L,0x0800000000000000L});
-        public static final BitSet FOLLOW_15_in_ruleEnumPropertyDirective15340 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEnumProperty_in_entryRuleEnumProperty15376 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleEnumProperty15386 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEnumPropertyDirective_in_ruleEnumProperty15432 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000010000L});
-        public static final BitSet FOLLOW_144_in_ruleEnumProperty15444 = new BitSet(new long[]{0x0000000000004130L,0x0000000000000000L,0x0100000000000000L});
-        public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleEnumProperty15465 = new BitSet(new long[]{0x0000000000000130L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleEnumProperty15486 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleEnumAttributeValue_in_entryRuleEnumAttributeValue15078 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleEnumAttributeValue15088 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleValidID_in_ruleEnumAttributeValue15134 = new BitSet(new long[]{0x0000000000100000L});
+        public static final BitSet FOLLOW_20_in_ruleEnumAttributeValue15146 = new BitSet(new long[]{0x00000000000E41F0L,0x0400000000000000L,0x8000103000000000L,0x000000005FFE7280L});
+        public static final BitSet FOLLOW_ruleXExpression_in_ruleEnumAttributeValue15167 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleEnumAttributeDirective_in_entryRuleEnumAttributeDirective15203 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleEnumAttributeDirective15213 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_146_in_ruleEnumAttributeDirective15259 = new BitSet(new long[]{0x0000000000004000L});
+        public static final BitSet FOLLOW_14_in_ruleEnumAttributeDirective15271 = new BitSet(new long[]{0x0000000000000130L});
+        public static final BitSet FOLLOW_ruleEnumAttributeValue_in_ruleEnumAttributeDirective15292 = new BitSet(new long[]{0x0000000000008000L,0x0800000000000000L});
+        public static final BitSet FOLLOW_123_in_ruleEnumAttributeDirective15305 = new BitSet(new long[]{0x0000000000000130L});
+        public static final BitSet FOLLOW_ruleEnumAttributeValue_in_ruleEnumAttributeDirective15326 = new BitSet(new long[]{0x0000000000008000L,0x0800000000000000L});
+        public static final BitSet FOLLOW_15_in_ruleEnumAttributeDirective15340 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleEnumAttribute_in_entryRuleEnumAttribute15376 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleEnumAttribute15386 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleEnumAttributeDirective_in_ruleEnumAttribute15432 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000010000L});
+        public static final BitSet FOLLOW_144_in_ruleEnumAttribute15444 = new BitSet(new long[]{0x0000000000004130L,0x0000000000000000L,0x0100000000000000L});
+        public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleEnumAttribute15465 = new BitSet(new long[]{0x0000000000000130L});
+        public static final BitSet FOLLOW_ruleValidID_in_ruleEnumAttribute15486 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleDaoDirectiveParameters_in_entryRuleDaoDirectiveParameters15522 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleDaoDirectiveParameters15532 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleJvmParameterizedTypeReference_in_ruleDaoDirectiveParameters15578 = new BitSet(new long[]{0x0000000000000002L,0x0800000000000000L});

@@ -10,7 +10,8 @@ import static extension org.eclipse.xtext.EcoreUtil2.*
 import org.sqlproc.model.processorModel.PojoEntity
 import org.sqlproc.model.processorModel.AnnotatedEntity
 import org.sqlproc.model.processorModel.EnumEntity
-import org.sqlproc.model.processorModel.EnumPropertyDirectiveValues
+import org.sqlproc.model.processorModel.EnumAttributeDirectiveValues
+import org.sqlproc.model.processorModel.DaoEntity
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -25,6 +26,7 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
      */
 	@Inject extension JvmTypesBuilder
 	@Inject extension IQualifiedNameProvider
+	@Inject extension ProcessorGeneratorUtils
 
 	/**
 	 * The dispatch method {@code infer} is called for each instance of the
@@ -76,8 +78,8 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    			addAnnotations(entity.annotations.map[a|a.annotation])
 
 			for (dir : entity.attribute.directives) {
-				if (dir instanceof EnumPropertyDirectiveValues) {
-					val dv = dir as EnumPropertyDirectiveValues
+				if (dir instanceof EnumAttributeDirectiveValues) {
+					val dv = dir as EnumAttributeDirectiveValues
 					for (epv : dv.values)
 						members += entity.toEnumerationLiteral(epv.name)
 				}
@@ -85,24 +87,14 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    		]
    	}
 
-   	def getFullyQualifiedName(PojoEntity it) {
-   		val pkg = getContainerOfType(typeof(Package))
-		pkg.fullyQualifiedName + "." + name
-	}
-
-   	def getFullyQualifiedName(EnumEntity it) {
-   		val pkg = getContainerOfType(typeof(Package))
-		pkg.fullyQualifiedName + "." + name
-	}
-
-   	def annotations(PojoEntity it) {
-   		val an = getContainerOfType(typeof(AnnotatedEntity))
-		an.annotations
-	}
-
-   	def annotations(EnumEntity it) {
-   		val an = getContainerOfType(typeof(AnnotatedEntity))
-		an.annotations
-	}
+	 
+   	def dispatch void infer(DaoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
+   		acceptor.accept(entity.toClass(entity.fullyQualifiedName)) [
+   			documentation = entity.documentation
+   			addAnnotations(entity.annotations.map[a|a.annotation])
+   			if (entity.superType != null)
+   				superTypes += entity.superType.cloneWithProxies
+   		]
+   	}
 }
 

@@ -90,11 +90,11 @@ import org.sqlproc.model.processorModel.DescendantAssignment;
 import org.sqlproc.model.processorModel.DirectiveProperties;
 import org.sqlproc.model.processorModel.DriverMetaInfoAssignement;
 import org.sqlproc.model.processorModel.DriverMethodOutputAssignement;
+import org.sqlproc.model.processorModel.EnumAttribute;
+import org.sqlproc.model.processorModel.EnumAttributeDirectiveValues;
+import org.sqlproc.model.processorModel.EnumAttributeValue;
 import org.sqlproc.model.processorModel.EnumDirectiveSerializable;
 import org.sqlproc.model.processorModel.EnumEntity;
-import org.sqlproc.model.processorModel.EnumProperty;
-import org.sqlproc.model.processorModel.EnumPropertyDirectiveValues;
-import org.sqlproc.model.processorModel.EnumPropertyValue;
 import org.sqlproc.model.processorModel.ExportAssignement;
 import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.ExtendsAssignement;
@@ -120,6 +120,17 @@ import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
 import org.sqlproc.model.processorModel.PojoAttribute;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveDiscriminator;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumDef;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveEnumInit;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveIndex;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveIsDef;
+import org.sqlproc.model.processorModel.PojoAttributeDirectivePrimaryKey;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveRequired;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveToInit;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol;
+import org.sqlproc.model.processorModel.PojoAttributeDirectiveVersion;
 import org.sqlproc.model.processorModel.PojoDefinition;
 import org.sqlproc.model.processorModel.PojoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.PojoDirectiveEquals;
@@ -129,17 +140,6 @@ import org.sqlproc.model.processorModel.PojoDirectiveOperators;
 import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveCreateCol;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveDiscriminator;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveEnumDef;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveEnumInit;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveIndex;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveIsDef;
-import org.sqlproc.model.processorModel.PojoPropertyDirectivePrimaryKey;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveRequired;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveToInit;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveUpdateCol;
-import org.sqlproc.model.processorModel.PojoPropertyDirectiveVersion;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
@@ -339,6 +339,24 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 					return; 
 				}
 				else break;
+			case ProcessorModelPackage.ENUM_ATTRIBUTE:
+				if(context == grammarAccess.getEnumAttributeRule()) {
+					sequence_EnumAttribute(context, (EnumAttribute) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.ENUM_ATTRIBUTE_DIRECTIVE_VALUES:
+				if(context == grammarAccess.getEnumAttributeDirectiveRule()) {
+					sequence_EnumAttributeDirective(context, (EnumAttributeDirectiveValues) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.ENUM_ATTRIBUTE_VALUE:
+				if(context == grammarAccess.getEnumAttributeValueRule()) {
+					sequence_EnumAttributeValue(context, (EnumAttributeValue) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorModelPackage.ENUM_DIRECTIVE_SERIALIZABLE:
 				if(context == grammarAccess.getEnumDirectiveRule()) {
 					sequence_EnumDirective(context, (EnumDirectiveSerializable) semanticObject); 
@@ -349,24 +367,6 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 				if(context == grammarAccess.getEntityRule() ||
 				   context == grammarAccess.getEnumEntityRule()) {
 					sequence_EnumEntity(context, (EnumEntity) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.ENUM_PROPERTY:
-				if(context == grammarAccess.getEnumPropertyRule()) {
-					sequence_EnumProperty(context, (EnumProperty) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.ENUM_PROPERTY_DIRECTIVE_VALUES:
-				if(context == grammarAccess.getEnumPropertyDirectiveRule()) {
-					sequence_EnumPropertyDirective(context, (EnumPropertyDirectiveValues) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.ENUM_PROPERTY_VALUE:
-				if(context == grammarAccess.getEnumPropertyValueRule()) {
-					sequence_EnumPropertyValue(context, (EnumPropertyValue) semanticObject); 
 					return; 
 				}
 				else break;
@@ -528,6 +528,72 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 					return; 
 				}
 				else break;
+			case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL:
+				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
+					sequence_PojoAttributeDirective(context, (PojoAttributeDirectiveCreateCol) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_DISCRIMINATOR:
+				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
+					sequence_PojoAttributeDirective(context, (PojoAttributeDirectiveDiscriminator) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_ENUM_DEF:
+				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
+					sequence_PojoAttributeDirective(context, (PojoAttributeDirectiveEnumDef) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_ENUM_INIT:
+				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
+					sequence_PojoAttributeDirective(context, (PojoAttributeDirectiveEnumInit) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_INDEX:
+				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
+					sequence_PojoAttributeDirective(context, (PojoAttributeDirectiveIndex) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_IS_DEF:
+				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
+					sequence_PojoAttributeDirective(context, (PojoAttributeDirectiveIsDef) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_PRIMARY_KEY:
+				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
+					sequence_PojoAttributeDirective(context, (PojoAttributeDirectivePrimaryKey) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_REQUIRED:
+				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
+					sequence_PojoAttributeDirective(context, (PojoAttributeDirectiveRequired) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_TO_INIT:
+				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
+					sequence_PojoAttributeDirective(context, (PojoAttributeDirectiveToInit) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL:
+				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
+					sequence_PojoAttributeDirective(context, (PojoAttributeDirectiveUpdateCol) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE_VERSION:
+				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
+					sequence_PojoAttributeDirective(context, (PojoAttributeDirectiveVersion) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorModelPackage.POJO_DEFINITION:
 				if(context == grammarAccess.getPojoDefinitionRule()) {
 					sequence_PojoDefinition(context, (PojoDefinition) semanticObject); 
@@ -580,72 +646,6 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 				if(context == grammarAccess.getEntityRule() ||
 				   context == grammarAccess.getPojoEntityRule()) {
 					sequence_PojoEntity(context, (PojoEntity) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_CREATE_COL:
-				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
-					sequence_PojoAttributeDirective(context, (PojoPropertyDirectiveCreateCol) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_DISCRIMINATOR:
-				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
-					sequence_PojoAttributeDirective(context, (PojoPropertyDirectiveDiscriminator) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_ENUM_DEF:
-				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
-					sequence_PojoAttributeDirective(context, (PojoPropertyDirectiveEnumDef) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_ENUM_INIT:
-				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
-					sequence_PojoAttributeDirective(context, (PojoPropertyDirectiveEnumInit) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_INDEX:
-				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
-					sequence_PojoAttributeDirective(context, (PojoPropertyDirectiveIndex) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_IS_DEF:
-				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
-					sequence_PojoAttributeDirective(context, (PojoPropertyDirectiveIsDef) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_PRIMARY_KEY:
-				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
-					sequence_PojoAttributeDirective(context, (PojoPropertyDirectivePrimaryKey) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_REQUIRED:
-				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
-					sequence_PojoAttributeDirective(context, (PojoPropertyDirectiveRequired) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_TO_INIT:
-				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
-					sequence_PojoAttributeDirective(context, (PojoPropertyDirectiveToInit) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_UPDATE_COL:
-				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
-					sequence_PojoAttributeDirective(context, (PojoPropertyDirectiveUpdateCol) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.POJO_PROPERTY_DIRECTIVE_VERSION:
-				if(context == grammarAccess.getPojoAttributeDirectiveRule()) {
-					sequence_PojoAttributeDirective(context, (PojoPropertyDirectiveVersion) semanticObject); 
 					return; 
 				}
 				else break;
@@ -2366,6 +2366,43 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
+	 *     (values+=EnumAttributeValue values+=EnumAttributeValue*)
+	 */
+	protected void sequence_EnumAttributeDirective(EObject context, EnumAttributeDirectiveValues semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=ValidID value=XExpression)
+	 */
+	protected void sequence_EnumAttributeValue(EObject context, EnumAttributeValue semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.ENUM_ATTRIBUTE_VALUE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.ENUM_ATTRIBUTE_VALUE__NAME));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.ENUM_ATTRIBUTE_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.ENUM_ATTRIBUTE_VALUE__VALUE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getEnumAttributeValueAccess().getNameValidIDParserRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getEnumAttributeValueAccess().getValueXExpressionParserRuleCall_2_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (directives+=EnumAttributeDirective type=JvmTypeReference name=ValidID)
+	 */
+	protected void sequence_EnumAttribute(EObject context, EnumAttribute semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     sernum=INT
 	 */
 	protected void sequence_EnumDirective(EObject context, EnumDirectiveSerializable semanticObject) {
@@ -2382,46 +2419,9 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (directives+=EnumDirective* final?='final'? name=ValidID attribute=EnumProperty)
+	 *     (directives+=EnumDirective* final?='final'? name=ValidID attribute=EnumAttribute)
 	 */
 	protected void sequence_EnumEntity(EObject context, EnumEntity semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (values+=EnumPropertyValue values+=EnumPropertyValue*)
-	 */
-	protected void sequence_EnumPropertyDirective(EObject context, EnumPropertyDirectiveValues semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=ValidID value=XExpression)
-	 */
-	protected void sequence_EnumPropertyValue(EObject context, EnumPropertyValue semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.ENUM_PROPERTY_VALUE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.ENUM_PROPERTY_VALUE__NAME));
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.ENUM_PROPERTY_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.ENUM_PROPERTY_VALUE__VALUE));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getEnumPropertyValueAccess().getNameValidIDParserRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getEnumPropertyValueAccess().getValueXExpressionParserRuleCall_2_0(), semanticObject.getValue());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (directives+=EnumPropertyDirective type=JvmTypeReference name=ValidID)
-	 */
-	protected void sequence_EnumProperty(EObject context, EnumProperty semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2706,12 +2706,12 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 * Constraint:
 	 *     (createColumn1=ValidID createColumn2=ValidID)
 	 */
-	protected void sequence_PojoAttributeDirective(EObject context, PojoPropertyDirectiveCreateCol semanticObject) {
+	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveCreateCol semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN1));
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_PROPERTY_DIRECTIVE_CREATE_COL__CREATE_COLUMN2));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN1) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN1));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2723,27 +2723,27 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     {PojoPropertyDirectiveDiscriminator}
+	 *     {PojoAttributeDirectiveDiscriminator}
 	 */
-	protected void sequence_PojoAttributeDirective(EObject context, PojoPropertyDirectiveDiscriminator semanticObject) {
+	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveDiscriminator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     {PojoPropertyDirectiveEnumDef}
+	 *     {PojoAttributeDirectiveEnumDef}
 	 */
-	protected void sequence_PojoAttributeDirective(EObject context, PojoPropertyDirectiveEnumDef semanticObject) {
+	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveEnumDef semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     {PojoPropertyDirectiveEnumInit}
+	 *     {PojoAttributeDirectiveEnumInit}
 	 */
-	protected void sequence_PojoAttributeDirective(EObject context, PojoPropertyDirectiveEnumInit semanticObject) {
+	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveEnumInit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2752,10 +2752,10 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 * Constraint:
 	 *     index=INT
 	 */
-	protected void sequence_PojoAttributeDirective(EObject context, PojoPropertyDirectiveIndex semanticObject) {
+	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveIndex semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_PROPERTY_DIRECTIVE_INDEX__INDEX) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_PROPERTY_DIRECTIVE_INDEX__INDEX));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_ATTRIBUTE_DIRECTIVE_INDEX__INDEX));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2766,36 +2766,36 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     {PojoPropertyDirectiveIsDef}
+	 *     {PojoAttributeDirectiveIsDef}
 	 */
-	protected void sequence_PojoAttributeDirective(EObject context, PojoPropertyDirectiveIsDef semanticObject) {
+	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveIsDef semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     {PojoPropertyDirectivePrimaryKey}
+	 *     {PojoAttributeDirectivePrimaryKey}
 	 */
-	protected void sequence_PojoAttributeDirective(EObject context, PojoPropertyDirectivePrimaryKey semanticObject) {
+	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectivePrimaryKey semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     {PojoPropertyDirectiveRequired}
+	 *     {PojoAttributeDirectiveRequired}
 	 */
-	protected void sequence_PojoAttributeDirective(EObject context, PojoPropertyDirectiveRequired semanticObject) {
+	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveRequired semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     {PojoPropertyDirectiveToInit}
+	 *     {PojoAttributeDirectiveToInit}
 	 */
-	protected void sequence_PojoAttributeDirective(EObject context, PojoPropertyDirectiveToInit semanticObject) {
+	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveToInit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2804,12 +2804,12 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 * Constraint:
 	 *     (updateColumn1=ValidID updateColumn2=ValidID)
 	 */
-	protected void sequence_PojoAttributeDirective(EObject context, PojoPropertyDirectiveUpdateCol semanticObject) {
+	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveUpdateCol semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1));
-			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_PROPERTY_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -2821,9 +2821,9 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     {PojoPropertyDirectiveVersion}
+	 *     {PojoAttributeDirectiveVersion}
 	 */
-	protected void sequence_PojoAttributeDirective(EObject context, PojoPropertyDirectiveVersion semanticObject) {
+	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveVersion semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

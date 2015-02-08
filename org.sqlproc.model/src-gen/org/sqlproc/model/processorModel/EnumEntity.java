@@ -48,12 +48,12 @@ public interface EnumEntity extends Entity
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Attribute</em>' containment reference.
-   * @see #setAttribute(EnumProperty)
+   * @see #setAttribute(EnumAttribute)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getEnumEntity_Attribute()
    * @model containment="true"
    * @generated
    */
-  EnumProperty getAttribute();
+  EnumAttribute getAttribute();
 
   /**
    * Sets the value of the '{@link org.sqlproc.model.processorModel.EnumEntity#getAttribute <em>Attribute</em>}' containment reference.
@@ -63,6 +63,6 @@ public interface EnumEntity extends Entity
    * @see #getAttribute()
    * @generated
    */
-  void setAttribute(EnumProperty value);
+  void setAttribute(EnumAttribute value);
 
 } // EnumEntity

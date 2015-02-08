@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmEnumerationLiteral;
 import org.eclipse.xtext.common.types.JvmEnumerationType;
 import org.eclipse.xtext.common.types.JvmField;
@@ -25,13 +24,14 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.sqlproc.model.processorModel.AnnotatedEntity;
+import org.sqlproc.model.jvmmodel.ProcessorGeneratorUtils;
 import org.sqlproc.model.processorModel.Annotation;
+import org.sqlproc.model.processorModel.DaoEntity;
+import org.sqlproc.model.processorModel.EnumAttribute;
+import org.sqlproc.model.processorModel.EnumAttributeDirective;
+import org.sqlproc.model.processorModel.EnumAttributeDirectiveValues;
+import org.sqlproc.model.processorModel.EnumAttributeValue;
 import org.sqlproc.model.processorModel.EnumEntity;
-import org.sqlproc.model.processorModel.EnumProperty;
-import org.sqlproc.model.processorModel.EnumPropertyDirective;
-import org.sqlproc.model.processorModel.EnumPropertyDirectiveValues;
-import org.sqlproc.model.processorModel.EnumPropertyValue;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoEntity;
 
@@ -53,6 +53,10 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
   @Inject
   @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
+  
+  @Inject
+  @Extension
+  private ProcessorGeneratorUtils _processorGeneratorUtils;
   
   /**
    * The dispatch method {@code infer} is called for each instance of the
@@ -80,13 +84,13 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    *            <code>true</code>.
    */
   protected void _infer(final PojoEntity entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
-    String _fullyQualifiedName = this.getFullyQualifiedName(entity);
+    String _fullyQualifiedName = this._processorGeneratorUtils.getFullyQualifiedName(entity);
     JvmGenericType _class = this._jvmTypesBuilder.toClass(entity, _fullyQualifiedName);
     final Procedure1<JvmGenericType> _function = new Procedure1<JvmGenericType>() {
       public void apply(final JvmGenericType it) {
         String _documentation = ProcessorModelJvmModelInferrer.this._jvmTypesBuilder.getDocumentation(entity);
         ProcessorModelJvmModelInferrer.this._jvmTypesBuilder.setDocumentation(it, _documentation);
-        EList<Annotation> _annotations = ProcessorModelJvmModelInferrer.this.annotations(entity);
+        EList<Annotation> _annotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.annotations(entity);
         final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
           public XAnnotation apply(final Annotation a) {
             return a.getAnnotation();
@@ -153,7 +157,7 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
   }
   
   protected void _infer(final EnumEntity entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
-    String _fullyQualifiedName = this.getFullyQualifiedName(entity);
+    String _fullyQualifiedName = this._processorGeneratorUtils.getFullyQualifiedName(entity);
     final Procedure1<JvmEnumerationType> _function = new Procedure1<JvmEnumerationType>() {
       public void apply(final JvmEnumerationType it) {
       }
@@ -163,7 +167,7 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
       public void apply(final JvmEnumerationType it) {
         String _documentation = ProcessorModelJvmModelInferrer.this._jvmTypesBuilder.getDocumentation(entity);
         ProcessorModelJvmModelInferrer.this._jvmTypesBuilder.setDocumentation(it, _documentation);
-        EList<Annotation> _annotations = ProcessorModelJvmModelInferrer.this.annotations(entity);
+        EList<Annotation> _annotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.annotations(entity);
         final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
           public XAnnotation apply(final Annotation a) {
             return a.getAnnotation();
@@ -171,13 +175,13 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
         };
         List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_annotations, _function);
         ProcessorModelJvmModelInferrer.this._jvmTypesBuilder.addAnnotations(it, _map);
-        EnumProperty _attribute = entity.getAttribute();
-        EList<EnumPropertyDirective> _directives = _attribute.getDirectives();
-        for (final EnumPropertyDirective dir : _directives) {
-          if ((dir instanceof EnumPropertyDirectiveValues)) {
-            final EnumPropertyDirectiveValues dv = ((EnumPropertyDirectiveValues) dir);
-            EList<EnumPropertyValue> _values = dv.getValues();
-            for (final EnumPropertyValue epv : _values) {
+        EnumAttribute _attribute = entity.getAttribute();
+        EList<EnumAttributeDirective> _directives = _attribute.getDirectives();
+        for (final EnumAttributeDirective dir : _directives) {
+          if ((dir instanceof EnumAttributeDirectiveValues)) {
+            final EnumAttributeDirectiveValues dv = ((EnumAttributeDirectiveValues) dir);
+            EList<EnumAttributeValue> _values = dv.getValues();
+            for (final EnumAttributeValue epv : _values) {
               EList<JvmMember> _members = it.getMembers();
               String _name = epv.getName();
               JvmEnumerationLiteral _enumerationLiteral = ProcessorModelJvmModelInferrer.this._jvmTypesBuilder.toEnumerationLiteral(entity, _name);
@@ -190,50 +194,39 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
     acceptor.<JvmEnumerationType>accept(_enumerationType, _function_1);
   }
   
-  public String getFullyQualifiedName(final PojoEntity it) {
-    String _xblockexpression = null;
-    {
-      final org.sqlproc.model.processorModel.Package pkg = EcoreUtil2.<org.sqlproc.model.processorModel.Package>getContainerOfType(it, org.sqlproc.model.processorModel.Package.class);
-      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(pkg);
-      String _plus = (_fullyQualifiedName + ".");
-      String _name = it.getName();
-      _xblockexpression = (_plus + _name);
-    }
-    return _xblockexpression;
-  }
-  
-  public String getFullyQualifiedName(final EnumEntity it) {
-    String _xblockexpression = null;
-    {
-      final org.sqlproc.model.processorModel.Package pkg = EcoreUtil2.<org.sqlproc.model.processorModel.Package>getContainerOfType(it, org.sqlproc.model.processorModel.Package.class);
-      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(pkg);
-      String _plus = (_fullyQualifiedName + ".");
-      String _name = it.getName();
-      _xblockexpression = (_plus + _name);
-    }
-    return _xblockexpression;
-  }
-  
-  public EList<Annotation> annotations(final PojoEntity it) {
-    EList<Annotation> _xblockexpression = null;
-    {
-      final AnnotatedEntity an = EcoreUtil2.<AnnotatedEntity>getContainerOfType(it, AnnotatedEntity.class);
-      _xblockexpression = an.getAnnotations();
-    }
-    return _xblockexpression;
-  }
-  
-  public EList<Annotation> annotations(final EnumEntity it) {
-    EList<Annotation> _xblockexpression = null;
-    {
-      final AnnotatedEntity an = EcoreUtil2.<AnnotatedEntity>getContainerOfType(it, AnnotatedEntity.class);
-      _xblockexpression = an.getAnnotations();
-    }
-    return _xblockexpression;
+  protected void _infer(final DaoEntity entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
+    QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(entity);
+    JvmGenericType _class = this._jvmTypesBuilder.toClass(entity, _fullyQualifiedName);
+    final Procedure1<JvmGenericType> _function = new Procedure1<JvmGenericType>() {
+      public void apply(final JvmGenericType it) {
+        String _documentation = ProcessorModelJvmModelInferrer.this._jvmTypesBuilder.getDocumentation(entity);
+        ProcessorModelJvmModelInferrer.this._jvmTypesBuilder.setDocumentation(it, _documentation);
+        EList<Annotation> _annotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.annotations(entity);
+        final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+          public XAnnotation apply(final Annotation a) {
+            return a.getAnnotation();
+          }
+        };
+        List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_annotations, _function);
+        ProcessorModelJvmModelInferrer.this._jvmTypesBuilder.addAnnotations(it, _map);
+        JvmParameterizedTypeReference _superType = entity.getSuperType();
+        boolean _notEquals = (!Objects.equal(_superType, null));
+        if (_notEquals) {
+          EList<JvmTypeReference> _superTypes = it.getSuperTypes();
+          JvmParameterizedTypeReference _superType_1 = entity.getSuperType();
+          JvmTypeReference _cloneWithProxies = ProcessorModelJvmModelInferrer.this._jvmTypesBuilder.cloneWithProxies(_superType_1);
+          ProcessorModelJvmModelInferrer.this._jvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _cloneWithProxies);
+        }
+      }
+    };
+    acceptor.<JvmGenericType>accept(_class, _function);
   }
   
   public void infer(final EObject entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
-    if (entity instanceof EnumEntity) {
+    if (entity instanceof DaoEntity) {
+      _infer((DaoEntity)entity, acceptor, isPreIndexingPhase);
+      return;
+    } else if (entity instanceof EnumEntity) {
       _infer((EnumEntity)entity, acceptor, isPreIndexingPhase);
       return;
     } else if (entity instanceof PojoEntity) {
