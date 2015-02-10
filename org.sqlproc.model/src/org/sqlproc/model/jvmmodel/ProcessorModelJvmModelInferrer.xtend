@@ -290,6 +290,133 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    					'''
    				]	
    			}
+   			
+   			val enumDefList = entity.enumDefAttributes
+   			if (!enumDefList.isEmpty) {
+   				val isDefType = entity.toEnumerationType('Attribute') []
+   				members += isDefType
+	   			for (attr: enumDefList)
+	   				isDefType.members += entity.toEnumerationLiteral(attr.name)
+	   				
+	   		}
+
+   			val toInitList = entity.toInitAttributes
+   			if (!toInitList.isEmpty) {
+   				val toInitType = entity.toEnumerationType('Association') []
+   				members += toInitType
+	   			for (attr: toInitList)
+	   				toInitType.members += entity.toEnumerationLiteral(attr.name)
+				val identifierSetType = typeRef(java.util.Set, typeRef(String))
+				members += entity.toField('initAssociations', identifierSetType) [
+ 					initializer = ''' new java.util.HashSet<String>()'''
+	   			]
+	   			members += entity.toMethod('setInit', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("associations", typeRef(toInitType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						if (associations == null)
+							throw new IllegalArgumentException();
+						for (Association association : associations)
+							initAssociations.add(association.name());
+   					'''
+   				]	
+	   			members += entity.toMethod('_setInit', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("associations", typeRef(toInitType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						setInit(associations);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('clearInit', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("associations", typeRef(toInitType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						if (associations == null)
+							throw new IllegalArgumentException();
+						for (Association association : associations)
+							initAssociations.remove(association.name());
+   					'''
+   				]	
+	   			members += entity.toMethod('_clearInit', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("associations", typeRef(toInitType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						clearInit(associations);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('setInit', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("associations", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						if (associations == null)
+							throw new IllegalArgumentException();
+						for (String association : associations)
+							initAssociations.add(association);
+   					'''
+   				]	
+	   			members += entity.toMethod('_setInit', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("associations", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						setInit(associations);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('clearInit', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("associations", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						if (associations == null)
+							throw new IllegalArgumentException();
+						for (String association : associations)
+							initAssociations.remove(association);
+   					'''
+   				]	
+	   			members += entity.toMethod('_clearInit', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("associations", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						clearInit(associations);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('toInit', typeRef(Boolean)) [
+   					parameters += entity.toParameter("association", typeRef(toInitType).cloneWithProxies)
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						if (association == null)
+							throw new IllegalArgumentException();
+						return initAssociations.contains(association.name());
+   					'''
+   				]	
+	   			members += entity.toMethod('toInit', typeRef(Boolean)) [
+   					parameters += entity.toParameter("association", typeRef(String))
+   					body = '''
+						if (association == null)
+							throw new IllegalArgumentException();
+						return initAssociations.contains(association);
+   					'''
+   				]	
+	   			members += entity.toMethod('clearAllInit', typeRef(Void.TYPE)) [
+   					body = '''
+						initAssociations = new java.util.HashSet<String>();
+   					'''
+   				]	
+   			}
+
+   			val enumInitList = entity.enumInitAttributes
+   			if (!enumInitList.isEmpty) {
+   				val toInitType = entity.toEnumerationType('Association') []
+   				members += toInitType
+	   			for (attr: enumInitList)
+	   				toInitType.members += entity.toEnumerationLiteral(attr.name)
+	   		}
    		]
    	}
 	
