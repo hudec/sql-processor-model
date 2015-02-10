@@ -1298,6 +1298,480 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
             ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmEnumerationLiteral>operator_add(_members_37, _enumerationLiteral_3);
           }
         }
+        boolean _hasOperators = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.hasOperators(entity);
+        if (_hasOperators) {
+          final Procedure1<JvmEnumerationType> _function_36 = new Procedure1<JvmEnumerationType>() {
+            public void apply(final JvmEnumerationType it) {
+            }
+          };
+          final JvmEnumerationType opAttrType = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toEnumerationType(entity, "OpAttribute", _function_36);
+          EList<JvmMember> _members_38 = it.getMembers();
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmEnumerationType>operator_add(_members_38, opAttrType);
+          EList<PojoAttribute> _attributes_2 = entity.getAttributes();
+          for (final PojoAttribute attr_6 : _attributes_2) {
+            EList<JvmMember> _members_39 = opAttrType.getMembers();
+            String _name_4 = attr_6.getName();
+            JvmEnumerationLiteral _enumerationLiteral_4 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toEnumerationLiteral(entity, _name_4);
+            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmEnumerationLiteral>operator_add(_members_39, _enumerationLiteral_4);
+          }
+          JvmTypeReference _typeRef_30 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+          JvmTypeReference _typeRef_31 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+          final JvmTypeReference identifierMapType = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(Map.class, _typeRef_30, _typeRef_31);
+          EList<JvmMember> _members_40 = it.getMembers();
+          final Procedure1<JvmField> _function_37 = new Procedure1<JvmField>() {
+            public void apply(final JvmField it) {
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append(" ");
+                  _builder.append("new java.util.HashMap<String, String>()");
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client);
+            }
+          };
+          JvmField _field_5 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toField(entity, "operators", identifierMapType, _function_37);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_40, _field_5);
+          EList<JvmMember> _members_41 = it.getMembers();
+          final Procedure1<JvmOperation> _function_38 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              List<Annotation> _conflictAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.conflictAnnotations(entity);
+              final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                public XAnnotation apply(final Annotation a) {
+                  return a.getAnnotation();
+                }
+              };
+              List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_conflictAnnotations, _function);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("return operators;");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_23 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "getOperators", identifierMapType, _function_38);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_41, _method_23);
+          EList<JvmMember> _members_42 = it.getMembers();
+          JvmTypeReference _typeRef_32 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(Void.TYPE);
+          final Procedure1<JvmOperation> _function_39 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              EList<JvmFormalParameter> _parameters = it.getParameters();
+              JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "operator", _typeRef);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+              JvmTypeReference _typeRef_1 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(opAttrType);
+              JvmTypeReference _addArrayTypeDimension = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addArrayTypeDimension(_typeRef_1);
+              JvmTypeReference _cloneWithProxies = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_addArrayTypeDimension);
+              JvmFormalParameter _parameter_1 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "attributes", _cloneWithProxies);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+              it.setVarArgs(true);
+              List<Annotation> _conflictAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.conflictAnnotations(entity);
+              final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                public XAnnotation apply(final Annotation a) {
+                  return a.getAnnotation();
+                }
+              };
+              List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_conflictAnnotations, _function);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("if (attributes == null)");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("throw new IllegalArgumentException();");
+                  _builder.newLine();
+                  _builder.append("for (OpAttribute attribute : attributes)");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("operators.put(attribute.name(), operator);");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_24 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "setOp", _typeRef_32, _function_39);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_42, _method_24);
+          EList<JvmMember> _members_43 = it.getMembers();
+          JvmTypeReference _typeRef_33 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
+          JvmTypeReference _cloneWithProxies_11 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_typeRef_33);
+          final Procedure1<JvmOperation> _function_40 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              EList<JvmFormalParameter> _parameters = it.getParameters();
+              JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "operator", _typeRef);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+              JvmTypeReference _typeRef_1 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(opAttrType);
+              JvmTypeReference _addArrayTypeDimension = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addArrayTypeDimension(_typeRef_1);
+              JvmTypeReference _cloneWithProxies = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_addArrayTypeDimension);
+              JvmFormalParameter _parameter_1 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "attributes", _cloneWithProxies);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+              it.setVarArgs(true);
+              List<Annotation> _conflictAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.conflictAnnotations(entity);
+              final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                public XAnnotation apply(final Annotation a) {
+                  return a.getAnnotation();
+                }
+              };
+              List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_conflictAnnotations, _function);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("setOp(operator, attributes);");
+                  _builder.newLine();
+                  _builder.append("return this;");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_25 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "_setOp", _cloneWithProxies_11, _function_40);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_43, _method_25);
+          EList<JvmMember> _members_44 = it.getMembers();
+          JvmTypeReference _typeRef_34 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(Void.TYPE);
+          final Procedure1<JvmOperation> _function_41 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              EList<JvmFormalParameter> _parameters = it.getParameters();
+              JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(opAttrType);
+              JvmTypeReference _addArrayTypeDimension = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addArrayTypeDimension(_typeRef);
+              JvmTypeReference _cloneWithProxies = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_addArrayTypeDimension);
+              JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "attributes", _cloneWithProxies);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              it.setVarArgs(true);
+              List<Annotation> _conflictAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.conflictAnnotations(entity);
+              final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                public XAnnotation apply(final Annotation a) {
+                  return a.getAnnotation();
+                }
+              };
+              List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_conflictAnnotations, _function);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("if (attributes == null)");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("throw new IllegalArgumentException();");
+                  _builder.newLine();
+                  _builder.append("for (OpAttribute attribute : attributes)");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("operators.remove(attribute.name());");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_26 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "clearOp", _typeRef_34, _function_41);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_44, _method_26);
+          EList<JvmMember> _members_45 = it.getMembers();
+          JvmTypeReference _typeRef_35 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
+          JvmTypeReference _cloneWithProxies_12 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_typeRef_35);
+          final Procedure1<JvmOperation> _function_42 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              EList<JvmFormalParameter> _parameters = it.getParameters();
+              JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(opAttrType);
+              JvmTypeReference _addArrayTypeDimension = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addArrayTypeDimension(_typeRef);
+              JvmTypeReference _cloneWithProxies = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_addArrayTypeDimension);
+              JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "attributes", _cloneWithProxies);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              it.setVarArgs(true);
+              List<Annotation> _conflictAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.conflictAnnotations(entity);
+              final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                public XAnnotation apply(final Annotation a) {
+                  return a.getAnnotation();
+                }
+              };
+              List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_conflictAnnotations, _function);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("clearOp(attributes);");
+                  _builder.newLine();
+                  _builder.append("return this;");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_27 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "_clearOp", _cloneWithProxies_12, _function_42);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_45, _method_27);
+          EList<JvmMember> _members_46 = it.getMembers();
+          JvmTypeReference _typeRef_36 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(Void.TYPE);
+          final Procedure1<JvmOperation> _function_43 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              EList<JvmFormalParameter> _parameters = it.getParameters();
+              JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "operator", _typeRef);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+              JvmTypeReference _typeRef_1 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmTypeReference _addArrayTypeDimension = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addArrayTypeDimension(_typeRef_1);
+              JvmFormalParameter _parameter_1 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "attributes", _addArrayTypeDimension);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+              it.setVarArgs(true);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("if (attributes == null)");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("throw new IllegalArgumentException();");
+                  _builder.newLine();
+                  _builder.append("for (String attribute : attributes)");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("operators.put(attribute, operator);");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_28 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "setOp", _typeRef_36, _function_43);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_46, _method_28);
+          EList<JvmMember> _members_47 = it.getMembers();
+          JvmTypeReference _typeRef_37 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
+          JvmTypeReference _cloneWithProxies_13 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_typeRef_37);
+          final Procedure1<JvmOperation> _function_44 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              EList<JvmFormalParameter> _parameters = it.getParameters();
+              JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "operator", _typeRef);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+              JvmTypeReference _typeRef_1 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmTypeReference _addArrayTypeDimension = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addArrayTypeDimension(_typeRef_1);
+              JvmFormalParameter _parameter_1 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "attributes", _addArrayTypeDimension);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+              it.setVarArgs(true);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("setOp(operator, attributes);");
+                  _builder.newLine();
+                  _builder.append("return this;");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_29 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "_setOp", _cloneWithProxies_13, _function_44);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_47, _method_29);
+          EList<JvmMember> _members_48 = it.getMembers();
+          JvmTypeReference _typeRef_38 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(Void.TYPE);
+          final Procedure1<JvmOperation> _function_45 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              EList<JvmFormalParameter> _parameters = it.getParameters();
+              JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmTypeReference _addArrayTypeDimension = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addArrayTypeDimension(_typeRef);
+              JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "attributes", _addArrayTypeDimension);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              it.setVarArgs(true);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("if (attributes == null)");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("throw new IllegalArgumentException();");
+                  _builder.newLine();
+                  _builder.append("for (String attribute : attributes)");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("operators.remove(attribute);");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_30 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "clearOp", _typeRef_38, _function_45);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_48, _method_30);
+          EList<JvmMember> _members_49 = it.getMembers();
+          JvmTypeReference _typeRef_39 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
+          JvmTypeReference _cloneWithProxies_14 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_typeRef_39);
+          final Procedure1<JvmOperation> _function_46 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              EList<JvmFormalParameter> _parameters = it.getParameters();
+              JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmTypeReference _addArrayTypeDimension = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addArrayTypeDimension(_typeRef);
+              JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "attributes", _addArrayTypeDimension);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              it.setVarArgs(true);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("clearOp(attributes);");
+                  _builder.newLine();
+                  _builder.append("return this;");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_31 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "_clearOp", _cloneWithProxies_14, _function_46);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_49, _method_31);
+          EList<JvmMember> _members_50 = it.getMembers();
+          JvmTypeReference _typeRef_40 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(Void.TYPE);
+          final Procedure1<JvmOperation> _function_47 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              EList<JvmFormalParameter> _parameters = it.getParameters();
+              JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(opAttrType);
+              JvmTypeReference _addArrayTypeDimension = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addArrayTypeDimension(_typeRef);
+              JvmTypeReference _cloneWithProxies = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_addArrayTypeDimension);
+              JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "attributes", _cloneWithProxies);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              it.setVarArgs(true);
+              List<Annotation> _conflictAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.conflictAnnotations(entity);
+              final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                public XAnnotation apply(final Annotation a) {
+                  return a.getAnnotation();
+                }
+              };
+              List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_conflictAnnotations, _function);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("if (attributes == null)");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("throw new IllegalArgumentException();");
+                  _builder.newLine();
+                  _builder.append("for (OpAttribute attribute : attributes)");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("operators.put(attribute.name(), \"is null\");");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_32 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "setNullOp", _typeRef_40, _function_47);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_50, _method_32);
+          EList<JvmMember> _members_51 = it.getMembers();
+          JvmTypeReference _typeRef_41 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
+          JvmTypeReference _cloneWithProxies_15 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_typeRef_41);
+          final Procedure1<JvmOperation> _function_48 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              EList<JvmFormalParameter> _parameters = it.getParameters();
+              JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(opAttrType);
+              JvmTypeReference _addArrayTypeDimension = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addArrayTypeDimension(_typeRef);
+              JvmTypeReference _cloneWithProxies = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_addArrayTypeDimension);
+              JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "attributes", _cloneWithProxies);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              it.setVarArgs(true);
+              List<Annotation> _conflictAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.conflictAnnotations(entity);
+              final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                public XAnnotation apply(final Annotation a) {
+                  return a.getAnnotation();
+                }
+              };
+              List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_conflictAnnotations, _function);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("setNullOp(attributes);");
+                  _builder.newLine();
+                  _builder.append("return this;");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_33 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "_setNullOp", _cloneWithProxies_15, _function_48);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_51, _method_33);
+          EList<JvmMember> _members_52 = it.getMembers();
+          JvmTypeReference _typeRef_42 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(Void.TYPE);
+          final Procedure1<JvmOperation> _function_49 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              EList<JvmFormalParameter> _parameters = it.getParameters();
+              JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmTypeReference _addArrayTypeDimension = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addArrayTypeDimension(_typeRef);
+              JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "attributes", _addArrayTypeDimension);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              it.setVarArgs(true);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("if (attributes == null)");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("throw new IllegalArgumentException();");
+                  _builder.newLine();
+                  _builder.append("for (String attribute : attributes)");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("operators.put(attribute, \"is null\");");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_34 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "setNullOp", _typeRef_42, _function_49);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_52, _method_34);
+          EList<JvmMember> _members_53 = it.getMembers();
+          JvmTypeReference _typeRef_43 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
+          JvmTypeReference _cloneWithProxies_16 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_typeRef_43);
+          final Procedure1<JvmOperation> _function_50 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              EList<JvmFormalParameter> _parameters = it.getParameters();
+              JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmTypeReference _addArrayTypeDimension = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addArrayTypeDimension(_typeRef);
+              JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "attributes", _addArrayTypeDimension);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              it.setVarArgs(true);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("setNullOp(attributes);");
+                  _builder.newLine();
+                  _builder.append("return this;");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_35 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "_setNullOp", _cloneWithProxies_16, _function_50);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_53, _method_35);
+          EList<JvmMember> _members_54 = it.getMembers();
+          JvmTypeReference _typeRef_44 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(Void.TYPE);
+          final Procedure1<JvmOperation> _function_51 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("operators = new java.util.HashMap<String, String>();");
+                  _builder.newLine();
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method_36 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "clearAllOps", _typeRef_44, _function_51);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_54, _method_36);
+        }
       }
     };
     acceptor.<JvmGenericType>accept(entityType, _function);

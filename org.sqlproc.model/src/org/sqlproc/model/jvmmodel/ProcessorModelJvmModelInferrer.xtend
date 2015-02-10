@@ -417,6 +417,146 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
 	   			for (attr: enumInitList)
 	   				toInitType.members += entity.toEnumerationLiteral(attr.name)
 	   		}
+
+			if (entity.hasOperators) {
+   				val opAttrType = entity.toEnumerationType('OpAttribute') []
+   				members += opAttrType
+	   			for (attr: entity.attributes)
+	   				opAttrType.members += entity.toEnumerationLiteral(attr.name)
+				val identifierMapType = typeRef(java.util.Map, typeRef(String), typeRef(String))
+				members += entity.toField('operators', identifierMapType) [
+ 					initializer = ''' new java.util.HashMap<String, String>()'''
+	   			]
+	   			members += entity.toMethod('getOperators', identifierMapType) [
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						return operators;
+   					'''
+   				]
+	   			members += entity.toMethod('setOp', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("operator", typeRef(String))
+   					parameters += entity.toParameter("attributes", typeRef(opAttrType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						if (attributes == null)
+							throw new IllegalArgumentException();
+						for (OpAttribute attribute : attributes)
+							operators.put(attribute.name(), operator);
+   					'''
+   				]	
+	   			members += entity.toMethod('_setOp', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("operator", typeRef(String))
+   					parameters += entity.toParameter("attributes", typeRef(opAttrType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						setOp(operator, attributes);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('clearOp', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("attributes", typeRef(opAttrType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						if (attributes == null)
+							throw new IllegalArgumentException();
+						for (OpAttribute attribute : attributes)
+							operators.remove(attribute.name());
+   					'''
+   				]	
+	   			members += entity.toMethod('_clearOp', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("attributes", typeRef(opAttrType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						clearOp(attributes);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('setOp', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("operator", typeRef(String))
+   					parameters += entity.toParameter("attributes", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						if (attributes == null)
+							throw new IllegalArgumentException();
+						for (String attribute : attributes)
+							operators.put(attribute, operator);
+   					'''
+   				]	
+	   			members += entity.toMethod('_setOp', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("operator", typeRef(String))
+   					parameters += entity.toParameter("attributes", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						setOp(operator, attributes);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('clearOp', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("attributes", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						if (attributes == null)
+							throw new IllegalArgumentException();
+						for (String attribute : attributes)
+							operators.remove(attribute);
+   					'''
+   				]	
+	   			members += entity.toMethod('_clearOp', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("attributes", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						clearOp(attributes);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('setNullOp', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("attributes", typeRef(opAttrType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						if (attributes == null)
+							throw new IllegalArgumentException();
+						for (OpAttribute attribute : attributes)
+							operators.put(attribute.name(), "is null");
+   					'''
+   				]	
+	   			members += entity.toMethod('_setNullOp', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("attributes", typeRef(opAttrType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						setNullOp(attributes);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('setNullOp', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("attributes", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						if (attributes == null)
+							throw new IllegalArgumentException();
+						for (String attribute : attributes)
+							operators.put(attribute, "is null");
+   					'''
+   				]	
+	   			members += entity.toMethod('_setNullOp', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("attributes", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						setNullOp(attributes);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('clearAllOps', typeRef(Void.TYPE)) [
+   					body = '''
+						operators = new java.util.HashMap<String, String>();
+   					'''
+   				]	
+			}
    		]
    	}
 	
