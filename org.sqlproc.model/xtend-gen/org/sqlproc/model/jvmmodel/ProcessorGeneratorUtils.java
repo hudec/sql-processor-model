@@ -591,7 +591,7 @@ public class ProcessorGeneratorUtils {
     return result;
   }
   
-  public List<PojoAttribute> toStringFeatures(final PojoEntity pojo) {
+  public List<PojoAttribute> toStringAttributes(final PojoEntity pojo) {
     final List<PojoAttribute> result = CollectionLiterals.<PojoAttribute>newArrayList();
     EList<PojoDirective> _directives = null;
     if (pojo!=null) {
@@ -615,7 +615,7 @@ public class ProcessorGeneratorUtils {
     return result;
   }
   
-  public List<PojoAttribute> equalsFeatures(final PojoEntity pojo) {
+  public List<PojoAttribute> equalsAttributes(final PojoEntity pojo) {
     final List<PojoAttribute> result = CollectionLiterals.<PojoAttribute>newArrayList();
     EList<PojoDirective> _directives = null;
     if (pojo!=null) {
@@ -639,7 +639,7 @@ public class ProcessorGeneratorUtils {
     return result;
   }
   
-  public List<PojoAttribute> hashCodeFeatures(final PojoEntity pojo) {
+  public List<PojoAttribute> hashCodeAttributes(final PojoEntity pojo) {
     final List<PojoAttribute> result = CollectionLiterals.<PojoAttribute>newArrayList();
     EList<PojoDirective> _directives = null;
     if (pojo!=null) {
@@ -663,7 +663,7 @@ public class ProcessorGeneratorUtils {
     return result;
   }
   
-  public List<PojoAttribute> requiredFeatures(final PojoEntity pojo) {
+  public List<PojoAttribute> requiredAttributes(final PojoEntity pojo) {
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
       return CollectionLiterals.<PojoAttribute>newArrayList();
@@ -687,8 +687,8 @@ public class ProcessorGeneratorUtils {
     if (_or) {
       return features;
     }
-    List<PojoAttribute> _requiredFeatures = this.requiredFeatures(((PojoEntity) se));
-    features.addAll(_requiredFeatures);
+    List<PojoAttribute> _requiredAttributes = this.requiredAttributes(((PojoEntity) se));
+    features.addAll(_requiredAttributes);
     return features;
   }
   
@@ -745,7 +745,7 @@ public class ProcessorGeneratorUtils {
     return result;
   }
   
-  public List<PojoAttribute> toInitFeatures(final PojoEntity pojo) {
+  public List<PojoAttribute> toInitAttributes(final PojoEntity pojo) {
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
       return CollectionLiterals.<PojoAttribute>newArrayList();
@@ -769,12 +769,12 @@ public class ProcessorGeneratorUtils {
     if (_or) {
       return features;
     }
-    List<PojoAttribute> _initFeatures = this.toInitFeatures(((PojoEntity) se));
-    features.addAll(_initFeatures);
+    List<PojoAttribute> _initAttributes = this.toInitAttributes(((PojoEntity) se));
+    features.addAll(_initAttributes);
     return features;
   }
   
-  public List<PojoAttribute> enumInitFeatures(final PojoEntity pojo) {
+  public List<PojoAttribute> enumInitAttributes(final PojoEntity pojo) {
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
       return CollectionLiterals.<PojoAttribute>newArrayList();
@@ -798,12 +798,12 @@ public class ProcessorGeneratorUtils {
     if (_or) {
       return features;
     }
-    List<PojoAttribute> _enumInitFeatures = this.enumInitFeatures(((PojoEntity) se));
-    features.addAll(_enumInitFeatures);
+    List<PojoAttribute> _enumInitAttributes = this.enumInitAttributes(((PojoEntity) se));
+    features.addAll(_enumInitAttributes);
     return features;
   }
   
-  public List<PojoAttribute> isDefFeatures(final PojoEntity pojo) {
+  public List<PojoAttribute> isDefAttributes(final PojoEntity pojo) {
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
       return CollectionLiterals.<PojoAttribute>newArrayList();
@@ -827,12 +827,12 @@ public class ProcessorGeneratorUtils {
     if (_or) {
       return features;
     }
-    List<PojoAttribute> _isDefFeatures = this.isDefFeatures(((PojoEntity) se));
-    features.addAll(_isDefFeatures);
+    List<PojoAttribute> _isDefAttributes = this.isDefAttributes(((PojoEntity) se));
+    features.addAll(_isDefAttributes);
     return features;
   }
   
-  public List<PojoAttribute> enumDefFeatures(final PojoEntity pojo) {
+  public List<PojoAttribute> enumDefAttributes(final PojoEntity pojo) {
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
       return CollectionLiterals.<PojoAttribute>newArrayList();
@@ -856,8 +856,8 @@ public class ProcessorGeneratorUtils {
     if (_or) {
       return features;
     }
-    List<PojoAttribute> _enumDefFeatures = this.enumDefFeatures(((PojoEntity) se));
-    features.addAll(_enumDefFeatures);
+    List<PojoAttribute> _enumDefAttributes = this.enumDefAttributes(((PojoEntity) se));
+    features.addAll(_enumDefAttributes);
     return features;
   }
   

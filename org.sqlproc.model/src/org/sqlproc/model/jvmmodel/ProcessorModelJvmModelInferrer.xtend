@@ -99,7 +99,17 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
  					initializer = '''«entry.key»'''
    				]
    			}
-   				
+   			
+   			members += entity.toConstructor []
+   			members += entity.toConstructor[
+	   			for (attr : entity.requiredAttributes)
+   					parameters += entity.toParameter(attr.name, attr.type)
+   				visibility = JvmVisibility.PRIVATE
+   				body = '''«FOR attr : entity.requiredAttributes»
+					this.«attr.name» = «attr.name»;
+				«ENDFOR»'''
+   			]
+   			
    			for (attr : entity.attributes) {
    				val type = attr.type ?: attr.initExpr?.inferredType ?: typeRef(String)
    				members += entity.toField(attr.name, type) [

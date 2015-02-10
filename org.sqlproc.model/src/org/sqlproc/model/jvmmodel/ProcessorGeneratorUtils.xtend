@@ -230,7 +230,7 @@ class ProcessorGeneratorUtils {
         return result
     }
 
-    def List<PojoAttribute> toStringFeatures(PojoEntity pojo) {
+    def List<PojoAttribute> toStringAttributes(PojoEntity pojo) {
         val List<PojoAttribute> result = newArrayList()
 		pojo?.directives.filter[x|x instanceof PojoDirectiveToString].forEach[
 			val d = it as PojoDirectiveToString
@@ -239,7 +239,7 @@ class ProcessorGeneratorUtils {
         return result
     }
 
-    def List<PojoAttribute> equalsFeatures(PojoEntity pojo) {
+    def List<PojoAttribute> equalsAttributes(PojoEntity pojo) {
         val List<PojoAttribute> result = newArrayList()
 		pojo?.directives.filter[x|x instanceof PojoDirectiveEquals].forEach[
 			val d = it as PojoDirectiveEquals
@@ -248,7 +248,7 @@ class ProcessorGeneratorUtils {
         return result
     }
 
-    def List<PojoAttribute> hashCodeFeatures(PojoEntity pojo) {
+    def List<PojoAttribute> hashCodeAttributes(PojoEntity pojo) {
         val List<PojoAttribute> result = newArrayList()
 		pojo?.directives.filter[x|x instanceof PojoDirectiveHashCode].forEach[
 			val d = it as PojoDirectiveHashCode
@@ -257,14 +257,14 @@ class ProcessorGeneratorUtils {
         return result
     }
 
-	def List<PojoAttribute> requiredFeatures(PojoEntity pojo) {
+	def List<PojoAttribute> requiredAttributes(PojoEntity pojo) {
 		if (pojo == null)
 			return newArrayList()
 		val features = pojo.attributes.filter[x|x.isRequired].toList
 		val se = pojo.superType
 		if (se == null || !(se instanceof PojoEntity))
 			return features
-		features.addAll((se as PojoEntity).requiredFeatures)
+		features.addAll((se as PojoEntity).requiredAttributes)
 		return features
 	}
 
@@ -293,47 +293,47 @@ class ProcessorGeneratorUtils {
 		return result
 	}
 
-	def List<PojoAttribute> toInitFeatures(PojoEntity pojo) {
+	def List<PojoAttribute> toInitAttributes(PojoEntity pojo) {
 		if (pojo == null)
 			return newArrayList()
 		val features = pojo.attributes.filter[x|x.isToInit].toList
 		val se = pojo.superType
 		if (se == null || !(se instanceof PojoEntity))
 			return features
-		features.addAll((se as PojoEntity).toInitFeatures)
+		features.addAll((se as PojoEntity).toInitAttributes)
 		return features
 	}
 
-	def List<PojoAttribute> enumInitFeatures(PojoEntity pojo) {
+	def List<PojoAttribute> enumInitAttributes(PojoEntity pojo) {
 		if (pojo == null)
 			return newArrayList()
 		val features = pojo.attributes.filter[x|x.isEnumInit].toList
 		val se = pojo.superType
 		if (se == null || !(se instanceof PojoEntity))
 			return features
-		features.addAll((se as PojoEntity).enumInitFeatures)
+		features.addAll((se as PojoEntity).enumInitAttributes)
 		return features
 	}
 
-	def List<PojoAttribute> isDefFeatures(PojoEntity pojo) {
+	def List<PojoAttribute> isDefAttributes(PojoEntity pojo) {
 		if (pojo == null)
 			return newArrayList()
 		val features = pojo.attributes.filter[x|x.isIsDef].toList
 		val se = pojo.superType
 		if (se == null || !(se instanceof PojoEntity))
 			return features
-		features.addAll((se as PojoEntity).isDefFeatures)
+		features.addAll((se as PojoEntity).isDefAttributes)
 		return features
 	}
 
-	def List<PojoAttribute> enumDefFeatures(PojoEntity pojo) {
+	def List<PojoAttribute> enumDefAttributes(PojoEntity pojo) {
 		if (pojo == null)
 			return newArrayList()
 		val features = pojo.attributes.filter[x|x.isEnumDef].toList
 		val se = pojo.superType
 		if (se == null || !(se instanceof PojoEntity))
 			return features
-		features.addAll((se as PojoEntity).enumDefFeatures)
+		features.addAll((se as PojoEntity).enumDefAttributes)
 		return features
 	}
 	
