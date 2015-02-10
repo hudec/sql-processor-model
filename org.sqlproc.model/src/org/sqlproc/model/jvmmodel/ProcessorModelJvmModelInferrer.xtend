@@ -65,6 +65,7 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
 	 
    	def dispatch void infer(PojoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
    		val entityType = entity.toClass(entity.fullyQualifiedName)
+   		val simpleName = entity.name
    		val sernum = entity.sernum
    		acceptor.accept(entityType) [
    			documentation = entity.documentation
@@ -152,7 +153,63 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    					members += attr._toSetter(attr.name + operSuffix, attr.name + operSuffix, typeRef(String), typeRef(entityType))
    				}
    			}
+
    			
+   			val equalsList = entity.equalsAttributes
+   			if (!equalsList.isEmpty) {
+	   			val method = entity.toMethod('equals', typeRef(boolean)) [
+   					parameters += entity.toParameter("obj", typeRef(Object))
+   					body = '''
+						if (this == obj)
+							return true;
+						if (obj == null)
+							return false;
+						if (getClass() != obj.getClass())
+							return false;
+						«simpleName» other = («simpleName») obj;
+						«FOR f2:equalsList»
+						«IF f2.isNative»if («f2.name» != other.«f2.name»)«ELSE»if («f2.name» == null || !«f2.name».equals(other.«f2.name»))«ENDIF»
+							return false;
+						«ENDFOR»
+						return true;
+   					'''
+	   			]
+	   			method.getAnnotations().add(toAnnotation(entity, Override))
+	   			members += method
+			}
+   			
+   			val hashCodeList = entity.hashCodeAttributes
+   			if (!hashCodeList.isEmpty) {
+	   			val method = entity.toMethod('hashCode', typeRef(int)) [
+	   				body = '''
+						final int prime = 31;
+						int result = 1;
+						«FOR f2:hashCodeList»
+						result = prime * result + «IF f2.isNative»(int) («f2.name» ^ («f2.name» >>> 32))«ELSE»((«f2.name» != null) ? «f2.name».hashCode() : 0)«ENDIF»;
+						«ENDFOR»
+						return result;
+	   				'''
+	   			]
+	   			method.getAnnotations().add(toAnnotation(entity, Override))
+	   			members += method
+			}
+   			
+   			val toStringList = entity.toStringAttributes
+   			if (!toStringList.isEmpty) {
+	   			val method = entity.toMethod('toString', typeRef(String)) [
+	   				body = '''
+	   					return "«simpleName» [«FOR f2:toStringList SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF entity.superType != null && entity.superType instanceof PojoEntity» + super.toString()«ENDIF» + "]";
+	   				'''
+	   			]
+	   			method.getAnnotations().add(toAnnotation(entity, Override))
+	   			members += method
+			}
+   			members += entity.toMethod('toStringFull', typeRef(String)) [
+  				body = '''
+ 					return "«simpleName» [«FOR f2:entity.attributes SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF entity.superType != null && entity.superType instanceof PojoEntity» + super.toString()«ENDIF» + "]";
+ 				'''
+   			]
+			   			
    			val isDefList = entity.isDefAttributes
    			if (!isDefList.isEmpty) {
    				val isDefType = entity.toEnumerationType('Attribute') []
