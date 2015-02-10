@@ -548,12 +548,24 @@ class ProcessorGeneratorUtils {
 		return pojo.annotations.filter[x|x.isConstructor].toList
 	}
 
+	def List<Annotation> constructorAnnotations(PojoEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		return pojo.annotations.filter[x|x.isConstructor].toList
+	}
+
     def isStatic(Annotation an) {
 		val d = an.directives?.findFirst[x|x instanceof AnnotationDirectiveStatic]
 		return if(d != null) true else false
     }
 	
 	def List<Annotation> staticAnnotations(AnnotatedEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		return pojo.annotations.filter[x|x.isStatic].toList
+	}
+
+	def List<Annotation> staticAnnotations(PojoEntity pojo) {
 		if (pojo == null)
 			return newArrayList()
 		return pojo.annotations.filter[x|x.isStatic].toList
@@ -567,6 +579,12 @@ class ProcessorGeneratorUtils {
     }
 	
 	def List<Annotation> standardAnnotations(AnnotatedEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		return pojo.annotations.filter[x|x.isStandard].toList
+	}
+	
+	def List<Annotation> standardAnnotations(PojoEntity pojo) {
 		if (pojo == null)
 			return newArrayList()
 		return pojo.annotations.filter[x|x.isStandard].toList

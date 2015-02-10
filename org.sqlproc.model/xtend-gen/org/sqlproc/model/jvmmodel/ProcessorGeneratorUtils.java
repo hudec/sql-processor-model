@@ -1222,6 +1222,21 @@ public class ProcessorGeneratorUtils {
     return IterableExtensions.<Annotation>toList(_filter);
   }
   
+  public List<Annotation> constructorAnnotations(final PojoEntity pojo) {
+    boolean _equals = Objects.equal(pojo, null);
+    if (_equals) {
+      return CollectionLiterals.<Annotation>newArrayList();
+    }
+    EList<Annotation> _annotations = this.annotations(pojo);
+    final Function1<Annotation, Boolean> _function = new Function1<Annotation, Boolean>() {
+      public Boolean apply(final Annotation x) {
+        return Boolean.valueOf(ProcessorGeneratorUtils.this.isConstructor(x));
+      }
+    };
+    Iterable<Annotation> _filter = IterableExtensions.<Annotation>filter(_annotations, _function);
+    return IterableExtensions.<Annotation>toList(_filter);
+  }
+  
   public boolean isStatic(final Annotation an) {
     EList<AnnotationDirective> _directives = an.getDirectives();
     AnnotationDirective _findFirst = null;
@@ -1250,6 +1265,21 @@ public class ProcessorGeneratorUtils {
       return CollectionLiterals.<Annotation>newArrayList();
     }
     EList<Annotation> _annotations = pojo.getAnnotations();
+    final Function1<Annotation, Boolean> _function = new Function1<Annotation, Boolean>() {
+      public Boolean apply(final Annotation x) {
+        return Boolean.valueOf(ProcessorGeneratorUtils.this.isStatic(x));
+      }
+    };
+    Iterable<Annotation> _filter = IterableExtensions.<Annotation>filter(_annotations, _function);
+    return IterableExtensions.<Annotation>toList(_filter);
+  }
+  
+  public List<Annotation> staticAnnotations(final PojoEntity pojo) {
+    boolean _equals = Objects.equal(pojo, null);
+    if (_equals) {
+      return CollectionLiterals.<Annotation>newArrayList();
+    }
+    EList<Annotation> _annotations = this.annotations(pojo);
     final Function1<Annotation, Boolean> _function = new Function1<Annotation, Boolean>() {
       public Boolean apply(final Annotation x) {
         return Boolean.valueOf(ProcessorGeneratorUtils.this.isStatic(x));
@@ -1300,6 +1330,21 @@ public class ProcessorGeneratorUtils {
       return CollectionLiterals.<Annotation>newArrayList();
     }
     EList<Annotation> _annotations = pojo.getAnnotations();
+    final Function1<Annotation, Boolean> _function = new Function1<Annotation, Boolean>() {
+      public Boolean apply(final Annotation x) {
+        return Boolean.valueOf(ProcessorGeneratorUtils.this.isStandard(x));
+      }
+    };
+    Iterable<Annotation> _filter = IterableExtensions.<Annotation>filter(_annotations, _function);
+    return IterableExtensions.<Annotation>toList(_filter);
+  }
+  
+  public List<Annotation> standardAnnotations(final PojoEntity pojo) {
+    boolean _equals = Objects.equal(pojo, null);
+    if (_equals) {
+      return CollectionLiterals.<Annotation>newArrayList();
+    }
+    EList<Annotation> _annotations = this.annotations(pojo);
     final Function1<Annotation, Boolean> _function = new Function1<Annotation, Boolean>() {
       public Boolean apply(final Annotation x) {
         return Boolean.valueOf(ProcessorGeneratorUtils.this.isStandard(x));

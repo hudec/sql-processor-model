@@ -65,12 +65,12 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
 	 
    	def dispatch void infer(PojoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
    		val entityType = entity.toClass(entity.fullyQualifiedName)
-   		val simpleName = entity.name
+   		val sernum = entity.sernum
    		acceptor.accept(entityType) [
    			documentation = entity.documentation
    			if (entity.isAbstract)
    				abstract = true
-   			for (an : entity.annotations.map[a|a.annotation]) {
+   			for (an : entity.standardAnnotations.map[a|a.annotation]) {
    				if (an.annotationType.identifier == 'java.io.Serializable') {
    					superTypes += typeRef(an.annotationType)
    				}
@@ -87,24 +87,40 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    			if (entity.superType != null)
    				superTypes += entity.superType.cloneWithProxies
    				
+   			if (sernum != null) {
+   				superTypes += typeRef('java.io.Serializable')
+				members += entity.toField('serialVersionUID', typeRef(long)) [
+ 					static = true
+ 					final = true
+ 					initializer = '''«sernum»L'''
+   				]
+   			}
    			for (attr : entity.attributes.filter(x | x.index != null)) {
 				members += entity.toField('ORDER_BY_'+attr.constName, typeRef(int)) [
  					static = true
+ 					final = true
+ 					visibility = JvmVisibility.PUBLIC
+	   				addAnnotations(entity.staticAnnotations.map[a|a.annotation])
  					initializer = '''«attr.index»'''
    				]
    			}
    			for (entry : entity.index.entrySet) {
 				members += entity.toField('ORDER_BY_'+constName(entry.value), typeRef(int)) [
  					static = true
+ 					final = true
+ 					visibility = JvmVisibility.PUBLIC
  					initializer = '''«entry.key»'''
+	   				addAnnotations(entity.staticAnnotations.map[a|a.annotation])
    				]
    			}
    			
-   			members += entity.toConstructor []
-   			members += entity.toConstructor[
+   			members += entity.toConstructor [
+   				addAnnotations(entity.constructorAnnotations.map[a|a.annotation])
+   			]
+   			members += entity.toConstructor [
 	   			for (attr : entity.requiredAttributes)
    					parameters += entity.toParameter(attr.name, attr.type)
-   				visibility = JvmVisibility.PRIVATE
+   				addAnnotations(entity.constructorAnnotations.map[a|a.annotation])
    				body = '''«FOR attr : entity.requiredAttributes»
 					this.«attr.name» = «attr.name»;
 				«ENDFOR»'''

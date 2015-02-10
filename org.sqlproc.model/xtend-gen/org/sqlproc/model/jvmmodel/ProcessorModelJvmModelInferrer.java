@@ -101,7 +101,7 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
   protected void _infer(final PojoEntity entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
     String _fullyQualifiedName = this._processorGeneratorUtils.getFullyQualifiedName(entity);
     final JvmGenericType entityType = this._processorTypesBuilder.toClass(entity, _fullyQualifiedName);
-    final String simpleName = entity.getName();
+    final Integer sernum = this._processorGeneratorUtils.getSernum(entity);
     final Procedure1<JvmGenericType> _function = new Procedure1<JvmGenericType>() {
       public void apply(final JvmGenericType it) {
         String _documentation = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.getDocumentation(entity);
@@ -110,13 +110,13 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
         if (_isAbstract) {
           it.setAbstract(true);
         }
-        EList<Annotation> _annotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.annotations(entity);
+        List<Annotation> _standardAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.standardAnnotations(entity);
         final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
           public XAnnotation apply(final Annotation a) {
             return a.getAnnotation();
           }
         };
-        List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_annotations, _function);
+        List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_standardAnnotations, _function);
         for (final XAnnotation an : _map) {
           JvmType _annotationType = an.getAnnotationType();
           String _identifier = _annotationType.getIdentifier();
@@ -153,22 +153,56 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
           JvmTypeReference _cloneWithProxies_2 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_superType_1);
           ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_3, _cloneWithProxies_2);
         }
+        boolean _notEquals_2 = (!Objects.equal(sernum, null));
+        if (_notEquals_2) {
+          EList<JvmTypeReference> _superTypes_4 = it.getSuperTypes();
+          JvmTypeReference _typeRef_1 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef("java.io.Serializable");
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_4, _typeRef_1);
+          EList<JvmMember> _members = it.getMembers();
+          JvmTypeReference _typeRef_2 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(long.class);
+          final Procedure1<JvmField> _function_1 = new Procedure1<JvmField>() {
+            public void apply(final JvmField it) {
+              it.setStatic(true);
+              it.setFinal(true);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append(sernum, "");
+                  _builder.append("L");
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client);
+            }
+          };
+          JvmField _field = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toField(entity, "serialVersionUID", _typeRef_2, _function_1);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members, _field);
+        }
         EList<PojoAttribute> _attributes = entity.getAttributes();
-        final Function1<PojoAttribute, Boolean> _function_1 = new Function1<PojoAttribute, Boolean>() {
+        final Function1<PojoAttribute, Boolean> _function_2 = new Function1<PojoAttribute, Boolean>() {
           public Boolean apply(final PojoAttribute x) {
             Integer _index = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getIndex(x);
             return Boolean.valueOf((!Objects.equal(_index, null)));
           }
         };
-        Iterable<PojoAttribute> _filter = IterableExtensions.<PojoAttribute>filter(_attributes, _function_1);
+        Iterable<PojoAttribute> _filter = IterableExtensions.<PojoAttribute>filter(_attributes, _function_2);
         for (final PojoAttribute attr : _filter) {
-          EList<JvmMember> _members = it.getMembers();
+          EList<JvmMember> _members_1 = it.getMembers();
           String _constName = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.constName(attr);
           String _plus = ("ORDER_BY_" + _constName);
-          JvmTypeReference _typeRef_1 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(int.class);
-          final Procedure1<JvmField> _function_2 = new Procedure1<JvmField>() {
+          JvmTypeReference _typeRef_3 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(int.class);
+          final Procedure1<JvmField> _function_3 = new Procedure1<JvmField>() {
             public void apply(final JvmField it) {
               it.setStatic(true);
+              it.setFinal(true);
+              it.setVisibility(JvmVisibility.PUBLIC);
+              List<Annotation> _staticAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.staticAnnotations(entity);
+              final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                public XAnnotation apply(final Annotation a) {
+                  return a.getAnnotation();
+                }
+              };
+              List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_staticAnnotations, _function);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
               StringConcatenationClient _client = new StringConcatenationClient() {
                 @Override
                 protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
@@ -179,20 +213,22 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
               ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client);
             }
           };
-          JvmField _field = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toField(entity, _plus, _typeRef_1, _function_2);
-          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members, _field);
+          JvmField _field_1 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toField(entity, _plus, _typeRef_3, _function_3);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_1, _field_1);
         }
         Map<Integer, List<PojoAttribute>> _index = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getIndex(entity);
         Set<Map.Entry<Integer, List<PojoAttribute>>> _entrySet = _index.entrySet();
         for (final Map.Entry<Integer, List<PojoAttribute>> entry : _entrySet) {
-          EList<JvmMember> _members_1 = it.getMembers();
+          EList<JvmMember> _members_2 = it.getMembers();
           List<PojoAttribute> _value = entry.getValue();
           String _constName_1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.constName(_value);
           String _plus_1 = ("ORDER_BY_" + _constName_1);
-          JvmTypeReference _typeRef_2 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(int.class);
-          final Procedure1<JvmField> _function_3 = new Procedure1<JvmField>() {
+          JvmTypeReference _typeRef_4 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(int.class);
+          final Procedure1<JvmField> _function_4 = new Procedure1<JvmField>() {
             public void apply(final JvmField it) {
               it.setStatic(true);
+              it.setFinal(true);
+              it.setVisibility(JvmVisibility.PUBLIC);
               StringConcatenationClient _client = new StringConcatenationClient() {
                 @Override
                 protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
@@ -201,20 +237,36 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
                 }
               };
               ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client);
+              List<Annotation> _staticAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.staticAnnotations(entity);
+              final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                public XAnnotation apply(final Annotation a) {
+                  return a.getAnnotation();
+                }
+              };
+              List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_staticAnnotations, _function);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
             }
           };
-          JvmField _field_1 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toField(entity, _plus_1, _typeRef_2, _function_3);
-          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_1, _field_1);
+          JvmField _field_2 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toField(entity, _plus_1, _typeRef_4, _function_4);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_2, _field_2);
         }
-        EList<JvmMember> _members_2 = it.getMembers();
-        final Procedure1<JvmConstructor> _function_4 = new Procedure1<JvmConstructor>() {
-          public void apply(final JvmConstructor it) {
-          }
-        };
-        JvmConstructor _constructor = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toConstructor(entity, _function_4);
-        ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmConstructor>operator_add(_members_2, _constructor);
         EList<JvmMember> _members_3 = it.getMembers();
         final Procedure1<JvmConstructor> _function_5 = new Procedure1<JvmConstructor>() {
+          public void apply(final JvmConstructor it) {
+            List<Annotation> _constructorAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.constructorAnnotations(entity);
+            final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+              public XAnnotation apply(final Annotation a) {
+                return a.getAnnotation();
+              }
+            };
+            List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_constructorAnnotations, _function);
+            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+          }
+        };
+        JvmConstructor _constructor = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toConstructor(entity, _function_5);
+        ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmConstructor>operator_add(_members_3, _constructor);
+        EList<JvmMember> _members_4 = it.getMembers();
+        final Procedure1<JvmConstructor> _function_6 = new Procedure1<JvmConstructor>() {
           public void apply(final JvmConstructor it) {
             List<PojoAttribute> _requiredAttributes = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.requiredAttributes(entity);
             for (final PojoAttribute attr : _requiredAttributes) {
@@ -224,7 +276,14 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
               JvmFormalParameter _parameter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _name, _type);
               ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
             }
-            it.setVisibility(JvmVisibility.PRIVATE);
+            List<Annotation> _constructorAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.constructorAnnotations(entity);
+            final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+              public XAnnotation apply(final Annotation a) {
+                return a.getAnnotation();
+              }
+            };
+            List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_constructorAnnotations, _function);
+            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
             StringConcatenationClient _client = new StringConcatenationClient() {
               @Override
               protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
@@ -248,8 +307,8 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
             ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
           }
         };
-        JvmConstructor _constructor_1 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toConstructor(entity, _function_5);
-        ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmConstructor>operator_add(_members_3, _constructor_1);
+        JvmConstructor _constructor_1 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toConstructor(entity, _function_6);
+        ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmConstructor>operator_add(_members_4, _constructor_1);
         EList<PojoAttribute> _attributes_1 = entity.getAttributes();
         for (final PojoAttribute attr_1 : _attributes_1) {
           {
@@ -269,13 +328,13 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
             if (_elvis_1 != null) {
               _elvis = _elvis_1;
             } else {
-              JvmTypeReference _typeRef_3 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
-              _elvis = _typeRef_3;
+              JvmTypeReference _typeRef_5 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              _elvis = _typeRef_5;
             }
             final JvmTypeReference type = _elvis;
-            EList<JvmMember> _members_4 = it.getMembers();
+            EList<JvmMember> _members_5 = it.getMembers();
             String _name = attr_1.getName();
-            final Procedure1<JvmField> _function_6 = new Procedure1<JvmField>() {
+            final Procedure1<JvmField> _function_7 = new Procedure1<JvmField>() {
               public void apply(final JvmField it) {
                 String _documentation = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.getDocumentation(attr_1);
                 ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setDocumentation(it, _documentation);
@@ -291,21 +350,21 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
                 ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _initExpr);
               }
             };
-            JvmField _field_2 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toField(entity, _name, type, _function_6);
-            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_4, _field_2);
+            JvmField _field_3 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toField(entity, _name, type, _function_7);
+            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_5, _field_3);
             String _createColumn1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn1(attr_1);
             final PojoAttribute createColumn1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getAttribute(entity, _createColumn1);
             String _xifexpression = null;
-            boolean _notEquals_2 = (!Objects.equal(createColumn1, null));
-            if (_notEquals_2) {
+            boolean _notEquals_3 = (!Objects.equal(createColumn1, null));
+            if (_notEquals_3) {
               JvmTypeReference _type_1 = createColumn1.getType();
               _xifexpression = _type_1.getQualifiedName();
             }
             final String typeCreateColumn1 = _xifexpression;
-            EList<JvmMember> _members_5 = it.getMembers();
+            EList<JvmMember> _members_6 = it.getMembers();
             String _name_1 = attr_1.getName();
             String _name_2 = attr_1.getName();
-            final Procedure1<JvmOperation> _function_7 = new Procedure1<JvmOperation>() {
+            final Procedure1<JvmOperation> _function_8 = new Procedure1<JvmOperation>() {
               public void apply(final JvmOperation it) {
                 List<Annotation> _terAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getterAnnotations(attr_1);
                 final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
@@ -317,17 +376,17 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
                 ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
               }
             };
-            JvmOperation _getter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toGetter(attr_1, _name_1, _name_2, type, _function_7);
-            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_5, _getter);
-            EList<JvmMember> _members_6 = it.getMembers();
+            JvmOperation _getter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toGetter(attr_1, _name_1, _name_2, type, _function_8);
+            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_6, _getter);
+            EList<JvmMember> _members_7 = it.getMembers();
             String _name_3 = attr_1.getName();
             String _name_4 = attr_1.getName();
-            JvmTypeReference _typeRef_4 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
+            JvmTypeReference _typeRef_6 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
             String _updateColumn1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn1(attr_1);
             String _updateColumn2 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn2(attr_1);
             String _createColumn1_1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn1(attr_1);
             String _createColumn2 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn2(attr_1);
-            final Procedure1<JvmOperation> _function_8 = new Procedure1<JvmOperation>() {
+            final Procedure1<JvmOperation> _function_9 = new Procedure1<JvmOperation>() {
               public void apply(final JvmOperation it) {
                 List<Annotation> _setterAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.setterAnnotations(attr_1);
                 final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
@@ -339,18 +398,18 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
                 ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
               }
             };
-            JvmOperation _setterExt = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toSetterExt(attr_1, _name_3, _name_4, type, _typeRef_4, _updateColumn1, _updateColumn2, _createColumn1_1, typeCreateColumn1, _createColumn2, _function_8);
-            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_6, _setterExt);
-            EList<JvmMember> _members_7 = it.getMembers();
+            JvmOperation _setterExt = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toSetterExt(attr_1, _name_3, _name_4, type, _typeRef_6, _updateColumn1, _updateColumn2, _createColumn1_1, typeCreateColumn1, _createColumn2, _function_9);
+            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_7, _setterExt);
+            EList<JvmMember> _members_8 = it.getMembers();
             String _name_5 = attr_1.getName();
             String _name_6 = attr_1.getName();
-            JvmTypeReference _typeRef_5 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
+            JvmTypeReference _typeRef_7 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
             String _updateColumn1_1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn1(attr_1);
             String _updateColumn2_1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn2(attr_1);
             String _createColumn1_2 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn1(attr_1);
             String _createColumn2_1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn2(attr_1);
-            JvmOperation __toSetterExt = ProcessorModelJvmModelInferrer.this._processorTypesBuilder._toSetterExt(attr_1, _name_5, _name_6, type, _typeRef_5, _updateColumn1_1, _updateColumn2_1, _createColumn1_2, typeCreateColumn1, _createColumn2_1);
-            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_7, __toSetterExt);
+            JvmOperation __toSetterExt = ProcessorModelJvmModelInferrer.this._processorTypesBuilder._toSetterExt(attr_1, _name_5, _name_6, type, _typeRef_7, _updateColumn1_1, _updateColumn2_1, _createColumn1_2, typeCreateColumn1, _createColumn2_1);
+            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_8, __toSetterExt);
             boolean _hasOperators = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.hasOperators(entity);
             if (_hasOperators) {
               String _elvis_2 = null;
@@ -361,39 +420,39 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
                 _elvis_2 = "Op";
               }
               final String operSuffix = _elvis_2;
-              EList<JvmMember> _members_8 = it.getMembers();
+              EList<JvmMember> _members_9 = it.getMembers();
               String _name_7 = attr_1.getName();
               String _plus_2 = (_name_7 + operSuffix);
-              JvmTypeReference _typeRef_6 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
-              final Procedure1<JvmField> _function_9 = new Procedure1<JvmField>() {
+              JvmTypeReference _typeRef_8 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              final Procedure1<JvmField> _function_10 = new Procedure1<JvmField>() {
                 public void apply(final JvmField it) {
                 }
               };
-              JvmField _field_3 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toField(entity, _plus_2, _typeRef_6, _function_9);
-              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_8, _field_3);
-              EList<JvmMember> _members_9 = it.getMembers();
+              JvmField _field_4 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toField(entity, _plus_2, _typeRef_8, _function_10);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_9, _field_4);
+              EList<JvmMember> _members_10 = it.getMembers();
               String _name_8 = attr_1.getName();
               String _plus_3 = (_name_8 + operSuffix);
-              JvmTypeReference _typeRef_7 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
-              JvmOperation _getter_1 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toGetter(attr_1, _plus_3, _typeRef_7);
-              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_9, _getter_1);
-              EList<JvmMember> _members_10 = it.getMembers();
+              JvmTypeReference _typeRef_9 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmOperation _getter_1 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toGetter(attr_1, _plus_3, _typeRef_9);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_10, _getter_1);
+              EList<JvmMember> _members_11 = it.getMembers();
               String _name_9 = attr_1.getName();
               String _plus_4 = (_name_9 + operSuffix);
               String _name_10 = attr_1.getName();
               String _plus_5 = (_name_10 + operSuffix);
-              JvmTypeReference _typeRef_8 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
-              JvmOperation _setter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toSetter(attr_1, _plus_4, _plus_5, _typeRef_8);
-              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_10, _setter);
-              EList<JvmMember> _members_11 = it.getMembers();
+              JvmTypeReference _typeRef_10 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmOperation _setter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toSetter(attr_1, _plus_4, _plus_5, _typeRef_10);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_11, _setter);
+              EList<JvmMember> _members_12 = it.getMembers();
               String _name_11 = attr_1.getName();
               String _plus_6 = (_name_11 + operSuffix);
               String _name_12 = attr_1.getName();
               String _plus_7 = (_name_12 + operSuffix);
-              JvmTypeReference _typeRef_9 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
-              JvmTypeReference _typeRef_10 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
-              JvmOperation __toSetter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder._toSetter(attr_1, _plus_6, _plus_7, _typeRef_9, _typeRef_10);
-              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_11, __toSetter);
+              JvmTypeReference _typeRef_11 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              JvmTypeReference _typeRef_12 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
+              JvmOperation __toSetter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder._toSetter(attr_1, _plus_6, _plus_7, _typeRef_11, _typeRef_12);
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_12, __toSetter);
             }
           }
         }
