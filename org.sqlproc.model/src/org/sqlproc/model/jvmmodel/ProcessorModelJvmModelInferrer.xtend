@@ -14,7 +14,6 @@ import org.sqlproc.model.processorModel.EnumAttributeDirectiveValues
 import org.sqlproc.model.processorModel.DaoEntity
 import org.sqlproc.model.processorModel.EnumAttributeValue
 import java.util.List
-import org.sqlproc.model.generator.ProcessorGeneratorUtils
 import org.eclipse.xtext.xbase.XStringLiteral
 import org.eclipse.xtext.xbase.XNumberLiteral
 import org.eclipse.xtext.common.types.JvmVisibility
@@ -109,7 +108,7 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    				val typeCreateColumn1 = if (createColumn1 != null) createColumn1.type.qualifiedName
    				members += attr.toGetter(attr.name, type)
    				members += attr.toSetter(attr.name, type)
-   				members += attr._toSetter(attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
+   				members += attr._toSetter(attr.name, attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
    								attr.createColumn1, typeCreateColumn1, attr.createColumn2
    				)
    			}

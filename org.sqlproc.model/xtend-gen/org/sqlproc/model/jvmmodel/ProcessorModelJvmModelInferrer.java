@@ -36,7 +36,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.sqlproc.model.generator.ProcessorGeneratorUtils;
+import org.sqlproc.model.jvmmodel.ProcessorGeneratorUtils;
 import org.sqlproc.model.jvmmodel.ProcessorTypesBuilder;
 import org.sqlproc.model.processorModel.Annotation;
 import org.sqlproc.model.processorModel.DaoEntity;
@@ -268,12 +268,13 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
             ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_4, _setter);
             EList<JvmMember> _members_5 = it.getMembers();
             String _name_3 = attr_1.getName();
+            String _name_4 = attr_1.getName();
             JvmTypeReference _typeRef_4 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
             String _updateColumn1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn1(attr_1);
             String _updateColumn2 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn2(attr_1);
             String _createColumn1_1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn1(attr_1);
             String _createColumn2 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn2(attr_1);
-            JvmOperation __toSetter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder._toSetter(attr_1, _name_3, type, _typeRef_4, _updateColumn1, _updateColumn2, _createColumn1_1, typeCreateColumn1, _createColumn2);
+            JvmOperation __toSetter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder._toSetter(attr_1, _name_3, _name_4, type, _typeRef_4, _updateColumn1, _updateColumn2, _createColumn1_1, typeCreateColumn1, _createColumn2);
             ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_5, __toSetter);
           }
         }

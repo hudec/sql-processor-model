@@ -70,7 +70,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
 
 public class ProcessorTypesBuilder extends JvmTypesBuilder {
 
-	private static Logger LOG = Logger.getLogger(ProcessorTypesBuilder.class);
+	//private static Logger LOG = Logger.getLogger(ProcessorTypesBuilder.class);
 
 	@Inject
 	private TypeReferences references;
@@ -80,19 +80,6 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
 	
 	@Inject(optional = true)
 	private XtypeFactory xtypesFactory = XtypeFactory.eINSTANCE;
-	
-	/**
-	 * shorthand for <code>toSetter(sourceElement, name, name, typeRef)</code>
-	 */
-	/* @Nullable */
-	public JvmOperation _toSetter(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String name, 
-		/* @Nullable */ JvmTypeReference typeRef, /* @Nullable */ JvmTypeReference typeEntityRef, 
-		/* @Nullable */ final String updateColumn1, /* @Nullable */ final String updateColumn2,
-		/* @Nullable */ final String createColumn1, /* @Nullable */ final String typeCreateColumn1, /* @Nullable */ final String createColumn2) {
-		return _toSetter(sourceElement, name, name, typeRef, typeEntityRef, updateColumn1, updateColumn2, 
-			createColumn1, typeCreateColumn1, createColumn2
-		);
-	}
 	
 	/**
 	 * Creates a setter method for the given properties name with the standard implementation assigning the passed
@@ -125,11 +112,15 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
 					p.append("this.").append(fieldName).append(" = ").append(propertyName).append(";");
 					if (updateColumn1 != null && updateColumn2 != null) {
 						p.newLine().append("if (this.").append(fieldName).append(" != null)");
-						p.newLine().append("this.").append(updateColumn2).append(" = this.").append(fieldName).append("get").append(toFirstUpper(updateColumn1)).append("();");
+						p.increaseIndentation();
+						p.newLine().append("this.").append(updateColumn2).append(" = this.").append(fieldName).append(".get").append(toFirstUpper(updateColumn1)).append("();");
+						p.decreaseIndentation();
 					}
 					if (createColumn1 != null && createColumn2 != null) {
 						p.newLine().append("if (this.").append(createColumn1).append(" == null)");
-						p.newLine().increaseIndentation().append("this.").append(createColumn1).append(" = new ").append(typeCreateColumn1).append("();");
+						p.increaseIndentation();
+						p.newLine().append("this.").append(createColumn1).append(" = new ").append(typeCreateColumn1).append("();");
+						p.decreaseIndentation();
 						p.newLine().append("this.").append(createColumn1).append(".set").append(toFirstUpper(createColumn2)).append("(").append(propertyName).append(");");
 					}
 					p.newLine().append("return this;");
