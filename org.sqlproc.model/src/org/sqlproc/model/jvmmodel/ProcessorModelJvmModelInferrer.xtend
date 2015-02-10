@@ -31,7 +31,7 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
     /**
      * convenience API to build and initialize JVM types and their members.
      */
-	@Inject extension JvmTypesBuilder
+	@Inject extension ProcessorTypesBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ProcessorGeneratorUtils
 
@@ -62,9 +62,9 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
 	 */
 	 
    	def dispatch void infer(PojoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-   		val entityType = entity.toEnumerationType(entity.fullyQualifiedName) []
+   		val entityType = entity.toClass(entity.fullyQualifiedName)
    		val simpleName = entity.name
-   		acceptor.accept(entity.toClass(entity.fullyQualifiedName)) [
+   		acceptor.accept(entityType) [
    			documentation = entity.documentation
    			if (entity.isAbstract)
    				abstract = true
@@ -105,6 +105,9 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    					addAnnotations(attr.annotations.map[a|a.annotation])
  					initializer = attr.initExpr
    				]
+   				members += attr.toGetter(attr.name, type)
+   				members += attr.toSetter(attr.name, type)
+   				members += attr._toSetter(attr.name, type, typeRef(entityType))
    			}
    		]
    	}
