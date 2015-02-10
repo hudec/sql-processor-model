@@ -152,6 +152,144 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    					members += attr._toSetter(attr.name + operSuffix, attr.name + operSuffix, typeRef(String), typeRef(entityType))
    				}
    			}
+   			
+   			val isDefList = entity.isDefAttributes
+   			if (!isDefList.isEmpty) {
+   				val isDefType = entity.toEnumerationType('Attribute') []
+   				members += isDefType
+	   			for (attr: isDefList)
+	   				isDefType.members += entity.toEnumerationLiteral(attr.name)
+				val identifierSetType = typeRef(java.util.Set, typeRef(String))
+				members += entity.toField('nullValues', identifierSetType) [
+ 					initializer = ''' new java.util.HashSet<String>()'''
+	   			]
+	   			members += entity.toMethod('setNull', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("attributes", typeRef(isDefType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						if (attributes == null)
+							throw new IllegalArgumentException();
+						for (Attribute attribute : attributes)
+							nullValues.add(attribute.name());
+   					'''
+   				]	
+	   			members += entity.toMethod('_setNull', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("attributes", typeRef(isDefType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						setNull(attributes);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('clearNull', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("attributes", typeRef(isDefType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						if (attributes == null)
+							throw new IllegalArgumentException();
+						for (Attribute attribute : attributes)
+							nullValues.remove(attribute.name());
+   					'''
+   				]	
+	   			members += entity.toMethod('_clearNull', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("attributes", typeRef(isDefType).addArrayTypeDimension.cloneWithProxies)
+	   				varArgs = true
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						clearNull(attributes);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('setNull', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("attributes", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						if (attributes == null)
+							throw new IllegalArgumentException();
+						for (String attribute : attributes)
+							nullValues.add(attribute);
+   					'''
+   				]	
+	   			members += entity.toMethod('_setNull', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("attributes", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						setNull(attributes);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('clearNull', typeRef(Void.TYPE)) [
+   					parameters += entity.toParameter("attributes", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						if (attributes == null)
+							throw new IllegalArgumentException();
+						for (String attribute : attributes)
+							nullValues.remove(attribute);
+   					'''
+   				]	
+	   			members += entity.toMethod('_clearNull', typeRef(entityType).cloneWithProxies) [
+   					parameters += entity.toParameter("attributes", typeRef(String).addArrayTypeDimension)
+	   				varArgs = true
+   					body = '''
+						clearNull(attributes);
+						return this;
+   					'''
+   				]	
+	   			members += entity.toMethod('isNull', typeRef(Boolean)) [
+   					parameters += entity.toParameter("attribute", typeRef(isDefType).cloneWithProxies)
+	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
+   					body = '''
+						if (attribute == null)
+							throw new IllegalArgumentException();
+						return nullValues.contains(attribute.name());
+   					'''
+   				]	
+	   			members += entity.toMethod('isNull', typeRef(Boolean)) [
+   					parameters += entity.toParameter("attrName", typeRef(String))
+   					body = '''
+						if (attrName == null)
+							throw new IllegalArgumentException();
+						return nullValues.contains(attrName);
+   					'''
+   				]	
+	   			members += entity.toMethod('isDef', typeRef(Boolean)) [
+   					parameters += entity.toParameter("attrName", typeRef(String))
+   					body = '''
+						if (attrName == null)
+							throw new IllegalArgumentException();
+						if (nullValues.contains(attrName))
+							return true;
+						try {
+							Object result = org.apache.commons.beanutils.MethodUtils.invokeMethod(this, "get" + attrName.substring(0, 1).toUpperCase() + attrName.substring(1, attrName.length()), null);
+							return (result != null) ? true : false;
+						} catch (NoSuchMethodException e) {
+						} catch (IllegalAccessException e) {
+							throw new RuntimeException(e);
+						} catch (java.lang.reflect.InvocationTargetException e) {
+							throw new RuntimeException(e);
+						}
+						try {
+							Object result = org.apache.commons.beanutils.MethodUtils.invokeMethod(this, "is" + attrName.substring(0, 1).toUpperCase() + attrName.substring(1, attrName.length()), null);
+							return (result != null) ? true : false;
+						} catch (NoSuchMethodException e) {
+						} catch (IllegalAccessException e) {
+							throw new RuntimeException(e);
+						} catch (java.lang.reflect.InvocationTargetException e) {
+							throw new RuntimeException(e);
+						}
+						return false;
+   					'''
+   				]	
+	   			members += entity.toMethod('clearAllNull', typeRef(Void.TYPE)) [
+   					body = '''
+						nullValues = new java.util.HashSet<String>();
+   					'''
+   				]	
+   			}
    		]
    	}
 	

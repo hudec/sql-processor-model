@@ -537,6 +537,12 @@ class ProcessorGeneratorUtils {
 		return pojo.annotations.filter[x|x.isConflict].toList
 	}
 
+	def List<Annotation> conflictAnnotations(PojoEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		return pojo.annotations.filter[x|x.isConflict].toList
+	}
+
     def isConstructor(Annotation an) {
 		val d = an.directives?.findFirst[x|x instanceof AnnotationDirectiveConstructor]
 		return if(d != null) true else false

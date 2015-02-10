@@ -1185,6 +1185,21 @@ public class ProcessorGeneratorUtils {
     return IterableExtensions.<Annotation>toList(_filter);
   }
   
+  public List<Annotation> conflictAnnotations(final PojoEntity pojo) {
+    boolean _equals = Objects.equal(pojo, null);
+    if (_equals) {
+      return CollectionLiterals.<Annotation>newArrayList();
+    }
+    EList<Annotation> _annotations = this.annotations(pojo);
+    final Function1<Annotation, Boolean> _function = new Function1<Annotation, Boolean>() {
+      public Boolean apply(final Annotation x) {
+        return Boolean.valueOf(ProcessorGeneratorUtils.this.isConflict(x));
+      }
+    };
+    Iterable<Annotation> _filter = IterableExtensions.<Annotation>filter(_annotations, _function);
+    return IterableExtensions.<Annotation>toList(_filter);
+  }
+  
   public boolean isConstructor(final Annotation an) {
     EList<AnnotationDirective> _directives = an.getDirectives();
     AnnotationDirective _findFirst = null;
