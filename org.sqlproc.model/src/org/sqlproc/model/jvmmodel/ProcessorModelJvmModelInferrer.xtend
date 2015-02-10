@@ -18,6 +18,9 @@ import org.eclipse.xtext.xbase.XStringLiteral
 import org.eclipse.xtext.xbase.XNumberLiteral
 import org.eclipse.xtext.common.types.JvmVisibility
 import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.JvmMember
+import org.sqlproc.model.processorModel.PojoAttribute
+import org.eclipse.xtext.common.types.JvmTypeReference
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -99,22 +102,33 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    				
    			for (attr : entity.attributes) {
    				val type = attr.type ?: attr.initExpr?.inferredType ?: typeRef(String)
-   				members += attr.toField(attr.name, type) [
+   				members += entity.toField(attr.name, type) [
    					documentation = attr.documentation
-   					addAnnotations(attr.annotations.map[a|a.annotation])
+   					addAnnotations(attr.attributeAnnotations.map[a|a.annotation])
  					initializer = attr.initExpr
    				]
    				val createColumn1 = entity.getAttribute(attr.createColumn1)
    				val typeCreateColumn1 = if (createColumn1 != null) createColumn1.type.qualifiedName
-   				members += attr.toGetter(attr.name, type)
-   				members += attr.toSetter(attr.name, type)
-   				members += attr._toSetter(attr.name, attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
-   								attr.createColumn1, typeCreateColumn1, attr.createColumn2
-   				)
+   				members += attr.toGetter(attr.name, attr.name, type) [
+   					addAnnotations(attr.getterAnnotations.map[a|a.annotation])
+   				]
+   				members += attr.toSetterExt(attr.name, attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
+   								attr.createColumn1, typeCreateColumn1, attr.createColumn2) [
+   					addAnnotations(attr.setterAnnotations.map[a|a.annotation])
+   				]
+   				members += attr._toSetterExt(attr.name, attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
+   								attr.createColumn1, typeCreateColumn1, attr.createColumn2)
+	   			if (entity.hasOperators) {
+   					val operSuffix = entity.operatorsSuffix ?: 'Op'
+   					members += entity.toField(attr.name + operSuffix, typeRef(String)) []
+	   				members += attr.toGetter(attr.name + operSuffix, typeRef(String))
+   					members += attr.toSetter(attr.name + operSuffix, attr.name + operSuffix, typeRef(String))
+   					members += attr._toSetter(attr.name + operSuffix, attr.name + operSuffix, typeRef(String), typeRef(entityType))
+   				}
    			}
    		]
    	}
-
+	
    	def dispatch void infer(EnumEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
    		val entityType = entity.toEnumerationType(entity.fullyQualifiedName) []
    		val simpleName = entity.name

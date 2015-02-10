@@ -81,23 +81,97 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
 	@Inject(optional = true)
 	private XtypeFactory xtypesFactory = XtypeFactory.eINSTANCE;
 	
-	/**
-	 * Creates a setter method for the given properties name with the standard implementation assigning the passed
-	 * parameter to a similarly named field.
-	 * 
-	 * Example: <code>
-	 * public void setFoo(String foo) {
-	 *   this.foo = foo;
-	 * }
-	 * </code>
-	 *
-	 * @return a setter method for a JavaBeans property with the given name, <code>null</code> if sourceElement or name are <code>null</code>.
-	 */
+	public JvmOperation toGetter(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String propertyName, 
+		/* @Nullable */ final String fieldName, /* @Nullable */ JvmTypeReference typeRef,
+		/* @Nullable */ Procedure1<? super JvmOperation> initializer) {
+		if(sourceElement == null || propertyName == null || fieldName == null) 
+			return null;
+		JvmOperation result = typesFactory.createJvmOperation();
+		result.setVisibility(JvmVisibility.PUBLIC);
+		String prefix = "get";
+		if (typeRef != null && !typeRef.eIsProxy() && !InferredTypeIndicator.isInferred(typeRef) 
+				&& typeRef.getType()!=null 
+				&& !typeRef.getType().eIsProxy() && "boolean".equals(typeRef.getType().getIdentifier())) {
+			prefix = "is";
+		}
+		result.setSimpleName(prefix + Strings.toFirstUpper(propertyName));
+		result.setReturnType(cloneWithProxies(typeRef));
+		setBody(result, new Procedures.Procedure1<ITreeAppendable>() {
+			public void apply(/* @Nullable */ ITreeAppendable p) {
+				if(p != null) {
+					p = p.trace(sourceElement);
+					p.append("return this.");
+					p.append(fieldName);
+					p.append(";");
+				}
+			}
+		});
+		associate(sourceElement, result);
+		return initializeSafely(result, initializer);
+	}
+	
 	/* @Nullable */ 
-	public JvmOperation _toSetter(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String propertyName, 
+	public JvmOperation toSetterExt(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String propertyName, 
 		/* @Nullable */ final String fieldName, /* @Nullable */ JvmTypeReference typeRef, /* @Nullable */ JvmTypeReference typeEntityRef,
 		/* @Nullable */ final String updateColumn1, /* @Nullable */ final String updateColumn2,
 		/* @Nullable */ final String createColumn1, /* @Nullable */ final String typeCreateColumn1, /* @Nullable */ final String createColumn2) {
+		return toSetterExt(sourceElement, propertyName, fieldName, typeRef, typeEntityRef, updateColumn1, updateColumn2,
+			createColumn1, typeCreateColumn1, createColumn2, null);
+	}
+	
+	/* @Nullable */ 
+	public JvmOperation toSetterExt(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String propertyName, 
+		/* @Nullable */ final String fieldName, /* @Nullable */ JvmTypeReference typeRef, /* @Nullable */ JvmTypeReference typeEntityRef,
+		/* @Nullable */ final String updateColumn1, /* @Nullable */ final String updateColumn2,
+		/* @Nullable */ final String createColumn1, /* @Nullable */ final String typeCreateColumn1, /* @Nullable */ final String createColumn2,
+		/* @Nullable */ Procedure1<? super JvmOperation> initializer) {
+		if(sourceElement == null || propertyName == null || fieldName == null) 
+			return null;
+		JvmOperation result = typesFactory.createJvmOperation();
+		result.setVisibility(JvmVisibility.PUBLIC);
+		result.setReturnType(references.getTypeForName(Void.TYPE,sourceElement));
+		result.setSimpleName("set" + Strings.toFirstUpper(propertyName));
+		result.getParameters().add(toParameter(sourceElement, propertyName, cloneWithProxies(typeRef)));
+		setBody(result, new Procedures.Procedure1<ITreeAppendable>() {
+			public void apply(/* @Nullable */ ITreeAppendable p) {
+				if(p != null) {
+					p = p.trace(sourceElement);
+					p.append("this.").append(fieldName).append(" = ").append(propertyName).append(";");
+					if (updateColumn1 != null && updateColumn2 != null) {
+						p.newLine().append("if (this.").append(fieldName).append(" != null)");
+						p.increaseIndentation();
+						p.newLine().append("this.").append(updateColumn2).append(" = this.").append(fieldName).append(".get").append(toFirstUpper(updateColumn1)).append("();");
+						p.decreaseIndentation();
+					}
+					if (createColumn1 != null && createColumn2 != null) {
+						p.newLine().append("if (this.").append(createColumn1).append(" == null)");
+						p.increaseIndentation();
+						p.newLine().append("this.").append(createColumn1).append(" = new ").append(typeCreateColumn1).append("();");
+						p.decreaseIndentation();
+						p.newLine().append("this.").append(createColumn1).append(".set").append(toFirstUpper(createColumn2)).append("(").append(propertyName).append(");");
+					}
+				}
+			}
+		});
+		associate(sourceElement, result);
+		return initializeSafely(result, initializer);
+	}
+
+	/* @Nullable */ 
+	public JvmOperation _toSetterExt(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String propertyName, 
+		/* @Nullable */ final String fieldName, /* @Nullable */ JvmTypeReference typeRef, /* @Nullable */ JvmTypeReference typeEntityRef,
+		/* @Nullable */ final String updateColumn1, /* @Nullable */ final String updateColumn2,
+		/* @Nullable */ final String createColumn1, /* @Nullable */ final String typeCreateColumn1, /* @Nullable */ final String createColumn2) {
+			return _toSetterExt(sourceElement, propertyName, fieldName, typeRef, typeEntityRef, updateColumn1, updateColumn2,
+				createColumn1, typeCreateColumn1, createColumn2, null);
+	}
+	
+	/* @Nullable */ 
+	public JvmOperation _toSetterExt(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String propertyName, 
+		/* @Nullable */ final String fieldName, /* @Nullable */ JvmTypeReference typeRef, /* @Nullable */ JvmTypeReference typeEntityRef,
+		/* @Nullable */ final String updateColumn1, /* @Nullable */ final String updateColumn2,
+		/* @Nullable */ final String createColumn1, /* @Nullable */ final String typeCreateColumn1, /* @Nullable */ final String createColumn2,
+		/* @Nullable */ Procedure1<? super JvmOperation> initializer) {
 		if(sourceElement == null || propertyName == null || fieldName == null) 
 			return null;
 		JvmOperation result = typesFactory.createJvmOperation();
@@ -127,7 +201,38 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
 				}
 			}
 		});
-		return associate(sourceElement, result);
+		associate(sourceElement, result);
+		return initializeSafely(result, initializer);
+	}
+
+	/* @Nullable */ 
+	public JvmOperation _toSetter(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String propertyName, 
+		/* @Nullable */ final String fieldName, /* @Nullable */ JvmTypeReference typeRef, /* @Nullable */ JvmTypeReference typeEntityRef) {
+			return _toSetter(sourceElement, propertyName, fieldName, typeRef, typeEntityRef, null);
+		}
+
+	/* @Nullable */ 
+	public JvmOperation _toSetter(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String propertyName, 
+		/* @Nullable */ final String fieldName, /* @Nullable */ JvmTypeReference typeRef, /* @Nullable */ JvmTypeReference typeEntityRef,
+		/* @Nullable */ Procedure1<? super JvmOperation> initializer) {
+		if(sourceElement == null || propertyName == null || fieldName == null) 
+			return null;
+		JvmOperation result = typesFactory.createJvmOperation();
+		result.setVisibility(JvmVisibility.PUBLIC);
+		result.setReturnType(cloneWithProxies(typeEntityRef));
+		result.setSimpleName("_set" + Strings.toFirstUpper(propertyName));
+		result.getParameters().add(toParameter(sourceElement, propertyName, cloneWithProxies(typeRef)));
+		setBody(result, new Procedures.Procedure1<ITreeAppendable>() {
+			public void apply(/* @Nullable */ ITreeAppendable p) {
+				if(p != null) {
+					p = p.trace(sourceElement);
+					p.append("this.").append(fieldName).append(" = ").append(propertyName).append(";");
+					p.newLine().append("return this;");
+				}
+			}
+		});
+		associate(sourceElement, result);
+		return initializeSafely(result, initializer);
 	}
 
 	public static String toFirstUpper(String s) {
