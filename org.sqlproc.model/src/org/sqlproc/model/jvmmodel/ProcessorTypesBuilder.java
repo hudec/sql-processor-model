@@ -85,8 +85,13 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
 	 * shorthand for <code>toSetter(sourceElement, name, name, typeRef)</code>
 	 */
 	/* @Nullable */
-	public JvmOperation _toSetter(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String name, /* @Nullable */ JvmTypeReference typeRef, /* @Nullable */ JvmTypeReference typeEntityRef) {
-		return _toSetter(sourceElement, name, name, typeRef, typeEntityRef);
+	public JvmOperation _toSetter(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String name, 
+		/* @Nullable */ JvmTypeReference typeRef, /* @Nullable */ JvmTypeReference typeEntityRef, 
+		/* @Nullable */ final String updateColumn1, /* @Nullable */ final String updateColumn2,
+		/* @Nullable */ final String createColumn1, /* @Nullable */ final String typeCreateColumn1, /* @Nullable */ final String createColumn2) {
+		return _toSetter(sourceElement, name, name, typeRef, typeEntityRef, updateColumn1, updateColumn2, 
+			createColumn1, typeCreateColumn1, createColumn2
+		);
 	}
 	
 	/**
@@ -102,7 +107,10 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
 	 * @return a setter method for a JavaBeans property with the given name, <code>null</code> if sourceElement or name are <code>null</code>.
 	 */
 	/* @Nullable */ 
-	public JvmOperation _toSetter(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String propertyName, /* @Nullable */ final String fieldName, /* @Nullable */ JvmTypeReference typeRef, /* @Nullable */ JvmTypeReference typeEntityRef) {
+	public JvmOperation _toSetter(/* @Nullable */ final EObject sourceElement, /* @Nullable */ final String propertyName, 
+		/* @Nullable */ final String fieldName, /* @Nullable */ JvmTypeReference typeRef, /* @Nullable */ JvmTypeReference typeEntityRef,
+		/* @Nullable */ final String updateColumn1, /* @Nullable */ final String updateColumn2,
+		/* @Nullable */ final String createColumn1, /* @Nullable */ final String typeCreateColumn1, /* @Nullable */ final String createColumn2) {
 		if(sourceElement == null || propertyName == null || fieldName == null) 
 			return null;
 		JvmOperation result = typesFactory.createJvmOperation();
@@ -115,10 +123,29 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
 				if(p != null) {
 					p = p.trace(sourceElement);
 					p.append("this.").append(fieldName).append(" = ").append(propertyName).append(";");
+					if (updateColumn1 != null && updateColumn2 != null) {
+						p.newLine().append("if (this.").append(fieldName).append(" != null)");
+						p.newLine().append("this.").append(updateColumn2).append(" = this.").append(fieldName).append("get").append(toFirstUpper(updateColumn1)).append("();");
+					}
+					if (createColumn1 != null && createColumn2 != null) {
+						p.newLine().append("if (this.").append(createColumn1).append(" == null)");
+						p.newLine().increaseIndentation().append("this.").append(createColumn1).append(" = new ").append(typeCreateColumn1).append("();");
+						p.newLine().append("this.").append(createColumn1).append(".set").append(toFirstUpper(createColumn2)).append("(").append(propertyName).append(");");
+					}
 					p.newLine().append("return this;");
 				}
 			}
 		});
 		return associate(sourceElement, result);
+	}
+
+	public static String toFirstUpper(String s) {
+		if (s == null || s.length() == 0)
+			return s;
+		if (Character.isUpperCase(s.charAt(0)))
+			return s;
+		if (s.length() == 1)
+			return s.toUpperCase();
+		return s.substring(0, 1).toUpperCase() + s.substring(1);
 	}
 }

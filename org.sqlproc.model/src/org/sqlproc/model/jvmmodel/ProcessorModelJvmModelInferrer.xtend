@@ -105,9 +105,13 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    					addAnnotations(attr.annotations.map[a|a.annotation])
  					initializer = attr.initExpr
    				]
+   				val createColumn1 = entity.getAttribute(attr.createColumn1)
+   				val typeCreateColumn1 = if (createColumn1 != null) createColumn1.type.qualifiedName
    				members += attr.toGetter(attr.name, type)
    				members += attr.toSetter(attr.name, type)
-   				members += attr._toSetter(attr.name, type, typeRef(entityType))
+   				members += attr._toSetter(attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
+   								attr.createColumn1, typeCreateColumn1, attr.createColumn2
+   				)
    			}
    		]
    	}

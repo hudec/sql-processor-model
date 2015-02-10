@@ -930,8 +930,15 @@ public class ProcessorGeneratorUtils {
   }
   
   public PojoAttribute getAttribute(final PojoEntity pojo, final String name) {
+    boolean _or = false;
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
+      _or = true;
+    } else {
+      boolean _equals_1 = Objects.equal(name, null);
+      _or = _equals_1;
+    }
+    if (_or) {
       return null;
     }
     EList<PojoAttribute> _attributes = pojo.getAttributes();
@@ -947,14 +954,14 @@ public class ProcessorGeneratorUtils {
       return feature;
     }
     final JvmParameterizedTypeReference se = pojo.getSuperType();
-    boolean _or = false;
-    boolean _equals_1 = Objects.equal(se, null);
-    if (_equals_1) {
-      _or = true;
+    boolean _or_1 = false;
+    boolean _equals_2 = Objects.equal(se, null);
+    if (_equals_2) {
+      _or_1 = true;
     } else {
-      _or = (!(se instanceof PojoEntity));
+      _or_1 = (!(se instanceof PojoEntity));
     }
-    if (_or) {
+    if (_or_1) {
       return null;
     }
     return this.getAttribute(((PojoEntity) se), name);

@@ -249,6 +249,15 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
             };
             JvmField _field_2 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toField(attr_1, _name, type, _function_4);
             ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_2, _field_2);
+            String _createColumn1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn1(attr_1);
+            final PojoAttribute createColumn1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getAttribute(entity, _createColumn1);
+            String _xifexpression = null;
+            boolean _notEquals_2 = (!Objects.equal(createColumn1, null));
+            if (_notEquals_2) {
+              JvmTypeReference _type_1 = createColumn1.getType();
+              _xifexpression = _type_1.getQualifiedName();
+            }
+            final String typeCreateColumn1 = _xifexpression;
             EList<JvmMember> _members_3 = it.getMembers();
             String _name_1 = attr_1.getName();
             JvmOperation _getter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toGetter(attr_1, _name_1, type);
@@ -260,7 +269,11 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
             EList<JvmMember> _members_5 = it.getMembers();
             String _name_3 = attr_1.getName();
             JvmTypeReference _typeRef_4 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
-            JvmOperation __toSetter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder._toSetter(attr_1, _name_3, type, _typeRef_4);
+            String _updateColumn1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn1(attr_1);
+            String _updateColumn2 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn2(attr_1);
+            String _createColumn1_1 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn1(attr_1);
+            String _createColumn2 = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn2(attr_1);
+            JvmOperation __toSetter = ProcessorModelJvmModelInferrer.this._processorTypesBuilder._toSetter(attr_1, _name_3, type, _typeRef_4, _updateColumn1, _updateColumn2, _createColumn1_1, typeCreateColumn1, _createColumn2);
             ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_5, __toSetter);
           }
         }

@@ -358,7 +358,7 @@ class ProcessorGeneratorUtils {
 	}
 	
     def PojoAttribute getAttribute(PojoEntity pojo, String name) {
-		if (pojo == null)
+		if (pojo == null || name == null)
 			return null
 		val feature = pojo.attributes.findFirst[x| x.name == name]
 		if (feature != null)
