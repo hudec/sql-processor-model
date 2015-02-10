@@ -12,6 +12,12 @@ import org.sqlproc.model.processorModel.AnnotatedEntity
 import org.sqlproc.model.processorModel.EnumEntity
 import org.sqlproc.model.processorModel.EnumAttributeDirectiveValues
 import org.sqlproc.model.processorModel.DaoEntity
+import org.sqlproc.model.processorModel.EnumAttributeValue
+import java.util.List
+import org.sqlproc.model.generator.ProcessorGeneratorUtils
+import org.eclipse.xtext.xbase.XStringLiteral
+import org.eclipse.xtext.xbase.XNumberLiteral
+import org.eclipse.xtext.common.types.JvmVisibility
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -73,17 +79,62 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    	}
 
    	def dispatch void infer(EnumEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-   		acceptor.accept(entity.toEnumerationType(entity.fullyQualifiedName) []) [
+   		val enumType = entity.toEnumerationType(entity.fullyQualifiedName) []
+   		val simpleName = entity.name
+   		acceptor.accept(enumType) [
    			documentation = entity.documentation
    			addAnnotations(entity.annotations.map[a|a.annotation])
-
+			val List<EnumAttributeValue> values = newArrayList()
 			for (dir : entity.attribute.directives) {
 				if (dir instanceof EnumAttributeDirectiveValues) {
 					val dv = dir as EnumAttributeDirectiveValues
-					for (epv : dv.values)
-						members += entity.toEnumerationLiteral(epv.name)
+					for (epv : dv.values) {
+						val value = switch(epv.value) {
+							XStringLiteral: '"'+(epv.value as XStringLiteral).value+'"'
+							XNumberLiteral: (epv.value as XNumberLiteral).value
+						}
+						members += entity.toEnumerationLiteral(epv.name, [
+							initializer = [
+								append('('+value+')')
+							]
+						])
+						values += epv
+					}
 				}
-			}   				
+			}
+			val identifierMapType = typeRef(java.util.Map, entity.attribute.type, typeRef(enumType))
+			members += entity.toField('identifierMap', identifierMapType) [
+ 				static = true
+ 				initializer = ''' new java.util.HashMap<«entity.attribute.type», «entity.name»>()'''
+   			]
+			members += entity.toField('value', entity.attribute.type)
+   			members += entity.toConstructor[
+   				parameters += entity.toParameter('value', entity.attribute.type)
+   				visibility = JvmVisibility.PRIVATE
+   				body = '''
+					this.value = value;
+				'''
+   			]
+   			members += entity.toMethod ("fromValue", typeRef(enumType).clone()) [
+				parameters += entity.toParameter("value", entity.attribute.type)
+				body = '''
+					«simpleName» result = identifierMap.get(value);
+					if (result == null) {
+						throw new IllegalArgumentException("No «simpleName» for value: " + value);
+					}
+					return result;
+				'''
+			]
+   			members += entity.toMethod ("getValue", entity.attribute.type) [
+				body = '''
+					return value;
+				'''
+			]
+   			members += entity.toMethod ("getName", typeRef(String)) [
+				body = '''
+					return name();
+				'''
+			]
    		]
    	}
 

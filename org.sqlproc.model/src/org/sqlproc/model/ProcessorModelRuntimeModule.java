@@ -3,9 +3,15 @@
  */
 package org.sqlproc.model;
 
+import org.sqlproc.model.generator.ProcessorModelGenerator;
+
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 public class ProcessorModelRuntimeModule extends org.sqlproc.model.AbstractProcessorModelRuntimeModule {
 
+    @Override
+    public Class<? extends org.eclipse.xtext.generator.IGenerator> bindIGenerator() {
+        return ProcessorModelGenerator.class;
+    }
 }
