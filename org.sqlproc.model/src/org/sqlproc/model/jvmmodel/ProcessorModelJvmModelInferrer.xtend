@@ -18,6 +18,7 @@ import org.sqlproc.model.generator.ProcessorGeneratorUtils
 import org.eclipse.xtext.xbase.XStringLiteral
 import org.eclipse.xtext.xbase.XNumberLiteral
 import org.eclipse.xtext.common.types.JvmVisibility
+import org.eclipse.xtext.common.types.JvmGenericType
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -61,11 +62,41 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
 	 */
 	 
    	def dispatch void infer(PojoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
+   		val entityType = entity.toEnumerationType(entity.fullyQualifiedName) []
+   		val simpleName = entity.name
    		acceptor.accept(entity.toClass(entity.fullyQualifiedName)) [
    			documentation = entity.documentation
-   			addAnnotations(entity.annotations.map[a|a.annotation])
+   			if (entity.isAbstract)
+   				abstract = true
+   			for (an : entity.annotations.map[a|a.annotation]) {
+   				if (an.annotationType.identifier == 'java.io.Serializable') {
+   					superTypes += typeRef(an.annotationType)
+   				}
+   				else {
+   					addAnnotation(an)
+   				}
+   			}
+   			for (impl : entity.getImplements) {
+   				superTypes += impl.implements.cloneWithProxies
+   			}
+   			val ext = entity.getExtends
+   			if (ext != null)
+   				superTypes += ext.extends.cloneWithProxies
    			if (entity.superType != null)
    				superTypes += entity.superType.cloneWithProxies
+   				
+   			for (attr : entity.attributes.filter(x | x.index != null)) {
+				members += entity.toField('ORDER_BY_'+attr.constName, typeRef(int)) [
+ 					static = true
+ 					initializer = '''«attr.index»'''
+   				]
+   			}
+   			for (entry : entity.index.entrySet) {
+				members += entity.toField('ORDER_BY_'+constName(entry.value), typeRef(int)) [
+ 					static = true
+ 					initializer = '''«entry.key»'''
+   				]
+   			}
    				
    			for (attr : entity.attributes) {
    				val type = attr.type ?: attr.initExpr?.inferredType ?: typeRef(String)
@@ -79,11 +110,18 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    	}
 
    	def dispatch void infer(EnumEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-   		val enumType = entity.toEnumerationType(entity.fullyQualifiedName) []
+   		val entityType = entity.toEnumerationType(entity.fullyQualifiedName) []
    		val simpleName = entity.name
-   		acceptor.accept(enumType) [
+   		acceptor.accept(entityType) [
    			documentation = entity.documentation
-   			addAnnotations(entity.annotations.map[a|a.annotation])
+   			for (a : entity.annotations.map[a|a.annotation]) {
+   				if (a.annotationType.identifier == 'java.io.Serializable') {
+   					superTypes += typeRef(a.annotationType)
+   				}
+   				else {
+   					addAnnotation(a)
+   				}
+   			}
 			val List<EnumAttributeValue> values = newArrayList()
 			for (dir : entity.attribute.directives) {
 				if (dir instanceof EnumAttributeDirectiveValues) {
@@ -102,11 +140,21 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
 					}
 				}
 			}
-			val identifierMapType = typeRef(java.util.Map, entity.attribute.type, typeRef(enumType))
+			val identifierMapType = typeRef(java.util.Map, entity.attribute.type, typeRef(entityType).cloneWithProxies)
 			members += entity.toField('identifierMap', identifierMapType) [
  				static = true
- 				initializer = ''' new java.util.HashMap<«entity.attribute.type», «entity.name»>()'''
+ 				initializer = ''' identifierMapBuild()'''
    			]
+   			members += entity.toMethod ('identifierMapBuild', identifierMapType) [
+ 				static = true
+				body = '''
+					Map<«entity.attribute.type», «simpleName»> _identifierMap = new java.util.HashMap<«entity.attribute.type», «simpleName»>();
+					for («simpleName» value : «simpleName».values()) {
+						_identifierMap.put(value.getValue(), value);
+					}
+					return _identifierMap;
+				'''
+			]
 			members += entity.toField('value', entity.attribute.type)
    			members += entity.toConstructor[
    				parameters += entity.toParameter('value', entity.attribute.type)
@@ -115,8 +163,8 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
 					this.value = value;
 				'''
    			]
-   			members += entity.toMethod ("fromValue", typeRef(enumType).clone()) [
-				parameters += entity.toParameter("value", entity.attribute.type)
+   			members += entity.toMethod ('fromValue', typeRef(entityType).cloneWithProxies) [
+				parameters += entity.toParameter('value', entity.attribute.type)
 				body = '''
 					«simpleName» result = identifierMap.get(value);
 					if (result == null) {
@@ -125,12 +173,12 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
 					return result;
 				'''
 			]
-   			members += entity.toMethod ("getValue", entity.attribute.type) [
+   			members += entity.toMethod ('getValue', entity.attribute.type) [
 				body = '''
 					return value;
 				'''
 			]
-   			members += entity.toMethod ("getName", typeRef(String)) [
+   			members += entity.toMethod ('getName', typeRef(String)) [
 				body = '''
 					return name();
 				'''

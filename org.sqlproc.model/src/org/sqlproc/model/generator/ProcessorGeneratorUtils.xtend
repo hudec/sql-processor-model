@@ -369,6 +369,40 @@ class ProcessorGeneratorUtils {
 		return (se as PojoEntity).getAttribute(name)
     }
 
+    def dispatch String constName(PojoAttribute attr) {
+        return constName(attr.name)
+    }
+
+    def dispatch String constName(List<PojoAttribute> l) {
+        val StringBuilder result = new StringBuilder("")
+        var first = true
+        for (attr : l) {
+            if (first) {
+                first = false
+            } else {
+                result.append("_")
+            }
+            result.append(constName(attr.name))
+        }
+        return result.toString()
+    }
+
+    def dispatch String constName(String name) {
+        val StringBuilder result = new StringBuilder("")
+        name.toCharArray
+        for (c : name.toCharArray) {
+            if (Character.isUpperCase(c)) {
+            	result.append("_")
+            	result.append(c)
+            }
+            else {
+            	result.append(Character.toUpperCase(c))
+            }
+        }
+        return result.toString
+    }
+
+
 //    def String getSuffix(Entity pojo) {
 //        val Package packageDeclaration = getContainerOfType(pojo, Package)
 //        return getSuffix(packageDeclaration)
@@ -653,4 +687,104 @@ class ProcessorGeneratorUtils {
         else
             return "" + pv.getNumber()
     }
+
+	// extends, implements
+	def getExtends(EnumEntity e) {
+		for(ext: e.eContainer.eContainer.eContents.filter(typeof(Extends))) {
+			return ext.getExtends().simpleName
+		}
+		return ""
+	}
+	
+	def isImplements(EnumEntity e) {
+		for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
+			return true
+		}
+		return false
+	}
+	
+	def isExtends(PojoEntity e) {
+		for(ext: e.eContainer.eContainer.eContents.filter(typeof(Extends))) {
+			if (!ext.onlyPojos.empty) {
+				for (ee : ext.onlyPojos) {
+					if (ee.name == e.name)
+						return true
+				}
+				return false
+			}
+			for (ee : ext.exceptPojos) {
+				if (ee.name == e.name)
+					return false
+			}
+			return true
+		}
+		return false
+	}
+	
+	def isExtends(PojoEntity e, Extends ext) {
+		if (!ext.onlyPojos.empty) {
+			for (ee : ext.onlyPojos) {
+				if (ee.name == e.name)
+				return true
+			}
+			return false
+		}
+		for (ee : ext.exceptPojos) {
+			if (ee.name == e.name)
+				return false;
+		}
+		return true
+	}
+	
+	def getExtends(PojoEntity e) {
+		for(ext: e.eContainer.eContainer.eContents.filter(typeof(Extends))) {
+			if (isExtends(e, ext))
+				return ext
+		}
+		return null
+	}
+	
+	def isImplements(PojoEntity e) {
+		for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
+			for (ee : ext.exceptPojos) {
+				if (ee.name == e.name)
+					return false
+			}
+			if (!ext.onlyPojos.empty) {
+				for (ee : ext.onlyPojos) {
+					if (ee.name == e.name)
+						return true
+				}
+			}
+			else {
+				return true
+			}
+		}
+		return false
+	}
+	
+	def isImplements(PojoEntity e, Implements ext) {
+		if (!ext.onlyPojos.empty) {
+			for (ee : ext.onlyPojos) {
+				if (ee.name == e.name)
+				return true
+			}
+			return false
+		}
+		for (ee : ext.exceptPojos) {
+			if (ee.name == e.name)
+				return false;
+		}
+		return true
+	}
+	
+	def getImplements(PojoEntity e) {
+		val List<Implements> list = newArrayList()
+		
+		for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
+			if (isImplements(e, ext))
+				list.add(ext)
+		}
+		return list
+	}
 }
