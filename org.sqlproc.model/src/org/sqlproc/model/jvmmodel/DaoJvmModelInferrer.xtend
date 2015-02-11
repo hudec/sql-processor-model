@@ -171,7 +171,11 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    					inferInsert(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members)
    					inferGet(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferUpdate(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members)
-   				}			
+   					inferDelete(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members)
+   				}
+   				else if (dir instanceof DaoDirectiveQuery) {
+   					inferList(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   				}
    			}
    		]
    	}
@@ -326,6 +330,110 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
 			body = '''
 				return update(«pojoAttrName», null);
+   			'''
+   		]	
+	}
+
+   	def void inferDelete(DaoEntity entity, DaoDirectiveCrud dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		val parent = pojo.parent
+   		
+		members += entity.toMethod('delete', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				if (logger.isTraceEnabled()) {
+					logger.trace("sql delete «pojoAttrName»: " + «pojoAttrName» + " " + sqlControl);
+				}
+				«CRUD_ENGINE» sqlDeleteEngine«pojo.name» = sqlEngineFactory.getCheckedCrudEngine("DELETE_«dbName(pojo.name)»");«IF parent != null»
+				«CRUD_ENGINE» sqlDelete«parent.name» = sqlEngineFactory.getCheckedCrudEngine("DELETE_«dbName(parent.name)»");«ENDIF»
+				int count = sqlDeleteEngine«pojo.name».delete(sqlSession, «pojoAttrName», sqlControl);«IF parent != null»
+				if (count > 0) {
+					sqlDelete«parent.name».delete(sqlSession, «pojoAttrName», sqlControl);
+				}«ENDIF»«val f=getOptLock(pojo)»«IF f != null»
+				if (count > 0) {
+					«pojoAttrName».set«f.name.toFirstUpper»(«pojoAttrName».get«f.name.toFirstUpper»() + 1);
+				}«ENDIF»
+				if (logger.isTraceEnabled()) {
+					logger.trace("sql delete «pojoAttrName» result count: " + count);
+				}
+				return count;
+   				'''
+   		]	
+   		
+		members += entity.toMethod('delete', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				return delete(sqlSessionFactory.getSqlSession(), «pojoAttrName», sqlControl);
+			'''
+   		]	
+   		
+		members += entity.toMethod('delete', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			body = '''
+				return delete(sqlSession, «pojoAttrName», null);
+   			'''
+   		]	
+   		
+		members += entity.toMethod('delete', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			body = '''
+				return delete(«pojoAttrName», null);
+   			'''
+   		]	
+	}
+
+   	def void inferList(DaoEntity entity, DaoDirectiveQuery dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		val parent = pojo.parent
+   		val listType = typeRef(java.util.List, typeRef(pojoType))
+   			
+		members += entity.toMethod('list', listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				if (logger.isTraceEnabled()) {
+					logger.trace("list «pojoAttrName»: " + «pojoAttrName» + " " + sqlControl);
+				}
+				«QUERY_ENGINE» sqlEngine«pojo.name» = sqlEngineFactory.getCheckedQueryEngine("SELECT_«dbName(pojo.name)»");
+				«IF moreResultClasses.empty»//«ENDIF»sqlControl = getMoreResultClasses(«pojoAttrName», sqlControl);
+				List<«pojo.name»> «pojoAttrName»List = sqlEngine«pojo.name».query(sqlSession, «pojo.name».class, «pojoAttrName», sqlControl);
+				if (logger.isTraceEnabled()) {
+					logger.trace("list «pojoAttrName» size: " + ((«pojoAttrName»List != null) ? «pojoAttrName»List.size() : "null"));
+				}
+				return «pojoAttrName»List;
+   				'''
+   		]	
+   		
+		members += entity.toMethod('list', listType) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				return list(sqlSessionFactory.getSqlSession(), «pojoAttrName», sqlControl);
+			'''
+   		]	
+   		
+		members += entity.toMethod('list', listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			body = '''
+				return list(sqlSession, «pojoAttrName», null);
+   			'''
+   		]	
+   		
+		members += entity.toMethod('list', listType) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			body = '''
+				return list(«pojoAttrName», null);
    			'''
    		]	
 	}

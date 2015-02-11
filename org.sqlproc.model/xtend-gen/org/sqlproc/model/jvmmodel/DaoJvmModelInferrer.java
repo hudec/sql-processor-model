@@ -34,6 +34,7 @@ import org.sqlproc.model.jvmmodel.ProcessorTypesBuilder;
 import org.sqlproc.model.processorModel.Annotation;
 import org.sqlproc.model.processorModel.DaoDirective;
 import org.sqlproc.model.processorModel.DaoDirectiveCrud;
+import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoEntity;
 import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.Implements;
@@ -335,6 +336,13 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
             DaoJvmModelInferrer.this.inferGet(entity, ((DaoDirectiveCrud) dir), entityType, simpleName, pojo, pojoType, _members_8, moreResultClasses);
             EList<JvmMember> _members_9 = it.getMembers();
             DaoJvmModelInferrer.this.inferUpdate(entity, ((DaoDirectiveCrud) dir), entityType, simpleName, pojo, pojoType, _members_9);
+            EList<JvmMember> _members_10 = it.getMembers();
+            DaoJvmModelInferrer.this.inferDelete(entity, ((DaoDirectiveCrud) dir), entityType, simpleName, pojo, pojoType, _members_10);
+          } else {
+            if ((dir instanceof DaoDirectiveQuery)) {
+              EList<JvmMember> _members_11 = it.getMembers();
+              DaoJvmModelInferrer.this.inferList(entity, ((DaoDirectiveQuery) dir), entityType, simpleName, pojo, pojoType, _members_11, moreResultClasses);
+            }
           }
         }
       }
@@ -875,6 +883,366 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
       }
     };
     JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, "update", _typeRef_3, _function_3);
+    members.add(_method_3);
+  }
+  
+  public void inferDelete(final DaoEntity entity, final DaoDirectiveCrud dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members) {
+    String _name = pojo.getName();
+    final String pojoAttrName = StringExtensions.toFirstLower(_name);
+    final PojoEntity parent = this._processorGeneratorUtils.getParent(pojo);
+    JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("if (logger.isTraceEnabled()) {");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("logger.trace(\"sql delete ");
+            _builder.append(pojoAttrName, "\t");
+            _builder.append(": \" + ");
+            _builder.append(pojoAttrName, "\t");
+            _builder.append(" + \" \" + sqlControl);");
+            _builder.newLineIfNotEmpty();
+            _builder.append("}");
+            _builder.newLine();
+            _builder.append(DaoJvmModelInferrer.this.CRUD_ENGINE, "");
+            _builder.append(" sqlDeleteEngine");
+            String _name = pojo.getName();
+            _builder.append(_name, "");
+            _builder.append(" = sqlEngineFactory.getCheckedCrudEngine(\"DELETE_");
+            String _name_1 = pojo.getName();
+            String _dbName = DaoJvmModelInferrer.this._processorGeneratorUtils.dbName(_name_1);
+            _builder.append(_dbName, "");
+            _builder.append("\");");
+            {
+              boolean _notEquals = (!Objects.equal(parent, null));
+              if (_notEquals) {
+                _builder.newLineIfNotEmpty();
+                _builder.append(DaoJvmModelInferrer.this.CRUD_ENGINE, "");
+                _builder.append(" sqlDelete");
+                String _name_2 = parent.getName();
+                _builder.append(_name_2, "");
+                _builder.append(" = sqlEngineFactory.getCheckedCrudEngine(\"DELETE_");
+                String _name_3 = parent.getName();
+                String _dbName_1 = DaoJvmModelInferrer.this._processorGeneratorUtils.dbName(_name_3);
+                _builder.append(_dbName_1, "");
+                _builder.append("\");");
+              }
+            }
+            _builder.newLineIfNotEmpty();
+            _builder.append("int count = sqlDeleteEngine");
+            String _name_4 = pojo.getName();
+            _builder.append(_name_4, "");
+            _builder.append(".delete(sqlSession, ");
+            _builder.append(pojoAttrName, "");
+            _builder.append(", sqlControl);");
+            {
+              boolean _notEquals_1 = (!Objects.equal(parent, null));
+              if (_notEquals_1) {
+                _builder.newLineIfNotEmpty();
+                _builder.append("if (count > 0) {");
+                _builder.newLine();
+                _builder.append("\t");
+                _builder.append("sqlDelete");
+                String _name_5 = parent.getName();
+                _builder.append(_name_5, "\t");
+                _builder.append(".delete(sqlSession, ");
+                _builder.append(pojoAttrName, "\t");
+                _builder.append(", sqlControl);");
+                _builder.newLineIfNotEmpty();
+                _builder.append("}");
+              }
+            }
+            final PojoAttribute f = DaoJvmModelInferrer.this._processorGeneratorUtils.getOptLock(pojo);
+            {
+              boolean _notEquals_2 = (!Objects.equal(f, null));
+              if (_notEquals_2) {
+                _builder.newLineIfNotEmpty();
+                _builder.append("if (count > 0) {");
+                _builder.newLine();
+                _builder.append("\t");
+                _builder.append(pojoAttrName, "\t");
+                _builder.append(".set");
+                String _name_6 = f.getName();
+                String _firstUpper = StringExtensions.toFirstUpper(_name_6);
+                _builder.append(_firstUpper, "\t");
+                _builder.append("(");
+                _builder.append(pojoAttrName, "\t");
+                _builder.append(".get");
+                String _name_7 = f.getName();
+                String _firstUpper_1 = StringExtensions.toFirstUpper(_name_7);
+                _builder.append(_firstUpper_1, "\t");
+                _builder.append("() + 1);");
+                _builder.newLineIfNotEmpty();
+                _builder.append("}");
+              }
+            }
+            _builder.newLineIfNotEmpty();
+            _builder.append("if (logger.isTraceEnabled()) {");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("logger.trace(\"sql delete ");
+            _builder.append(pojoAttrName, "\t");
+            _builder.append(" result count: \" + count);");
+            _builder.newLineIfNotEmpty();
+            _builder.append("}");
+            _builder.newLine();
+            _builder.append("return count;");
+            _builder.newLine();
+          }
+        };
+        DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, "delete", _typeRef, _function);
+    members.add(_method);
+    JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("return delete(sqlSessionFactory.getSqlSession(), ");
+            _builder.append(pojoAttrName, "");
+            _builder.append(", sqlControl);");
+            _builder.newLineIfNotEmpty();
+          }
+        };
+        DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, "delete", _typeRef_1, _function_1);
+    members.add(_method_1);
+    JvmTypeReference _typeRef_2 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("return delete(sqlSession, ");
+            _builder.append(pojoAttrName, "");
+            _builder.append(", null);");
+            _builder.newLineIfNotEmpty();
+          }
+        };
+        DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, "delete", _typeRef_2, _function_2);
+    members.add(_method_2);
+    JvmTypeReference _typeRef_3 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("return delete(");
+            _builder.append(pojoAttrName, "");
+            _builder.append(", null);");
+            _builder.newLineIfNotEmpty();
+          }
+        };
+        DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, "delete", _typeRef_3, _function_3);
+    members.add(_method_3);
+  }
+  
+  public void inferList(final DaoEntity entity, final DaoDirectiveQuery dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members, final Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses) {
+    String _name = pojo.getName();
+    final String pojoAttrName = StringExtensions.toFirstLower(_name);
+    final PojoEntity parent = this._processorGeneratorUtils.getParent(pojo);
+    JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(pojoType);
+    final JvmTypeReference listType = this._typeReferenceBuilder.typeRef(List.class, _typeRef);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("if (logger.isTraceEnabled()) {");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("logger.trace(\"list ");
+            _builder.append(pojoAttrName, "\t");
+            _builder.append(": \" + ");
+            _builder.append(pojoAttrName, "\t");
+            _builder.append(" + \" \" + sqlControl);");
+            _builder.newLineIfNotEmpty();
+            _builder.append("}");
+            _builder.newLine();
+            _builder.append(DaoJvmModelInferrer.this.QUERY_ENGINE, "");
+            _builder.append(" sqlEngine");
+            String _name = pojo.getName();
+            _builder.append(_name, "");
+            _builder.append(" = sqlEngineFactory.getCheckedQueryEngine(\"SELECT_");
+            String _name_1 = pojo.getName();
+            String _dbName = DaoJvmModelInferrer.this._processorGeneratorUtils.dbName(_name_1);
+            _builder.append(_dbName, "");
+            _builder.append("\");");
+            _builder.newLineIfNotEmpty();
+            {
+              boolean _isEmpty = moreResultClasses.isEmpty();
+              if (_isEmpty) {
+                _builder.append("//");
+              }
+            }
+            _builder.append("sqlControl = getMoreResultClasses(");
+            _builder.append(pojoAttrName, "");
+            _builder.append(", sqlControl);");
+            _builder.newLineIfNotEmpty();
+            _builder.append("List<");
+            String _name_2 = pojo.getName();
+            _builder.append(_name_2, "");
+            _builder.append("> ");
+            _builder.append(pojoAttrName, "");
+            _builder.append("List = sqlEngine");
+            String _name_3 = pojo.getName();
+            _builder.append(_name_3, "");
+            _builder.append(".query(sqlSession, ");
+            String _name_4 = pojo.getName();
+            _builder.append(_name_4, "");
+            _builder.append(".class, ");
+            _builder.append(pojoAttrName, "");
+            _builder.append(", sqlControl);");
+            _builder.newLineIfNotEmpty();
+            _builder.append("if (logger.isTraceEnabled()) {");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("logger.trace(\"list ");
+            _builder.append(pojoAttrName, "\t");
+            _builder.append(" size: \" + ((");
+            _builder.append(pojoAttrName, "\t");
+            _builder.append("List != null) ? ");
+            _builder.append(pojoAttrName, "\t");
+            _builder.append("List.size() : \"null\"));");
+            _builder.newLineIfNotEmpty();
+            _builder.append("}");
+            _builder.newLine();
+            _builder.append("return ");
+            _builder.append(pojoAttrName, "");
+            _builder.append("List;");
+            _builder.newLineIfNotEmpty();
+          }
+        };
+        DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, "list", listType, _function);
+    members.add(_method);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("return list(sqlSessionFactory.getSqlSession(), ");
+            _builder.append(pojoAttrName, "");
+            _builder.append(", sqlControl);");
+            _builder.newLineIfNotEmpty();
+          }
+        };
+        DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, "list", listType, _function_1);
+    members.add(_method_1);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("return list(sqlSession, ");
+            _builder.append(pojoAttrName, "");
+            _builder.append(", null);");
+            _builder.newLineIfNotEmpty();
+          }
+        };
+        DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, "list", listType, _function_2);
+    members.add(_method_2);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        StringConcatenationClient _client = new StringConcatenationClient() {
+          @Override
+          protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+            _builder.append("return list(");
+            _builder.append(pojoAttrName, "");
+            _builder.append(", null);");
+            _builder.newLineIfNotEmpty();
+          }
+        };
+        DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, "list", listType, _function_3);
     members.add(_method_3);
   }
 }
