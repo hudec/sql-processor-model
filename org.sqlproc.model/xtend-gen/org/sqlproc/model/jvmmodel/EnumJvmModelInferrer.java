@@ -278,6 +278,7 @@ public class EnumJvmModelInferrer extends AbstractModelInferrer {
             JvmTypeReference _type = _attribute.getType();
             JvmFormalParameter _parameter = EnumJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "value", _type);
             EnumJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+            it.setStatic(true);
             StringConcatenationClient _client = new StringConcatenationClient() {
               @Override
               protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {

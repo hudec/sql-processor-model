@@ -6,7 +6,6 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
 import org.eclipse.xtext.common.types.util.TypeReferences;
-import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
 import org.eclipse.xtext.xbase.lib.Procedures;
@@ -43,7 +42,7 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
                 && "boolean".equals(typeRef.getType().getIdentifier())) {
             prefix = "is";
         }
-        result.setSimpleName(prefix + Strings.toFirstUpper(propertyName));
+        result.setSimpleName(prefix + _toFirstUpper(propertyName));
         result.setReturnType(cloneWithProxies(typeRef));
         setBody(result, new Procedures.Procedure1<ITreeAppendable>() {
             public void apply(/* @Nullable */ITreeAppendable p) {
@@ -83,7 +82,7 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
         JvmOperation result = typesFactory.createJvmOperation();
         result.setVisibility(JvmVisibility.PUBLIC);
         result.setReturnType(references.getTypeForName(Void.TYPE, sourceElement));
-        result.setSimpleName("set" + Strings.toFirstUpper(propertyName));
+        result.setSimpleName("set" + _toFirstUpper(propertyName));
         result.getParameters().add(toParameter(sourceElement, propertyName, cloneWithProxies(typeRef)));
         setBody(result, new Procedures.Procedure1<ITreeAppendable>() {
             public void apply(/* @Nullable */ITreeAppendable p) {
@@ -94,7 +93,7 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
                         p.newLine().append("if (this.").append(fieldName).append(" != null)");
                         p.increaseIndentation();
                         p.newLine().append("this.").append(updateColumn2.getName()).append(" = this.")
-                                .append(fieldName).append(".get").append(toFirstUpper(updateColumn1.getName()))
+                                .append(fieldName).append(".get").append(_toFirstUpper(updateColumn1.getName()))
                                 .append("();");
                         p.decreaseIndentation();
                     }
@@ -105,7 +104,7 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
                                 .append(createColumn1.getType().getQualifiedName()).append("();");
                         p.decreaseIndentation();
                         p.newLine().append("this.").append(createColumn1.getName()).append(".set")
-                                .append(toFirstUpper(createColumn2.getName())).append("(").append(propertyName)
+                                .append(_toFirstUpper(createColumn2.getName())).append("(").append(propertyName)
                                 .append(");");
                     }
                 }
@@ -139,7 +138,7 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
         JvmOperation result = typesFactory.createJvmOperation();
         result.setVisibility(JvmVisibility.PUBLIC);
         result.setReturnType(cloneWithProxies(typeEntityRef));
-        result.setSimpleName("_set" + Strings.toFirstUpper(propertyName));
+        result.setSimpleName("_set" + _toFirstUpper(propertyName));
         result.getParameters().add(toParameter(sourceElement, propertyName, cloneWithProxies(typeRef)));
         setBody(result, new Procedures.Procedure1<ITreeAppendable>() {
             public void apply(/* @Nullable */ITreeAppendable p) {
@@ -150,7 +149,7 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
                         p.newLine().append("if (this.").append(fieldName).append(" != null)");
                         p.increaseIndentation();
                         p.newLine().append("this.").append(updateColumn2.getName()).append(" = this.")
-                                .append(fieldName).append(".get").append(toFirstUpper(updateColumn1.getName()))
+                                .append(fieldName).append(".get").append(_toFirstUpper(updateColumn1.getName()))
                                 .append("();");
                         p.decreaseIndentation();
                     }
@@ -161,7 +160,7 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
                                 .append(createColumn1.getType().getQualifiedName()).append("();");
                         p.decreaseIndentation();
                         p.newLine().append("this.").append(createColumn1.getName()).append(".set")
-                                .append(toFirstUpper(createColumn2.getName())).append("(").append(propertyName)
+                                .append(_toFirstUpper(createColumn2.getName())).append("(").append(propertyName)
                                 .append(");");
                     }
                     p.newLine().append("return this;");
@@ -189,7 +188,7 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
         JvmOperation result = typesFactory.createJvmOperation();
         result.setVisibility(JvmVisibility.PUBLIC);
         result.setReturnType(cloneWithProxies(typeEntityRef));
-        result.setSimpleName("_set" + Strings.toFirstUpper(propertyName));
+        result.setSimpleName("_set" + _toFirstUpper(propertyName));
         result.getParameters().add(toParameter(sourceElement, propertyName, cloneWithProxies(typeRef)));
         setBody(result, new Procedures.Procedure1<ITreeAppendable>() {
             public void apply(/* @Nullable */ITreeAppendable p) {
@@ -212,5 +211,17 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
         if (s.length() == 1)
             return s.toUpperCase();
         return s.substring(0, 1).toUpperCase() + s.substring(1);
+    }
+
+    public static String _toFirstUpper(String name) {
+        int l = name.length();
+        if (l == 0)
+            return name;
+        if (l == 1)
+            return name.toUpperCase();
+        char c = name.charAt(1);
+        if (Character.isUpperCase(c))
+            return name;
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 }

@@ -126,6 +126,7 @@ class EnumJvmModelInferrer extends AbstractModelInferrer {
    			]
    			members += entity.toMethod ('fromValue', typeRef(entityType).cloneWithProxies) [
 				parameters += entity.toParameter('value', entity.attribute.type)
+ 				static = true
 				body = '''
 					«simpleName» result = identifierMap.get(value);
 					if (result == null) {
