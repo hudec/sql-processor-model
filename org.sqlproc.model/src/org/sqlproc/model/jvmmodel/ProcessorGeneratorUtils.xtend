@@ -31,7 +31,6 @@ import org.sqlproc.model.processorModel.Artifacts
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.sqlproc.model.processorModel.ProcessorModelPackage
-import org.sqlproc.model.processorModel.FunProcDirective
 import org.eclipse.xtext.common.types.JvmPrimitiveType
 import org.sqlproc.model.processorModel.Implements
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics
@@ -64,6 +63,7 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.sqlproc.model.processorModel.DaoDirectivePojo
+import org.sqlproc.model.processorModel.DaoFunProcDirective
 
 class ProcessorGeneratorUtils {
 
@@ -465,13 +465,13 @@ class ProcessorGeneratorUtils {
     
     def getPojoDirectiveIndirect(DaoEntity dao) {
     	dao?.directives.findFirst[x|x instanceof DaoDirectiveCrud || 
-    		x instanceof DaoDirectiveQuery || x instanceof FunProcDirective
+    		x instanceof DaoDirectiveQuery || x instanceof DaoFunProcDirective
     	] 
     }
     
-    def DaoDirectivePojo getPojoDirective(DaoEntity dao) {
-    	dao?.directives.findFirst[x|x instanceof DaoDirectivePojo] as DaoDirectivePojo
-    }
+//    def DaoDirectivePojo getPojoDirective(DaoEntity dao) {
+//    	dao?.directives.findFirst[x|x instanceof DaoDirectivePojo] as DaoDirectivePojo
+//    }
     
     def String getFunProcName(DaoEntity dao) {
         var pojoName = dao.getName()
@@ -542,8 +542,15 @@ class ProcessorGeneratorUtils {
 //    }
 
     def PojoEntity getPojo(DaoEntity dao) {
-    	val DaoDirectivePojo pojoDirective = dao?.getPojoDirective
-    	return pojoDirective?.pojo
+    	for (dir : dao.directives) {
+    		if (dir instanceof DaoDirectiveCrud)
+    			return (dir as DaoDirectiveCrud).pojo
+    		else if (dir instanceof DaoDirectiveQuery)
+    			return (dir as DaoDirectiveQuery).pojo
+    		else if (dir instanceof DaoDirectivePojo)
+    			return (dir as DaoDirectivePojo).pojo
+    	}
+    	return null
     }
 
     def PojoEntity getParent(PojoEntity pojo) {
@@ -563,10 +570,15 @@ class ProcessorGeneratorUtils {
 		return if(d != null) true else false
     }
 
+    def isFunctionProcedure(DaoEntity dao) {
+		val d = dao.directives?.findFirst[x|x instanceof DaoFunProcDirective]
+		return if(d != null) true else false
+    }
+
     def listFunctionsDirectives(DaoEntity dao) {
-    	val List<FunProcDirective> result = newArrayList()
-		dao.directives?.filter[x|x instanceof FunProcDirective].forEach[
-			result.add(it as FunProcDirective)
+    	val List<DaoFunProcDirective> result = newArrayList()
+		dao.directives?.filter[x|x instanceof DaoFunProcDirective].forEach[
+			result.add(it as DaoFunProcDirective)
 		]
 		return result
     }

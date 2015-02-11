@@ -24011,11 +24011,11 @@ rule__DaoDirective__Group_4__0__Impl
     }
 :
 (
-{ before(grammarAccess.getDaoDirectiveAccess().getFunProcDirectiveAction_4_0()); }
+{ before(grammarAccess.getDaoDirectiveAccess().getDaoFunProcDirectiveAction_4_0()); }
 (
 
 )
-{ after(grammarAccess.getDaoDirectiveAccess().getFunProcDirectiveAction_4_0()); }
+{ after(grammarAccess.getDaoDirectiveAccess().getDaoFunProcDirectiveAction_4_0()); }
 )
 
 ;
@@ -46501,8 +46501,12 @@ rule__DaoDirective__PojoAssignment_2_2_1
     }
 :
 (
-{ before(grammarAccess.getDaoDirectiveAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_2_2_1_0()); }
-	ruleJvmParameterizedTypeReference{ after(grammarAccess.getDaoDirectiveAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_2_2_1_0()); }
+{ before(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_2_2_1_0()); }
+(
+{ before(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityValidIDParserRuleCall_2_2_1_0_1()); }
+	ruleValidID{ after(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityValidIDParserRuleCall_2_2_1_0_1()); }
+)
+{ after(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_2_2_1_0()); }
 )
 
 ;
@@ -46516,8 +46520,12 @@ rule__DaoDirective__PojoAssignment_3_2_1
     }
 :
 (
-{ before(grammarAccess.getDaoDirectiveAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_2_1_0()); }
-	ruleJvmParameterizedTypeReference{ after(grammarAccess.getDaoDirectiveAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_2_1_0()); }
+{ before(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_3_2_1_0()); }
+(
+{ before(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityValidIDParserRuleCall_3_2_1_0_1()); }
+	ruleValidID{ after(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityValidIDParserRuleCall_3_2_1_0_1()); }
+)
+{ after(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_3_2_1_0()); }
 )
 
 ;

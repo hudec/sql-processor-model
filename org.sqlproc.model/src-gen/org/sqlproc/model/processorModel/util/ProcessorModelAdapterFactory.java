@@ -31,6 +31,7 @@ import org.sqlproc.model.processorModel.DaoDirectivePojo;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoDirectiveSerializable;
 import org.sqlproc.model.processorModel.DaoEntity;
+import org.sqlproc.model.processorModel.DaoFunProcDirective;
 import org.sqlproc.model.processorModel.DaogenProperty;
 import org.sqlproc.model.processorModel.DatabaseCatalogAssignement;
 import org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement;
@@ -54,7 +55,6 @@ import org.sqlproc.model.processorModel.ExportAssignement;
 import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.ExtendsAssignement;
 import org.sqlproc.model.processorModel.ExtendsAssignementGenerics;
-import org.sqlproc.model.processorModel.FunProcDirective;
 import org.sqlproc.model.processorModel.FunProcType;
 import org.sqlproc.model.processorModel.FunctionCall;
 import org.sqlproc.model.processorModel.FunctionCallQuery;
@@ -647,9 +647,9 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
         return createDaoDirectiveQueryAdapter();
       }
       @Override
-      public Adapter caseFunProcDirective(FunProcDirective object)
+      public Adapter caseDaoFunProcDirective(DaoFunProcDirective object)
       {
-        return createFunProcDirectiveAdapter();
+        return createDaoFunProcDirectiveAdapter();
       }
       @Override
       public Adapter caseDaoDirectivePojo(DaoDirectivePojo object)
@@ -2124,16 +2124,16 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.FunProcDirective <em>Fun Proc Directive</em>}'.
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.DaoFunProcDirective <em>Dao Fun Proc Directive</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.sqlproc.model.processorModel.FunProcDirective
+   * @see org.sqlproc.model.processorModel.DaoFunProcDirective
    * @generated
    */
-  public Adapter createFunProcDirectiveAdapter()
+  public Adapter createDaoFunProcDirectiveAdapter()
   {
     return null;
   }

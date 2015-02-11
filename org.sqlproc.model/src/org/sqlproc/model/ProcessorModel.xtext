@@ -299,9 +299,9 @@ FunProcType :
 DaoDirective:
 	{DaoDirectiveSerializable} '#Serializable' '(' sernum=INT ')'
 	| {DaoDirectiveDiscriminator} '#InheritanceHandler' '(' ancestor=[PojoAttribute|ValidID] (',' descendants+=DescendantAssignment)+ ')'
-	| {DaoDirectiveCrud} '#CRUD' (=> '(' pojo=JvmParameterizedTypeReference ')')?
-	| {DaoDirectiveQuery} '#Query' (=> '(' pojo=JvmParameterizedTypeReference ')')?
-	| {FunProcDirective} type=FunProcType (=> '(' paramlist=DaoDirectiveParameters ')')?
+	| {DaoDirectiveCrud} '#CRUD' (=> '(' pojo=[PojoEntity|ValidID] ')')?
+	| {DaoDirectiveQuery} '#Query' (=> '(' pojo=[PojoEntity|ValidID] ')')?
+	| {DaoFunProcDirective} type=FunProcType (=> '(' paramlist=DaoDirectiveParameters ')')?
 	| {DaoDirectivePojo} '#Pojo' (=> '(' pojo=[PojoEntity|ValidID] ')')
 ;
 

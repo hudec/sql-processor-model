@@ -3795,7 +3795,7 @@ public interface ProcessorModelPackage extends EPackage
   int DAO_DIRECTIVE_CRUD = 92;
 
   /**
-   * The feature id for the '<em><b>Pojo</b></em>' containment reference.
+   * The feature id for the '<em><b>Pojo</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -3823,7 +3823,7 @@ public interface ProcessorModelPackage extends EPackage
   int DAO_DIRECTIVE_QUERY = 93;
 
   /**
-   * The feature id for the '<em><b>Pojo</b></em>' containment reference.
+   * The feature id for the '<em><b>Pojo</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -3841,14 +3841,14 @@ public interface ProcessorModelPackage extends EPackage
   int DAO_DIRECTIVE_QUERY_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.FunProcDirectiveImpl <em>Fun Proc Directive</em>}' class.
+   * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.DaoFunProcDirectiveImpl <em>Dao Fun Proc Directive</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.sqlproc.model.processorModel.impl.FunProcDirectiveImpl
-   * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getFunProcDirective()
+   * @see org.sqlproc.model.processorModel.impl.DaoFunProcDirectiveImpl
+   * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoFunProcDirective()
    * @generated
    */
-  int FUN_PROC_DIRECTIVE = 94;
+  int DAO_FUN_PROC_DIRECTIVE = 94;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -3857,7 +3857,7 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUN_PROC_DIRECTIVE__TYPE = DAO_DIRECTIVE_FEATURE_COUNT + 0;
+  int DAO_FUN_PROC_DIRECTIVE__TYPE = DAO_DIRECTIVE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Paramlist</b></em>' containment reference.
@@ -3866,16 +3866,16 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUN_PROC_DIRECTIVE__PARAMLIST = DAO_DIRECTIVE_FEATURE_COUNT + 1;
+  int DAO_FUN_PROC_DIRECTIVE__PARAMLIST = DAO_DIRECTIVE_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Fun Proc Directive</em>' class.
+   * The number of structural features of the '<em>Dao Fun Proc Directive</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUN_PROC_DIRECTIVE_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 2;
+  int DAO_FUN_PROC_DIRECTIVE_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.DaoDirectivePojoImpl <em>Dao Directive Pojo</em>}' class.
@@ -7324,10 +7324,10 @@ public interface ProcessorModelPackage extends EPackage
   EClass getDaoDirectiveCrud();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.DaoDirectiveCrud#getPojo <em>Pojo</em>}'.
+   * Returns the meta object for the reference '{@link org.sqlproc.model.processorModel.DaoDirectiveCrud#getPojo <em>Pojo</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Pojo</em>'.
+   * @return the meta object for the reference '<em>Pojo</em>'.
    * @see org.sqlproc.model.processorModel.DaoDirectiveCrud#getPojo()
    * @see #getDaoDirectiveCrud()
    * @generated
@@ -7345,10 +7345,10 @@ public interface ProcessorModelPackage extends EPackage
   EClass getDaoDirectiveQuery();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.DaoDirectiveQuery#getPojo <em>Pojo</em>}'.
+   * Returns the meta object for the reference '{@link org.sqlproc.model.processorModel.DaoDirectiveQuery#getPojo <em>Pojo</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Pojo</em>'.
+   * @return the meta object for the reference '<em>Pojo</em>'.
    * @see org.sqlproc.model.processorModel.DaoDirectiveQuery#getPojo()
    * @see #getDaoDirectiveQuery()
    * @generated
@@ -7356,36 +7356,36 @@ public interface ProcessorModelPackage extends EPackage
   EReference getDaoDirectiveQuery_Pojo();
 
   /**
-   * Returns the meta object for class '{@link org.sqlproc.model.processorModel.FunProcDirective <em>Fun Proc Directive</em>}'.
+   * Returns the meta object for class '{@link org.sqlproc.model.processorModel.DaoFunProcDirective <em>Dao Fun Proc Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Fun Proc Directive</em>'.
-   * @see org.sqlproc.model.processorModel.FunProcDirective
+   * @return the meta object for class '<em>Dao Fun Proc Directive</em>'.
+   * @see org.sqlproc.model.processorModel.DaoFunProcDirective
    * @generated
    */
-  EClass getFunProcDirective();
+  EClass getDaoFunProcDirective();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.FunProcDirective#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.DaoFunProcDirective#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Type</em>'.
-   * @see org.sqlproc.model.processorModel.FunProcDirective#getType()
-   * @see #getFunProcDirective()
+   * @see org.sqlproc.model.processorModel.DaoFunProcDirective#getType()
+   * @see #getDaoFunProcDirective()
    * @generated
    */
-  EReference getFunProcDirective_Type();
+  EReference getDaoFunProcDirective_Type();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.FunProcDirective#getParamlist <em>Paramlist</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.DaoFunProcDirective#getParamlist <em>Paramlist</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Paramlist</em>'.
-   * @see org.sqlproc.model.processorModel.FunProcDirective#getParamlist()
-   * @see #getFunProcDirective()
+   * @see org.sqlproc.model.processorModel.DaoFunProcDirective#getParamlist()
+   * @see #getDaoFunProcDirective()
    * @generated
    */
-  EReference getFunProcDirective_Paramlist();
+  EReference getDaoFunProcDirective_Paramlist();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.DaoDirectivePojo <em>Dao Directive Pojo</em>}'.
@@ -10144,7 +10144,7 @@ public interface ProcessorModelPackage extends EPackage
     EClass DAO_DIRECTIVE_CRUD = eINSTANCE.getDaoDirectiveCrud();
 
     /**
-     * The meta object literal for the '<em><b>Pojo</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Pojo</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -10162,7 +10162,7 @@ public interface ProcessorModelPackage extends EPackage
     EClass DAO_DIRECTIVE_QUERY = eINSTANCE.getDaoDirectiveQuery();
 
     /**
-     * The meta object literal for the '<em><b>Pojo</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Pojo</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -10170,14 +10170,14 @@ public interface ProcessorModelPackage extends EPackage
     EReference DAO_DIRECTIVE_QUERY__POJO = eINSTANCE.getDaoDirectiveQuery_Pojo();
 
     /**
-     * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.FunProcDirectiveImpl <em>Fun Proc Directive</em>}' class.
+     * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.DaoFunProcDirectiveImpl <em>Dao Fun Proc Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.sqlproc.model.processorModel.impl.FunProcDirectiveImpl
-     * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getFunProcDirective()
+     * @see org.sqlproc.model.processorModel.impl.DaoFunProcDirectiveImpl
+     * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoFunProcDirective()
      * @generated
      */
-    EClass FUN_PROC_DIRECTIVE = eINSTANCE.getFunProcDirective();
+    EClass DAO_FUN_PROC_DIRECTIVE = eINSTANCE.getDaoFunProcDirective();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
@@ -10185,7 +10185,7 @@ public interface ProcessorModelPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FUN_PROC_DIRECTIVE__TYPE = eINSTANCE.getFunProcDirective_Type();
+    EReference DAO_FUN_PROC_DIRECTIVE__TYPE = eINSTANCE.getDaoFunProcDirective_Type();
 
     /**
      * The meta object literal for the '<em><b>Paramlist</b></em>' containment reference feature.
@@ -10193,7 +10193,7 @@ public interface ProcessorModelPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FUN_PROC_DIRECTIVE__PARAMLIST = eINSTANCE.getFunProcDirective_Paramlist();
+    EReference DAO_FUN_PROC_DIRECTIVE__PARAMLIST = eINSTANCE.getDaoFunProcDirective_Paramlist();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.DaoDirectivePojoImpl <em>Dao Directive Pojo</em>}' class.

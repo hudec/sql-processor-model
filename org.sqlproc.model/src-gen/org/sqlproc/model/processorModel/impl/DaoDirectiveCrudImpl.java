@@ -3,16 +3,14 @@
 package org.sqlproc.model.processorModel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
-
 import org.sqlproc.model.processorModel.DaoDirectiveCrud;
+import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -31,14 +29,14 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
 public class DaoDirectiveCrudImpl extends DaoDirectiveImpl implements DaoDirectiveCrud
 {
   /**
-   * The cached value of the '{@link #getPojo() <em>Pojo</em>}' containment reference.
+   * The cached value of the '{@link #getPojo() <em>Pojo</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getPojo()
    * @generated
    * @ordered
    */
-  protected JvmParameterizedTypeReference pojo;
+  protected PojoEntity pojo;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,7 +64,27 @@ public class DaoDirectiveCrudImpl extends DaoDirectiveImpl implements DaoDirecti
    * <!-- end-user-doc -->
    * @generated
    */
-  public JvmParameterizedTypeReference getPojo()
+  public PojoEntity getPojo()
+  {
+    if (pojo != null && pojo.eIsProxy())
+    {
+      InternalEObject oldPojo = (InternalEObject)pojo;
+      pojo = (PojoEntity)eResolveProxy(oldPojo);
+      if (pojo != oldPojo)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessorModelPackage.DAO_DIRECTIVE_CRUD__POJO, oldPojo, pojo));
+      }
+    }
+    return pojo;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PojoEntity basicGetPojo()
   {
     return pojo;
   }
@@ -76,53 +94,12 @@ public class DaoDirectiveCrudImpl extends DaoDirectiveImpl implements DaoDirecti
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPojo(JvmParameterizedTypeReference newPojo, NotificationChain msgs)
+  public void setPojo(PojoEntity newPojo)
   {
-    JvmParameterizedTypeReference oldPojo = pojo;
+    PojoEntity oldPojo = pojo;
     pojo = newPojo;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAO_DIRECTIVE_CRUD__POJO, oldPojo, newPojo);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setPojo(JvmParameterizedTypeReference newPojo)
-  {
-    if (newPojo != pojo)
-    {
-      NotificationChain msgs = null;
-      if (pojo != null)
-        msgs = ((InternalEObject)pojo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DAO_DIRECTIVE_CRUD__POJO, null, msgs);
-      if (newPojo != null)
-        msgs = ((InternalEObject)newPojo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DAO_DIRECTIVE_CRUD__POJO, null, msgs);
-      msgs = basicSetPojo(newPojo, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAO_DIRECTIVE_CRUD__POJO, newPojo, newPojo));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ProcessorModelPackage.DAO_DIRECTIVE_CRUD__POJO:
-        return basicSetPojo(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAO_DIRECTIVE_CRUD__POJO, oldPojo, pojo));
   }
 
   /**
@@ -136,7 +113,8 @@ public class DaoDirectiveCrudImpl extends DaoDirectiveImpl implements DaoDirecti
     switch (featureID)
     {
       case ProcessorModelPackage.DAO_DIRECTIVE_CRUD__POJO:
-        return getPojo();
+        if (resolve) return getPojo();
+        return basicGetPojo();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,7 +130,7 @@ public class DaoDirectiveCrudImpl extends DaoDirectiveImpl implements DaoDirecti
     switch (featureID)
     {
       case ProcessorModelPackage.DAO_DIRECTIVE_CRUD__POJO:
-        setPojo((JvmParameterizedTypeReference)newValue);
+        setPojo((PojoEntity)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,7 +147,7 @@ public class DaoDirectiveCrudImpl extends DaoDirectiveImpl implements DaoDirecti
     switch (featureID)
     {
       case ProcessorModelPackage.DAO_DIRECTIVE_CRUD__POJO:
-        setPojo((JvmParameterizedTypeReference)null);
+        setPojo((PojoEntity)null);
         return;
     }
     super.eUnset(featureID);

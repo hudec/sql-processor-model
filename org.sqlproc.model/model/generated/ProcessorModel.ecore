@@ -512,14 +512,12 @@
         eType="#//DescendantAssignment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveCrud" eSuperTypes="#//DaoDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmParameterizedTypeReference"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoEntity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DaoDirectiveQuery" eSuperTypes="#//DaoDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmParameterizedTypeReference"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoEntity"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunProcDirective" eSuperTypes="#//DaoDirective">
+  <eClassifiers xsi:type="ecore:EClass" name="DaoFunProcDirective" eSuperTypes="#//DaoDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//FunProcType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paramlist" eType="#//DaoDirectiveParameters"

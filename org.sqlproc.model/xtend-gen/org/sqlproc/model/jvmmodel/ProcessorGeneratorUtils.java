@@ -51,13 +51,13 @@ import org.sqlproc.model.processorModel.DaoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.DaoDirectivePojo;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoEntity;
+import org.sqlproc.model.processorModel.DaoFunProcDirective;
 import org.sqlproc.model.processorModel.DescendantAssignment;
 import org.sqlproc.model.processorModel.DirectiveProperties;
 import org.sqlproc.model.processorModel.Entity;
 import org.sqlproc.model.processorModel.EnumDirective;
 import org.sqlproc.model.processorModel.EnumEntity;
 import org.sqlproc.model.processorModel.Extends;
-import org.sqlproc.model.processorModel.FunProcDirective;
 import org.sqlproc.model.processorModel.Implements;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirective;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos;
@@ -1149,26 +1149,12 @@ public class ProcessorGeneratorUtils {
           (x instanceof DaoDirectiveQuery))) {
           _or = true;
         } else {
-          _or = (x instanceof FunProcDirective);
+          _or = (x instanceof DaoFunProcDirective);
         }
         return Boolean.valueOf(_or);
       }
     };
     return IterableExtensions.<DaoDirective>findFirst(_directives, _function);
-  }
-  
-  public DaoDirectivePojo getPojoDirective(final DaoEntity dao) {
-    EList<DaoDirective> _directives = null;
-    if (dao!=null) {
-      _directives=dao.getDirectives();
-    }
-    final Function1<DaoDirective, Boolean> _function = new Function1<DaoDirective, Boolean>() {
-      public Boolean apply(final DaoDirective x) {
-        return Boolean.valueOf((x instanceof DaoDirectivePojo));
-      }
-    };
-    DaoDirective _findFirst = IterableExtensions.<DaoDirective>findFirst(_directives, _function);
-    return ((DaoDirectivePojo) _findFirst);
   }
   
   public String getFunProcName(final DaoEntity dao) {
@@ -1244,16 +1230,21 @@ public class ProcessorGeneratorUtils {
   }
   
   public PojoEntity getPojo(final DaoEntity dao) {
-    DaoDirectivePojo _pojoDirective = null;
-    if (dao!=null) {
-      _pojoDirective=this.getPojoDirective(dao);
+    EList<DaoDirective> _directives = dao.getDirectives();
+    for (final DaoDirective dir : _directives) {
+      if ((dir instanceof DaoDirectiveCrud)) {
+        return ((DaoDirectiveCrud) dir).getPojo();
+      } else {
+        if ((dir instanceof DaoDirectiveQuery)) {
+          return ((DaoDirectiveQuery) dir).getPojo();
+        } else {
+          if ((dir instanceof DaoDirectivePojo)) {
+            return ((DaoDirectivePojo) dir).getPojo();
+          }
+        }
+      }
     }
-    final DaoDirectivePojo pojoDirective = _pojoDirective;
-    PojoEntity _pojo = null;
-    if (pojoDirective!=null) {
-      _pojo=pojoDirective.getPojo();
-    }
-    return _pojo;
+    return null;
   }
   
   public PojoEntity getParent(final PojoEntity pojo) {
@@ -1319,21 +1310,43 @@ public class ProcessorGeneratorUtils {
     return _xifexpression;
   }
   
-  public List<FunProcDirective> listFunctionsDirectives(final DaoEntity dao) {
-    final List<FunProcDirective> result = CollectionLiterals.<FunProcDirective>newArrayList();
+  public boolean isFunctionProcedure(final DaoEntity dao) {
+    EList<DaoDirective> _directives = dao.getDirectives();
+    DaoDirective _findFirst = null;
+    if (_directives!=null) {
+      final Function1<DaoDirective, Boolean> _function = new Function1<DaoDirective, Boolean>() {
+        public Boolean apply(final DaoDirective x) {
+          return Boolean.valueOf((x instanceof DaoFunProcDirective));
+        }
+      };
+      _findFirst=IterableExtensions.<DaoDirective>findFirst(_directives, _function);
+    }
+    final DaoDirective d = _findFirst;
+    boolean _xifexpression = false;
+    boolean _notEquals = (!Objects.equal(d, null));
+    if (_notEquals) {
+      _xifexpression = true;
+    } else {
+      _xifexpression = false;
+    }
+    return _xifexpression;
+  }
+  
+  public List<DaoFunProcDirective> listFunctionsDirectives(final DaoEntity dao) {
+    final List<DaoFunProcDirective> result = CollectionLiterals.<DaoFunProcDirective>newArrayList();
     EList<DaoDirective> _directives = dao.getDirectives();
     Iterable<DaoDirective> _filter = null;
     if (_directives!=null) {
       final Function1<DaoDirective, Boolean> _function = new Function1<DaoDirective, Boolean>() {
         public Boolean apply(final DaoDirective x) {
-          return Boolean.valueOf((x instanceof FunProcDirective));
+          return Boolean.valueOf((x instanceof DaoFunProcDirective));
         }
       };
       _filter=IterableExtensions.<DaoDirective>filter(_directives, _function);
     }
     final Procedure1<DaoDirective> _function_1 = new Procedure1<DaoDirective>() {
       public void apply(final DaoDirective it) {
-        result.add(((FunProcDirective) it));
+        result.add(((DaoFunProcDirective) it));
       }
     };
     IterableExtensions.<DaoDirective>forEach(_filter, _function_1);

@@ -5061,7 +5061,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
 		private final Keyword cLeftParenthesisKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
 		private final Assignment cPojoAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cPojoJvmParameterizedTypeReferenceParserRuleCall_2_2_1_0 = (RuleCall)cPojoAssignment_2_2_1.eContents().get(0);
+		private final CrossReference cPojoPojoEntityCrossReference_2_2_1_0 = (CrossReference)cPojoAssignment_2_2_1.eContents().get(0);
+		private final RuleCall cPojoPojoEntityValidIDParserRuleCall_2_2_1_0_1 = (RuleCall)cPojoPojoEntityCrossReference_2_2_1_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_2_2_2 = (Keyword)cGroup_2_2.eContents().get(2);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
 		private final Action cDaoDirectiveQueryAction_3_0 = (Action)cGroup_3.eContents().get(0);
@@ -5069,10 +5070,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
 		private final Keyword cLeftParenthesisKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
 		private final Assignment cPojoAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cPojoJvmParameterizedTypeReferenceParserRuleCall_3_2_1_0 = (RuleCall)cPojoAssignment_3_2_1.eContents().get(0);
+		private final CrossReference cPojoPojoEntityCrossReference_3_2_1_0 = (CrossReference)cPojoAssignment_3_2_1.eContents().get(0);
+		private final RuleCall cPojoPojoEntityValidIDParserRuleCall_3_2_1_0_1 = (RuleCall)cPojoPojoEntityCrossReference_3_2_1_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_3_2_2 = (Keyword)cGroup_3_2.eContents().get(2);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final Action cFunProcDirectiveAction_4_0 = (Action)cGroup_4.eContents().get(0);
+		private final Action cDaoFunProcDirectiveAction_4_0 = (Action)cGroup_4.eContents().get(0);
 		private final Assignment cTypeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
 		private final RuleCall cTypeFunProcTypeParserRuleCall_4_1_0 = (RuleCall)cTypeAssignment_4_1.eContents().get(0);
 		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
@@ -5093,15 +5095,15 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//DaoDirective:
 		//	{DaoDirectiveSerializable} "#Serializable" "(" sernum=INT ")" | {DaoDirectiveDiscriminator} "#InheritanceHandler" "("
 		//	ancestor=[PojoAttribute|ValidID] ("," descendants+=DescendantAssignment)+ ")" | {DaoDirectiveCrud} "#CRUD" ("("
-		//	pojo=JvmParameterizedTypeReference ")")? | {DaoDirectiveQuery} "#Query" ("(" pojo=JvmParameterizedTypeReference ")")?
-		//	| {FunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")? | {DaoDirectivePojo} "#Pojo" ("("
+		//	pojo=[PojoEntity|ValidID] ")")? | {DaoDirectiveQuery} "#Query" ("(" pojo=[PojoEntity|ValidID] ")")? |
+		//	{DaoFunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")? | {DaoDirectivePojo} "#Pojo" ("("
 		//	pojo=[PojoEntity|ValidID] ")");
 		public ParserRule getRule() { return rule; }
 
 		//{DaoDirectiveSerializable} "#Serializable" "(" sernum=INT ")" | {DaoDirectiveDiscriminator} "#InheritanceHandler" "("
 		//ancestor=[PojoAttribute|ValidID] ("," descendants+=DescendantAssignment)+ ")" | {DaoDirectiveCrud} "#CRUD" ("("
-		//pojo=JvmParameterizedTypeReference ")")? | {DaoDirectiveQuery} "#Query" ("(" pojo=JvmParameterizedTypeReference ")")? |
-		//{FunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")? | {DaoDirectivePojo} "#Pojo" ("("
+		//pojo=[PojoEntity|ValidID] ")")? | {DaoDirectiveQuery} "#Query" ("(" pojo=[PojoEntity|ValidID] ")")? |
+		//{DaoFunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")? | {DaoDirectivePojo} "#Pojo" ("("
 		//pojo=[PojoEntity|ValidID] ")")
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -5163,7 +5165,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//")"
 		public Keyword getRightParenthesisKeyword_1_5() { return cRightParenthesisKeyword_1_5; }
 
-		//{DaoDirectiveCrud} "#CRUD" ("(" pojo=JvmParameterizedTypeReference ")")?
+		//{DaoDirectiveCrud} "#CRUD" ("(" pojo=[PojoEntity|ValidID] ")")?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//{DaoDirectiveCrud}
@@ -5172,22 +5174,25 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"#CRUD"
 		public Keyword getCRUDKeyword_2_1() { return cCRUDKeyword_2_1; }
 
-		//(=> "(" pojo=JvmParameterizedTypeReference ")")?
+		//(=> "(" pojo=[PojoEntity|ValidID] ")")?
 		public Group getGroup_2_2() { return cGroup_2_2; }
 
 		//=> "("
 		public Keyword getLeftParenthesisKeyword_2_2_0() { return cLeftParenthesisKeyword_2_2_0; }
 
-		//pojo=JvmParameterizedTypeReference
+		//pojo=[PojoEntity|ValidID]
 		public Assignment getPojoAssignment_2_2_1() { return cPojoAssignment_2_2_1; }
 
-		//JvmParameterizedTypeReference
-		public RuleCall getPojoJvmParameterizedTypeReferenceParserRuleCall_2_2_1_0() { return cPojoJvmParameterizedTypeReferenceParserRuleCall_2_2_1_0; }
+		//[PojoEntity|ValidID]
+		public CrossReference getPojoPojoEntityCrossReference_2_2_1_0() { return cPojoPojoEntityCrossReference_2_2_1_0; }
+
+		//ValidID
+		public RuleCall getPojoPojoEntityValidIDParserRuleCall_2_2_1_0_1() { return cPojoPojoEntityValidIDParserRuleCall_2_2_1_0_1; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_2_2_2() { return cRightParenthesisKeyword_2_2_2; }
 
-		//{DaoDirectiveQuery} "#Query" ("(" pojo=JvmParameterizedTypeReference ")")?
+		//{DaoDirectiveQuery} "#Query" ("(" pojo=[PojoEntity|ValidID] ")")?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//{DaoDirectiveQuery}
@@ -5196,26 +5201,29 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"#Query"
 		public Keyword getQueryKeyword_3_1() { return cQueryKeyword_3_1; }
 
-		//(=> "(" pojo=JvmParameterizedTypeReference ")")?
+		//(=> "(" pojo=[PojoEntity|ValidID] ")")?
 		public Group getGroup_3_2() { return cGroup_3_2; }
 
 		//=> "("
 		public Keyword getLeftParenthesisKeyword_3_2_0() { return cLeftParenthesisKeyword_3_2_0; }
 
-		//pojo=JvmParameterizedTypeReference
+		//pojo=[PojoEntity|ValidID]
 		public Assignment getPojoAssignment_3_2_1() { return cPojoAssignment_3_2_1; }
 
-		//JvmParameterizedTypeReference
-		public RuleCall getPojoJvmParameterizedTypeReferenceParserRuleCall_3_2_1_0() { return cPojoJvmParameterizedTypeReferenceParserRuleCall_3_2_1_0; }
+		//[PojoEntity|ValidID]
+		public CrossReference getPojoPojoEntityCrossReference_3_2_1_0() { return cPojoPojoEntityCrossReference_3_2_1_0; }
+
+		//ValidID
+		public RuleCall getPojoPojoEntityValidIDParserRuleCall_3_2_1_0_1() { return cPojoPojoEntityValidIDParserRuleCall_3_2_1_0_1; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_3_2_2() { return cRightParenthesisKeyword_3_2_2; }
 
-		//{FunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")?
+		//{DaoFunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")?
 		public Group getGroup_4() { return cGroup_4; }
 
-		//{FunProcDirective}
-		public Action getFunProcDirectiveAction_4_0() { return cFunProcDirectiveAction_4_0; }
+		//{DaoFunProcDirective}
+		public Action getDaoFunProcDirectiveAction_4_0() { return cDaoFunProcDirectiveAction_4_0; }
 
 		//type=FunProcType
 		public Assignment getTypeAssignment_4_1() { return cTypeAssignment_4_1; }
@@ -6256,8 +6264,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//DaoDirective:
 	//	{DaoDirectiveSerializable} "#Serializable" "(" sernum=INT ")" | {DaoDirectiveDiscriminator} "#InheritanceHandler" "("
 	//	ancestor=[PojoAttribute|ValidID] ("," descendants+=DescendantAssignment)+ ")" | {DaoDirectiveCrud} "#CRUD" ("("
-	//	pojo=JvmParameterizedTypeReference ")")? | {DaoDirectiveQuery} "#Query" ("(" pojo=JvmParameterizedTypeReference ")")?
-	//	| {FunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")? | {DaoDirectivePojo} "#Pojo" ("("
+	//	pojo=[PojoEntity|ValidID] ")")? | {DaoDirectiveQuery} "#Query" ("(" pojo=[PojoEntity|ValidID] ")")? |
+	//	{DaoFunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")? | {DaoDirectivePojo} "#Pojo" ("("
 	//	pojo=[PojoEntity|ValidID] ")");
 	public DaoDirectiveElements getDaoDirectiveAccess() {
 		return pDaoDirective;

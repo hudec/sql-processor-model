@@ -32,6 +32,7 @@ import org.sqlproc.model.processorModel.DaoDirectivePojo;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoDirectiveSerializable;
 import org.sqlproc.model.processorModel.DaoEntity;
+import org.sqlproc.model.processorModel.DaoFunProcDirective;
 import org.sqlproc.model.processorModel.DaogenProperty;
 import org.sqlproc.model.processorModel.DatabaseCatalogAssignement;
 import org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement;
@@ -55,7 +56,6 @@ import org.sqlproc.model.processorModel.ExportAssignement;
 import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.ExtendsAssignement;
 import org.sqlproc.model.processorModel.ExtendsAssignementGenerics;
-import org.sqlproc.model.processorModel.FunProcDirective;
 import org.sqlproc.model.processorModel.FunProcType;
 import org.sqlproc.model.processorModel.FunctionCall;
 import org.sqlproc.model.processorModel.FunctionCallQuery;
@@ -261,7 +261,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.DAO_DIRECTIVE_DISCRIMINATOR: return createDaoDirectiveDiscriminator();
       case ProcessorModelPackage.DAO_DIRECTIVE_CRUD: return createDaoDirectiveCrud();
       case ProcessorModelPackage.DAO_DIRECTIVE_QUERY: return createDaoDirectiveQuery();
-      case ProcessorModelPackage.FUN_PROC_DIRECTIVE: return createFunProcDirective();
+      case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE: return createDaoFunProcDirective();
       case ProcessorModelPackage.DAO_DIRECTIVE_POJO: return createDaoDirectivePojo();
       case ProcessorModelPackage.ANNOTATION_DIRECTIVE_CONFLICT: return createAnnotationDirectiveConflict();
       case ProcessorModelPackage.ANNOTATION_DIRECTIVE_STATIC: return createAnnotationDirectiveStatic();
@@ -1314,10 +1314,10 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public FunProcDirective createFunProcDirective()
+  public DaoFunProcDirective createDaoFunProcDirective()
   {
-    FunProcDirectiveImpl funProcDirective = new FunProcDirectiveImpl();
-    return funProcDirective;
+    DaoFunProcDirectiveImpl daoFunProcDirective = new DaoFunProcDirectiveImpl();
+    return daoFunProcDirective;
   }
 
   /**

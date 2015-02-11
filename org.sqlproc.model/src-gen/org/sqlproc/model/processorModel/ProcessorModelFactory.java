@@ -869,13 +869,13 @@ public interface ProcessorModelFactory extends EFactory
   DaoDirectiveQuery createDaoDirectiveQuery();
 
   /**
-   * Returns a new object of class '<em>Fun Proc Directive</em>'.
+   * Returns a new object of class '<em>Dao Fun Proc Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Fun Proc Directive</em>'.
+   * @return a new object of class '<em>Dao Fun Proc Directive</em>'.
    * @generated
    */
-  FunProcDirective createFunProcDirective();
+  DaoFunProcDirective createDaoFunProcDirective();
 
   /**
    * Returns a new object of class '<em>Dao Directive Pojo</em>'.

@@ -39,6 +39,7 @@ import org.sqlproc.model.processorModel.DaoDirectivePojo;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoDirectiveSerializable;
 import org.sqlproc.model.processorModel.DaoEntity;
+import org.sqlproc.model.processorModel.DaoFunProcDirective;
 import org.sqlproc.model.processorModel.DaogenProperty;
 import org.sqlproc.model.processorModel.DatabaseCatalogAssignement;
 import org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement;
@@ -62,7 +63,6 @@ import org.sqlproc.model.processorModel.ExportAssignement;
 import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.ExtendsAssignement;
 import org.sqlproc.model.processorModel.ExtendsAssignementGenerics;
-import org.sqlproc.model.processorModel.FunProcDirective;
 import org.sqlproc.model.processorModel.FunProcType;
 import org.sqlproc.model.processorModel.FunctionCall;
 import org.sqlproc.model.processorModel.FunctionCallQuery;
@@ -793,7 +793,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass funProcDirectiveEClass = null;
+  private EClass daoFunProcDirectiveEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -4024,9 +4024,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getFunProcDirective()
+  public EClass getDaoFunProcDirective()
   {
-    return funProcDirectiveEClass;
+    return daoFunProcDirectiveEClass;
   }
 
   /**
@@ -4034,9 +4034,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFunProcDirective_Type()
+  public EReference getDaoFunProcDirective_Type()
   {
-    return (EReference)funProcDirectiveEClass.getEStructuralFeatures().get(0);
+    return (EReference)daoFunProcDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4044,9 +4044,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFunProcDirective_Paramlist()
+  public EReference getDaoFunProcDirective_Paramlist()
   {
-    return (EReference)funProcDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EReference)daoFunProcDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4573,9 +4573,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     daoDirectiveQueryEClass = createEClass(DAO_DIRECTIVE_QUERY);
     createEReference(daoDirectiveQueryEClass, DAO_DIRECTIVE_QUERY__POJO);
 
-    funProcDirectiveEClass = createEClass(FUN_PROC_DIRECTIVE);
-    createEReference(funProcDirectiveEClass, FUN_PROC_DIRECTIVE__TYPE);
-    createEReference(funProcDirectiveEClass, FUN_PROC_DIRECTIVE__PARAMLIST);
+    daoFunProcDirectiveEClass = createEClass(DAO_FUN_PROC_DIRECTIVE);
+    createEReference(daoFunProcDirectiveEClass, DAO_FUN_PROC_DIRECTIVE__TYPE);
+    createEReference(daoFunProcDirectiveEClass, DAO_FUN_PROC_DIRECTIVE__PARAMLIST);
 
     daoDirectivePojoEClass = createEClass(DAO_DIRECTIVE_POJO);
     createEReference(daoDirectivePojoEClass, DAO_DIRECTIVE_POJO__POJO);
@@ -4670,7 +4670,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     daoDirectiveDiscriminatorEClass.getESuperTypes().add(this.getDaoDirective());
     daoDirectiveCrudEClass.getESuperTypes().add(this.getDaoDirective());
     daoDirectiveQueryEClass.getESuperTypes().add(this.getDaoDirective());
-    funProcDirectiveEClass.getESuperTypes().add(this.getDaoDirective());
+    daoFunProcDirectiveEClass.getESuperTypes().add(this.getDaoDirective());
     daoDirectivePojoEClass.getESuperTypes().add(this.getDaoDirective());
     annotationDirectiveConflictEClass.getESuperTypes().add(this.getAnnotationDirective());
     annotationDirectiveStaticEClass.getESuperTypes().add(this.getAnnotationDirective());
@@ -5080,14 +5080,14 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEReference(getDaoDirectiveDiscriminator_Descendants(), this.getDescendantAssignment(), null, "descendants", null, 0, -1, DaoDirectiveDiscriminator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(daoDirectiveCrudEClass, DaoDirectiveCrud.class, "DaoDirectiveCrud", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDaoDirectiveCrud_Pojo(), theTypesPackage.getJvmParameterizedTypeReference(), null, "pojo", null, 0, 1, DaoDirectiveCrud.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDaoDirectiveCrud_Pojo(), this.getPojoEntity(), null, "pojo", null, 0, 1, DaoDirectiveCrud.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(daoDirectiveQueryEClass, DaoDirectiveQuery.class, "DaoDirectiveQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDaoDirectiveQuery_Pojo(), theTypesPackage.getJvmParameterizedTypeReference(), null, "pojo", null, 0, 1, DaoDirectiveQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDaoDirectiveQuery_Pojo(), this.getPojoEntity(), null, "pojo", null, 0, 1, DaoDirectiveQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(funProcDirectiveEClass, FunProcDirective.class, "FunProcDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFunProcDirective_Type(), this.getFunProcType(), null, "type", null, 0, 1, FunProcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFunProcDirective_Paramlist(), this.getDaoDirectiveParameters(), null, "paramlist", null, 0, 1, FunProcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(daoFunProcDirectiveEClass, DaoFunProcDirective.class, "DaoFunProcDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDaoFunProcDirective_Type(), this.getFunProcType(), null, "type", null, 0, 1, DaoFunProcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDaoFunProcDirective_Paramlist(), this.getDaoDirectiveParameters(), null, "paramlist", null, 0, 1, DaoFunProcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(daoDirectivePojoEClass, DaoDirectivePojo.class, "DaoDirectivePojo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDaoDirectivePojo_Pojo(), this.getPojoEntity(), null, "pojo", null, 0, 1, DaoDirectivePojo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

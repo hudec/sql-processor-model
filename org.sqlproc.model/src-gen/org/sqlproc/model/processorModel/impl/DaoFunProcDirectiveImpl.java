@@ -11,25 +11,25 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.sqlproc.model.processorModel.DaoDirectiveParameters;
-import org.sqlproc.model.processorModel.FunProcDirective;
+import org.sqlproc.model.processorModel.DaoFunProcDirective;
 import org.sqlproc.model.processorModel.FunProcType;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Fun Proc Directive</b></em>'.
+ * An implementation of the model object '<em><b>Dao Fun Proc Directive</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.model.processorModel.impl.FunProcDirectiveImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.FunProcDirectiveImpl#getParamlist <em>Paramlist</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.DaoFunProcDirectiveImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.DaoFunProcDirectiveImpl#getParamlist <em>Paramlist</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDirective
+public class DaoFunProcDirectiveImpl extends DaoDirectiveImpl implements DaoFunProcDirective
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -56,7 +56,7 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
    * <!-- end-user-doc -->
    * @generated
    */
-  protected FunProcDirectiveImpl()
+  protected DaoFunProcDirectiveImpl()
   {
     super();
   }
@@ -69,7 +69,7 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
   @Override
   protected EClass eStaticClass()
   {
-    return ProcessorModelPackage.Literals.FUN_PROC_DIRECTIVE;
+    return ProcessorModelPackage.Literals.DAO_FUN_PROC_DIRECTIVE;
   }
 
   /**
@@ -93,7 +93,7 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
     type = newType;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.FUN_PROC_DIRECTIVE__TYPE, oldType, newType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__TYPE, oldType, newType);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -110,14 +110,14 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
     {
       NotificationChain msgs = null;
       if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.FUN_PROC_DIRECTIVE__TYPE, null, msgs);
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__TYPE, null, msgs);
       if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.FUN_PROC_DIRECTIVE__TYPE, null, msgs);
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__TYPE, null, msgs);
       msgs = basicSetType(newType, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.FUN_PROC_DIRECTIVE__TYPE, newType, newType));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__TYPE, newType, newType));
   }
 
   /**
@@ -141,7 +141,7 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
     paramlist = newParamlist;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.FUN_PROC_DIRECTIVE__PARAMLIST, oldParamlist, newParamlist);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__PARAMLIST, oldParamlist, newParamlist);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -158,14 +158,14 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
     {
       NotificationChain msgs = null;
       if (paramlist != null)
-        msgs = ((InternalEObject)paramlist).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.FUN_PROC_DIRECTIVE__PARAMLIST, null, msgs);
+        msgs = ((InternalEObject)paramlist).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__PARAMLIST, null, msgs);
       if (newParamlist != null)
-        msgs = ((InternalEObject)newParamlist).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.FUN_PROC_DIRECTIVE__PARAMLIST, null, msgs);
+        msgs = ((InternalEObject)newParamlist).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__PARAMLIST, null, msgs);
       msgs = basicSetParamlist(newParamlist, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.FUN_PROC_DIRECTIVE__PARAMLIST, newParamlist, newParamlist));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__PARAMLIST, newParamlist, newParamlist));
   }
 
   /**
@@ -178,9 +178,9 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.FUN_PROC_DIRECTIVE__TYPE:
+      case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__TYPE:
         return basicSetType(null, msgs);
-      case ProcessorModelPackage.FUN_PROC_DIRECTIVE__PARAMLIST:
+      case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__PARAMLIST:
         return basicSetParamlist(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -196,9 +196,9 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.FUN_PROC_DIRECTIVE__TYPE:
+      case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__TYPE:
         return getType();
-      case ProcessorModelPackage.FUN_PROC_DIRECTIVE__PARAMLIST:
+      case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__PARAMLIST:
         return getParamlist();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -214,10 +214,10 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.FUN_PROC_DIRECTIVE__TYPE:
+      case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__TYPE:
         setType((FunProcType)newValue);
         return;
-      case ProcessorModelPackage.FUN_PROC_DIRECTIVE__PARAMLIST:
+      case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__PARAMLIST:
         setParamlist((DaoDirectiveParameters)newValue);
         return;
     }
@@ -234,10 +234,10 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.FUN_PROC_DIRECTIVE__TYPE:
+      case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__TYPE:
         setType((FunProcType)null);
         return;
-      case ProcessorModelPackage.FUN_PROC_DIRECTIVE__PARAMLIST:
+      case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__PARAMLIST:
         setParamlist((DaoDirectiveParameters)null);
         return;
     }
@@ -254,12 +254,12 @@ public class FunProcDirectiveImpl extends DaoDirectiveImpl implements FunProcDir
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.FUN_PROC_DIRECTIVE__TYPE:
+      case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__TYPE:
         return type != null;
-      case ProcessorModelPackage.FUN_PROC_DIRECTIVE__PARAMLIST:
+      case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE__PARAMLIST:
         return paramlist != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //FunProcDirectiveImpl
+} //DaoFunProcDirectiveImpl

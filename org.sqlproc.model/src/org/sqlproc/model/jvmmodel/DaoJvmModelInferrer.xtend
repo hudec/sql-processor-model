@@ -29,11 +29,11 @@ import org.sqlproc.model.processorModel.DaoDirectiveQuery
 import java.util.Map
 import org.sqlproc.model.processorModel.DaoDirectiveParameters
 import org.sqlproc.model.processorModel.FunctionCallQuery
-import org.sqlproc.model.processorModel.FunProcDirective
 import org.sqlproc.model.processorModel.ProcedureCallQuery
 import org.sqlproc.model.processorModel.FunctionCall
 import org.sqlproc.model.processorModel.ProcedureUpdate
 import org.sqlproc.model.processorModel.FunctionQuery
+import org.sqlproc.model.processorModel.DaoFunProcDirective
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -95,13 +95,13 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 	 */
    	def void inferDao(DaoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
    		val pojo = entity.pojo
-   		if (pojo == null) {
+   		if (pojo == null && !entity.isFunctionProcedure) {
    			println("Missing POJO for "+entity)
    			return
    		}
 
    		val entityType = entity.toClass(entity.fullyQualifiedName)
-   		val pojoType = pojo.toClass(pojo.fullyQualifiedName)
+   		val pojoType = pojo?.toClass(pojo?.fullyQualifiedName)
    		val simpleName = entity.name
    		val sernum = entity.sernum
    		
@@ -190,8 +190,8 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    					inferList(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferCount(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    				}
-   				else if (dir instanceof FunProcDirective) {
-   					inferFunctionProcedure(entity, (dir as FunProcDirective).type, (dir as FunProcDirective).paramlist, entityType, simpleName, members)
+   				else if (dir instanceof DaoFunProcDirective) {
+   					inferFunctionProcedure(entity, (dir as DaoFunProcDirective).type, (dir as DaoFunProcDirective).paramlist, entityType, simpleName, members)
    				}
    			}
    			if (moreResultClasses != null && !moreResultClasses.empty) {

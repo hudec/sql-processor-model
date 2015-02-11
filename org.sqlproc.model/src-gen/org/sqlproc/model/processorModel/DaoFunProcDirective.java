@@ -5,22 +5,22 @@ package org.sqlproc.model.processorModel;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Fun Proc Directive</b></em>'.
+ * A representation of the model object '<em><b>Dao Fun Proc Directive</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.sqlproc.model.processorModel.FunProcDirective#getType <em>Type</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.FunProcDirective#getParamlist <em>Paramlist</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.DaoFunProcDirective#getType <em>Type</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.DaoFunProcDirective#getParamlist <em>Paramlist</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getFunProcDirective()
+ * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDaoFunProcDirective()
  * @model
  * @generated
  */
-public interface FunProcDirective extends DaoDirective
+public interface DaoFunProcDirective extends DaoDirective
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.
@@ -32,14 +32,14 @@ public interface FunProcDirective extends DaoDirective
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
    * @see #setType(FunProcType)
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getFunProcDirective_Type()
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDaoFunProcDirective_Type()
    * @model containment="true"
    * @generated
    */
   FunProcType getType();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.FunProcDirective#getType <em>Type</em>}' containment reference.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.DaoFunProcDirective#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' containment reference.
@@ -58,14 +58,14 @@ public interface FunProcDirective extends DaoDirective
    * <!-- end-user-doc -->
    * @return the value of the '<em>Paramlist</em>' containment reference.
    * @see #setParamlist(DaoDirectiveParameters)
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getFunProcDirective_Paramlist()
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDaoFunProcDirective_Paramlist()
    * @model containment="true"
    * @generated
    */
   DaoDirectiveParameters getParamlist();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.FunProcDirective#getParamlist <em>Paramlist</em>}' containment reference.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.DaoFunProcDirective#getParamlist <em>Paramlist</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Paramlist</em>' containment reference.
@@ -74,4 +74,4 @@ public interface FunProcDirective extends DaoDirective
    */
   void setParamlist(DaoDirectiveParameters value);
 
-} // FunProcDirective
+} // DaoFunProcDirective

@@ -383,14 +383,14 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectiveDiscriminator/descendants"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DaoDirectiveCrud">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectiveCrud/pojo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectiveCrud/pojo"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DaoDirectiveQuery">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectiveQuery/pojo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectiveQuery/pojo"/>
     </genClasses>
-    <genClasses ecoreClass="ProcessorModel.ecore#//FunProcDirective">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//FunProcDirective/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//FunProcDirective/paramlist"/>
+    <genClasses ecoreClass="ProcessorModel.ecore#//DaoFunProcDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoFunProcDirective/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoFunProcDirective/paramlist"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//DaoDirectivePojo">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoDirectivePojo/pojo"/>

@@ -80,6 +80,7 @@ import org.sqlproc.model.processorModel.DaoDirectivePojo;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoDirectiveSerializable;
 import org.sqlproc.model.processorModel.DaoEntity;
+import org.sqlproc.model.processorModel.DaoFunProcDirective;
 import org.sqlproc.model.processorModel.DaogenProperty;
 import org.sqlproc.model.processorModel.DatabaseCatalogAssignement;
 import org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement;
@@ -100,7 +101,6 @@ import org.sqlproc.model.processorModel.ExportAssignement;
 import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.ExtendsAssignement;
 import org.sqlproc.model.processorModel.ExtendsAssignementGenerics;
-import org.sqlproc.model.processorModel.FunProcDirective;
 import org.sqlproc.model.processorModel.FunctionCall;
 import org.sqlproc.model.processorModel.FunctionCallQuery;
 import org.sqlproc.model.processorModel.FunctionDefinition;
@@ -280,6 +280,12 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 					return; 
 				}
 				else break;
+			case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE:
+				if(context == grammarAccess.getDaoDirectiveRule()) {
+					sequence_DaoDirective(context, (DaoFunProcDirective) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorModelPackage.DAOGEN_PROPERTY:
 				if(context == grammarAccess.getDaogenPropertyRule()) {
 					sequence_DaogenProperty(context, (DaogenProperty) semanticObject); 
@@ -399,12 +405,6 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 			case ProcessorModelPackage.EXTENDS_ASSIGNEMENT_GENERICS:
 				if(context == grammarAccess.getExtendsAssignementGenericsRule()) {
 					sequence_ExtendsAssignementGenerics(context, (ExtendsAssignementGenerics) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.FUN_PROC_DIRECTIVE:
-				if(context == grammarAccess.getDaoDirectiveRule()) {
-					sequence_DaoDirective(context, (FunProcDirective) semanticObject); 
 					return; 
 				}
 				else break;
@@ -2123,7 +2123,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (pojo=JvmParameterizedTypeReference?)
+	 *     (pojo=[PojoEntity|ValidID]?)
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveCrud semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2157,7 +2157,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (pojo=JvmParameterizedTypeReference?)
+	 *     (pojo=[PojoEntity|ValidID]?)
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveQuery semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2184,7 +2184,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 * Constraint:
 	 *     (type=FunProcType paramlist=DaoDirectiveParameters?)
 	 */
-	protected void sequence_DaoDirective(EObject context, FunProcDirective semanticObject) {
+	protected void sequence_DaoDirective(EObject context, DaoFunProcDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

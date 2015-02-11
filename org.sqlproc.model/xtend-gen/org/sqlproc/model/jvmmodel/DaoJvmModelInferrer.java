@@ -41,8 +41,8 @@ import org.sqlproc.model.processorModel.DaoDirectiveCrud;
 import org.sqlproc.model.processorModel.DaoDirectiveParameters;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoEntity;
+import org.sqlproc.model.processorModel.DaoFunProcDirective;
 import org.sqlproc.model.processorModel.Extends;
-import org.sqlproc.model.processorModel.FunProcDirective;
 import org.sqlproc.model.processorModel.FunProcType;
 import org.sqlproc.model.processorModel.FunctionCall;
 import org.sqlproc.model.processorModel.FunctionCallQuery;
@@ -137,15 +137,30 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
    */
   public void inferDao(final DaoEntity entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
     final PojoEntity pojo = this._processorGeneratorUtils.getPojo(entity);
+    boolean _and = false;
     boolean _equals = Objects.equal(pojo, null);
-    if (_equals) {
+    if (!_equals) {
+      _and = false;
+    } else {
+      boolean _isFunctionProcedure = this._processorGeneratorUtils.isFunctionProcedure(entity);
+      boolean _not = (!_isFunctionProcedure);
+      _and = _not;
+    }
+    if (_and) {
       InputOutput.<String>println(("Missing POJO for " + entity));
       return;
     }
     QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(entity);
     final JvmGenericType entityType = this._processorTypesBuilder.toClass(entity, _fullyQualifiedName);
-    String _fullyQualifiedName_1 = this._processorGeneratorUtils.getFullyQualifiedName(pojo);
-    final JvmGenericType pojoType = this._processorTypesBuilder.toClass(pojo, _fullyQualifiedName_1);
+    JvmGenericType _class = null;
+    if (pojo!=null) {
+      String _fullyQualifiedName_1 = null;
+      if (pojo!=null) {
+        _fullyQualifiedName_1=this._processorGeneratorUtils.getFullyQualifiedName(pojo);
+      }
+      _class=this._processorTypesBuilder.toClass(pojo, _fullyQualifiedName_1);
+    }
+    final JvmGenericType pojoType = _class;
     final String simpleName = entity.getName();
     final Integer sernum = this._processorGeneratorUtils.getSernum(entity);
     final Procedure1<JvmGenericType> _function = new Procedure1<JvmGenericType>() {
@@ -369,9 +384,9 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
               EList<JvmMember> _members_12 = it.getMembers();
               DaoJvmModelInferrer.this.inferCount(entity, ((DaoDirectiveQuery) dir), entityType, simpleName, pojo, pojoType, _members_12, moreResultClasses);
             } else {
-              if ((dir instanceof FunProcDirective)) {
-                FunProcType _type = ((FunProcDirective) dir).getType();
-                DaoDirectiveParameters _paramlist = ((FunProcDirective) dir).getParamlist();
+              if ((dir instanceof DaoFunProcDirective)) {
+                FunProcType _type = ((DaoFunProcDirective) dir).getType();
+                DaoDirectiveParameters _paramlist = ((DaoFunProcDirective) dir).getParamlist();
                 EList<JvmMember> _members_13 = it.getMembers();
                 DaoJvmModelInferrer.this.inferFunctionProcedure(entity, _type, _paramlist, entityType, simpleName, _members_13);
               }

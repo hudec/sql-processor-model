@@ -29,6 +29,7 @@ import org.sqlproc.model.processorModel.DaoDirectivePojo;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoDirectiveSerializable;
 import org.sqlproc.model.processorModel.DaoEntity;
+import org.sqlproc.model.processorModel.DaoFunProcDirective;
 import org.sqlproc.model.processorModel.DaogenProperty;
 import org.sqlproc.model.processorModel.DatabaseCatalogAssignement;
 import org.sqlproc.model.processorModel.DatabaseMetaInfoAssignement;
@@ -52,7 +53,6 @@ import org.sqlproc.model.processorModel.ExportAssignement;
 import org.sqlproc.model.processorModel.Extends;
 import org.sqlproc.model.processorModel.ExtendsAssignement;
 import org.sqlproc.model.processorModel.ExtendsAssignementGenerics;
-import org.sqlproc.model.processorModel.FunProcDirective;
 import org.sqlproc.model.processorModel.FunProcType;
 import org.sqlproc.model.processorModel.FunctionCall;
 import org.sqlproc.model.processorModel.FunctionCallQuery;
@@ -872,11 +872,11 @@ public class ProcessorModelSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProcessorModelPackage.FUN_PROC_DIRECTIVE:
+      case ProcessorModelPackage.DAO_FUN_PROC_DIRECTIVE:
       {
-        FunProcDirective funProcDirective = (FunProcDirective)theEObject;
-        T result = caseFunProcDirective(funProcDirective);
-        if (result == null) result = caseDaoDirective(funProcDirective);
+        DaoFunProcDirective daoFunProcDirective = (DaoFunProcDirective)theEObject;
+        T result = caseDaoFunProcDirective(daoFunProcDirective);
+        if (result == null) result = caseDaoDirective(daoFunProcDirective);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2453,17 +2453,17 @@ public class ProcessorModelSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Fun Proc Directive</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Dao Fun Proc Directive</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Fun Proc Directive</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Dao Fun Proc Directive</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseFunProcDirective(FunProcDirective object)
+  public T caseDaoFunProcDirective(DaoFunProcDirective object)
   {
     return null;
   }

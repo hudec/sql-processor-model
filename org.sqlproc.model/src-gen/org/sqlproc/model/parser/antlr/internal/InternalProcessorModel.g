@@ -8449,18 +8449,15 @@ ruleDaoDirective returns [EObject current=null]
     }
 )(
 (
-		{ 
-	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_2_2_1_0()); 
-	    }
-		lv_pojo_15_0=ruleJvmParameterizedTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDaoDirectiveRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDaoDirectiveRule());
 	        }
-       		set(
-       			$current, 
-       			"pojo",
-        		lv_pojo_15_0, 
-        		"JvmParameterizedTypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_2_2_1_0()); 
+	    }
+		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8487,18 +8484,15 @@ ruleDaoDirective returns [EObject current=null]
     }
 )(
 (
-		{ 
-	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_2_1_0()); 
-	    }
-		lv_pojo_20_0=ruleJvmParameterizedTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDaoDirectiveRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDaoDirectiveRule());
 	        }
-       		set(
-       			$current, 
-       			"pojo",
-        		lv_pojo_20_0, 
-        		"JvmParameterizedTypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_3_2_1_0()); 
+	    }
+		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8511,7 +8505,7 @@ ruleDaoDirective returns [EObject current=null]
     |((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getDaoDirectiveAccess().getFunProcDirectiveAction_4_0(),
+            grammarAccess.getDaoDirectiveAccess().getDaoFunProcDirectiveAction_4_0(),
             $current);
     }
 )(
