@@ -76,6 +76,7 @@ import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
+import org.sqlproc.model.processorModel.Modifier;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
@@ -99,6 +100,7 @@ import org.sqlproc.model.processorModel.PojoDirectiveOperators;
 import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
+import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
@@ -417,6 +419,11 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
         return createPojoAttributeAdapter();
       }
       @Override
+      public Adapter casePojoProcedure(PojoProcedure object)
+      {
+        return createPojoProcedureAdapter();
+      }
+      @Override
       public Adapter caseEnumDirective(EnumDirective object)
       {
         return createEnumDirectiveAdapter();
@@ -465,6 +472,11 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
       public Adapter caseDaoEntity(DaoEntity object)
       {
         return createDaoEntityAdapter();
+      }
+      @Override
+      public Adapter caseModifier(Modifier object)
+      {
+        return createModifierAdapter();
       }
       @Override
       public Adapter caseAnnotationDirective(AnnotationDirective object)
@@ -1434,6 +1446,21 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.PojoProcedure <em>Pojo Procedure</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.PojoProcedure
+   * @generated
+   */
+  public Adapter createPojoProcedureAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.EnumDirective <em>Enum Directive</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1579,6 +1606,21 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDaoEntityAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.Modifier <em>Modifier</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.Modifier
+   * @generated
+   */
+  public Adapter createModifierAdapter()
   {
     return null;
   }

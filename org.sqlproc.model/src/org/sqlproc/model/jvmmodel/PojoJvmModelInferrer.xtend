@@ -145,6 +145,8 @@ class PojoJvmModelInferrer {
    				members += entity.toField(attr.name, type) [
    					documentation = attr.documentation
    					addAnnotations(attr.attributeAnnotations.map[a|a.annotation])
+   					static = attr.static
+   					final = attr.final
    					if (attr.initExpr != null) {
  						initializer = attr.initExpr
  					} 
@@ -174,6 +176,19 @@ class PojoJvmModelInferrer {
    				}
    			}
    			
+   			for (proc : entity.procedures) {
+   				members += proc.toMethod(proc.name, proc.type ?: inferredType) [
+   					documentation = proc.documentation
+   					addAnnotations(proc.annotations.map[a|a.annotation])
+   					static = proc.static
+   					final = proc.final
+   					for (param : proc.params) {
+   						parameters += param.toParameter(param.name, param.parameterType)
+   					}
+   					body = proc.body
+   				]
+			}
+			   			
    			val equalsList = entity.equalsAttributes
    			if (!equalsList.isEmpty) {
 	   			val method = entity.toMethod('equals', typeRef(boolean)) [

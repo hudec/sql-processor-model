@@ -120,6 +120,7 @@ import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
+import org.sqlproc.model.processorModel.Modifier;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveDiscriminator;
@@ -141,6 +142,7 @@ import org.sqlproc.model.processorModel.PojoDirectiveOperators;
 import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
+import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
@@ -523,6 +525,12 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 					return; 
 				}
 				else break;
+			case ProcessorModelPackage.MODIFIER:
+				if(context == grammarAccess.getModifierRule()) {
+					sequence_Modifier(context, (Modifier) semanticObject); 
+					return; 
+				}
+				else break;
 			case ProcessorModelPackage.PACKAGE:
 				if(context == grammarAccess.getPackageRule()) {
 					sequence_Package(context, (org.sqlproc.model.processorModel.Package) semanticObject); 
@@ -653,6 +661,12 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 				if(context == grammarAccess.getEntityRule() ||
 				   context == grammarAccess.getPojoEntityRule()) {
 					sequence_PojoEntity(context, (PojoEntity) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.POJO_PROCEDURE:
+				if(context == grammarAccess.getPojoProcedureRule()) {
+					sequence_PojoProcedure(context, (PojoProcedure) semanticObject); 
 					return; 
 				}
 				else break;
@@ -2191,7 +2205,14 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (directives+=DaoDirective* final?='final'? name=ValidID superType=JvmParameterizedTypeReference?)
+	 *     (
+	 *         directives+=DaoDirective* 
+	 *         final?='final'? 
+	 *         name=ValidID 
+	 *         superType=JvmParameterizedTypeReference? 
+	 *         attributes+=PojoAttribute* 
+	 *         procedures+=PojoProcedure*
+	 *     )
 	 */
 	protected void sequence_DaoEntity(EObject context, DaoEntity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2718,6 +2739,15 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
+	 *     (abstract?='abstract'? static?='static'? final?='final'?)
+	 */
+	protected void sequence_Modifier(EObject context, Modifier semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (name=QualifiedName importSection=XImportSection? elements+=AbstractEntity*)
 	 */
 	protected void sequence_Package(EObject context, org.sqlproc.model.processorModel.Package semanticObject) {
@@ -2853,7 +2883,15 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (annotations+=Annotation* directives+=PojoAttributeDirective* type=JvmTypeReference? name=ValidID initExpr=XExpression?)
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         directives+=PojoAttributeDirective* 
+	 *         static?='static'? 
+	 *         final?='final'? 
+	 *         type=JvmTypeReference? 
+	 *         name=ValidID 
+	 *         initExpr=XExpression?
+	 *     )
 	 */
 	protected void sequence_PojoAttribute(EObject context, PojoAttribute semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2985,10 +3023,28 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *         abstract?='abstract'? 
 	 *         name=ValidID 
 	 *         superType=JvmParameterizedTypeReference? 
-	 *         attributes+=PojoAttribute*
+	 *         attributes+=PojoAttribute* 
+	 *         procedures+=PojoProcedure*
 	 *     )
 	 */
 	protected void sequence_PojoEntity(EObject context, PojoEntity semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         annotations+=Annotation* 
+	 *         static?='static'? 
+	 *         final?='final'? 
+	 *         type=JvmTypeReference? 
+	 *         name=ValidID 
+	 *         (params+=FullJvmFormalParameter params+=FullJvmFormalParameter*)? 
+	 *         body=XBlockExpression
+	 *     )
+	 */
+	protected void sequence_PojoProcedure(EObject context, PojoProcedure semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

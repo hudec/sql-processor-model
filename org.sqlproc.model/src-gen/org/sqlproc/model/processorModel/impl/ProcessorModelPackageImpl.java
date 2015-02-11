@@ -84,6 +84,7 @@ import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
+import org.sqlproc.model.processorModel.Modifier;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
@@ -107,6 +108,7 @@ import org.sqlproc.model.processorModel.PojoDirectiveOperators;
 import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
+import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
@@ -471,6 +473,13 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass pojoProcedureEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass enumDirectiveEClass = null;
 
   /**
@@ -535,6 +544,13 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * @generated
    */
   private EClass daoEntityEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass modifierEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -3104,6 +3120,16 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getPojoEntity_Procedures()
+  {
+    return (EReference)pojoEntityEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPojoAttributeDirective()
   {
     return pojoAttributeDirectiveEClass;
@@ -3144,9 +3170,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoAttribute_Type()
+  public EAttribute getPojoAttribute_Static()
   {
-    return (EReference)pojoAttributeEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)pojoAttributeEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -3154,7 +3180,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoAttribute_Name()
+  public EAttribute getPojoAttribute_Final()
   {
     return (EAttribute)pojoAttributeEClass.getEStructuralFeatures().get(3);
   }
@@ -3164,9 +3190,109 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPojoAttribute_InitExpr()
+  public EReference getPojoAttribute_Type()
   {
     return (EReference)pojoAttributeEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojoAttribute_Name()
+  {
+    return (EAttribute)pojoAttributeEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoAttribute_InitExpr()
+  {
+    return (EReference)pojoAttributeEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPojoProcedure()
+  {
+    return pojoProcedureEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoProcedure_Annotations()
+  {
+    return (EReference)pojoProcedureEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojoProcedure_Static()
+  {
+    return (EAttribute)pojoProcedureEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojoProcedure_Final()
+  {
+    return (EAttribute)pojoProcedureEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoProcedure_Type()
+  {
+    return (EReference)pojoProcedureEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPojoProcedure_Name()
+  {
+    return (EAttribute)pojoProcedureEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoProcedure_Params()
+  {
+    return (EReference)pojoProcedureEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPojoProcedure_Body()
+  {
+    return (EReference)pojoProcedureEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -3397,6 +3523,66 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
   public EReference getDaoEntity_SuperType()
   {
     return (EReference)daoEntityEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDaoEntity_Attributes()
+  {
+    return (EReference)daoEntityEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDaoEntity_Procedures()
+  {
+    return (EReference)daoEntityEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getModifier()
+  {
+    return modifierEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getModifier_Abstract()
+  {
+    return (EAttribute)modifierEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getModifier_Static()
+  {
+    return (EAttribute)modifierEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getModifier_Final()
+  {
+    return (EAttribute)modifierEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -4432,15 +4618,27 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEAttribute(pojoEntityEClass, POJO_ENTITY__ABSTRACT);
     createEReference(pojoEntityEClass, POJO_ENTITY__SUPER_TYPE);
     createEReference(pojoEntityEClass, POJO_ENTITY__ATTRIBUTES);
+    createEReference(pojoEntityEClass, POJO_ENTITY__PROCEDURES);
 
     pojoAttributeDirectiveEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE);
 
     pojoAttributeEClass = createEClass(POJO_ATTRIBUTE);
     createEReference(pojoAttributeEClass, POJO_ATTRIBUTE__ANNOTATIONS);
     createEReference(pojoAttributeEClass, POJO_ATTRIBUTE__DIRECTIVES);
+    createEAttribute(pojoAttributeEClass, POJO_ATTRIBUTE__STATIC);
+    createEAttribute(pojoAttributeEClass, POJO_ATTRIBUTE__FINAL);
     createEReference(pojoAttributeEClass, POJO_ATTRIBUTE__TYPE);
     createEAttribute(pojoAttributeEClass, POJO_ATTRIBUTE__NAME);
     createEReference(pojoAttributeEClass, POJO_ATTRIBUTE__INIT_EXPR);
+
+    pojoProcedureEClass = createEClass(POJO_PROCEDURE);
+    createEReference(pojoProcedureEClass, POJO_PROCEDURE__ANNOTATIONS);
+    createEAttribute(pojoProcedureEClass, POJO_PROCEDURE__STATIC);
+    createEAttribute(pojoProcedureEClass, POJO_PROCEDURE__FINAL);
+    createEReference(pojoProcedureEClass, POJO_PROCEDURE__TYPE);
+    createEAttribute(pojoProcedureEClass, POJO_PROCEDURE__NAME);
+    createEReference(pojoProcedureEClass, POJO_PROCEDURE__PARAMS);
+    createEReference(pojoProcedureEClass, POJO_PROCEDURE__BODY);
 
     enumDirectiveEClass = createEClass(ENUM_DIRECTIVE);
 
@@ -4474,6 +4672,13 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     daoEntityEClass = createEClass(DAO_ENTITY);
     createEReference(daoEntityEClass, DAO_ENTITY__DIRECTIVES);
     createEReference(daoEntityEClass, DAO_ENTITY__SUPER_TYPE);
+    createEReference(daoEntityEClass, DAO_ENTITY__ATTRIBUTES);
+    createEReference(daoEntityEClass, DAO_ENTITY__PROCEDURES);
+
+    modifierEClass = createEClass(MODIFIER);
+    createEAttribute(modifierEClass, MODIFIER__ABSTRACT);
+    createEAttribute(modifierEClass, MODIFIER__STATIC);
+    createEAttribute(modifierEClass, MODIFIER__FINAL);
 
     annotationDirectiveEClass = createEClass(ANNOTATION_DIRECTIVE);
 
@@ -4944,15 +5149,27 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEAttribute(getPojoEntity_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoEntity_SuperType(), theTypesPackage.getJvmParameterizedTypeReference(), null, "superType", null, 0, 1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoEntity_Attributes(), this.getPojoAttribute(), null, "attributes", null, 0, -1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoEntity_Procedures(), this.getPojoProcedure(), null, "procedures", null, 0, -1, PojoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoAttributeDirectiveEClass, PojoAttributeDirective.class, "PojoAttributeDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(pojoAttributeEClass, PojoAttribute.class, "PojoAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPojoAttribute_Annotations(), this.getAnnotation(), null, "annotations", null, 0, -1, PojoAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoAttribute_Directives(), this.getPojoAttributeDirective(), null, "directives", null, 0, -1, PojoAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojoAttribute_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, PojoAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojoAttribute_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, PojoAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoAttribute_Type(), theTypesPackage.getJvmTypeReference(), null, "type", null, 0, 1, PojoAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPojoAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPojoAttribute_InitExpr(), theXbasePackage.getXExpression(), null, "initExpr", null, 0, 1, PojoAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(pojoProcedureEClass, PojoProcedure.class, "PojoProcedure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPojoProcedure_Annotations(), this.getAnnotation(), null, "annotations", null, 0, -1, PojoProcedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojoProcedure_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, PojoProcedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojoProcedure_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, PojoProcedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoProcedure_Type(), theTypesPackage.getJvmTypeReference(), null, "type", null, 0, 1, PojoProcedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPojoProcedure_Name(), ecorePackage.getEString(), "name", null, 0, 1, PojoProcedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoProcedure_Params(), theTypesPackage.getJvmFormalParameter(), null, "params", null, 0, -1, PojoProcedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoProcedure_Body(), theXbasePackage.getXExpression(), null, "body", null, 0, 1, PojoProcedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumDirectiveEClass, EnumDirective.class, "EnumDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4986,6 +5203,13 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEClass(daoEntityEClass, DaoEntity.class, "DaoEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDaoEntity_Directives(), this.getDaoDirective(), null, "directives", null, 0, -1, DaoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDaoEntity_SuperType(), theTypesPackage.getJvmParameterizedTypeReference(), null, "superType", null, 0, 1, DaoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDaoEntity_Attributes(), this.getPojoAttribute(), null, "attributes", null, 0, -1, DaoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDaoEntity_Procedures(), this.getPojoProcedure(), null, "procedures", null, 0, -1, DaoEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(modifierEClass, Modifier.class, "Modifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getModifier_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getModifier_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getModifier_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, Modifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(annotationDirectiveEClass, AnnotationDirective.class, "AnnotationDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

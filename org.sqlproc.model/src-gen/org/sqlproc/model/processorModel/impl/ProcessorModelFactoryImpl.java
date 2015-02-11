@@ -77,6 +77,7 @@ import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
+import org.sqlproc.model.processorModel.Modifier;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
@@ -100,6 +101,7 @@ import org.sqlproc.model.processorModel.PojoDirectiveOperators;
 import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
+import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.PojogenProperty;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
@@ -215,6 +217,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.POJO_ENTITY: return createPojoEntity();
       case ProcessorModelPackage.POJO_ATTRIBUTE_DIRECTIVE: return createPojoAttributeDirective();
       case ProcessorModelPackage.POJO_ATTRIBUTE: return createPojoAttribute();
+      case ProcessorModelPackage.POJO_PROCEDURE: return createPojoProcedure();
       case ProcessorModelPackage.ENUM_DIRECTIVE: return createEnumDirective();
       case ProcessorModelPackage.ENUM_ENTITY: return createEnumEntity();
       case ProcessorModelPackage.ENUM_ATTRIBUTE_VALUE: return createEnumAttributeValue();
@@ -225,6 +228,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.FUN_PROC_TYPE: return createFunProcType();
       case ProcessorModelPackage.DAO_DIRECTIVE: return createDaoDirective();
       case ProcessorModelPackage.DAO_ENTITY: return createDaoEntity();
+      case ProcessorModelPackage.MODIFIER: return createModifier();
       case ProcessorModelPackage.ANNOTATION_DIRECTIVE: return createAnnotationDirective();
       case ProcessorModelPackage.ANNOTATION: return createAnnotation();
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS: return createImplementsExtendsDirectiveGenerics();
@@ -808,6 +812,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public PojoProcedure createPojoProcedure()
+  {
+    PojoProcedureImpl pojoProcedure = new PojoProcedureImpl();
+    return pojoProcedure;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EnumDirective createEnumDirective()
   {
     EnumDirectiveImpl enumDirective = new EnumDirectiveImpl();
@@ -911,6 +926,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     DaoEntityImpl daoEntity = new DaoEntityImpl();
     return daoEntity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Modifier createModifier()
+  {
+    ModifierImpl modifier = new ModifierImpl();
+    return modifier;
   }
 
   /**

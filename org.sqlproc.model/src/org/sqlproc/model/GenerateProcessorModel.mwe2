@@ -66,7 +66,7 @@ Workflow {
     		// The antlr parser generator fragment.
     		fragment = parser.antlr.XtextAntlrGeneratorFragment auto-inject {
 				options = {
-				// backtrack = true
+				    backtrack = true
 					classSplitting = true
 					fieldsPerClass = "500"
 					methodsPerClass = "500"

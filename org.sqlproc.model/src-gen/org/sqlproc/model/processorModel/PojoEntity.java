@@ -18,6 +18,7 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
  *   <li>{@link org.sqlproc.model.processorModel.PojoEntity#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.PojoEntity#getSuperType <em>Super Type</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.PojoEntity#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.PojoEntity#getProcedures <em>Procedures</em>}</li>
  * </ul>
  * </p>
  *
@@ -110,5 +111,21 @@ public interface PojoEntity extends Entity
    * @generated
    */
   EList<PojoAttribute> getAttributes();
+
+  /**
+   * Returns the value of the '<em><b>Procedures</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.model.processorModel.PojoProcedure}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Procedures</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Procedures</em>' containment reference list.
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoEntity_Procedures()
+   * @model containment="true"
+   * @generated
+   */
+  EList<PojoProcedure> getProcedures();
 
 } // PojoEntity

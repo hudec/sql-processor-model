@@ -455,6 +455,15 @@ public interface ProcessorModelFactory extends EFactory
   PojoAttribute createPojoAttribute();
 
   /**
+   * Returns a new object of class '<em>Pojo Procedure</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Procedure</em>'.
+   * @generated
+   */
+  PojoProcedure createPojoProcedure();
+
+  /**
    * Returns a new object of class '<em>Enum Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -543,6 +552,15 @@ public interface ProcessorModelFactory extends EFactory
    * @generated
    */
   DaoEntity createDaoEntity();
+
+  /**
+   * Returns a new object of class '<em>Modifier</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Modifier</em>'.
+   * @generated
+   */
+  Modifier createModifier();
 
   /**
    * Returns a new object of class '<em>Annotation Directive</em>'.

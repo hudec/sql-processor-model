@@ -267,14 +267,26 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoEntity/abstract"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoEntity/superType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoEntity/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoEntity/procedures"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttributeDirective"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//PojoAttribute">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAttribute/annotations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAttribute/directives"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttribute/static"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttribute/final"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAttribute/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoAttribute/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoAttribute/initExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//PojoProcedure">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProcedure/annotations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoProcedure/static"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoProcedure/final"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProcedure/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//PojoProcedure/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProcedure/params"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//PojoProcedure/body"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//EnumDirective"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//EnumEntity">
@@ -304,6 +316,13 @@
     <genClasses ecoreClass="ProcessorModel.ecore#//DaoEntity">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoEntity/directives"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoEntity/superType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoEntity/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DaoEntity/procedures"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorModel.ecore#//Modifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Modifier/abstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Modifier/static"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//Modifier/final"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//AnnotationDirective"/>
     <genClasses ecoreClass="ProcessorModel.ecore#//Annotation">
