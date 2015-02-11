@@ -560,6 +560,12 @@ class ProcessorGeneratorUtils {
 		return pojo.annotations.filter[x|x.isConstructor].toList
 	}
 
+	def List<Annotation> constructorAnnotations(DaoEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		return pojo.annotations.filter[x|x.isConstructor].toList
+	}
+
     def isStatic(Annotation an) {
 		val d = an.directives?.findFirst[x|x instanceof AnnotationDirectiveStatic]
 		return if(d != null) true else false
@@ -591,6 +597,12 @@ class ProcessorGeneratorUtils {
 	}
 	
 	def List<Annotation> standardAnnotations(PojoEntity pojo) {
+		if (pojo == null)
+			return newArrayList()
+		return pojo.annotations.filter[x|x.isStandard].toList
+	}
+	
+	def List<Annotation> standardAnnotations(DaoEntity pojo) {
 		if (pojo == null)
 			return newArrayList()
 		return pojo.annotations.filter[x|x.isStandard].toList
@@ -806,6 +818,91 @@ class ProcessorGeneratorUtils {
 		val List<Implements> list = newArrayList()
 		
 		for(ext: e.eContainer.eContainer.eContents.filter(typeof(Implements))) {
+			if (isImplements(e, ext))
+				list.add(ext)
+		}
+		return list
+	}
+
+	def isExtends(DaoEntity e) {
+		for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
+			if (!ext.onlyDaos.empty) {
+				for (ee : ext.onlyDaos) {
+					if (ee.name == e.name)
+						return true
+				}
+				return false
+			}
+			for (ee : ext.exceptDaos) {
+				if (ee.name == e.name)
+					return false;
+			}
+			return true
+		}
+		return false
+	}
+	
+	def isExtends(DaoEntity e, Extends ext) {
+		if (!ext.onlyDaos.empty) {
+			for (ee : ext.onlyDaos) {
+				if (ee.name == e.name)
+				return true
+			}
+			return false
+		}
+		for (ee : ext.exceptDaos) {
+			if (ee.name == e.name)
+				return false;
+		}
+		return true
+	}
+	
+	def getExtends(DaoEntity e) {
+		for(ext: e.eContainer.eContents.filter(typeof(Extends))) {
+			if (isExtends(e, ext))
+				return ext
+		}
+		return null
+	}
+	
+	def isImplements(DaoEntity e) {
+		for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
+			for (ee : ext.exceptDaos) {
+				if (ee.name == e.name)
+					return false;
+			}
+			if (!ext.onlyDaos.empty) {
+				for (ee : ext.onlyDaos) {
+					if (ee.name == e.name)
+						return true
+				}
+			}
+			else {
+				return true
+			}
+		}
+		return false
+	}
+	
+	def isImplements(DaoEntity e, Implements ext) {
+		if (!ext.onlyDaos.empty) {
+			for (ee : ext.onlyDaos) {
+				if (ee.name == e.name)
+				return true
+			}
+			return false
+		}
+		for (ee : ext.exceptDaos) {
+			if (ee.name == e.name)
+				return false;
+		}
+		return true
+	}
+	
+	def getImplements(DaoEntity e) {
+		val List<Implements> list = newArrayList()
+		
+		for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
 			if (isImplements(e, ext))
 				list.add(ext)
 		}

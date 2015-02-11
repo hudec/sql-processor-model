@@ -2260,30 +2260,98 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
   
   protected void _infer(final DaoEntity entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
     QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(entity);
-    JvmGenericType _class = this._processorTypesBuilder.toClass(entity, _fullyQualifiedName);
+    final JvmGenericType entityType = this._processorTypesBuilder.toClass(entity, _fullyQualifiedName);
+    final String simpleName = entity.getName();
+    final Integer sernum = this._processorGeneratorUtils.getSernum(entity);
     final Procedure1<JvmGenericType> _function = new Procedure1<JvmGenericType>() {
       public void apply(final JvmGenericType it) {
         String _documentation = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.getDocumentation(entity);
         ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setDocumentation(it, _documentation);
-        EList<Annotation> _annotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.annotations(entity);
+        List<Annotation> _standardAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.standardAnnotations(entity);
         final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
           public XAnnotation apply(final Annotation a) {
             return a.getAnnotation();
           }
         };
-        List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_annotations, _function);
-        ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
-        JvmParameterizedTypeReference _superType = entity.getSuperType();
-        boolean _notEquals = (!Objects.equal(_superType, null));
-        if (_notEquals) {
-          EList<JvmTypeReference> _superTypes = it.getSuperTypes();
-          JvmParameterizedTypeReference _superType_1 = entity.getSuperType();
-          JvmTypeReference _cloneWithProxies = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_superType_1);
-          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _cloneWithProxies);
+        List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_standardAnnotations, _function);
+        for (final XAnnotation an : _map) {
+          JvmType _annotationType = an.getAnnotationType();
+          String _identifier = _annotationType.getIdentifier();
+          boolean _equals = Objects.equal(_identifier, "java.io.Serializable");
+          if (_equals) {
+            EList<JvmTypeReference> _superTypes = it.getSuperTypes();
+            JvmType _annotationType_1 = an.getAnnotationType();
+            JvmTypeReference _typeRef = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(_annotationType_1);
+            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _typeRef);
+          } else {
+            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotation(it, an);
+          }
         }
+        List<Implements> _implements = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getImplements(entity);
+        for (final Implements impl : _implements) {
+          EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
+          JvmParameterizedTypeReference _implements_1 = impl.getImplements();
+          JvmTypeReference _cloneWithProxies = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_implements_1);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _cloneWithProxies);
+        }
+        final Extends ext = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.getExtends(entity);
+        boolean _notEquals = (!Objects.equal(ext, null));
+        if (_notEquals) {
+          EList<JvmTypeReference> _superTypes_2 = it.getSuperTypes();
+          JvmParameterizedTypeReference _extends = ext.getExtends();
+          JvmTypeReference _cloneWithProxies_1 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_extends);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_2, _cloneWithProxies_1);
+        }
+        JvmParameterizedTypeReference _superType = entity.getSuperType();
+        boolean _notEquals_1 = (!Objects.equal(_superType, null));
+        if (_notEquals_1) {
+          EList<JvmTypeReference> _superTypes_3 = it.getSuperTypes();
+          JvmParameterizedTypeReference _superType_1 = entity.getSuperType();
+          JvmTypeReference _cloneWithProxies_2 = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_superType_1);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_3, _cloneWithProxies_2);
+        }
+        boolean _notEquals_2 = (!Objects.equal(sernum, null));
+        if (_notEquals_2) {
+          EList<JvmTypeReference> _superTypes_4 = it.getSuperTypes();
+          JvmTypeReference _typeRef_1 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef("java.io.Serializable");
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_4, _typeRef_1);
+          EList<JvmMember> _members = it.getMembers();
+          JvmTypeReference _typeRef_2 = ProcessorModelJvmModelInferrer.this._typeReferenceBuilder.typeRef(long.class);
+          final Procedure1<JvmField> _function_1 = new Procedure1<JvmField>() {
+            public void apply(final JvmField it) {
+              it.setStatic(true);
+              it.setFinal(true);
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append(sernum, "");
+                  _builder.append("L");
+                }
+              };
+              ProcessorModelJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client);
+            }
+          };
+          JvmField _field = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toField(entity, "serialVersionUID", _typeRef_2, _function_1);
+          ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members, _field);
+        }
+        EList<JvmMember> _members_1 = it.getMembers();
+        final Procedure1<JvmConstructor> _function_2 = new Procedure1<JvmConstructor>() {
+          public void apply(final JvmConstructor it) {
+            List<Annotation> _constructorAnnotations = ProcessorModelJvmModelInferrer.this._processorGeneratorUtils.constructorAnnotations(entity);
+            final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+              public XAnnotation apply(final Annotation a) {
+                return a.getAnnotation();
+              }
+            };
+            List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_constructorAnnotations, _function);
+            ProcessorModelJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+          }
+        };
+        JvmConstructor _constructor = ProcessorModelJvmModelInferrer.this._processorTypesBuilder.toConstructor(entity, _function_2);
+        ProcessorModelJvmModelInferrer.this._processorTypesBuilder.<JvmConstructor>operator_add(_members_1, _constructor);
       }
     };
-    acceptor.<JvmGenericType>accept(_class, _function);
+    acceptor.<JvmGenericType>accept(entityType, _function);
   }
   
   public void infer(final EObject entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {

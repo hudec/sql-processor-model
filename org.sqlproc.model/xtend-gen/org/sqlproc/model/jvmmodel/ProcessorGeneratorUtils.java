@@ -1252,6 +1252,21 @@ public class ProcessorGeneratorUtils {
     return IterableExtensions.<Annotation>toList(_filter);
   }
   
+  public List<Annotation> constructorAnnotations(final DaoEntity pojo) {
+    boolean _equals = Objects.equal(pojo, null);
+    if (_equals) {
+      return CollectionLiterals.<Annotation>newArrayList();
+    }
+    EList<Annotation> _annotations = this.annotations(pojo);
+    final Function1<Annotation, Boolean> _function = new Function1<Annotation, Boolean>() {
+      public Boolean apply(final Annotation x) {
+        return Boolean.valueOf(ProcessorGeneratorUtils.this.isConstructor(x));
+      }
+    };
+    Iterable<Annotation> _filter = IterableExtensions.<Annotation>filter(_annotations, _function);
+    return IterableExtensions.<Annotation>toList(_filter);
+  }
+  
   public boolean isStatic(final Annotation an) {
     EList<AnnotationDirective> _directives = an.getDirectives();
     AnnotationDirective _findFirst = null;
@@ -1355,6 +1370,21 @@ public class ProcessorGeneratorUtils {
   }
   
   public List<Annotation> standardAnnotations(final PojoEntity pojo) {
+    boolean _equals = Objects.equal(pojo, null);
+    if (_equals) {
+      return CollectionLiterals.<Annotation>newArrayList();
+    }
+    EList<Annotation> _annotations = this.annotations(pojo);
+    final Function1<Annotation, Boolean> _function = new Function1<Annotation, Boolean>() {
+      public Boolean apply(final Annotation x) {
+        return Boolean.valueOf(ProcessorGeneratorUtils.this.isStandard(x));
+      }
+    };
+    Iterable<Annotation> _filter = IterableExtensions.<Annotation>filter(_annotations, _function);
+    return IterableExtensions.<Annotation>toList(_filter);
+  }
+  
+  public List<Annotation> standardAnnotations(final DaoEntity pojo) {
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
       return CollectionLiterals.<Annotation>newArrayList();
@@ -1874,6 +1904,161 @@ public class ProcessorGeneratorUtils {
     EObject _eContainer = e.eContainer();
     EObject _eContainer_1 = _eContainer.eContainer();
     EList<EObject> _eContents = _eContainer_1.eContents();
+    Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
+    for (final Implements ext : _filter) {
+      boolean _isImplements = this.isImplements(e, ext);
+      if (_isImplements) {
+        list.add(ext);
+      }
+    }
+    return list;
+  }
+  
+  public boolean isExtends(final DaoEntity e) {
+    EObject _eContainer = e.eContainer();
+    EList<EObject> _eContents = _eContainer.eContents();
+    Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
+    for (final Extends ext : _filter) {
+      {
+        List<DaoEntity> _onlyDaos = this.onlyDaos(ext);
+        boolean _isEmpty = _onlyDaos.isEmpty();
+        boolean _not = (!_isEmpty);
+        if (_not) {
+          List<DaoEntity> _onlyDaos_1 = this.onlyDaos(ext);
+          for (final DaoEntity ee : _onlyDaos_1) {
+            String _name = ee.getName();
+            String _name_1 = e.getName();
+            boolean _equals = Objects.equal(_name, _name_1);
+            if (_equals) {
+              return true;
+            }
+          }
+          return false;
+        }
+        List<DaoEntity> _exceptDaos = this.exceptDaos(ext);
+        for (final DaoEntity ee_1 : _exceptDaos) {
+          String _name_2 = ee_1.getName();
+          String _name_3 = e.getName();
+          boolean _equals_1 = Objects.equal(_name_2, _name_3);
+          if (_equals_1) {
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean isExtends(final DaoEntity e, final Extends ext) {
+    List<DaoEntity> _onlyDaos = this.onlyDaos(ext);
+    boolean _isEmpty = _onlyDaos.isEmpty();
+    boolean _not = (!_isEmpty);
+    if (_not) {
+      List<DaoEntity> _onlyDaos_1 = this.onlyDaos(ext);
+      for (final DaoEntity ee : _onlyDaos_1) {
+        String _name = ee.getName();
+        String _name_1 = e.getName();
+        boolean _equals = Objects.equal(_name, _name_1);
+        if (_equals) {
+          return true;
+        }
+      }
+      return false;
+    }
+    List<DaoEntity> _exceptDaos = this.exceptDaos(ext);
+    for (final DaoEntity ee_1 : _exceptDaos) {
+      String _name_2 = ee_1.getName();
+      String _name_3 = e.getName();
+      boolean _equals_1 = Objects.equal(_name_2, _name_3);
+      if (_equals_1) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public Extends getExtends(final DaoEntity e) {
+    EObject _eContainer = e.eContainer();
+    EList<EObject> _eContents = _eContainer.eContents();
+    Iterable<Extends> _filter = Iterables.<Extends>filter(_eContents, Extends.class);
+    for (final Extends ext : _filter) {
+      boolean _isExtends = this.isExtends(e, ext);
+      if (_isExtends) {
+        return ext;
+      }
+    }
+    return null;
+  }
+  
+  public boolean isImplements(final DaoEntity e) {
+    EObject _eContainer = e.eContainer();
+    EList<EObject> _eContents = _eContainer.eContents();
+    Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
+    for (final Implements ext : _filter) {
+      {
+        List<DaoEntity> _exceptDaos = this.exceptDaos(ext);
+        for (final DaoEntity ee : _exceptDaos) {
+          String _name = ee.getName();
+          String _name_1 = e.getName();
+          boolean _equals = Objects.equal(_name, _name_1);
+          if (_equals) {
+            return false;
+          }
+        }
+        List<DaoEntity> _onlyDaos = this.onlyDaos(ext);
+        boolean _isEmpty = _onlyDaos.isEmpty();
+        boolean _not = (!_isEmpty);
+        if (_not) {
+          List<DaoEntity> _onlyDaos_1 = this.onlyDaos(ext);
+          for (final DaoEntity ee_1 : _onlyDaos_1) {
+            String _name_2 = ee_1.getName();
+            String _name_3 = e.getName();
+            boolean _equals_1 = Objects.equal(_name_2, _name_3);
+            if (_equals_1) {
+              return true;
+            }
+          }
+        } else {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  
+  public boolean isImplements(final DaoEntity e, final Implements ext) {
+    List<DaoEntity> _onlyDaos = this.onlyDaos(ext);
+    boolean _isEmpty = _onlyDaos.isEmpty();
+    boolean _not = (!_isEmpty);
+    if (_not) {
+      List<DaoEntity> _onlyDaos_1 = this.onlyDaos(ext);
+      for (final DaoEntity ee : _onlyDaos_1) {
+        String _name = ee.getName();
+        String _name_1 = e.getName();
+        boolean _equals = Objects.equal(_name, _name_1);
+        if (_equals) {
+          return true;
+        }
+      }
+      return false;
+    }
+    List<DaoEntity> _exceptDaos = this.exceptDaos(ext);
+    for (final DaoEntity ee_1 : _exceptDaos) {
+      String _name_2 = ee_1.getName();
+      String _name_3 = e.getName();
+      boolean _equals_1 = Objects.equal(_name_2, _name_3);
+      if (_equals_1) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public List<Implements> getImplements(final DaoEntity e) {
+    final List<Implements> list = CollectionLiterals.<Implements>newArrayList();
+    EObject _eContainer = e.eContainer();
+    EList<EObject> _eContents = _eContainer.eContents();
     Iterable<Implements> _filter = Iterables.<Implements>filter(_eContents, Implements.class);
     for (final Implements ext : _filter) {
       boolean _isImplements = this.isImplements(e, ext);

@@ -696,11 +696,48 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
 
 	 
    	def dispatch void infer(DaoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-   		acceptor.accept(entity.toClass(entity.fullyQualifiedName)) [
+   		val entityType = entity.toClass(entity.fullyQualifiedName)
+   		val simpleName = entity.name
+   		val sernum = entity.sernum
+   		acceptor.accept(entityType) [
    			documentation = entity.documentation
-   			addAnnotations(entity.annotations.map[a|a.annotation])
+   			for (an : entity.standardAnnotations.map[a|a.annotation]) {
+   				if (an.annotationType.identifier == 'java.io.Serializable') {
+   					superTypes += typeRef(an.annotationType)
+   				}
+   				else {
+   					addAnnotation(an)
+   				}
+   			}
+   			for (impl : entity.getImplements) {
+   				superTypes += impl.implements.cloneWithProxies
+   			}
+   			val ext = entity.getExtends
+   			if (ext != null)
+   				superTypes += ext.extends.cloneWithProxies
    			if (entity.superType != null)
    				superTypes += entity.superType.cloneWithProxies
+   				
+   			if (sernum != null) {
+   				superTypes += typeRef('java.io.Serializable')
+				members += entity.toField('serialVersionUID', typeRef(long)) [
+ 					static = true
+ 					final = true
+ 					initializer = '''«sernum»L'''
+   				]
+   			}
+   			
+   			members += entity.toConstructor [
+   				addAnnotations(entity.constructorAnnotations.map[a|a.annotation])
+   			]
+//   			members += entity.toConstructor [
+//	   			for (attr : entity.requiredAttributes)
+//   					parameters += entity.toParameter(attr.name, attr.type)
+//   				addAnnotations(entity.constructorAnnotations.map[a|a.annotation])
+//   				body = '''«FOR attr : entity.requiredAttributes»
+//					this.«attr.name» = «attr.name»;
+//				«ENDFOR»'''
+//   			]
    		]
    	}
 }
