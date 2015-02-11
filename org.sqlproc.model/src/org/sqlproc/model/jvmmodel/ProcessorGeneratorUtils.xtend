@@ -417,9 +417,10 @@ class ProcessorGeneratorUtils {
             }
             lastDigit = Character.isDigit(c)
         }
-        if (result.charAt(0) == '_')
-        	return result.substring(1)
-        return result.toString
+        val s = result.toString
+        if (s.startsWith('_'))
+        	return s.substring(1)
+        return s
     }
 
 //    def String getSuffix(Entity pojo) {
@@ -964,4 +965,21 @@ class ProcessorGeneratorUtils {
 		}
 		return list
 	}
+   	
+   	def String getSimpleName(JvmParameterizedTypeReference ref) {
+   		val StringBuilder name = new StringBuilder(ref.type.simpleName)
+   		if (ref.arguments != null && !ref.arguments.empty) {
+   			name.append('<')
+   			var boolean first = true
+   			for (arg : ref.arguments) {
+   				if (first)
+   					first = false
+   				else
+   					name.append(',')
+   				name.append(arg.simpleName)
+   			} 
+   			name.append('>')
+   		}
+   		return name.toString	
+   	}
 }

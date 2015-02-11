@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmPrimitiveType;
+import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
@@ -1050,12 +1051,12 @@ public class ProcessorGeneratorUtils {
         lastDigit = _isDigit_1;
       }
     }
-    char _charAt = result.charAt(0);
-    boolean _equals = Objects.equal(Character.valueOf(_charAt), "_");
-    if (_equals) {
-      return result.substring(1);
+    final String s = result.toString();
+    boolean _startsWith = s.startsWith("_");
+    if (_startsWith) {
+      return s.substring(1);
     }
-    return result.toString();
+    return s;
   }
   
   public Integer getSernum(final EnumEntity enum_) {
@@ -2258,6 +2259,41 @@ public class ProcessorGeneratorUtils {
       }
     }
     return list;
+  }
+  
+  public String getSimpleName(final JvmParameterizedTypeReference ref) {
+    JvmType _type = ref.getType();
+    String _simpleName = _type.getSimpleName();
+    final StringBuilder name = new StringBuilder(_simpleName);
+    boolean _and = false;
+    EList<JvmTypeReference> _arguments = ref.getArguments();
+    boolean _notEquals = (!Objects.equal(_arguments, null));
+    if (!_notEquals) {
+      _and = false;
+    } else {
+      EList<JvmTypeReference> _arguments_1 = ref.getArguments();
+      boolean _isEmpty = _arguments_1.isEmpty();
+      boolean _not = (!_isEmpty);
+      _and = _not;
+    }
+    if (_and) {
+      name.append("<");
+      boolean first = true;
+      EList<JvmTypeReference> _arguments_2 = ref.getArguments();
+      for (final JvmTypeReference arg : _arguments_2) {
+        {
+          if (first) {
+            first = false;
+          } else {
+            name.append(",");
+          }
+          String _simpleName_1 = arg.getSimpleName();
+          name.append(_simpleName_1);
+        }
+      }
+      name.append(">");
+    }
+    return name.toString();
   }
   
   public String constName(final Object l) {

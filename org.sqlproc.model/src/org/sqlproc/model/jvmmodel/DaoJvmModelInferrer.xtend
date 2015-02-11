@@ -27,6 +27,13 @@ import org.sqlproc.model.processorModel.DaoDirectiveCrud
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.sqlproc.model.processorModel.DaoDirectiveQuery
 import java.util.Map
+import org.sqlproc.model.processorModel.DaoDirectiveParameters
+import org.sqlproc.model.processorModel.FunctionCallQuery
+import org.sqlproc.model.processorModel.FunProcDirective
+import org.sqlproc.model.processorModel.ProcedureCallQuery
+import org.sqlproc.model.processorModel.FunctionCall
+import org.sqlproc.model.processorModel.ProcedureUpdate
+import org.sqlproc.model.processorModel.FunctionQuery
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -182,6 +189,9 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    						moreResultClasses = entity.getMoreResultClasses
    					inferList(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferCount(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   				}
+   				else if (dir instanceof FunProcDirective) {
+   					inferFunctionProcedure(entity, (dir as FunProcDirective).type, (dir as FunProcDirective).paramlist, entityType, simpleName, members)
    				}
    			}
    			if (moreResultClasses != null && !moreResultClasses.empty) {
@@ -524,5 +534,123 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    				'''
    		]	
 	}
+
+
+   	dispatch def void inferFunctionProcedure(DaoEntity entity, FunctionCallQuery type, DaoDirectiveParameters params, 
+   		JvmGenericType entityType, String simpleName, List<JvmMember> members
+   	) {
+   		val listType = typeRef(params.out.type, params.out.arguments)
+   		val fname = entity.getFunProcName
+   		
+		members += entity.toMethod(fname, listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				if (logger.isTraceEnabled()) {
+					logger.trace("proc «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName»«ENDFOR» + " " + sqlControl);
+				}
+				«PROCEDURE_ENGINE» sqlProc«entity.name» = sqlEngineFactory.getCheckedProcedureEngine("FUN_«dbName(fname)»");
+				«getSimpleName(params.out)» list = sqlProc«entity.name».callQuery(sqlSession, «params.out.arguments.head.simpleName».class, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				if (logger.isTraceEnabled()) {
+					logger.trace("proc «fname» result: " + list);
+				}
+				return list;
+   				'''
+   		]	
+   		
+		members += entity.toMethod(fname, listType) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+			'''
+   		]	
+   		
+		members += entity.toMethod(fname, listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			body = '''
+				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+   			'''
+   		]	
+   		
+		members += entity.toMethod(fname, listType) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			body = '''
+				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+   			'''
+   		]	
+	}
+
+   	dispatch def void inferFunctionProcedure(DaoEntity entity, ProcedureCallQuery type, DaoDirectiveParameters params, 
+   		JvmGenericType entityType, String simpleName, List<JvmMember> members
+   	) {
+   		val listType = typeRef(params.out.type, params.out.arguments)
+   		val fname = entity.getFunProcName
+   		
+		members += entity.toMethod(fname, listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				if (logger.isTraceEnabled()) {
+					logger.trace("proc «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName»«ENDFOR» + " " + sqlControl);
+				}
+				«PROCEDURE_ENGINE» sqlProc«entity.name» = sqlEngineFactory.getCheckedProcedureEngine("PROC_«dbName(fname)»");
+				«getSimpleName(params.out)» list = sqlProc«entity.name».callQuery(sqlSession, «params.out.arguments.head.simpleName».class, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				if (logger.isTraceEnabled()) {
+					logger.trace("proc «fname» result: " + list);
+				}
+				return list;
+   				'''
+   		]	
+   		
+		members += entity.toMethod(fname, listType) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+			'''
+   		]	
+   		
+		members += entity.toMethod(fname, listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			body = '''
+				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+   			'''
+   		]	
+   		
+		members += entity.toMethod(fname, listType) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			body = '''
+				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+   			'''
+   		]	
+   	}
+
+   	dispatch def void inferFunctionProcedure(DaoEntity entity, FunctionCall type, DaoDirectiveParameters params, 
+   		JvmGenericType entityType, String simpleName, List<JvmMember> members
+   	) {
+   	}
+
+   	dispatch def void inferFunctionProcedure(DaoEntity entity, ProcedureUpdate type, DaoDirectiveParameters params, 
+   		JvmGenericType entityType, String simpleName, List<JvmMember> members
+   	) {
+   	}
+
+   	dispatch def void inferFunctionProcedure(DaoEntity entity, FunctionQuery type, DaoDirectiveParameters params, 
+   		JvmGenericType entityType, String simpleName, List<JvmMember> members
+   	) {
+   	}
 }
 
