@@ -59,6 +59,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    	val MAP = 'java.util.Map'
    	val HASH_MAP = 'java.util.HashMap'
    	val LIST = 'java.util.List'
+   	val SQL_STANDARD_CONTROL = 'org.sqlproc.engine.impl.SqlStandardControl'
 
 	/**
 	 * The dispatch method {@code infer} is called for each instance of the
@@ -96,7 +97,6 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		val pojoType = pojo.toClass(pojo.fullyQualifiedName)
    		val simpleName = entity.name
    		val sernum = entity.sernum
-   		val moreResultClasses = entity.getMoreResultClasses
    		
    		acceptor.accept(entityType) [
    			documentation = entity.documentation
@@ -166,17 +166,27 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    				visibility = JvmVisibility.PROTECTED
    			]
    			
+   			var Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses = null
+   			
    			for (dir : entity.directives) {
    				if (dir instanceof DaoDirectiveCrud) {
+   					if (moreResultClasses == null)
+   						moreResultClasses = entity.getMoreResultClasses
    					inferInsert(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members)
    					inferGet(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    					inferUpdate(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members)
    					inferDelete(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members)
    				}
    				else if (dir instanceof DaoDirectiveQuery) {
+   					if (moreResultClasses == null)
+   						moreResultClasses = entity.getMoreResultClasses
    					inferList(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   					inferCount(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
    				}
    			}
+   			if (moreResultClasses != null && !moreResultClasses.empty) {
+   				inferMoreResultClasses(entity, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+			}
    		]
    	}
    	
@@ -393,7 +403,6 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
    	) {
    		val pojoAttrName = pojo.name.toFirstLower
-   		val parent = pojo.parent
    		val listType = typeRef(java.util.List, typeRef(pojoType))
    			
 		members += entity.toMethod('list', listType) [
@@ -402,13 +411,13 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
 				if (logger.isTraceEnabled()) {
-					logger.trace("list «pojoAttrName»: " + «pojoAttrName» + " " + sqlControl);
+					logger.trace("sql list «pojoAttrName»: " + «pojoAttrName» + " " + sqlControl);
 				}
 				«QUERY_ENGINE» sqlEngine«pojo.name» = sqlEngineFactory.getCheckedQueryEngine("SELECT_«dbName(pojo.name)»");
 				«IF moreResultClasses.empty»//«ENDIF»sqlControl = getMoreResultClasses(«pojoAttrName», sqlControl);
 				List<«pojo.name»> «pojoAttrName»List = sqlEngine«pojo.name».query(sqlSession, «pojo.name».class, «pojoAttrName», sqlControl);
 				if (logger.isTraceEnabled()) {
-					logger.trace("list «pojoAttrName» size: " + ((«pojoAttrName»List != null) ? «pojoAttrName»List.size() : "null"));
+					logger.trace("sql list «pojoAttrName» size: " + ((«pojoAttrName»List != null) ? «pojoAttrName»List.size() : "null"));
 				}
 				return «pojoAttrName»List;
    				'''
@@ -435,6 +444,84 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 			body = '''
 				return list(«pojoAttrName», null);
    			'''
+   		]	
+	}
+
+   	def void inferCount(DaoEntity entity, DaoDirectiveQuery dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		
+		members += entity.toMethod('count', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				if (logger.isTraceEnabled()) {
+					logger.trace("count «pojoAttrName»: " + «pojoAttrName» + " " + sqlControl);
+				}
+				«QUERY_ENGINE» sqlEngine«pojo.name» = sqlEngineFactory.getCheckedQueryEngine("SELECT_«dbName(pojo.name)»");
+				«IF moreResultClasses.empty»//«ENDIF»sqlControl = getMoreResultClasses(«pojoAttrName», sqlControl);
+				int count = sqlEngine«pojo.name».queryCount(sqlSession, «pojoAttrName», sqlControl);
+				if (logger.isTraceEnabled()) {
+					logger.trace("count: " + count);
+				}
+				return count;
+   				'''
+   		]	
+   		
+		members += entity.toMethod('count', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				return count(sqlSessionFactory.getSqlSession(), «pojoAttrName», sqlControl);
+			'''
+   		]	
+   		
+		members += entity.toMethod('count', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			body = '''
+				return count(sqlSession, «pojoAttrName», null);
+   			'''
+   		]	
+   		
+		members += entity.toMethod('count', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			body = '''
+				return count(«pojoAttrName», null);
+   			'''
+   		]	
+	}
+
+   	def void inferMoreResultClasses(DaoEntity entity, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		
+		members += entity.toMethod('getMoreResultClasses', typeRef(SQL_CONTROL)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				if (sqlControl != null && sqlControl.getMoreResultClasses() != null)
+					return sqlControl;
+				«MAP»<String, Class<?>> moreResultClasses = null;
+				«FOR f:moreResultClasses.entrySet SEPARATOR "
+	"»		if («pojoAttrName» != null && «pojoAttrName».toInit(«pojo.name».Association.«f.key».name())) {
+				if (moreResultClasses == null)
+					moreResultClasses = new HashMap<String, Class<?>>();
+			«FOR a:f.value.entrySet SEPARATOR "
+	"»		moreResultClasses.put("«a.key»", «a.value.fullyQualifiedName».class);«ENDFOR»
+			}
+			«ENDFOR»
+			if (moreResultClasses != null) {
+				sqlControl = new «SQL_STANDARD_CONTROL»(sqlControl);
+				((«SQL_STANDARD_CONTROL») sqlControl).setMoreResultClasses(moreResultClasses);
+			}
+			return sqlControl;
+   				'''
    		]	
 	}
 }
