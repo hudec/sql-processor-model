@@ -348,7 +348,7 @@ public class ProcessorGeneratorUtils {
       _simpleName=_type.getSimpleName();
     }
     final String name = _simpleName;
-    return Objects.equal("List", name);
+    return name.startsWith("List<");
   }
   
   public boolean isNative(final PojoAttribute f) {

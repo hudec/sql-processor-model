@@ -356,7 +356,36 @@ public class PojoJvmModelInferrer {
                 List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_attributeAnnotations, _function);
                 PojoJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
                 XExpression _initExpr = attr_1.getInitExpr();
-                PojoJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _initExpr);
+                boolean _notEquals = (!Objects.equal(_initExpr, null));
+                if (_notEquals) {
+                  XExpression _initExpr_1 = attr_1.getInitExpr();
+                  PojoJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _initExpr_1);
+                } else {
+                  boolean _isList = PojoJvmModelInferrer.this._processorGeneratorUtils.isList(attr_1);
+                  if (_isList) {
+                    StringConcatenationClient _client = new StringConcatenationClient() {
+                      @Override
+                      protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                        _builder.append("new java.util.Array");
+                        String _simpleName = type.getSimpleName();
+                        _builder.append(_simpleName, "");
+                        _builder.append("()");
+                      }
+                    };
+                    PojoJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client);
+                  } else {
+                    boolean _isOptLock = PojoJvmModelInferrer.this._processorGeneratorUtils.isOptLock(attr_1);
+                    if (_isOptLock) {
+                      StringConcatenationClient _client_1 = new StringConcatenationClient() {
+                        @Override
+                        protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                          _builder.append("0");
+                        }
+                      };
+                      PojoJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client_1);
+                    }
+                  }
+                }
               }
             };
             JvmField _field_3 = PojoJvmModelInferrer.this._processorTypesBuilder.toField(entity, _name, type, _function_7);

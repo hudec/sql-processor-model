@@ -154,7 +154,7 @@ class ProcessorGeneratorUtils {
 
 	def isList(PojoAttribute f) {
 		val name = f?.type?.simpleName
-		return "List" == name
+		return name.startsWith("List<")
 	}
 
 	def isNative(PojoAttribute f) {

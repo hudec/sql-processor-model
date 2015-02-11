@@ -145,7 +145,15 @@ class PojoJvmModelInferrer {
    				members += entity.toField(attr.name, type) [
    					documentation = attr.documentation
    					addAnnotations(attr.attributeAnnotations.map[a|a.annotation])
- 					initializer = attr.initExpr
+   					if (attr.initExpr != null) {
+ 						initializer = attr.initExpr
+ 					} 
+ 					else if (isList(attr)) {
+ 						initializer = '''new java.util.Array«type.simpleName»()'''
+ 					}
+ 					else if (isOptLock(attr)) {
+ 						initializer = '''0'''
+					}
    				]
    				val createColumn1 = attr.createColumn1
    				members += attr.toGetter(attr.name, attr.name, type) [
