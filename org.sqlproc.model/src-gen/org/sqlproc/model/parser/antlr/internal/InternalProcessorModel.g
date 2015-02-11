@@ -7491,18 +7491,15 @@ rulePojoAttributeDirective returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1ValidIDParserRuleCall_5_3_0()); 
-	    }
-		lv_updateColumn1_16_0=ruleValidID		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPojoAttributeDirectiveRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoAttributeDirectiveRule());
 	        }
-       		set(
-       			$current, 
-       			"updateColumn1",
-        		lv_updateColumn1_16_0, 
-        		"ValidID");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1PojoAttributeCrossReference_5_3_0()); 
+	    }
+		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7513,18 +7510,15 @@ rulePojoAttributeDirective returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn2ValidIDParserRuleCall_5_5_0()); 
-	    }
-		lv_updateColumn2_18_0=ruleValidID		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPojoAttributeDirectiveRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoAttributeDirectiveRule());
 	        }
-       		set(
-       			$current, 
-       			"updateColumn2",
-        		lv_updateColumn2_18_0, 
-        		"ValidID");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn2PojoAttributeCrossReference_5_5_0()); 
+	    }
+		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7550,18 +7544,15 @@ rulePojoAttributeDirective returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn1ValidIDParserRuleCall_6_3_0()); 
-	    }
-		lv_createColumn1_23_0=ruleValidID		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPojoAttributeDirectiveRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoAttributeDirectiveRule());
 	        }
-       		set(
-       			$current, 
-       			"createColumn1",
-        		lv_createColumn1_23_0, 
-        		"ValidID");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn1PojoAttributeCrossReference_6_3_0()); 
+	    }
+		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7572,18 +7563,15 @@ rulePojoAttributeDirective returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2ValidIDParserRuleCall_6_5_0()); 
-	    }
-		lv_createColumn2_25_0=ruleValidID		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPojoAttributeDirectiveRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoAttributeDirectiveRule());
 	        }
-       		set(
-       			$current, 
-       			"createColumn2",
-        		lv_createColumn2_25_0, 
-        		"ValidID");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2PojoAttributeCrossReference_6_5_0()); 
+	    }
+		ruleValidID		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8571,7 +8559,42 @@ ruleDaoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_26, grammarAccess.getDaoDirectiveAccess().getRightParenthesisKeyword_4_2_2());
     }
-)?))
+)?)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getDaoDirectiveAccess().getDaoDirectivePojoAction_5_0(),
+            $current);
+    }
+)	otherlv_28='#Pojo' 
+    {
+    	newLeafNode(otherlv_28, grammarAccess.getDaoDirectiveAccess().getPojoKeyword_5_1());
+    }
+(((	'(' 
+)=>	otherlv_29='(' 
+    {
+    	newLeafNode(otherlv_29, grammarAccess.getDaoDirectiveAccess().getLeftParenthesisKeyword_5_2_0());
+    }
+)(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDaoDirectiveRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityCrossReference_5_2_1_0()); 
+	    }
+		ruleValidID		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_31=')' 
+    {
+    	newLeafNode(otherlv_31, grammarAccess.getDaoDirectiveAccess().getRightParenthesisKeyword_5_2_2());
+    }
+)))
 ;
 
 

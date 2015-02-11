@@ -361,15 +361,7 @@ public class PojoJvmModelInferrer {
             };
             JvmField _field_3 = PojoJvmModelInferrer.this._processorTypesBuilder.toField(entity, _name, type, _function_7);
             PojoJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_5, _field_3);
-            String _createColumn1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn1(attr_1);
-            final PojoAttribute createColumn1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getAttribute(entity, _createColumn1);
-            String _xifexpression = null;
-            boolean _notEquals_3 = (!Objects.equal(createColumn1, null));
-            if (_notEquals_3) {
-              JvmTypeReference _type_1 = createColumn1.getType();
-              _xifexpression = _type_1.getQualifiedName();
-            }
-            final String typeCreateColumn1 = _xifexpression;
+            final PojoAttribute createColumn1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn1(attr_1);
             EList<JvmMember> _members_6 = it.getMembers();
             String _name_1 = attr_1.getName();
             String _name_2 = attr_1.getName();
@@ -391,10 +383,10 @@ public class PojoJvmModelInferrer {
             String _name_3 = attr_1.getName();
             String _name_4 = attr_1.getName();
             JvmTypeReference _typeRef_6 = PojoJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
-            String _updateColumn1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn1(attr_1);
-            String _updateColumn2 = PojoJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn2(attr_1);
-            String _createColumn1_1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn1(attr_1);
-            String _createColumn2 = PojoJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn2(attr_1);
+            PojoAttribute _updateColumn1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn1(attr_1);
+            PojoAttribute _updateColumn2 = PojoJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn2(attr_1);
+            PojoAttribute _createColumn1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn1(attr_1);
+            PojoAttribute _createColumn2 = PojoJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn2(attr_1);
             final Procedure1<JvmOperation> _function_9 = new Procedure1<JvmOperation>() {
               public void apply(final JvmOperation it) {
                 List<Annotation> _setterAnnotations = PojoJvmModelInferrer.this._processorGeneratorUtils.setterAnnotations(attr_1);
@@ -407,17 +399,17 @@ public class PojoJvmModelInferrer {
                 PojoJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
               }
             };
-            JvmOperation _setterExt = PojoJvmModelInferrer.this._processorTypesBuilder.toSetterExt(attr_1, _name_3, _name_4, type, _typeRef_6, _updateColumn1, _updateColumn2, _createColumn1_1, typeCreateColumn1, _createColumn2, _function_9);
+            JvmOperation _setterExt = PojoJvmModelInferrer.this._processorTypesBuilder.toSetterExt(attr_1, _name_3, _name_4, type, _typeRef_6, _updateColumn1, _updateColumn2, _createColumn1, _createColumn2, _function_9);
             PojoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_7, _setterExt);
             EList<JvmMember> _members_8 = it.getMembers();
             String _name_5 = attr_1.getName();
             String _name_6 = attr_1.getName();
             JvmTypeReference _typeRef_7 = PojoJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
-            String _updateColumn1_1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn1(attr_1);
-            String _updateColumn2_1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn2(attr_1);
-            String _createColumn1_2 = PojoJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn1(attr_1);
-            String _createColumn2_1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn2(attr_1);
-            JvmOperation __toSetterExt = PojoJvmModelInferrer.this._processorTypesBuilder._toSetterExt(attr_1, _name_5, _name_6, type, _typeRef_7, _updateColumn1_1, _updateColumn2_1, _createColumn1_2, typeCreateColumn1, _createColumn2_1);
+            PojoAttribute _updateColumn1_1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn1(attr_1);
+            PojoAttribute _updateColumn2_1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getUpdateColumn2(attr_1);
+            PojoAttribute _createColumn1_1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn1(attr_1);
+            PojoAttribute _createColumn2_1 = PojoJvmModelInferrer.this._processorGeneratorUtils.getCreateColumn2(attr_1);
+            JvmOperation __toSetterExt = PojoJvmModelInferrer.this._processorTypesBuilder._toSetterExt(attr_1, _name_5, _name_6, type, _typeRef_7, _updateColumn1_1, _updateColumn2_1, _createColumn1_1, _createColumn2_1);
             PojoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_8, __toSetterExt);
             boolean _hasOperators = PojoJvmModelInferrer.this._processorGeneratorUtils.hasOperators(entity);
             if (_hasOperators) {

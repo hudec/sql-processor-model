@@ -25,6 +25,7 @@ import org.sqlproc.model.processorModel.DaoDirective;
 import org.sqlproc.model.processorModel.DaoDirectiveCrud;
 import org.sqlproc.model.processorModel.DaoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.DaoDirectiveParameters;
+import org.sqlproc.model.processorModel.DaoDirectivePojo;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoDirectiveSerializable;
 import org.sqlproc.model.processorModel.DaoEntity;
@@ -876,6 +877,14 @@ public class ProcessorModelSwitch<T> extends Switch<T>
         FunProcDirective funProcDirective = (FunProcDirective)theEObject;
         T result = caseFunProcDirective(funProcDirective);
         if (result == null) result = caseDaoDirective(funProcDirective);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorModelPackage.DAO_DIRECTIVE_POJO:
+      {
+        DaoDirectivePojo daoDirectivePojo = (DaoDirectivePojo)theEObject;
+        T result = caseDaoDirectivePojo(daoDirectivePojo);
+        if (result == null) result = caseDaoDirective(daoDirectivePojo);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2455,6 +2464,22 @@ public class ProcessorModelSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFunProcDirective(FunProcDirective object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dao Directive Pojo</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dao Directive Pojo</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDaoDirectivePojo(DaoDirectivePojo object)
   {
     return null;
   }

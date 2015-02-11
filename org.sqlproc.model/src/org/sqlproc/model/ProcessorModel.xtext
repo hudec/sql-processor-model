@@ -242,8 +242,8 @@ PojoAttributeDirective:
 	| {PojoAttributeDirectiveDiscriminator} '#InheritanceDiscriminator'
 	| {PojoAttributeDirectiveIndex} '#Index' '(' index=INT ')'
 	| {PojoAttributeDirectiveVersion} '#Version'
-	| {PojoAttributeDirectiveUpdateCol} '#UpdateCol' '(' updateColumn1=ValidID ',' updateColumn2=ValidID ')'
-	| {PojoAttributeDirectiveCreateCol} '#CreateCol' '(' createColumn1=ValidID ',' createColumn2=ValidID ')'
+	| {PojoAttributeDirectiveUpdateCol} '#UpdateCol' '(' updateColumn1=[PojoAttribute|ValidID] ',' updateColumn2=[PojoAttribute|ValidID] ')'
+	| {PojoAttributeDirectiveCreateCol} '#CreateCol' '(' createColumn1=[PojoAttribute|ValidID] ',' createColumn2=[PojoAttribute|ValidID] ')'
 	| {PojoAttributeDirectiveToInit} '#ToInit'
 	| {PojoAttributeDirectiveEnumInit} '#EnumInit'
 	| {PojoAttributeDirectiveIsDef} '#IsDef'
@@ -302,6 +302,7 @@ DaoDirective:
 	| {DaoDirectiveCrud} '#CRUD' (=> '(' pojo=JvmParameterizedTypeReference ')')?
 	| {DaoDirectiveQuery} '#Query' (=> '(' pojo=JvmParameterizedTypeReference ')')?
 	| {FunProcDirective} type=FunProcType (=> '(' paramlist=DaoDirectiveParameters ')')?
+	| {DaoDirectivePojo} '#Pojo' (=> '(' pojo=[PojoEntity|ValidID] ')')
 ;
 
 DaoEntity:

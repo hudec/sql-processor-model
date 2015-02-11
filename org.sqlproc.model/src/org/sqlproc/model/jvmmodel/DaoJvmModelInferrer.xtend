@@ -26,6 +26,7 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypeReferenceBuilder
 import org.sqlproc.model.processorModel.DaoDirectiveCrud
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 import org.sqlproc.model.processorModel.DaoDirectiveQuery
+import java.util.Map
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -85,10 +86,17 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 	 *            <code>true</code>.
 	 */
    	def void inferDao(DaoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
+   		val pojo = entity.pojo
+   		if (pojo == null) {
+   			println("Missing POJO for "+entity)
+   			return
+   		}
+
    		val entityType = entity.toClass(entity.fullyQualifiedName)
+   		val pojoType = pojo.toClass(pojo.fullyQualifiedName)
    		val simpleName = entity.name
    		val sernum = entity.sernum
-   		val pojo = entity.pojo
+   		val moreResultClasses = entity.getMoreResultClasses
    		
    		acceptor.accept(entityType) [
    			documentation = entity.documentation
@@ -102,7 +110,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    			}
    			for (impl : entity.getImplements) {
    				if (impl.isGenerics) {
-   					val genericType = typeRef(impl.implements, pojo)
+   					val genericType = typeRef(impl.implements, typeRef(pojoType))
    					println(genericType)
    					superTypes += genericType
    				}
@@ -159,33 +167,36 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    			]
    			
    			for (dir : entity.directives) {
-   				if (dir instanceof DaoDirectiveCrud)
-   					inferInsert(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, members);			
+   				if (dir instanceof DaoDirectiveCrud) {
+   					inferInsert(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members)
+   					inferGet(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   					inferUpdate(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members)
+   				}			
    			}
    		]
    	}
    	
    	def void inferInsert(DaoEntity entity, DaoDirectiveCrud dir, JvmGenericType entityType, String simpleName, 
-   		JvmParameterizedTypeReference pojo, List<JvmMember> members
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
    	) {
-   		val pojoAttrName = pojo.simpleName.toFirstLower
-   		val parent = entity.getParent(pojo)
+   		val pojoAttrName = pojo.name.toFirstLower
+   		val parent = pojo.parent
    		
-		members += entity.toMethod('insert', pojo.cloneWithProxies) [
+		members += entity.toMethod('insert', typeRef(pojoType)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
-			parameters += entity.toParameter(pojoAttrName, pojo.cloneWithProxies)
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
 				if (logger.isTraceEnabled()) {
 					logger.trace("sql insert «pojoAttrName»: " + «pojoAttrName» + " " + sqlControl);
 				}
-				«CRUD_ENGINE» sqlInsert«pojo.simpleName» = sqlEngineFactory.getCheckedCrudEngine("INSERT_«dbName(pojo.simpleName)»");«IF parent != null»
-				«CRUD_ENGINE» sqlInsert«parent.simpleName» = sqlEngineFactory.getCheckedCrudEngine("INSERT_«dbName(parent.simpleName)»");
-				int count = sqlInsert«parent.simpleName».insert(sqlSession, «pojoAttrName», sqlControl);
+				«CRUD_ENGINE» sqlInsert«pojo.name» = sqlEngineFactory.getCheckedCrudEngine("INSERT_«dbName(pojo.name)»");«IF parent != null»
+				«CRUD_ENGINE» sqlInsert«parent.name» = sqlEngineFactory.getCheckedCrudEngine("INSERT_«dbName(parent.name)»");
+				int count = sqlInsert«parent.name».insert(sqlSession, «pojoAttrName», sqlControl);
 				if (count > 0) {
-					sqlInsert«pojo.simpleName».insert(sqlSession, «pojoAttrName», sqlControl);
+					sqlInsert«pojo.name».insert(sqlSession, «pojoAttrName», sqlControl);
 				}«ELSE»
-				int count = sqlInsert«pojo.simpleName».insert(sqlSession, «pojoAttrName», sqlControl);«ENDIF»
+				int count = sqlInsert«pojo.name».insert(sqlSession, «pojoAttrName», sqlControl);«ENDIF»
 				if (logger.isTraceEnabled()) {
 					logger.trace("sql insert «pojoAttrName» result: " + count + " " + «pojoAttrName»);
 				}
@@ -193,24 +204,24 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    			'''
    		]	
    		
-		members += entity.toMethod('insert', pojo.cloneWithProxies) [
-			parameters += entity.toParameter(pojoAttrName, pojo.cloneWithProxies)
+		members += entity.toMethod('insert', typeRef(pojoType)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
 				return insert(sqlSessionFactory.getSqlSession(), «pojoAttrName», sqlControl);
 			'''
    		]	
    		
-		members += entity.toMethod('insert', pojo.cloneWithProxies) [
+		members += entity.toMethod('insert', typeRef(pojoType)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
-			parameters += entity.toParameter(pojoAttrName, pojo.cloneWithProxies)
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
 			body = '''
 				return insert(sqlSession, «pojoAttrName», null);
    			'''
    		]	
    		
-		members += entity.toMethod('insert', pojo.cloneWithProxies) [
-			parameters += entity.toParameter(pojoAttrName, pojo.cloneWithProxies)
+		members += entity.toMethod('insert', typeRef(pojoType)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
 			body = '''
 				return insert(«pojoAttrName», null);
    			'''
@@ -218,22 +229,22 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 	}
 
    	def void inferGet(DaoEntity entity, DaoDirectiveCrud dir, JvmGenericType entityType, String simpleName, 
-   		JvmParameterizedTypeReference pojo, List<JvmMember> members
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
    	) {
-   		val pojoAttrName = pojo.simpleName.toFirstLower
-   		val parent = entity.getParent(pojo)
+   		val pojoAttrName = pojo.name.toFirstLower
    		
-		members += entity.toMethod('get', pojo.cloneWithProxies) [
+		members += entity.toMethod('get', typeRef(pojoType)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
-			parameters += entity.toParameter(pojoAttrName, pojo.cloneWithProxies)
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
 				if (logger.isTraceEnabled()) {
 					logger.trace("sql get: " + «pojoAttrName» + " " + sqlControl);
 				}
-				SqlCrudEngine sqlGetEngine«pojo.simpleName» = sqlEngineFactory.getCheckedCrudEngine("GET_«dbName(pojo.simpleName)»");
+				«CRUD_ENGINE» sqlGetEngine«pojo.name» = sqlEngineFactory.getCheckedCrudEngine("GET_«dbName(pojo.name)»");
 				«IF moreResultClasses.empty»//«ENDIF»sqlControl = getMoreResultClasses(«pojoAttrName», sqlControl);
-				«pojo.simpleName» «pojoAttrName»Got = sqlGetEngine«pojo.simpleName».get(sqlSession, «pojo.simpleName».class, «pojoAttrName», sqlControl);
+				«pojo.name» «pojoAttrName»Got = sqlGetEngine«pojo.name».get(sqlSession, «pojo.name».class, «pojoAttrName», sqlControl);
 				if (logger.isTraceEnabled()) {
 					logger.trace("sql get «pojoAttrName» result: " + «pojoAttrName»Got);
 				}
@@ -241,40 +252,80 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    				'''
    		]	
    		
-		members += entity.toMethod('get', pojo.cloneWithProxies) [
-			parameters += entity.toParameter(pojoAttrName, pojo.cloneWithProxies)
+		members += entity.toMethod('get', typeRef(pojoType)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
 				return get(sqlSessionFactory.getSqlSession(), «pojoAttrName», sqlControl);
 			'''
    		]	
    		
-		members += entity.toMethod('get', pojo.cloneWithProxies) [
+		members += entity.toMethod('get', typeRef(pojoType)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
-			parameters += entity.toParameter(pojoAttrName, pojo.cloneWithProxies)
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
 			body = '''
 				return get(sqlSession, «pojoAttrName», null);
    			'''
    		]	
    		
-		members += entity.toMethod('get', pojo.cloneWithProxies) [
-			parameters += entity.toParameter(pojoAttrName, pojo.cloneWithProxies)
+		members += entity.toMethod('get', typeRef(pojoType)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
 			body = '''
 				return get(«pojoAttrName», null);
    			'''
    		]	
 	}
 
-   	def void inferQuery(DaoEntity entity, DaoDirectiveQuery dir, JvmGenericType entityType, String simpleName, 
-   		JvmParameterizedTypeReference pojo, List<JvmMember> members
+   	def void inferUpdate(DaoEntity entity, DaoDirectiveCrud dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
    	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		val parent = pojo.parent
    		
-		members += entity.toMethod('insert', typeRef(entityType).cloneWithProxies) [
+		members += entity.toMethod('update', typeRef(int)) [
 			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
-			parameters += entity.toParameter(pojo.simpleName.toFirstLower, pojo.cloneWithProxies)
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
-				;
+				if (logger.isTraceEnabled()) {
+					logger.trace("sql update «pojoAttrName»: " + «pojoAttrName» + " " + sqlControl);
+				}
+				«CRUD_ENGINE» sqlUpdateEngine«pojo.name» = sqlEngineFactory.getCheckedCrudEngine("UPDATE_«dbName(pojo.name)»");«IF parent != null»
+				«CRUD_ENGINE» sqlUpdate«parent.name» = sqlEngineFactory.getCheckedCrudEngine("UPDATE_«dbName(parent.name)»");«ENDIF»
+				int count = sqlUpdateEngine«pojo.name».update(sqlSession, «pojoAttrName», sqlControl);«IF parent != null»
+				if (count > 0) {
+					sqlUpdate«parent.name».update(sqlSession, «pojoAttrName», sqlControl);
+				}«ENDIF»«val f=getOptLock(pojo)»«IF f != null»
+				if (count > 0) {
+					«pojoAttrName».set«f.name.toFirstUpper»(«pojoAttrName».get«f.name.toFirstUpper»() + 1);
+				}«ENDIF»
+				if (logger.isTraceEnabled()) {
+					logger.trace("sql update «pojoAttrName» result count: " + count);
+				}
+				return count;
+   				'''
+   		]	
+   		
+		members += entity.toMethod('update', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				return update(sqlSessionFactory.getSqlSession(), «pojoAttrName», sqlControl);
+			'''
+   		]	
+   		
+		members += entity.toMethod('update', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			body = '''
+				return update(sqlSession, «pojoAttrName», null);
+   			'''
+   		]	
+   		
+		members += entity.toMethod('update', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			body = '''
+				return update(«pojoAttrName», null);
    			'''
    		]	
 	}

@@ -290,6 +290,8 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_3_2(), "rule__DaoDirective__Group_3_2__0");
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_4(), "rule__DaoDirective__Group_4__0");
 					put(grammarAccess.getDaoDirectiveAccess().getGroup_4_2(), "rule__DaoDirective__Group_4_2__0");
+					put(grammarAccess.getDaoDirectiveAccess().getGroup_5(), "rule__DaoDirective__Group_5__0");
+					put(grammarAccess.getDaoDirectiveAccess().getGroup_5_2(), "rule__DaoDirective__Group_5_2__0");
 					put(grammarAccess.getDaoEntityAccess().getGroup(), "rule__DaoEntity__Group__0");
 					put(grammarAccess.getDaoEntityAccess().getGroup_4(), "rule__DaoEntity__Group_4__0");
 					put(grammarAccess.getAnnotationDirectiveAccess().getGroup_0(), "rule__AnnotationDirective__Group_0__0");
@@ -869,6 +871,7 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_3_2_1(), "rule__DaoDirective__PojoAssignment_3_2_1");
 					put(grammarAccess.getDaoDirectiveAccess().getTypeAssignment_4_1(), "rule__DaoDirective__TypeAssignment_4_1");
 					put(grammarAccess.getDaoDirectiveAccess().getParamlistAssignment_4_2_1(), "rule__DaoDirective__ParamlistAssignment_4_2_1");
+					put(grammarAccess.getDaoDirectiveAccess().getPojoAssignment_5_2_1(), "rule__DaoDirective__PojoAssignment_5_2_1");
 					put(grammarAccess.getDaoEntityAccess().getDirectivesAssignment_0(), "rule__DaoEntity__DirectivesAssignment_0");
 					put(grammarAccess.getDaoEntityAccess().getFinalAssignment_1(), "rule__DaoEntity__FinalAssignment_1");
 					put(grammarAccess.getDaoEntityAccess().getNameAssignment_3(), "rule__DaoEntity__NameAssignment_3");

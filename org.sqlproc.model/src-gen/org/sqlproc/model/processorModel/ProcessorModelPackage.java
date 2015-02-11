@@ -3429,7 +3429,7 @@ public interface ProcessorModelPackage extends EPackage
   int POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL = 77;
 
   /**
-   * The feature id for the '<em><b>Update Column1</b></em>' attribute.
+   * The feature id for the '<em><b>Update Column1</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -3438,7 +3438,7 @@ public interface ProcessorModelPackage extends EPackage
   int POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1 = POJO_ATTRIBUTE_DIRECTIVE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Update Column2</b></em>' attribute.
+   * The feature id for the '<em><b>Update Column2</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -3466,7 +3466,7 @@ public interface ProcessorModelPackage extends EPackage
   int POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL = 78;
 
   /**
-   * The feature id for the '<em><b>Create Column1</b></em>' attribute.
+   * The feature id for the '<em><b>Create Column1</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -3475,7 +3475,7 @@ public interface ProcessorModelPackage extends EPackage
   int POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN1 = POJO_ATTRIBUTE_DIRECTIVE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Create Column2</b></em>' attribute.
+   * The feature id for the '<em><b>Create Column2</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -3878,6 +3878,34 @@ public interface ProcessorModelPackage extends EPackage
   int FUN_PROC_DIRECTIVE_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.DaoDirectivePojoImpl <em>Dao Directive Pojo</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.model.processorModel.impl.DaoDirectivePojoImpl
+   * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirectivePojo()
+   * @generated
+   */
+  int DAO_DIRECTIVE_POJO = 95;
+
+  /**
+   * The feature id for the '<em><b>Pojo</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DAO_DIRECTIVE_POJO__POJO = DAO_DIRECTIVE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Dao Directive Pojo</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DAO_DIRECTIVE_POJO_FEATURE_COUNT = DAO_DIRECTIVE_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.AnnotationDirectiveConflictImpl <em>Annotation Directive Conflict</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3885,7 +3913,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveConflict()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_CONFLICT = 95;
+  int ANNOTATION_DIRECTIVE_CONFLICT = 96;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Conflict</em>' class.
@@ -3904,7 +3932,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveStatic()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_STATIC = 96;
+  int ANNOTATION_DIRECTIVE_STATIC = 97;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Static</em>' class.
@@ -3923,7 +3951,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveConstructor()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_CONSTRUCTOR = 97;
+  int ANNOTATION_DIRECTIVE_CONSTRUCTOR = 98;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Constructor</em>' class.
@@ -3942,7 +3970,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveStandard()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_STANDARD = 98;
+  int ANNOTATION_DIRECTIVE_STANDARD = 99;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Standard</em>' class.
@@ -3961,7 +3989,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveSetter()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_SETTER = 99;
+  int ANNOTATION_DIRECTIVE_SETTER = 100;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Setter</em>' class.
@@ -3980,7 +4008,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveGetter()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_GETTER = 100;
+  int ANNOTATION_DIRECTIVE_GETTER = 101;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Getter</em>' class.
@@ -3999,7 +4027,7 @@ public interface ProcessorModelPackage extends EPackage
    * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getAnnotationDirectiveAttribute()
    * @generated
    */
-  int ANNOTATION_DIRECTIVE_ATTRIBUTE = 101;
+  int ANNOTATION_DIRECTIVE_ATTRIBUTE = 102;
 
   /**
    * The number of structural features of the '<em>Annotation Directive Attribute</em>' class.
@@ -7047,26 +7075,26 @@ public interface ProcessorModelPackage extends EPackage
   EClass getPojoAttributeDirectiveUpdateCol();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol#getUpdateColumn1 <em>Update Column1</em>}'.
+   * Returns the meta object for the reference '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol#getUpdateColumn1 <em>Update Column1</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Update Column1</em>'.
+   * @return the meta object for the reference '<em>Update Column1</em>'.
    * @see org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol#getUpdateColumn1()
    * @see #getPojoAttributeDirectiveUpdateCol()
    * @generated
    */
-  EAttribute getPojoAttributeDirectiveUpdateCol_UpdateColumn1();
+  EReference getPojoAttributeDirectiveUpdateCol_UpdateColumn1();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol#getUpdateColumn2 <em>Update Column2</em>}'.
+   * Returns the meta object for the reference '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol#getUpdateColumn2 <em>Update Column2</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Update Column2</em>'.
+   * @return the meta object for the reference '<em>Update Column2</em>'.
    * @see org.sqlproc.model.processorModel.PojoAttributeDirectiveUpdateCol#getUpdateColumn2()
    * @see #getPojoAttributeDirectiveUpdateCol()
    * @generated
    */
-  EAttribute getPojoAttributeDirectiveUpdateCol_UpdateColumn2();
+  EReference getPojoAttributeDirectiveUpdateCol_UpdateColumn2();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol <em>Pojo Attribute Directive Create Col</em>}'.
@@ -7079,26 +7107,26 @@ public interface ProcessorModelPackage extends EPackage
   EClass getPojoAttributeDirectiveCreateCol();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn1 <em>Create Column1</em>}'.
+   * Returns the meta object for the reference '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn1 <em>Create Column1</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Create Column1</em>'.
+   * @return the meta object for the reference '<em>Create Column1</em>'.
    * @see org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn1()
    * @see #getPojoAttributeDirectiveCreateCol()
    * @generated
    */
-  EAttribute getPojoAttributeDirectiveCreateCol_CreateColumn1();
+  EReference getPojoAttributeDirectiveCreateCol_CreateColumn1();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn2 <em>Create Column2</em>}'.
+   * Returns the meta object for the reference '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn2 <em>Create Column2</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Create Column2</em>'.
+   * @return the meta object for the reference '<em>Create Column2</em>'.
    * @see org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn2()
    * @see #getPojoAttributeDirectiveCreateCol()
    * @generated
    */
-  EAttribute getPojoAttributeDirectiveCreateCol_CreateColumn2();
+  EReference getPojoAttributeDirectiveCreateCol_CreateColumn2();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveToInit <em>Pojo Attribute Directive To Init</em>}'.
@@ -7358,6 +7386,27 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    */
   EReference getFunProcDirective_Paramlist();
+
+  /**
+   * Returns the meta object for class '{@link org.sqlproc.model.processorModel.DaoDirectivePojo <em>Dao Directive Pojo</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Dao Directive Pojo</em>'.
+   * @see org.sqlproc.model.processorModel.DaoDirectivePojo
+   * @generated
+   */
+  EClass getDaoDirectivePojo();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.model.processorModel.DaoDirectivePojo#getPojo <em>Pojo</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Pojo</em>'.
+   * @see org.sqlproc.model.processorModel.DaoDirectivePojo#getPojo()
+   * @see #getDaoDirectivePojo()
+   * @generated
+   */
+  EReference getDaoDirectivePojo_Pojo();
 
   /**
    * Returns the meta object for class '{@link org.sqlproc.model.processorModel.AnnotationDirectiveConflict <em>Annotation Directive Conflict</em>}'.
@@ -9873,20 +9922,20 @@ public interface ProcessorModelPackage extends EPackage
     EClass POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL = eINSTANCE.getPojoAttributeDirectiveUpdateCol();
 
     /**
-     * The meta object literal for the '<em><b>Update Column1</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Update Column1</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1 = eINSTANCE.getPojoAttributeDirectiveUpdateCol_UpdateColumn1();
+    EReference POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1 = eINSTANCE.getPojoAttributeDirectiveUpdateCol_UpdateColumn1();
 
     /**
-     * The meta object literal for the '<em><b>Update Column2</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Update Column2</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2 = eINSTANCE.getPojoAttributeDirectiveUpdateCol_UpdateColumn2();
+    EReference POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2 = eINSTANCE.getPojoAttributeDirectiveUpdateCol_UpdateColumn2();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.PojoAttributeDirectiveCreateColImpl <em>Pojo Attribute Directive Create Col</em>}' class.
@@ -9899,20 +9948,20 @@ public interface ProcessorModelPackage extends EPackage
     EClass POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL = eINSTANCE.getPojoAttributeDirectiveCreateCol();
 
     /**
-     * The meta object literal for the '<em><b>Create Column1</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Create Column1</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN1 = eINSTANCE.getPojoAttributeDirectiveCreateCol_CreateColumn1();
+    EReference POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN1 = eINSTANCE.getPojoAttributeDirectiveCreateCol_CreateColumn1();
 
     /**
-     * The meta object literal for the '<em><b>Create Column2</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Create Column2</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2 = eINSTANCE.getPojoAttributeDirectiveCreateCol_CreateColumn2();
+    EReference POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2 = eINSTANCE.getPojoAttributeDirectiveCreateCol_CreateColumn2();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.PojoAttributeDirectiveToInitImpl <em>Pojo Attribute Directive To Init</em>}' class.
@@ -10145,6 +10194,24 @@ public interface ProcessorModelPackage extends EPackage
      * @generated
      */
     EReference FUN_PROC_DIRECTIVE__PARAMLIST = eINSTANCE.getFunProcDirective_Paramlist();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.DaoDirectivePojoImpl <em>Dao Directive Pojo</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.model.processorModel.impl.DaoDirectivePojoImpl
+     * @see org.sqlproc.model.processorModel.impl.ProcessorModelPackageImpl#getDaoDirectivePojo()
+     * @generated
+     */
+    EClass DAO_DIRECTIVE_POJO = eINSTANCE.getDaoDirectivePojo();
+
+    /**
+     * The meta object literal for the '<em><b>Pojo</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DAO_DIRECTIVE_POJO__POJO = eINSTANCE.getDaoDirectivePojo_Pojo();
 
     /**
      * The meta object literal for the '{@link org.sqlproc.model.processorModel.impl.AnnotationDirectiveConflictImpl <em>Annotation Directive Conflict</em>}' class.

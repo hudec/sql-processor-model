@@ -147,17 +147,16 @@ class PojoJvmModelInferrer {
    					addAnnotations(attr.attributeAnnotations.map[a|a.annotation])
  					initializer = attr.initExpr
    				]
-   				val createColumn1 = entity.getAttribute(attr.createColumn1)
-   				val typeCreateColumn1 = if (createColumn1 != null) createColumn1.type.qualifiedName
+   				val createColumn1 = attr.createColumn1
    				members += attr.toGetter(attr.name, attr.name, type) [
    					addAnnotations(attr.getterAnnotations.map[a|a.annotation])
    				]
    				members += attr.toSetterExt(attr.name, attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
-   								attr.createColumn1, typeCreateColumn1, attr.createColumn2) [
+   								attr.createColumn1, attr.createColumn2) [
    					addAnnotations(attr.setterAnnotations.map[a|a.annotation])
    				]
    				members += attr._toSetterExt(attr.name, attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
-   								attr.createColumn1, typeCreateColumn1, attr.createColumn2)
+   								attr.createColumn1, attr.createColumn2)
 	   			if (entity.hasOperators) {
    					val operSuffix = entity.operatorsSuffix ?: 'Op'
    					members += entity.toField(attr.name + operSuffix, typeRef(String)) []

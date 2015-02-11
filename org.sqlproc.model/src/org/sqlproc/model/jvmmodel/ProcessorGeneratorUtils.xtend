@@ -61,6 +61,9 @@ import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos
 import org.sqlproc.model.processorModel.ValueType
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
+import org.eclipse.xtext.scoping.IScope
+import org.eclipse.xtext.resource.IEObjectDescription
+import org.sqlproc.model.processorModel.DaoDirectivePojo
 
 class ProcessorGeneratorUtils {
 
@@ -412,7 +415,7 @@ class ProcessorGeneratorUtils {
             else {
             	result.append(Character.toUpperCase(c))
             }
-            lastDigit = Character.isDigit(c);
+            lastDigit = Character.isDigit(c)
         }
         if (result.charAt(0) == '_')
         	return result.substring(1)
@@ -446,23 +449,27 @@ class ProcessorGeneratorUtils {
 //		return m?.superType
 //    }
 
-//    def Map<String, Map<String, PojoType>> getMoreResultClasses(DaoEntity dao) {
-//        val Map<String, Map<String, PojoType>> result = new TreeMap()
-//		dao?.directives.filter[x|x instanceof DaoDirectiveDiscriminator].forEach[
-//			val d = it as DaoDirectiveDiscriminator
-//			val Map<String, PojoType> map = new TreeMap()
-//			d.descendants.forEach[dd|
-//				map.put(getValue(dd), dd.descendant)
-//			]
-//			result.put(d.ancestor.name, map)
-//		]
-//        return result
-//    }
+    def Map<String, Map<String, JvmParameterizedTypeReference>> getMoreResultClasses(DaoEntity dao) {
+        val Map<String, Map<String, JvmParameterizedTypeReference>> result = new TreeMap()
+		dao?.directives.filter[x|x instanceof DaoDirectiveDiscriminator].forEach[
+			val d = it as DaoDirectiveDiscriminator
+			val Map<String, JvmParameterizedTypeReference> map = new TreeMap()
+			d.descendants.forEach[dd|
+				map.put(dd.value, dd.descendant)
+			]
+			result.put(d.ancestor.name, map)
+		]
+        return result
+    }
     
-    def getPojoDirective(DaoEntity dao) {
+    def getPojoDirectiveIndirect(DaoEntity dao) {
     	dao?.directives.findFirst[x|x instanceof DaoDirectiveCrud || 
     		x instanceof DaoDirectiveQuery || x instanceof FunProcDirective
     	] 
+    }
+    
+    def DaoDirectivePojo getPojoDirective(DaoEntity dao) {
+    	dao?.directives.findFirst[x|x instanceof DaoDirectivePojo] as DaoDirectivePojo
     }
     
     def String getFunProcName(DaoEntity dao) {
@@ -472,44 +479,76 @@ class ProcessorGeneratorUtils {
         return pojoName.toFirstLower
 	}    
 	
-    def JvmParameterizedTypeReference getPojoImplicit(DaoEntity dao) {
+    def PojoEntity getPojoImplicit(DaoEntity dao) {
         var pojoName = dao.getName()
         if (pojoName.endsWith("Dao"))
             pojoName = pojoName.substring(0, pojoName.length() - 3)
-        val Package package = getContainerOfType(dao, Package)
-//        return findEntity(qualifiedNameConverter, artifacts,
-//                scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJOS), pojoName)
-		if (package.importSection == null || package.importSection.importDeclarations == null)
-			return null;
-		for (imp : package.importSection.importDeclarations) {
-			// TODO
-		}
-		return null;
+        val Artifacts artifacts = getContainerOfType(dao, Artifacts)
+        return findEntity(qualifiedNameConverter, artifacts,
+                scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJOS), pojoName)
+    }
+    
+    def PojoEntity findEntity(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
+            IScope scope, String name) {
+        //val Iterable<IEObjectDescription> iterable = scope.getAllElements()
+        for (description : scope.getAllElements()) {
+        	println(description)
+            //IEObjectDescription description
+            val Package packageDeclaration = artifacts.eResource().getResourceSet()
+                    .getEObject(description.getEObjectURI(), true) as Package
+            for (aEntity : packageDeclaration.getElements()) {
+            	//AbstractPojoEntity aEntity
+                if (aEntity instanceof AnnotatedEntity) {
+                    val ae = aEntity as AnnotatedEntity
+                    if (ae.entity instanceof PojoEntity) {
+                        val entity = ae.entity as PojoEntity
+                        if (name.equals(entity.name))
+                            return entity
+                    }
+                }
+            }
+        }
+        return null
     }
 
-    def dispatch JvmParameterizedTypeReference getPojo(DaoEntity dao, DaoDirectiveCrud pojoDirective) {
+    def dispatch PojoEntity getPojo(DaoEntity dao, DaoDirectivePojo pojoDirective) {
     	return pojoDirective?.pojo ?: getPojoImplicit(dao)
     }
 
-    def dispatch JvmParameterizedTypeReference getPojo(DaoEntity dao, DaoDirectiveQuery pojoDirective) {
-    	return pojoDirective?.pojo ?: getPojoImplicit(dao)
+//    def dispatch PojoEntity getPojo(DaoEntity dao, DaoDirectivePojo pojoDirective) {
+//    	val ref = pojoDirective?.pojo ?: getPojoImplicit(dao)
+//    	if (ref != null) {
+//    		println(ref)
+//    		println(ref.type)
+//    		println(ref.type.simpleName)
+//	        val Package package = getContainerOfType(dao, Package)
+//    	    val Artifacts artifacts = getContainerOfType(dao, Artifacts)
+//    	    val xxx = findEntity(qualifiedNameConverter, artifacts,
+//                scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJOS), ref.type.simpleName)
+//    	}
+//    	return ref
+//    }
+
+//    def dispatch JvmParameterizedTypeReference getPojo(DaoEntity dao, DaoDirectiveQuery pojoDirective) {
+//    	return pojoDirective?.pojo ?: getPojoImplicit(dao)
+//    }
+//
+//    def dispatch JvmParameterizedTypeReference getPojo(DaoEntity dao, FunProcDirective pojoDirective) {
+//    	val List<JvmParameterizedTypeReference> list = pojoDirective?.paramlist?.ins
+//    	if (list == null || list.empty || list.head == null)
+//    		return getPojoImplicit(dao)
+//    	return list.head
+//    }
+
+    def PojoEntity getPojo(DaoEntity dao) {
+    	val DaoDirectivePojo pojoDirective = dao?.getPojoDirective
+    	return pojoDirective?.pojo
     }
 
-    def dispatch JvmParameterizedTypeReference getPojo(DaoEntity dao, FunProcDirective pojoDirective) {
-    	val List<JvmParameterizedTypeReference> list = pojoDirective?.paramlist?.ins
-    	if (list == null || list.empty || list.head == null)
-    		return getPojoImplicit(dao)
-    	return list.head
-    }
-
-    def JvmParameterizedTypeReference getPojo(DaoEntity dao) {
-    	val DaoDirective pojoDirective = dao?.getPojoDirective
-    	return dao?.getPojo(pojoDirective)
-    }
-
-    def JvmParameterizedTypeReference getParent(DaoEntity dao, JvmParameterizedTypeReference pojo) {
-    	val parent = pojo
-    	// TODO
+    def PojoEntity getParent(PojoEntity pojo) {
+    	val superType = pojo?.superType
+    	if (superType != null && superType instanceof PojoEntity)
+    		return superType as PojoEntity
     	return null
     }
 
@@ -784,7 +823,7 @@ class ProcessorGeneratorUtils {
 		}
 		for (ee : ext.exceptPojos) {
 			if (ee.name == e.name)
-				return false;
+				return false
 		}
 		return true
 	}
@@ -826,7 +865,7 @@ class ProcessorGeneratorUtils {
 		}
 		for (ee : ext.exceptPojos) {
 			if (ee.name == e.name)
-				return false;
+				return false
 		}
 		return true
 	}
@@ -852,7 +891,7 @@ class ProcessorGeneratorUtils {
 			}
 			for (ee : ext.exceptDaos) {
 				if (ee.name == e.name)
-					return false;
+					return false
 			}
 			return true
 		}
@@ -869,7 +908,7 @@ class ProcessorGeneratorUtils {
 		}
 		for (ee : ext.exceptDaos) {
 			if (ee.name == e.name)
-				return false;
+				return false
 		}
 		return true
 	}
@@ -886,7 +925,7 @@ class ProcessorGeneratorUtils {
 		for(ext: e.eContainer.eContents.filter(typeof(Implements))) {
 			for (ee : ext.exceptDaos) {
 				if (ee.name == e.name)
-					return false;
+					return false
 			}
 			if (!ext.onlyDaos.empty) {
 				for (ee : ext.onlyDaos) {
@@ -911,7 +950,7 @@ class ProcessorGeneratorUtils {
 		}
 		for (ee : ext.exceptDaos) {
 			if (ee.name == e.name)
-				return false;
+				return false
 		}
 		return true
 	}

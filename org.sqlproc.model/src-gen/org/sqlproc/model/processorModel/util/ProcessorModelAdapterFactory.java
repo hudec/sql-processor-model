@@ -27,6 +27,7 @@ import org.sqlproc.model.processorModel.DaoDirective;
 import org.sqlproc.model.processorModel.DaoDirectiveCrud;
 import org.sqlproc.model.processorModel.DaoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.DaoDirectiveParameters;
+import org.sqlproc.model.processorModel.DaoDirectivePojo;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoDirectiveSerializable;
 import org.sqlproc.model.processorModel.DaoEntity;
@@ -649,6 +650,11 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
       public Adapter caseFunProcDirective(FunProcDirective object)
       {
         return createFunProcDirectiveAdapter();
+      }
+      @Override
+      public Adapter caseDaoDirectivePojo(DaoDirectivePojo object)
+      {
+        return createDaoDirectivePojoAdapter();
       }
       @Override
       public Adapter caseAnnotationDirectiveConflict(AnnotationDirectiveConflict object)
@@ -2128,6 +2134,21 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFunProcDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.DaoDirectivePojo <em>Dao Directive Pojo</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.DaoDirectivePojo
+   * @generated
+   */
+  public Adapter createDaoDirectivePojoAdapter()
   {
     return null;
   }

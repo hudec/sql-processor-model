@@ -11,7 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmPrimitiveType;
@@ -19,15 +22,17 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.eclipse.xtext.xtype.XImportDeclaration;
-import org.eclipse.xtext.xtype.XImportSection;
+import org.sqlproc.model.processorModel.AbstractEntity;
 import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Annotation;
 import org.sqlproc.model.processorModel.AnnotationDirective;
@@ -38,12 +43,16 @@ import org.sqlproc.model.processorModel.AnnotationDirectiveGetter;
 import org.sqlproc.model.processorModel.AnnotationDirectiveSetter;
 import org.sqlproc.model.processorModel.AnnotationDirectiveStandard;
 import org.sqlproc.model.processorModel.AnnotationDirectiveStatic;
+import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.DaoDirective;
 import org.sqlproc.model.processorModel.DaoDirectiveCrud;
-import org.sqlproc.model.processorModel.DaoDirectiveParameters;
+import org.sqlproc.model.processorModel.DaoDirectiveDiscriminator;
+import org.sqlproc.model.processorModel.DaoDirectivePojo;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoEntity;
+import org.sqlproc.model.processorModel.DescendantAssignment;
 import org.sqlproc.model.processorModel.DirectiveProperties;
+import org.sqlproc.model.processorModel.Entity;
 import org.sqlproc.model.processorModel.EnumDirective;
 import org.sqlproc.model.processorModel.EnumEntity;
 import org.sqlproc.model.processorModel.Extends;
@@ -76,6 +85,7 @@ import org.sqlproc.model.processorModel.PojoDirectiveOperators;
 import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
+import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.ValueType;
 
 @SuppressWarnings("all")
@@ -207,7 +217,7 @@ public class ProcessorGeneratorUtils {
     return _xifexpression;
   }
   
-  public String getUpdateColumn1(final PojoAttribute f) {
+  public PojoAttribute getUpdateColumn1(final PojoAttribute f) {
     EList<PojoAttributeDirective> _directives = f.getDirectives();
     PojoAttributeDirective _findFirst = null;
     if (_directives!=null) {
@@ -219,14 +229,14 @@ public class ProcessorGeneratorUtils {
       _findFirst=IterableExtensions.<PojoAttributeDirective>findFirst(_directives, _function);
     }
     final PojoAttributeDirectiveUpdateCol d = ((PojoAttributeDirectiveUpdateCol) _findFirst);
-    String _updateColumn1 = null;
+    PojoAttribute _updateColumn1 = null;
     if (d!=null) {
       _updateColumn1=d.getUpdateColumn1();
     }
     return _updateColumn1;
   }
   
-  public String getUpdateColumn2(final PojoAttribute f) {
+  public PojoAttribute getUpdateColumn2(final PojoAttribute f) {
     EList<PojoAttributeDirective> _directives = f.getDirectives();
     PojoAttributeDirective _findFirst = null;
     if (_directives!=null) {
@@ -238,14 +248,14 @@ public class ProcessorGeneratorUtils {
       _findFirst=IterableExtensions.<PojoAttributeDirective>findFirst(_directives, _function);
     }
     final PojoAttributeDirectiveUpdateCol d = ((PojoAttributeDirectiveUpdateCol) _findFirst);
-    String _updateColumn2 = null;
+    PojoAttribute _updateColumn2 = null;
     if (d!=null) {
       _updateColumn2=d.getUpdateColumn2();
     }
     return _updateColumn2;
   }
   
-  public String getCreateColumn1(final PojoAttribute f) {
+  public PojoAttribute getCreateColumn1(final PojoAttribute f) {
     EList<PojoAttributeDirective> _directives = f.getDirectives();
     PojoAttributeDirective _findFirst = null;
     if (_directives!=null) {
@@ -257,14 +267,14 @@ public class ProcessorGeneratorUtils {
       _findFirst=IterableExtensions.<PojoAttributeDirective>findFirst(_directives, _function);
     }
     final PojoAttributeDirectiveCreateCol d = ((PojoAttributeDirectiveCreateCol) _findFirst);
-    String _createColumn1 = null;
+    PojoAttribute _createColumn1 = null;
     if (d!=null) {
       _createColumn1=d.getCreateColumn1();
     }
     return _createColumn1;
   }
   
-  public String getCreateColumn2(final PojoAttribute f) {
+  public PojoAttribute getCreateColumn2(final PojoAttribute f) {
     EList<PojoAttributeDirective> _directives = f.getDirectives();
     PojoAttributeDirective _findFirst = null;
     if (_directives!=null) {
@@ -276,7 +286,7 @@ public class ProcessorGeneratorUtils {
       _findFirst=IterableExtensions.<PojoAttributeDirective>findFirst(_directives, _function);
     }
     final PojoAttributeDirectiveCreateCol d = ((PojoAttributeDirectiveCreateCol) _findFirst);
-    String _createColumn2 = null;
+    PojoAttribute _createColumn2 = null;
     if (d!=null) {
       _createColumn2=d.getCreateColumn2();
     }
@@ -1092,7 +1102,41 @@ public class ProcessorGeneratorUtils {
     return _xifexpression;
   }
   
-  public DaoDirective getPojoDirective(final DaoEntity dao) {
+  public Map<String, Map<String, JvmParameterizedTypeReference>> getMoreResultClasses(final DaoEntity dao) {
+    final Map<String, Map<String, JvmParameterizedTypeReference>> result = new TreeMap<String, Map<String, JvmParameterizedTypeReference>>();
+    EList<DaoDirective> _directives = null;
+    if (dao!=null) {
+      _directives=dao.getDirectives();
+    }
+    final Function1<DaoDirective, Boolean> _function = new Function1<DaoDirective, Boolean>() {
+      public Boolean apply(final DaoDirective x) {
+        return Boolean.valueOf((x instanceof DaoDirectiveDiscriminator));
+      }
+    };
+    Iterable<DaoDirective> _filter = IterableExtensions.<DaoDirective>filter(_directives, _function);
+    final Procedure1<DaoDirective> _function_1 = new Procedure1<DaoDirective>() {
+      public void apply(final DaoDirective it) {
+        final DaoDirectiveDiscriminator d = ((DaoDirectiveDiscriminator) it);
+        final Map<String, JvmParameterizedTypeReference> map = new TreeMap<String, JvmParameterizedTypeReference>();
+        EList<DescendantAssignment> _descendants = d.getDescendants();
+        final Procedure1<DescendantAssignment> _function = new Procedure1<DescendantAssignment>() {
+          public void apply(final DescendantAssignment dd) {
+            String _value = dd.getValue();
+            JvmParameterizedTypeReference _descendant = dd.getDescendant();
+            map.put(_value, _descendant);
+          }
+        };
+        IterableExtensions.<DescendantAssignment>forEach(_descendants, _function);
+        PojoAttribute _ancestor = d.getAncestor();
+        String _name = _ancestor.getName();
+        result.put(_name, map);
+      }
+    };
+    IterableExtensions.<DaoDirective>forEach(_filter, _function_1);
+    return result;
+  }
+  
+  public DaoDirective getPojoDirectiveIndirect(final DaoEntity dao) {
     EList<DaoDirective> _directives = null;
     if (dao!=null) {
       _directives=dao.getDirectives();
@@ -1112,6 +1156,20 @@ public class ProcessorGeneratorUtils {
     return IterableExtensions.<DaoDirective>findFirst(_directives, _function);
   }
   
+  public DaoDirectivePojo getPojoDirective(final DaoEntity dao) {
+    EList<DaoDirective> _directives = null;
+    if (dao!=null) {
+      _directives=dao.getDirectives();
+    }
+    final Function1<DaoDirective, Boolean> _function = new Function1<DaoDirective, Boolean>() {
+      public Boolean apply(final DaoDirective x) {
+        return Boolean.valueOf((x instanceof DaoDirectivePojo));
+      }
+    };
+    DaoDirective _findFirst = IterableExtensions.<DaoDirective>findFirst(_directives, _function);
+    return ((DaoDirectivePojo) _findFirst);
+  }
+  
   public String getFunProcName(final DaoEntity dao) {
     String pojoName = dao.getName();
     boolean _endsWith = pojoName.endsWith("Dao");
@@ -1124,7 +1182,7 @@ public class ProcessorGeneratorUtils {
     return StringExtensions.toFirstLower(pojoName);
   }
   
-  public JvmParameterizedTypeReference getPojoImplicit(final DaoEntity dao) {
+  public PojoEntity getPojoImplicit(final DaoEntity dao) {
     String pojoName = dao.getName();
     boolean _endsWith = pojoName.endsWith("Dao");
     if (_endsWith) {
@@ -1133,105 +1191,86 @@ public class ProcessorGeneratorUtils {
       String _substring = pojoName.substring(0, _minus);
       pojoName = _substring;
     }
-    final org.sqlproc.model.processorModel.Package package_ = EcoreUtil2.<org.sqlproc.model.processorModel.Package>getContainerOfType(dao, org.sqlproc.model.processorModel.Package.class);
-    boolean _or = false;
-    XImportSection _importSection = package_.getImportSection();
-    boolean _equals = Objects.equal(_importSection, null);
-    if (_equals) {
-      _or = true;
-    } else {
-      XImportSection _importSection_1 = package_.getImportSection();
-      EList<XImportDeclaration> _importDeclarations = _importSection_1.getImportDeclarations();
-      boolean _equals_1 = Objects.equal(_importDeclarations, null);
-      _or = _equals_1;
-    }
-    if (_or) {
-      return null;
-    }
-    XImportSection _importSection_2 = package_.getImportSection();
-    EList<XImportDeclaration> _importDeclarations_1 = _importSection_2.getImportDeclarations();
-    for (final XImportDeclaration imp : _importDeclarations_1) {
+    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(dao, Artifacts.class);
+    IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJOS);
+    return this.findEntity(this.qualifiedNameConverter, artifacts, _scope, pojoName);
+  }
+  
+  public PojoEntity findEntity(final IQualifiedNameConverter qualifiedNameConverter, final Artifacts artifacts, final IScope scope, final String name) {
+    Iterable<IEObjectDescription> _allElements = scope.getAllElements();
+    for (final IEObjectDescription description : _allElements) {
+      {
+        InputOutput.<IEObjectDescription>println(description);
+        Resource _eResource = artifacts.eResource();
+        ResourceSet _resourceSet = _eResource.getResourceSet();
+        URI _eObjectURI = description.getEObjectURI();
+        EObject _eObject = _resourceSet.getEObject(_eObjectURI, true);
+        final org.sqlproc.model.processorModel.Package packageDeclaration = ((org.sqlproc.model.processorModel.Package) _eObject);
+        EList<AbstractEntity> _elements = packageDeclaration.getElements();
+        for (final AbstractEntity aEntity : _elements) {
+          if ((aEntity instanceof AnnotatedEntity)) {
+            final AnnotatedEntity ae = ((AnnotatedEntity) aEntity);
+            Entity _entity = ae.getEntity();
+            if ((_entity instanceof PojoEntity)) {
+              Entity _entity_1 = ae.getEntity();
+              final PojoEntity entity = ((PojoEntity) _entity_1);
+              String _name = entity.getName();
+              boolean _equals = name.equals(_name);
+              if (_equals) {
+                return entity;
+              }
+            }
+          }
+        }
+      }
     }
     return null;
   }
   
-  protected JvmParameterizedTypeReference _getPojo(final DaoEntity dao, final DaoDirectiveCrud pojoDirective) {
-    JvmParameterizedTypeReference _elvis = null;
-    JvmParameterizedTypeReference _pojo = null;
+  protected PojoEntity _getPojo(final DaoEntity dao, final DaoDirectivePojo pojoDirective) {
+    PojoEntity _elvis = null;
+    PojoEntity _pojo = null;
     if (pojoDirective!=null) {
       _pojo=pojoDirective.getPojo();
     }
     if (_pojo != null) {
       _elvis = _pojo;
     } else {
-      JvmParameterizedTypeReference _pojoImplicit = this.getPojoImplicit(dao);
+      PojoEntity _pojoImplicit = this.getPojoImplicit(dao);
       _elvis = _pojoImplicit;
     }
     return _elvis;
   }
   
-  protected JvmParameterizedTypeReference _getPojo(final DaoEntity dao, final DaoDirectiveQuery pojoDirective) {
-    JvmParameterizedTypeReference _elvis = null;
-    JvmParameterizedTypeReference _pojo = null;
-    if (pojoDirective!=null) {
-      _pojo=pojoDirective.getPojo();
-    }
-    if (_pojo != null) {
-      _elvis = _pojo;
-    } else {
-      JvmParameterizedTypeReference _pojoImplicit = this.getPojoImplicit(dao);
-      _elvis = _pojoImplicit;
-    }
-    return _elvis;
-  }
-  
-  protected JvmParameterizedTypeReference _getPojo(final DaoEntity dao, final FunProcDirective pojoDirective) {
-    DaoDirectiveParameters _paramlist = null;
-    if (pojoDirective!=null) {
-      _paramlist=pojoDirective.getParamlist();
-    }
-    EList<JvmParameterizedTypeReference> _ins = null;
-    if (_paramlist!=null) {
-      _ins=_paramlist.getIns();
-    }
-    final List<JvmParameterizedTypeReference> list = _ins;
-    boolean _or = false;
-    boolean _or_1 = false;
-    boolean _equals = Objects.equal(list, null);
-    if (_equals) {
-      _or_1 = true;
-    } else {
-      boolean _isEmpty = list.isEmpty();
-      _or_1 = _isEmpty;
-    }
-    if (_or_1) {
-      _or = true;
-    } else {
-      JvmParameterizedTypeReference _head = IterableExtensions.<JvmParameterizedTypeReference>head(list);
-      boolean _equals_1 = Objects.equal(_head, null);
-      _or = _equals_1;
-    }
-    if (_or) {
-      return this.getPojoImplicit(dao);
-    }
-    return IterableExtensions.<JvmParameterizedTypeReference>head(list);
-  }
-  
-  public JvmParameterizedTypeReference getPojo(final DaoEntity dao) {
-    DaoDirective _pojoDirective = null;
+  public PojoEntity getPojo(final DaoEntity dao) {
+    DaoDirectivePojo _pojoDirective = null;
     if (dao!=null) {
       _pojoDirective=this.getPojoDirective(dao);
     }
-    final DaoDirective pojoDirective = _pojoDirective;
-    JvmParameterizedTypeReference _pojo = null;
-    if (dao!=null) {
-      _pojo=this.getPojo(dao, pojoDirective);
+    final DaoDirectivePojo pojoDirective = _pojoDirective;
+    PojoEntity _pojo = null;
+    if (pojoDirective!=null) {
+      _pojo=pojoDirective.getPojo();
     }
     return _pojo;
   }
   
-  public JvmParameterizedTypeReference getParent(final DaoEntity dao, final JvmParameterizedTypeReference pojo) {
-    final JvmParameterizedTypeReference parent = pojo;
+  public PojoEntity getParent(final PojoEntity pojo) {
+    JvmParameterizedTypeReference _superType = null;
+    if (pojo!=null) {
+      _superType=pojo.getSuperType();
+    }
+    final JvmParameterizedTypeReference superType = _superType;
+    boolean _and = false;
+    boolean _notEquals = (!Objects.equal(superType, null));
+    if (!_notEquals) {
+      _and = false;
+    } else {
+      _and = (superType instanceof PojoEntity);
+    }
+    if (_and) {
+      return ((PojoEntity) superType);
+    }
     return null;
   }
   
@@ -2234,16 +2273,7 @@ public class ProcessorGeneratorUtils {
     }
   }
   
-  public JvmParameterizedTypeReference getPojo(final DaoEntity dao, final DaoDirective pojoDirective) {
-    if (pojoDirective instanceof DaoDirectiveCrud) {
-      return _getPojo(dao, (DaoDirectiveCrud)pojoDirective);
-    } else if (pojoDirective instanceof DaoDirectiveQuery) {
-      return _getPojo(dao, (DaoDirectiveQuery)pojoDirective);
-    } else if (pojoDirective instanceof FunProcDirective) {
-      return _getPojo(dao, (FunProcDirective)pojoDirective);
-    } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(dao, pojoDirective).toString());
-    }
+  public PojoEntity getPojo(final DaoEntity dao, final DaoDirectivePojo pojoDirective) {
+    return _getPojo(dao, pojoDirective);
   }
 }

@@ -878,6 +878,15 @@ public interface ProcessorModelFactory extends EFactory
   FunProcDirective createFunProcDirective();
 
   /**
+   * Returns a new object of class '<em>Dao Directive Pojo</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dao Directive Pojo</em>'.
+   * @generated
+   */
+  DaoDirectivePojo createDaoDirectivePojo();
+
+  /**
    * Returns a new object of class '<em>Annotation Directive Conflict</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

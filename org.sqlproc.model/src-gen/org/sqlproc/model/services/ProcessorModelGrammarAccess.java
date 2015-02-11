@@ -4389,20 +4389,24 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cUpdateColKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		private final Assignment cUpdateColumn1Assignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
-		private final RuleCall cUpdateColumn1ValidIDParserRuleCall_5_3_0 = (RuleCall)cUpdateColumn1Assignment_5_3.eContents().get(0);
+		private final CrossReference cUpdateColumn1PojoAttributeCrossReference_5_3_0 = (CrossReference)cUpdateColumn1Assignment_5_3.eContents().get(0);
+		private final RuleCall cUpdateColumn1PojoAttributeValidIDParserRuleCall_5_3_0_1 = (RuleCall)cUpdateColumn1PojoAttributeCrossReference_5_3_0.eContents().get(1);
 		private final Keyword cCommaKeyword_5_4 = (Keyword)cGroup_5.eContents().get(4);
 		private final Assignment cUpdateColumn2Assignment_5_5 = (Assignment)cGroup_5.eContents().get(5);
-		private final RuleCall cUpdateColumn2ValidIDParserRuleCall_5_5_0 = (RuleCall)cUpdateColumn2Assignment_5_5.eContents().get(0);
+		private final CrossReference cUpdateColumn2PojoAttributeCrossReference_5_5_0 = (CrossReference)cUpdateColumn2Assignment_5_5.eContents().get(0);
+		private final RuleCall cUpdateColumn2PojoAttributeValidIDParserRuleCall_5_5_0_1 = (RuleCall)cUpdateColumn2PojoAttributeCrossReference_5_5_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_5_6 = (Keyword)cGroup_5.eContents().get(6);
 		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
 		private final Action cPojoAttributeDirectiveCreateColAction_6_0 = (Action)cGroup_6.eContents().get(0);
 		private final Keyword cCreateColKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
 		private final Assignment cCreateColumn1Assignment_6_3 = (Assignment)cGroup_6.eContents().get(3);
-		private final RuleCall cCreateColumn1ValidIDParserRuleCall_6_3_0 = (RuleCall)cCreateColumn1Assignment_6_3.eContents().get(0);
+		private final CrossReference cCreateColumn1PojoAttributeCrossReference_6_3_0 = (CrossReference)cCreateColumn1Assignment_6_3.eContents().get(0);
+		private final RuleCall cCreateColumn1PojoAttributeValidIDParserRuleCall_6_3_0_1 = (RuleCall)cCreateColumn1PojoAttributeCrossReference_6_3_0.eContents().get(1);
 		private final Keyword cCommaKeyword_6_4 = (Keyword)cGroup_6.eContents().get(4);
 		private final Assignment cCreateColumn2Assignment_6_5 = (Assignment)cGroup_6.eContents().get(5);
-		private final RuleCall cCreateColumn2ValidIDParserRuleCall_6_5_0 = (RuleCall)cCreateColumn2Assignment_6_5.eContents().get(0);
+		private final CrossReference cCreateColumn2PojoAttributeCrossReference_6_5_0 = (CrossReference)cCreateColumn2Assignment_6_5.eContents().get(0);
+		private final RuleCall cCreateColumn2PojoAttributeValidIDParserRuleCall_6_5_0_1 = (RuleCall)cCreateColumn2PojoAttributeCrossReference_6_5_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_6_6 = (Keyword)cGroup_6.eContents().get(6);
 		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
 		private final Action cPojoAttributeDirectiveToInitAction_7_0 = (Action)cGroup_7.eContents().get(0);
@@ -4421,8 +4425,9 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//	{PojoAttributeDirectiveRequired} "#Required" | {PojoAttributeDirectivePrimaryKey} "#PrimaryKey" |
 		//	{PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator" | {PojoAttributeDirectiveIndex} "#Index" "("
 		//	index=INT ")" | {PojoAttributeDirectiveVersion} "#Version" | {PojoAttributeDirectiveUpdateCol} "#UpdateCol" "("
-		//	updateColumn1=ValidID "," updateColumn2=ValidID ")" | {PojoAttributeDirectiveCreateCol} "#CreateCol" "("
-		//	createColumn1=ValidID "," createColumn2=ValidID ")" | {PojoAttributeDirectiveToInit} "#ToInit" |
+		//	updateColumn1=[PojoAttribute|ValidID] "," updateColumn2=[PojoAttribute|ValidID] ")" |
+		//	{PojoAttributeDirectiveCreateCol} "#CreateCol" "(" createColumn1=[PojoAttribute|ValidID] ","
+		//	createColumn2=[PojoAttribute|ValidID] ")" | {PojoAttributeDirectiveToInit} "#ToInit" |
 		//	{PojoAttributeDirectiveEnumInit} "#EnumInit" | {PojoAttributeDirectiveIsDef} "#IsDef" |
 		//	{PojoAttributeDirectiveEnumDef} "#EnumDef";
 		public ParserRule getRule() { return rule; }
@@ -4430,10 +4435,10 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//{PojoAttributeDirectiveRequired} "#Required" | {PojoAttributeDirectivePrimaryKey} "#PrimaryKey" |
 		//{PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator" | {PojoAttributeDirectiveIndex} "#Index" "("
 		//index=INT ")" | {PojoAttributeDirectiveVersion} "#Version" | {PojoAttributeDirectiveUpdateCol} "#UpdateCol" "("
-		//updateColumn1=ValidID "," updateColumn2=ValidID ")" | {PojoAttributeDirectiveCreateCol} "#CreateCol" "("
-		//createColumn1=ValidID "," createColumn2=ValidID ")" | {PojoAttributeDirectiveToInit} "#ToInit" |
-		//{PojoAttributeDirectiveEnumInit} "#EnumInit" | {PojoAttributeDirectiveIsDef} "#IsDef" | {PojoAttributeDirectiveEnumDef}
-		//"#EnumDef"
+		//updateColumn1=[PojoAttribute|ValidID] "," updateColumn2=[PojoAttribute|ValidID] ")" | {PojoAttributeDirectiveCreateCol}
+		//"#CreateCol" "(" createColumn1=[PojoAttribute|ValidID] "," createColumn2=[PojoAttribute|ValidID] ")" |
+		//{PojoAttributeDirectiveToInit} "#ToInit" | {PojoAttributeDirectiveEnumInit} "#EnumInit" | {PojoAttributeDirectiveIsDef}
+		//"#IsDef" | {PojoAttributeDirectiveEnumDef} "#EnumDef"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//{PojoAttributeDirectiveRequired} "#Required"
@@ -4493,7 +4498,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"#Version"
 		public Keyword getVersionKeyword_4_1() { return cVersionKeyword_4_1; }
 
-		//{PojoAttributeDirectiveUpdateCol} "#UpdateCol" "(" updateColumn1=ValidID "," updateColumn2=ValidID ")"
+		//{PojoAttributeDirectiveUpdateCol} "#UpdateCol" "(" updateColumn1=[PojoAttribute|ValidID] ","
+		//updateColumn2=[PojoAttribute|ValidID] ")"
 		public Group getGroup_5() { return cGroup_5; }
 
 		//{PojoAttributeDirectiveUpdateCol}
@@ -4505,25 +4511,32 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_5_2() { return cLeftParenthesisKeyword_5_2; }
 
-		//updateColumn1=ValidID
+		//updateColumn1=[PojoAttribute|ValidID]
 		public Assignment getUpdateColumn1Assignment_5_3() { return cUpdateColumn1Assignment_5_3; }
 
+		//[PojoAttribute|ValidID]
+		public CrossReference getUpdateColumn1PojoAttributeCrossReference_5_3_0() { return cUpdateColumn1PojoAttributeCrossReference_5_3_0; }
+
 		//ValidID
-		public RuleCall getUpdateColumn1ValidIDParserRuleCall_5_3_0() { return cUpdateColumn1ValidIDParserRuleCall_5_3_0; }
+		public RuleCall getUpdateColumn1PojoAttributeValidIDParserRuleCall_5_3_0_1() { return cUpdateColumn1PojoAttributeValidIDParserRuleCall_5_3_0_1; }
 
 		//","
 		public Keyword getCommaKeyword_5_4() { return cCommaKeyword_5_4; }
 
-		//updateColumn2=ValidID
+		//updateColumn2=[PojoAttribute|ValidID]
 		public Assignment getUpdateColumn2Assignment_5_5() { return cUpdateColumn2Assignment_5_5; }
 
+		//[PojoAttribute|ValidID]
+		public CrossReference getUpdateColumn2PojoAttributeCrossReference_5_5_0() { return cUpdateColumn2PojoAttributeCrossReference_5_5_0; }
+
 		//ValidID
-		public RuleCall getUpdateColumn2ValidIDParserRuleCall_5_5_0() { return cUpdateColumn2ValidIDParserRuleCall_5_5_0; }
+		public RuleCall getUpdateColumn2PojoAttributeValidIDParserRuleCall_5_5_0_1() { return cUpdateColumn2PojoAttributeValidIDParserRuleCall_5_5_0_1; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_5_6() { return cRightParenthesisKeyword_5_6; }
 
-		//{PojoAttributeDirectiveCreateCol} "#CreateCol" "(" createColumn1=ValidID "," createColumn2=ValidID ")"
+		//{PojoAttributeDirectiveCreateCol} "#CreateCol" "(" createColumn1=[PojoAttribute|ValidID] ","
+		//createColumn2=[PojoAttribute|ValidID] ")"
 		public Group getGroup_6() { return cGroup_6; }
 
 		//{PojoAttributeDirectiveCreateCol}
@@ -4535,20 +4548,26 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_6_2() { return cLeftParenthesisKeyword_6_2; }
 
-		//createColumn1=ValidID
+		//createColumn1=[PojoAttribute|ValidID]
 		public Assignment getCreateColumn1Assignment_6_3() { return cCreateColumn1Assignment_6_3; }
 
+		//[PojoAttribute|ValidID]
+		public CrossReference getCreateColumn1PojoAttributeCrossReference_6_3_0() { return cCreateColumn1PojoAttributeCrossReference_6_3_0; }
+
 		//ValidID
-		public RuleCall getCreateColumn1ValidIDParserRuleCall_6_3_0() { return cCreateColumn1ValidIDParserRuleCall_6_3_0; }
+		public RuleCall getCreateColumn1PojoAttributeValidIDParserRuleCall_6_3_0_1() { return cCreateColumn1PojoAttributeValidIDParserRuleCall_6_3_0_1; }
 
 		//","
 		public Keyword getCommaKeyword_6_4() { return cCommaKeyword_6_4; }
 
-		//createColumn2=ValidID
+		//createColumn2=[PojoAttribute|ValidID]
 		public Assignment getCreateColumn2Assignment_6_5() { return cCreateColumn2Assignment_6_5; }
 
+		//[PojoAttribute|ValidID]
+		public CrossReference getCreateColumn2PojoAttributeCrossReference_6_5_0() { return cCreateColumn2PojoAttributeCrossReference_6_5_0; }
+
 		//ValidID
-		public RuleCall getCreateColumn2ValidIDParserRuleCall_6_5_0() { return cCreateColumn2ValidIDParserRuleCall_6_5_0; }
+		public RuleCall getCreateColumn2PojoAttributeValidIDParserRuleCall_6_5_0_1() { return cCreateColumn2PojoAttributeValidIDParserRuleCall_6_5_0_1; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_6_6() { return cRightParenthesisKeyword_6_6; }
@@ -5061,18 +5080,29 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cParamlistAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
 		private final RuleCall cParamlistDaoDirectiveParametersParserRuleCall_4_2_1_0 = (RuleCall)cParamlistAssignment_4_2_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4_2_2 = (Keyword)cGroup_4_2.eContents().get(2);
+		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
+		private final Action cDaoDirectivePojoAction_5_0 = (Action)cGroup_5.eContents().get(0);
+		private final Keyword cPojoKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Group cGroup_5_2 = (Group)cGroup_5.eContents().get(2);
+		private final Keyword cLeftParenthesisKeyword_5_2_0 = (Keyword)cGroup_5_2.eContents().get(0);
+		private final Assignment cPojoAssignment_5_2_1 = (Assignment)cGroup_5_2.eContents().get(1);
+		private final CrossReference cPojoPojoEntityCrossReference_5_2_1_0 = (CrossReference)cPojoAssignment_5_2_1.eContents().get(0);
+		private final RuleCall cPojoPojoEntityValidIDParserRuleCall_5_2_1_0_1 = (RuleCall)cPojoPojoEntityCrossReference_5_2_1_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_5_2_2 = (Keyword)cGroup_5_2.eContents().get(2);
 		
 		//DaoDirective:
 		//	{DaoDirectiveSerializable} "#Serializable" "(" sernum=INT ")" | {DaoDirectiveDiscriminator} "#InheritanceHandler" "("
 		//	ancestor=[PojoAttribute|ValidID] ("," descendants+=DescendantAssignment)+ ")" | {DaoDirectiveCrud} "#CRUD" ("("
 		//	pojo=JvmParameterizedTypeReference ")")? | {DaoDirectiveQuery} "#Query" ("(" pojo=JvmParameterizedTypeReference ")")?
-		//	| {FunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")?;
+		//	| {FunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")? | {DaoDirectivePojo} "#Pojo" ("("
+		//	pojo=[PojoEntity|ValidID] ")");
 		public ParserRule getRule() { return rule; }
 
 		//{DaoDirectiveSerializable} "#Serializable" "(" sernum=INT ")" | {DaoDirectiveDiscriminator} "#InheritanceHandler" "("
 		//ancestor=[PojoAttribute|ValidID] ("," descendants+=DescendantAssignment)+ ")" | {DaoDirectiveCrud} "#CRUD" ("("
 		//pojo=JvmParameterizedTypeReference ")")? | {DaoDirectiveQuery} "#Query" ("(" pojo=JvmParameterizedTypeReference ")")? |
-		//{FunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")?
+		//{FunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")? | {DaoDirectivePojo} "#Pojo" ("("
+		//pojo=[PojoEntity|ValidID] ")")
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//{DaoDirectiveSerializable} "#Serializable" "(" sernum=INT ")"
@@ -5207,6 +5237,33 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 
 		//")"
 		public Keyword getRightParenthesisKeyword_4_2_2() { return cRightParenthesisKeyword_4_2_2; }
+
+		//{DaoDirectivePojo} "#Pojo" ("(" pojo=[PojoEntity|ValidID] ")")
+		public Group getGroup_5() { return cGroup_5; }
+
+		//{DaoDirectivePojo}
+		public Action getDaoDirectivePojoAction_5_0() { return cDaoDirectivePojoAction_5_0; }
+
+		//"#Pojo"
+		public Keyword getPojoKeyword_5_1() { return cPojoKeyword_5_1; }
+
+		//=> "(" pojo=[PojoEntity|ValidID] ")"
+		public Group getGroup_5_2() { return cGroup_5_2; }
+
+		//=> "("
+		public Keyword getLeftParenthesisKeyword_5_2_0() { return cLeftParenthesisKeyword_5_2_0; }
+
+		//pojo=[PojoEntity|ValidID]
+		public Assignment getPojoAssignment_5_2_1() { return cPojoAssignment_5_2_1; }
+
+		//[PojoEntity|ValidID]
+		public CrossReference getPojoPojoEntityCrossReference_5_2_1_0() { return cPojoPojoEntityCrossReference_5_2_1_0; }
+
+		//ValidID
+		public RuleCall getPojoPojoEntityValidIDParserRuleCall_5_2_1_0_1() { return cPojoPojoEntityValidIDParserRuleCall_5_2_1_0_1; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_5_2_2() { return cRightParenthesisKeyword_5_2_2; }
 	}
 
 	public class DaoEntityElements extends AbstractParserRuleElementFinder {
@@ -6091,8 +6148,9 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	{PojoAttributeDirectiveRequired} "#Required" | {PojoAttributeDirectivePrimaryKey} "#PrimaryKey" |
 	//	{PojoAttributeDirectiveDiscriminator} "#InheritanceDiscriminator" | {PojoAttributeDirectiveIndex} "#Index" "("
 	//	index=INT ")" | {PojoAttributeDirectiveVersion} "#Version" | {PojoAttributeDirectiveUpdateCol} "#UpdateCol" "("
-	//	updateColumn1=ValidID "," updateColumn2=ValidID ")" | {PojoAttributeDirectiveCreateCol} "#CreateCol" "("
-	//	createColumn1=ValidID "," createColumn2=ValidID ")" | {PojoAttributeDirectiveToInit} "#ToInit" |
+	//	updateColumn1=[PojoAttribute|ValidID] "," updateColumn2=[PojoAttribute|ValidID] ")" |
+	//	{PojoAttributeDirectiveCreateCol} "#CreateCol" "(" createColumn1=[PojoAttribute|ValidID] ","
+	//	createColumn2=[PojoAttribute|ValidID] ")" | {PojoAttributeDirectiveToInit} "#ToInit" |
 	//	{PojoAttributeDirectiveEnumInit} "#EnumInit" | {PojoAttributeDirectiveIsDef} "#IsDef" |
 	//	{PojoAttributeDirectiveEnumDef} "#EnumDef";
 	public PojoAttributeDirectiveElements getPojoAttributeDirectiveAccess() {
@@ -6199,7 +6257,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	{DaoDirectiveSerializable} "#Serializable" "(" sernum=INT ")" | {DaoDirectiveDiscriminator} "#InheritanceHandler" "("
 	//	ancestor=[PojoAttribute|ValidID] ("," descendants+=DescendantAssignment)+ ")" | {DaoDirectiveCrud} "#CRUD" ("("
 	//	pojo=JvmParameterizedTypeReference ")")? | {DaoDirectiveQuery} "#Query" ("(" pojo=JvmParameterizedTypeReference ")")?
-	//	| {FunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")?;
+	//	| {FunProcDirective} type=FunProcType ("(" paramlist=DaoDirectiveParameters ")")? | {DaoDirectivePojo} "#Pojo" ("("
+	//	pojo=[PojoEntity|ValidID] ")");
 	public DaoDirectiveElements getDaoDirectiveAccess() {
 		return pDaoDirective;
 	}

@@ -13,6 +13,7 @@ import org.eclipse.xtext.xbase.lib.Procedures;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.typesystem.InferredTypeIndicator;
 import org.eclipse.xtext.xtype.XtypeFactory;
+import org.sqlproc.model.processorModel.PojoAttribute;
 
 import com.google.inject.Inject;
 
@@ -63,11 +64,10 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
             final String propertyName,
             /* @Nullable */final String fieldName, /* @Nullable */JvmTypeReference typeRef, /* @Nullable */
             JvmTypeReference typeEntityRef,
-            /* @Nullable */final String updateColumn1, /* @Nullable */final String updateColumn2,
-            /* @Nullable */final String createColumn1, /* @Nullable */final String typeCreateColumn1, /* @Nullable */
-            final String createColumn2) {
+            /* @Nullable */final PojoAttribute updateColumn1, /* @Nullable */final PojoAttribute updateColumn2,
+            /* @Nullable */final PojoAttribute createColumn1, /* @Nullable */final PojoAttribute createColumn2) {
         return toSetterExt(sourceElement, propertyName, fieldName, typeRef, typeEntityRef, updateColumn1,
-                updateColumn2, createColumn1, typeCreateColumn1, createColumn2, null);
+                updateColumn2, createColumn1, createColumn2, null);
     }
 
     /* @Nullable */
@@ -75,9 +75,8 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
             final String propertyName,
             /* @Nullable */final String fieldName, /* @Nullable */JvmTypeReference typeRef, /* @Nullable */
             JvmTypeReference typeEntityRef,
-            /* @Nullable */final String updateColumn1, /* @Nullable */final String updateColumn2,
-            /* @Nullable */final String createColumn1, /* @Nullable */final String typeCreateColumn1, /* @Nullable */
-            final String createColumn2,
+            /* @Nullable */final PojoAttribute updateColumn1, /* @Nullable */final PojoAttribute updateColumn2,
+            /* @Nullable */final PojoAttribute createColumn1, /* @Nullable */final PojoAttribute createColumn2,
             /* @Nullable */Procedure1<? super JvmOperation> initializer) {
         if (sourceElement == null || propertyName == null || fieldName == null)
             return null;
@@ -94,18 +93,20 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
                     if (updateColumn1 != null && updateColumn2 != null) {
                         p.newLine().append("if (this.").append(fieldName).append(" != null)");
                         p.increaseIndentation();
-                        p.newLine().append("this.").append(updateColumn2).append(" = this.").append(fieldName)
-                                .append(".get").append(toFirstUpper(updateColumn1)).append("();");
+                        p.newLine().append("this.").append(updateColumn2.getName()).append(" = this.")
+                                .append(fieldName).append(".get").append(toFirstUpper(updateColumn1.getName()))
+                                .append("();");
                         p.decreaseIndentation();
                     }
                     if (createColumn1 != null && createColumn2 != null) {
-                        p.newLine().append("if (this.").append(createColumn1).append(" == null)");
+                        p.newLine().append("if (this.").append(createColumn1.getName()).append(" == null)");
                         p.increaseIndentation();
-                        p.newLine().append("this.").append(createColumn1).append(" = new ").append(typeCreateColumn1)
-                                .append("();");
+                        p.newLine().append("this.").append(createColumn1.getName()).append(" = new ")
+                                .append(createColumn1.getType().getQualifiedName()).append("();");
                         p.decreaseIndentation();
-                        p.newLine().append("this.").append(createColumn1).append(".set")
-                                .append(toFirstUpper(createColumn2)).append("(").append(propertyName).append(");");
+                        p.newLine().append("this.").append(createColumn1.getName()).append(".set")
+                                .append(toFirstUpper(createColumn2.getName())).append("(").append(propertyName)
+                                .append(");");
                     }
                 }
             }
@@ -119,11 +120,10 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
             final String propertyName,
             /* @Nullable */final String fieldName, /* @Nullable */JvmTypeReference typeRef, /* @Nullable */
             JvmTypeReference typeEntityRef,
-            /* @Nullable */final String updateColumn1, /* @Nullable */final String updateColumn2,
-            /* @Nullable */final String createColumn1, /* @Nullable */final String typeCreateColumn1, /* @Nullable */
-            final String createColumn2) {
+            /* @Nullable */final PojoAttribute updateColumn1, /* @Nullable */final PojoAttribute updateColumn2,
+            /* @Nullable */final PojoAttribute createColumn1, /* @Nullable */final PojoAttribute createColumn2) {
         return _toSetterExt(sourceElement, propertyName, fieldName, typeRef, typeEntityRef, updateColumn1,
-                updateColumn2, createColumn1, typeCreateColumn1, createColumn2, null);
+                updateColumn2, createColumn1, createColumn2, null);
     }
 
     /* @Nullable */
@@ -131,9 +131,8 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
             final String propertyName,
             /* @Nullable */final String fieldName, /* @Nullable */JvmTypeReference typeRef, /* @Nullable */
             JvmTypeReference typeEntityRef,
-            /* @Nullable */final String updateColumn1, /* @Nullable */final String updateColumn2,
-            /* @Nullable */final String createColumn1, /* @Nullable */final String typeCreateColumn1, /* @Nullable */
-            final String createColumn2,
+            /* @Nullable */final PojoAttribute updateColumn1, /* @Nullable */final PojoAttribute updateColumn2,
+            /* @Nullable */final PojoAttribute createColumn1, /* @Nullable */final PojoAttribute createColumn2,
             /* @Nullable */Procedure1<? super JvmOperation> initializer) {
         if (sourceElement == null || propertyName == null || fieldName == null)
             return null;
@@ -150,18 +149,20 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
                     if (updateColumn1 != null && updateColumn2 != null) {
                         p.newLine().append("if (this.").append(fieldName).append(" != null)");
                         p.increaseIndentation();
-                        p.newLine().append("this.").append(updateColumn2).append(" = this.").append(fieldName)
-                                .append(".get").append(toFirstUpper(updateColumn1)).append("();");
+                        p.newLine().append("this.").append(updateColumn2.getName()).append(" = this.")
+                                .append(fieldName).append(".get").append(toFirstUpper(updateColumn1.getName()))
+                                .append("();");
                         p.decreaseIndentation();
                     }
                     if (createColumn1 != null && createColumn2 != null) {
-                        p.newLine().append("if (this.").append(createColumn1).append(" == null)");
+                        p.newLine().append("if (this.").append(createColumn1.getName()).append(" == null)");
                         p.increaseIndentation();
-                        p.newLine().append("this.").append(createColumn1).append(" = new ").append(typeCreateColumn1)
-                                .append("();");
+                        p.newLine().append("this.").append(createColumn1.getName()).append(" = new ")
+                                .append(createColumn1.getType().getQualifiedName()).append("();");
                         p.decreaseIndentation();
-                        p.newLine().append("this.").append(createColumn1).append(".set")
-                                .append(toFirstUpper(createColumn2)).append("(").append(propertyName).append(");");
+                        p.newLine().append("this.").append(createColumn1.getName()).append(".set")
+                                .append(toFirstUpper(createColumn2.getName())).append("(").append(propertyName)
+                                .append(");");
                     }
                     p.newLine().append("return this;");
                 }

@@ -35,6 +35,7 @@ import org.sqlproc.model.processorModel.DaoDirective;
 import org.sqlproc.model.processorModel.DaoDirectiveCrud;
 import org.sqlproc.model.processorModel.DaoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.DaoDirectiveParameters;
+import org.sqlproc.model.processorModel.DaoDirectivePojo;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoDirectiveSerializable;
 import org.sqlproc.model.processorModel.DaoEntity;
@@ -793,6 +794,13 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * @generated
    */
   private EClass funProcDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass daoDirectivePojoEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -3746,9 +3754,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoAttributeDirectiveUpdateCol_UpdateColumn1()
+  public EReference getPojoAttributeDirectiveUpdateCol_UpdateColumn1()
   {
-    return (EAttribute)pojoAttributeDirectiveUpdateColEClass.getEStructuralFeatures().get(0);
+    return (EReference)pojoAttributeDirectiveUpdateColEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3756,9 +3764,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoAttributeDirectiveUpdateCol_UpdateColumn2()
+  public EReference getPojoAttributeDirectiveUpdateCol_UpdateColumn2()
   {
-    return (EAttribute)pojoAttributeDirectiveUpdateColEClass.getEStructuralFeatures().get(1);
+    return (EReference)pojoAttributeDirectiveUpdateColEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3776,9 +3784,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoAttributeDirectiveCreateCol_CreateColumn1()
+  public EReference getPojoAttributeDirectiveCreateCol_CreateColumn1()
   {
-    return (EAttribute)pojoAttributeDirectiveCreateColEClass.getEStructuralFeatures().get(0);
+    return (EReference)pojoAttributeDirectiveCreateColEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3786,9 +3794,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPojoAttributeDirectiveCreateCol_CreateColumn2()
+  public EReference getPojoAttributeDirectiveCreateCol_CreateColumn2()
   {
-    return (EAttribute)pojoAttributeDirectiveCreateColEClass.getEStructuralFeatures().get(1);
+    return (EReference)pojoAttributeDirectiveCreateColEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4039,6 +4047,26 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
   public EReference getFunProcDirective_Paramlist()
   {
     return (EReference)funProcDirectiveEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDaoDirectivePojo()
+  {
+    return daoDirectivePojoEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDaoDirectivePojo_Pojo()
+  {
+    return (EReference)daoDirectivePojoEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4501,12 +4529,12 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     pojoAttributeDirectiveVersionEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_VERSION);
 
     pojoAttributeDirectiveUpdateColEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL);
-    createEAttribute(pojoAttributeDirectiveUpdateColEClass, POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1);
-    createEAttribute(pojoAttributeDirectiveUpdateColEClass, POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2);
+    createEReference(pojoAttributeDirectiveUpdateColEClass, POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN1);
+    createEReference(pojoAttributeDirectiveUpdateColEClass, POJO_ATTRIBUTE_DIRECTIVE_UPDATE_COL__UPDATE_COLUMN2);
 
     pojoAttributeDirectiveCreateColEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL);
-    createEAttribute(pojoAttributeDirectiveCreateColEClass, POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN1);
-    createEAttribute(pojoAttributeDirectiveCreateColEClass, POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2);
+    createEReference(pojoAttributeDirectiveCreateColEClass, POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN1);
+    createEReference(pojoAttributeDirectiveCreateColEClass, POJO_ATTRIBUTE_DIRECTIVE_CREATE_COL__CREATE_COLUMN2);
 
     pojoAttributeDirectiveToInitEClass = createEClass(POJO_ATTRIBUTE_DIRECTIVE_TO_INIT);
 
@@ -4548,6 +4576,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     funProcDirectiveEClass = createEClass(FUN_PROC_DIRECTIVE);
     createEReference(funProcDirectiveEClass, FUN_PROC_DIRECTIVE__TYPE);
     createEReference(funProcDirectiveEClass, FUN_PROC_DIRECTIVE__PARAMLIST);
+
+    daoDirectivePojoEClass = createEClass(DAO_DIRECTIVE_POJO);
+    createEReference(daoDirectivePojoEClass, DAO_DIRECTIVE_POJO__POJO);
 
     annotationDirectiveConflictEClass = createEClass(ANNOTATION_DIRECTIVE_CONFLICT);
 
@@ -4640,6 +4671,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     daoDirectiveCrudEClass.getESuperTypes().add(this.getDaoDirective());
     daoDirectiveQueryEClass.getESuperTypes().add(this.getDaoDirective());
     funProcDirectiveEClass.getESuperTypes().add(this.getDaoDirective());
+    daoDirectivePojoEClass.getESuperTypes().add(this.getDaoDirective());
     annotationDirectiveConflictEClass.getESuperTypes().add(this.getAnnotationDirective());
     annotationDirectiveStaticEClass.getESuperTypes().add(this.getAnnotationDirective());
     annotationDirectiveConstructorEClass.getESuperTypes().add(this.getAnnotationDirective());
@@ -5009,12 +5041,12 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEClass(pojoAttributeDirectiveVersionEClass, PojoAttributeDirectiveVersion.class, "PojoAttributeDirectiveVersion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(pojoAttributeDirectiveUpdateColEClass, PojoAttributeDirectiveUpdateCol.class, "PojoAttributeDirectiveUpdateCol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPojoAttributeDirectiveUpdateCol_UpdateColumn1(), ecorePackage.getEString(), "updateColumn1", null, 0, 1, PojoAttributeDirectiveUpdateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoAttributeDirectiveUpdateCol_UpdateColumn2(), ecorePackage.getEString(), "updateColumn2", null, 0, 1, PojoAttributeDirectiveUpdateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoAttributeDirectiveUpdateCol_UpdateColumn1(), this.getPojoAttribute(), null, "updateColumn1", null, 0, 1, PojoAttributeDirectiveUpdateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoAttributeDirectiveUpdateCol_UpdateColumn2(), this.getPojoAttribute(), null, "updateColumn2", null, 0, 1, PojoAttributeDirectiveUpdateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoAttributeDirectiveCreateColEClass, PojoAttributeDirectiveCreateCol.class, "PojoAttributeDirectiveCreateCol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPojoAttributeDirectiveCreateCol_CreateColumn1(), ecorePackage.getEString(), "createColumn1", null, 0, 1, PojoAttributeDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPojoAttributeDirectiveCreateCol_CreateColumn2(), ecorePackage.getEString(), "createColumn2", null, 0, 1, PojoAttributeDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoAttributeDirectiveCreateCol_CreateColumn1(), this.getPojoAttribute(), null, "createColumn1", null, 0, 1, PojoAttributeDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPojoAttributeDirectiveCreateCol_CreateColumn2(), this.getPojoAttribute(), null, "createColumn2", null, 0, 1, PojoAttributeDirectiveCreateCol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pojoAttributeDirectiveToInitEClass, PojoAttributeDirectiveToInit.class, "PojoAttributeDirectiveToInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -5056,6 +5088,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEClass(funProcDirectiveEClass, FunProcDirective.class, "FunProcDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getFunProcDirective_Type(), this.getFunProcType(), null, "type", null, 0, 1, FunProcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFunProcDirective_Paramlist(), this.getDaoDirectiveParameters(), null, "paramlist", null, 0, 1, FunProcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(daoDirectivePojoEClass, DaoDirectivePojo.class, "DaoDirectivePojo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDaoDirectivePojo_Pojo(), this.getPojoEntity(), null, "pojo", null, 0, 1, DaoDirectivePojo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(annotationDirectiveConflictEClass, AnnotationDirectiveConflict.class, "AnnotationDirectiveConflict", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

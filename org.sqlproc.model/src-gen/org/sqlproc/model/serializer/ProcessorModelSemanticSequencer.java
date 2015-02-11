@@ -76,6 +76,7 @@ import org.sqlproc.model.processorModel.ColumnTypeAssignement;
 import org.sqlproc.model.processorModel.DaoDirectiveCrud;
 import org.sqlproc.model.processorModel.DaoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.DaoDirectiveParameters;
+import org.sqlproc.model.processorModel.DaoDirectivePojo;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoDirectiveSerializable;
 import org.sqlproc.model.processorModel.DaoEntity;
@@ -251,6 +252,12 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 			case ProcessorModelPackage.DAO_DIRECTIVE_PARAMETERS:
 				if(context == grammarAccess.getDaoDirectiveParametersRule()) {
 					sequence_DaoDirectiveParameters(context, (DaoDirectiveParameters) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.DAO_DIRECTIVE_POJO:
+				if(context == grammarAccess.getDaoDirectiveRule()) {
+					sequence_DaoDirective(context, (DaoDirectivePojo) semanticObject); 
 					return; 
 				}
 				else break;
@@ -2134,6 +2141,22 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
+	 *     pojo=[PojoEntity|ValidID]
+	 */
+	protected void sequence_DaoDirective(EObject context, DaoDirectivePojo semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.DAO_DIRECTIVE_POJO__POJO) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.DAO_DIRECTIVE_POJO__POJO));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getDaoDirectiveAccess().getPojoPojoEntityValidIDParserRuleCall_5_2_1_0_1(), semanticObject.getPojo());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (pojo=JvmParameterizedTypeReference?)
 	 */
 	protected void sequence_DaoDirective(EObject context, DaoDirectiveQuery semanticObject) {
@@ -2704,7 +2727,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (createColumn1=ValidID createColumn2=ValidID)
+	 *     (createColumn1=[PojoAttribute|ValidID] createColumn2=[PojoAttribute|ValidID])
 	 */
 	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveCreateCol semanticObject) {
 		if(errorAcceptor != null) {
@@ -2715,8 +2738,8 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn1ValidIDParserRuleCall_6_3_0(), semanticObject.getCreateColumn1());
-		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2ValidIDParserRuleCall_6_5_0(), semanticObject.getCreateColumn2());
+		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn1PojoAttributeValidIDParserRuleCall_6_3_0_1(), semanticObject.getCreateColumn1());
+		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getCreateColumn2PojoAttributeValidIDParserRuleCall_6_5_0_1(), semanticObject.getCreateColumn2());
 		feeder.finish();
 	}
 	
@@ -2802,7 +2825,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (updateColumn1=ValidID updateColumn2=ValidID)
+	 *     (updateColumn1=[PojoAttribute|ValidID] updateColumn2=[PojoAttribute|ValidID])
 	 */
 	protected void sequence_PojoAttributeDirective(EObject context, PojoAttributeDirectiveUpdateCol semanticObject) {
 		if(errorAcceptor != null) {
@@ -2813,8 +2836,8 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1ValidIDParserRuleCall_5_3_0(), semanticObject.getUpdateColumn1());
-		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn2ValidIDParserRuleCall_5_5_0(), semanticObject.getUpdateColumn2());
+		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn1PojoAttributeValidIDParserRuleCall_5_3_0_1(), semanticObject.getUpdateColumn1());
+		feeder.accept(grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColumn2PojoAttributeValidIDParserRuleCall_5_5_0_1(), semanticObject.getUpdateColumn2());
 		feeder.finish();
 	}
 	

@@ -28,6 +28,7 @@ import org.sqlproc.model.processorModel.DaoDirective;
 import org.sqlproc.model.processorModel.DaoDirectiveCrud;
 import org.sqlproc.model.processorModel.DaoDirectiveDiscriminator;
 import org.sqlproc.model.processorModel.DaoDirectiveParameters;
+import org.sqlproc.model.processorModel.DaoDirectivePojo;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoDirectiveSerializable;
 import org.sqlproc.model.processorModel.DaoEntity;
@@ -261,6 +262,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.DAO_DIRECTIVE_CRUD: return createDaoDirectiveCrud();
       case ProcessorModelPackage.DAO_DIRECTIVE_QUERY: return createDaoDirectiveQuery();
       case ProcessorModelPackage.FUN_PROC_DIRECTIVE: return createFunProcDirective();
+      case ProcessorModelPackage.DAO_DIRECTIVE_POJO: return createDaoDirectivePojo();
       case ProcessorModelPackage.ANNOTATION_DIRECTIVE_CONFLICT: return createAnnotationDirectiveConflict();
       case ProcessorModelPackage.ANNOTATION_DIRECTIVE_STATIC: return createAnnotationDirectiveStatic();
       case ProcessorModelPackage.ANNOTATION_DIRECTIVE_CONSTRUCTOR: return createAnnotationDirectiveConstructor();
@@ -1316,6 +1318,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     FunProcDirectiveImpl funProcDirective = new FunProcDirectiveImpl();
     return funProcDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DaoDirectivePojo createDaoDirectivePojo()
+  {
+    DaoDirectivePojoImpl daoDirectivePojo = new DaoDirectivePojoImpl();
+    return daoDirectivePojo;
   }
 
   /**

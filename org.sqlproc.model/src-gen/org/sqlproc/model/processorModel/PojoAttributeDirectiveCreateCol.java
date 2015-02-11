@@ -23,55 +23,55 @@ package org.sqlproc.model.processorModel;
 public interface PojoAttributeDirectiveCreateCol extends PojoAttributeDirective
 {
   /**
-   * Returns the value of the '<em><b>Create Column1</b></em>' attribute.
+   * Returns the value of the '<em><b>Create Column1</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Create Column1</em>' attribute isn't clear,
+   * If the meaning of the '<em>Create Column1</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Create Column1</em>' attribute.
-   * @see #setCreateColumn1(String)
+   * @return the value of the '<em>Create Column1</em>' reference.
+   * @see #setCreateColumn1(PojoAttribute)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoAttributeDirectiveCreateCol_CreateColumn1()
    * @model
    * @generated
    */
-  String getCreateColumn1();
+  PojoAttribute getCreateColumn1();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn1 <em>Create Column1</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn1 <em>Create Column1</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Create Column1</em>' attribute.
+   * @param value the new value of the '<em>Create Column1</em>' reference.
    * @see #getCreateColumn1()
    * @generated
    */
-  void setCreateColumn1(String value);
+  void setCreateColumn1(PojoAttribute value);
 
   /**
-   * Returns the value of the '<em><b>Create Column2</b></em>' attribute.
+   * Returns the value of the '<em><b>Create Column2</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Create Column2</em>' attribute isn't clear,
+   * If the meaning of the '<em>Create Column2</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Create Column2</em>' attribute.
-   * @see #setCreateColumn2(String)
+   * @return the value of the '<em>Create Column2</em>' reference.
+   * @see #setCreateColumn2(PojoAttribute)
    * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoAttributeDirectiveCreateCol_CreateColumn2()
    * @model
    * @generated
    */
-  String getCreateColumn2();
+  PojoAttribute getCreateColumn2();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn2 <em>Create Column2</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol#getCreateColumn2 <em>Create Column2</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Create Column2</em>' attribute.
+   * @param value the new value of the '<em>Create Column2</em>' reference.
    * @see #getCreateColumn2()
    * @generated
    */
-  void setCreateColumn2(String value);
+  void setCreateColumn2(PojoAttribute value);
 
 } // PojoAttributeDirectiveCreateCol
