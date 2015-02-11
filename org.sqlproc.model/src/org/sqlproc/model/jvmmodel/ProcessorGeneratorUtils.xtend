@@ -5,7 +5,6 @@ package org.sqlproc.model.jvmmodel
 
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.sqlproc.model.processorModel.PojoAttribute
-import static org.eclipse.xtext.EcoreUtil2.*
 import org.sqlproc.model.processorModel.EnumAttribute
 import org.sqlproc.model.processorModel.PojoEntity
 import com.google.inject.Inject
@@ -61,6 +60,7 @@ import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptDaos
 import org.sqlproc.model.processorModel.ValueType
 import static extension org.eclipse.xtext.EcoreUtil2.*
+import org.eclipse.xtext.common.types.JvmParameterizedTypeReference
 
 class ProcessorGeneratorUtils {
 
@@ -456,45 +456,40 @@ class ProcessorGeneratorUtils {
         return pojoName.toFirstLower
 	}    
 	
-//    def PojoEntity getPojoImplicit(DaoEntity dao) {
-//        var pojoName = dao.getName()
-//        if (pojoName.endsWith("Dao"))
-//            pojoName = pojoName.substring(0, pojoName.length() - 3)
-//        val Artifacts artifacts = getContainerOfType(dao, Artifacts)
+    def JvmParameterizedTypeReference getPojoImplicit(DaoEntity dao) {
+        var pojoName = dao.getName()
+        if (pojoName.endsWith("Dao"))
+            pojoName = pojoName.substring(0, pojoName.length() - 3)
+        val Package package = getContainerOfType(dao, Package)
 //        return findEntity(qualifiedNameConverter, artifacts,
 //                scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJOS), pojoName)
-//    }
-//
-//    def dispatch PojoEntity getPojo(DaoEntity dao, DaoDirectiveCrud pojoDirective) {
-//    	return pojoDirective?.pojo?.ref ?: getPojoImplicit(dao)
-//    }
-//
-//    def dispatch PojoEntity getPojo(DaoEntity dao, DaoDirectiveQuery pojoDirective) {
-//    	return pojoDirective?.pojo?.ref ?: getPojoImplicit(dao)
-//    }
-//
-//    def dispatch PojoEntity getPojo(DaoEntity dao, FunProcDirective pojoDirective) {
-//    	val List<PojoType> list = pojoDirective?.paramlist?.ins
-//    	if (list == null || list.empty || list.head.ref == null)
-//    		return getPojoImplicit(dao)
-//    	return list.head.ref
-//    }
+		if (package.importSection == null || package.importSection.importDeclarations == null)
+			return null;
+		for (imp : package.importSection.importDeclarations) {
+			// TODO
+		}
+		return null;
+    }
 
-//    def PojoEntity getPojo(DaoEntity dao) {
-//    	val DaoDirective pojoDirective = dao?.getPojoDirective
-//    	return dao?.getPojo(pojoDirective)
-//    }
+    def dispatch JvmParameterizedTypeReference getPojo(DaoEntity dao, DaoDirectiveCrud pojoDirective) {
+    	return pojoDirective?.pojo ?: getPojoImplicit(dao)
+    }
 
-//    def String getDaoImplements(DaoEntity dao, Implements impl) {
-//        val StringBuilder sb = new StringBuilder()
-//        sb.append(impl.getImplements().getSimpleName())
-//        if (isGenerics(impl)) {
-//        	val pojo = getPojo(dao)
-//        	if (pojo != null)
-//        	sb.append("<").append(pojo.getName()).append(">")
-//        }
-//        return sb.toString()
-//    }
+    def dispatch JvmParameterizedTypeReference getPojo(DaoEntity dao, DaoDirectiveQuery pojoDirective) {
+    	return pojoDirective?.pojo ?: getPojoImplicit(dao)
+    }
+
+    def dispatch JvmParameterizedTypeReference getPojo(DaoEntity dao, FunProcDirective pojoDirective) {
+    	val List<JvmParameterizedTypeReference> list = pojoDirective?.paramlist?.ins
+    	if (list == null || list.empty || list.head == null)
+    		return getPojoImplicit(dao)
+    	return list.head
+    }
+
+    def JvmParameterizedTypeReference getPojo(DaoEntity dao) {
+    	val DaoDirective pojoDirective = dao?.getPojoDirective
+    	return dao?.getPojo(pojoDirective)
+    }
 
     def isCRUD(DaoEntity dao) {
 		val d = dao.directives?.findFirst[x|x instanceof DaoDirectiveCrud]

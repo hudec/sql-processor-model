@@ -211,11 +211,13 @@ class PojoJvmModelInferrer {
 	   			method.getAnnotations().add(toAnnotation(entity, Override))
 	   			members += method
 			}
-   			members += entity.toMethod('toStringFull', typeRef(String)) [
-  				body = '''
- 					return "«simpleName» [«FOR f2:entity.attributes SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF entity.superType != null && entity.superType instanceof PojoEntity» + super.toString()«ENDIF» + "]";
- 				'''
-   			]
+			if (!entity.attributes.empty) {
+	   			members += entity.toMethod('toStringFull', typeRef(String)) [
+	  				body = '''
+	 					return "«simpleName» [«FOR f2:entity.attributes SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF entity.superType != null && entity.superType instanceof PojoEntity» + super.toString()«ENDIF» + "]";
+	 				'''
+	   			]
+   			}
 			   			
    			val isDefList = entity.isDefAttributes
    			if (!isDefList.isEmpty) {

@@ -645,59 +645,64 @@ public class PojoJvmModelInferrer {
           EList<JvmMember> _members_7 = it.getMembers();
           PojoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_7, method_2);
         }
-        EList<JvmMember> _members_8 = it.getMembers();
-        JvmTypeReference _typeRef_8 = PojoJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
-        final Procedure1<JvmOperation> _function_10 = new Procedure1<JvmOperation>() {
-          public void apply(final JvmOperation it) {
-            StringConcatenationClient _client = new StringConcatenationClient() {
-              @Override
-              protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-                _builder.append("return \"");
-                _builder.append(simpleName, "");
-                _builder.append(" [");
-                {
-                  EList<PojoAttribute> _attributes = entity.getAttributes();
-                  boolean _hasElements = false;
-                  for(final PojoAttribute f2 : _attributes) {
-                    if (!_hasElements) {
-                      _hasElements = true;
-                    } else {
-                      _builder.appendImmediate(" + \", ", "");
-                    }
-                    String _name = f2.getName();
-                    _builder.append(_name, "");
-                    _builder.append("=\" + ");
-                    String _name_1 = f2.getName();
-                    _builder.append(_name_1, "");
-                  }
-                }
-                {
-                  boolean _and = false;
-                  JvmParameterizedTypeReference _superType = entity.getSuperType();
-                  boolean _notEquals = (!Objects.equal(_superType, null));
-                  if (!_notEquals) {
-                    _and = false;
-                  } else {
-                    JvmParameterizedTypeReference _superType_1 = entity.getSuperType();
-                    _and = (_superType_1 instanceof PojoEntity);
-                  }
-                  if (_and) {
-                    _builder.append(" + super.toString()");
-                  }
-                }
-                _builder.append(" + \"]\";");
-                _builder.newLineIfNotEmpty();
-              }
-            };
-            PojoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
-          }
-        };
-        JvmOperation _method = PojoJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "toStringFull", _typeRef_8, _function_10);
-        PojoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_8, _method);
-        final List<PojoAttribute> isDefList = PojoJvmModelInferrer.this._processorGeneratorUtils.isDefAttributes(entity);
-        boolean _isEmpty_4 = isDefList.isEmpty();
+        EList<PojoAttribute> _attributes_2 = entity.getAttributes();
+        boolean _isEmpty_4 = _attributes_2.isEmpty();
         boolean _not_4 = (!_isEmpty_4);
         if (_not_4) {
+          EList<JvmMember> _members_8 = it.getMembers();
+          JvmTypeReference _typeRef_8 = PojoJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+          final Procedure1<JvmOperation> _function_10 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              StringConcatenationClient _client = new StringConcatenationClient() {
+                @Override
+                protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("return \"");
+                  _builder.append(simpleName, "");
+                  _builder.append(" [");
+                  {
+                    EList<PojoAttribute> _attributes = entity.getAttributes();
+                    boolean _hasElements = false;
+                    for(final PojoAttribute f2 : _attributes) {
+                      if (!_hasElements) {
+                        _hasElements = true;
+                      } else {
+                        _builder.appendImmediate(" + \", ", "");
+                      }
+                      String _name = f2.getName();
+                      _builder.append(_name, "");
+                      _builder.append("=\" + ");
+                      String _name_1 = f2.getName();
+                      _builder.append(_name_1, "");
+                    }
+                  }
+                  {
+                    boolean _and = false;
+                    JvmParameterizedTypeReference _superType = entity.getSuperType();
+                    boolean _notEquals = (!Objects.equal(_superType, null));
+                    if (!_notEquals) {
+                      _and = false;
+                    } else {
+                      JvmParameterizedTypeReference _superType_1 = entity.getSuperType();
+                      _and = (_superType_1 instanceof PojoEntity);
+                    }
+                    if (_and) {
+                      _builder.append(" + super.toString()");
+                    }
+                  }
+                  _builder.append(" + \"]\";");
+                  _builder.newLineIfNotEmpty();
+                }
+              };
+              PojoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+            }
+          };
+          JvmOperation _method = PojoJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "toStringFull", _typeRef_8, _function_10);
+          PojoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_8, _method);
+        }
+        final List<PojoAttribute> isDefList = PojoJvmModelInferrer.this._processorGeneratorUtils.isDefAttributes(entity);
+        boolean _isEmpty_5 = isDefList.isEmpty();
+        boolean _not_5 = (!_isEmpty_5);
+        if (_not_5) {
           final Procedure1<JvmEnumerationType> _function_11 = new Procedure1<JvmEnumerationType>() {
             public void apply(final JvmEnumerationType it) {
             }
@@ -1135,9 +1140,9 @@ public class PojoJvmModelInferrer {
           PojoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_23, _method_12);
         }
         final List<PojoAttribute> enumDefList = PojoJvmModelInferrer.this._processorGeneratorUtils.enumDefAttributes(entity);
-        boolean _isEmpty_5 = enumDefList.isEmpty();
-        boolean _not_5 = (!_isEmpty_5);
-        if (_not_5) {
+        boolean _isEmpty_6 = enumDefList.isEmpty();
+        boolean _not_6 = (!_isEmpty_6);
+        if (_not_6) {
           final Procedure1<JvmEnumerationType> _function_25 = new Procedure1<JvmEnumerationType>() {
             public void apply(final JvmEnumerationType it) {
             }
@@ -1153,9 +1158,9 @@ public class PojoJvmModelInferrer {
           }
         }
         final List<PojoAttribute> toInitList = PojoJvmModelInferrer.this._processorGeneratorUtils.toInitAttributes(entity);
-        boolean _isEmpty_6 = toInitList.isEmpty();
-        boolean _not_6 = (!_isEmpty_6);
-        if (_not_6) {
+        boolean _isEmpty_7 = toInitList.isEmpty();
+        boolean _not_7 = (!_isEmpty_7);
+        if (_not_7) {
           final Procedure1<JvmEnumerationType> _function_26 = new Procedure1<JvmEnumerationType>() {
             public void apply(final JvmEnumerationType it) {
             }
@@ -1519,9 +1524,9 @@ public class PojoJvmModelInferrer {
           PojoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_39, _method_23);
         }
         final List<PojoAttribute> enumInitList = PojoJvmModelInferrer.this._processorGeneratorUtils.enumInitAttributes(entity);
-        boolean _isEmpty_7 = enumInitList.isEmpty();
-        boolean _not_7 = (!_isEmpty_7);
-        if (_not_7) {
+        boolean _isEmpty_8 = enumInitList.isEmpty();
+        boolean _not_8 = (!_isEmpty_8);
+        if (_not_8) {
           final Procedure1<JvmEnumerationType> _function_39 = new Procedure1<JvmEnumerationType>() {
             public void apply(final JvmEnumerationType it) {
             }
@@ -1545,8 +1550,8 @@ public class PojoJvmModelInferrer {
           final JvmEnumerationType opAttrType = PojoJvmModelInferrer.this._processorTypesBuilder.toEnumerationType(entity, "OpAttribute", _function_40);
           EList<JvmMember> _members_42 = it.getMembers();
           PojoJvmModelInferrer.this._processorTypesBuilder.<JvmEnumerationType>operator_add(_members_42, opAttrType);
-          EList<PojoAttribute> _attributes_2 = entity.getAttributes();
-          for (final PojoAttribute attr_6 : _attributes_2) {
+          EList<PojoAttribute> _attributes_3 = entity.getAttributes();
+          for (final PojoAttribute attr_6 : _attributes_3) {
             EList<JvmMember> _members_43 = opAttrType.getMembers();
             String _name_4 = attr_6.getName();
             JvmEnumerationLiteral _enumerationLiteral_4 = PojoJvmModelInferrer.this._processorTypesBuilder.toEnumerationLiteral(entity, _name_4);

@@ -26,6 +26,8 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.eclipse.xtext.xtype.XImportDeclaration;
+import org.eclipse.xtext.xtype.XImportSection;
 import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Annotation;
 import org.sqlproc.model.processorModel.AnnotationDirective;
@@ -38,6 +40,7 @@ import org.sqlproc.model.processorModel.AnnotationDirectiveStandard;
 import org.sqlproc.model.processorModel.AnnotationDirectiveStatic;
 import org.sqlproc.model.processorModel.DaoDirective;
 import org.sqlproc.model.processorModel.DaoDirectiveCrud;
+import org.sqlproc.model.processorModel.DaoDirectiveParameters;
 import org.sqlproc.model.processorModel.DaoDirectiveQuery;
 import org.sqlproc.model.processorModel.DaoEntity;
 import org.sqlproc.model.processorModel.DirectiveProperties;
@@ -1083,6 +1086,112 @@ public class ProcessorGeneratorUtils {
     return StringExtensions.toFirstLower(pojoName);
   }
   
+  public JvmParameterizedTypeReference getPojoImplicit(final DaoEntity dao) {
+    String pojoName = dao.getName();
+    boolean _endsWith = pojoName.endsWith("Dao");
+    if (_endsWith) {
+      int _length = pojoName.length();
+      int _minus = (_length - 3);
+      String _substring = pojoName.substring(0, _minus);
+      pojoName = _substring;
+    }
+    final org.sqlproc.model.processorModel.Package package_ = EcoreUtil2.<org.sqlproc.model.processorModel.Package>getContainerOfType(dao, org.sqlproc.model.processorModel.Package.class);
+    boolean _or = false;
+    XImportSection _importSection = package_.getImportSection();
+    boolean _equals = Objects.equal(_importSection, null);
+    if (_equals) {
+      _or = true;
+    } else {
+      XImportSection _importSection_1 = package_.getImportSection();
+      EList<XImportDeclaration> _importDeclarations = _importSection_1.getImportDeclarations();
+      boolean _equals_1 = Objects.equal(_importDeclarations, null);
+      _or = _equals_1;
+    }
+    if (_or) {
+      return null;
+    }
+    XImportSection _importSection_2 = package_.getImportSection();
+    EList<XImportDeclaration> _importDeclarations_1 = _importSection_2.getImportDeclarations();
+    for (final XImportDeclaration imp : _importDeclarations_1) {
+    }
+    return null;
+  }
+  
+  protected JvmParameterizedTypeReference _getPojo(final DaoEntity dao, final DaoDirectiveCrud pojoDirective) {
+    JvmParameterizedTypeReference _elvis = null;
+    JvmParameterizedTypeReference _pojo = null;
+    if (pojoDirective!=null) {
+      _pojo=pojoDirective.getPojo();
+    }
+    if (_pojo != null) {
+      _elvis = _pojo;
+    } else {
+      JvmParameterizedTypeReference _pojoImplicit = this.getPojoImplicit(dao);
+      _elvis = _pojoImplicit;
+    }
+    return _elvis;
+  }
+  
+  protected JvmParameterizedTypeReference _getPojo(final DaoEntity dao, final DaoDirectiveQuery pojoDirective) {
+    JvmParameterizedTypeReference _elvis = null;
+    JvmParameterizedTypeReference _pojo = null;
+    if (pojoDirective!=null) {
+      _pojo=pojoDirective.getPojo();
+    }
+    if (_pojo != null) {
+      _elvis = _pojo;
+    } else {
+      JvmParameterizedTypeReference _pojoImplicit = this.getPojoImplicit(dao);
+      _elvis = _pojoImplicit;
+    }
+    return _elvis;
+  }
+  
+  protected JvmParameterizedTypeReference _getPojo(final DaoEntity dao, final FunProcDirective pojoDirective) {
+    DaoDirectiveParameters _paramlist = null;
+    if (pojoDirective!=null) {
+      _paramlist=pojoDirective.getParamlist();
+    }
+    EList<JvmParameterizedTypeReference> _ins = null;
+    if (_paramlist!=null) {
+      _ins=_paramlist.getIns();
+    }
+    final List<JvmParameterizedTypeReference> list = _ins;
+    boolean _or = false;
+    boolean _or_1 = false;
+    boolean _equals = Objects.equal(list, null);
+    if (_equals) {
+      _or_1 = true;
+    } else {
+      boolean _isEmpty = list.isEmpty();
+      _or_1 = _isEmpty;
+    }
+    if (_or_1) {
+      _or = true;
+    } else {
+      JvmParameterizedTypeReference _head = IterableExtensions.<JvmParameterizedTypeReference>head(list);
+      boolean _equals_1 = Objects.equal(_head, null);
+      _or = _equals_1;
+    }
+    if (_or) {
+      return this.getPojoImplicit(dao);
+    }
+    return IterableExtensions.<JvmParameterizedTypeReference>head(list);
+  }
+  
+  public JvmParameterizedTypeReference getPojo(final DaoEntity dao) {
+    DaoDirective _pojoDirective = null;
+    if (dao!=null) {
+      _pojoDirective=this.getPojoDirective(dao);
+    }
+    final DaoDirective pojoDirective = _pojoDirective;
+    JvmParameterizedTypeReference _pojo = null;
+    if (dao!=null) {
+      _pojo=this.getPojo(dao, pojoDirective);
+    }
+    return _pojo;
+  }
+  
   public boolean isCRUD(final DaoEntity dao) {
     EList<DaoDirective> _directives = dao.getDirectives();
     DaoDirective _findFirst = null;
@@ -2079,6 +2188,19 @@ public class ProcessorGeneratorUtils {
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(l).toString());
+    }
+  }
+  
+  public JvmParameterizedTypeReference getPojo(final DaoEntity dao, final DaoDirective pojoDirective) {
+    if (pojoDirective instanceof DaoDirectiveCrud) {
+      return _getPojo(dao, (DaoDirectiveCrud)pojoDirective);
+    } else if (pojoDirective instanceof DaoDirectiveQuery) {
+      return _getPojo(dao, (DaoDirectiveQuery)pojoDirective);
+    } else if (pojoDirective instanceof FunProcDirective) {
+      return _getPojo(dao, (FunProcDirective)pojoDirective);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(dao, pojoDirective).toString());
     }
   }
 }

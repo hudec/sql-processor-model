@@ -71,10 +71,15 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		val entityType = entity.toClass(entity.fullyQualifiedName)
    		val simpleName = entity.name
    		val sernum = entity.sernum
+   		val pojo = entity.pojo
+   		val SERIALIZABLE = 'java.io.Serializable'
+   		val ENGINE_FACTORY = 'org.sqlproc.engine.SqlEngineFactory'
+   		val SESSION_FACTORY = 'org.sqlproc.engine.SqlSessionFactory'
+   		
    		acceptor.accept(entityType) [
    			documentation = entity.documentation
    			for (an : entity.standardAnnotations.map[a|a.annotation]) {
-   				if (an.annotationType.identifier == 'java.io.Serializable') {
+   				if (an.annotationType.identifier == SERIALIZABLE) {
    					superTypes += typeRef(an.annotationType)
    				}
    				else {
@@ -82,7 +87,14 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    				}
    			}
    			for (impl : entity.getImplements) {
-   				superTypes += impl.implements.cloneWithProxies
+   				if (impl.isGenerics) {
+   					val genericType = typeRef(impl.implements, pojo)
+   					println(genericType)
+   					superTypes += genericType
+   				}
+   				else {
+   					superTypes += impl.implements.cloneWithProxies
+   				}
    			}
    			val ext = entity.getExtends
    			if (ext != null)
@@ -91,7 +103,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    				superTypes += entity.superType.cloneWithProxies
    				
    			if (sernum != null) {
-   				superTypes += typeRef('java.io.Serializable')
+   				superTypes += typeRef(SERIALIZABLE)
 				members += entity.toField('serialVersionUID', typeRef(long)) [
  					static = true
  					final = true
@@ -102,14 +114,29 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    			members += entity.toConstructor [
    				addAnnotations(entity.constructorAnnotations.map[a|a.annotation])
    			]
-//   			members += entity.toConstructor [
-//	   			for (attr : entity.requiredAttributes)
-//   					parameters += entity.toParameter(attr.name, attr.type)
-//   				addAnnotations(entity.constructorAnnotations.map[a|a.annotation])
-//   				body = '''«FOR attr : entity.requiredAttributes»
-//					this.«attr.name» = «attr.name»;
-//				«ENDFOR»'''
-//   			]
+   			members += entity.toConstructor [
+				parameters += entity.toParameter('sqlEngineFactory', typeRef(ENGINE_FACTORY))
+   				addAnnotations(entity.constructorAnnotations.map[a|a.annotation])
+   				body = '''
+   					this.sqlEngineFactory = sqlEngineFactory;
+   				'''
+   			]
+   			members += entity.toConstructor [
+				parameters += entity.toParameter('sqlEngineFactory', typeRef(ENGINE_FACTORY))
+				parameters += entity.toParameter('sqlSessionFactory', typeRef(SESSION_FACTORY))
+   				addAnnotations(entity.constructorAnnotations.map[a|a.annotation])
+   				body = '''
+   					this.sqlEngineFactory = sqlEngineFactory;
+   					this.sqlSessionFactory = sqlSessionFactory;
+   				'''
+   			]
+   			
+   			members += entity.toField('sqlEngineFactory', typeRef(ENGINE_FACTORY)) [
+   				visibility = JvmVisibility.PROTECTED
+   			]
+   			members += entity.toField('sqlSessionFactory', typeRef(SESSION_FACTORY)) [
+   				visibility = JvmVisibility.PROTECTED
+   			]
    		]
    	}
 }
