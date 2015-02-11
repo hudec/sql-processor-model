@@ -692,6 +692,51 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    	dispatch def void inferFunctionProcedure(DaoEntity entity, ProcedureUpdate type, DaoDirectiveParameters params, 
    		JvmGenericType entityType, String simpleName, List<JvmMember> members
    	) {
+   		val fname = entity.getFunProcName
+   		
+		members += entity.toMethod(fname, typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				if (logger.isTraceEnabled()) {
+					logger.trace("sql «fname»: " + «FOR in:params.ins SEPARATOR " + \" \" "»«in.simpleName»«ENDFOR» + " " + sqlControl);
+				}
+				«PROCEDURE_ENGINE» sqlProc«entity.name» = sqlEngineFactory.getCheckedProcedureEngine("PROC_«dbName(fname)»");
+				int count = sqlProc«entity.name».callUpdate(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+				if (logger.isTraceEnabled()) {
+					logger.trace("sql «fname» result: " + count);
+				}
+				return count;
+   				'''
+   		]	
+   		
+		members += entity.toMethod(fname, typeRef(int)) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+			body = '''
+				return «fname»(sqlSessionFactory.getSqlSession(), «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», sqlControl);
+			'''
+   		]	
+   		
+		members += entity.toMethod(fname, typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			body = '''
+				return «fname»(sqlSession, «FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+   			'''
+   		]	
+   		
+		members += entity.toMethod(fname, typeRef(int)) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			body = '''
+				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
+   			'''
+   		]	
    	}
 
    	dispatch def void inferFunctionProcedure(DaoEntity entity, FunctionQuery type, DaoDirectiveParameters params, 
