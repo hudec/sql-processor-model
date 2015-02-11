@@ -69,6 +69,10 @@ public class EnumJvmModelInferrer extends AbstractModelInferrer {
   @Extension
   private ProcessorGeneratorUtils _processorGeneratorUtils;
   
+  private final String SERIALIZABLE = "java.io.Serializable";
+  
+  private final String HASH_MAP = "java.util.HashMap";
+  
   /**
    * The dispatch method {@code infer} is called for each instance of the
    * given element's type that is contained in a resource.
@@ -116,7 +120,7 @@ public class EnumJvmModelInferrer extends AbstractModelInferrer {
         for (final XAnnotation a : _map) {
           JvmType _annotationType = a.getAnnotationType();
           String _identifier = _annotationType.getIdentifier();
-          boolean _equals = Objects.equal(_identifier, "java.io.Serializable");
+          boolean _equals = Objects.equal(_identifier, EnumJvmModelInferrer.this.SERIALIZABLE);
           if (_equals) {
             EList<JvmTypeReference> _superTypes = it.getSuperTypes();
             JvmType _annotationType_1 = a.getAnnotationType();
@@ -208,7 +212,9 @@ public class EnumJvmModelInferrer extends AbstractModelInferrer {
                 _builder.append(_type, "");
                 _builder.append(", ");
                 _builder.append(simpleName, "");
-                _builder.append("> _identifierMap = new java.util.HashMap<");
+                _builder.append("> _identifierMap = new ");
+                _builder.append(EnumJvmModelInferrer.this.HASH_MAP, "");
+                _builder.append("<");
                 EnumAttribute _attribute_1 = entity.getAttribute();
                 JvmTypeReference _type_1 = _attribute_1.getType();
                 _builder.append(_type_1, "");

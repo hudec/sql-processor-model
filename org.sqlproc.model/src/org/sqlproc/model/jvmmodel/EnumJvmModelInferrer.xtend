@@ -41,6 +41,9 @@ class EnumJvmModelInferrer extends AbstractModelInferrer {
 	@Inject extension ProcessorTypesBuilder
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ProcessorGeneratorUtils
+	
+   	val SERIALIZABLE = 'java.io.Serializable'
+   	val HASH_MAP = 'java.util.HashMap'
 
 	/**
 	 * The dispatch method {@code infer} is called for each instance of the
@@ -73,7 +76,7 @@ class EnumJvmModelInferrer extends AbstractModelInferrer {
    		acceptor.accept(entityType) [
    			documentation = entity.documentation
    			for (a : entity.annotations.map[a|a.annotation]) {
-   				if (a.annotationType.identifier == 'java.io.Serializable') {
+   				if (a.annotationType.identifier == SERIALIZABLE) {
    					superTypes += typeRef(a.annotationType)
    				}
    				else {
@@ -106,7 +109,7 @@ class EnumJvmModelInferrer extends AbstractModelInferrer {
    			members += entity.toMethod ('identifierMapBuild', identifierMapType) [
  				static = true
 				body = '''
-					Map<«entity.attribute.type», «simpleName»> _identifierMap = new java.util.HashMap<«entity.attribute.type», «simpleName»>();
+					Map<«entity.attribute.type», «simpleName»> _identifierMap = new «HASH_MAP»<«entity.attribute.type», «simpleName»>();
 					for («simpleName» value : «simpleName».values()) {
 						_identifierMap.put(value.getValue(), value);
 					}

@@ -42,6 +42,12 @@ class PojoJvmModelInferrer {
 	@Inject extension IQualifiedNameProvider
 	@Inject extension ProcessorGeneratorUtils
 
+   	val SERIALIZABLE = 'java.io.Serializable'
+   	val HASH_MAP = 'java.util.HashMap'
+   	val HASH_SET = 'java.util.HashSet'
+   	val METHOD_UTILS = 'org.apache.commons.beanutils.MethodUtils'
+   	val INVOCATION_TARGET_EXCEPTION = 'java.lang.reflect.InvocationTargetException'
+
 	/**
 	 * The dispatch method {@code infer} is called for each instance of the
 	 * given element's type that is contained in a resource.
@@ -76,7 +82,7 @@ class PojoJvmModelInferrer {
    			if (entity.isAbstract)
    				abstract = true
    			for (an : entity.standardAnnotations.map[a|a.annotation]) {
-   				if (an.annotationType.identifier == 'java.io.Serializable') {
+   				if (an.annotationType.identifier == SERIALIZABLE) {
    					superTypes += typeRef(an.annotationType)
    				}
    				else {
@@ -93,7 +99,7 @@ class PojoJvmModelInferrer {
    				superTypes += entity.superType.cloneWithProxies
    				
    			if (sernum != null) {
-   				superTypes += typeRef('java.io.Serializable')
+   				superTypes += typeRef(SERIALIZABLE)
 				members += entity.toField('serialVersionUID', typeRef(long)) [
  					static = true
  					final = true
@@ -160,7 +166,6 @@ class PojoJvmModelInferrer {
    					members += attr._toSetter(attr.name + operSuffix, attr.name + operSuffix, typeRef(String), typeRef(entityType))
    				}
    			}
-
    			
    			val equalsList = entity.equalsAttributes
    			if (!equalsList.isEmpty) {
@@ -227,7 +232,7 @@ class PojoJvmModelInferrer {
 	   				isDefType.members += entity.toEnumerationLiteral(attr.name)
 				val identifierSetType = typeRef(java.util.Set, typeRef(String))
 				members += entity.toField('nullValues', identifierSetType) [
- 					initializer = ''' new java.util.HashSet<String>()'''
+ 					initializer = ''' new «HASH_SET»<String>()'''
 	   			]
 	   			members += entity.toMethod('setNull', typeRef(Void.TYPE)) [
    					parameters += entity.toParameter("attributes", typeRef(isDefType).addArrayTypeDimension.cloneWithProxies)
@@ -330,21 +335,21 @@ class PojoJvmModelInferrer {
 						if (nullValues.contains(attrName))
 							return true;
 						try {
-							Object result = org.apache.commons.beanutils.MethodUtils.invokeMethod(this, "get" + attrName.substring(0, 1).toUpperCase() + attrName.substring(1, attrName.length()), null);
+							Object result = «METHOD_UTILS».invokeMethod(this, "get" + attrName.substring(0, 1).toUpperCase() + attrName.substring(1, attrName.length()), null);
 							return (result != null) ? true : false;
 						} catch (NoSuchMethodException e) {
 						} catch (IllegalAccessException e) {
 							throw new RuntimeException(e);
-						} catch (java.lang.reflect.InvocationTargetException e) {
+						} catch («INVOCATION_TARGET_EXCEPTION» e) {
 							throw new RuntimeException(e);
 						}
 						try {
-							Object result = org.apache.commons.beanutils.MethodUtils.invokeMethod(this, "is" + attrName.substring(0, 1).toUpperCase() + attrName.substring(1, attrName.length()), null);
+							Object result = «METHOD_UTILS».invokeMethod(this, "is" + attrName.substring(0, 1).toUpperCase() + attrName.substring(1, attrName.length()), null);
 							return (result != null) ? true : false;
 						} catch (NoSuchMethodException e) {
 						} catch (IllegalAccessException e) {
 							throw new RuntimeException(e);
-						} catch (java.lang.reflect.InvocationTargetException e) {
+						} catch («INVOCATION_TARGET_EXCEPTION» e) {
 							throw new RuntimeException(e);
 						}
 						return false;
@@ -352,7 +357,7 @@ class PojoJvmModelInferrer {
    				]	
 	   			members += entity.toMethod('clearAllNull', typeRef(Void.TYPE)) [
    					body = '''
-						nullValues = new java.util.HashSet<String>();
+						nullValues = new «HASH_SET»<String>();
    					'''
    				]	
    			}
@@ -374,7 +379,7 @@ class PojoJvmModelInferrer {
 	   				toInitType.members += entity.toEnumerationLiteral(attr.name)
 				val identifierSetType = typeRef(java.util.Set, typeRef(String))
 				members += entity.toField('initAssociations', identifierSetType) [
- 					initializer = ''' new java.util.HashSet<String>()'''
+ 					initializer = ''' new «HASH_SET»<String>()'''
 	   			]
 	   			members += entity.toMethod('setInit', typeRef(Void.TYPE)) [
    					parameters += entity.toParameter("associations", typeRef(toInitType).addArrayTypeDimension.cloneWithProxies)
@@ -471,7 +476,7 @@ class PojoJvmModelInferrer {
    				]	
 	   			members += entity.toMethod('clearAllInit', typeRef(Void.TYPE)) [
    					body = '''
-						initAssociations = new java.util.HashSet<String>();
+						initAssociations = new «HASH_SET»<String>();
    					'''
    				]	
    			}
@@ -491,7 +496,7 @@ class PojoJvmModelInferrer {
 	   				opAttrType.members += entity.toEnumerationLiteral(attr.name)
 				val identifierMapType = typeRef(java.util.Map, typeRef(String), typeRef(String))
 				members += entity.toField('operators', identifierMapType) [
- 					initializer = ''' new java.util.HashMap<String, String>()'''
+ 					initializer = ''' new «HASH_MAP»<String, String>()'''
 	   			]
 	   			members += entity.toMethod('getOperators', identifierMapType) [
 	   				addAnnotations(entity.conflictAnnotations.map[a|a.annotation])
@@ -619,7 +624,7 @@ class PojoJvmModelInferrer {
    				]	
 	   			members += entity.toMethod('clearAllOps', typeRef(Void.TYPE)) [
    					body = '''
-						operators = new java.util.HashMap<String, String>();
+						operators = new «HASH_MAP»<String, String>();
    					'''
    				]	
 			}

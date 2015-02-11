@@ -68,6 +68,16 @@ public class PojoJvmModelInferrer {
   @Extension
   private ProcessorGeneratorUtils _processorGeneratorUtils;
   
+  private final String SERIALIZABLE = "java.io.Serializable";
+  
+  private final String HASH_MAP = "java.util.HashMap";
+  
+  private final String HASH_SET = "java.util.HashSet";
+  
+  private final String METHOD_UTILS = "org.apache.commons.beanutils.MethodUtils";
+  
+  private final String INVOCATION_TARGET_EXCEPTION = "java.lang.reflect.InvocationTargetException";
+  
   /**
    * The dispatch method {@code infer} is called for each instance of the
    * given element's type that is contained in a resource.
@@ -116,7 +126,7 @@ public class PojoJvmModelInferrer {
         for (final XAnnotation an : _map) {
           JvmType _annotationType = an.getAnnotationType();
           String _identifier = _annotationType.getIdentifier();
-          boolean _equals = Objects.equal(_identifier, "java.io.Serializable");
+          boolean _equals = Objects.equal(_identifier, PojoJvmModelInferrer.this.SERIALIZABLE);
           if (_equals) {
             EList<JvmTypeReference> _superTypes = it.getSuperTypes();
             JvmType _annotationType_1 = an.getAnnotationType();
@@ -152,7 +162,7 @@ public class PojoJvmModelInferrer {
         boolean _notEquals_2 = (!Objects.equal(sernum, null));
         if (_notEquals_2) {
           EList<JvmTypeReference> _superTypes_4 = it.getSuperTypes();
-          JvmTypeReference _typeRef_1 = PojoJvmModelInferrer.this._typeReferenceBuilder.typeRef("java.io.Serializable");
+          JvmTypeReference _typeRef_1 = PojoJvmModelInferrer.this._typeReferenceBuilder.typeRef(PojoJvmModelInferrer.this.SERIALIZABLE);
           PojoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_4, _typeRef_1);
           EList<JvmMember> _members = it.getMembers();
           JvmTypeReference _typeRef_2 = PojoJvmModelInferrer.this._typeReferenceBuilder.typeRef(long.class);
@@ -725,7 +735,9 @@ public class PojoJvmModelInferrer {
                 @Override
                 protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
                   _builder.append(" ");
-                  _builder.append("new java.util.HashSet<String>()");
+                  _builder.append("new ");
+                  _builder.append(PojoJvmModelInferrer.this.HASH_SET, " ");
+                  _builder.append("<String>()");
                 }
               };
               PojoJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client);
@@ -1072,8 +1084,10 @@ public class PojoJvmModelInferrer {
                   _builder.append("try {");
                   _builder.newLine();
                   _builder.append("\t");
-                  _builder.append("Object result = org.apache.commons.beanutils.MethodUtils.invokeMethod(this, \"get\" + attrName.substring(0, 1).toUpperCase() + attrName.substring(1, attrName.length()), null);");
-                  _builder.newLine();
+                  _builder.append("Object result = ");
+                  _builder.append(PojoJvmModelInferrer.this.METHOD_UTILS, "\t");
+                  _builder.append(".invokeMethod(this, \"get\" + attrName.substring(0, 1).toUpperCase() + attrName.substring(1, attrName.length()), null);");
+                  _builder.newLineIfNotEmpty();
                   _builder.append("\t");
                   _builder.append("return (result != null) ? true : false;");
                   _builder.newLine();
@@ -1084,8 +1098,10 @@ public class PojoJvmModelInferrer {
                   _builder.append("\t");
                   _builder.append("throw new RuntimeException(e);");
                   _builder.newLine();
-                  _builder.append("} catch (java.lang.reflect.InvocationTargetException e) {");
-                  _builder.newLine();
+                  _builder.append("} catch (");
+                  _builder.append(PojoJvmModelInferrer.this.INVOCATION_TARGET_EXCEPTION, "");
+                  _builder.append(" e) {");
+                  _builder.newLineIfNotEmpty();
                   _builder.append("\t");
                   _builder.append("throw new RuntimeException(e);");
                   _builder.newLine();
@@ -1094,8 +1110,10 @@ public class PojoJvmModelInferrer {
                   _builder.append("try {");
                   _builder.newLine();
                   _builder.append("\t");
-                  _builder.append("Object result = org.apache.commons.beanutils.MethodUtils.invokeMethod(this, \"is\" + attrName.substring(0, 1).toUpperCase() + attrName.substring(1, attrName.length()), null);");
-                  _builder.newLine();
+                  _builder.append("Object result = ");
+                  _builder.append(PojoJvmModelInferrer.this.METHOD_UTILS, "\t");
+                  _builder.append(".invokeMethod(this, \"is\" + attrName.substring(0, 1).toUpperCase() + attrName.substring(1, attrName.length()), null);");
+                  _builder.newLineIfNotEmpty();
                   _builder.append("\t");
                   _builder.append("return (result != null) ? true : false;");
                   _builder.newLine();
@@ -1106,8 +1124,10 @@ public class PojoJvmModelInferrer {
                   _builder.append("\t");
                   _builder.append("throw new RuntimeException(e);");
                   _builder.newLine();
-                  _builder.append("} catch (java.lang.reflect.InvocationTargetException e) {");
-                  _builder.newLine();
+                  _builder.append("} catch (");
+                  _builder.append(PojoJvmModelInferrer.this.INVOCATION_TARGET_EXCEPTION, "");
+                  _builder.append(" e) {");
+                  _builder.newLineIfNotEmpty();
                   _builder.append("\t");
                   _builder.append("throw new RuntimeException(e);");
                   _builder.newLine();
@@ -1129,8 +1149,10 @@ public class PojoJvmModelInferrer {
               StringConcatenationClient _client = new StringConcatenationClient() {
                 @Override
                 protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-                  _builder.append("nullValues = new java.util.HashSet<String>();");
-                  _builder.newLine();
+                  _builder.append("nullValues = new ");
+                  _builder.append(PojoJvmModelInferrer.this.HASH_SET, "");
+                  _builder.append("<String>();");
+                  _builder.newLineIfNotEmpty();
                 }
               };
               PojoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
@@ -1183,7 +1205,9 @@ public class PojoJvmModelInferrer {
                 @Override
                 protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
                   _builder.append(" ");
-                  _builder.append("new java.util.HashSet<String>()");
+                  _builder.append("new ");
+                  _builder.append(PojoJvmModelInferrer.this.HASH_SET, " ");
+                  _builder.append("<String>()");
                 }
               };
               PojoJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client);
@@ -1513,8 +1537,10 @@ public class PojoJvmModelInferrer {
               StringConcatenationClient _client = new StringConcatenationClient() {
                 @Override
                 protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-                  _builder.append("initAssociations = new java.util.HashSet<String>();");
-                  _builder.newLine();
+                  _builder.append("initAssociations = new ");
+                  _builder.append(PojoJvmModelInferrer.this.HASH_SET, "");
+                  _builder.append("<String>();");
+                  _builder.newLineIfNotEmpty();
                 }
               };
               PojoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
@@ -1567,7 +1593,9 @@ public class PojoJvmModelInferrer {
                 @Override
                 protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
                   _builder.append(" ");
-                  _builder.append("new java.util.HashMap<String, String>()");
+                  _builder.append("new ");
+                  _builder.append(PojoJvmModelInferrer.this.HASH_MAP, " ");
+                  _builder.append("<String, String>()");
                 }
               };
               PojoJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client);
@@ -2005,8 +2033,10 @@ public class PojoJvmModelInferrer {
               StringConcatenationClient _client = new StringConcatenationClient() {
                 @Override
                 protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-                  _builder.append("operators = new java.util.HashMap<String, String>();");
-                  _builder.newLine();
+                  _builder.append("operators = new ");
+                  _builder.append(PojoJvmModelInferrer.this.HASH_MAP, "");
+                  _builder.append("<String, String>();");
+                  _builder.newLineIfNotEmpty();
                 }
               };
               PojoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);

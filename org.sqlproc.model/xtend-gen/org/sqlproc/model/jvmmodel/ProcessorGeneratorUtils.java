@@ -995,7 +995,6 @@ public class ProcessorGeneratorUtils {
   
   protected String _constName(final String name) {
     final StringBuilder result = new StringBuilder("");
-    name.toCharArray();
     char[] _charArray = name.toCharArray();
     for (final char c : _charArray) {
       boolean _isUpperCase = Character.isUpperCase(c);
@@ -1006,6 +1005,45 @@ public class ProcessorGeneratorUtils {
         char _upperCase = Character.toUpperCase(c);
         result.append(_upperCase);
       }
+    }
+    return result.toString();
+  }
+  
+  public String dbName(final String name) {
+    final StringBuilder result = new StringBuilder("");
+    boolean lastDigit = false;
+    char[] _charArray = name.toCharArray();
+    for (final char c : _charArray) {
+      {
+        boolean _or = false;
+        boolean _isUpperCase = Character.isUpperCase(c);
+        if (_isUpperCase) {
+          _or = true;
+        } else {
+          boolean _and = false;
+          boolean _isDigit = Character.isDigit(c);
+          if (!_isDigit) {
+            _and = false;
+          } else {
+            _and = (!lastDigit);
+          }
+          _or = _and;
+        }
+        if (_or) {
+          result.append("_");
+          result.append(c);
+        } else {
+          char _upperCase = Character.toUpperCase(c);
+          result.append(_upperCase);
+        }
+        boolean _isDigit_1 = Character.isDigit(c);
+        lastDigit = _isDigit_1;
+      }
+    }
+    char _charAt = result.charAt(0);
+    boolean _equals = Objects.equal(Character.valueOf(_charAt), "_");
+    if (_equals) {
+      return result.substring(1);
     }
     return result.toString();
   }
@@ -1190,6 +1228,11 @@ public class ProcessorGeneratorUtils {
       _pojo=this.getPojo(dao, pojoDirective);
     }
     return _pojo;
+  }
+  
+  public JvmParameterizedTypeReference getParent(final DaoEntity dao, final JvmParameterizedTypeReference pojo) {
+    final JvmParameterizedTypeReference parent = pojo;
+    return null;
   }
   
   public boolean isCRUD(final DaoEntity dao) {

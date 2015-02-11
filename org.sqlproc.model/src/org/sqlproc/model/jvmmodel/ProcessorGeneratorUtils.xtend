@@ -389,7 +389,6 @@ class ProcessorGeneratorUtils {
 
     def dispatch String constName(String name) {
         val StringBuilder result = new StringBuilder("")
-        name.toCharArray
         for (c : name.toCharArray) {
             if (Character.isUpperCase(c)) {
             	result.append("_")
@@ -402,6 +401,23 @@ class ProcessorGeneratorUtils {
         return result.toString
     }
 
+    def String dbName(String name) {
+        val StringBuilder result = new StringBuilder("")
+        var boolean lastDigit = false
+        for (c : name.toCharArray) {
+            if (Character.isUpperCase(c) || (Character.isDigit(c) && !lastDigit)) {
+            	result.append('_')
+            	result.append(c)
+            }
+            else {
+            	result.append(Character.toUpperCase(c))
+            }
+            lastDigit = Character.isDigit(c);
+        }
+        if (result.charAt(0) == '_')
+        	return result.substring(1)
+        return result.toString
+    }
 
 //    def String getSuffix(Entity pojo) {
 //        val Package packageDeclaration = getContainerOfType(pojo, Package)
@@ -489,6 +505,12 @@ class ProcessorGeneratorUtils {
     def JvmParameterizedTypeReference getPojo(DaoEntity dao) {
     	val DaoDirective pojoDirective = dao?.getPojoDirective
     	return dao?.getPojo(pojoDirective)
+    }
+
+    def JvmParameterizedTypeReference getParent(DaoEntity dao, JvmParameterizedTypeReference pojo) {
+    	val parent = pojo
+    	// TODO
+    	return null
     }
 
     def isCRUD(DaoEntity dao) {
