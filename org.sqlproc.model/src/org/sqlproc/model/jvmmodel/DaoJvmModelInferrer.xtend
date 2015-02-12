@@ -197,6 +197,46 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    			if (moreResultClasses != null && !moreResultClasses.empty) {
    				inferMoreResultClasses(entity, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
 			}
+
+   			
+   			for (attr : entity.attributes) {
+   				val type = attr.type ?: attr.initExpr?.inferredType ?: typeRef(String)
+   				members += entity.toField(attr.name, type) [
+   					documentation = attr.documentation
+   					addAnnotations(attr.attributeAnnotations.map[a|a.annotation])
+   					static = attr.static
+   					final = attr.final
+   					if (attr.static)
+   						visibility = JvmVisibility.PUBLIC 
+   					if (attr.initExpr != null) {
+ 						initializer = attr.initExpr
+ 					} 
+ 					else if (isList(attr)) {
+ 						initializer = '''new java.util.Array«type.simpleName»()'''
+ 					}
+   				]
+   				if (!attr.static) {
+	   				members += attr.toGetter(attr.name, attr.name, type) [
+	   					addAnnotations(attr.getterAnnotations.map[a|a.annotation])
+	   				]
+	   				members += attr.toSetter(attr.name, attr.name, type, typeRef(entityType)) [
+	   					addAnnotations(attr.setterAnnotations.map[a|a.annotation])
+	   				]
+   				}
+   			}
+   			
+   			for (proc : entity.procedures) {
+   				members += proc.toMethod(proc.name, proc.type ?: inferredType) [
+   					documentation = proc.documentation
+   					addAnnotations(proc.annotations.map[a|a.annotation])
+   					static = proc.static
+   					final = proc.final
+   					for (param : proc.params) {
+   						parameters += param.toParameter(param.name, param.parameterType)
+   					}
+   					body = proc.body
+   				]
+			}
    		]
    	}
    	

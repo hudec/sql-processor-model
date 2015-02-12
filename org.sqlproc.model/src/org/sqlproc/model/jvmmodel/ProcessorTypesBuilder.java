@@ -6,7 +6,6 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
 import org.eclipse.xtext.common.types.util.TypeReferences;
-import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
 import org.eclipse.xtext.xbase.lib.Procedures;
@@ -68,6 +67,31 @@ public class ProcessorTypesBuilder extends JvmTypesBuilder {
             /* @Nullable */final PojoAttribute createColumn1, /* @Nullable */final PojoAttribute createColumn2) {
         return toSetterExt(sourceElement, propertyName, fieldName, typeRef, typeEntityRef, updateColumn1,
                 updateColumn2, createColumn1, createColumn2, null);
+    }
+
+    /* @Nullable */
+    public JvmOperation toSetter(/* @Nullable */final EObject sourceElement, /* @Nullable */
+            final String propertyName,
+            /* @Nullable */final String fieldName, /* @Nullable */JvmTypeReference typeRef, /* @Nullable */
+            JvmTypeReference typeEntityRef,
+            /* @Nullable */Procedure1<? super JvmOperation> initializer) {
+        if (sourceElement == null || propertyName == null || fieldName == null)
+            return null;
+        JvmOperation result = typesFactory.createJvmOperation();
+        result.setVisibility(JvmVisibility.PUBLIC);
+        result.setReturnType(references.getTypeForName(Void.TYPE, sourceElement));
+        result.setSimpleName("set" + _toFirstUpper(propertyName));
+        result.getParameters().add(toParameter(sourceElement, propertyName, cloneWithProxies(typeRef)));
+        setBody(result, new Procedures.Procedure1<ITreeAppendable>() {
+            public void apply(/* @Nullable */ITreeAppendable p) {
+                if (p != null) {
+                    p = p.trace(sourceElement);
+                    p.append("this.").append(fieldName).append(" = ").append(propertyName).append(";");
+                }
+            }
+        });
+        associate(sourceElement, result);
+        return initializeSafely(result, initializer);
     }
 
     /* @Nullable */

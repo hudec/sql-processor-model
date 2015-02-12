@@ -147,6 +147,8 @@ class PojoJvmModelInferrer {
    					addAnnotations(attr.attributeAnnotations.map[a|a.annotation])
    					static = attr.static
    					final = attr.final
+   					if (attr.static)
+   						visibility = JvmVisibility.PUBLIC 
    					if (attr.initExpr != null) {
  						initializer = attr.initExpr
  					} 
@@ -157,22 +159,23 @@ class PojoJvmModelInferrer {
  						initializer = '''0'''
 					}
    				]
-   				val createColumn1 = attr.createColumn1
-   				members += attr.toGetter(attr.name, attr.name, type) [
-   					addAnnotations(attr.getterAnnotations.map[a|a.annotation])
-   				]
-   				members += attr.toSetterExt(attr.name, attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
-   								attr.createColumn1, attr.createColumn2) [
-   					addAnnotations(attr.setterAnnotations.map[a|a.annotation])
-   				]
-   				members += attr._toSetterExt(attr.name, attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
-   								attr.createColumn1, attr.createColumn2)
-	   			if (entity.hasOperators) {
-   					val operSuffix = entity.operatorsSuffix ?: 'Op'
-   					members += entity.toField(attr.name + operSuffix, typeRef(String)) []
-	   				members += attr.toGetter(attr.name + operSuffix, typeRef(String))
-   					members += attr.toSetter(attr.name + operSuffix, attr.name + operSuffix, typeRef(String))
-   					members += attr._toSetter(attr.name + operSuffix, attr.name + operSuffix, typeRef(String), typeRef(entityType))
+   				if (!attr.static) {
+	   				members += attr.toGetter(attr.name, attr.name, type) [
+	   					addAnnotations(attr.getterAnnotations.map[a|a.annotation])
+	   				]
+	   				members += attr.toSetterExt(attr.name, attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
+	   								attr.createColumn1, attr.createColumn2) [
+	   					addAnnotations(attr.setterAnnotations.map[a|a.annotation])
+	   				]
+	   				members += attr._toSetterExt(attr.name, attr.name, type, typeRef(entityType), attr.updateColumn1, attr.updateColumn2, 
+	   								attr.createColumn1, attr.createColumn2)
+		   			if (entity.hasOperators) {
+	   					val operSuffix = entity.operatorsSuffix ?: 'Op'
+	   					members += entity.toField(attr.name + operSuffix, typeRef(String)) []
+		   				members += attr.toGetter(attr.name + operSuffix, typeRef(String))
+	   					members += attr.toSetter(attr.name + operSuffix, attr.name + operSuffix, typeRef(String))
+	   					members += attr._toSetter(attr.name + operSuffix, attr.name + operSuffix, typeRef(String), typeRef(entityType))
+	   				}
    				}
    			}
    			

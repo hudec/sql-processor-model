@@ -20,6 +20,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor;
@@ -50,6 +51,7 @@ import org.sqlproc.model.processorModel.FunctionQuery;
 import org.sqlproc.model.processorModel.Implements;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoEntity;
+import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.ProcedureCallQuery;
 import org.sqlproc.model.processorModel.ProcedureUpdate;
 
@@ -405,6 +407,159 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
         if (_and) {
           EList<JvmMember> _members_14 = it.getMembers();
           DaoJvmModelInferrer.this.inferMoreResultClasses(entity, entityType, simpleName, pojo, pojoType, _members_14, moreResultClasses);
+        }
+        EList<PojoAttribute> _attributes = entity.getAttributes();
+        for (final PojoAttribute attr : _attributes) {
+          {
+            JvmTypeReference _elvis = null;
+            JvmTypeReference _elvis_1 = null;
+            JvmTypeReference _type_1 = attr.getType();
+            if (_type_1 != null) {
+              _elvis_1 = _type_1;
+            } else {
+              XExpression _initExpr = attr.getInitExpr();
+              JvmTypeReference _inferredType = null;
+              if (_initExpr!=null) {
+                _inferredType=DaoJvmModelInferrer.this._processorTypesBuilder.inferredType(_initExpr);
+              }
+              _elvis_1 = _inferredType;
+            }
+            if (_elvis_1 != null) {
+              _elvis = _elvis_1;
+            } else {
+              JvmTypeReference _typeRef_7 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              _elvis = _typeRef_7;
+            }
+            final JvmTypeReference type = _elvis;
+            EList<JvmMember> _members_15 = it.getMembers();
+            String _name = attr.getName();
+            final Procedure1<JvmField> _function_8 = new Procedure1<JvmField>() {
+              public void apply(final JvmField it) {
+                String _documentation = DaoJvmModelInferrer.this._processorTypesBuilder.getDocumentation(attr);
+                DaoJvmModelInferrer.this._processorTypesBuilder.setDocumentation(it, _documentation);
+                List<Annotation> _attributeAnnotations = DaoJvmModelInferrer.this._processorGeneratorUtils.attributeAnnotations(attr);
+                final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                  public XAnnotation apply(final Annotation a) {
+                    return a.getAnnotation();
+                  }
+                };
+                List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_attributeAnnotations, _function);
+                DaoJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+                boolean _isStatic = attr.isStatic();
+                it.setStatic(_isStatic);
+                boolean _isFinal = attr.isFinal();
+                it.setFinal(_isFinal);
+                boolean _isStatic_1 = attr.isStatic();
+                if (_isStatic_1) {
+                  it.setVisibility(JvmVisibility.PUBLIC);
+                }
+                XExpression _initExpr = attr.getInitExpr();
+                boolean _notEquals = (!Objects.equal(_initExpr, null));
+                if (_notEquals) {
+                  XExpression _initExpr_1 = attr.getInitExpr();
+                  DaoJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _initExpr_1);
+                } else {
+                  boolean _isList = DaoJvmModelInferrer.this._processorGeneratorUtils.isList(attr);
+                  if (_isList) {
+                    StringConcatenationClient _client = new StringConcatenationClient() {
+                      @Override
+                      protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                        _builder.append("new java.util.Array");
+                        String _simpleName = type.getSimpleName();
+                        _builder.append(_simpleName, "");
+                        _builder.append("()");
+                      }
+                    };
+                    DaoJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client);
+                  }
+                }
+              }
+            };
+            JvmField _field_4 = DaoJvmModelInferrer.this._processorTypesBuilder.toField(entity, _name, type, _function_8);
+            DaoJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_15, _field_4);
+            boolean _isStatic = attr.isStatic();
+            boolean _not_1 = (!_isStatic);
+            if (_not_1) {
+              EList<JvmMember> _members_16 = it.getMembers();
+              String _name_1 = attr.getName();
+              String _name_2 = attr.getName();
+              final Procedure1<JvmOperation> _function_9 = new Procedure1<JvmOperation>() {
+                public void apply(final JvmOperation it) {
+                  List<Annotation> _terAnnotations = DaoJvmModelInferrer.this._processorGeneratorUtils.getterAnnotations(attr);
+                  final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                    public XAnnotation apply(final Annotation a) {
+                      return a.getAnnotation();
+                    }
+                  };
+                  List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_terAnnotations, _function);
+                  DaoJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+                }
+              };
+              JvmOperation _getter = DaoJvmModelInferrer.this._processorTypesBuilder.toGetter(attr, _name_1, _name_2, type, _function_9);
+              DaoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_16, _getter);
+              EList<JvmMember> _members_17 = it.getMembers();
+              String _name_3 = attr.getName();
+              String _name_4 = attr.getName();
+              JvmTypeReference _typeRef_8 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
+              final Procedure1<JvmOperation> _function_10 = new Procedure1<JvmOperation>() {
+                public void apply(final JvmOperation it) {
+                  List<Annotation> _setterAnnotations = DaoJvmModelInferrer.this._processorGeneratorUtils.setterAnnotations(attr);
+                  final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                    public XAnnotation apply(final Annotation a) {
+                      return a.getAnnotation();
+                    }
+                  };
+                  List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_setterAnnotations, _function);
+                  DaoJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+                }
+              };
+              JvmOperation _setter = DaoJvmModelInferrer.this._processorTypesBuilder.toSetter(attr, _name_3, _name_4, type, _typeRef_8, _function_10);
+              DaoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_17, _setter);
+            }
+          }
+        }
+        EList<PojoProcedure> _procedures = entity.getProcedures();
+        for (final PojoProcedure proc : _procedures) {
+          EList<JvmMember> _members_15 = it.getMembers();
+          String _name = proc.getName();
+          JvmTypeReference _elvis = null;
+          JvmTypeReference _type_1 = proc.getType();
+          if (_type_1 != null) {
+            _elvis = _type_1;
+          } else {
+            JvmTypeReference _inferredType = DaoJvmModelInferrer.this._processorTypesBuilder.inferredType();
+            _elvis = _inferredType;
+          }
+          final Procedure1<JvmOperation> _function_8 = new Procedure1<JvmOperation>() {
+            public void apply(final JvmOperation it) {
+              String _documentation = DaoJvmModelInferrer.this._processorTypesBuilder.getDocumentation(proc);
+              DaoJvmModelInferrer.this._processorTypesBuilder.setDocumentation(it, _documentation);
+              EList<Annotation> _annotations = proc.getAnnotations();
+              final Function1<Annotation, XAnnotation> _function = new Function1<Annotation, XAnnotation>() {
+                public XAnnotation apply(final Annotation a) {
+                  return a.getAnnotation();
+                }
+              };
+              List<XAnnotation> _map = ListExtensions.<Annotation, XAnnotation>map(_annotations, _function);
+              DaoJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
+              boolean _isStatic = proc.isStatic();
+              it.setStatic(_isStatic);
+              boolean _isFinal = proc.isFinal();
+              it.setFinal(_isFinal);
+              EList<JvmFormalParameter> _params = proc.getParams();
+              for (final JvmFormalParameter param : _params) {
+                EList<JvmFormalParameter> _parameters = it.getParameters();
+                String _name = param.getName();
+                JvmTypeReference _parameterType = param.getParameterType();
+                JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(param, _name, _parameterType);
+                DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+              }
+              XExpression _body = proc.getBody();
+              DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _body);
+            }
+          };
+          JvmOperation _method = DaoJvmModelInferrer.this._processorTypesBuilder.toMethod(proc, _name, _elvis, _function_8);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_15, _method);
         }
       }
     };
