@@ -1078,8 +1078,8 @@ public class TablePojoGenerator {
                             name = attribute.getName();
                         if (attribute.getIntValue() == null && attribute.getStrValue() == null)
                             name = columnToCamelCase(name);
-                        buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
-                        buffer.append(":").append(attribute.getClassName());
+                        buffer.append(NLINDENT).append(INDENT).append("#Attr ").append(attribute.getClassName())
+                                .append(' ').append(name);
                     }
                 }
                 // if (pojoExtends.containsKey(pojo)) {
@@ -1253,19 +1253,20 @@ public class TablePojoGenerator {
                             bufferPartial.append(NLINDENTINDENT).append(bufferMetaAttr.substring(1));
                         else
                             bufferPartial.append(bufferMetaAttr);
-                        bufferPartial.append(NLINDENT).append(INDENT).append(name).append(' ');
+                        bufferPartial.append(NLINDENT).append(INDENT).append("#Attr ");
                         if (attribute.getDependencyClassName() != null) {
                             bufferPartial.append(attribute.getDependencyClassName());
                             if (attribute.isDependencyClassNameIsEnum())
                                 toStr.add(name);
                         } else if (attribute.isPrimitive()) {
-                            bufferPartial.append(':').append(attribute.getClassName());
+                            bufferPartial.append(attribute.getClassName());
                             toStr.add(name);
                         } else {
-                            bufferPartial.append(":").append(attribute.getClassName());
+                            bufferPartial.append(attribute.getClassName());
                             if (!attribute.getClassName().startsWith(COLLECTION_LIST))
                                 toStr.add(name);
                         }
+                        bufferPartial.append(' ').append(name);
                     }
                     // if (pojoExtends.containsKey(pojo)) {
                     // getParentAttrs(pojoExtends.get(pojo), null, null, toStr);
@@ -1352,18 +1353,19 @@ public class TablePojoGenerator {
                             name = attribute.getName();
                         else
                             name = columnToCamelCase(name);
-                        bufferPartial.append(NLINDENT).append(INDENT).append(name).append(' ');
+                        bufferPartial.append(NLINDENT).append(INDENT).append("#Attr ");
                         if (attribute.getDependencyClassName() != null) {
                             bufferPartial.append(attribute.getDependencyClassName());
                             toStr.add(name);
                         } else if (attribute.isPrimitive()) {
-                            bufferPartial.append(':').append(attribute.getClassName());
+                            bufferPartial.append(attribute.getClassName());
                             toStr.add(name);
                         } else {
-                            bufferPartial.append(":").append(attribute.getClassName());
+                            bufferPartial.append(attribute.getClassName());
                             if (!attribute.getClassName().startsWith(COLLECTION_LIST))
                                 toStr.add(name);
                         }
+                        bufferPartial.append(' ').append(name);
                         if (!attribute.isVersion()
                                 && ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(
                                         pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
@@ -1435,18 +1437,19 @@ public class TablePojoGenerator {
                             name = attribute.getName();
                         else
                             name = columnToCamelCase(name);
-                        bufferPartial.append(NLINDENT).append(INDENT).append(name).append(' ');
+                        bufferPartial.append(NLINDENT).append(INDENT).append("#Attr ");
                         if (attribute.getDependencyClassName() != null) {
                             bufferPartial.append(attribute.getDependencyClassName());
                             toStr.add(name);
                         } else if (attribute.isPrimitive()) {
-                            bufferPartial.append(':').append(attribute.getClassName());
+                            bufferPartial.append(attribute.getClassName());
                             toStr.add(name);
                         } else {
-                            bufferPartial.append(":").append(attribute.getClassName());
+                            bufferPartial.append(attribute.getClassName());
                             if (!attribute.getClassName().startsWith(COLLECTION_LIST))
                                 toStr.add(name);
                         }
+                        bufferPartial.append(' ').append(name);
                         if (!attribute.isVersion()
                                 && ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(
                                         pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
