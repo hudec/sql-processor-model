@@ -5,7 +5,9 @@ package org.sqlproc.model.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.contentassist.ITemplateProposalProvider;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
+import org.sqlproc.meta.ui.syntaxcoloring.SemanticHighlightingCalculator;
 import org.sqlproc.model.resolver.PojoResolver;
 import org.sqlproc.model.resolver.PojoResolverFactory;
 import org.sqlproc.model.resolver.PojoResolverFactoryBean;
@@ -39,12 +41,12 @@ public class ProcessorModelUiModule extends org.sqlproc.model.ui.AbstractProcess
     // public Class<? extends DefaultAntlrTokenToAttributeIdMapper> bindDefaultAntlrTokenToAttributeIdMapper() {
     // return TokenToIdMapper.class;
     // }
-    //
-    // @Override
-    // public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
-    // return SemanticHighlightingCalculator.class;
-    // }
-    //
+
+    @Override
+    public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+        return SemanticHighlightingCalculator.class;
+    }
+
     // public Class<? extends OutlineFilterAndSorter> bindOutlineFilterAndSorter() {
     // return FixedOutlineFilterAndSorter.class;
     // }

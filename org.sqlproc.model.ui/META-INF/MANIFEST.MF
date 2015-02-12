@@ -27,5 +27,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.sqlproc.model.ui.quickfix,
  org.sqlproc.model.ui.contentassist,
  org.sqlproc.model.ui.contentassist.antlr,
- org.sqlproc.model.ui.internal
+ org.sqlproc.model.ui.internal,
+ org.sqlproc.model.ui.resolver
 Bundle-Activator: org.sqlproc.model.ui.internal.ProcessorModelActivator
