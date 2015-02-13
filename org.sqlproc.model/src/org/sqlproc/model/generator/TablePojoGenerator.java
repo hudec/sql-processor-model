@@ -131,6 +131,7 @@ public class TablePojoGenerator {
     protected DbType dbType = null;
     protected Map<String, List<EnumAttribute>> enums = new TreeMap<String, List<EnumAttribute>>();
     protected Map<String, String> comments = new HashMap<String, String>();
+    protected String pojoPackage;
 
     protected Map<String, String> metaFunctionsResult = new HashMap<String, String>();
     protected Map<String, String> metaProceduresResult = new HashMap<String, String>();
@@ -280,6 +281,7 @@ public class TablePojoGenerator {
         if (enumForCheckConstraints != null) {
             this.enumForCheckConstraints.putAll(enumForCheckConstraints);
         }
+        pojoPackage = modelProperty.getPackage(artifacts);
 
         for (Map.Entry<String, Map<String, Map<String, String>>> inheritImport : this.inheritImports.entrySet()) {
             for (Map.Entry<String, Map<String, String>> inherit : inheritImport.getValue().entrySet()) {
@@ -352,6 +354,7 @@ public class TablePojoGenerator {
             System.out.println("notVersionColumns " + this.notVersionColumns);
             System.out.println("activeFilter " + this.activeFilter);
             System.out.println("enumForCheckConstraints " + this.enumForCheckConstraints);
+            System.out.println("pojoPackage " + this.pojoPackage);
         }
     }
 
