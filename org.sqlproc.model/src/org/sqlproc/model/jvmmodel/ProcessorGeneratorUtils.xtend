@@ -76,15 +76,25 @@ class ProcessorGeneratorUtils {
     IQualifiedNameConverter qualifiedNameConverter
 
 
-   	def getFullyQualifiedName(PojoEntity it) {
-   		val pkg = getContainerOfType(typeof(Package))
-		pkg.fullyQualifiedName + "." + name
-	}
-
-   	def getFullyQualifiedName(EnumEntity it) {
-   		val pkg = getContainerOfType(typeof(Package))
-		pkg.fullyQualifiedName + "." + name
-	}
+//   	def getFullyQualifiedName(PojoEntity it) {
+//   		val pkg = getContainerOfType(typeof(Package))
+//   		println("getFullyQualifiedName(PojoEntity it)")
+//   		println(pkg)
+//   		println(it)
+//   		if (pkg == null)
+//   			return name
+//		pkg.name + "." + name
+//	}
+//
+//   	def getFullyQualifiedName(EnumEntity it) {
+//   		val pkg = getContainerOfType(typeof(Package))
+//   		println("getFullyQualifiedName(EnumEntity it)")
+//   		println(pkg)
+//   		println(it)
+//   		if (pkg == null)
+//   			return name
+//		pkg.name + "." + name
+//	}
 
    	def annotations(PojoEntity it) {
    		val an = getContainerOfType(typeof(AnnotatedEntity))

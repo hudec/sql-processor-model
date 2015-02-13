@@ -964,7 +964,7 @@ public class TablePojoGenerator {
                         }
                         buffer.append(")");
                     }
-                    buffer.append(NLINDENT).append("implements :").append(type.getIdentifier());
+                    buffer.append(NLINDENT).append("implements ").append(type.getIdentifier());
                 }
                 oneMoreLine = true;
             }
@@ -1004,7 +1004,7 @@ public class TablePojoGenerator {
                     buffer.append(")");
                 }
                 JvmType type = toExtends.getToImplement();
-                buffer.append(NLINDENT).append("extends :").append(type.getIdentifier());
+                buffer.append(NLINDENT).append("extends ").append(type.getIdentifier());
                 oneMoreLine = true;
             }
             if (oneMoreLine) {
@@ -1276,8 +1276,7 @@ public class TablePojoGenerator {
                         bufferPartial.append(NLINDENT).append(INDENT).append("#CreateCol(").append(pentry.getKey())
                                 .append(",").append(columnToCamelCase(attribute.getPkColumn())).append(")");
                         bufferPartial.append(NLINDENT).append(INDENT).append(columnToCamelCase(attribute.getDbName()))
-                                .append(' ');
-                        bufferPartial.append(": ").append(attribute.getClassName());
+                                .append(' ').append(attribute.getClassName());
                         toStr.add(columnToCamelCase(attribute.getDbName()));
                     }
                 }

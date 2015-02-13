@@ -17,6 +17,7 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.XNumberLiteral;
 import org.eclipse.xtext.xbase.XStringLiteral;
@@ -99,12 +100,13 @@ public class EnumJvmModelInferrer extends AbstractModelInferrer {
    *            <code>true</code>.
    */
   public void inferEnum(final EnumEntity entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
-    String _fullyQualifiedName = this._processorGeneratorUtils.getFullyQualifiedName(entity);
+    QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(entity);
+    String _string = _fullyQualifiedName.toString();
     final Procedure1<JvmEnumerationType> _function = new Procedure1<JvmEnumerationType>() {
       public void apply(final JvmEnumerationType it) {
       }
     };
-    final JvmEnumerationType entityType = this._processorTypesBuilder.toEnumerationType(entity, _fullyQualifiedName, _function);
+    final JvmEnumerationType entityType = this._processorTypesBuilder.toEnumerationType(entity, _string, _function);
     final String simpleName = entity.getName();
     final Procedure1<JvmEnumerationType> _function_1 = new Procedure1<JvmEnumerationType>() {
       public void apply(final JvmEnumerationType it) {

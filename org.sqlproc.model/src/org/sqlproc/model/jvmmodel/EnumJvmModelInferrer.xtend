@@ -71,7 +71,7 @@ class EnumJvmModelInferrer extends AbstractModelInferrer {
 	 *            <code>true</code>.
 	 */
    	def void inferEnum(EnumEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-   		val entityType = entity.toEnumerationType(entity.fullyQualifiedName) []
+   		val entityType = entity.toEnumerationType(entity.fullyQualifiedName.toString) []
    		val simpleName = entity.name
    		acceptor.accept(entityType) [
    			documentation = entity.documentation

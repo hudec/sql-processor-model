@@ -156,13 +156,26 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
     final JvmGenericType entityType = this._processorTypesBuilder.toClass(entity, _fullyQualifiedName);
     JvmGenericType _class = null;
     if (pojo!=null) {
-      String _fullyQualifiedName_1 = null;
+      QualifiedName _fullyQualifiedName_1 = null;
       if (pojo!=null) {
-        _fullyQualifiedName_1=this._processorGeneratorUtils.getFullyQualifiedName(pojo);
+        _fullyQualifiedName_1=this._iQualifiedNameProvider.getFullyQualifiedName(pojo);
       }
       _class=this._processorTypesBuilder.toClass(pojo, _fullyQualifiedName_1);
     }
     final JvmGenericType pojoType = _class;
+    boolean _and_1 = false;
+    boolean _equals_1 = Objects.equal(pojoType, null);
+    if (!_equals_1) {
+      _and_1 = false;
+    } else {
+      boolean _isFunctionProcedure_1 = this._processorGeneratorUtils.isFunctionProcedure(entity);
+      boolean _not_1 = (!_isFunctionProcedure_1);
+      _and_1 = _not_1;
+    }
+    if (_and_1) {
+      InputOutput.<String>println(("Missing POJOTYPE for " + entity));
+      return;
+    }
     final String simpleName = entity.getName();
     final Integer sernum = this._processorGeneratorUtils.getSernum(entity);
     final Procedure1<JvmGenericType> _function = new Procedure1<JvmGenericType>() {

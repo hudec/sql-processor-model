@@ -102,6 +102,11 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 
    		val entityType = entity.toClass(entity.fullyQualifiedName)
    		val pojoType = pojo?.toClass(pojo?.fullyQualifiedName)
+   		if (pojoType == null && !entity.isFunctionProcedure) {
+   			println("Missing POJOTYPE for "+entity)
+   			return
+   		}
+   		
    		val simpleName = entity.name
    		val sernum = entity.sernum
    		

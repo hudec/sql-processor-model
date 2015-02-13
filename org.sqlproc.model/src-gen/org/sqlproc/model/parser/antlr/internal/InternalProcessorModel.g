@@ -6730,23 +6730,19 @@ ruleImplements returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getImplementsAccess().getImplementsKeyword_1());
     }
-	otherlv_2=':' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getImplementsAccess().getColonKeyword_2());
-    }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImplementsAccess().getImplementsJvmParameterizedTypeReferenceParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getImplementsAccess().getImplementsJvmParameterizedTypeReferenceParserRuleCall_2_0()); 
 	    }
-		lv_implements_3_0=ruleJvmParameterizedTypeReference		{
+		lv_implements_2_0=ruleJvmParameterizedTypeReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImplementsRule());
 	        }
        		set(
        			$current, 
        			"implements",
-        		lv_implements_3_0, 
+        		lv_implements_2_0, 
         		"JvmParameterizedTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -6795,23 +6791,19 @@ ruleExtends returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getExtendsAccess().getExtendsKeyword_1());
     }
-	otherlv_2=':' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getExtendsAccess().getColonKeyword_2());
-    }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExtendsAccess().getExtendsJvmParameterizedTypeReferenceParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getExtendsAccess().getExtendsJvmParameterizedTypeReferenceParserRuleCall_2_0()); 
 	    }
-		lv_extends_3_0=ruleJvmParameterizedTypeReference		{
+		lv_extends_2_0=ruleJvmParameterizedTypeReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExtendsRule());
 	        }
        		set(
        			$current, 
        			"extends",
-        		lv_extends_3_0, 
+        		lv_extends_2_0, 
         		"JvmParameterizedTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }

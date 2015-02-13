@@ -821,9 +821,9 @@ public class ProcessorModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptPojosAssignment_3_2(), "rule__ImplementsExtendsDirective__ExceptPojosAssignment_3_2");
 					put(grammarAccess.getImplementsExtendsDirectiveAccess().getExceptDaosAssignment_4_2(), "rule__ImplementsExtendsDirective__ExceptDaosAssignment_4_2");
 					put(grammarAccess.getImplementsAccess().getDirectivesAssignment_0(), "rule__Implements__DirectivesAssignment_0");
-					put(grammarAccess.getImplementsAccess().getImplementsAssignment_3(), "rule__Implements__ImplementsAssignment_3");
+					put(grammarAccess.getImplementsAccess().getImplementsAssignment_2(), "rule__Implements__ImplementsAssignment_2");
 					put(grammarAccess.getExtendsAccess().getDirectivesAssignment_0(), "rule__Extends__DirectivesAssignment_0");
-					put(grammarAccess.getExtendsAccess().getExtendsAssignment_3(), "rule__Extends__ExtendsAssignment_3");
+					put(grammarAccess.getExtendsAccess().getExtendsAssignment_2(), "rule__Extends__ExtendsAssignment_2");
 					put(grammarAccess.getAnnotatedEntityAccess().getAnnotationsAssignment_0(), "rule__AnnotatedEntity__AnnotationsAssignment_0");
 					put(grammarAccess.getAnnotatedEntityAccess().getEntityAssignment_1(), "rule__AnnotatedEntity__EntityAssignment_1");
 					put(grammarAccess.getDirectivePropertiesAccess().getFeaturesAssignment_0(), "rule__DirectiveProperties__FeaturesAssignment_0");

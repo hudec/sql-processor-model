@@ -22,7 +22,6 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
@@ -100,30 +99,6 @@ public class ProcessorGeneratorUtils {
   
   @Inject
   private IQualifiedNameConverter qualifiedNameConverter;
-  
-  public String getFullyQualifiedName(final PojoEntity it) {
-    String _xblockexpression = null;
-    {
-      final org.sqlproc.model.processorModel.Package pkg = EcoreUtil2.<org.sqlproc.model.processorModel.Package>getContainerOfType(it, org.sqlproc.model.processorModel.Package.class);
-      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(pkg);
-      String _plus = (_fullyQualifiedName + ".");
-      String _name = it.getName();
-      _xblockexpression = (_plus + _name);
-    }
-    return _xblockexpression;
-  }
-  
-  public String getFullyQualifiedName(final EnumEntity it) {
-    String _xblockexpression = null;
-    {
-      final org.sqlproc.model.processorModel.Package pkg = EcoreUtil2.<org.sqlproc.model.processorModel.Package>getContainerOfType(it, org.sqlproc.model.processorModel.Package.class);
-      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(pkg);
-      String _plus = (_fullyQualifiedName + ".");
-      String _name = it.getName();
-      _xblockexpression = (_plus + _name);
-    }
-    return _xblockexpression;
-  }
   
   public EList<Annotation> annotations(final PojoEntity it) {
     EList<Annotation> _xblockexpression = null;

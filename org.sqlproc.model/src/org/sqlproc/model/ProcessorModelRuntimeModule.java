@@ -26,10 +26,10 @@ public class ProcessorModelRuntimeModule extends org.sqlproc.model.AbstractProce
         return ModelPropertyBean.class;
     }
 
-    @Override
-    public Class<? extends org.eclipse.xtext.naming.IQualifiedNameProvider> bindIQualifiedNameProvider() {
-        return ProcessorNameProvider.class;
-    }
+    // @Override
+    // public Class<? extends org.eclipse.xtext.naming.IQualifiedNameProvider> bindIQualifiedNameProvider() {
+    // return ProcessorNameProvider.class;
+    // }
 
     public Class<? extends PojoResolverFactory> bindPojoResolverFactory() {
         return PojoResolverFactoryBean.class;

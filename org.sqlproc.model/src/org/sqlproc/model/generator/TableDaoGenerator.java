@@ -182,7 +182,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                         }
                         buffer.append(")");
                     }
-                    buffer.append(NLINDENT).append("implements :").append(type.getIdentifier());
+                    buffer.append(NLINDENT).append("implements ").append(type.getIdentifier());
                 }
                 oneMoreLine = true;
             }
@@ -223,7 +223,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 }
                 oneMoreLine = true;
                 JvmType type = daoToExtends.getToImplement();
-                buffer.append(NLINDENT).append("extends :").append(type.getIdentifier());
+                buffer.append(NLINDENT).append("extends ").append(type.getIdentifier());
             }
             if (oneMoreLine) {
                 buffer.append(NL);
@@ -326,16 +326,16 @@ public class TableDaoGenerator extends TablePojoGenerator {
                         String name = metaProceduresResultSet.get(procedure);
                         if (tableNames.containsKey(name))
                             name = tableNames.get(name);
-                        bufferMeta.append(nlindent()).append("#ProcedureCallQuery(").append(":")
-                                .append(COLLECTION_LIST).append("<").append(tableToCamelCase(name)).append(">");
+                        bufferMeta.append(nlindent()).append("#ProcedureCallQuery(").append(COLLECTION_LIST)
+                                .append("<").append(tableToCamelCase(name)).append(">");
                     } else {
                         PojoAttribute returnAttribute = (attributes.containsKey(FAKE_FUN_PROC_COLUMN_NAME)) ? attributes
                                 .get(FAKE_FUN_PROC_COLUMN_NAME) : null;
                         if (returnAttribute != null && dbType != DbType.POSTGRESQL && dbType != DbType.MS_SQL) {
-                            bufferMeta.append(nlindent()).append("#ProcedureCallQuery(:").append(COLLECTION_LIST)
-                                    .append("<").append(":").append(returnAttribute.getClassName()).append(">");
+                            bufferMeta.append(nlindent()).append("#ProcedureCallQuery(").append(COLLECTION_LIST)
+                                    .append("<").append(returnAttribute.getClassName()).append(">");
                         } else {
-                            bufferMeta.append(nlindent()).append("#ProcedureUpdate(").append(":int");
+                            bufferMeta.append(nlindent()).append("#ProcedureUpdate(int");
                         }
                     }
                     String dispName = null;
@@ -388,19 +388,19 @@ public class TableDaoGenerator extends TablePojoGenerator {
                         String name = metaFunctionsResultSet.get(function);
                         if (tableNames.containsKey(name))
                             name = tableNames.get(name);
-                        bufferMeta.append(nlindent()).append("#FunctionCallQuery(").append(":").append(COLLECTION_LIST)
-                                .append("<").append(tableToCamelCase(name)).append(">");
+                        bufferMeta.append(nlindent()).append("#FunctionCallQuery(").append(COLLECTION_LIST).append("<")
+                                .append(tableToCamelCase(name)).append(">");
                     } else if (metaFunctionsResult.containsKey(function)) {
-                        bufferMeta.append(nlindent()).append("#FunctionCall(").append(":")
+                        bufferMeta.append(nlindent()).append("#FunctionCall(")
                                 .append(metaType2className(metaFunctionsResult.get(function)));
                     } else {
                         PojoAttribute returnAttribute = (attributes.containsKey(FAKE_FUN_PROC_COLUMN_NAME)) ? attributes
                                 .get(FAKE_FUN_PROC_COLUMN_NAME) : null;
                         if (returnAttribute != null) {
-                            bufferMeta.append(nlindent()).append("#FunctionCallQuery(:").append(COLLECTION_LIST)
-                                    .append("<").append(":").append(returnAttribute.getClassName()).append(">");
+                            bufferMeta.append(nlindent()).append("#FunctionCallQuery(").append(COLLECTION_LIST)
+                                    .append("<").append(returnAttribute.getClassName()).append(">");
                         } else {
-                            bufferMeta.append(nlindent()).append("#FunctionUpdate(").append(":int");
+                            bufferMeta.append(nlindent()).append("#FunctionUpdate(int");
                         }
                     }
                     String dispName = null;
@@ -455,22 +455,22 @@ public class TableDaoGenerator extends TablePojoGenerator {
                         String name = metaFunctionsResultSet.get(function);
                         if (tableNames.containsKey(name))
                             name = tableNames.get(name);
-                        bufferMeta.append(nlindent()).append("#FunctionCallQuery(").append(":").append(COLLECTION_LIST)
-                                .append("<").append(tableToCamelCase(name)).append(">");
+                        bufferMeta.append(nlindent()).append("#FunctionCallQuery(").append(COLLECTION_LIST).append("<")
+                                .append(tableToCamelCase(name)).append(">");
                     } else if (metaFunctionsResult.containsKey(function) && dbType == DbType.DB2) {
-                        bufferMeta.append(nlindent()).append("#FunctionQuery(").append(":")
+                        bufferMeta.append(nlindent()).append("#FunctionQuery(")
                                 .append(metaType2className(metaFunctionsResult.get(function)));
                     } else if (metaFunctionsResult.containsKey(function)) {
-                        bufferMeta.append(nlindent()).append("callFunction ").append(":")
+                        bufferMeta.append(nlindent()).append("callFunction ")
                                 .append(metaType2className(metaFunctionsResult.get(function)));
                     } else {
                         PojoAttribute returnAttribute = (attributes.containsKey(FAKE_FUN_PROC_COLUMN_NAME)) ? attributes
                                 .get(FAKE_FUN_PROC_COLUMN_NAME) : null;
                         if (returnAttribute != null) {
-                            bufferMeta.append(nlindent()).append("#FunctionCallQuery(:").append(COLLECTION_LIST)
-                                    .append("<").append(":").append(returnAttribute.getClassName()).append(">");
+                            bufferMeta.append(nlindent()).append("#FunctionCallQuery(").append(COLLECTION_LIST)
+                                    .append("<").append(returnAttribute.getClassName()).append(">");
                         } else {
-                            bufferMeta.append(nlindent()).append("#FunctionUpdate(").append(":int");
+                            bufferMeta.append(nlindent()).append("#FunctionUpdate(int");
                         }
                     }
                     String dispName = null;

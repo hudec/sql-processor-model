@@ -196,12 +196,12 @@ ImplementsExtendsDirective:
 
 Implements:
 	directives+=ImplementsExtendsDirective*
-	'implements' ':' implements = JvmParameterizedTypeReference
+	'implements' implements = JvmParameterizedTypeReference
 ;
 
 Extends:
 	directives+=ImplementsExtendsDirective*
-	'extends' ':' extends = JvmParameterizedTypeReference
+	'extends' extends = JvmParameterizedTypeReference
 ;
 
 AnnotatedEntity:

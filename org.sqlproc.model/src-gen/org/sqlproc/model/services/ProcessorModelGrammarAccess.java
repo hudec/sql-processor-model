@@ -3886,15 +3886,14 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDirectivesAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDirectivesImplementsExtendsDirectiveParserRuleCall_0_0 = (RuleCall)cDirectivesAssignment_0.eContents().get(0);
 		private final Keyword cImplementsKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cImplementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cImplementsJvmParameterizedTypeReferenceParserRuleCall_3_0 = (RuleCall)cImplementsAssignment_3.eContents().get(0);
+		private final Assignment cImplementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cImplementsJvmParameterizedTypeReferenceParserRuleCall_2_0 = (RuleCall)cImplementsAssignment_2.eContents().get(0);
 		
 		//Implements:
-		//	directives+=ImplementsExtendsDirective* "implements" ":" implements=JvmParameterizedTypeReference;
+		//	directives+=ImplementsExtendsDirective* "implements" implements=JvmParameterizedTypeReference;
 		public ParserRule getRule() { return rule; }
 
-		//directives+=ImplementsExtendsDirective* "implements" ":" implements=JvmParameterizedTypeReference
+		//directives+=ImplementsExtendsDirective* "implements" implements=JvmParameterizedTypeReference
 		public Group getGroup() { return cGroup; }
 
 		//directives+=ImplementsExtendsDirective*
@@ -3906,14 +3905,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"implements"
 		public Keyword getImplementsKeyword_1() { return cImplementsKeyword_1; }
 
-		//":"
-		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
-
 		//implements=JvmParameterizedTypeReference
-		public Assignment getImplementsAssignment_3() { return cImplementsAssignment_3; }
+		public Assignment getImplementsAssignment_2() { return cImplementsAssignment_2; }
 
 		//JvmParameterizedTypeReference
-		public RuleCall getImplementsJvmParameterizedTypeReferenceParserRuleCall_3_0() { return cImplementsJvmParameterizedTypeReferenceParserRuleCall_3_0; }
+		public RuleCall getImplementsJvmParameterizedTypeReferenceParserRuleCall_2_0() { return cImplementsJvmParameterizedTypeReferenceParserRuleCall_2_0; }
 	}
 
 	public class ExtendsElements extends AbstractParserRuleElementFinder {
@@ -3922,15 +3918,14 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDirectivesAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDirectivesImplementsExtendsDirectiveParserRuleCall_0_0 = (RuleCall)cDirectivesAssignment_0.eContents().get(0);
 		private final Keyword cExtendsKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cExtendsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cExtendsJvmParameterizedTypeReferenceParserRuleCall_3_0 = (RuleCall)cExtendsAssignment_3.eContents().get(0);
+		private final Assignment cExtendsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cExtendsJvmParameterizedTypeReferenceParserRuleCall_2_0 = (RuleCall)cExtendsAssignment_2.eContents().get(0);
 		
 		//Extends:
-		//	directives+=ImplementsExtendsDirective* "extends" ":" extends=JvmParameterizedTypeReference;
+		//	directives+=ImplementsExtendsDirective* "extends" extends=JvmParameterizedTypeReference;
 		public ParserRule getRule() { return rule; }
 
-		//directives+=ImplementsExtendsDirective* "extends" ":" extends=JvmParameterizedTypeReference
+		//directives+=ImplementsExtendsDirective* "extends" extends=JvmParameterizedTypeReference
 		public Group getGroup() { return cGroup; }
 
 		//directives+=ImplementsExtendsDirective*
@@ -3942,14 +3937,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"extends"
 		public Keyword getExtendsKeyword_1() { return cExtendsKeyword_1; }
 
-		//":"
-		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
-
 		//extends=JvmParameterizedTypeReference
-		public Assignment getExtendsAssignment_3() { return cExtendsAssignment_3; }
+		public Assignment getExtendsAssignment_2() { return cExtendsAssignment_2; }
 
 		//JvmParameterizedTypeReference
-		public RuleCall getExtendsJvmParameterizedTypeReferenceParserRuleCall_3_0() { return cExtendsJvmParameterizedTypeReferenceParserRuleCall_3_0; }
+		public RuleCall getExtendsJvmParameterizedTypeReferenceParserRuleCall_2_0() { return cExtendsJvmParameterizedTypeReferenceParserRuleCall_2_0; }
 	}
 
 	public class AnnotatedEntityElements extends AbstractParserRuleElementFinder {
@@ -6270,7 +6262,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Implements:
-	//	directives+=ImplementsExtendsDirective* "implements" ":" implements=JvmParameterizedTypeReference;
+	//	directives+=ImplementsExtendsDirective* "implements" implements=JvmParameterizedTypeReference;
 	public ImplementsElements getImplementsAccess() {
 		return pImplements;
 	}
@@ -6280,7 +6272,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Extends:
-	//	directives+=ImplementsExtendsDirective* "extends" ":" extends=JvmParameterizedTypeReference;
+	//	directives+=ImplementsExtendsDirective* "extends" extends=JvmParameterizedTypeReference;
 	public ExtendsElements getExtendsAccess() {
 		return pExtends;
 	}
