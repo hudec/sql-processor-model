@@ -185,22 +185,41 @@ public class Main {
         Resource controlResource = set.getResource(URI.createURI(getFile(source, control)), true);
         set.getResources().add(controlResource);
         Resource pojoResource = null;
-        File pojoFile = new File(URI.createURI(getFile(source, pojo)).toFileString());
-        if (pojoFile.canRead()) {
+        try {
             pojoResource = set.getResource(URI.createURI(getFile(source, pojo)), true);
             set.getResources().add(pojoResource);
+        } catch (Exception ex) {
+            System.out.println("Can't read " + getFile(source, pojo));
         }
         Resource daoResource = null;
-        File daoFile = new File(URI.createURI(getFile(source, dao)).toFileString());
-        if (daoFile.canRead()) {
-            daoResource = set.getResource(URI.createURI(getFile(source, dao)), true);
-            set.getResources().add(daoResource);
+        if (pojoResource != null) {
+            try {
+                daoResource = set.getResource(URI.createURI(getFile(source, dao)), true);
+                set.getResources().add(daoResource);
+            } catch (Exception ex) {
+                System.out.println("Can't read " + getFile(source, dao));
+            }
         }
 
-        if (!isValid(controlResource) || (merge && pojoResource != null && !isValid(pojoResource))
-                || (merge && daoResource != null && !isValid(daoResource)))
+        System.out.println("Going to validate " + controlResource);
+        boolean controlResourceIsOk = isValid(controlResource);
+        if (!controlResourceIsOk)
             return;
-        System.out.println("Resource(s) validation finished.");
+        System.out.println("Validated " + controlResource);
+        if (merge && pojoResource != null) {
+            System.out.println("Going to validate " + pojoResource);
+            boolean pojoResourceIsOk = isValid(pojoResource);
+            if (!pojoResourceIsOk)
+                return;
+            System.out.println("Validated " + pojoResource);
+        }
+        if (merge && daoResource != null) {
+            System.out.println("Going to validate " + daoResource);
+            boolean daoResourceIsOk = isValid(daoResource);
+            if (!daoResourceIsOk)
+                return;
+            System.out.println("Validated " + daoResource);
+        }
 
         Artifacts definitions = (Artifacts) controlResource.getContents().get(0);
         if (definitions.getProperties().isEmpty()) {
