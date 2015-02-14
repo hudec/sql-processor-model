@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <relativePath>../pom.xml</relativePath>
+    <groupId>org.sqlproc.model</groupId>
+    <artifactId>model-parent</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>org.sqlproc.model.sdk</artifactId>
+  <packaging>eclipse-feature</packaging>
+  <name>SQL Processor Model Plugin Feature</name>
+</project>
