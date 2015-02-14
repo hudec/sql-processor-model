@@ -91,6 +91,10 @@ public class Main {
                 return;
             }
         }
+        System.out.println("models " + models);
+        System.out.println("control " + control);
+        System.out.println("pojo " + pojo);
+        System.out.println("dao " + dao);
         if (models == null && (control == null || pojo == null || dao == null)) {
             usage(null);
             return;
@@ -123,15 +127,15 @@ public class Main {
             System.out.println("Incorrect usage. Two modes are supported.");
         System.out.println("Mode 1: POJO & DAO Java source files generation using model files:");
         System.out
-                .println("  java -jar sqlep.jar -models modelsFile1,modelsFile2... [-source sourceDir] [-target targetDir] [-verify]");
+                .println("  java -jar sqlmodel.jar -models modelsFile1,modelsFile2... [-source sourceDir] [-target targetDir] [-verify]");
         System.out.println("For example:");
-        System.out.println("  java -jar sqlep.jar -models pojo.model,dao.model -target src-gen");
+        System.out.println("  java -jar sqlmodel.jar -models pojo.model,dao.model -target src-gen");
         System.out.println("Mode 2: POJO and DAO models generation using control directives:");
         System.out
-                .println("  java -jar sqlep.jar -control controlDirectivesFile -pojo pojoModelsFile -dao daoModelsFile -sql metaSqlsFile [-ddl ddlsFile] [-source sourceDir] [-target targetDir] [-nomerge]");
+                .println("  java -jar sqlmodel.jar -control controlDirectivesFile -pojo pojoModelsFile -dao daoModelsFile -sql metaSqlsFile [-ddl ddlsFile] [-source sourceDir] [-target targetDir] [-nomerge]");
         System.out.println("For example:");
         System.out
-                .println("  java -jar sqlep.jar -control definitions.model -pojo pojo.model -dao dao.model -sql statements.model");
+                .println("  java -jar sqlmodel.jar -control definitions.model -pojo pojo.model -dao dao.model -sql statements.model");
         System.out.println();
         System.out.println("Arguments:");
         System.out
@@ -317,18 +321,21 @@ public class Main {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
             Map<String, String> finalEntities = new HashMap<String, String>();
-            for (AbstractEntity ape : packagex.getElements()) {
-                if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof PojoEntity) {
-                    PojoEntity pojo = (PojoEntity) ((AnnotatedEntity) ape).getEntity();
-                    if (pojo.isFinal()) {
-                        // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
-                        finalEntities.put(pojo.getName(), serializer.serialize(pojo));
-                    }
-                } else if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof EnumEntity) {
-                    EnumEntity pojo = (EnumEntity) ((AnnotatedEntity) ape).getEntity();
-                    if (pojo.isFinal()) {
-                        // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
-                        finalEntities.put(pojo.getName(), serializer.serialize(pojo));
+            if (packagex != null) {
+                for (AbstractEntity ape : packagex.getElements()) {
+                    if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof PojoEntity) {
+                        PojoEntity pojo = (PojoEntity) ((AnnotatedEntity) ape).getEntity();
+                        if (pojo.isFinal()) {
+                            // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
+                            finalEntities.put(pojo.getName(), serializer.serialize(pojo));
+                        }
+                    } else if (ape instanceof AnnotatedEntity
+                            && ((AnnotatedEntity) ape).getEntity() instanceof EnumEntity) {
+                        EnumEntity pojo = (EnumEntity) ((AnnotatedEntity) ape).getEntity();
+                        if (pojo.isFinal()) {
+                            // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
+                            finalEntities.put(pojo.getName(), serializer.serialize(pojo));
+                        }
                     }
                 }
             }
@@ -348,16 +355,17 @@ public class Main {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
             Map<String, String> finalDaos = new HashMap<String, String>();
-            for (AbstractEntity ape : packagex.getElements()) {
-                if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof DaoEntity) {
-                    DaoEntity dao = (DaoEntity) ((AnnotatedEntity) ape).getEntity();
-                    if (dao.isFinal()) {
-                        // ISerializer serializer = ((XtextResource) dao.eResource()).getSerializer();
-                        finalDaos.put(dao.getName(), serializer.serialize(dao));
+            if (packagex != null) {
+                for (AbstractEntity ape : packagex.getElements()) {
+                    if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof DaoEntity) {
+                        DaoEntity dao = (DaoEntity) ((AnnotatedEntity) ape).getEntity();
+                        if (dao.isFinal()) {
+                            // ISerializer serializer = ((XtextResource) dao.eResource()).getSerializer();
+                            finalDaos.put(dao.getName(), serializer.serialize(dao));
+                        }
                     }
                 }
             }
-
             // List<String> tables = dbResolver.getTables(artifacts);
             List<String> dbSequences = dbResolver.getSequences(artifacts);
             DbType dbType = Utils.getDbType(dbResolver, artifacts);
