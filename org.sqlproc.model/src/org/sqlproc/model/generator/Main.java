@@ -13,6 +13,8 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.xtext.diagnostics.Severity;
+import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
@@ -46,8 +48,8 @@ public class Main {
     private Provider<ResourceSet> resourceSetProvider;
     @Inject
     private IResourceValidator validator;
-    // @Inject
-    // private IGenerator2 generator;
+    @Inject
+    private IGenerator generator;
     @Inject
     private JavaIoFileSystemAccess fileAccess;
     @Inject
@@ -158,15 +160,20 @@ public class Main {
         }
 
         for (Resource resource : set2) {
+            System.out.println("Going to validate " + resource);
             if (!isValid(resource))
                 return;
+            System.out.println("Validated " + resource);
         }
         System.out.println("Resource(s) validation finished.");
 
         if (generate) {
             fileAccess.setOutputPath(target);
-            // TODO
-            // generator.doGenerate(set, fileAccess);
+            for (Resource resource : set2) {
+                System.out.println("Going to generate " + resource);
+                generator.doGenerate(resource, fileAccess);
+                System.out.println("Generated " + resource + " into " + target);
+            }
             System.out.println("Java code generation finished.");
         }
     }
@@ -273,15 +280,17 @@ public class Main {
     }
 
     protected boolean isValid(Resource resource) throws IOException {
+        boolean isError = false;
         resource.load(null);
         List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
         if (!list.isEmpty()) {
             for (Issue issue : list) {
                 System.err.println(issue);
+                if (issue.getSeverity() == Severity.ERROR)
+                    isError = true;
             }
-            return false;
         }
-        return true;
+        return !isError;
     }
 
     protected String getPojoDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
