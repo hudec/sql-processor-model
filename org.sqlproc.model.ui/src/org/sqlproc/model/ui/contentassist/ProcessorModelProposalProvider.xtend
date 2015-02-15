@@ -662,7 +662,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 			type = dbResolver.getType(model, prop2.getDbFunction(), prop.getDbColumn())
 		}
 		if (type != null) {
-			val proposal = getValueConverter().toString(type, "PropertyValue")
+			val proposal = getValueConverter().toString("\""+type+"\"", "PropertyValue")
 			acceptor.accept(createCompletionProposal(proposal, context))
 		}
 	}

@@ -38,6 +38,12 @@ public class DbColumn { // implements Comparable<DbColumn> {
         this.size = size;
     }
 
+    public String getCompleteType() {
+        if (size > 0)
+            return type + "(" + size + ")";
+        return type;
+    }
+
     public int getSqlType() {
         return sqlType;
     }

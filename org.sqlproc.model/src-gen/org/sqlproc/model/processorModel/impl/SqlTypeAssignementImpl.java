@@ -15,6 +15,7 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.SqlTypeAssignement;
+import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,8 +24,7 @@ import org.sqlproc.model.processorModel.SqlTypeAssignement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.sqlproc.model.processorModel.impl.SqlTypeAssignementImpl#getTypeName <em>Type Name</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.SqlTypeAssignementImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.SqlTypeAssignementImpl#getSqlType <em>Sql Type</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.SqlTypeAssignementImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -34,44 +34,14 @@ import org.sqlproc.model.processorModel.SqlTypeAssignement;
 public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container implements SqlTypeAssignement
 {
   /**
-   * The default value of the '{@link #getTypeName() <em>Type Name</em>}' attribute.
+   * The cached value of the '{@link #getSqlType() <em>Sql Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTypeName()
+   * @see #getSqlType()
    * @generated
    * @ordered
    */
-  protected static final String TYPE_NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTypeName()
-   * @generated
-   * @ordered
-   */
-  protected String typeName = TYPE_NAME_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSize()
-   * @generated
-   * @ordered
-   */
-  protected static final int SIZE_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSize()
-   * @generated
-   * @ordered
-   */
-  protected int size = SIZE_EDEFAULT;
+  protected ValueType sqlType;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -109,9 +79,9 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getTypeName()
+  public ValueType getSqlType()
   {
-    return typeName;
+    return sqlType;
   }
 
   /**
@@ -119,12 +89,16 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTypeName(String newTypeName)
+  public NotificationChain basicSetSqlType(ValueType newSqlType, NotificationChain msgs)
   {
-    String oldTypeName = typeName;
-    typeName = newTypeName;
+    ValueType oldSqlType = sqlType;
+    sqlType = newSqlType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE_NAME, oldTypeName, typeName));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SQL_TYPE, oldSqlType, newSqlType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -132,22 +106,20 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getSize()
+  public void setSqlType(ValueType newSqlType)
   {
-    return size;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSize(int newSize)
-  {
-    int oldSize = size;
-    size = newSize;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SIZE, oldSize, size));
+    if (newSqlType != sqlType)
+    {
+      NotificationChain msgs = null;
+      if (sqlType != null)
+        msgs = ((InternalEObject)sqlType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SQL_TYPE, null, msgs);
+      if (newSqlType != null)
+        msgs = ((InternalEObject)newSqlType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SQL_TYPE, null, msgs);
+      msgs = basicSetSqlType(newSqlType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SQL_TYPE, newSqlType, newSqlType));
   }
 
   /**
@@ -208,6 +180,8 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SQL_TYPE:
+        return basicSetSqlType(null, msgs);
       case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE:
         return basicSetType(null, msgs);
     }
@@ -224,10 +198,8 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE_NAME:
-        return getTypeName();
-      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SIZE:
-        return getSize();
+      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SQL_TYPE:
+        return getSqlType();
       case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE:
         return getType();
     }
@@ -244,11 +216,8 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE_NAME:
-        setTypeName((String)newValue);
-        return;
-      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SIZE:
-        setSize((Integer)newValue);
+      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SQL_TYPE:
+        setSqlType((ValueType)newValue);
         return;
       case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE:
         setType((JvmParameterizedTypeReference)newValue);
@@ -267,11 +236,8 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE_NAME:
-        setTypeName(TYPE_NAME_EDEFAULT);
-        return;
-      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SIZE:
-        setSize(SIZE_EDEFAULT);
+      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SQL_TYPE:
+        setSqlType((ValueType)null);
         return;
       case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE:
         setType((JvmParameterizedTypeReference)null);
@@ -290,33 +256,12 @@ public class SqlTypeAssignementImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE_NAME:
-        return TYPE_NAME_EDEFAULT == null ? typeName != null : !TYPE_NAME_EDEFAULT.equals(typeName);
-      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SIZE:
-        return size != SIZE_EDEFAULT;
+      case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__SQL_TYPE:
+        return sqlType != null;
       case ProcessorModelPackage.SQL_TYPE_ASSIGNEMENT__TYPE:
         return type != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (typeName: ");
-    result.append(typeName);
-    result.append(", size: ");
-    result.append(size);
-    result.append(')');
-    return result.toString();
   }
 
 } //SqlTypeAssignementImpl

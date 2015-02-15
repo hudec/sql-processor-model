@@ -1617,10 +1617,9 @@ public class TablePojoGenerator {
         PojoAttrType sqlType = redefinedTypes.containsKey(table) ? redefinedTypes.get(table).get(dbColumn.getName())
                 : null;
         if (sqlType == null)
-            sqlType = tableTypes.containsKey(table) ? tableTypes.get(table)
-                    .get(dbColumn.getType() + dbColumn.getSize()) : null;
+            sqlType = tableTypes.containsKey(table) ? tableTypes.get(table).get(dbColumn.getCompleteType()) : null;
         if (sqlType == null)
-            sqlType = sqlTypes.get(dbColumn.getType() + dbColumn.getSize());
+            sqlType = sqlTypes.get(dbColumn.getCompleteType());
         if (sqlType == null)
             return null;
         PojoAttribute attribute = new PojoAttribute(dbColumn.getName());

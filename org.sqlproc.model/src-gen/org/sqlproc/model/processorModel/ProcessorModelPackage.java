@@ -363,22 +363,13 @@ public interface ProcessorModelPackage extends EPackage
   int SQL_TYPE_ASSIGNEMENT = 8;
 
   /**
-   * The feature id for the '<em><b>Type Name</b></em>' attribute.
+   * The feature id for the '<em><b>Sql Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SQL_TYPE_ASSIGNEMENT__TYPE_NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Size</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SQL_TYPE_ASSIGNEMENT__SIZE = 1;
+  int SQL_TYPE_ASSIGNEMENT__SQL_TYPE = 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -387,7 +378,7 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SQL_TYPE_ASSIGNEMENT__TYPE = 2;
+  int SQL_TYPE_ASSIGNEMENT__TYPE = 1;
 
   /**
    * The number of structural features of the '<em>Sql Type Assignement</em>' class.
@@ -396,7 +387,7 @@ public interface ProcessorModelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SQL_TYPE_ASSIGNEMENT_FEATURE_COUNT = 3;
+  int SQL_TYPE_ASSIGNEMENT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.sqlproc.model.processorModel.impl.ColumnTypeAssignementImpl <em>Column Type Assignement</em>}' class.
@@ -4479,26 +4470,15 @@ public interface ProcessorModelPackage extends EPackage
   EClass getSqlTypeAssignement();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.SqlTypeAssignement#getTypeName <em>Type Name</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.SqlTypeAssignement#getSqlType <em>Sql Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type Name</em>'.
-   * @see org.sqlproc.model.processorModel.SqlTypeAssignement#getTypeName()
+   * @return the meta object for the containment reference '<em>Sql Type</em>'.
+   * @see org.sqlproc.model.processorModel.SqlTypeAssignement#getSqlType()
    * @see #getSqlTypeAssignement()
    * @generated
    */
-  EAttribute getSqlTypeAssignement_TypeName();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.SqlTypeAssignement#getSize <em>Size</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Size</em>'.
-   * @see org.sqlproc.model.processorModel.SqlTypeAssignement#getSize()
-   * @see #getSqlTypeAssignement()
-   * @generated
-   */
-  EAttribute getSqlTypeAssignement_Size();
+  EReference getSqlTypeAssignement_SqlType();
 
   /**
    * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.SqlTypeAssignement#getType <em>Type</em>}'.
@@ -8078,20 +8058,12 @@ public interface ProcessorModelPackage extends EPackage
     EClass SQL_TYPE_ASSIGNEMENT = eINSTANCE.getSqlTypeAssignement();
 
     /**
-     * The meta object literal for the '<em><b>Type Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Sql Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SQL_TYPE_ASSIGNEMENT__TYPE_NAME = eINSTANCE.getSqlTypeAssignement_TypeName();
-
-    /**
-     * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SQL_TYPE_ASSIGNEMENT__SIZE = eINSTANCE.getSqlTypeAssignement_Size();
+    EReference SQL_TYPE_ASSIGNEMENT__SQL_TYPE = eINSTANCE.getSqlTypeAssignement_SqlType();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.

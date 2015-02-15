@@ -242,53 +242,33 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	public class SqlTypeAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SqlTypeAssignement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeNameValidIDParserRuleCall_0_0 = (RuleCall)cTypeNameAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cSizeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cSizeINTTerminalRuleCall_1_1_0 = (RuleCall)cSizeAssignment_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTypeJvmParameterizedTypeReferenceParserRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
+		private final Assignment cSqlTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cSqlTypeValueTypeParserRuleCall_0_0 = (RuleCall)cSqlTypeAssignment_0.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypeJvmParameterizedTypeReferenceParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		
 		//SqlTypeAssignement:
-		//	typeName=ValidID ("(" size=INT ")")? "->" type=JvmParameterizedTypeReference;
+		//	sqlType=ValueType "->" type=JvmParameterizedTypeReference;
 		public ParserRule getRule() { return rule; }
 
-		//typeName=ValidID ("(" size=INT ")")? "->" type=JvmParameterizedTypeReference
+		//sqlType=ValueType "->" type=JvmParameterizedTypeReference
 		public Group getGroup() { return cGroup; }
 
-		//typeName=ValidID
-		public Assignment getTypeNameAssignment_0() { return cTypeNameAssignment_0; }
+		//sqlType=ValueType
+		public Assignment getSqlTypeAssignment_0() { return cSqlTypeAssignment_0; }
 
-		//ValidID
-		public RuleCall getTypeNameValidIDParserRuleCall_0_0() { return cTypeNameValidIDParserRuleCall_0_0; }
-
-		//("(" size=INT ")")?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//"("
-		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
-
-		//size=INT
-		public Assignment getSizeAssignment_1_1() { return cSizeAssignment_1_1; }
-
-		//INT
-		public RuleCall getSizeINTTerminalRuleCall_1_1_0() { return cSizeINTTerminalRuleCall_1_1_0; }
-
-		//")"
-		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
+		//ValueType
+		public RuleCall getSqlTypeValueTypeParserRuleCall_0_0() { return cSqlTypeValueTypeParserRuleCall_0_0; }
 
 		//"->"
-		public Keyword getHyphenMinusGreaterThanSignKeyword_2() { return cHyphenMinusGreaterThanSignKeyword_2; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusGreaterThanSignKeyword_1; }
 
 		//type=JvmParameterizedTypeReference
-		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
 
 		//JvmParameterizedTypeReference
-		public RuleCall getTypeJvmParameterizedTypeReferenceParserRuleCall_3_0() { return cTypeJvmParameterizedTypeReferenceParserRuleCall_3_0; }
+		public RuleCall getTypeJvmParameterizedTypeReferenceParserRuleCall_2_0() { return cTypeJvmParameterizedTypeReferenceParserRuleCall_2_0; }
 	}
 
 	public class ColumnTypeAssignementElements extends AbstractParserRuleElementFinder {
@@ -5894,7 +5874,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SqlTypeAssignement:
-	//	typeName=ValidID ("(" size=INT ")")? "->" type=JvmParameterizedTypeReference;
+	//	sqlType=ValueType "->" type=JvmParameterizedTypeReference;
 	public SqlTypeAssignementElements getSqlTypeAssignementAccess() {
 		return pSqlTypeAssignement;
 	}

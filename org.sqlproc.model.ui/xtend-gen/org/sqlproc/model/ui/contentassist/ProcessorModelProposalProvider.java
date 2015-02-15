@@ -1330,7 +1330,7 @@ public class ProcessorModelProposalProvider extends AbstractProcessorModelPropos
     boolean _notEquals_3 = (!Objects.equal(type, null));
     if (_notEquals_3) {
       IValueConverterService _valueConverter = this.getValueConverter();
-      final String proposal = _valueConverter.toString(type, "PropertyValue");
+      final String proposal = _valueConverter.toString((("\"" + type) + "\""), "PropertyValue");
       ICompletionProposal _createCompletionProposal = this.createCompletionProposal(proposal, context);
       acceptor.accept(_createCompletionProposal);
     }

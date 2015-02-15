@@ -3201,10 +3201,20 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (typeName=ValidID size=INT? type=JvmParameterizedTypeReference)
+	 *     (sqlType=ValueType type=JvmParameterizedTypeReference)
 	 */
 	protected void sequence_SqlTypeAssignement(EObject context, SqlTypeAssignement semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.SQL_TYPE_ASSIGNEMENT__SQL_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.SQL_TYPE_ASSIGNEMENT__SQL_TYPE));
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.SQL_TYPE_ASSIGNEMENT__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.SQL_TYPE_ASSIGNEMENT__TYPE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getSqlTypeAssignementAccess().getSqlTypeValueTypeParserRuleCall_0_0(), semanticObject.getSqlType());
+		feeder.accept(grammarAccess.getSqlTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_2_0(), semanticObject.getType());
+		feeder.finish();
 	}
 	
 	

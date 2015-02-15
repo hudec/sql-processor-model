@@ -40,8 +40,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//DriverMethodOutputAssignement/callOutput"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//SqlTypeAssignement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//SqlTypeAssignement/typeName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorModel.ecore#//SqlTypeAssignement/size"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//SqlTypeAssignement/sqlType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorModel.ecore#//SqlTypeAssignement/type"/>
     </genClasses>
     <genClasses ecoreClass="ProcessorModel.ecore#//ColumnTypeAssignement">

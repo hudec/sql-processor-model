@@ -1190,19 +1190,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getSqlTypeAssignement_TypeName()
+  public EReference getSqlTypeAssignement_SqlType()
   {
-    return (EAttribute)sqlTypeAssignementEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getSqlTypeAssignement_Size()
-  {
-    return (EAttribute)sqlTypeAssignementEClass.getEStructuralFeatures().get(1);
+    return (EReference)sqlTypeAssignementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1212,7 +1202,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    */
   public EReference getSqlTypeAssignement_Type()
   {
-    return (EReference)sqlTypeAssignementEClass.getEStructuralFeatures().get(2);
+    return (EReference)sqlTypeAssignementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4388,8 +4378,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEReference(driverMethodOutputAssignementEClass, DRIVER_METHOD_OUTPUT_ASSIGNEMENT__CALL_OUTPUT);
 
     sqlTypeAssignementEClass = createEClass(SQL_TYPE_ASSIGNEMENT);
-    createEAttribute(sqlTypeAssignementEClass, SQL_TYPE_ASSIGNEMENT__TYPE_NAME);
-    createEAttribute(sqlTypeAssignementEClass, SQL_TYPE_ASSIGNEMENT__SIZE);
+    createEReference(sqlTypeAssignementEClass, SQL_TYPE_ASSIGNEMENT__SQL_TYPE);
     createEReference(sqlTypeAssignementEClass, SQL_TYPE_ASSIGNEMENT__TYPE);
 
     columnTypeAssignementEClass = createEClass(COLUMN_TYPE_ASSIGNEMENT);
@@ -4919,8 +4908,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEReference(getDriverMethodOutputAssignement_CallOutput(), this.getValueType(), null, "callOutput", null, 0, 1, DriverMethodOutputAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sqlTypeAssignementEClass, SqlTypeAssignement.class, "SqlTypeAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSqlTypeAssignement_TypeName(), ecorePackage.getEString(), "typeName", null, 0, 1, SqlTypeAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSqlTypeAssignement_Size(), ecorePackage.getEInt(), "size", null, 0, 1, SqlTypeAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSqlTypeAssignement_SqlType(), this.getValueType(), null, "sqlType", null, 0, 1, SqlTypeAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSqlTypeAssignement_Type(), theTypesPackage.getJvmParameterizedTypeReference(), null, "type", null, 0, 1, SqlTypeAssignement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(columnTypeAssignementEClass, ColumnTypeAssignement.class, "ColumnTypeAssignement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

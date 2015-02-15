@@ -19,7 +19,7 @@ DatabaseTypeAssignement: dbType=ValidID;
 DatabaseMetaInfoAssignement: dbMetaInfo=ValueType;
 DriverMetaInfoAssignement: dbDriverInfo=ValueType;
 DriverMethodOutputAssignement: driverMethod=ValidID '->' callOutput=ValueType;
-SqlTypeAssignement: typeName=ValidID ('(' size=INT ')')? '->' type=JvmParameterizedTypeReference;
+SqlTypeAssignement: sqlType=ValueType '->' type=JvmParameterizedTypeReference;
 ColumnTypeAssignement: dbColumn=ValidID '->' type=JvmParameterizedTypeReference;
 ShowColumnTypeAssignement: dbColumn=ValidID '->' type=ValueType;
 TableAssignement: dbTable=ValidID '->' newName=ValidID;
