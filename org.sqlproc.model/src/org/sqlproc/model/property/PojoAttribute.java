@@ -99,6 +99,8 @@ public class PojoAttribute {
 
     public void setClassName(String className) {
         this.className = className;
+        if (this.className != null && this.className.startsWith("java.lang."))
+            this.className = this.className.substring(10);
     }
 
     public String getRef() {

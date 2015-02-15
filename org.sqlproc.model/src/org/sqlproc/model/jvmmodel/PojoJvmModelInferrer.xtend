@@ -47,6 +47,7 @@ class PojoJvmModelInferrer {
    	val HASH_SET = 'java.util.HashSet'
    	val METHOD_UTILS = 'org.apache.commons.beanutils.MethodUtils'
    	val INVOCATION_TARGET_EXCEPTION = 'java.lang.reflect.InvocationTargetException'
+   	val POJO = 'org.sqlproc.engine.annotation.Pojo'
 
 	/**
 	 * The dispatch method {@code infer} is called for each instance of the
@@ -75,6 +76,7 @@ class PojoJvmModelInferrer {
 	 */
    	def void inferPojo(PojoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
    		val entityType = entity.toClass(entity.fullyQualifiedName)
+   		entityType.getAnnotations().add(annotationRef(POJO))
    		val simpleName = entity.name
    		val sernum = entity.sernum
    		acceptor.accept(entityType) [
@@ -211,7 +213,7 @@ class PojoJvmModelInferrer {
 						return true;
    					'''
 	   			]
-	   			method.getAnnotations().add(toAnnotation(entity, Override))
+	   			method.getAnnotations().add(annotationRef(Override))
 	   			members += method
 			}
    			
@@ -227,7 +229,7 @@ class PojoJvmModelInferrer {
 						return result;
 	   				'''
 	   			]
-	   			method.getAnnotations().add(toAnnotation(entity, Override))
+	   			method.getAnnotations().add(annotationRef(Override))
 	   			members += method
 			}
    			
@@ -238,7 +240,7 @@ class PojoJvmModelInferrer {
 	   					return "«simpleName» [«FOR f2:toStringList SEPARATOR " + \", "»«f2.name»=" + «f2.name»«ENDFOR»«IF entity.superType != null && entity.superType instanceof PojoEntity» + super.toString()«ENDIF» + "]";
 	   				'''
 	   			]
-	   			method.getAnnotations().add(toAnnotation(entity, Override))
+	   			method.getAnnotations().add(annotationRef(Override))
 	   			members += method
 			}
 			if (!entity.attributes.empty) {

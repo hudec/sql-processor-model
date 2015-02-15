@@ -1193,7 +1193,7 @@ public class TablePojoGenerator {
                                 // }
                             }
                             if (attribute.getDependencyClassName() == null && !attribute.isPrimitive()) {
-                                if (attribute.getClassName().equals("java.lang.String") && attribute.getSize() > 0) {
+                                if (attribute.isString() && attribute.getSize() > 0) {
                                     // if (annotations == null
                                     // || !annotations.hasAttributeAnnotationsDefinitions(realPojoName, name,
                                     // ANNOTATION_SIZE)) {
@@ -1597,29 +1597,6 @@ public class TablePojoGenerator {
     protected PojoAttribute convertDbColumnDefinition(String dbName, PojoAttrType sqlType) {
         PojoAttribute attribute = new PojoAttribute(dbName);
         attribute.setName(columnToCamelCase(dbName));
-        // if (sqlType.getRef() != null) {
-        // attribute.setPrimitive(false);
-        // attribute.setDependencyClassName(sqlType.getRef().getName());
-        // if (attribute.getDependencyClassName() == null) {
-        // attribute.setDependencyClassName(sqlType.getText());
-        // }
-        // } else if (sqlType.isNativeType()) {
-        // // System.out.println("getIdentifier " + sqlType.getType().getIdentifier());
-        // // System.out.println("getQualifiedName " + sqlType.getType().getQualifiedName());
-        // // System.out.println("getSimpleName " + sqlType.getType().getSimpleName());
-        // // System.out.println("JvmPrimitiveType " + (sqlType.getType() instanceof JvmPrimitiveType));
-        // // if (sqlType.getType() instanceof JvmPrimitiveType) {
-        // // System.out.println("getArrayType " + ((JvmPrimitiveType) sqlType.getType()).getArrayType());
-        // // }
-        // // JvmPrimitiveTypeImplCustom
-        // attribute.setPrimitive(true);
-        // attribute.setClassName(sqlType.getType().getIdentifier() + (sqlType.isArray() ? " []" : ""));
-        // } else {
-        // attribute.setPrimitive(false);
-        // attribute.setClassName(sqlType.getType().getIdentifier());
-        // if (sqlType.getGtype() != null)
-        // attribute.setClassName(attribute.getClassName() + "<:" + sqlType.getGtype().getIdentifier() + ">");
-        // }
         attribute.setPrimitive(sqlType.isNativeType());
         attribute.setClassName(sqlType.getType().getQualifiedName());
         return attribute;

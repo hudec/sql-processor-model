@@ -80,6 +80,8 @@ public class PojoJvmModelInferrer {
   
   private final String INVOCATION_TARGET_EXCEPTION = "java.lang.reflect.InvocationTargetException";
   
+  private final String POJO = "org.sqlproc.engine.annotation.Pojo";
+  
   /**
    * The dispatch method {@code infer} is called for each instance of the
    * given element's type that is contained in a resource.
@@ -108,6 +110,9 @@ public class PojoJvmModelInferrer {
   public void inferPojo(final PojoEntity entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
     QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(entity);
     final JvmGenericType entityType = this._processorTypesBuilder.toClass(entity, _fullyQualifiedName);
+    EList<JvmAnnotationReference> _annotations = entityType.getAnnotations();
+    JvmAnnotationReference _annotationRef = this._annotationTypesBuilder.annotationRef(this.POJO);
+    _annotations.add(_annotationRef);
     final String simpleName = entity.getName();
     final Integer sernum = this._processorGeneratorUtils.getSernum(entity);
     final Procedure1<JvmGenericType> _function = new Procedure1<JvmGenericType>() {
@@ -616,8 +621,8 @@ public class PojoJvmModelInferrer {
           };
           final JvmOperation method = PojoJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "equals", _typeRef_5, _function_8);
           EList<JvmAnnotationReference> _annotations = method.getAnnotations();
-          JvmAnnotationReference _annotation = PojoJvmModelInferrer.this._processorTypesBuilder.toAnnotation(entity, Override.class);
-          _annotations.add(_annotation);
+          JvmAnnotationReference _annotationRef = PojoJvmModelInferrer.this._annotationTypesBuilder.annotationRef(Override.class);
+          _annotations.add(_annotationRef);
           EList<JvmMember> _members_6 = it.getMembers();
           PojoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_6, method);
         }
@@ -671,8 +676,8 @@ public class PojoJvmModelInferrer {
           };
           final JvmOperation method_1 = PojoJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "hashCode", _typeRef_6, _function_9);
           EList<JvmAnnotationReference> _annotations_1 = method_1.getAnnotations();
-          JvmAnnotationReference _annotation_1 = PojoJvmModelInferrer.this._processorTypesBuilder.toAnnotation(entity, Override.class);
-          _annotations_1.add(_annotation_1);
+          JvmAnnotationReference _annotationRef_1 = PojoJvmModelInferrer.this._annotationTypesBuilder.annotationRef(Override.class);
+          _annotations_1.add(_annotationRef_1);
           EList<JvmMember> _members_7 = it.getMembers();
           PojoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_7, method_1);
         }
@@ -727,8 +732,8 @@ public class PojoJvmModelInferrer {
           };
           final JvmOperation method_2 = PojoJvmModelInferrer.this._processorTypesBuilder.toMethod(entity, "toString", _typeRef_7, _function_10);
           EList<JvmAnnotationReference> _annotations_2 = method_2.getAnnotations();
-          JvmAnnotationReference _annotation_2 = PojoJvmModelInferrer.this._processorTypesBuilder.toAnnotation(entity, Override.class);
-          _annotations_2.add(_annotation_2);
+          JvmAnnotationReference _annotationRef_2 = PojoJvmModelInferrer.this._annotationTypesBuilder.annotationRef(Override.class);
+          _annotations_2.add(_annotationRef_2);
           EList<JvmMember> _members_8 = it.getMembers();
           PojoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_8, method_2);
         }
