@@ -6739,6 +6739,7 @@ rule__SqlTypeAssignement__Group__2
     }
 :
 	rule__SqlTypeAssignement__Group__2__Impl
+	rule__SqlTypeAssignement__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -6750,15 +6751,47 @@ rule__SqlTypeAssignement__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getSqlTypeAssignementAccess().getTypeAssignment_2()); }
-(rule__SqlTypeAssignement__TypeAssignment_2)
-{ after(grammarAccess.getSqlTypeAssignementAccess().getTypeAssignment_2()); }
+{ before(grammarAccess.getSqlTypeAssignementAccess().getColonKeyword_2()); }
+(
+	':' 
+)?
+{ after(grammarAccess.getSqlTypeAssignementAccess().getColonKeyword_2()); }
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__SqlTypeAssignement__Group__3
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__SqlTypeAssignement__Group__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__SqlTypeAssignement__Group__3__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getSqlTypeAssignementAccess().getTypeAssignment_3()); }
+(rule__SqlTypeAssignement__TypeAssignment_3)
+{ after(grammarAccess.getSqlTypeAssignementAccess().getTypeAssignment_3()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 
 
 
@@ -6833,6 +6866,7 @@ rule__ColumnTypeAssignement__Group__2
     }
 :
 	rule__ColumnTypeAssignement__Group__2__Impl
+	rule__ColumnTypeAssignement__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -6844,15 +6878,47 @@ rule__ColumnTypeAssignement__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getColumnTypeAssignementAccess().getTypeAssignment_2()); }
-(rule__ColumnTypeAssignement__TypeAssignment_2)
-{ after(grammarAccess.getColumnTypeAssignementAccess().getTypeAssignment_2()); }
+{ before(grammarAccess.getColumnTypeAssignementAccess().getColonKeyword_2()); }
+(
+	':' 
+)?
+{ after(grammarAccess.getColumnTypeAssignementAccess().getColonKeyword_2()); }
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__ColumnTypeAssignement__Group__3
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__ColumnTypeAssignement__Group__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ColumnTypeAssignement__Group__3__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getColumnTypeAssignementAccess().getTypeAssignment_3()); }
+(rule__ColumnTypeAssignement__TypeAssignment_3)
+{ after(grammarAccess.getColumnTypeAssignementAccess().getTypeAssignment_3()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 
 
 
@@ -8160,6 +8226,7 @@ rule__ProcedurePojoAssignement__Group__2
     }
 :
 	rule__ProcedurePojoAssignement__Group__2__Impl
+	rule__ProcedurePojoAssignement__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -8171,15 +8238,47 @@ rule__ProcedurePojoAssignement__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getProcedurePojoAssignementAccess().getPojoAssignment_2()); }
-(rule__ProcedurePojoAssignement__PojoAssignment_2)
-{ after(grammarAccess.getProcedurePojoAssignementAccess().getPojoAssignment_2()); }
+{ before(grammarAccess.getProcedurePojoAssignementAccess().getColonKeyword_2()); }
+(
+	':' 
+)?
+{ after(grammarAccess.getProcedurePojoAssignementAccess().getColonKeyword_2()); }
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__ProcedurePojoAssignement__Group__3
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__ProcedurePojoAssignement__Group__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ProcedurePojoAssignement__Group__3__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getProcedurePojoAssignementAccess().getPojoAssignment_3()); }
+(rule__ProcedurePojoAssignement__PojoAssignment_3)
+{ after(grammarAccess.getProcedurePojoAssignementAccess().getPojoAssignment_3()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 
 
 
@@ -8254,6 +8353,7 @@ rule__FunctionPojoAssignement__Group__2
     }
 :
 	rule__FunctionPojoAssignement__Group__2__Impl
+	rule__FunctionPojoAssignement__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -8265,15 +8365,47 @@ rule__FunctionPojoAssignement__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getFunctionPojoAssignementAccess().getPojoAssignment_2()); }
-(rule__FunctionPojoAssignement__PojoAssignment_2)
-{ after(grammarAccess.getFunctionPojoAssignementAccess().getPojoAssignment_2()); }
+{ before(grammarAccess.getFunctionPojoAssignementAccess().getColonKeyword_2()); }
+(
+	':' 
+)?
+{ after(grammarAccess.getFunctionPojoAssignementAccess().getColonKeyword_2()); }
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__FunctionPojoAssignement__Group__3
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__FunctionPojoAssignement__Group__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__FunctionPojoAssignement__Group__3__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getFunctionPojoAssignementAccess().getPojoAssignment_3()); }
+(rule__FunctionPojoAssignement__PojoAssignment_3)
+{ after(grammarAccess.getFunctionPojoAssignementAccess().getPojoAssignment_3()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 
 
 
@@ -16865,6 +16997,7 @@ rule__DaogenProperty__Group_7__2
     }
 :
 	rule__DaogenProperty__Group_7__2__Impl
+	rule__DaogenProperty__Group_7__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -16876,15 +17009,47 @@ rule__DaogenProperty__Group_7__2__Impl
     }
 :
 (
-{ before(grammarAccess.getDaogenPropertyAccess().getResultTypeAssignment_7_2()); }
-(rule__DaogenProperty__ResultTypeAssignment_7_2)
-{ after(grammarAccess.getDaogenPropertyAccess().getResultTypeAssignment_7_2()); }
+{ before(grammarAccess.getDaogenPropertyAccess().getColonKeyword_7_2()); }
+(
+	':' 
+)?
+{ after(grammarAccess.getDaogenPropertyAccess().getColonKeyword_7_2()); }
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__DaogenProperty__Group_7__3
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__DaogenProperty__Group_7__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DaogenProperty__Group_7__3__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getDaogenPropertyAccess().getResultTypeAssignment_7_3()); }
+(rule__DaogenProperty__ResultTypeAssignment_7_3)
+{ after(grammarAccess.getDaogenPropertyAccess().getResultTypeAssignment_7_3()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 
 
 
@@ -40785,14 +40950,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__SqlTypeAssignement__TypeAssignment_2
+rule__SqlTypeAssignement__TypeAssignment_3
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getSqlTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_2_0()); }
-	ruleJvmParameterizedTypeReference{ after(grammarAccess.getSqlTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_2_0()); }
+{ before(grammarAccess.getSqlTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_3_0()); }
+	ruleJvmParameterizedTypeReference{ after(grammarAccess.getSqlTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_3_0()); }
 )
 
 ;
@@ -40815,14 +40980,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ColumnTypeAssignement__TypeAssignment_2
+rule__ColumnTypeAssignement__TypeAssignment_3
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getColumnTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_2_0()); }
-	ruleJvmParameterizedTypeReference{ after(grammarAccess.getColumnTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_2_0()); }
+{ before(grammarAccess.getColumnTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_3_0()); }
+	ruleJvmParameterizedTypeReference{ after(grammarAccess.getColumnTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_3_0()); }
 )
 
 ;
@@ -41175,14 +41340,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ProcedurePojoAssignement__PojoAssignment_2
+rule__ProcedurePojoAssignement__PojoAssignment_3
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getProcedurePojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_2_0()); }
-	ruleJvmParameterizedTypeReference{ after(grammarAccess.getProcedurePojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_2_0()); }
+{ before(grammarAccess.getProcedurePojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_0()); }
+	ruleJvmParameterizedTypeReference{ after(grammarAccess.getProcedurePojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_0()); }
 )
 
 ;
@@ -41205,14 +41370,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__FunctionPojoAssignement__PojoAssignment_2
+rule__FunctionPojoAssignement__PojoAssignment_3
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getFunctionPojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_2_0()); }
-	ruleJvmParameterizedTypeReference{ after(grammarAccess.getFunctionPojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_2_0()); }
+{ before(grammarAccess.getFunctionPojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_0()); }
+	ruleJvmParameterizedTypeReference{ after(grammarAccess.getFunctionPojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_0()); }
 )
 
 ;
@@ -45711,14 +45876,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DaogenProperty__ResultTypeAssignment_7_2
+rule__DaogenProperty__ResultTypeAssignment_7_3
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getDaogenPropertyAccess().getResultTypeJvmParameterizedTypeReferenceParserRuleCall_7_2_0()); }
-	ruleJvmParameterizedTypeReference{ after(grammarAccess.getDaogenPropertyAccess().getResultTypeJvmParameterizedTypeReferenceParserRuleCall_7_2_0()); }
+{ before(grammarAccess.getDaogenPropertyAccess().getResultTypeJvmParameterizedTypeReferenceParserRuleCall_7_3_0()); }
+	ruleJvmParameterizedTypeReference{ after(grammarAccess.getDaogenPropertyAccess().getResultTypeJvmParameterizedTypeReferenceParserRuleCall_7_3_0()); }
 )
 
 ;

@@ -2121,7 +2121,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getColumnTypeAssignementAccess().getDbColumnValidIDParserRuleCall_0_0(), semanticObject.getDbColumn());
-		feeder.accept(grammarAccess.getColumnTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_2_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getColumnTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_3_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
@@ -2584,7 +2584,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getFunctionPojoAssignementAccess().getDbFunctionValidIDParserRuleCall_0_0(), semanticObject.getDbFunction());
-		feeder.accept(grammarAccess.getFunctionPojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_2_0(), semanticObject.getPojo());
+		feeder.accept(grammarAccess.getFunctionPojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_0(), semanticObject.getPojo());
 		feeder.finish();
 	}
 	
@@ -3134,7 +3134,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getProcedurePojoAssignementAccess().getDbProcedureValidIDParserRuleCall_0_0(), semanticObject.getDbProcedure());
-		feeder.accept(grammarAccess.getProcedurePojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_2_0(), semanticObject.getPojo());
+		feeder.accept(grammarAccess.getProcedurePojoAssignementAccess().getPojoJvmParameterizedTypeReferenceParserRuleCall_3_0(), semanticObject.getPojo());
 		feeder.finish();
 	}
 	
@@ -3213,7 +3213,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getSqlTypeAssignementAccess().getSqlTypeValueTypeParserRuleCall_0_0(), semanticObject.getSqlType());
-		feeder.accept(grammarAccess.getSqlTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_2_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getSqlTypeAssignementAccess().getTypeJvmParameterizedTypeReferenceParserRuleCall_3_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
