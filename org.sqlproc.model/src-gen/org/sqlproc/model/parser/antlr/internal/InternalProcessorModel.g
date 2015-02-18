@@ -6958,9 +6958,9 @@ ruleDirectiveProperties returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_1=',' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getDirectivePropertiesAccess().getCommaKeyword_1_0());
+)(this_COMMA_1=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_1, grammarAccess.getDirectivePropertiesAccess().getCOMMATerminalRuleCall_1_0()); 
     }
 (
 (
@@ -7014,9 +7014,9 @@ rulePojoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getPojoDirectiveAccess().getToStringKeyword_0_1());
     }
-	otherlv_2='(' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getPojoDirectiveAccess().getLeftParenthesisKeyword_0_2());
+this_LPAREN_2=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_2, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_0_2()); 
     }
 (
 (
@@ -7036,9 +7036,9 @@ rulePojoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_4=')' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getPojoDirectiveAccess().getRightParenthesisKeyword_0_4());
+)this_RPAREN_4=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_4, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_0_4()); 
     }
 )
     |((
@@ -7054,9 +7054,9 @@ rulePojoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_6, grammarAccess.getPojoDirectiveAccess().getIndexKeyword_1_1());
     }
-	otherlv_7='(' 
-    {
-    	newLeafNode(otherlv_7, grammarAccess.getPojoDirectiveAccess().getLeftParenthesisKeyword_1_2());
+this_LPAREN_7=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_7, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_1_2()); 
     }
 (
 (
@@ -7076,9 +7076,9 @@ rulePojoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_9=',' 
-    {
-    	newLeafNode(otherlv_9, grammarAccess.getPojoDirectiveAccess().getCommaKeyword_1_4());
+)this_COMMA_9=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_9, grammarAccess.getPojoDirectiveAccess().getCOMMATerminalRuleCall_1_4()); 
     }
 (
 (
@@ -7098,9 +7098,9 @@ rulePojoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_11=')' 
-    {
-    	newLeafNode(otherlv_11, grammarAccess.getPojoDirectiveAccess().getRightParenthesisKeyword_1_6());
+)this_RPAREN_11=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_11, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_1_6()); 
     }
 )
     |((
@@ -7116,9 +7116,9 @@ rulePojoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_13, grammarAccess.getPojoDirectiveAccess().getOperatorsKeyword_2_1());
     }
-(	otherlv_14='(' 
-    {
-    	newLeafNode(otherlv_14, grammarAccess.getPojoDirectiveAccess().getLeftParenthesisKeyword_2_2_0());
+(this_LPAREN_14=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_14, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_2_2_0()); 
     }
 (
 (
@@ -7138,9 +7138,9 @@ rulePojoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_16=')' 
-    {
-    	newLeafNode(otherlv_16, grammarAccess.getPojoDirectiveAccess().getRightParenthesisKeyword_2_2_2());
+)this_RPAREN_16=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_16, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_2_2_2()); 
     }
 )?)
     |((
@@ -7156,9 +7156,9 @@ rulePojoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_18, grammarAccess.getPojoDirectiveAccess().getSerializableKeyword_3_1());
     }
-	otherlv_19='(' 
-    {
-    	newLeafNode(otherlv_19, grammarAccess.getPojoDirectiveAccess().getLeftParenthesisKeyword_3_2());
+this_LPAREN_19=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_19, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_3_2()); 
     }
 (
 (
@@ -7178,9 +7178,9 @@ rulePojoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_21=')' 
-    {
-    	newLeafNode(otherlv_21, grammarAccess.getPojoDirectiveAccess().getRightParenthesisKeyword_3_4());
+)this_RPAREN_21=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_21, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_3_4()); 
     }
 )
     |((
@@ -7196,9 +7196,9 @@ rulePojoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_23, grammarAccess.getPojoDirectiveAccess().getInheritanceChildKeyword_4_1());
     }
-	otherlv_24='(' 
-    {
-    	newLeafNode(otherlv_24, grammarAccess.getPojoDirectiveAccess().getLeftParenthesisKeyword_4_2());
+this_LPAREN_24=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_24, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_4_2()); 
     }
 (
 (
@@ -7218,9 +7218,9 @@ rulePojoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_26=')' 
-    {
-    	newLeafNode(otherlv_26, grammarAccess.getPojoDirectiveAccess().getRightParenthesisKeyword_4_4());
+)this_RPAREN_26=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_26, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_4_4()); 
     }
 )
     |((
@@ -7236,9 +7236,9 @@ rulePojoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_28, grammarAccess.getPojoDirectiveAccess().getEqualsKeyword_5_1());
     }
-	otherlv_29='(' 
-    {
-    	newLeafNode(otherlv_29, grammarAccess.getPojoDirectiveAccess().getLeftParenthesisKeyword_5_2());
+this_LPAREN_29=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_29, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_5_2()); 
     }
 (
 (
@@ -7258,9 +7258,9 @@ rulePojoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_31=')' 
-    {
-    	newLeafNode(otherlv_31, grammarAccess.getPojoDirectiveAccess().getRightParenthesisKeyword_5_4());
+)this_RPAREN_31=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_31, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_5_4()); 
     }
 )
     |((
@@ -7276,9 +7276,9 @@ rulePojoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_33, grammarAccess.getPojoDirectiveAccess().getHashCodeKeyword_6_1());
     }
-	otherlv_34='(' 
-    {
-    	newLeafNode(otherlv_34, grammarAccess.getPojoDirectiveAccess().getLeftParenthesisKeyword_6_2());
+this_LPAREN_34=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_34, grammarAccess.getPojoDirectiveAccess().getLPARENTerminalRuleCall_6_2()); 
     }
 (
 (
@@ -7298,9 +7298,9 @@ rulePojoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_36=')' 
-    {
-    	newLeafNode(otherlv_36, grammarAccess.getPojoDirectiveAccess().getRightParenthesisKeyword_6_4());
+)this_RPAREN_36=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_36, grammarAccess.getPojoDirectiveAccess().getRPARENTerminalRuleCall_6_4()); 
     }
 ))
 ;
@@ -7535,9 +7535,9 @@ rulePojoAttributeDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_7, grammarAccess.getPojoAttributeDirectiveAccess().getIndexKeyword_3_1());
     }
-	otherlv_8='(' 
-    {
-    	newLeafNode(otherlv_8, grammarAccess.getPojoAttributeDirectiveAccess().getLeftParenthesisKeyword_3_2());
+this_LPAREN_8=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_8, grammarAccess.getPojoAttributeDirectiveAccess().getLPARENTerminalRuleCall_3_2()); 
     }
 (
 (
@@ -7557,9 +7557,9 @@ rulePojoAttributeDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_10=')' 
-    {
-    	newLeafNode(otherlv_10, grammarAccess.getPojoAttributeDirectiveAccess().getRightParenthesisKeyword_3_4());
+)this_RPAREN_10=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_10, grammarAccess.getPojoAttributeDirectiveAccess().getRPARENTerminalRuleCall_3_4()); 
     }
 )
     |((
@@ -7589,9 +7589,9 @@ rulePojoAttributeDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_14, grammarAccess.getPojoAttributeDirectiveAccess().getUpdateColKeyword_5_1());
     }
-	otherlv_15='(' 
-    {
-    	newLeafNode(otherlv_15, grammarAccess.getPojoAttributeDirectiveAccess().getLeftParenthesisKeyword_5_2());
+this_LPAREN_15=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_15, grammarAccess.getPojoAttributeDirectiveAccess().getLPARENTerminalRuleCall_5_2()); 
     }
 (
 (
@@ -7611,9 +7611,9 @@ rulePojoAttributeDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_17=',' 
-    {
-    	newLeafNode(otherlv_17, grammarAccess.getPojoAttributeDirectiveAccess().getCommaKeyword_5_4());
+)this_COMMA_17=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_17, grammarAccess.getPojoAttributeDirectiveAccess().getCOMMATerminalRuleCall_5_4()); 
     }
 (
 (
@@ -7633,9 +7633,9 @@ rulePojoAttributeDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_19=')' 
-    {
-    	newLeafNode(otherlv_19, grammarAccess.getPojoAttributeDirectiveAccess().getRightParenthesisKeyword_5_6());
+)this_RPAREN_19=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_19, grammarAccess.getPojoAttributeDirectiveAccess().getRPARENTerminalRuleCall_5_6()); 
     }
 )
     |((
@@ -7651,9 +7651,9 @@ rulePojoAttributeDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_21, grammarAccess.getPojoAttributeDirectiveAccess().getCreateColKeyword_6_1());
     }
-	otherlv_22='(' 
-    {
-    	newLeafNode(otherlv_22, grammarAccess.getPojoAttributeDirectiveAccess().getLeftParenthesisKeyword_6_2());
+this_LPAREN_22=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_22, grammarAccess.getPojoAttributeDirectiveAccess().getLPARENTerminalRuleCall_6_2()); 
     }
 (
 (
@@ -7673,9 +7673,9 @@ rulePojoAttributeDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_24=',' 
-    {
-    	newLeafNode(otherlv_24, grammarAccess.getPojoAttributeDirectiveAccess().getCommaKeyword_6_4());
+)this_COMMA_24=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_24, grammarAccess.getPojoAttributeDirectiveAccess().getCOMMATerminalRuleCall_6_4()); 
     }
 (
 (
@@ -7695,9 +7695,9 @@ rulePojoAttributeDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_26=')' 
-    {
-    	newLeafNode(otherlv_26, grammarAccess.getPojoAttributeDirectiveAccess().getRightParenthesisKeyword_6_6());
+)this_RPAREN_26=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_26, grammarAccess.getPojoAttributeDirectiveAccess().getRPARENTerminalRuleCall_6_6()); 
     }
 )
     |((
@@ -8037,9 +8037,9 @@ rulePojoProcedure returns [EObject current=null]
 	    }
 
 )
-)	otherlv_6='(' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getPojoProcedureAccess().getLeftParenthesisKeyword_6());
+)this_LPAREN_6=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_6, grammarAccess.getPojoProcedureAccess().getLPARENTerminalRuleCall_6()); 
     }
 ((
 (
@@ -8059,9 +8059,9 @@ rulePojoProcedure returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_8=',' 
-    {
-    	newLeafNode(otherlv_8, grammarAccess.getPojoProcedureAccess().getCommaKeyword_7_1_0());
+)(this_COMMA_8=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_8, grammarAccess.getPojoProcedureAccess().getCOMMATerminalRuleCall_7_1_0()); 
     }
 (
 (
@@ -8081,9 +8081,9 @@ rulePojoProcedure returns [EObject current=null]
 	    }
 
 )
-))*)?	otherlv_10=')' 
-    {
-    	newLeafNode(otherlv_10, grammarAccess.getPojoProcedureAccess().getRightParenthesisKeyword_8());
+))*)?this_RPAREN_10=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_10, grammarAccess.getPojoProcedureAccess().getRPARENTerminalRuleCall_8()); 
     }
 (
 (
@@ -8137,9 +8137,9 @@ ruleEnumDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getEnumDirectiveAccess().getSerializableKeyword_1());
     }
-	otherlv_2='(' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getEnumDirectiveAccess().getLeftParenthesisKeyword_2());
+this_LPAREN_2=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_2, grammarAccess.getEnumDirectiveAccess().getLPARENTerminalRuleCall_2()); 
     }
 (
 (
@@ -8159,9 +8159,9 @@ ruleEnumDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_4=')' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getEnumDirectiveAccess().getRightParenthesisKeyword_4());
+)this_RPAREN_4=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_4, grammarAccess.getEnumDirectiveAccess().getRPARENTerminalRuleCall_4()); 
     }
 )
 ;
@@ -8360,9 +8360,9 @@ ruleEnumAttributeDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getEnumAttributeDirectiveAccess().getValuesKeyword_1());
     }
-	otherlv_2='(' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getEnumAttributeDirectiveAccess().getLeftParenthesisKeyword_2());
+this_LPAREN_2=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_2, grammarAccess.getEnumAttributeDirectiveAccess().getLPARENTerminalRuleCall_2()); 
     }
 (
 (
@@ -8382,9 +8382,9 @@ ruleEnumAttributeDirective returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_4=',' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getEnumAttributeDirectiveAccess().getCommaKeyword_4_0());
+)(this_COMMA_4=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_4, grammarAccess.getEnumAttributeDirectiveAccess().getCOMMATerminalRuleCall_4_0()); 
     }
 (
 (
@@ -8404,9 +8404,9 @@ ruleEnumAttributeDirective returns [EObject current=null]
 	    }
 
 )
-))*	otherlv_6=')' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getEnumAttributeDirectiveAccess().getRightParenthesisKeyword_5());
+))*this_RPAREN_6=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_6, grammarAccess.getEnumAttributeDirectiveAccess().getRPARENTerminalRuleCall_5()); 
     }
 )
 ;
@@ -8526,9 +8526,9 @@ ruleDaoDirectiveParameters returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_1=',' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getDaoDirectiveParametersAccess().getCommaKeyword_1_0());
+)(this_COMMA_1=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_1, grammarAccess.getDaoDirectiveParametersAccess().getCOMMATerminalRuleCall_1_0()); 
     }
 (
 (
@@ -8733,9 +8733,9 @@ ruleDaoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getDaoDirectiveAccess().getSerializableKeyword_0_1());
     }
-	otherlv_2='(' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getDaoDirectiveAccess().getLeftParenthesisKeyword_0_2());
+this_LPAREN_2=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_2, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_0_2()); 
     }
 (
 (
@@ -8755,9 +8755,9 @@ ruleDaoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_4=')' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getDaoDirectiveAccess().getRightParenthesisKeyword_0_4());
+)this_RPAREN_4=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_4, grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_0_4()); 
     }
 )
     |((
@@ -8773,9 +8773,9 @@ ruleDaoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_6, grammarAccess.getDaoDirectiveAccess().getInheritanceHandlerKeyword_1_1());
     }
-	otherlv_7='(' 
-    {
-    	newLeafNode(otherlv_7, grammarAccess.getDaoDirectiveAccess().getLeftParenthesisKeyword_1_2());
+this_LPAREN_7=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_7, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_1_2()); 
     }
 (
 (
@@ -8795,9 +8795,9 @@ ruleDaoDirective returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_9=',' 
-    {
-    	newLeafNode(otherlv_9, grammarAccess.getDaoDirectiveAccess().getCommaKeyword_1_4_0());
+)(this_COMMA_9=RULE_COMMA
+    { 
+    newLeafNode(this_COMMA_9, grammarAccess.getDaoDirectiveAccess().getCOMMATerminalRuleCall_1_4_0()); 
     }
 (
 (
@@ -8817,9 +8817,9 @@ ruleDaoDirective returns [EObject current=null]
 	    }
 
 )
-))+	otherlv_11=')' 
-    {
-    	newLeafNode(otherlv_11, grammarAccess.getDaoDirectiveAccess().getRightParenthesisKeyword_1_5());
+))+this_RPAREN_11=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_11, grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_1_5()); 
     }
 )
     |((
@@ -8835,10 +8835,9 @@ ruleDaoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_13, grammarAccess.getDaoDirectiveAccess().getCRUDKeyword_2_1());
     }
-(((	'(' 
-)=>	otherlv_14='(' 
-    {
-    	newLeafNode(otherlv_14, grammarAccess.getDaoDirectiveAccess().getLeftParenthesisKeyword_2_2_0());
+(((	RULE_LPAREN)=>this_LPAREN_14=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_14, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_2_2_0()); 
     }
 )(
 (
@@ -8858,9 +8857,9 @@ ruleDaoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_16=')' 
-    {
-    	newLeafNode(otherlv_16, grammarAccess.getDaoDirectiveAccess().getRightParenthesisKeyword_2_2_2());
+)this_RPAREN_16=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_16, grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_2_2_2()); 
     }
 )?)
     |((
@@ -8876,10 +8875,9 @@ ruleDaoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_18, grammarAccess.getDaoDirectiveAccess().getQueryKeyword_3_1());
     }
-(((	'(' 
-)=>	otherlv_19='(' 
-    {
-    	newLeafNode(otherlv_19, grammarAccess.getDaoDirectiveAccess().getLeftParenthesisKeyword_3_2_0());
+(((	RULE_LPAREN)=>this_LPAREN_19=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_19, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_3_2_0()); 
     }
 )(
 (
@@ -8899,9 +8897,9 @@ ruleDaoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_21=')' 
-    {
-    	newLeafNode(otherlv_21, grammarAccess.getDaoDirectiveAccess().getRightParenthesisKeyword_3_2_2());
+)this_RPAREN_21=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_21, grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_3_2_2()); 
     }
 )?)
     |((
@@ -8931,10 +8929,9 @@ ruleDaoDirective returns [EObject current=null]
 	    }
 
 )
-)(((	'(' 
-)=>	otherlv_24='(' 
-    {
-    	newLeafNode(otherlv_24, grammarAccess.getDaoDirectiveAccess().getLeftParenthesisKeyword_4_2_0());
+)(((	RULE_LPAREN)=>this_LPAREN_24=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_24, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_4_2_0()); 
     }
 )(
 (
@@ -8954,9 +8951,9 @@ ruleDaoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_26=')' 
-    {
-    	newLeafNode(otherlv_26, grammarAccess.getDaoDirectiveAccess().getRightParenthesisKeyword_4_2_2());
+)this_RPAREN_26=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_26, grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_4_2_2()); 
     }
 )?)
     |((
@@ -8972,10 +8969,9 @@ ruleDaoDirective returns [EObject current=null]
     {
     	newLeafNode(otherlv_28, grammarAccess.getDaoDirectiveAccess().getPojoKeyword_5_1());
     }
-(((	'(' 
-)=>	otherlv_29='(' 
-    {
-    	newLeafNode(otherlv_29, grammarAccess.getDaoDirectiveAccess().getLeftParenthesisKeyword_5_2_0());
+(((	RULE_LPAREN)=>this_LPAREN_29=RULE_LPAREN
+    { 
+    newLeafNode(this_LPAREN_29, grammarAccess.getDaoDirectiveAccess().getLPARENTerminalRuleCall_5_2_0()); 
     }
 )(
 (
@@ -8995,9 +8991,9 @@ ruleDaoDirective returns [EObject current=null]
 	    }
 
 )
-)	otherlv_31=')' 
-    {
-    	newLeafNode(otherlv_31, grammarAccess.getDaoDirectiveAccess().getRightParenthesisKeyword_5_2_2());
+)this_RPAREN_31=RULE_RPAREN
+    { 
+    newLeafNode(this_RPAREN_31, grammarAccess.getDaoDirectiveAccess().getRPARENTerminalRuleCall_5_2_2()); 
     }
 )))
 ;
@@ -16116,6 +16112,12 @@ ruleQualifiedNameInStaticImport returns [AntlrDatatypeRuleToken current=new Antl
 
 
 
+
+RULE_LPAREN : '(';
+
+RULE_RPAREN : ')';
+
+RULE_COMMA : ',';
 
 RULE_HEX : ('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F'|'_')+ ('#' (('b'|'B') ('i'|'I')|('l'|'L')))?;
 

@@ -7,11 +7,11 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.contentassist.ITemplateProposalProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
-import org.sqlproc.meta.ui.syntaxcoloring.SemanticHighlightingCalculator;
 import org.sqlproc.model.resolver.PojoResolver;
 import org.sqlproc.model.resolver.PojoResolverFactory;
 import org.sqlproc.model.resolver.PojoResolverFactoryBean;
 import org.sqlproc.model.ui.resolver.WorkspacePojoResolverImpl;
+import org.sqlproc.model.ui.syntaxcoloring.SemanticHighlightingCalculator;
 import org.sqlproc.model.ui.templates.ProcessorModelTemplateContextType;
 import org.sqlproc.model.ui.templates.ProcessorTemplateProposalProvider;
 

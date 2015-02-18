@@ -52,8 +52,14 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if(ruleCall.getRule() == grammarAccess.getArrayBracketsRule())
 			return getArrayBracketsToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getCOMMARule())
+			return getCOMMAToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getLPARENRule())
+			return getLPARENToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getOpSingleAssignRule())
 			return getOpSingleAssignToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getRPARENRule())
+			return getRPARENToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
@@ -69,6 +75,24 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 	}
 	
 	/**
+	 * terminal COMMA: ',';
+	 */
+	protected String getCOMMAToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return ",";
+	}
+	
+	/**
+	 * terminal LPAREN: '(';
+	 */
+	protected String getLPARENToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "(";
+	}
+	
+	/**
 	 * OpSingleAssign:
 	 * 	'='
 	 * ;
@@ -77,6 +101,15 @@ public class ProcessorModelSyntacticSequencer extends AbstractSyntacticSequencer
 		if (node != null)
 			return getTokenText(node);
 		return "=";
+	}
+	
+	/**
+	 * terminal RPAREN: ')';
+	 */
+	protected String getRPARENToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return ")";
 	}
 	
 	@Override

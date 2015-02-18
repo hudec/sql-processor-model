@@ -1,4 +1,4 @@
-package org.sqlproc.meta.ui.syntaxcoloring;
+package org.sqlproc.model.ui.syntaxcoloring;
 
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;

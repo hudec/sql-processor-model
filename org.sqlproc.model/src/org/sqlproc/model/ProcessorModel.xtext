@@ -214,17 +214,17 @@ Entity:
 ;
 
 DirectiveProperties:
-	features+=[PojoAttribute|ValidID] (',' features+=[PojoAttribute|ValidID])*
+	features+=[PojoAttribute|ValidID] (COMMA features+=[PojoAttribute|ValidID])*
 ;
 
 PojoDirective: 
-	{PojoDirectiveToString} '#ToString' '(' proplist=DirectiveProperties ')'
-	| {PojoDirectiveIndex} '#Index' '(' index=INT ',' proplist=DirectiveProperties ')'
-	| {PojoDirectiveOperators} '#Operators' ('(' operatorsSuffix=ValidID ')')?
-	| {PojoDirectiveSerializable} '#Serializable' '(' sernum=INT ')'
-	| {PojoDirectiveDiscriminator} '#InheritanceChild' '(' discriminator=(ValidID) ')'
-	| {PojoDirectiveEquals} '#Equals' '(' proplist=DirectiveProperties ')'
-	| {PojoDirectiveHashCode} '#HashCode' '(' proplist=DirectiveProperties ')'
+	{PojoDirectiveToString} '#ToString' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveIndex} '#Index' LPAREN index=INT COMMA proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveOperators} '#Operators' (LPAREN operatorsSuffix=ValidID RPAREN)?
+	| {PojoDirectiveSerializable} '#Serializable' LPAREN sernum=INT RPAREN
+	| {PojoDirectiveDiscriminator} '#InheritanceChild' LPAREN discriminator=(ValidID) RPAREN
+	| {PojoDirectiveEquals} '#Equals' LPAREN proplist=DirectiveProperties RPAREN
+	| {PojoDirectiveHashCode} '#HashCode' LPAREN proplist=DirectiveProperties RPAREN
 ;
 
 PojoEntity:
@@ -241,10 +241,10 @@ PojoAttributeDirective:
 	{PojoAttributeDirectiveRequired} '#Required'
 	| {PojoAttributeDirectivePrimaryKey} '#PrimaryKey'
 	| {PojoAttributeDirectiveDiscriminator} '#InheritanceDiscriminator'
-	| {PojoAttributeDirectiveIndex} '#Index' '(' index=INT ')'
+	| {PojoAttributeDirectiveIndex} '#Index' LPAREN index=INT RPAREN
 	| {PojoAttributeDirectiveVersion} '#Version'
-	| {PojoAttributeDirectiveUpdateCol} '#UpdateCol' '(' updateColumn1=[PojoAttribute|ValidID] ',' updateColumn2=[PojoAttribute|ValidID] ')'
-	| {PojoAttributeDirectiveCreateCol} '#CreateCol' '(' createColumn1=[PojoAttribute|ValidID] ',' createColumn2=[PojoAttribute|ValidID] ')'
+	| {PojoAttributeDirectiveUpdateCol} '#UpdateCol' LPAREN updateColumn1=[PojoAttribute|ValidID] COMMA updateColumn2=[PojoAttribute|ValidID] RPAREN
+	| {PojoAttributeDirectiveCreateCol} '#CreateCol' LPAREN createColumn1=[PojoAttribute|ValidID] COMMA createColumn2=[PojoAttribute|ValidID] RPAREN
 	| {PojoAttributeDirectiveToInit} '#ToInit'
 	| {PojoAttributeDirectiveEnumInit} '#EnumInit'
 	| {PojoAttributeDirectiveIsDef} '#IsDef'
@@ -261,12 +261,12 @@ PojoProcedure:
 	annotations+=Annotation*
 	'#Proc' (=> static?='static'?) (=> final?='final'?) //modifiers+=Modifier*
 	(type=JvmTypeReference)? name=ValidID 
-	'(' (params+=FullJvmFormalParameter (',' params+=FullJvmFormalParameter)*)? ')'
+	LPAREN (params+=FullJvmFormalParameter (COMMA params+=FullJvmFormalParameter)*)? RPAREN
 	body=XBlockExpression
 ;
 
 EnumDirective:
-	{EnumDirectiveSerializable} '#Serializable' '(' sernum=INT ')'
+	{EnumDirectiveSerializable} '#Serializable' LPAREN sernum=INT RPAREN
 ;
 
 EnumEntity:
@@ -281,7 +281,7 @@ EnumEntity:
 EnumAttributeValue: name=ValidID '=' value = XExpression;
 
 EnumAttributeDirective:
-	{EnumAttributeDirectiveValues} '#Values' '(' values+=EnumAttributeValue (',' values+=EnumAttributeValue)* ')'
+	{EnumAttributeDirectiveValues} '#Values' LPAREN values+=EnumAttributeValue (COMMA values+=EnumAttributeValue)* RPAREN
 ;
 
 EnumAttribute:
@@ -291,7 +291,7 @@ EnumAttribute:
 
 
 DaoDirectiveParameters:
-	out=JvmParameterizedTypeReference (',' ins+=JvmParameterizedTypeReference)*
+	out=JvmParameterizedTypeReference (COMMA ins+=JvmParameterizedTypeReference)*
 ;
 
 DescendantAssignment:
@@ -307,12 +307,12 @@ FunProcType :
 ;
 
 DaoDirective:
-	{DaoDirectiveSerializable} '#Serializable' '(' sernum=INT ')'
-	| {DaoDirectiveDiscriminator} '#InheritanceHandler' '(' ancestor=[PojoAttribute|ValidID] (',' descendants+=DescendantAssignment)+ ')'
-	| {DaoDirectiveCrud} '#CRUD' (=> '(' pojo=[PojoEntity|ValidID] ')')?
-	| {DaoDirectiveQuery} '#Query' (=> '(' pojo=[PojoEntity|ValidID] ')')?
-	| {DaoFunProcDirective} type=FunProcType (=> '(' paramlist=DaoDirectiveParameters ')')?
-	| {DaoDirectivePojo} '#Pojo' (=> '(' pojo=[PojoEntity|ValidID] ')')
+	{DaoDirectiveSerializable} '#Serializable' LPAREN sernum=INT RPAREN
+	| {DaoDirectiveDiscriminator} '#InheritanceHandler' LPAREN ancestor=[PojoAttribute|ValidID] (COMMA descendants+=DescendantAssignment)+ RPAREN
+	| {DaoDirectiveCrud} '#CRUD' (=> LPAREN pojo=[PojoEntity|ValidID] RPAREN)?
+	| {DaoDirectiveQuery} '#Query' (=> LPAREN pojo=[PojoEntity|ValidID] RPAREN)?
+	| {DaoFunProcDirective} type=FunProcType (=> LPAREN paramlist=DaoDirectiveParameters RPAREN)?
+	| {DaoDirectivePojo} '#Pojo' (=> LPAREN pojo=[PojoEntity|ValidID] RPAREN)
 ;
 
 DaoEntity:
@@ -342,3 +342,7 @@ AnnotationDirective:
 Annotation:
 	directives+=AnnotationDirective* annotation=XAnnotation
 ;
+
+terminal LPAREN: '(';
+terminal RPAREN: ')';
+terminal COMMA: ',';
