@@ -727,6 +727,7 @@ public class TablePojoGenerator {
         if (procedure == null || dbProcColumns == null)
             return;
         Map<String, PojoAttribute> attributes = new LinkedHashMap<String, PojoAttribute>();
+        Map<String, PojoAttribute> attributesResultSet = new LinkedHashMap<String, PojoAttribute>();
         int ix = 0;
         for (DbColumn dbColumn : dbProcColumns) {
             ix++;
@@ -742,14 +743,14 @@ public class TablePojoGenerator {
                     && !FAKE_FUN_PROC_COLUMN_NAME.equals(dbColumn.getName()))
                 continue;
             PojoAttribute attribute = convertDbColumnDefinition(procedure, dbColumn, procedureTypes);
-            if (attribute != null) {
-                attributes.put(dbColumn.getName(), attribute);
-            } else {
+            if (attribute == null)
                 attribute = convertDbColumnDefault(procedure, dbColumn);
-                if (attribute != null)
-                    attributes.put(dbColumn.getName(), attribute);
-            }
             if (attribute != null) {
+                if (!FAKE_FUN_PROC_COLUMN_NAME.equals(dbColumn.getName())
+                        && (dbColumn.getColumnType() == 3 || dbColumn.getColumnType() == 5))
+                    attributesResultSet.put(dbColumn.getName(), attribute);
+                else
+                    attributes.put(dbColumn.getName(), attribute);
                 attribute.setFunProcType(dbProcedure.getFtype());
                 attribute.setFunProcColumnType(dbColumn.getColumnType());
             }
@@ -765,6 +766,10 @@ public class TablePojoGenerator {
                 if (metaType != null)
                     metaProceduresResult.put(procedure, metaType);
             }
+        }
+        if (!attributesResultSet.isEmpty()) {
+            // TODO
+            System.out.println("TODO " + procedure + " returns " + attributesResultSet);
         }
         if (createColumns.containsKey(procedure)) {
             for (Map.Entry<String, PojoAttrType> createColumn : createColumns.get(procedure).entrySet()) {
