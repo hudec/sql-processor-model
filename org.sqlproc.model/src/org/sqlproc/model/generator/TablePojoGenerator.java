@@ -39,6 +39,7 @@ import org.sqlproc.model.resolver.DbIndex.DbIndexDetail;
 import org.sqlproc.model.resolver.DbResolver;
 import org.sqlproc.model.resolver.DbResolver.DbType;
 import org.sqlproc.model.resolver.DbTable;
+import org.sqlproc.model.util.Annotations;
 //import org.sqlproc.model.util.Annotations;
 import org.sqlproc.model.util.Debug;
 import org.sqlproc.model.util.Utils;
@@ -77,7 +78,7 @@ public class TablePojoGenerator {
     protected static final String NL = "\n";
 
     protected Map<String, String> finalEntities;
-    // protected Annotations annotations;
+    protected Annotations entityAnnotations;
     protected Set<String> imports = new HashSet<String>();
     protected boolean doCompressMetaDirectives;
     protected Map<String, PojoAttrType> sqlTypes = new HashMap<String, PojoAttrType>();
@@ -140,14 +141,12 @@ public class TablePojoGenerator {
     }
 
     public TablePojoGenerator(ModelProperty modelProperty, Artifacts artifacts, Map<String, String> finalEntities,
-            List<String> dbSequences, DbType dbType) {
+            Annotations entityAnnotations, List<String> dbSequences, DbType dbType) {
 
         debug = new Debug(modelProperty.getDebugLevel(artifacts), modelProperty.getDebugScope(artifacts), LOGGER);
 
         this.finalEntities = finalEntities;
-        // this.annotations = annotations;
-        // if (annotations != null)
-        // this.imports = annotations.getImports();
+        this.entityAnnotations = entityAnnotations;
 
         this.doCompressMetaDirectives = modelProperty.isCompressMetaDirectives(artifacts);
         Map<String, PojoAttrType> sqlTypes = modelProperty.getSqlTypes(artifacts);
@@ -314,7 +313,7 @@ public class TablePojoGenerator {
 
         if (debug.debug) {
             System.out.println("finalEntities " + this.finalEntities);
-            // System.out.println("annotations " + this.annotations);
+            System.out.println("annotations " + this.entityAnnotations);
             System.out.println("doCompressMetaDirectives " + this.doCompressMetaDirectives);
             System.out.println("sqlTypes " + this.sqlTypes);
             System.out.println("tableTypes " + this.tableTypes);

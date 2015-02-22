@@ -31,6 +31,7 @@ import org.sqlproc.model.property.ModelProperty;
 import org.sqlproc.model.resolver.DbResolver;
 import org.sqlproc.model.resolver.DbResolver.DbType;
 import org.sqlproc.model.resolver.PojoResolver;
+import org.sqlproc.model.util.Annotations;
 import org.sqlproc.model.util.Utils;
 
 import com.google.inject.Inject;
@@ -432,9 +433,11 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
 
                 Map<String, String> finalEntities = new HashMap<String, String>();
+                Annotations annotations = new Annotations();
                 for (AbstractEntity ape : packagex.getElements()) {
                     if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof PojoEntity) {
                         PojoEntity pojo = (PojoEntity) ((AnnotatedEntity) ape).getEntity();
+                        Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
                         if (pojo.isFinal()) {
                             ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
                             finalEntities.put(pojo.getName(), serializer.serialize(pojo));
@@ -442,6 +445,7 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
                     } else if (ape instanceof AnnotatedEntity
                             && ((AnnotatedEntity) ape).getEntity() instanceof EnumEntity) {
                         EnumEntity pojo = (EnumEntity) ((AnnotatedEntity) ape).getEntity();
+                        Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
                         if (pojo.isFinal()) {
                             ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
                             finalEntities.put(pojo.getName(), serializer.serialize(pojo));
@@ -453,7 +457,7 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
                 List<String> dbSequences = dbResolver.getSequences(artifacts);
                 DbType dbType = Utils.getDbType(dbResolver, artifacts);
                 TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities,
-                        dbSequences, dbType);
+                        annotations, dbSequences, dbType);
                 if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
                     return generator.getPojoDefinitions(modelProperty, artifacts);
             }
@@ -481,9 +485,11 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
 
                 Map<String, String> finalDaos = new HashMap<String, String>();
+                Annotations annotations = new Annotations();
                 for (AbstractEntity ape : packagex.getElements()) {
                     if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof DaoEntity) {
                         DaoEntity dao = (DaoEntity) ((AnnotatedEntity) ape).getEntity();
+                        Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
                         if (dao.isFinal()) {
                             ISerializer serializer = ((XtextResource) dao.eResource()).getSerializer();
                             finalDaos.put(dao.getName(), serializer.serialize(dao));
@@ -495,7 +501,7 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
                 List<String> dbSequences = dbResolver.getSequences(artifacts);
                 DbType dbType = Utils.getDbType(dbResolver, artifacts);
                 TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, scopeProvider, finalDaos,
-                        dbSequences, dbType);
+                        annotations, dbSequences, dbType);
                 if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts)) {
                     return generator.getDaoDefinitions(modelProperty, artifacts);
                 }

@@ -35,6 +35,7 @@ import org.sqlproc.model.property.ModelPropertyBean.ModelValues;
 import org.sqlproc.model.resolver.DbResolver;
 import org.sqlproc.model.resolver.DbResolver.DbType;
 import org.sqlproc.model.resolver.DbResolverBean;
+import org.sqlproc.model.util.Annotations;
 import org.sqlproc.model.util.Utils;
 
 import com.google.common.io.Files;
@@ -321,10 +322,12 @@ public class Main {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
             Map<String, String> finalEntities = new HashMap<String, String>();
+            Annotations annotations = new Annotations();
             if (packagex != null) {
                 for (AbstractEntity ape : packagex.getElements()) {
                     if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof PojoEntity) {
                         PojoEntity pojo = (PojoEntity) ((AnnotatedEntity) ape).getEntity();
+                        Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
                         if (pojo.isFinal()) {
                             // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
                             finalEntities.put(pojo.getName(), serializer.serialize(pojo));
@@ -332,6 +335,7 @@ public class Main {
                     } else if (ape instanceof AnnotatedEntity
                             && ((AnnotatedEntity) ape).getEntity() instanceof EnumEntity) {
                         EnumEntity pojo = (EnumEntity) ((AnnotatedEntity) ape).getEntity();
+                        Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
                         if (pojo.isFinal()) {
                             // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
                             finalEntities.put(pojo.getName(), serializer.serialize(pojo));
@@ -342,8 +346,8 @@ public class Main {
             List<String> tables = dbResolver.getTables(artifacts);
             List<String> dbSequences = dbResolver.getSequences(artifacts);
             DbType dbType = Utils.getDbType(dbResolver, artifacts);
-            TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities, dbSequences,
-                    dbType);
+            TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities, annotations,
+                    dbSequences, dbType);
             if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
                 return generator.getPojoDefinitions(modelProperty, artifacts);
         }
@@ -355,10 +359,12 @@ public class Main {
 
         if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
             Map<String, String> finalDaos = new HashMap<String, String>();
+            Annotations annotations = new Annotations();
             if (packagex != null) {
                 for (AbstractEntity ape : packagex.getElements()) {
                     if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof DaoEntity) {
                         DaoEntity dao = (DaoEntity) ((AnnotatedEntity) ape).getEntity();
+                        Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
                         if (dao.isFinal()) {
                             // ISerializer serializer = ((XtextResource) dao.eResource()).getSerializer();
                             finalDaos.put(dao.getName(), serializer.serialize(dao));
@@ -370,7 +376,7 @@ public class Main {
             List<String> dbSequences = dbResolver.getSequences(artifacts);
             DbType dbType = Utils.getDbType(dbResolver, artifacts);
             TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, scopeProvider, finalDaos,
-                    dbSequences, dbType);
+                    annotations, dbSequences, dbType);
             if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts)) {
                 return generator.getDaoDefinitions(modelProperty, artifacts);
             }

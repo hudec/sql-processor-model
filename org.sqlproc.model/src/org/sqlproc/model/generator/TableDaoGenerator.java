@@ -21,6 +21,7 @@ import org.sqlproc.model.property.ImplementsExtends;
 import org.sqlproc.model.property.ModelProperty;
 import org.sqlproc.model.property.PojoAttribute;
 import org.sqlproc.model.resolver.DbResolver.DbType;
+import org.sqlproc.model.util.Annotations;
 import org.sqlproc.model.util.Debug;
 
 public class TableDaoGenerator extends TablePojoGenerator {
@@ -32,6 +33,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
     protected Map<String, String> metaProceduresResultSet = new HashMap<String, String>();
 
     protected Map<String, String> finalDaos;
+    protected Annotations daoAnnotations;
     protected Set<String> daoIgnoreTables = new HashSet<String>();
     protected Set<String> daoOnlyTables = new HashSet<String>();
     protected Map<String, ImplementsExtends> daoToImplements = new HashMap<String, ImplementsExtends>();
@@ -47,8 +49,8 @@ public class TableDaoGenerator extends TablePojoGenerator {
     }
 
     public TableDaoGenerator(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
-            Map<String, String> finalDaos, List<String> dbSequences, DbType dbType) {
-        super(modelProperty, artifacts, Collections.<String, String> emptyMap(), dbSequences, dbType);
+            Map<String, String> finalDaos, Annotations daoAnnotations, List<String> dbSequences, DbType dbType) {
+        super(modelProperty, artifacts, Collections.<String, String> emptyMap(), null, dbSequences, dbType);
 
         debug = new Debug(modelProperty.getDaoDebugLevel(artifacts), modelProperty.getDaoDebugScope(artifacts), LOGGER);
 
@@ -62,6 +64,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
         }
 
         this.finalDaos = finalDaos;
+        this.daoAnnotations = daoAnnotations;
 
         Set<String> daoIgnoreTables = modelProperty.getDaoIgnoreTables(artifacts);
         if (daoIgnoreTables != null) {
@@ -88,6 +91,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
             System.out.println("metaFunctionsResultSet " + this.metaFunctionsResultSet);
             System.out.println("metaProceduresResultSet " + this.metaProceduresResultSet);
             System.out.println("finalDaos " + this.finalDaos);
+            System.out.println("annotations " + this.daoAnnotations);
             System.out.println("daoIgnoreTables " + this.daoIgnoreTables);
             System.out.println("daoOnlyTables " + this.daoOnlyTables);
             System.out.println("daoToImplements " + this.daoToImplements);
