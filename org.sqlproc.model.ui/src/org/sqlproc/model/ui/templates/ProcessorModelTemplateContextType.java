@@ -459,7 +459,8 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
                 TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities,
                         annotations, dbSequences, dbType);
                 if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
-                    return generator.getPojoDefinitions(modelProperty, artifacts);
+                    return generator.getPojoDefinitions(modelProperty, artifacts,
+                            ((XtextResource) packagex.eResource()).getSerializer());
             }
             return super.resolve(context);
         }

@@ -23,6 +23,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.serializer.ISerializer;
 import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.property.EnumAttribute;
@@ -883,12 +884,12 @@ public class TablePojoGenerator {
         }
     }
 
-    public String getPojoDefinitions(ModelProperty modelProperty, Artifacts artifacts) {
-        String result = getPojoDefinitions();
+    public String getPojoDefinitions(ModelProperty modelProperty, Artifacts artifacts, ISerializer serializer) {
+        String result = getPojoDefinitions(serializer);
         return replaceAll(modelProperty, result, artifacts);
     }
 
-    public String getPojoDefinitions() {
+    public String getPojoDefinitions(ISerializer serializer) {
         try {
             if (debug.debug) {
                 System.out.println("pojos " + this.pojos);
@@ -1111,13 +1112,13 @@ public class TablePojoGenerator {
                 }
                 String realPojoName = tableToCamelCase(pojoName);
                 printComment(buffer, comments.get(pojo), INDENT);
-                // if (annotations != null) {
-                // buffer.append(annotations.getEntityAnnotationsDefinitions(realPojoName, true,
-                // annotations.isNonStandardPojoAnnotations(realPojoName)));
-                // buffer.append(annotations.getConstructorAnnotationsDefinitions(realPojoName, true));
-                // buffer.append(annotations.getStaticAnnotationsDefinitions(realPojoName, true));
-                // buffer.append(annotations.getConflictAnnotationsDefinitions(realPojoName, true));
-                // }
+                if (entityAnnotations != null) {
+                    buffer.append(entityAnnotations.getEntityAnnotationsDefinitions(realPojoName, serializer, true,
+                            entityAnnotations.isNonStandardPojoAnnotations(realPojoName)));
+                    // buffer.append(annotations.getConstructorAnnotationsDefinitions(realPojoName, true));
+                    // buffer.append(annotations.getStaticAnnotationsDefinitions(realPojoName, true));
+                    // buffer.append(annotations.getConflictAnnotationsDefinitions(realPojoName, true));
+                }
                 {
                     bufferMeta = new StringBuilder();
                     if (pojoDiscriminators.containsKey(pojo))

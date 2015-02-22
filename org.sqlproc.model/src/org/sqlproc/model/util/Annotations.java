@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Annotation;
@@ -61,18 +62,19 @@ public class Annotations {
         list.add(annotation);
     }
 
-    // public StringBuilder getEntityAnnotationsDefinitions(String pojoName, boolean simpleNames,
-    // boolean nonStandardAnnotations) {
-    // StringBuilder sb = new StringBuilder();
-    // if (!entityAnnotations.containsKey(pojoName))
-    // return sb;
-    // for (XAnnotation a : entityAnnotations.get(pojoName)) {
-    // getAnnotationDefinition(sb, a, ((nonStandardAnnotations) ? NLINDENT + "#Standard" : "") + NLINDENT + "@",
-    // simpleNames);
-    // }
-    // return sb;
-    // }
-    //
+    public StringBuilder getEntityAnnotationsDefinitions(String pojoName, ISerializer serializer, boolean simpleNames,
+            boolean nonStandardAnnotations) {
+        StringBuilder sb = new StringBuilder();
+        if (!entityAnnotations.containsKey(pojoName))
+            return sb;
+        for (XAnnotation a : entityAnnotations.get(pojoName)) {
+            if (nonStandardAnnotations)
+                sb.append(NLINDENT).append("#Standard");
+            sb.append(serializer.serialize(a));
+        }
+        return sb;
+    }
+
     // public StringBuilder getConstructorAnnotationsDefinitions(String pojoName, boolean simpleNames) {
     // StringBuilder sb = new StringBuilder();
     // if (!constructorAnnotations.containsKey(pojoName))

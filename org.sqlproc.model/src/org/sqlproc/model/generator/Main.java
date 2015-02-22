@@ -349,7 +349,7 @@ public class Main {
             TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities, annotations,
                     dbSequences, dbType);
             if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
-                return generator.getPojoDefinitions(modelProperty, artifacts);
+                return generator.getPojoDefinitions(modelProperty, artifacts, serializer);
         }
         return null;
     }
