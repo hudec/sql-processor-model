@@ -1043,7 +1043,6 @@ public class TablePojoGenerator {
                     buffer.append(getFinalContent(finalEntities.get(realPojoName)));
                     continue;
                 }
-                printComment(buffer, comments.get(pojo), INDENT);
                 if (entityAnnotations != null) {
                     buffer.append(entityAnnotations.getEntityAnnotationsDefinitions(realPojoName, serializer, true,
                             entityAnnotations.isNonStandardPojoAnnotations(realPojoName)));
@@ -1055,6 +1054,7 @@ public class TablePojoGenerator {
                 if (isSerializable || serializables.contains(pojo))
                     buffer.append(NLINDENT).append("#Serializable(1)");
 
+                printComment(buffer, comments.get(pojo), INDENT);
                 buffer.append(NLINDENT);
                 if (makeItFinal)
                     buffer.append("final ");
@@ -1127,7 +1127,6 @@ public class TablePojoGenerator {
                     buffer.append(getFinalContent(finalEntities.get(realPojoName)));
                     continue;
                 }
-                printComment(buffer, comments.get(pojo), INDENT);
                 if (entityAnnotations != null) {
                     buffer.append(entityAnnotations.getEntityAnnotationsDefinitions(realPojoName, serializer, true,
                             entityAnnotations.isNonStandardPojoAnnotations(realPojoName)));
@@ -1170,6 +1169,7 @@ public class TablePojoGenerator {
                 Set<String> toStr = new HashSet<String>();
                 {
                     bufferPartial = new StringBuilder();
+                    printComment(bufferPartial, comments.get(pojo), INDENT);
                     bufferPartial.append(NLINDENT);
                     if (makeItFinal)
                         bufferPartial.append("final ");
@@ -1196,7 +1196,6 @@ public class TablePojoGenerator {
                             name = attribute.getName();
                         else
                             name = columnToCamelCase(name);
-                        printComment(bufferPartial, attribute.getComment(), INDENT, INDENT);
                         if (entityAnnotations != null) {
                             bufferPartial.append(entityAnnotations.getAttributeAnnotationsDefinitions(realPojoName,
                                     name, serializer, true,
@@ -1282,6 +1281,7 @@ public class TablePojoGenerator {
                             bufferPartial.append(NLINDENTINDENT).append(bufferMetaAttr.substring(1));
                         else
                             bufferPartial.append(bufferMetaAttr);
+                        printComment(bufferPartial, attribute.getComment(), INDENT, INDENT);
                         bufferPartial.append(NLINDENT).append(INDENT).append("#Attr ");
                         if (attribute.getDependencyClassName() != null) {
                             bufferPartial.append(attribute.getDependencyClassName());
@@ -1350,7 +1350,6 @@ public class TablePojoGenerator {
                     buffer.append(getFinalContent(finalEntities.get(realPojoName)));
                     continue;
                 }
-                printComment(buffer, comments.get(pojo), INDENT);
                 if (entityAnnotations != null) {
                     buffer.append(entityAnnotations.getEntityAnnotationsDefinitions(realPojoName, serializer, true,
                             entityAnnotations.isNonStandardPojoAnnotations(realPojoName)));
@@ -1367,6 +1366,7 @@ public class TablePojoGenerator {
                 Set<String> toStr = new HashSet<String>();
                 {
                     bufferPartial = new StringBuilder();
+                    printComment(bufferPartial, comments.get(pojo), INDENT);
                     bufferPartial.append(NLINDENT);
                     if (makeItFinal)
                         bufferPartial.append("final ");
@@ -1456,7 +1456,6 @@ public class TablePojoGenerator {
                     buffer.append(getFinalContent(finalEntities.get(realPojoName)));
                     continue;
                 }
-                printComment(buffer, comments.get(pojo), INDENT);
                 if (entityAnnotations != null) {
                     buffer.append(entityAnnotations.getEntityAnnotationsDefinitions(realPojoName, serializer, true,
                             entityAnnotations.isNonStandardPojoAnnotations(realPojoName)));
@@ -1474,6 +1473,7 @@ public class TablePojoGenerator {
                 Set<String> toStr = new HashSet<String>();
                 {
                     bufferPartial = new StringBuilder();
+                    printComment(bufferPartial, comments.get(pojo), INDENT);
                     bufferPartial.append(NLINDENT);
                     if (makeItFinal)
                         bufferPartial.append("final ");

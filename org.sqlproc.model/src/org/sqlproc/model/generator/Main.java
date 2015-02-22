@@ -378,7 +378,7 @@ public class Main {
             TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, scopeProvider, finalDaos,
                     annotations, dbSequences, dbType);
             if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts)) {
-                return generator.getDaoDefinitions(modelProperty, artifacts);
+                return generator.getDaoDefinitions(modelProperty, artifacts, serializer);
             }
         }
         return null;

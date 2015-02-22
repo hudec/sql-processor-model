@@ -430,8 +430,9 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             Package packagex = getPackage((XtextTemplateContext) context);
-            if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
+            ISerializer serializer = ((XtextResource) packagex.eResource()).getSerializer();
 
+            if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
                 Map<String, String> finalEntities = new HashMap<String, String>();
                 Annotations annotations = new Annotations();
                 for (AbstractEntity ape : packagex.getElements()) {
@@ -439,7 +440,7 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
                         PojoEntity pojo = (PojoEntity) ((AnnotatedEntity) ape).getEntity();
                         Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
                         if (pojo.isFinal()) {
-                            ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
+                            // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
                             finalEntities.put(pojo.getName(), serializer.serialize(pojo));
                         }
                     } else if (ape instanceof AnnotatedEntity
@@ -447,7 +448,7 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
                         EnumEntity pojo = (EnumEntity) ((AnnotatedEntity) ape).getEntity();
                         Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
                         if (pojo.isFinal()) {
-                            ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
+                            // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
                             finalEntities.put(pojo.getName(), serializer.serialize(pojo));
                         }
                     }
@@ -459,8 +460,7 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
                 TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities,
                         annotations, dbSequences, dbType);
                 if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
-                    return generator.getPojoDefinitions(modelProperty, artifacts,
-                            ((XtextResource) packagex.eResource()).getSerializer());
+                    return generator.getPojoDefinitions(modelProperty, artifacts, serializer);
             }
             return super.resolve(context);
         }
@@ -484,6 +484,7 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             Package packagex = getPackage((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
+                ISerializer serializer = ((XtextResource) packagex.eResource()).getSerializer();
 
                 Map<String, String> finalDaos = new HashMap<String, String>();
                 Annotations annotations = new Annotations();
@@ -492,7 +493,7 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
                         DaoEntity dao = (DaoEntity) ((AnnotatedEntity) ape).getEntity();
                         Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
                         if (dao.isFinal()) {
-                            ISerializer serializer = ((XtextResource) dao.eResource()).getSerializer();
+                            // ISerializer serializer = ((XtextResource) dao.eResource()).getSerializer();
                             finalDaos.put(dao.getName(), serializer.serialize(dao));
                         }
                     }
@@ -504,7 +505,7 @@ public class ProcessorModelTemplateContextType extends XbaseTemplateContextType 
                 TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, scopeProvider, finalDaos,
                         annotations, dbSequences, dbType);
                 if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts)) {
-                    return generator.getDaoDefinitions(modelProperty, artifacts);
+                    return generator.getDaoDefinitions(modelProperty, artifacts, serializer);
                 }
             }
             return super.resolve(context);
