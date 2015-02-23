@@ -78,6 +78,7 @@ public class TablePojoGenerator {
     protected static final String NLINDENTINDENT = "\n" + INDENT + INDENT;
     protected static final String NL = "\n";
 
+    protected Artifacts artifacts;
     protected Map<String, String> finalEntities;
     protected Annotations entityAnnotations;
     protected Set<String> imports = new HashSet<String>();
@@ -144,6 +145,7 @@ public class TablePojoGenerator {
     public TablePojoGenerator(ModelProperty modelProperty, Artifacts artifacts, Map<String, String> finalEntities,
             Annotations entityAnnotations, List<String> dbSequences, DbType dbType) {
 
+        this.artifacts = artifacts;
         debug = new Debug(modelProperty.getDebugLevel(artifacts), modelProperty.getDebugScope(artifacts), LOGGER);
 
         this.finalEntities = finalEntities;
@@ -1984,8 +1986,7 @@ public class TablePojoGenerator {
         }
     }
 
-    public static boolean addDefinitions(IScopeProvider scopeProvider, DbResolver dbResolver,
-            TablePojoGenerator generator, Artifacts artifacts) {
+    public boolean addDefinitions(DbResolver dbResolver, IScopeProvider scopeProvider) {
         try {
             List<String> tables = Utils.findTables(null, artifacts,
                     scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__TABLES));
@@ -1999,11 +2000,13 @@ public class TablePojoGenerator {
                 for (String table : tables) {
                     if (table.toUpperCase().startsWith("BIN$"))
                         continue;
+                    System.out.println("> table " + table);
                     if (!dbResolver.checkTable(artifacts, table))
                         continue;
                     List<DbColumn> dbColumns = dbResolver.getDbColumns(artifacts, table);
                     if (dbColumns.isEmpty())
                         continue;
+                    System.out.println("= table " + table);
                     List<String> dbPrimaryKeys = dbResolver.getDbPrimaryKeys(artifacts, table);
                     List<DbExport> dbExports = dbResolver.getDbExports(artifacts, table);
                     List<DbImport> dbImports = dbResolver.getDbImports(artifacts, table);
@@ -2011,38 +2014,45 @@ public class TablePojoGenerator {
                     List<DbTable> ltables = dbResolver.getDbTables(artifacts, table);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
                     List<DbCheckConstraint> dbCheckConstraints = dbResolver.getDbCheckConstraints(artifacts, table);
-                    generator.addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
+                    addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
                             dbCheckConstraints, comment);
+                    System.out.println("< table " + table);
                 }
                 // converter.resolveReferencesOnConvention();
-                generator.resolveReferencesOnKeys();
-                generator.joinTables();
+                resolveReferencesOnKeys();
+                joinTables();
             }
             if (procedures != null) {
                 for (String procedure : procedures) {
                     if (procedure.toUpperCase().startsWith("BIN$"))
                         continue;
+                    System.out.println("> procedure " + procedure);
                     List<DbTable> dbProcedures = dbResolver.getDbProcedures(artifacts, procedure);
                     if (dbProcedures.isEmpty())
                         continue;
+                    System.out.println("= procedure " + procedure);
                     List<DbColumn> dbProcColumns = dbResolver.getDbProcColumns(artifacts, procedure);
                     List<DbTable> ltables = dbResolver.getDbProcedures(artifacts, procedure);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
-                    generator.addProcedureDefinition(procedure, dbProcedures.get(0), dbProcColumns,
+                    addProcedureDefinition(procedure, dbProcedures.get(0), dbProcColumns,
                             functions.contains(procedure), comment);
+                    System.out.println("< procedure " + procedure);
                 }
             }
             if (functions != null) {
                 for (String function : functions) {
                     if (function.toUpperCase().startsWith("BIN$"))
                         continue;
+                    System.out.println("> function " + function);
                     List<DbTable> dbFunctions = dbResolver.getDbFunctions(artifacts, function);
                     if (dbFunctions.isEmpty())
                         continue;
+                    System.out.println("= function " + function);
                     List<DbColumn> dbFunColumns = dbResolver.getDbFunColumns(artifacts, function);
                     List<DbTable> ltables = dbResolver.getDbFunctions(artifacts, function);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
-                    generator.addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns, comment);
+                    addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns, comment);
+                    System.out.println("< function " + function);
                 }
             }
             return true;

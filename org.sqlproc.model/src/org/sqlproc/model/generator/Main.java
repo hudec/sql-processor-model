@@ -6,9 +6,7 @@ package org.sqlproc.model.generator;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -18,24 +16,16 @@ import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
-import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
-import org.sqlproc.model.processorModel.AbstractEntity;
-import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Artifacts;
-import org.sqlproc.model.processorModel.DaoEntity;
-import org.sqlproc.model.processorModel.EnumEntity;
 import org.sqlproc.model.processorModel.Package;
-import org.sqlproc.model.processorModel.PojoEntity;
 import org.sqlproc.model.property.ModelPropertyBean;
 import org.sqlproc.model.property.ModelPropertyBean.ModelValues;
 import org.sqlproc.model.resolver.DbResolver;
-import org.sqlproc.model.resolver.DbResolver.DbType;
 import org.sqlproc.model.resolver.DbResolverBean;
-import org.sqlproc.model.util.Annotations;
 import org.sqlproc.model.util.Utils;
 
 import com.google.common.io.Files;
@@ -286,13 +276,13 @@ public class Main {
             return;
         }
 
-        String pojoDefinitions = getPojoDefinitions(modelProperty, dbResolver, definitions, pojoPackage,
-                ((XtextResource) controlResource).getSerializer());
+        String pojoDefinitions = Utils.generateDao(definitions, pojoPackage,
+                ((XtextResource) controlResource).getSerializer(), dbResolver, scopeProvider, modelProperty);
         fileAccess.generateFile(pojo, "package " + pojoPackageName + " {\n" + pojoDefinitions + "}");
         System.out.println(pojo + " generation finished.");
 
-        String daoDefinitions = getDaoDefinitions(modelProperty, dbResolver, definitions, daoPackage,
-                ((XtextResource) controlResource).getSerializer());
+        String daoDefinitions = Utils.generateDao(definitions, daoPackage,
+                ((XtextResource) controlResource).getSerializer(), dbResolver, scopeProvider, modelProperty);
         fileAccess.generateFile(dao, "package " + daoPackageName + " {\n" + daoDefinitions + "}");
         System.out.println(dao + " generation finished.");
     }
@@ -315,72 +305,5 @@ public class Main {
             }
         }
         return !isError;
-    }
-
-    protected String getPojoDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
-            Package packagex, ISerializer serializer) {
-
-        if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-            Map<String, String> finalEntities = new HashMap<String, String>();
-            Annotations annotations = new Annotations();
-            if (packagex != null) {
-                for (AbstractEntity ape : packagex.getElements()) {
-                    if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof PojoEntity) {
-                        PojoEntity pojo = (PojoEntity) ((AnnotatedEntity) ape).getEntity();
-                        Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
-                        if (pojo.isFinal()) {
-                            // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
-                            finalEntities.put(pojo.getName(), serializer.serialize(pojo));
-                        }
-                    } else if (ape instanceof AnnotatedEntity
-                            && ((AnnotatedEntity) ape).getEntity() instanceof EnumEntity) {
-                        EnumEntity pojo = (EnumEntity) ((AnnotatedEntity) ape).getEntity();
-                        Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
-                        if (pojo.isFinal()) {
-                            // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
-                            finalEntities.put(pojo.getName(), serializer.serialize(pojo));
-                        }
-                    }
-                }
-            }
-            List<String> tables = dbResolver.getTables(artifacts);
-            List<String> dbSequences = dbResolver.getSequences(artifacts);
-            DbType dbType = Utils.getDbType(dbResolver, artifacts);
-            TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities, annotations,
-                    dbSequences, dbType);
-            if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
-                return generator.getPojoDefinitions(modelProperty, artifacts, serializer);
-        }
-        return null;
-    }
-
-    protected String getDaoDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
-            Package packagex, ISerializer serializer) {
-
-        if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-            Map<String, String> finalDaos = new HashMap<String, String>();
-            Annotations annotations = new Annotations();
-            if (packagex != null) {
-                for (AbstractEntity ape : packagex.getElements()) {
-                    if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof DaoEntity) {
-                        DaoEntity dao = (DaoEntity) ((AnnotatedEntity) ape).getEntity();
-                        Annotations.grabAnnotations((AnnotatedEntity) ape, annotations);
-                        if (dao.isFinal()) {
-                            // ISerializer serializer = ((XtextResource) dao.eResource()).getSerializer();
-                            finalDaos.put(dao.getName(), serializer.serialize(dao));
-                        }
-                    }
-                }
-            }
-            // List<String> tables = dbResolver.getTables(artifacts);
-            List<String> dbSequences = dbResolver.getSequences(artifacts);
-            DbType dbType = Utils.getDbType(dbResolver, artifacts);
-            TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, scopeProvider, finalDaos,
-                    annotations, dbSequences, dbType);
-            if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts)) {
-                return generator.getDaoDefinitions(modelProperty, artifacts, serializer);
-            }
-        }
-        return null;
     }
 }
