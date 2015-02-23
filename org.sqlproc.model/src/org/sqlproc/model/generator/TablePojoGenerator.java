@@ -317,7 +317,8 @@ public class TablePojoGenerator {
 
         if (debug.debug) {
             System.out.println("finalEntities " + this.finalEntities);
-            System.out.println("annotations " + this.entityAnnotations);
+            System.out.println("entityAnnotations " + this.entityAnnotations);
+            System.out.println("entityImports " + this.entityImports);
             System.out.println("doCompressMetaDirectives " + this.doCompressMetaDirectives);
             System.out.println("sqlTypes " + this.sqlTypes);
             System.out.println("tableTypes " + this.tableTypes);

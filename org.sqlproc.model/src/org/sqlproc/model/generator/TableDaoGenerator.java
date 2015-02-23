@@ -44,7 +44,6 @@ public class TableDaoGenerator extends TablePojoGenerator {
     protected Map<String, JvmParameterizedTypeReference> daoFunctionsResult = new HashMap<String, JvmParameterizedTypeReference>();
     protected Filter daoActiveFilter = null;
     protected String daoPackage;
-    protected Set<String> imports = new HashSet<String>();
 
     public TableDaoGenerator() {
         super();
@@ -95,7 +94,8 @@ public class TableDaoGenerator extends TablePojoGenerator {
             System.out.println("metaFunctionsResultSet " + this.metaFunctionsResultSet);
             System.out.println("metaProceduresResultSet " + this.metaProceduresResultSet);
             System.out.println("finalDaos " + this.finalDaos);
-            System.out.println("annotations " + this.daoAnnotations);
+            System.out.println("daoAnnotations " + this.daoAnnotations);
+            System.out.println("daoImports " + this.daoImports);
             System.out.println("daoIgnoreTables " + this.daoIgnoreTables);
             System.out.println("daoOnlyTables " + this.daoOnlyTables);
             System.out.println("daoToImplements " + this.daoToImplements);
@@ -113,12 +113,12 @@ public class TableDaoGenerator extends TablePojoGenerator {
 
     public String getDaoDefinitions(ISerializer serializer) {
         StringBuilder bufferPartial = _getDaoDefinitions(serializer);
-        if (imports == null || imports.isEmpty() || pojoPackage == null)
+        if (daoImports == null || daoImports.isEmpty() || pojoPackage == null)
             return bufferPartial.toString();
 
         StringBuilder buffer = new StringBuilder("\n");
-        for (String name : imports) {
-            buffer.append(INDENT).append("import ").append(pojoPackage).append(".").append(name).append("\n");
+        for (String name : daoImports) {
+            buffer.append(INDENT).append("import ").append(name).append("\n");
         }
         buffer.append(bufferPartial);
         return buffer.toString();
@@ -268,7 +268,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 if (pojoName == null)
                     pojoName = pojo;
                 pojoName = tableToCamelCase(pojoName);
-                imports.add(pojoName);
+                daoImports.add(pojoPackage + "." + pojoName);
                 String daoName = tableToCamelCase(pojoName) + "Dao";
                 if (finalDaos.containsKey(daoName)) {
                     buffer.append(getFinalContent(finalDaos.get(daoName)));
@@ -350,7 +350,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 if (pojoName == null)
                     pojoName = procedure;
                 pojoName = tableToCamelCase(pojoName);
-                imports.add(pojoName);
+                daoImports.add(pojoPackage + "." + pojoName);
                 String daoName = pojoName + "Dao";
                 if (finalDaos.containsKey(daoName)) {
                     buffer.append(getFinalContent(finalDaos.get(daoName)));
@@ -423,7 +423,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 if (pojoName == null)
                     pojoName = function;
                 pojoName = tableToCamelCase(pojoName);
-                imports.add(pojoName);
+                daoImports.add(pojoPackage + "." + pojoName);
                 String daoName = pojoName + "Dao";
                 if (finalDaos.containsKey(daoName)) {
                     buffer.append(getFinalContent(finalDaos.get(daoName)));
@@ -500,7 +500,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                 if (pojoName == null)
                     pojoName = function;
                 pojoName = tableToCamelCase(pojoName);
-                imports.add(pojoName);
+                daoImports.add(pojoPackage + "." + pojoName);
                 String daoName = pojoName + "Dao";
                 if (finalDaos.containsKey(daoName)) {
                     buffer.append(getFinalContent(finalDaos.get(daoName)));
