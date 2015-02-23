@@ -81,7 +81,7 @@ public class TablePojoGenerator {
     protected Artifacts artifacts;
     protected Map<String, String> finalEntities;
     protected Annotations entityAnnotations;
-    protected Set<String> imports = new HashSet<String>();
+    protected Set<String> entityImports;
     protected boolean doCompressMetaDirectives;
     protected Map<String, PojoAttrType> sqlTypes = new HashMap<String, PojoAttrType>();
     protected Map<String, Map<String, PojoAttrType>> tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
@@ -143,13 +143,14 @@ public class TablePojoGenerator {
     }
 
     public TablePojoGenerator(ModelProperty modelProperty, Artifacts artifacts, Map<String, String> finalEntities,
-            Annotations entityAnnotations, List<String> dbSequences, DbType dbType) {
+            Annotations entityAnnotations, Set<String> entityImports, List<String> dbSequences, DbType dbType) {
 
         this.artifacts = artifacts;
         debug = new Debug(modelProperty.getDebugLevel(artifacts), modelProperty.getDebugScope(artifacts), LOGGER);
 
         this.finalEntities = finalEntities;
         this.entityAnnotations = entityAnnotations;
+        this.entityImports = entityImports;
 
         this.doCompressMetaDirectives = modelProperty.isCompressMetaDirectives(artifacts);
         Map<String, PojoAttrType> sqlTypes = modelProperty.getSqlTypes(artifacts);
@@ -308,10 +309,10 @@ public class TablePojoGenerator {
         }
 
         if (doGenerateValidationAnnotations) {
-            if (this.imports == null)
-                this.imports = new HashSet<String>();
-            this.imports.add(ANNOTATION_NOT_NULL);
-            this.imports.add(ANNOTATION_SIZE);
+            if (this.entityImports == null)
+                this.entityImports = new HashSet<String>();
+            this.entityImports.add(ANNOTATION_NOT_NULL);
+            this.entityImports.add(ANNOTATION_SIZE);
         }
 
         if (debug.debug) {
@@ -1020,8 +1021,8 @@ public class TablePojoGenerator {
             if (oneMoreLine) {
                 buffer.append("\n");
             }
-            if (imports != null) {
-                for (String qualifiedName : imports) {
+            if (entityImports != null) {
+                for (String qualifiedName : entityImports) {
                     buffer.append(INDENT).append("import ").append(qualifiedName).append("\n");
                 }
             }

@@ -62,41 +62,6 @@ public class Annotations {
         list.add(annotation);
     }
 
-    public StringBuilder removeBlankLines(StringBuilder sb) {
-        int len = sb.length();
-        while (len > 0) {
-            for (int i = 0; i < len; i++) {
-                char c = sb.charAt(i);
-                if (c == ' ')
-                    continue;
-                if (c != '\n')
-                    return sb;
-                sb.delete(0, i + 1);
-                break;
-            }
-            len = sb.length();
-        }
-        return sb;
-    }
-
-    public String removeBlankLines(String s) {
-        StringBuilder sb = new StringBuilder(s);
-        int len = sb.length();
-        while (len > 0) {
-            for (int i = 0; i < len; i++) {
-                char c = sb.charAt(i);
-                if (c == ' ')
-                    continue;
-                if (c != '\n')
-                    return sb.delete(0, i).toString();
-                sb.delete(0, i + 1);
-                break;
-            }
-            len = sb.length();
-        }
-        return sb.toString();
-    }
-
     public StringBuilder getAnnotationsDefinitions(String pojoName, ISerializer serializer, boolean simpleNames,
             boolean nonStandardAnnotations, Map<String, List<XAnnotation>> annotations, String directive) {
         StringBuilder sb = new StringBuilder();
@@ -105,7 +70,7 @@ public class Annotations {
         for (XAnnotation a : annotations.get(pojoName)) {
             if (nonStandardAnnotations)
                 sb.append(NLINDENT).append(directive);
-            sb.append(NLINDENT).append(removeBlankLines(serializer.serialize(a)));
+            sb.append(NLINDENT).append(Utils.removeBlankLines(serializer.serialize(a)));
         }
         return sb;
     }
@@ -144,7 +109,7 @@ public class Annotations {
         for (XAnnotation a : annotations.get(pojoName).get(featureName)) {
             if (directive != null)
                 sb.append(NLINDENT).append(INDENT).append(directive);
-            sb.append(NLINDENT).append(INDENT).append(removeBlankLines(serializer.serialize(a)));
+            sb.append(NLINDENT).append(INDENT).append(Utils.removeBlankLines(serializer.serialize(a)));
         }
         return sb;
     }

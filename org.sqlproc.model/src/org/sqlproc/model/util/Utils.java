@@ -18,6 +18,7 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.serializer.ISerializer;
+import org.eclipse.xtext.xtype.XImportDeclaration;
 import org.sqlproc.model.generator.TableDaoGenerator;
 import org.sqlproc.model.generator.TablePojoGenerator;
 import org.sqlproc.model.processorModel.AbstractEntity;
@@ -323,13 +324,59 @@ public class Utils {
         return builder.toString();
     }
 
+    public static StringBuilder removeBlankLines(StringBuilder sb) {
+        int len = sb.length();
+        while (len > 0) {
+            for (int i = 0; i < len; i++) {
+                char c = sb.charAt(i);
+                if (c == ' ')
+                    continue;
+                if (c != '\n')
+                    return sb;
+                sb.delete(0, i + 1);
+                break;
+            }
+            len = sb.length();
+        }
+        return sb;
+    }
+
+    public static String removeBlankLines(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        int len = sb.length();
+        while (len > 0) {
+            for (int i = 0; i < len; i++) {
+                char c = sb.charAt(i);
+                if (c == ' ')
+                    continue;
+                if (c != '\n')
+                    return sb.delete(0, i).toString();
+                sb.delete(0, i + 1);
+                break;
+            }
+            len = sb.length();
+        }
+        return sb.toString();
+    }
+
+    public static Set<String> getImports(Package packagex, ISerializer serializer) {
+        Set<String> imports = new HashSet<String>();
+        if (packagex.getImportSection() != null && packagex.getImportSection().getImportDeclarations() != null) {
+            for (XImportDeclaration imp : packagex.getImportSection().getImportDeclarations()) {
+                imports.add(removeBlankLines(serializer.serialize(imp)).substring(7));
+            }
+        }
+        return imports;
+    }
+
     public static String generatePojo(Artifacts artifacts, Package packagex, ISerializer serializer,
             DbResolver dbResolver, IScopeProvider scopeProvider, ModelProperty modelProperty) {
-        if (artifacts == null || !dbResolver.isResolveDb(artifacts))
+        if (artifacts == null || !dbResolver.isResolveDb(artifacts) || packagex == null)
             return null;
         if (serializer == null)
             serializer = ((XtextResource) packagex.eResource()).getSerializer();
 
+        Set<String> imports = getImports(packagex, serializer);
         Map<String, String> finalEntities = new HashMap<String, String>();
         Annotations annotations = new Annotations();
         for (AbstractEntity ape : packagex.getElements()) {
@@ -354,7 +401,7 @@ public class Utils {
         List<String> dbSequences = dbResolver.getSequences(artifacts);
         DbType dbType = Utils.getDbType(dbResolver, artifacts);
         TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities, annotations,
-                dbSequences, dbType);
+                imports, dbSequences, dbType);
         if (generator.addDefinitions(dbResolver, scopeProvider))
             return generator.getPojoDefinitions(modelProperty, artifacts, serializer);
         return null;
@@ -366,6 +413,8 @@ public class Utils {
             return null;
         if (serializer == null)
             serializer = ((XtextResource) packagex.eResource()).getSerializer();
+
+        Set<String> imports = getImports(packagex, serializer);
         Map<String, String> finalDaos = new HashMap<String, String>();
         Annotations annotations = new Annotations();
         for (AbstractEntity ape : packagex.getElements()) {
@@ -383,7 +432,7 @@ public class Utils {
         List<String> dbSequences = dbResolver.getSequences(artifacts);
         DbType dbType = getDbType(dbResolver, artifacts);
         TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, scopeProvider, finalDaos,
-                annotations, dbSequences, dbType);
+                annotations, imports, dbSequences, dbType);
         if (generator.addDefinitions(dbResolver, scopeProvider))
             return generator.getDaoDefinitions(modelProperty, artifacts, serializer);
         return null;

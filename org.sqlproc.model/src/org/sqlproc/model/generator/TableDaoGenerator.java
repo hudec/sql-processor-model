@@ -35,6 +35,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
 
     protected Map<String, String> finalDaos;
     protected Annotations daoAnnotations;
+    protected Set<String> daoImports;
     protected Set<String> daoIgnoreTables = new HashSet<String>();
     protected Set<String> daoOnlyTables = new HashSet<String>();
     protected Map<String, ImplementsExtends> daoToImplements = new HashMap<String, ImplementsExtends>();
@@ -50,8 +51,9 @@ public class TableDaoGenerator extends TablePojoGenerator {
     }
 
     public TableDaoGenerator(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
-            Map<String, String> finalDaos, Annotations daoAnnotations, List<String> dbSequences, DbType dbType) {
-        super(modelProperty, artifacts, Collections.<String, String> emptyMap(), null, dbSequences, dbType);
+            Map<String, String> finalDaos, Annotations daoAnnotations, Set<String> daoImports,
+            List<String> dbSequences, DbType dbType) {
+        super(modelProperty, artifacts, Collections.<String, String> emptyMap(), null, null, dbSequences, dbType);
 
         debug = new Debug(modelProperty.getDaoDebugLevel(artifacts), modelProperty.getDaoDebugScope(artifacts), LOGGER);
 
@@ -66,6 +68,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
 
         this.finalDaos = finalDaos;
         this.daoAnnotations = daoAnnotations;
+        this.daoImports = daoImports;
 
         Set<String> daoIgnoreTables = modelProperty.getDaoIgnoreTables(artifacts);
         if (daoIgnoreTables != null) {
