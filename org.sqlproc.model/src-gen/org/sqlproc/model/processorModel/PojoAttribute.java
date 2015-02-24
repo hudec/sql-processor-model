@@ -20,8 +20,9 @@ import org.eclipse.xtext.xbase.XExpression;
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.PojoAttribute#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.PojoAttribute#getDirectives <em>Directives</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.PojoAttribute#isStatic <em>Static</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.PojoAttribute#isFinal <em>Final</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.PojoAttribute#isStatic <em>Static</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.PojoAttribute#getKind <em>Kind</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.PojoAttribute#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.PojoAttribute#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.PojoAttribute#getInitExpr <em>Init Expr</em>}</li>
@@ -67,6 +68,32 @@ public interface PojoAttribute extends EObject
   EList<PojoAttributeDirective> getDirectives();
 
   /**
+   * Returns the value of the '<em><b>Final</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Final</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Final</em>' attribute.
+   * @see #setFinal(boolean)
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoAttribute_Final()
+   * @model
+   * @generated
+   */
+  boolean isFinal();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoAttribute#isFinal <em>Final</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Final</em>' attribute.
+   * @see #isFinal()
+   * @generated
+   */
+  void setFinal(boolean value);
+
+  /**
    * Returns the value of the '<em><b>Static</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
@@ -93,30 +120,30 @@ public interface PojoAttribute extends EObject
   void setStatic(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Final</b></em>' attribute.
+   * Returns the value of the '<em><b>Kind</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Final</em>' attribute isn't clear,
+   * If the meaning of the '<em>Kind</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Final</em>' attribute.
-   * @see #setFinal(boolean)
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoAttribute_Final()
+   * @return the value of the '<em>Kind</em>' attribute.
+   * @see #setKind(String)
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPojoAttribute_Kind()
    * @model
    * @generated
    */
-  boolean isFinal();
+  String getKind();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoAttribute#isFinal <em>Final</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.PojoAttribute#getKind <em>Kind</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Final</em>' attribute.
-   * @see #isFinal()
+   * @param value the new value of the '<em>Kind</em>' attribute.
+   * @see #getKind()
    * @generated
    */
-  void setFinal(boolean value);
+  void setKind(String value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

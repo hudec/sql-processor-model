@@ -32,6 +32,8 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.impl.EnumAttributeImpl#getDirectives <em>Directives</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.EnumAttributeImpl#isFinal <em>Final</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.EnumAttributeImpl#isStatic <em>Static</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.EnumAttributeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.EnumAttributeImpl#getName <em>Name</em>}</li>
  * </ul>
@@ -50,6 +52,46 @@ public class EnumAttributeImpl extends MinimalEObjectImpl.Container implements E
    * @ordered
    */
   protected EList<EnumAttributeDirective> directives;
+
+  /**
+   * The default value of the '{@link #isFinal() <em>Final</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isFinal()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean FINAL_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isFinal() <em>Final</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isFinal()
+   * @generated
+   * @ordered
+   */
+  protected boolean final_ = FINAL_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isStatic()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean STATIC_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isStatic() <em>Static</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isStatic()
+   * @generated
+   * @ordered
+   */
+  protected boolean static_ = STATIC_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -114,6 +156,52 @@ public class EnumAttributeImpl extends MinimalEObjectImpl.Container implements E
       directives = new EObjectContainmentEList<EnumAttributeDirective>(EnumAttributeDirective.class, this, ProcessorModelPackage.ENUM_ATTRIBUTE__DIRECTIVES);
     }
     return directives;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isFinal()
+  {
+    return final_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFinal(boolean newFinal)
+  {
+    boolean oldFinal = final_;
+    final_ = newFinal;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ENUM_ATTRIBUTE__FINAL, oldFinal, final_));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isStatic()
+  {
+    return static_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setStatic(boolean newStatic)
+  {
+    boolean oldStatic = static_;
+    static_ = newStatic;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.ENUM_ATTRIBUTE__STATIC, oldStatic, static_));
   }
 
   /**
@@ -217,6 +305,10 @@ public class EnumAttributeImpl extends MinimalEObjectImpl.Container implements E
     {
       case ProcessorModelPackage.ENUM_ATTRIBUTE__DIRECTIVES:
         return getDirectives();
+      case ProcessorModelPackage.ENUM_ATTRIBUTE__FINAL:
+        return isFinal();
+      case ProcessorModelPackage.ENUM_ATTRIBUTE__STATIC:
+        return isStatic();
       case ProcessorModelPackage.ENUM_ATTRIBUTE__TYPE:
         return getType();
       case ProcessorModelPackage.ENUM_ATTRIBUTE__NAME:
@@ -239,6 +331,12 @@ public class EnumAttributeImpl extends MinimalEObjectImpl.Container implements E
       case ProcessorModelPackage.ENUM_ATTRIBUTE__DIRECTIVES:
         getDirectives().clear();
         getDirectives().addAll((Collection<? extends EnumAttributeDirective>)newValue);
+        return;
+      case ProcessorModelPackage.ENUM_ATTRIBUTE__FINAL:
+        setFinal((Boolean)newValue);
+        return;
+      case ProcessorModelPackage.ENUM_ATTRIBUTE__STATIC:
+        setStatic((Boolean)newValue);
         return;
       case ProcessorModelPackage.ENUM_ATTRIBUTE__TYPE:
         setType((JvmTypeReference)newValue);
@@ -263,6 +361,12 @@ public class EnumAttributeImpl extends MinimalEObjectImpl.Container implements E
       case ProcessorModelPackage.ENUM_ATTRIBUTE__DIRECTIVES:
         getDirectives().clear();
         return;
+      case ProcessorModelPackage.ENUM_ATTRIBUTE__FINAL:
+        setFinal(FINAL_EDEFAULT);
+        return;
+      case ProcessorModelPackage.ENUM_ATTRIBUTE__STATIC:
+        setStatic(STATIC_EDEFAULT);
+        return;
       case ProcessorModelPackage.ENUM_ATTRIBUTE__TYPE:
         setType((JvmTypeReference)null);
         return;
@@ -285,6 +389,10 @@ public class EnumAttributeImpl extends MinimalEObjectImpl.Container implements E
     {
       case ProcessorModelPackage.ENUM_ATTRIBUTE__DIRECTIVES:
         return directives != null && !directives.isEmpty();
+      case ProcessorModelPackage.ENUM_ATTRIBUTE__FINAL:
+        return final_ != FINAL_EDEFAULT;
+      case ProcessorModelPackage.ENUM_ATTRIBUTE__STATIC:
+        return static_ != STATIC_EDEFAULT;
       case ProcessorModelPackage.ENUM_ATTRIBUTE__TYPE:
         return type != null;
       case ProcessorModelPackage.ENUM_ATTRIBUTE__NAME:
@@ -304,7 +412,11 @@ public class EnumAttributeImpl extends MinimalEObjectImpl.Container implements E
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (final: ");
+    result.append(final_);
+    result.append(", static: ");
+    result.append(static_);
+    result.append(", name: ");
     result.append(name);
     result.append(')');
     return result.toString();

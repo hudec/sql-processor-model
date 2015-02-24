@@ -80,6 +80,7 @@ public class TablePojoGenerator {
 
     protected Artifacts artifacts;
     protected Map<String, String> finalEntities;
+    protected Map<String, Map<String, String>> finalEntitiesFeatures;
     protected Annotations entityAnnotations;
     protected Set<String> entityImports;
     protected boolean doCompressMetaDirectives;
@@ -143,12 +144,14 @@ public class TablePojoGenerator {
     }
 
     public TablePojoGenerator(ModelProperty modelProperty, Artifacts artifacts, Map<String, String> finalEntities,
-            Annotations entityAnnotations, Set<String> entityImports, List<String> dbSequences, DbType dbType) {
+            Map<String, Map<String, String>> finalEntitiesFeatures, Annotations entityAnnotations,
+            Set<String> entityImports, List<String> dbSequences, DbType dbType) {
 
         this.artifacts = artifacts;
         debug = new Debug(modelProperty.getDebugLevel(artifacts), modelProperty.getDebugScope(artifacts), LOGGER);
 
         this.finalEntities = finalEntities;
+        this.finalEntitiesFeatures = finalEntitiesFeatures;
         this.entityAnnotations = entityAnnotations;
         this.entityImports = entityImports;
 
@@ -317,6 +320,7 @@ public class TablePojoGenerator {
 
         if (debug.debug) {
             System.out.println("finalEntities " + this.finalEntities);
+            System.out.println("finalEntitiesFeatures " + this.finalEntitiesFeatures);
             System.out.println("entityAnnotations " + this.entityAnnotations);
             System.out.println("entityImports " + this.entityImports);
             System.out.println("doCompressMetaDirectives " + this.doCompressMetaDirectives);

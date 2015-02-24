@@ -22,7 +22,6 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.sqlproc.model.processorModel.DaoDirective;
 import org.sqlproc.model.processorModel.DaoEntity;
 import org.sqlproc.model.processorModel.PojoAttribute;
-import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -33,9 +32,9 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.impl.DaoEntityImpl#getDirectives <em>Directives</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.DaoEntityImpl#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.DaoEntityImpl#getSuperType <em>Super Type</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.DaoEntityImpl#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.DaoEntityImpl#getProcedures <em>Procedures</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,6 +51,26 @@ public class DaoEntityImpl extends EntityImpl implements DaoEntity
    * @ordered
    */
   protected EList<DaoDirective> directives;
+
+  /**
+   * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isAbstract()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean ABSTRACT_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isAbstract()
+   * @generated
+   * @ordered
+   */
+  protected boolean abstract_ = ABSTRACT_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getSuperType() <em>Super Type</em>}' containment reference.
@@ -72,16 +91,6 @@ public class DaoEntityImpl extends EntityImpl implements DaoEntity
    * @ordered
    */
   protected EList<PojoAttribute> attributes;
-
-  /**
-   * The cached value of the '{@link #getProcedures() <em>Procedures</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getProcedures()
-   * @generated
-   * @ordered
-   */
-  protected EList<PojoProcedure> procedures;
 
   /**
    * <!-- begin-user-doc -->
@@ -116,6 +125,29 @@ public class DaoEntityImpl extends EntityImpl implements DaoEntity
       directives = new EObjectContainmentEList<DaoDirective>(DaoDirective.class, this, ProcessorModelPackage.DAO_ENTITY__DIRECTIVES);
     }
     return directives;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isAbstract()
+  {
+    return abstract_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setAbstract(boolean newAbstract)
+  {
+    boolean oldAbstract = abstract_;
+    abstract_ = newAbstract;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DAO_ENTITY__ABSTRACT, oldAbstract, abstract_));
   }
 
   /**
@@ -185,20 +217,6 @@ public class DaoEntityImpl extends EntityImpl implements DaoEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoProcedure> getProcedures()
-  {
-    if (procedures == null)
-    {
-      procedures = new EObjectContainmentEList<PojoProcedure>(PojoProcedure.class, this, ProcessorModelPackage.DAO_ENTITY__PROCEDURES);
-    }
-    return procedures;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -210,8 +228,6 @@ public class DaoEntityImpl extends EntityImpl implements DaoEntity
         return basicSetSuperType(null, msgs);
       case ProcessorModelPackage.DAO_ENTITY__ATTRIBUTES:
         return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
-      case ProcessorModelPackage.DAO_ENTITY__PROCEDURES:
-        return ((InternalEList<?>)getProcedures()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -228,12 +244,12 @@ public class DaoEntityImpl extends EntityImpl implements DaoEntity
     {
       case ProcessorModelPackage.DAO_ENTITY__DIRECTIVES:
         return getDirectives();
+      case ProcessorModelPackage.DAO_ENTITY__ABSTRACT:
+        return isAbstract();
       case ProcessorModelPackage.DAO_ENTITY__SUPER_TYPE:
         return getSuperType();
       case ProcessorModelPackage.DAO_ENTITY__ATTRIBUTES:
         return getAttributes();
-      case ProcessorModelPackage.DAO_ENTITY__PROCEDURES:
-        return getProcedures();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -253,16 +269,15 @@ public class DaoEntityImpl extends EntityImpl implements DaoEntity
         getDirectives().clear();
         getDirectives().addAll((Collection<? extends DaoDirective>)newValue);
         return;
+      case ProcessorModelPackage.DAO_ENTITY__ABSTRACT:
+        setAbstract((Boolean)newValue);
+        return;
       case ProcessorModelPackage.DAO_ENTITY__SUPER_TYPE:
         setSuperType((JvmParameterizedTypeReference)newValue);
         return;
       case ProcessorModelPackage.DAO_ENTITY__ATTRIBUTES:
         getAttributes().clear();
         getAttributes().addAll((Collection<? extends PojoAttribute>)newValue);
-        return;
-      case ProcessorModelPackage.DAO_ENTITY__PROCEDURES:
-        getProcedures().clear();
-        getProcedures().addAll((Collection<? extends PojoProcedure>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -281,14 +296,14 @@ public class DaoEntityImpl extends EntityImpl implements DaoEntity
       case ProcessorModelPackage.DAO_ENTITY__DIRECTIVES:
         getDirectives().clear();
         return;
+      case ProcessorModelPackage.DAO_ENTITY__ABSTRACT:
+        setAbstract(ABSTRACT_EDEFAULT);
+        return;
       case ProcessorModelPackage.DAO_ENTITY__SUPER_TYPE:
         setSuperType((JvmParameterizedTypeReference)null);
         return;
       case ProcessorModelPackage.DAO_ENTITY__ATTRIBUTES:
         getAttributes().clear();
-        return;
-      case ProcessorModelPackage.DAO_ENTITY__PROCEDURES:
-        getProcedures().clear();
         return;
     }
     super.eUnset(featureID);
@@ -306,14 +321,31 @@ public class DaoEntityImpl extends EntityImpl implements DaoEntity
     {
       case ProcessorModelPackage.DAO_ENTITY__DIRECTIVES:
         return directives != null && !directives.isEmpty();
+      case ProcessorModelPackage.DAO_ENTITY__ABSTRACT:
+        return abstract_ != ABSTRACT_EDEFAULT;
       case ProcessorModelPackage.DAO_ENTITY__SUPER_TYPE:
         return superType != null;
       case ProcessorModelPackage.DAO_ENTITY__ATTRIBUTES:
         return attributes != null && !attributes.isEmpty();
-      case ProcessorModelPackage.DAO_ENTITY__PROCEDURES:
-        return procedures != null && !procedures.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (abstract: ");
+    result.append(abstract_);
+    result.append(')');
+    return result.toString();
   }
 
 } //DaoEntityImpl

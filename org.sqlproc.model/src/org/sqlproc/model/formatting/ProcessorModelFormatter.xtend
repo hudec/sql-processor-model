@@ -43,12 +43,12 @@ class ProcessorModelFormatter extends XbaseFormatter {
 		c.setLinewrap(2).before(enumEntityAccess.rule)
 		c.setLinewrap().before(enumEntityAccess.enumKeyword_2)
 		c.setLinewrap().after(enumEntityAccess.leftCurlyBracketKeyword_4)
-		c.setLinewrap().before(enumEntityAccess.rightCurlyBracketKeyword_6)
+		c.setLinewrap().before(enumEntityAccess.rightCurlyBracketKeyword_7)
 		c.setIndentationIncrement.after(enumEntityAccess.leftCurlyBracketKeyword_4)
-		c.setIndentationDecrement.before(enumEntityAccess.rightCurlyBracketKeyword_6)
+		c.setIndentationDecrement.before(enumEntityAccess.rightCurlyBracketKeyword_7)
 
 		c.setLinewrap().before(enumAttributeAccess.rule)
-		c.setLinewrap().before(enumAttributeAccess.attrKeyword_1)
+		c.setLinewrap().before(enumAttributeAccess.attrKeyword_3)
 
 		c.setLinewrap(2).before(pojoEntityAccess.rule)
 		c.setLinewrap().before(pojoEntityAccess.pojoKeyword_3)
@@ -58,15 +58,16 @@ class ProcessorModelFormatter extends XbaseFormatter {
 		c.setIndentationDecrement.before(pojoEntityAccess.rightCurlyBracketKeyword_9)
 
 		c.setLinewrap().before(pojoAttributeAccess.rule)
-		c.setLinewrap().before(pojoAttributeAccess.attrKeyword_2)
-		c.setLinewrap().before(pojoProcedureAccess.procKeyword_1)
+		c.setLinewrap().before(pojoAttributeAccess.kindAttrKeyword_4_0_0);
+		c.setLinewrap().before(pojoAttributeAccess.kindSimpleKeyword_4_0_1);
+		c.setLinewrap().before(pojoProcedureAccess.procKeyword_3)
 
 		c.setLinewrap(2).before(daoEntityAccess.rule)
-		c.setLinewrap().before(daoEntityAccess.daoKeyword_2)
-		c.setLinewrap().after(daoEntityAccess.leftCurlyBracketKeyword_5)
-		c.setLinewrap().before(daoEntityAccess.rightCurlyBracketKeyword_8)
-		c.setIndentationIncrement.after(daoEntityAccess.leftCurlyBracketKeyword_5)
-		c.setIndentationDecrement.before(daoEntityAccess.rightCurlyBracketKeyword_8)
+		c.setLinewrap().before(daoEntityAccess.daoKeyword_3)
+		c.setLinewrap().after(daoEntityAccess.leftCurlyBracketKeyword_6)
+		c.setLinewrap().before(daoEntityAccess.rightCurlyBracketKeyword_9)
+		c.setIndentationIncrement.after(daoEntityAccess.leftCurlyBracketKeyword_6)
+		c.setIndentationDecrement.before(daoEntityAccess.rightCurlyBracketKeyword_9)
 		
 		c.setNoSpace().before(LPARENRule)
 		c.setNoSpace().after(LPARENRule)

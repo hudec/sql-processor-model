@@ -15,9 +15,9 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.DaoEntity#getDirectives <em>Directives</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.DaoEntity#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.DaoEntity#getSuperType <em>Super Type</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.DaoEntity#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.DaoEntity#getProcedures <em>Procedures</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,6 +42,32 @@ public interface DaoEntity extends Entity
    * @generated
    */
   EList<DaoDirective> getDirectives();
+
+  /**
+   * Returns the value of the '<em><b>Abstract</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Abstract</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Abstract</em>' attribute.
+   * @see #setAbstract(boolean)
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDaoEntity_Abstract()
+   * @model
+   * @generated
+   */
+  boolean isAbstract();
+
+  /**
+   * Sets the value of the '{@link org.sqlproc.model.processorModel.DaoEntity#isAbstract <em>Abstract</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Abstract</em>' attribute.
+   * @see #isAbstract()
+   * @generated
+   */
+  void setAbstract(boolean value);
 
   /**
    * Returns the value of the '<em><b>Super Type</b></em>' containment reference.
@@ -84,21 +110,5 @@ public interface DaoEntity extends Entity
    * @generated
    */
   EList<PojoAttribute> getAttributes();
-
-  /**
-   * Returns the value of the '<em><b>Procedures</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.model.processorModel.PojoProcedure}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Procedures</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Procedures</em>' containment reference list.
-   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getDaoEntity_Procedures()
-   * @model containment="true"
-   * @generated
-   */
-  EList<PojoProcedure> getProcedures();
 
 } // DaoEntity

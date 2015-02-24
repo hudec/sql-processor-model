@@ -554,15 +554,6 @@ public interface ProcessorModelFactory extends EFactory
   DaoEntity createDaoEntity();
 
   /**
-   * Returns a new object of class '<em>Modifier</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Modifier</em>'.
-   * @generated
-   */
-  Modifier createModifier();
-
-  /**
    * Returns a new object of class '<em>Annotation Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

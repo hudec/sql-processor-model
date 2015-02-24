@@ -28,7 +28,9 @@ import org.sqlproc.model.processorModel.DaoEntity;
 import org.sqlproc.model.processorModel.EnumEntity;
 import org.sqlproc.model.processorModel.FunctionDefinition;
 import org.sqlproc.model.processorModel.Package;
+import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoEntity;
+import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.ProcedureDefinition;
 import org.sqlproc.model.processorModel.TableDefinition;
 import org.sqlproc.model.property.ModelProperty;
@@ -378,6 +380,7 @@ public class Utils {
 
         Set<String> imports = getImports(packagex, serializer);
         Map<String, String> finalEntities = new HashMap<String, String>();
+        Map<String, Map<String, String>> finalFeatures = new HashMap<String, Map<String, String>>();
         Annotations annotations = new Annotations();
         for (AbstractEntity ape : packagex.getElements()) {
             if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof PojoEntity) {
@@ -386,6 +389,17 @@ public class Utils {
                 if (pojo.isFinal()) {
                     // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
                     finalEntities.put(pojo.getName(), serializer.serialize(pojo));
+                } else {
+                    Map<String, String> map;
+                    finalFeatures.put(pojo.getName(), map = new HashMap<String, String>());
+                    for (PojoAttribute attr : pojo.getAttributes()) {
+                        if (attr.isFinal())
+                            map.put(attr.getName(), serializer.serialize(attr));
+                    }
+                    for (PojoProcedure proc : pojo.getProcedures()) {
+                        if (proc.isFinal())
+                            map.put(proc.getName(), serializer.serialize(proc));
+                    }
                 }
             } else if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof EnumEntity) {
                 EnumEntity pojo = (EnumEntity) ((AnnotatedEntity) ape).getEntity();
@@ -393,6 +407,13 @@ public class Utils {
                 if (pojo.isFinal()) {
                     // ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
                     finalEntities.put(pojo.getName(), serializer.serialize(pojo));
+                } else {
+                    Map<String, String> map;
+                    finalFeatures.put(pojo.getName(), map = new HashMap<String, String>());
+                    for (PojoProcedure proc : pojo.getProcedures()) {
+                        if (proc.isFinal())
+                            map.put(proc.getName(), serializer.serialize(proc));
+                    }
                 }
             }
         }
@@ -400,8 +421,8 @@ public class Utils {
         // List<String> tables = dbResolver.getTables(artifacts);
         List<String> dbSequences = dbResolver.getSequences(artifacts);
         DbType dbType = Utils.getDbType(dbResolver, artifacts);
-        TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities, annotations,
-                imports, dbSequences, dbType);
+        TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, finalEntities, finalFeatures,
+                annotations, imports, dbSequences, dbType);
         if (generator.addDefinitions(dbResolver, scopeProvider))
             return generator.getPojoDefinitions(modelProperty, artifacts, serializer);
         return null;
@@ -416,6 +437,7 @@ public class Utils {
 
         Set<String> imports = getImports(packagex, serializer);
         Map<String, String> finalDaos = new HashMap<String, String>();
+        Map<String, Map<String, String>> finalFeatures = new HashMap<String, Map<String, String>>();
         Annotations annotations = new Annotations();
         for (AbstractEntity ape : packagex.getElements()) {
             if (ape instanceof AnnotatedEntity && ((AnnotatedEntity) ape).getEntity() instanceof DaoEntity) {
@@ -424,6 +446,17 @@ public class Utils {
                 if (dao.isFinal()) {
                     // ISerializer serializer = ((XtextResource) dao.eResource()).getSerializer();
                     finalDaos.put(dao.getName(), serializer.serialize(dao));
+                } else {
+                    Map<String, String> map;
+                    finalFeatures.put(dao.getName(), map = new HashMap<String, String>());
+                    for (PojoAttribute attr : dao.getAttributes()) {
+                        // if (attr.isFinal())
+                        map.put(attr.getName(), serializer.serialize(attr));
+                    }
+                    for (PojoProcedure proc : dao.getProcedures()) {
+                        // if (proc.isFinal())
+                        map.put(proc.getName(), serializer.serialize(proc));
+                    }
                 }
             }
         }
@@ -432,7 +465,7 @@ public class Utils {
         List<String> dbSequences = dbResolver.getSequences(artifacts);
         DbType dbType = getDbType(dbResolver, artifacts);
         TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, scopeProvider, finalDaos,
-                annotations, imports, dbSequences, dbType);
+                finalFeatures, annotations, imports, dbSequences, dbType);
         if (generator.addDefinitions(dbResolver, scopeProvider))
             return generator.getDaoDefinitions(modelProperty, artifacts, serializer);
         return null;

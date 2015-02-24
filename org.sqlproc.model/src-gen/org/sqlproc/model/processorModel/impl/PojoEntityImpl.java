@@ -22,7 +22,6 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoDirective;
 import org.sqlproc.model.processorModel.PojoEntity;
-import org.sqlproc.model.processorModel.PojoProcedure;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -36,7 +35,6 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoEntityImpl#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoEntityImpl#getSuperType <em>Super Type</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoEntityImpl#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.PojoEntityImpl#getProcedures <em>Procedures</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,16 +91,6 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
    * @ordered
    */
   protected EList<PojoAttribute> attributes;
-
-  /**
-   * The cached value of the '{@link #getProcedures() <em>Procedures</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getProcedures()
-   * @generated
-   * @ordered
-   */
-  protected EList<PojoProcedure> procedures;
 
   /**
    * <!-- begin-user-doc -->
@@ -229,20 +217,6 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PojoProcedure> getProcedures()
-  {
-    if (procedures == null)
-    {
-      procedures = new EObjectContainmentEList<PojoProcedure>(PojoProcedure.class, this, ProcessorModelPackage.POJO_ENTITY__PROCEDURES);
-    }
-    return procedures;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -254,8 +228,6 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
         return basicSetSuperType(null, msgs);
       case ProcessorModelPackage.POJO_ENTITY__ATTRIBUTES:
         return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
-      case ProcessorModelPackage.POJO_ENTITY__PROCEDURES:
-        return ((InternalEList<?>)getProcedures()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -278,8 +250,6 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
         return getSuperType();
       case ProcessorModelPackage.POJO_ENTITY__ATTRIBUTES:
         return getAttributes();
-      case ProcessorModelPackage.POJO_ENTITY__PROCEDURES:
-        return getProcedures();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -309,10 +279,6 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
         getAttributes().clear();
         getAttributes().addAll((Collection<? extends PojoAttribute>)newValue);
         return;
-      case ProcessorModelPackage.POJO_ENTITY__PROCEDURES:
-        getProcedures().clear();
-        getProcedures().addAll((Collection<? extends PojoProcedure>)newValue);
-        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -339,9 +305,6 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
       case ProcessorModelPackage.POJO_ENTITY__ATTRIBUTES:
         getAttributes().clear();
         return;
-      case ProcessorModelPackage.POJO_ENTITY__PROCEDURES:
-        getProcedures().clear();
-        return;
     }
     super.eUnset(featureID);
   }
@@ -364,8 +327,6 @@ public class PojoEntityImpl extends EntityImpl implements PojoEntity
         return superType != null;
       case ProcessorModelPackage.POJO_ENTITY__ATTRIBUTES:
         return attributes != null && !attributes.isEmpty();
-      case ProcessorModelPackage.POJO_ENTITY__PROCEDURES:
-        return procedures != null && !procedures.isEmpty();
     }
     return super.eIsSet(featureID);
   }

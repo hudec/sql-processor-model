@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
-import org.eclipse.xtext.parser.antlr.IUnorderedGroupHelper.UnorderedGroupState;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
 import org.sqlproc.model.services.ProcessorModelGrammarAccess;
 
@@ -7812,17 +7811,22 @@ rulePojoAttribute returns [EObject current=null]
 	    }
 
 )
-)*	otherlv_2='#Attr' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getPojoAttributeAccess().getAttrKeyword_2());
-    }
-((
+)*(
 (
-	'static' 
+		lv_final_2_0=	'final' 
+    {
+        newLeafNode(lv_final_2_0, grammarAccess.getPojoAttributeAccess().getFinalFinalKeyword_2_0());
+    }
  
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoAttributeRule());
+	        }
+       		setWithLastConsumed($current, "final", true, "final");
+	    }
 
 )
-)=>
+)?(
 (
 		lv_static_3_0=	'static' 
     {
@@ -7837,28 +7841,37 @@ rulePojoAttribute returns [EObject current=null]
 	    }
 
 )
-)?((
+)?(
 (
-	'final' 
- 
-
-)
-)=>
 (
-		lv_final_4_0=	'final' 
+		lv_kind_4_1=	'#Attr' 
     {
-        newLeafNode(lv_final_4_0, grammarAccess.getPojoAttributeAccess().getFinalFinalKeyword_4_0());
+        newLeafNode(lv_kind_4_1, grammarAccess.getPojoAttributeAccess().getKindAttrKeyword_4_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getPojoAttributeRule());
 	        }
-       		setWithLastConsumed($current, "final", true, "final");
+       		setWithLastConsumed($current, "kind", lv_kind_4_1, null);
+	    }
+
+    |		lv_kind_4_2=	'#Simple' 
+    {
+        newLeafNode(lv_kind_4_2, grammarAccess.getPojoAttributeAccess().getKindSimpleKeyword_4_0_1());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoAttributeRule());
+	        }
+       		setWithLastConsumed($current, "kind", lv_kind_4_2, null);
 	    }
 
 )
-)?(
+
+)
+)(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getPojoAttributeAccess().getTypeJvmTypeReferenceParserRuleCall_5_0()); 
@@ -7955,11 +7968,22 @@ rulePojoProcedure returns [EObject current=null]
 	    }
 
 )
-)*	otherlv_1='#Proc' 
+)*(
+(
+		lv_final_1_0=	'final' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getPojoProcedureAccess().getProcKeyword_1());
+        newLeafNode(lv_final_1_0, grammarAccess.getPojoProcedureAccess().getFinalFinalKeyword_1_0());
     }
-((
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPojoProcedureRule());
+	        }
+       		setWithLastConsumed($current, "final", true, "final");
+	    }
+
+)
+)?((
 (
 	'static' 
  
@@ -7980,28 +8004,11 @@ rulePojoProcedure returns [EObject current=null]
 	    }
 
 )
-)?((
-(
-	'final' 
- 
-
-)
-)=>
-(
-		lv_final_3_0=	'final' 
+)?	otherlv_3='#Proc' 
     {
-        newLeafNode(lv_final_3_0, grammarAccess.getPojoProcedureAccess().getFinalFinalKeyword_3_0());
+    	newLeafNode(otherlv_3, grammarAccess.getPojoProcedureAccess().getProcKeyword_3());
     }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPojoProcedureRule());
-	        }
-       		setWithLastConsumed($current, "final", true, "final");
-	    }
-
-)
-)?(
+(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getPojoProcedureAccess().getTypeJvmTypeReferenceParserRuleCall_4_0()); 
@@ -8261,9 +8268,27 @@ ruleEnumEntity returns [EObject current=null]
 	    }
 
 )
-)	otherlv_6='}' 
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getEnumEntityAccess().getProceduresPojoProcedureParserRuleCall_6_0()); 
+	    }
+		lv_procedures_6_0=rulePojoProcedure		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getEnumEntityRule());
+	        }
+       		add(
+       			$current, 
+       			"procedures",
+        		lv_procedures_6_0, 
+        		"PojoProcedure");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*	otherlv_7='}' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getEnumEntityAccess().getRightCurlyBracketKeyword_6());
+    	newLeafNode(otherlv_7, grammarAccess.getEnumEntityAccess().getRightCurlyBracketKeyword_7());
     }
 )
 ;
@@ -8447,23 +8472,53 @@ ruleEnumAttribute returns [EObject current=null]
 	    }
 
 )
-)	otherlv_1='#Attr' 
+)(
+(
+		lv_final_1_0=	'final' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getEnumAttributeAccess().getAttrKeyword_1());
+        newLeafNode(lv_final_1_0, grammarAccess.getEnumAttributeAccess().getFinalFinalKeyword_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnumAttributeRule());
+	        }
+       		setWithLastConsumed($current, "final", true, "final");
+	    }
+
+)
+)?(
+(
+		lv_static_2_0=	'static' 
+    {
+        newLeafNode(lv_static_2_0, grammarAccess.getEnumAttributeAccess().getStaticStaticKeyword_2_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEnumAttributeRule());
+	        }
+       		setWithLastConsumed($current, "static", true, "static");
+	    }
+
+)
+)?	otherlv_3='#Attr' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getEnumAttributeAccess().getAttrKeyword_3());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumAttributeAccess().getTypeJvmTypeReferenceParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getEnumAttributeAccess().getTypeJvmTypeReferenceParserRuleCall_4_0()); 
 	    }
-		lv_type_2_0=ruleJvmTypeReference		{
+		lv_type_4_0=ruleJvmTypeReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getEnumAttributeRule());
 	        }
        		set(
        			$current, 
        			"type",
-        		lv_type_2_0, 
+        		lv_type_4_0, 
         		"JvmTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -8472,16 +8527,16 @@ ruleEnumAttribute returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEnumAttributeAccess().getNameValidIDParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getEnumAttributeAccess().getNameValidIDParserRuleCall_5_0()); 
 	    }
-		lv_name_3_0=ruleValidID		{
+		lv_name_5_0=ruleValidID		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getEnumAttributeRule());
 	        }
        		set(
        			$current, 
        			"name",
-        		lv_name_3_0, 
+        		lv_name_5_0, 
         		"ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -9049,67 +9104,82 @@ ruleDaoEntity returns [EObject current=null]
 	    }
 
 )
-)?	otherlv_2='#Dao' 
+)?(
+(
+		lv_abstract_2_0=	'abstract' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getDaoEntityAccess().getDaoKeyword_2());
+        newLeafNode(lv_abstract_2_0, grammarAccess.getDaoEntityAccess().getAbstractAbstractKeyword_2_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDaoEntityRule());
+	        }
+       		setWithLastConsumed($current, "abstract", true, "abstract");
+	    }
+
+)
+)?	otherlv_3='#Dao' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getDaoEntityAccess().getDaoKeyword_3());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDaoEntityAccess().getNameValidIDParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getDaoEntityAccess().getNameValidIDParserRuleCall_4_0()); 
 	    }
-		lv_name_3_0=ruleValidID		{
+		lv_name_4_0=ruleValidID		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDaoEntityRule());
 	        }
        		set(
        			$current, 
        			"name",
-        		lv_name_3_0, 
+        		lv_name_4_0, 
         		"ValidID");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_4='extends' 
+)(	otherlv_5='extends' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getDaoEntityAccess().getExtendsKeyword_4_0());
+    	newLeafNode(otherlv_5, grammarAccess.getDaoEntityAccess().getExtendsKeyword_5_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDaoEntityAccess().getSuperTypeJvmParameterizedTypeReferenceParserRuleCall_4_1_0()); 
+	        newCompositeNode(grammarAccess.getDaoEntityAccess().getSuperTypeJvmParameterizedTypeReferenceParserRuleCall_5_1_0()); 
 	    }
-		lv_superType_5_0=ruleJvmParameterizedTypeReference		{
+		lv_superType_6_0=ruleJvmParameterizedTypeReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDaoEntityRule());
 	        }
        		set(
        			$current, 
        			"superType",
-        		lv_superType_5_0, 
+        		lv_superType_6_0, 
         		"JvmParameterizedTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))?	otherlv_6='{' 
+))?	otherlv_7='{' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getDaoEntityAccess().getLeftCurlyBracketKeyword_5());
+    	newLeafNode(otherlv_7, grammarAccess.getDaoEntityAccess().getLeftCurlyBracketKeyword_6());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDaoEntityAccess().getAttributesPojoAttributeParserRuleCall_6_0()); 
+	        newCompositeNode(grammarAccess.getDaoEntityAccess().getAttributesPojoAttributeParserRuleCall_7_0()); 
 	    }
-		lv_attributes_7_0=rulePojoAttribute		{
+		lv_attributes_8_0=rulePojoAttribute		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDaoEntityRule());
 	        }
        		add(
        			$current, 
        			"attributes",
-        		lv_attributes_7_0, 
+        		lv_attributes_8_0, 
         		"PojoAttribute");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -9118,29 +9188,27 @@ ruleDaoEntity returns [EObject current=null]
 )*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDaoEntityAccess().getProceduresPojoProcedureParserRuleCall_7_0()); 
+	        newCompositeNode(grammarAccess.getDaoEntityAccess().getProceduresPojoProcedureParserRuleCall_8_0()); 
 	    }
-		lv_procedures_8_0=rulePojoProcedure		{
+		lv_procedures_9_0=rulePojoProcedure		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDaoEntityRule());
 	        }
        		add(
        			$current, 
        			"procedures",
-        		lv_procedures_8_0, 
+        		lv_procedures_9_0, 
         		"PojoProcedure");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*	otherlv_9='}' 
+)*	otherlv_10='}' 
     {
-    	newLeafNode(otherlv_9, grammarAccess.getDaoEntityAccess().getRightCurlyBracketKeyword_8());
+    	newLeafNode(otherlv_10, grammarAccess.getDaoEntityAccess().getRightCurlyBracketKeyword_9());
     }
 )
 ;
-
-
 
 
 

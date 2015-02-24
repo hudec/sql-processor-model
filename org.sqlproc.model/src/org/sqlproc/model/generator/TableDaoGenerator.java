@@ -34,6 +34,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
     protected Map<String, String> metaProceduresResultSet = new HashMap<String, String>();
 
     protected Map<String, String> finalDaos;
+    protected Map<String, Map<String, String>> finalDaosFeatures;
     protected Annotations daoAnnotations;
     protected Set<String> daoImports;
     protected Set<String> daoIgnoreTables = new HashSet<String>();
@@ -50,9 +51,10 @@ public class TableDaoGenerator extends TablePojoGenerator {
     }
 
     public TableDaoGenerator(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
-            Map<String, String> finalDaos, Annotations daoAnnotations, Set<String> daoImports,
-            List<String> dbSequences, DbType dbType) {
-        super(modelProperty, artifacts, Collections.<String, String> emptyMap(), null, null, dbSequences, dbType);
+            Map<String, String> finalDaos, Map<String, Map<String, String>> finalDaosFeatures,
+            Annotations daoAnnotations, Set<String> daoImports, List<String> dbSequences, DbType dbType) {
+        super(modelProperty, artifacts, Collections.<String, String> emptyMap(), Collections
+                .<String, Map<String, String>> emptyMap(), null, null, dbSequences, dbType);
 
         debug = new Debug(modelProperty.getDaoDebugLevel(artifacts), modelProperty.getDaoDebugScope(artifacts), LOGGER);
 
@@ -66,6 +68,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
         }
 
         this.finalDaos = finalDaos;
+        this.finalDaosFeatures = finalDaosFeatures;
         this.daoAnnotations = daoAnnotations;
         this.daoImports = daoImports;
 
@@ -94,6 +97,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
             System.out.println("metaFunctionsResultSet " + this.metaFunctionsResultSet);
             System.out.println("metaProceduresResultSet " + this.metaProceduresResultSet);
             System.out.println("finalDaos " + this.finalDaos);
+            System.out.println("finalDaosFeatures " + this.finalDaosFeatures);
             System.out.println("daoAnnotations " + this.daoAnnotations);
             System.out.println("daoImports " + this.daoImports);
             System.out.println("daoIgnoreTables " + this.daoIgnoreTables);

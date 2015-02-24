@@ -74,7 +74,6 @@ import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
-import org.sqlproc.model.processorModel.Modifier;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
@@ -592,13 +591,6 @@ public class ProcessorModelSwitch<T> extends Switch<T>
         DaoEntity daoEntity = (DaoEntity)theEObject;
         T result = caseDaoEntity(daoEntity);
         if (result == null) result = caseEntity(daoEntity);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ProcessorModelPackage.MODIFIER:
-      {
-        Modifier modifier = (Modifier)theEObject;
-        T result = caseModifier(modifier);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1904,22 +1896,6 @@ public class ProcessorModelSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDaoEntity(DaoEntity object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Modifier</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Modifier</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseModifier(Modifier object)
   {
     return null;
   }

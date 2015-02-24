@@ -77,7 +77,6 @@ import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
-import org.sqlproc.model.processorModel.Modifier;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
@@ -228,7 +227,6 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.FUN_PROC_TYPE: return createFunProcType();
       case ProcessorModelPackage.DAO_DIRECTIVE: return createDaoDirective();
       case ProcessorModelPackage.DAO_ENTITY: return createDaoEntity();
-      case ProcessorModelPackage.MODIFIER: return createModifier();
       case ProcessorModelPackage.ANNOTATION_DIRECTIVE: return createAnnotationDirective();
       case ProcessorModelPackage.ANNOTATION: return createAnnotation();
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS: return createImplementsExtendsDirectiveGenerics();
@@ -926,17 +924,6 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     DaoEntityImpl daoEntity = new DaoEntityImpl();
     return daoEntity;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Modifier createModifier()
-  {
-    ModifierImpl modifier = new ModifierImpl();
-    return modifier;
   }
 
   /**

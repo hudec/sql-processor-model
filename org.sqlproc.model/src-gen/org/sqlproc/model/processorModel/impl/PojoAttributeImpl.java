@@ -36,8 +36,9 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAttributeImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAttributeImpl#getDirectives <em>Directives</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAttributeImpl#isStatic <em>Static</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAttributeImpl#isFinal <em>Final</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAttributeImpl#isStatic <em>Static</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAttributeImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAttributeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAttributeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoAttributeImpl#getInitExpr <em>Init Expr</em>}</li>
@@ -69,6 +70,26 @@ public class PojoAttributeImpl extends MinimalEObjectImpl.Container implements P
   protected EList<PojoAttributeDirective> directives;
 
   /**
+   * The default value of the '{@link #isFinal() <em>Final</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isFinal()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean FINAL_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isFinal() <em>Final</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isFinal()
+   * @generated
+   * @ordered
+   */
+  protected boolean final_ = FINAL_EDEFAULT;
+
+  /**
    * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -89,24 +110,24 @@ public class PojoAttributeImpl extends MinimalEObjectImpl.Container implements P
   protected boolean static_ = STATIC_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isFinal() <em>Final</em>}' attribute.
+   * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isFinal()
+   * @see #getKind()
    * @generated
    * @ordered
    */
-  protected static final boolean FINAL_EDEFAULT = false;
+  protected static final String KIND_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isFinal() <em>Final</em>}' attribute.
+   * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isFinal()
+   * @see #getKind()
    * @generated
    * @ordered
    */
-  protected boolean final_ = FINAL_EDEFAULT;
+  protected String kind = KIND_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -202,6 +223,29 @@ public class PojoAttributeImpl extends MinimalEObjectImpl.Container implements P
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isFinal()
+  {
+    return final_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFinal(boolean newFinal)
+  {
+    boolean oldFinal = final_;
+    final_ = newFinal;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_ATTRIBUTE__FINAL, oldFinal, final_));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public boolean isStatic()
   {
     return static_;
@@ -225,9 +269,9 @@ public class PojoAttributeImpl extends MinimalEObjectImpl.Container implements P
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isFinal()
+  public String getKind()
   {
-    return final_;
+    return kind;
   }
 
   /**
@@ -235,12 +279,12 @@ public class PojoAttributeImpl extends MinimalEObjectImpl.Container implements P
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setFinal(boolean newFinal)
+  public void setKind(String newKind)
   {
-    boolean oldFinal = final_;
-    final_ = newFinal;
+    String oldKind = kind;
+    kind = newKind;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_ATTRIBUTE__FINAL, oldFinal, final_));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_ATTRIBUTE__KIND, oldKind, kind));
   }
 
   /**
@@ -398,10 +442,12 @@ public class PojoAttributeImpl extends MinimalEObjectImpl.Container implements P
         return getAnnotations();
       case ProcessorModelPackage.POJO_ATTRIBUTE__DIRECTIVES:
         return getDirectives();
-      case ProcessorModelPackage.POJO_ATTRIBUTE__STATIC:
-        return isStatic();
       case ProcessorModelPackage.POJO_ATTRIBUTE__FINAL:
         return isFinal();
+      case ProcessorModelPackage.POJO_ATTRIBUTE__STATIC:
+        return isStatic();
+      case ProcessorModelPackage.POJO_ATTRIBUTE__KIND:
+        return getKind();
       case ProcessorModelPackage.POJO_ATTRIBUTE__TYPE:
         return getType();
       case ProcessorModelPackage.POJO_ATTRIBUTE__NAME:
@@ -431,11 +477,14 @@ public class PojoAttributeImpl extends MinimalEObjectImpl.Container implements P
         getDirectives().clear();
         getDirectives().addAll((Collection<? extends PojoAttributeDirective>)newValue);
         return;
+      case ProcessorModelPackage.POJO_ATTRIBUTE__FINAL:
+        setFinal((Boolean)newValue);
+        return;
       case ProcessorModelPackage.POJO_ATTRIBUTE__STATIC:
         setStatic((Boolean)newValue);
         return;
-      case ProcessorModelPackage.POJO_ATTRIBUTE__FINAL:
-        setFinal((Boolean)newValue);
+      case ProcessorModelPackage.POJO_ATTRIBUTE__KIND:
+        setKind((String)newValue);
         return;
       case ProcessorModelPackage.POJO_ATTRIBUTE__TYPE:
         setType((JvmTypeReference)newValue);
@@ -466,11 +515,14 @@ public class PojoAttributeImpl extends MinimalEObjectImpl.Container implements P
       case ProcessorModelPackage.POJO_ATTRIBUTE__DIRECTIVES:
         getDirectives().clear();
         return;
+      case ProcessorModelPackage.POJO_ATTRIBUTE__FINAL:
+        setFinal(FINAL_EDEFAULT);
+        return;
       case ProcessorModelPackage.POJO_ATTRIBUTE__STATIC:
         setStatic(STATIC_EDEFAULT);
         return;
-      case ProcessorModelPackage.POJO_ATTRIBUTE__FINAL:
-        setFinal(FINAL_EDEFAULT);
+      case ProcessorModelPackage.POJO_ATTRIBUTE__KIND:
+        setKind(KIND_EDEFAULT);
         return;
       case ProcessorModelPackage.POJO_ATTRIBUTE__TYPE:
         setType((JvmTypeReference)null);
@@ -499,10 +551,12 @@ public class PojoAttributeImpl extends MinimalEObjectImpl.Container implements P
         return annotations != null && !annotations.isEmpty();
       case ProcessorModelPackage.POJO_ATTRIBUTE__DIRECTIVES:
         return directives != null && !directives.isEmpty();
-      case ProcessorModelPackage.POJO_ATTRIBUTE__STATIC:
-        return static_ != STATIC_EDEFAULT;
       case ProcessorModelPackage.POJO_ATTRIBUTE__FINAL:
         return final_ != FINAL_EDEFAULT;
+      case ProcessorModelPackage.POJO_ATTRIBUTE__STATIC:
+        return static_ != STATIC_EDEFAULT;
+      case ProcessorModelPackage.POJO_ATTRIBUTE__KIND:
+        return KIND_EDEFAULT == null ? kind != null : !KIND_EDEFAULT.equals(kind);
       case ProcessorModelPackage.POJO_ATTRIBUTE__TYPE:
         return type != null;
       case ProcessorModelPackage.POJO_ATTRIBUTE__NAME:
@@ -524,10 +578,12 @@ public class PojoAttributeImpl extends MinimalEObjectImpl.Container implements P
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (static: ");
-    result.append(static_);
-    result.append(", final: ");
+    result.append(" (final: ");
     result.append(final_);
+    result.append(", static: ");
+    result.append(static_);
+    result.append(", kind: ");
+    result.append(kind);
     result.append(", name: ");
     result.append(name);
     result.append(')');

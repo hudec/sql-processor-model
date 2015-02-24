@@ -253,13 +253,15 @@ PojoAttributeDirective:
 
 PojoAttribute:
 	annotations+=Annotation* directives+=PojoAttributeDirective*
-	'#Attr' (=> static?='static'?) (=> final?='final'?) //modifiers+=Modifier* 
+	(final?='final'?) (static?='static'?) 
+	kind=('#Attr' | '#Simple') //modifiers+=Modifier* 
 	(type=JvmTypeReference)? name=ValidID ('=' initExpr=XExpression)?
 ;
 
 PojoProcedure:
 	annotations+=Annotation*
-	'#Proc' (=> static?='static'?) (=> final?='final'?) //modifiers+=Modifier*
+	(final?='final')? (=> static?='static'?)
+	'#Proc' //modifiers+=Modifier*
 	(type=JvmTypeReference)? name=ValidID 
 	LPAREN (params+=FullJvmFormalParameter (COMMA params+=FullJvmFormalParameter)*)? RPAREN
 	body=XBlockExpression
@@ -275,6 +277,7 @@ EnumEntity:
 	'#Enum' name=ValidID 
 	'{'
 		attribute=EnumAttribute
+		procedures+=PojoProcedure*
 	'}'
 ;
 
@@ -286,6 +289,7 @@ EnumAttributeDirective:
 
 EnumAttribute:
 	directives+=EnumAttributeDirective 
+	(final?='final'?) (static?='static'?) 
 	'#Attr' type=JvmTypeReference name=ValidID
 ;
 
@@ -317,7 +321,7 @@ DaoDirective:
 
 DaoEntity:
 	directives+=DaoDirective*
-	(final?='final')?
+	(final?='final')? (abstract?='abstract')? 
 	'#Dao' name=ValidID ('extends' superType=JvmParameterizedTypeReference)?
 	'{'
 		attributes+=PojoAttribute*
@@ -325,9 +329,9 @@ DaoEntity:
 	'}'
 ;
 
-Modifier: {Modifier}
-	(abstract?='abstract'? & static?='static'? & final?='final'?)
-;
+//Modifier: {Modifier}
+//	(abstract?='abstract'? & static?='static'? & final?='final'?)
+//;
 
 AnnotationDirective: 
 	{AnnotationDirectiveConflict} '#Conflict'

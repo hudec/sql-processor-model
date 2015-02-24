@@ -120,7 +120,6 @@ import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
-import org.sqlproc.model.processorModel.Modifier;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveDiscriminator;
@@ -522,12 +521,6 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 			case ProcessorModelPackage.METAGEN_PROPERTY:
 				if(context == grammarAccess.getMetagenPropertyRule()) {
 					sequence_MetagenProperty(context, (MetagenProperty) semanticObject); 
-					return; 
-				}
-				else break;
-			case ProcessorModelPackage.MODIFIER:
-				if(context == grammarAccess.getModifierRule()) {
-					sequence_Modifier(context, (Modifier) semanticObject); 
 					return; 
 				}
 				else break;
@@ -2208,6 +2201,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *     (
 	 *         directives+=DaoDirective* 
 	 *         final?='final'? 
+	 *         abstract?='abstract'? 
 	 *         name=ValidID 
 	 *         superType=JvmParameterizedTypeReference? 
 	 *         attributes+=PojoAttribute* 
@@ -2438,7 +2432,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (directives+=EnumAttributeDirective type=JvmTypeReference name=ValidID)
+	 *     (directives+=EnumAttributeDirective final?='final'? static?='static'? type=JvmTypeReference name=ValidID)
 	 */
 	protected void sequence_EnumAttribute(EObject context, EnumAttribute semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2463,7 +2457,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (directives+=EnumDirective* final?='final'? name=ValidID attribute=EnumAttribute)
+	 *     (directives+=EnumDirective* final?='final'? name=ValidID attribute=EnumAttribute procedures+=PojoProcedure*)
 	 */
 	protected void sequence_EnumEntity(EObject context, EnumEntity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2739,15 +2733,6 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (abstract?='abstract'? static?='static'? final?='final'?)
-	 */
-	protected void sequence_Modifier(EObject context, Modifier semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (name=QualifiedName importSection=XImportSection? elements+=AbstractEntity*)
 	 */
 	protected void sequence_Package(EObject context, org.sqlproc.model.processorModel.Package semanticObject) {
@@ -2886,8 +2871,9 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 *     (
 	 *         annotations+=Annotation* 
 	 *         directives+=PojoAttributeDirective* 
-	 *         static?='static'? 
 	 *         final?='final'? 
+	 *         static?='static'? 
+	 *         (kind='#Attr' | kind='#Simple') 
 	 *         type=JvmTypeReference? 
 	 *         name=ValidID 
 	 *         initExpr=XExpression?
@@ -3036,8 +3022,8 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	 * Constraint:
 	 *     (
 	 *         annotations+=Annotation* 
-	 *         static?='static'? 
 	 *         final?='final'? 
+	 *         static?='static'? 
 	 *         type=JvmTypeReference? 
 	 *         name=ValidID 
 	 *         (params+=FullJvmFormalParameter params+=FullJvmFormalParameter*)? 

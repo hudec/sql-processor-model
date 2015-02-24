@@ -4619,11 +4619,14 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAnnotationsAnnotationParserRuleCall_0_0 = (RuleCall)cAnnotationsAssignment_0.eContents().get(0);
 		private final Assignment cDirectivesAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cDirectivesPojoAttributeDirectiveParserRuleCall_1_0 = (RuleCall)cDirectivesAssignment_1.eContents().get(0);
-		private final Keyword cAttrKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cFinalAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cFinalFinalKeyword_2_0 = (Keyword)cFinalAssignment_2.eContents().get(0);
 		private final Assignment cStaticAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final Keyword cStaticStaticKeyword_3_0 = (Keyword)cStaticAssignment_3.eContents().get(0);
-		private final Assignment cFinalAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final Keyword cFinalFinalKeyword_4_0 = (Keyword)cFinalAssignment_4.eContents().get(0);
+		private final Assignment cKindAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Alternatives cKindAlternatives_4_0 = (Alternatives)cKindAssignment_4.eContents().get(0);
+		private final Keyword cKindAttrKeyword_4_0_0 = (Keyword)cKindAlternatives_4_0.eContents().get(0);
+		private final Keyword cKindSimpleKeyword_4_0_1 = (Keyword)cKindAlternatives_4_0.eContents().get(1);
 		private final Assignment cTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cTypeJvmTypeReferenceParserRuleCall_5_0 = (RuleCall)cTypeAssignment_5.eContents().get(0);
 		private final Assignment cNameAssignment_6 = (Assignment)cGroup.eContents().get(6);
@@ -4634,12 +4637,12 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInitExprXExpressionParserRuleCall_7_1_0 = (RuleCall)cInitExprAssignment_7_1.eContents().get(0);
 		
 		//PojoAttribute:
-		//	annotations+=Annotation* directives+=PojoAttributeDirective* "#Attr" => static?="static"? => final?="final"? //modifiers+=Modifier* 
-		//	type=JvmTypeReference? name=ValidID ("=" initExpr=XExpression)?;
+		//	annotations+=Annotation* directives+=PojoAttributeDirective* final?="final"? static?="static"? kind=("#Attr" //modifiers+=Modifier* 
+		//	| "#Simple") type=JvmTypeReference? name=ValidID ("=" initExpr=XExpression)?;
 		public ParserRule getRule() { return rule; }
 
-		//annotations+=Annotation* directives+=PojoAttributeDirective* "#Attr" => static?="static"? => final?="final"? //modifiers+=Modifier* 
-		//type=JvmTypeReference? name=ValidID ("=" initExpr=XExpression)?
+		//annotations+=Annotation* directives+=PojoAttributeDirective* final?="final"? static?="static"? kind=("#Attr" //modifiers+=Modifier* 
+		//| "#Simple") type=JvmTypeReference? name=ValidID ("=" initExpr=XExpression)?
 		public Group getGroup() { return cGroup; }
 
 		//annotations+=Annotation*
@@ -4654,20 +4657,31 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//PojoAttributeDirective
 		public RuleCall getDirectivesPojoAttributeDirectiveParserRuleCall_1_0() { return cDirectivesPojoAttributeDirectiveParserRuleCall_1_0; }
 
-		//"#Attr"
-		public Keyword getAttrKeyword_2() { return cAttrKeyword_2; }
+		//final?="final"?
+		public Assignment getFinalAssignment_2() { return cFinalAssignment_2; }
 
-		//=> static?="static"?
+		//"final"
+		public Keyword getFinalFinalKeyword_2_0() { return cFinalFinalKeyword_2_0; }
+
+		//static?="static"?
 		public Assignment getStaticAssignment_3() { return cStaticAssignment_3; }
 
 		//"static"
 		public Keyword getStaticStaticKeyword_3_0() { return cStaticStaticKeyword_3_0; }
 
-		//=> final?="final"?
-		public Assignment getFinalAssignment_4() { return cFinalAssignment_4; }
+		//kind=("#Attr" //modifiers+=Modifier* 
+		//| "#Simple")
+		public Assignment getKindAssignment_4() { return cKindAssignment_4; }
 
-		//"final"
-		public Keyword getFinalFinalKeyword_4_0() { return cFinalFinalKeyword_4_0; }
+		//"#Attr" //modifiers+=Modifier* 
+		//| "#Simple"
+		public Alternatives getKindAlternatives_4_0() { return cKindAlternatives_4_0; }
+
+		//"#Attr"
+		public Keyword getKindAttrKeyword_4_0_0() { return cKindAttrKeyword_4_0_0; }
+
+		//"#Simple"
+		public Keyword getKindSimpleKeyword_4_0_1() { return cKindSimpleKeyword_4_0_1; }
 
 		//type=JvmTypeReference?
 		public Assignment getTypeAssignment_5() { return cTypeAssignment_5; }
@@ -4699,11 +4713,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cAnnotationsAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cAnnotationsAnnotationParserRuleCall_0_0 = (RuleCall)cAnnotationsAssignment_0.eContents().get(0);
-		private final Keyword cProcKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cFinalAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cFinalFinalKeyword_1_0 = (Keyword)cFinalAssignment_1.eContents().get(0);
 		private final Assignment cStaticAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final Keyword cStaticStaticKeyword_2_0 = (Keyword)cStaticAssignment_2.eContents().get(0);
-		private final Assignment cFinalAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Keyword cFinalFinalKeyword_3_0 = (Keyword)cFinalAssignment_3.eContents().get(0);
+		private final Keyword cProcKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cTypeJvmTypeReferenceParserRuleCall_4_0 = (RuleCall)cTypeAssignment_4.eContents().get(0);
 		private final Assignment cNameAssignment_5 = (Assignment)cGroup.eContents().get(5);
@@ -4721,14 +4735,14 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBodyXBlockExpressionParserRuleCall_9_0 = (RuleCall)cBodyAssignment_9.eContents().get(0);
 		
 		//PojoProcedure:
-		//	annotations+=Annotation* "#Proc" => static?="static"? => final?="final"? //modifiers+=Modifier*
-		//	type=JvmTypeReference? name=ValidID LPAREN (params+=FullJvmFormalParameter (COMMA params+=FullJvmFormalParameter)*)?
-		//	RPAREN body=XBlockExpression;
+		//	annotations+=Annotation* final?="final"? => static?="static"? //modifiers+=Modifier*
+		//	"#Proc" type=JvmTypeReference? name=ValidID LPAREN (params+=FullJvmFormalParameter (COMMA
+		//	params+=FullJvmFormalParameter)*)? RPAREN body=XBlockExpression;
 		public ParserRule getRule() { return rule; }
 
-		//annotations+=Annotation* "#Proc" => static?="static"? => final?="final"? //modifiers+=Modifier*
-		//type=JvmTypeReference? name=ValidID LPAREN (params+=FullJvmFormalParameter (COMMA params+=FullJvmFormalParameter)*)?
-		//RPAREN body=XBlockExpression
+		//annotations+=Annotation* final?="final"? => static?="static"? //modifiers+=Modifier*
+		//"#Proc" type=JvmTypeReference? name=ValidID LPAREN (params+=FullJvmFormalParameter (COMMA
+		//params+=FullJvmFormalParameter)*)? RPAREN body=XBlockExpression
 		public Group getGroup() { return cGroup; }
 
 		//annotations+=Annotation*
@@ -4737,8 +4751,11 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//Annotation
 		public RuleCall getAnnotationsAnnotationParserRuleCall_0_0() { return cAnnotationsAnnotationParserRuleCall_0_0; }
 
-		//"#Proc"
-		public Keyword getProcKeyword_1() { return cProcKeyword_1; }
+		//final?="final"?
+		public Assignment getFinalAssignment_1() { return cFinalAssignment_1; }
+
+		//"final"
+		public Keyword getFinalFinalKeyword_1_0() { return cFinalFinalKeyword_1_0; }
 
 		//=> static?="static"?
 		public Assignment getStaticAssignment_2() { return cStaticAssignment_2; }
@@ -4746,11 +4763,9 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"static"
 		public Keyword getStaticStaticKeyword_2_0() { return cStaticStaticKeyword_2_0; }
 
-		//=> final?="final"?
-		public Assignment getFinalAssignment_3() { return cFinalAssignment_3; }
-
-		//"final"
-		public Keyword getFinalFinalKeyword_3_0() { return cFinalFinalKeyword_3_0; }
+		////modifiers+=Modifier*
+		//"#Proc"
+		public Keyword getProcKeyword_3() { return cProcKeyword_3; }
 
 		//type=JvmTypeReference?
 		public Assignment getTypeAssignment_4() { return cTypeAssignment_4; }
@@ -4847,13 +4862,17 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cAttributeAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cAttributeEnumAttributeParserRuleCall_5_0 = (RuleCall)cAttributeAssignment_5.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cProceduresAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cProceduresPojoProcedureParserRuleCall_6_0 = (RuleCall)cProceduresAssignment_6.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//EnumEntity:
-		//	directives+=EnumDirective* final?="final"? "#Enum" name=ValidID "{" attribute=EnumAttribute "}";
+		//	directives+=EnumDirective* final?="final"? "#Enum" name=ValidID "{" attribute=EnumAttribute procedures+=PojoProcedure*
+		//	"}";
 		public ParserRule getRule() { return rule; }
 
-		//directives+=EnumDirective* final?="final"? "#Enum" name=ValidID "{" attribute=EnumAttribute "}"
+		//directives+=EnumDirective* final?="final"? "#Enum" name=ValidID "{" attribute=EnumAttribute procedures+=PojoProcedure*
+		//"}"
 		public Group getGroup() { return cGroup; }
 
 		//directives+=EnumDirective*
@@ -4886,8 +4905,14 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//EnumAttribute
 		public RuleCall getAttributeEnumAttributeParserRuleCall_5_0() { return cAttributeEnumAttributeParserRuleCall_5_0; }
 
+		//procedures+=PojoProcedure*
+		public Assignment getProceduresAssignment_6() { return cProceduresAssignment_6; }
+
+		//PojoProcedure
+		public RuleCall getProceduresPojoProcedureParserRuleCall_6_0() { return cProceduresPojoProcedureParserRuleCall_6_0; }
+
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 
 	public class EnumAttributeValueElements extends AbstractParserRuleElementFinder {
@@ -4979,17 +5004,21 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDirectivesAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDirectivesEnumAttributeDirectiveParserRuleCall_0_0 = (RuleCall)cDirectivesAssignment_0.eContents().get(0);
-		private final Keyword cAttrKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTypeJvmTypeReferenceParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
-		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cNameValidIDParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
+		private final Assignment cFinalAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cFinalFinalKeyword_1_0 = (Keyword)cFinalAssignment_1.eContents().get(0);
+		private final Assignment cStaticAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cStaticStaticKeyword_2_0 = (Keyword)cStaticAssignment_2.eContents().get(0);
+		private final Keyword cAttrKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cTypeJvmTypeReferenceParserRuleCall_4_0 = (RuleCall)cTypeAssignment_4.eContents().get(0);
+		private final Assignment cNameAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cNameValidIDParserRuleCall_5_0 = (RuleCall)cNameAssignment_5.eContents().get(0);
 		
 		//EnumAttribute:
-		//	directives+=EnumAttributeDirective "#Attr" type=JvmTypeReference name=ValidID;
+		//	directives+=EnumAttributeDirective final?="final"? static?="static"? "#Attr" type=JvmTypeReference name=ValidID;
 		public ParserRule getRule() { return rule; }
 
-		//directives+=EnumAttributeDirective "#Attr" type=JvmTypeReference name=ValidID
+		//directives+=EnumAttributeDirective final?="final"? static?="static"? "#Attr" type=JvmTypeReference name=ValidID
 		public Group getGroup() { return cGroup; }
 
 		//directives+=EnumAttributeDirective
@@ -4998,20 +5027,32 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//EnumAttributeDirective
 		public RuleCall getDirectivesEnumAttributeDirectiveParserRuleCall_0_0() { return cDirectivesEnumAttributeDirectiveParserRuleCall_0_0; }
 
+		//final?="final"?
+		public Assignment getFinalAssignment_1() { return cFinalAssignment_1; }
+
+		//"final"
+		public Keyword getFinalFinalKeyword_1_0() { return cFinalFinalKeyword_1_0; }
+
+		//static?="static"?
+		public Assignment getStaticAssignment_2() { return cStaticAssignment_2; }
+
+		//"static"
+		public Keyword getStaticStaticKeyword_2_0() { return cStaticStaticKeyword_2_0; }
+
 		//"#Attr"
-		public Keyword getAttrKeyword_1() { return cAttrKeyword_1; }
+		public Keyword getAttrKeyword_3() { return cAttrKeyword_3; }
 
 		//type=JvmTypeReference
-		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		public Assignment getTypeAssignment_4() { return cTypeAssignment_4; }
 
 		//JvmTypeReference
-		public RuleCall getTypeJvmTypeReferenceParserRuleCall_2_0() { return cTypeJvmTypeReferenceParserRuleCall_2_0; }
+		public RuleCall getTypeJvmTypeReferenceParserRuleCall_4_0() { return cTypeJvmTypeReferenceParserRuleCall_4_0; }
 
 		//name=ValidID
-		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
+		public Assignment getNameAssignment_5() { return cNameAssignment_5; }
 
 		//ValidID
-		public RuleCall getNameValidIDParserRuleCall_3_0() { return cNameValidIDParserRuleCall_3_0; }
+		public RuleCall getNameValidIDParserRuleCall_5_0() { return cNameValidIDParserRuleCall_5_0; }
 	}
 
 	public class DaoDirectiveParametersElements extends AbstractParserRuleElementFinder {
@@ -5404,27 +5445,29 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDirectivesDaoDirectiveParserRuleCall_0_0 = (RuleCall)cDirectivesAssignment_0.eContents().get(0);
 		private final Assignment cFinalAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final Keyword cFinalFinalKeyword_1_0 = (Keyword)cFinalAssignment_1.eContents().get(0);
-		private final Keyword cDaoKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cNameValidIDParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cExtendsKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cSuperTypeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cSuperTypeJvmParameterizedTypeReferenceParserRuleCall_4_1_0 = (RuleCall)cSuperTypeAssignment_4_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cAttributesAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cAttributesPojoAttributeParserRuleCall_6_0 = (RuleCall)cAttributesAssignment_6.eContents().get(0);
-		private final Assignment cProceduresAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cProceduresPojoProcedureParserRuleCall_7_0 = (RuleCall)cProceduresAssignment_7.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cAbstractAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cAbstractAbstractKeyword_2_0 = (Keyword)cAbstractAssignment_2.eContents().get(0);
+		private final Keyword cDaoKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cNameAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cNameValidIDParserRuleCall_4_0 = (RuleCall)cNameAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cExtendsKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cSuperTypeAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cSuperTypeJvmParameterizedTypeReferenceParserRuleCall_5_1_0 = (RuleCall)cSuperTypeAssignment_5_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cAttributesAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cAttributesPojoAttributeParserRuleCall_7_0 = (RuleCall)cAttributesAssignment_7.eContents().get(0);
+		private final Assignment cProceduresAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cProceduresPojoProcedureParserRuleCall_8_0 = (RuleCall)cProceduresAssignment_8.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//DaoEntity:
-		//	directives+=DaoDirective* final?="final"? "#Dao" name=ValidID ("extends" superType=JvmParameterizedTypeReference)? "{"
-		//	attributes+=PojoAttribute* procedures+=PojoProcedure* "}";
+		//	directives+=DaoDirective* final?="final"? abstract?="abstract"? "#Dao" name=ValidID ("extends"
+		//	superType=JvmParameterizedTypeReference)? "{" attributes+=PojoAttribute* procedures+=PojoProcedure* "}";
 		public ParserRule getRule() { return rule; }
 
-		//directives+=DaoDirective* final?="final"? "#Dao" name=ValidID ("extends" superType=JvmParameterizedTypeReference)? "{"
-		//attributes+=PojoAttribute* procedures+=PojoProcedure* "}"
+		//directives+=DaoDirective* final?="final"? abstract?="abstract"? "#Dao" name=ValidID ("extends"
+		//superType=JvmParameterizedTypeReference)? "{" attributes+=PojoAttribute* procedures+=PojoProcedure* "}"
 		public Group getGroup() { return cGroup; }
 
 		//directives+=DaoDirective*
@@ -5439,88 +5482,50 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		//"final"
 		public Keyword getFinalFinalKeyword_1_0() { return cFinalFinalKeyword_1_0; }
 
-		//"#Dao"
-		public Keyword getDaoKeyword_2() { return cDaoKeyword_2; }
-
-		//name=ValidID
-		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
-
-		//ValidID
-		public RuleCall getNameValidIDParserRuleCall_3_0() { return cNameValidIDParserRuleCall_3_0; }
-
-		//("extends" superType=JvmParameterizedTypeReference)?
-		public Group getGroup_4() { return cGroup_4; }
-
-		//"extends"
-		public Keyword getExtendsKeyword_4_0() { return cExtendsKeyword_4_0; }
-
-		//superType=JvmParameterizedTypeReference
-		public Assignment getSuperTypeAssignment_4_1() { return cSuperTypeAssignment_4_1; }
-
-		//JvmParameterizedTypeReference
-		public RuleCall getSuperTypeJvmParameterizedTypeReferenceParserRuleCall_4_1_0() { return cSuperTypeJvmParameterizedTypeReferenceParserRuleCall_4_1_0; }
-
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
-
-		//attributes+=PojoAttribute*
-		public Assignment getAttributesAssignment_6() { return cAttributesAssignment_6; }
-
-		//PojoAttribute
-		public RuleCall getAttributesPojoAttributeParserRuleCall_6_0() { return cAttributesPojoAttributeParserRuleCall_6_0; }
-
-		//procedures+=PojoProcedure*
-		public Assignment getProceduresAssignment_7() { return cProceduresAssignment_7; }
-
-		//PojoProcedure
-		public RuleCall getProceduresPojoProcedureParserRuleCall_7_0() { return cProceduresPojoProcedureParserRuleCall_7_0; }
-
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
-	}
-
-	public class ModifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Modifier");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cModifierAction_0 = (Action)cGroup.eContents().get(0);
-		private final UnorderedGroup cUnorderedGroup_1 = (UnorderedGroup)cGroup.eContents().get(1);
-		private final Assignment cAbstractAssignment_1_0 = (Assignment)cUnorderedGroup_1.eContents().get(0);
-		private final Keyword cAbstractAbstractKeyword_1_0_0 = (Keyword)cAbstractAssignment_1_0.eContents().get(0);
-		private final Assignment cStaticAssignment_1_1 = (Assignment)cUnorderedGroup_1.eContents().get(1);
-		private final Keyword cStaticStaticKeyword_1_1_0 = (Keyword)cStaticAssignment_1_1.eContents().get(0);
-		private final Assignment cFinalAssignment_1_2 = (Assignment)cUnorderedGroup_1.eContents().get(2);
-		private final Keyword cFinalFinalKeyword_1_2_0 = (Keyword)cFinalAssignment_1_2.eContents().get(0);
-		
-		//Modifier:
-		//	{Modifier} (abstract?="abstract"? & static?="static"? & final?="final"?);
-		public ParserRule getRule() { return rule; }
-
-		//{Modifier} (abstract?="abstract"? & static?="static"? & final?="final"?)
-		public Group getGroup() { return cGroup; }
-
-		//{Modifier}
-		public Action getModifierAction_0() { return cModifierAction_0; }
-
-		//abstract?="abstract"? & static?="static"? & final?="final"?
-		public UnorderedGroup getUnorderedGroup_1() { return cUnorderedGroup_1; }
-
 		//abstract?="abstract"?
-		public Assignment getAbstractAssignment_1_0() { return cAbstractAssignment_1_0; }
+		public Assignment getAbstractAssignment_2() { return cAbstractAssignment_2; }
 
 		//"abstract"
-		public Keyword getAbstractAbstractKeyword_1_0_0() { return cAbstractAbstractKeyword_1_0_0; }
+		public Keyword getAbstractAbstractKeyword_2_0() { return cAbstractAbstractKeyword_2_0; }
 
-		//static?="static"?
-		public Assignment getStaticAssignment_1_1() { return cStaticAssignment_1_1; }
+		//"#Dao"
+		public Keyword getDaoKeyword_3() { return cDaoKeyword_3; }
 
-		//"static"
-		public Keyword getStaticStaticKeyword_1_1_0() { return cStaticStaticKeyword_1_1_0; }
+		//name=ValidID
+		public Assignment getNameAssignment_4() { return cNameAssignment_4; }
 
-		//final?="final"?
-		public Assignment getFinalAssignment_1_2() { return cFinalAssignment_1_2; }
+		//ValidID
+		public RuleCall getNameValidIDParserRuleCall_4_0() { return cNameValidIDParserRuleCall_4_0; }
 
-		//"final"
-		public Keyword getFinalFinalKeyword_1_2_0() { return cFinalFinalKeyword_1_2_0; }
+		//("extends" superType=JvmParameterizedTypeReference)?
+		public Group getGroup_5() { return cGroup_5; }
+
+		//"extends"
+		public Keyword getExtendsKeyword_5_0() { return cExtendsKeyword_5_0; }
+
+		//superType=JvmParameterizedTypeReference
+		public Assignment getSuperTypeAssignment_5_1() { return cSuperTypeAssignment_5_1; }
+
+		//JvmParameterizedTypeReference
+		public RuleCall getSuperTypeJvmParameterizedTypeReferenceParserRuleCall_5_1_0() { return cSuperTypeJvmParameterizedTypeReferenceParserRuleCall_5_1_0; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
+
+		//attributes+=PojoAttribute*
+		public Assignment getAttributesAssignment_7() { return cAttributesAssignment_7; }
+
+		//PojoAttribute
+		public RuleCall getAttributesPojoAttributeParserRuleCall_7_0() { return cAttributesPojoAttributeParserRuleCall_7_0; }
+
+		//procedures+=PojoProcedure*
+		public Assignment getProceduresAssignment_8() { return cProceduresAssignment_8; }
+
+		//PojoProcedure
+		public RuleCall getProceduresPojoProcedureParserRuleCall_8_0() { return cProceduresPojoProcedureParserRuleCall_8_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
 	}
 
 	public class AnnotationDirectiveElements extends AbstractParserRuleElementFinder {
@@ -5548,6 +5553,9 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cAnnotationDirectiveAttributeAction_6_0 = (Action)cGroup_6.eContents().get(0);
 		private final Keyword cAttributeKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
 		
+		////Modifier: {Modifier}
+		////	(abstract?='abstract'? & static?='static'? & final?='final'?)
+		////;
 		//AnnotationDirective:
 		//	{AnnotationDirectiveConflict} "#Conflict" | {AnnotationDirectiveStatic} "#Static" | {AnnotationDirectiveConstructor}
 		//	"#Constructor" | {AnnotationDirectiveStandard} "#Standard" | {AnnotationDirectiveSetter} "#Setter" |
@@ -5711,7 +5719,6 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	private final FunProcTypeElements pFunProcType;
 	private final DaoDirectiveElements pDaoDirective;
 	private final DaoEntityElements pDaoEntity;
-	private final ModifierElements pModifier;
 	private final AnnotationDirectiveElements pAnnotationDirective;
 	private final AnnotationElements pAnnotation;
 	private final TerminalRule tLPAREN;
@@ -5786,7 +5793,6 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		this.pFunProcType = new FunProcTypeElements();
 		this.pDaoDirective = new DaoDirectiveElements();
 		this.pDaoEntity = new DaoEntityElements();
-		this.pModifier = new ModifierElements();
 		this.pAnnotationDirective = new AnnotationDirectiveElements();
 		this.pAnnotation = new AnnotationElements();
 		this.tLPAREN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LPAREN");
@@ -6364,8 +6370,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoAttribute:
-	//	annotations+=Annotation* directives+=PojoAttributeDirective* "#Attr" => static?="static"? => final?="final"? //modifiers+=Modifier* 
-	//	type=JvmTypeReference? name=ValidID ("=" initExpr=XExpression)?;
+	//	annotations+=Annotation* directives+=PojoAttributeDirective* final?="final"? static?="static"? kind=("#Attr" //modifiers+=Modifier* 
+	//	| "#Simple") type=JvmTypeReference? name=ValidID ("=" initExpr=XExpression)?;
 	public PojoAttributeElements getPojoAttributeAccess() {
 		return pPojoAttribute;
 	}
@@ -6375,9 +6381,9 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PojoProcedure:
-	//	annotations+=Annotation* "#Proc" => static?="static"? => final?="final"? //modifiers+=Modifier*
-	//	type=JvmTypeReference? name=ValidID LPAREN (params+=FullJvmFormalParameter (COMMA params+=FullJvmFormalParameter)*)?
-	//	RPAREN body=XBlockExpression;
+	//	annotations+=Annotation* final?="final"? => static?="static"? //modifiers+=Modifier*
+	//	"#Proc" type=JvmTypeReference? name=ValidID LPAREN (params+=FullJvmFormalParameter (COMMA
+	//	params+=FullJvmFormalParameter)*)? RPAREN body=XBlockExpression;
 	public PojoProcedureElements getPojoProcedureAccess() {
 		return pPojoProcedure;
 	}
@@ -6397,7 +6403,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EnumEntity:
-	//	directives+=EnumDirective* final?="final"? "#Enum" name=ValidID "{" attribute=EnumAttribute "}";
+	//	directives+=EnumDirective* final?="final"? "#Enum" name=ValidID "{" attribute=EnumAttribute procedures+=PojoProcedure*
+	//	"}";
 	public EnumEntityElements getEnumEntityAccess() {
 		return pEnumEntity;
 	}
@@ -6427,7 +6434,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EnumAttribute:
-	//	directives+=EnumAttributeDirective "#Attr" type=JvmTypeReference name=ValidID;
+	//	directives+=EnumAttributeDirective final?="final"? static?="static"? "#Attr" type=JvmTypeReference name=ValidID;
 	public EnumAttributeElements getEnumAttributeAccess() {
 		return pEnumAttribute;
 	}
@@ -6482,8 +6489,8 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DaoEntity:
-	//	directives+=DaoDirective* final?="final"? "#Dao" name=ValidID ("extends" superType=JvmParameterizedTypeReference)? "{"
-	//	attributes+=PojoAttribute* procedures+=PojoProcedure* "}";
+	//	directives+=DaoDirective* final?="final"? abstract?="abstract"? "#Dao" name=ValidID ("extends"
+	//	superType=JvmParameterizedTypeReference)? "{" attributes+=PojoAttribute* procedures+=PojoProcedure* "}";
 	public DaoEntityElements getDaoEntityAccess() {
 		return pDaoEntity;
 	}
@@ -6492,16 +6499,9 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		return getDaoEntityAccess().getRule();
 	}
 
-	//Modifier:
-	//	{Modifier} (abstract?="abstract"? & static?="static"? & final?="final"?);
-	public ModifierElements getModifierAccess() {
-		return pModifier;
-	}
-	
-	public ParserRule getModifierRule() {
-		return getModifierAccess().getRule();
-	}
-
+	////Modifier: {Modifier}
+	////	(abstract?='abstract'? & static?='static'? & final?='final'?)
+	////;
 	//AnnotationDirective:
 	//	{AnnotationDirectiveConflict} "#Conflict" | {AnnotationDirectiveStatic} "#Static" | {AnnotationDirectiveConstructor}
 	//	"#Constructor" | {AnnotationDirectiveStandard} "#Standard" | {AnnotationDirectiveSetter} "#Setter" |

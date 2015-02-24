@@ -35,8 +35,8 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoProcedureImpl#getAnnotations <em>Annotations</em>}</li>
- *   <li>{@link org.sqlproc.model.processorModel.impl.PojoProcedureImpl#isStatic <em>Static</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoProcedureImpl#isFinal <em>Final</em>}</li>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PojoProcedureImpl#isStatic <em>Static</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoProcedureImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoProcedureImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PojoProcedureImpl#getParams <em>Params</em>}</li>
@@ -59,26 +59,6 @@ public class PojoProcedureImpl extends MinimalEObjectImpl.Container implements P
   protected EList<Annotation> annotations;
 
   /**
-   * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isStatic()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean STATIC_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isStatic() <em>Static</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isStatic()
-   * @generated
-   * @ordered
-   */
-  protected boolean static_ = STATIC_EDEFAULT;
-
-  /**
    * The default value of the '{@link #isFinal() <em>Final</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -97,6 +77,26 @@ public class PojoProcedureImpl extends MinimalEObjectImpl.Container implements P
    * @ordered
    */
   protected boolean final_ = FINAL_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isStatic()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean STATIC_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isStatic() <em>Static</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isStatic()
+   * @generated
+   * @ordered
+   */
+  protected boolean static_ = STATIC_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -188,29 +188,6 @@ public class PojoProcedureImpl extends MinimalEObjectImpl.Container implements P
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isStatic()
-  {
-    return static_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setStatic(boolean newStatic)
-  {
-    boolean oldStatic = static_;
-    static_ = newStatic;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_PROCEDURE__STATIC, oldStatic, static_));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public boolean isFinal()
   {
     return final_;
@@ -227,6 +204,29 @@ public class PojoProcedureImpl extends MinimalEObjectImpl.Container implements P
     final_ = newFinal;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_PROCEDURE__FINAL, oldFinal, final_));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isStatic()
+  {
+    return static_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setStatic(boolean newStatic)
+  {
+    boolean oldStatic = static_;
+    static_ = newStatic;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.POJO_PROCEDURE__STATIC, oldStatic, static_));
   }
 
   /**
@@ -396,10 +396,10 @@ public class PojoProcedureImpl extends MinimalEObjectImpl.Container implements P
     {
       case ProcessorModelPackage.POJO_PROCEDURE__ANNOTATIONS:
         return getAnnotations();
-      case ProcessorModelPackage.POJO_PROCEDURE__STATIC:
-        return isStatic();
       case ProcessorModelPackage.POJO_PROCEDURE__FINAL:
         return isFinal();
+      case ProcessorModelPackage.POJO_PROCEDURE__STATIC:
+        return isStatic();
       case ProcessorModelPackage.POJO_PROCEDURE__TYPE:
         return getType();
       case ProcessorModelPackage.POJO_PROCEDURE__NAME:
@@ -427,11 +427,11 @@ public class PojoProcedureImpl extends MinimalEObjectImpl.Container implements P
         getAnnotations().clear();
         getAnnotations().addAll((Collection<? extends Annotation>)newValue);
         return;
-      case ProcessorModelPackage.POJO_PROCEDURE__STATIC:
-        setStatic((Boolean)newValue);
-        return;
       case ProcessorModelPackage.POJO_PROCEDURE__FINAL:
         setFinal((Boolean)newValue);
+        return;
+      case ProcessorModelPackage.POJO_PROCEDURE__STATIC:
+        setStatic((Boolean)newValue);
         return;
       case ProcessorModelPackage.POJO_PROCEDURE__TYPE:
         setType((JvmTypeReference)newValue);
@@ -463,11 +463,11 @@ public class PojoProcedureImpl extends MinimalEObjectImpl.Container implements P
       case ProcessorModelPackage.POJO_PROCEDURE__ANNOTATIONS:
         getAnnotations().clear();
         return;
-      case ProcessorModelPackage.POJO_PROCEDURE__STATIC:
-        setStatic(STATIC_EDEFAULT);
-        return;
       case ProcessorModelPackage.POJO_PROCEDURE__FINAL:
         setFinal(FINAL_EDEFAULT);
+        return;
+      case ProcessorModelPackage.POJO_PROCEDURE__STATIC:
+        setStatic(STATIC_EDEFAULT);
         return;
       case ProcessorModelPackage.POJO_PROCEDURE__TYPE:
         setType((JvmTypeReference)null);
@@ -497,10 +497,10 @@ public class PojoProcedureImpl extends MinimalEObjectImpl.Container implements P
     {
       case ProcessorModelPackage.POJO_PROCEDURE__ANNOTATIONS:
         return annotations != null && !annotations.isEmpty();
-      case ProcessorModelPackage.POJO_PROCEDURE__STATIC:
-        return static_ != STATIC_EDEFAULT;
       case ProcessorModelPackage.POJO_PROCEDURE__FINAL:
         return final_ != FINAL_EDEFAULT;
+      case ProcessorModelPackage.POJO_PROCEDURE__STATIC:
+        return static_ != STATIC_EDEFAULT;
       case ProcessorModelPackage.POJO_PROCEDURE__TYPE:
         return type != null;
       case ProcessorModelPackage.POJO_PROCEDURE__NAME:
@@ -524,10 +524,10 @@ public class PojoProcedureImpl extends MinimalEObjectImpl.Container implements P
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (static: ");
-    result.append(static_);
-    result.append(", final: ");
+    result.append(" (final: ");
     result.append(final_);
+    result.append(", static: ");
+    result.append(static_);
     result.append(", name: ");
     result.append(name);
     result.append(')');
