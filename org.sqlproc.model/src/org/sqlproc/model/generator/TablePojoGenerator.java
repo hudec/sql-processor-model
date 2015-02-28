@@ -1160,21 +1160,19 @@ public class TablePojoGenerator {
                         for (int i = 0, l = mainList.size(); i < l; i++) {
                             StringBuilder sb = new StringBuilder();
                             for (PojoAttribute attr : mainList.get(i).keySet()) {
+                                if (attr.getDbName() != null) {
+                                    if (ignoreColumns.containsKey(pojo)
+                                            && ignoreColumns.get(pojo).contains(attr.getDbName())) {
+                                        sb = null;
+                                        break;
+                                    }
+                                }
                                 String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(
                                         attr.getName()) : null;
-                                if (name == null) {
+                                if (name == null)
                                     name = attr.getName();
-                                    if (!pojos.get(pojo).containsKey(name)) {
-                                        sb = null;
-                                        break;
-                                    }
-                                } else {
-                                    if (!pojos.get(pojo).containsKey(name)) {
-                                        sb = null;
-                                        break;
-                                    }
+                                else
                                     name = columnToCamelCase(name);
-                                }
                                 sb.append(",").append(name);
                             }
                             if (sb != null)
