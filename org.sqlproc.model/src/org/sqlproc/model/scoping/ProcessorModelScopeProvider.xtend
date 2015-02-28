@@ -10,6 +10,11 @@ import org.eclipse.xtext.scoping.Scopes
 import org.sqlproc.model.processorModel.PojoEntity
 import com.google.inject.Inject
 import org.sqlproc.model.jvmmodel.ProcessorGeneratorUtils
+import org.eclipse.xtext.xbase.annotations.typesystem.XbaseWithAnnotationsBatchScopeProvider
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.EcoreUtil2
+import org.sqlproc.model.processorModel.ProcessorModelPackage
+import org.sqlproc.model.processorModel.DaoEntity
 
 /**
  * This class contains custom scoping description.
@@ -18,12 +23,44 @@ import org.sqlproc.model.jvmmodel.ProcessorGeneratorUtils
  * on how and when to use it 
  *
  */
-class ProcessorDslScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider {
+class ProcessorModelScopeProvider extends XbaseWithAnnotationsBatchScopeProvider {
 	
 	@Inject extension ProcessorGeneratorUtils
 	
-	// http://xtextcasts.org/episodes/17-restricting-scope
-	def IScope scope_DirectiveProperties_features(DirectiveProperties directiveProperties, EReference eReference) {
-		Scopes::scopeFor((directiveProperties.eContainer.eContainer as PojoEntity).allAttributes)
-	}
+    override IScope getScope(EObject context, EReference reference) {
+
+        if (reference == ProcessorModelPackage.Literals.DIRECTIVE_PROPERTIES__FEATURES) {
+            val PojoEntity pojo = EcoreUtil2.getContainerOfType(context, PojoEntity)
+            if (pojo.getSuperType() != null) {
+                val IScope scope = Scopes.scopeFor(allAttributes(pojo))
+                println(reference)
+                println(scope)
+                return scope
+            }
+        }
+        else if (reference == ProcessorModelPackage.Literals.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR) {
+            val DaoEntity dao = EcoreUtil2.getContainerOfType(context, DaoEntity)
+            if (dao != null) {
+            	val PojoEntity pojo = dao.getPojo
+                val IScope scope = Scopes.scopeFor(allAttributes(pojo))
+                println(reference)
+                println(scope)
+                return scope
+            }
+        }
+        return super.getScope(context, reference)
+    }
+
+//                // System.out.println("XXXXXXXXXXXXX " + pojo.getName() + " -> " + context + " -> " + reference);
+                // IScope _scope = super.getScope(context, reference);
+                // if (_scope instanceof ImportScope) {
+                // ImportScope iscope = (ImportScope) _scope;
+                // if (iscope.getParent() instanceof SelectableBasedScope) {
+                // SelectableBasedScope sscope = (SelectableBasedScope) iscope.getParent();
+                // for (IEObjectDescription idesc : sscope.getAllElements()) {
+                // System.out.println("ZZZZZZZZZ " + idesc.getName() + " " + idesc.getQualifiedName() + " "
+                // + idesc);
+                // }
+                // }
+                // }
 }

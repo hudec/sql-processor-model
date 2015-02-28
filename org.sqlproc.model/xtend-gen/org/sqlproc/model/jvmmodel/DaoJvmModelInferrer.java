@@ -1639,68 +1639,52 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
         StringConcatenationClient _client = new StringConcatenationClient() {
           @Override
           protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
-            _builder.append("\t");
             _builder.append("if (sqlControl != null && sqlControl.getMoreResultClasses() != null)");
             _builder.newLine();
-            _builder.append("\t\t");
+            _builder.append("\t");
             _builder.append("return sqlControl;");
             _builder.newLine();
-            _builder.append("\t");
-            _builder.append(DaoJvmModelInferrer.this.MAP, "\t");
+            _builder.append(DaoJvmModelInferrer.this.MAP, "");
             _builder.append("<String, Class<?>> moreResultClasses = null;");
             _builder.newLineIfNotEmpty();
-            _builder.append("\t");
             {
               Set<Map.Entry<String, Map<String, JvmParameterizedTypeReference>>> _entrySet = moreResultClasses.entrySet();
-              boolean _hasElements = false;
               for(final Map.Entry<String, Map<String, JvmParameterizedTypeReference>> f : _entrySet) {
-                if (!_hasElements) {
-                  _hasElements = true;
-                } else {
-                  _builder.appendImmediate("\n\t", "\t");
-                }
-                _builder.append("\t\tif (");
-                _builder.append(pojoAttrName, "\t");
+                _builder.append("if (");
+                _builder.append(pojoAttrName, "");
                 _builder.append(" != null && ");
-                _builder.append(pojoAttrName, "\t");
+                _builder.append(pojoAttrName, "");
                 _builder.append(".toInit(");
                 String _name = pojo.getName();
-                _builder.append(_name, "\t");
+                _builder.append(_name, "");
                 _builder.append(".Association.");
                 String _key = f.getKey();
-                _builder.append(_key, "\t");
+                _builder.append(_key, "");
                 _builder.append(".name())) {");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
                 _builder.append("if (moreResultClasses == null)");
                 _builder.newLine();
-                _builder.append("\t");
-                _builder.append("\t");
-                _builder.append("moreResultClasses = new HashMap<String, Class<?>>();");
-                _builder.newLine();
-                _builder.append("\t\t\t");
+                _builder.append("\t\t");
+                _builder.append("moreResultClasses = new ");
+                _builder.append(DaoJvmModelInferrer.this.HASH_MAP, "\t\t");
+                _builder.append("<String, Class<?>>();");
+                _builder.newLineIfNotEmpty();
                 {
                   Map<String, JvmParameterizedTypeReference> _value = f.getValue();
                   Set<Map.Entry<String, JvmParameterizedTypeReference>> _entrySet_1 = _value.entrySet();
-                  boolean _hasElements_1 = false;
                   for(final Map.Entry<String, JvmParameterizedTypeReference> a : _entrySet_1) {
-                    if (!_hasElements_1) {
-                      _hasElements_1 = true;
-                    } else {
-                      _builder.appendImmediate("\n\t", "\t\t\t");
-                    }
-                    _builder.append("\t\tmoreResultClasses.put(\"");
+                    _builder.append("\t");
+                    _builder.append("moreResultClasses.put(\"");
                     String _key_1 = a.getKey();
-                    _builder.append(_key_1, "\t\t\t");
+                    _builder.append(_key_1, "\t");
                     _builder.append("\", ");
                     JvmParameterizedTypeReference _value_1 = a.getValue();
-                    QualifiedName _fullyQualifiedName = DaoJvmModelInferrer.this._iQualifiedNameProvider.getFullyQualifiedName(_value_1);
-                    _builder.append(_fullyQualifiedName, "\t\t\t");
+                    _builder.append(_value_1, "\t");
                     _builder.append(".class);");
+                    _builder.newLineIfNotEmpty();
                   }
                 }
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t\t\t");
                 _builder.append("}");
                 _builder.newLine();
               }

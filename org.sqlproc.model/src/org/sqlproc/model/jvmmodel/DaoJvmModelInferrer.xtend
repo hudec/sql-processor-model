@@ -560,15 +560,16 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
 			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
 			body = '''
-				if (sqlControl != null && sqlControl.getMoreResultClasses() != null)
-					return sqlControl;
-				«MAP»<String, Class<?>> moreResultClasses = null;
-				«FOR f:moreResultClasses.entrySet SEPARATOR "
-	"»		if («pojoAttrName» != null && «pojoAttrName».toInit(«pojo.name».Association.«f.key».name())) {
+			if (sqlControl != null && sqlControl.getMoreResultClasses() != null)
+				return sqlControl;
+			«MAP»<String, Class<?>> moreResultClasses = null;
+			«FOR f:moreResultClasses.entrySet»
+			if («pojoAttrName» != null && «pojoAttrName».toInit(«pojo.name».Association.«f.key».name())) {
 				if (moreResultClasses == null)
-					moreResultClasses = new HashMap<String, Class<?>>();
-			«FOR a:f.value.entrySet SEPARATOR "
-	"»		moreResultClasses.put("«a.key»", «a.value.fullyQualifiedName».class);«ENDFOR»
+					moreResultClasses = new «HASH_MAP»<String, Class<?>>();
+				«FOR a:f.value.entrySet»
+				moreResultClasses.put("«a.key»", «a.value».class);
+				«ENDFOR»
 			}
 			«ENDFOR»
 			if (moreResultClasses != null) {

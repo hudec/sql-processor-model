@@ -1162,13 +1162,18 @@ public class TablePojoGenerator {
                             for (PojoAttribute attr : mainList.get(i).keySet()) {
                                 String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(
                                         attr.getName()) : null;
-                                if (name == null)
+                                if (name == null) {
                                     name = attr.getName();
-                                else
+                                    if (!pojos.get(pojo).containsKey(name)) {
+                                        sb = null;
+                                        break;
+                                    }
+                                } else {
+                                    if (!pojos.get(pojo).containsKey(name)) {
+                                        sb = null;
+                                        break;
+                                    }
                                     name = columnToCamelCase(name);
-                                if (!pojos.get(pojo).containsKey(name)) {
-                                    sb = null;
-                                    break;
                                 }
                                 sb.append(",").append(name);
                             }

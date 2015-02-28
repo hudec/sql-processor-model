@@ -466,7 +466,7 @@ class ProcessorGeneratorUtils {
 			val d = it as DaoDirectiveDiscriminator
 			val Map<String, JvmParameterizedTypeReference> map = new TreeMap()
 			d.descendants.forEach[dd|
-				map.put(value(dd.value), dd.descendant)
+				map.put(value0(dd.value), dd.descendant)
 			]
 			result.put(d.ancestor.name, map)
 		]
@@ -796,6 +796,19 @@ class ProcessorGeneratorUtils {
                 s = "\"" + s
             if (!s.endsWith("\""))
                 s = s + "\""
+            return s
+        } else if (pv.getId() != null)
+            return pv.getId()
+        else
+            return "" + pv.getNumber()
+    }
+
+    def String value0(ValueType pv) {
+        if (pv == null)
+            return null
+        var String s = pv.getValue()
+        if (s != null) {
+            s = s.trim()
             return s
         } else if (pv.getId() != null)
             return pv.getId()

@@ -1098,9 +1098,9 @@ public class ProcessorGeneratorUtils {
         final Procedure1<DescendantAssignment> _function = new Procedure1<DescendantAssignment>() {
           public void apply(final DescendantAssignment dd) {
             ValueType _value = dd.getValue();
-            String _value_1 = ProcessorGeneratorUtils.this.value(_value);
+            String _value0 = ProcessorGeneratorUtils.this.value0(_value);
             JvmParameterizedTypeReference _descendant = dd.getDescendant();
-            map.put(_value_1, _descendant);
+            map.put(_value0, _descendant);
           }
         };
         IterableExtensions.<DescendantAssignment>forEach(_descendants, _function);
@@ -1900,6 +1900,29 @@ public class ProcessorGeneratorUtils {
       if (_not_1) {
         s = (s + "\"");
       }
+      return s;
+    } else {
+      String _id = pv.getId();
+      boolean _notEquals_1 = (!Objects.equal(_id, null));
+      if (_notEquals_1) {
+        return pv.getId();
+      } else {
+        int _number = pv.getNumber();
+        return ("" + Integer.valueOf(_number));
+      }
+    }
+  }
+  
+  public String value0(final ValueType pv) {
+    boolean _equals = Objects.equal(pv, null);
+    if (_equals) {
+      return null;
+    }
+    String s = pv.getValue();
+    boolean _notEquals = (!Objects.equal(s, null));
+    if (_notEquals) {
+      String _trim = s.trim();
+      s = _trim;
       return s;
     } else {
       String _id = pv.getId();
