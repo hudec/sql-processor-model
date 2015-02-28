@@ -741,9 +741,16 @@ public class ProcessorGeneratorUtils {
   }
   
   public List<PojoAttribute> requiredAttributes(final PojoEntity pojo) {
+    final List<PojoAttribute> features = CollectionLiterals.<PojoAttribute>newArrayList();
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
-      return CollectionLiterals.<PojoAttribute>newArrayList();
+      return features;
+    }
+    final PojoEntity se = this.getParent(pojo);
+    boolean _notEquals = (!Objects.equal(se, null));
+    if (_notEquals) {
+      List<PojoAttribute> _requiredAttributes = this.requiredAttributes(se);
+      features.addAll(_requiredAttributes);
     }
     EList<PojoAttribute> _attributes = pojo.getAttributes();
     final Function1<PojoAttribute, Boolean> _function = new Function1<PojoAttribute, Boolean>() {
@@ -752,14 +759,8 @@ public class ProcessorGeneratorUtils {
       }
     };
     Iterable<PojoAttribute> _filter = IterableExtensions.<PojoAttribute>filter(_attributes, _function);
-    final List<PojoAttribute> features = IterableExtensions.<PojoAttribute>toList(_filter);
-    final PojoEntity se = this.getParent(pojo);
-    boolean _equals_1 = Objects.equal(se, null);
-    if (_equals_1) {
-      return features;
-    }
-    List<PojoAttribute> _requiredAttributes = this.requiredAttributes(se);
-    features.addAll(_requiredAttributes);
+    List<PojoAttribute> _list = IterableExtensions.<PojoAttribute>toList(_filter);
+    features.addAll(_list);
     return features;
   }
   

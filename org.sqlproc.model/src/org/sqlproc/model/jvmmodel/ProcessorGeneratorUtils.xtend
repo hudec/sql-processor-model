@@ -316,13 +316,13 @@ class ProcessorGeneratorUtils {
     }
 
 	def List<PojoAttribute> requiredAttributes(PojoEntity pojo) {
+		val List<PojoAttribute> features = newArrayList()
 		if (pojo == null)
-			return newArrayList()
-		val features = pojo.attributes.filter[x|x.isRequired].toList
-		val se = pojo.parent
-		if (se == null)
 			return features
-		features.addAll(se.requiredAttributes)
+		val se = pojo.parent
+		if (se != null)
+			features.addAll(se.requiredAttributes)
+		features.addAll(pojo.attributes.filter[x|x.isRequired].toList)
 		return features
 	}
 
