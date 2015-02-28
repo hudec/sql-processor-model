@@ -43,4 +43,9 @@ public class ProcessorModelRuntimeModule extends org.sqlproc.model.AbstractProce
     public Class<? extends IResourceFactory> bindIResourceFactory() {
         return ProcessorResourceFactory.class;
     }
+
+    @Override
+    public Class<? extends org.eclipse.xtext.xbase.scoping.batch.XbaseBatchScopeProvider> bindXbaseBatchScopeProvider() {
+        return org.sqlproc.model.scoping.ProcessorModel2ScopeProvider.class;
+    }
 }

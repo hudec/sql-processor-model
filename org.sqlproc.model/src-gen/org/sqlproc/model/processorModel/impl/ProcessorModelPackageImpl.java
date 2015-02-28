@@ -3472,9 +3472,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDescendantAssignment_Value()
+  public EReference getDescendantAssignment_Value()
   {
-    return (EAttribute)descendantAssignmentEClass.getEStructuralFeatures().get(0);
+    return (EReference)descendantAssignmentEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4636,7 +4636,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEReference(daoDirectiveParametersEClass, DAO_DIRECTIVE_PARAMETERS__INS);
 
     descendantAssignmentEClass = createEClass(DESCENDANT_ASSIGNMENT);
-    createEAttribute(descendantAssignmentEClass, DESCENDANT_ASSIGNMENT__VALUE);
+    createEReference(descendantAssignmentEClass, DESCENDANT_ASSIGNMENT__VALUE);
     createEReference(descendantAssignmentEClass, DESCENDANT_ASSIGNMENT__DESCENDANT);
 
     funProcTypeEClass = createEClass(FUN_PROC_TYPE);
@@ -5164,7 +5164,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEReference(getDaoDirectiveParameters_Ins(), theTypesPackage.getJvmParameterizedTypeReference(), null, "ins", null, 0, -1, DaoDirectiveParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(descendantAssignmentEClass, DescendantAssignment.class, "DescendantAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDescendantAssignment_Value(), ecorePackage.getEString(), "value", null, 0, 1, DescendantAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDescendantAssignment_Value(), this.getValueType(), null, "value", null, 0, 1, DescendantAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDescendantAssignment_Descendant(), theTypesPackage.getJvmParameterizedTypeReference(), null, "descendant", null, 0, 1, DescendantAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(funProcTypeEClass, FunProcType.class, "FunProcType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

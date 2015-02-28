@@ -9,6 +9,8 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.Scopes
 import org.sqlproc.model.processorModel.PojoEntity
 import com.google.inject.Inject
+import org.sqlproc.model.jvmmodel.ProcessorGeneratorUtils
+
 /**
  * This class contains custom scoping description.
  * 
@@ -18,10 +20,10 @@ import com.google.inject.Inject
  */
 class ProcessorDslScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider {
 	
-	//@Inject extension org.sqlproc.model.generator.ProcessorGeneratorUtils
+	@Inject extension ProcessorGeneratorUtils
 	
 	// http://xtextcasts.org/episodes/17-restricting-scope
 	def IScope scope_DirectiveProperties_features(DirectiveProperties directiveProperties, EReference eReference) {
-		Scopes::scopeFor((directiveProperties.eContainer.eContainer as PojoEntity).attributes)
+		Scopes::scopeFor((directiveProperties.eContainer.eContainer as PojoEntity).allAttributes)
 	}
 }

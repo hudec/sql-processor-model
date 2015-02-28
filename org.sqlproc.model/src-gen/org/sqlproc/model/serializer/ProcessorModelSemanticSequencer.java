@@ -2341,7 +2341,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (value=ValidID descendant=JvmParameterizedTypeReference)
+	 *     (value=ValueType descendant=JvmParameterizedTypeReference)
 	 */
 	protected void sequence_DescendantAssignment(EObject context, DescendantAssignment semanticObject) {
 		if(errorAcceptor != null) {
@@ -2352,7 +2352,7 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDescendantAssignmentAccess().getValueValidIDParserRuleCall_0_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getDescendantAssignmentAccess().getValueValueTypeParserRuleCall_0_0(), semanticObject.getValue());
 		feeder.accept(grammarAccess.getDescendantAssignmentAccess().getDescendantJvmParameterizedTypeReferenceParserRuleCall_2_0(), semanticObject.getDescendant());
 		feeder.finish();
 	}

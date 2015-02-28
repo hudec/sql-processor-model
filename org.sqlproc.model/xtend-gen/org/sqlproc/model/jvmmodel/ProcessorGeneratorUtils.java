@@ -681,7 +681,7 @@ public class ProcessorGeneratorUtils {
     return features;
   }
   
-  public List<PojoAttribute> attributes(final PojoEntity pojo) {
+  public List<PojoAttribute> allAttributes(final PojoEntity pojo) {
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
       return CollectionLiterals.<PojoAttribute>newArrayList();
@@ -699,12 +699,12 @@ public class ProcessorGeneratorUtils {
     if (_or) {
       return features;
     }
-    EList<PojoAttribute> _attributes_1 = ((PojoEntity) se).getAttributes();
-    features.addAll(_attributes_1);
+    List<PojoAttribute> _allAttributes = this.allAttributes(((PojoEntity) se));
+    features.addAll(_allAttributes);
     return features;
   }
   
-  public Map<String, PojoAttribute> attributesAsMap(final PojoEntity pojo) {
+  public Map<String, PojoAttribute> allAttributesAsMap(final PojoEntity pojo) {
     final TreeMap<String, PojoAttribute> result = new TreeMap<String, PojoAttribute>();
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
@@ -729,8 +729,8 @@ public class ProcessorGeneratorUtils {
     if (_or) {
       return result;
     }
-    Map<String, PojoAttribute> _attributesAsMap = this.attributesAsMap(((PojoEntity) se));
-    result.putAll(_attributesAsMap);
+    Map<String, PojoAttribute> _allAttributesAsMap = this.allAttributesAsMap(((PojoEntity) se));
+    result.putAll(_allAttributesAsMap);
     return result;
   }
   
@@ -1097,9 +1097,10 @@ public class ProcessorGeneratorUtils {
         EList<DescendantAssignment> _descendants = d.getDescendants();
         final Procedure1<DescendantAssignment> _function = new Procedure1<DescendantAssignment>() {
           public void apply(final DescendantAssignment dd) {
-            String _value = dd.getValue();
+            ValueType _value = dd.getValue();
+            String _value_1 = ProcessorGeneratorUtils.this.value(_value);
             JvmParameterizedTypeReference _descendant = dd.getDescendant();
-            map.put(_value, _descendant);
+            map.put(_value_1, _descendant);
           }
         };
         IterableExtensions.<DescendantAssignment>forEach(_descendants, _function);

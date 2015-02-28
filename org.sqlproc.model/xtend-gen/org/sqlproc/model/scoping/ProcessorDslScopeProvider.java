@@ -3,12 +3,15 @@
  */
 package org.sqlproc.model.scoping;
 
-import org.eclipse.emf.common.util.EList;
+import com.google.inject.Inject;
+import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
+import org.eclipse.xtext.xbase.lib.Extension;
+import org.sqlproc.model.jvmmodel.ProcessorGeneratorUtils;
 import org.sqlproc.model.processorModel.DirectiveProperties;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoEntity;
@@ -21,10 +24,14 @@ import org.sqlproc.model.processorModel.PojoEntity;
  */
 @SuppressWarnings("all")
 public class ProcessorDslScopeProvider extends AbstractDeclarativeScopeProvider {
+  @Inject
+  @Extension
+  private ProcessorGeneratorUtils _processorGeneratorUtils;
+  
   public IScope scope_DirectiveProperties_features(final DirectiveProperties directiveProperties, final EReference eReference) {
     EObject _eContainer = directiveProperties.eContainer();
     EObject _eContainer_1 = _eContainer.eContainer();
-    EList<PojoAttribute> _attributes = ((PojoEntity) _eContainer_1).getAttributes();
-    return Scopes.scopeFor(_attributes);
+    List<PojoAttribute> _allAttributes = this._processorGeneratorUtils.allAttributes(((PojoEntity) _eContainer_1));
+    return Scopes.scopeFor(_allAttributes);
   }
 }

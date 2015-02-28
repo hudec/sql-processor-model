@@ -2948,7 +2948,7 @@ public interface ProcessorModelPackage extends EPackage
   int DESCENDANT_ASSIGNMENT = 55;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -6950,15 +6950,15 @@ public interface ProcessorModelPackage extends EPackage
   EClass getDescendantAssignment();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.model.processorModel.DescendantAssignment#getValue <em>Value</em>}'.
+   * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.DescendantAssignment#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
+   * @return the meta object for the containment reference '<em>Value</em>'.
    * @see org.sqlproc.model.processorModel.DescendantAssignment#getValue()
    * @see #getDescendantAssignment()
    * @generated
    */
-  EAttribute getDescendantAssignment_Value();
+  EReference getDescendantAssignment_Value();
 
   /**
    * Returns the meta object for the containment reference '{@link org.sqlproc.model.processorModel.DescendantAssignment#getDescendant <em>Descendant</em>}'.
@@ -9982,12 +9982,12 @@ public interface ProcessorModelPackage extends EPackage
     EClass DESCENDANT_ASSIGNMENT = eINSTANCE.getDescendantAssignment();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DESCENDANT_ASSIGNMENT__VALUE = eINSTANCE.getDescendantAssignment_Value();
+    EReference DESCENDANT_ASSIGNMENT__VALUE = eINSTANCE.getDescendantAssignment_Value();
 
     /**
      * The meta object literal for the '<em><b>Descendant</b></em>' containment reference feature.

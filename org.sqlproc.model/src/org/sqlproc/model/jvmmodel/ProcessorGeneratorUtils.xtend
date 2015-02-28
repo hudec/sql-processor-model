@@ -281,18 +281,18 @@ class ProcessorGeneratorUtils {
 		return features
 	}
 
-	def List<PojoAttribute> attributes(PojoEntity pojo) {
+	def List<PojoAttribute> allAttributes(PojoEntity pojo) {
 		if (pojo == null)
 			return newArrayList()
 		val features = pojo.attributes.toList
 		val se = pojo.superType
 		if (se == null || !(se instanceof PojoEntity))
 			return features
-		features.addAll((se as PojoEntity).attributes)
+		features.addAll((se as PojoEntity).allAttributes)
 		return features
 	}
 
-	def Map<String, PojoAttribute> attributesAsMap(PojoEntity pojo) {
+	def Map<String, PojoAttribute> allAttributesAsMap(PojoEntity pojo) {
 		val result = new TreeMap()
 		if (pojo == null)
 			return result
@@ -302,7 +302,7 @@ class ProcessorGeneratorUtils {
 		val se = pojo.superType
 		if (se == null || !(se instanceof PojoEntity))
 			return result
-		result.putAll((se as PojoEntity).attributesAsMap)
+		result.putAll((se as PojoEntity).allAttributesAsMap)
 		return result
 	}
 
@@ -466,7 +466,7 @@ class ProcessorGeneratorUtils {
 			val d = it as DaoDirectiveDiscriminator
 			val Map<String, JvmParameterizedTypeReference> map = new TreeMap()
 			d.descendants.forEach[dd|
-				map.put(dd.value, dd.descendant)
+				map.put(value(dd.value), dd.descendant)
 			]
 			result.put(d.ancestor.name, map)
 		]

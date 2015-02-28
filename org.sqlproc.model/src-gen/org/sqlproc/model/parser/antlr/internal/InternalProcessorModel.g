@@ -8627,9 +8627,9 @@ ruleDescendantAssignment returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDescendantAssignmentAccess().getValueValidIDParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getDescendantAssignmentAccess().getValueValueTypeParserRuleCall_0_0()); 
 	    }
-		lv_value_0_0=ruleValidID		{
+		lv_value_0_0=ruleValueType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDescendantAssignmentRule());
 	        }
@@ -8637,7 +8637,7 @@ ruleDescendantAssignment returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_0_0, 
-        		"ValidID");
+        		"ValueType");
 	        afterParserOrEnumRuleCall();
 	    }
 

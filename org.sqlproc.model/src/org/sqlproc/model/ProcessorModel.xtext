@@ -299,7 +299,7 @@ DaoDirectiveParameters:
 ;
 
 DescendantAssignment:
-	value = ValidID '=' descendant=JvmParameterizedTypeReference
+	value = ValueType '=' descendant=JvmParameterizedTypeReference
 ;
 
 FunProcType :

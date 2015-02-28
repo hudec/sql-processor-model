@@ -1158,7 +1158,7 @@ public class TablePojoGenerator {
                     if (generateMethods.contains(METHOD_INDEX) && indexes.containsKey(pojo)) {
                         List<Map<PojoAttribute, Boolean>> mainList = indexes.get(pojo);
                         for (int i = 0, l = mainList.size(); i < l; i++) {
-                            bufferMeta.append(nlindent()).append("#Index(").append(i + 1);
+                            StringBuilder sb = new StringBuilder();
                             for (PojoAttribute attr : mainList.get(i).keySet()) {
                                 String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(
                                         attr.getName()) : null;
@@ -1166,9 +1166,14 @@ public class TablePojoGenerator {
                                     name = attr.getName();
                                 else
                                     name = columnToCamelCase(name);
-                                bufferMeta.append(",").append(name);
+                                if (!pojos.get(pojo).containsKey(name)) {
+                                    sb = null;
+                                    break;
+                                }
+                                sb.append(",").append(name);
                             }
-                            bufferMeta.append(")");
+                            if (sb != null)
+                                bufferMeta.append(nlindent()).append("#Index(").append(i + 1).append(sb).append(")");
                         }
                     }
                 }

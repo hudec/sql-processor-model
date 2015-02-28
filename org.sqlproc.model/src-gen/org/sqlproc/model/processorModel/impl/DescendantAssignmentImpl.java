@@ -15,6 +15,7 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 
 import org.sqlproc.model.processorModel.DescendantAssignment;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
+import org.sqlproc.model.processorModel.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,24 +34,14 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
 public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container implements DescendantAssignment
 {
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final String VALUE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected String value = VALUE_EDEFAULT;
+  protected ValueType value;
 
   /**
    * The cached value of the '{@link #getDescendant() <em>Descendant</em>}' containment reference.
@@ -88,7 +79,7 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getValue()
+  public ValueType getValue()
   {
     return value;
   }
@@ -98,12 +89,37 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(String newValue)
+  public NotificationChain basicSetValue(ValueType newValue, NotificationChain msgs)
   {
-    String oldValue = value;
+    ValueType oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE, oldValue, value));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(ValueType newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE, newValue, newValue));
   }
 
   /**
@@ -164,6 +180,8 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE:
+        return basicSetValue(null, msgs);
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__DESCENDANT:
         return basicSetDescendant(null, msgs);
     }
@@ -199,7 +217,7 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
     switch (featureID)
     {
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE:
-        setValue((String)newValue);
+        setValue((ValueType)newValue);
         return;
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__DESCENDANT:
         setDescendant((JvmParameterizedTypeReference)newValue);
@@ -219,7 +237,7 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
     switch (featureID)
     {
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE:
-        setValue(VALUE_EDEFAULT);
+        setValue((ValueType)null);
         return;
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__DESCENDANT:
         setDescendant((JvmParameterizedTypeReference)null);
@@ -239,28 +257,11 @@ public class DescendantAssignmentImpl extends MinimalEObjectImpl.Container imple
     switch (featureID)
     {
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+        return value != null;
       case ProcessorModelPackage.DESCENDANT_ASSIGNMENT__DESCENDANT:
         return descendant != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (value: ");
-    result.append(value);
-    result.append(')');
-    return result.toString();
   }
 
 } //DescendantAssignmentImpl

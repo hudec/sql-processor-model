@@ -23547,12 +23547,12 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDescendantAssignment"
-    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8623:1: ruleDescendantAssignment returns [EObject current=null] : ( ( (lv_value_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_descendant_2_0= ruleJvmParameterizedTypeReference ) ) ) ;
+    // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8623:1: ruleDescendantAssignment returns [EObject current=null] : ( ( (lv_value_0_0= ruleValueType ) ) otherlv_1= '=' ( (lv_descendant_2_0= ruleJvmParameterizedTypeReference ) ) ) ;
     public final EObject ruleDescendantAssignment() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
-        AntlrDatatypeRuleToken lv_value_0_0 = null;
+        EObject lv_value_0_0 = null;
 
         EObject lv_descendant_2_0 = null;
 
@@ -23560,25 +23560,25 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8626:28: ( ( ( (lv_value_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_descendant_2_0= ruleJvmParameterizedTypeReference ) ) ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8627:1: ( ( (lv_value_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_descendant_2_0= ruleJvmParameterizedTypeReference ) ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8626:28: ( ( ( (lv_value_0_0= ruleValueType ) ) otherlv_1= '=' ( (lv_descendant_2_0= ruleJvmParameterizedTypeReference ) ) ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8627:1: ( ( (lv_value_0_0= ruleValueType ) ) otherlv_1= '=' ( (lv_descendant_2_0= ruleJvmParameterizedTypeReference ) ) )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8627:1: ( ( (lv_value_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_descendant_2_0= ruleJvmParameterizedTypeReference ) ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8627:2: ( (lv_value_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_descendant_2_0= ruleJvmParameterizedTypeReference ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8627:1: ( ( (lv_value_0_0= ruleValueType ) ) otherlv_1= '=' ( (lv_descendant_2_0= ruleJvmParameterizedTypeReference ) ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8627:2: ( (lv_value_0_0= ruleValueType ) ) otherlv_1= '=' ( (lv_descendant_2_0= ruleJvmParameterizedTypeReference ) )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8627:2: ( (lv_value_0_0= ruleValidID ) )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8628:1: (lv_value_0_0= ruleValidID )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8627:2: ( (lv_value_0_0= ruleValueType ) )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8628:1: (lv_value_0_0= ruleValueType )
             {
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8628:1: (lv_value_0_0= ruleValidID )
-            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8629:3: lv_value_0_0= ruleValidID
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8628:1: (lv_value_0_0= ruleValueType )
+            // ../org.sqlproc.model/src-gen/org/sqlproc/model/parser/antlr/internal/InternalProcessorModel.g:8629:3: lv_value_0_0= ruleValueType
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getDescendantAssignmentAccess().getValueValidIDParserRuleCall_0_0()); 
+              	        newCompositeNode(grammarAccess.getDescendantAssignmentAccess().getValueValueTypeParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FollowSets001.FOLLOW_ruleValidID_in_ruleDescendantAssignment16349);
-            lv_value_0_0=ruleValidID();
+            pushFollow(FollowSets001.FOLLOW_ruleValueType_in_ruleDescendantAssignment16349);
+            lv_value_0_0=ruleValueType();
 
             state._fsp--;
             if (state.failed) return current;
@@ -23591,7 +23591,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"value",
                       		lv_value_0_0, 
-                      		"ValidID");
+                      		"ValueType");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -55385,7 +55385,7 @@ public class InternalProcessorModelParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_ruleJvmParameterizedTypeReference_in_ruleDaoDirectiveParameters16255 = new BitSet(new long[]{0x0000000000000042L});
         public static final BitSet FOLLOW_ruleDescendantAssignment_in_entryRuleDescendantAssignment16293 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleDescendantAssignment16303 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleValidID_in_ruleDescendantAssignment16349 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_ruleValueType_in_ruleDescendantAssignment16349 = new BitSet(new long[]{0x0000000000200000L});
         public static final BitSet FOLLOW_21_in_ruleDescendantAssignment16361 = new BitSet(new long[]{0x0000000000020830L});
         public static final BitSet FOLLOW_ruleJvmParameterizedTypeReference_in_ruleDescendantAssignment16382 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleFunProcType_in_entryRuleFunProcType16418 = new BitSet(new long[]{0x0000000000000000L});

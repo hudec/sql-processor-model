@@ -5095,23 +5095,23 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DescendantAssignment");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cValueAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cValueValidIDParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
+		private final RuleCall cValueValueTypeParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cDescendantAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cDescendantJvmParameterizedTypeReferenceParserRuleCall_2_0 = (RuleCall)cDescendantAssignment_2.eContents().get(0);
 		
 		//DescendantAssignment:
-		//	value=ValidID "=" descendant=JvmParameterizedTypeReference;
+		//	value=ValueType "=" descendant=JvmParameterizedTypeReference;
 		public ParserRule getRule() { return rule; }
 
-		//value=ValidID "=" descendant=JvmParameterizedTypeReference
+		//value=ValueType "=" descendant=JvmParameterizedTypeReference
 		public Group getGroup() { return cGroup; }
 
-		//value=ValidID
+		//value=ValueType
 		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
 
-		//ValidID
-		public RuleCall getValueValidIDParserRuleCall_0_0() { return cValueValidIDParserRuleCall_0_0; }
+		//ValueType
+		public RuleCall getValueValueTypeParserRuleCall_0_0() { return cValueValueTypeParserRuleCall_0_0; }
 
 		//"="
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
@@ -6454,7 +6454,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DescendantAssignment:
-	//	value=ValidID "=" descendant=JvmParameterizedTypeReference;
+	//	value=ValueType "=" descendant=JvmParameterizedTypeReference;
 	public DescendantAssignmentElements getDescendantAssignmentAccess() {
 		return pDescendantAssignment;
 	}

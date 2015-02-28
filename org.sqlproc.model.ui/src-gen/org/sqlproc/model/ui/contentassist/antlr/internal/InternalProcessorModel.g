@@ -47331,8 +47331,8 @@ rule__DescendantAssignment__ValueAssignment_0
     }
 :
 (
-{ before(grammarAccess.getDescendantAssignmentAccess().getValueValidIDParserRuleCall_0_0()); }
-	ruleValidID{ after(grammarAccess.getDescendantAssignmentAccess().getValueValidIDParserRuleCall_0_0()); }
+{ before(grammarAccess.getDescendantAssignmentAccess().getValueValueTypeParserRuleCall_0_0()); }
+	ruleValueType{ after(grammarAccess.getDescendantAssignmentAccess().getValueValueTypeParserRuleCall_0_0()); }
 )
 
 ;
