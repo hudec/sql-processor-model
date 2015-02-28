@@ -14,7 +14,6 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.xbase.annotations.typesystem.XbaseWithAnnotationsBatchScopeProvider;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.sqlproc.model.jvmmodel.ProcessorGeneratorUtils;
 import org.sqlproc.model.processorModel.DaoEntity;
 import org.sqlproc.model.processorModel.PojoAttribute;
@@ -39,9 +38,6 @@ public class ProcessorModelScopeProvider extends XbaseWithAnnotationsBatchScopeP
       final PojoEntity pojo = EcoreUtil2.<PojoEntity>getContainerOfType(context, PojoEntity.class);
       EList<PojoAttribute> _attributes = pojo.getAttributes();
       final IScope scope = Scopes.scopeFor(_attributes);
-      InputOutput.<PojoEntity>println(pojo);
-      InputOutput.<EReference>println(reference);
-      InputOutput.<IScope>println(scope);
       return scope;
     } else {
       boolean _equals_1 = Objects.equal(reference, ProcessorModelPackage.Literals.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR);
@@ -52,16 +48,11 @@ public class ProcessorModelScopeProvider extends XbaseWithAnnotationsBatchScopeP
           final PojoEntity pojo_1 = this._processorGeneratorUtils.getPojo(dao);
           List<PojoAttribute> _allAttributes = this._processorGeneratorUtils.allAttributes(pojo_1);
           final IScope scope_1 = Scopes.scopeFor(_allAttributes);
-          InputOutput.<EReference>println(reference);
-          InputOutput.<IScope>println(scope_1);
           return scope_1;
         }
       }
     }
     final IScope _scope = super.getScope(context, reference);
-    InputOutput.<EObject>println(context);
-    InputOutput.<EReference>println(reference);
-    InputOutput.<IScope>println(_scope);
     return _scope;
   }
 }
