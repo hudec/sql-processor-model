@@ -32,6 +32,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.sqlproc.model.jvmmodel.ProcessorGeneratorUtils;
 import org.sqlproc.model.jvmmodel.ProcessorTypesBuilder;
 import org.sqlproc.model.processorModel.Annotation;
@@ -306,13 +307,14 @@ public class PojoJvmModelInferrer {
                   {
                     for(final PojoAttribute attr : requiredAttributes) {
                       _builder.newLineIfNotEmpty();
-                      _builder.append("this.");
+                      _builder.append("set");
                       String _name = attr.getName();
-                      _builder.append(_name, "");
-                      _builder.append(" = ");
+                      String _firstUpper = StringExtensions.toFirstUpper(_name);
+                      _builder.append(_firstUpper, "");
+                      _builder.append("(");
                       String _name_1 = attr.getName();
                       _builder.append(_name_1, "");
-                      _builder.append(";");
+                      _builder.append(");");
                       _builder.newLineIfNotEmpty();
                       _builder.append("\t\t\t\t\t");
                     }

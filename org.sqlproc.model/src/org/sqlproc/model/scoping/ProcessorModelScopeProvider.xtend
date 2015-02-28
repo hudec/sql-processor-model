@@ -31,12 +31,15 @@ class ProcessorModelScopeProvider extends XbaseWithAnnotationsBatchScopeProvider
 
         if (reference == ProcessorModelPackage.Literals.DIRECTIVE_PROPERTIES__FEATURES) {
             val PojoEntity pojo = EcoreUtil2.getContainerOfType(context, PojoEntity)
-            if (pojo.getSuperType() != null) {
-                val IScope scope = Scopes.scopeFor(allAttributes(pojo))
+            //if (pojo.getSuperType() != null) {
+                // TODO - problem, ze Pojo rodice nemusi byt inicializovano
+                //val IScope scope = Scopes.scopeFor(allAttributes(pojo))
+                val IScope scope = Scopes.scopeFor(pojo.attributes)
+                println(pojo)
                 println(reference)
                 println(scope)
                 return scope
-            }
+            //}
         }
         else if (reference == ProcessorModelPackage.Literals.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR) {
             val DaoEntity dao = EcoreUtil2.getContainerOfType(context, DaoEntity)
@@ -48,19 +51,11 @@ class ProcessorModelScopeProvider extends XbaseWithAnnotationsBatchScopeProvider
                 return scope
             }
         }
-        return super.getScope(context, reference)
+        
+		val IScope _scope =  super.getScope(context, reference)
+        println(context)
+        println(reference)
+        println(_scope)
+        return _scope
     }
-
-//                // System.out.println("XXXXXXXXXXXXX " + pojo.getName() + " -> " + context + " -> " + reference);
-                // IScope _scope = super.getScope(context, reference);
-                // if (_scope instanceof ImportScope) {
-                // ImportScope iscope = (ImportScope) _scope;
-                // if (iscope.getParent() instanceof SelectableBasedScope) {
-                // SelectableBasedScope sscope = (SelectableBasedScope) iscope.getParent();
-                // for (IEObjectDescription idesc : sscope.getAllElements()) {
-                // System.out.println("ZZZZZZZZZ " + idesc.getName() + " " + idesc.getQualifiedName() + " "
-                // + idesc);
-                // }
-                // }
-                // }
 }

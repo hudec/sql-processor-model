@@ -39,6 +39,19 @@ import org.sqlproc.model.resolver.DbResolver.DbType;
 
 public class Utils {
 
+    @SuppressWarnings("unchecked")
+    public static <T extends EObject> List<T> getContentsOfType(EObject ele, Class<T> type) {
+        List<T> result = new ArrayList<T>();
+        if (ele == null)
+            return result;
+        for (EObject object : ele.eContents()) {
+            if (type.isAssignableFrom(object.getClass())) {
+                result.add((T) object);
+            }
+        }
+        return result;
+    }
+
     public static String resourceDir(Resource resource) {
         String uri = (resource.getURI() != null) ? resource.getURI().toString() : null;
         String dir = null;

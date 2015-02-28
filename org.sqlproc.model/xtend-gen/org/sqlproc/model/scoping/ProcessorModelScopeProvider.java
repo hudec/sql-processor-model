@@ -6,10 +6,10 @@ package org.sqlproc.model.scoping;
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import java.util.List;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.xbase.annotations.typesystem.XbaseWithAnnotationsBatchScopeProvider;
@@ -37,30 +37,31 @@ public class ProcessorModelScopeProvider extends XbaseWithAnnotationsBatchScopeP
     boolean _equals = Objects.equal(reference, ProcessorModelPackage.Literals.DIRECTIVE_PROPERTIES__FEATURES);
     if (_equals) {
       final PojoEntity pojo = EcoreUtil2.<PojoEntity>getContainerOfType(context, PojoEntity.class);
-      JvmParameterizedTypeReference _superType = pojo.getSuperType();
-      boolean _notEquals = (!Objects.equal(_superType, null));
-      if (_notEquals) {
-        List<PojoAttribute> _allAttributes = this._processorGeneratorUtils.allAttributes(pojo);
-        final IScope scope = Scopes.scopeFor(_allAttributes);
-        InputOutput.<EReference>println(reference);
-        InputOutput.<IScope>println(scope);
-        return scope;
-      }
+      EList<PojoAttribute> _attributes = pojo.getAttributes();
+      final IScope scope = Scopes.scopeFor(_attributes);
+      InputOutput.<PojoEntity>println(pojo);
+      InputOutput.<EReference>println(reference);
+      InputOutput.<IScope>println(scope);
+      return scope;
     } else {
       boolean _equals_1 = Objects.equal(reference, ProcessorModelPackage.Literals.DAO_DIRECTIVE_DISCRIMINATOR__ANCESTOR);
       if (_equals_1) {
         final DaoEntity dao = EcoreUtil2.<DaoEntity>getContainerOfType(context, DaoEntity.class);
-        boolean _notEquals_1 = (!Objects.equal(dao, null));
-        if (_notEquals_1) {
+        boolean _notEquals = (!Objects.equal(dao, null));
+        if (_notEquals) {
           final PojoEntity pojo_1 = this._processorGeneratorUtils.getPojo(dao);
-          List<PojoAttribute> _allAttributes_1 = this._processorGeneratorUtils.allAttributes(pojo_1);
-          final IScope scope_1 = Scopes.scopeFor(_allAttributes_1);
+          List<PojoAttribute> _allAttributes = this._processorGeneratorUtils.allAttributes(pojo_1);
+          final IScope scope_1 = Scopes.scopeFor(_allAttributes);
           InputOutput.<EReference>println(reference);
           InputOutput.<IScope>println(scope_1);
           return scope_1;
         }
       }
     }
-    return super.getScope(context, reference);
+    final IScope _scope = super.getScope(context, reference);
+    InputOutput.<EObject>println(context);
+    InputOutput.<EReference>println(reference);
+    InputOutput.<IScope>println(_scope);
+    return _scope;
   }
 }

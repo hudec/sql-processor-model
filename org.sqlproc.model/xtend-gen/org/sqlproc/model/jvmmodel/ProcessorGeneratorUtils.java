@@ -11,10 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmPrimitiveType;
@@ -22,8 +19,6 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -32,7 +27,6 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.sqlproc.model.processorModel.AbstractEntity;
 import org.sqlproc.model.processorModel.AnnotatedEntity;
 import org.sqlproc.model.processorModel.Annotation;
 import org.sqlproc.model.processorModel.AnnotationDirective;
@@ -43,7 +37,6 @@ import org.sqlproc.model.processorModel.AnnotationDirectiveGetter;
 import org.sqlproc.model.processorModel.AnnotationDirectiveSetter;
 import org.sqlproc.model.processorModel.AnnotationDirectiveStandard;
 import org.sqlproc.model.processorModel.AnnotationDirectiveStatic;
-import org.sqlproc.model.processorModel.Artifacts;
 import org.sqlproc.model.processorModel.DaoDirective;
 import org.sqlproc.model.processorModel.DaoDirectiveCrud;
 import org.sqlproc.model.processorModel.DaoDirectiveDiscriminator;
@@ -85,8 +78,8 @@ import org.sqlproc.model.processorModel.PojoDirectiveOperators;
 import org.sqlproc.model.processorModel.PojoDirectiveSerializable;
 import org.sqlproc.model.processorModel.PojoDirectiveToString;
 import org.sqlproc.model.processorModel.PojoEntity;
-import org.sqlproc.model.processorModel.ProcessorModelPackage;
 import org.sqlproc.model.processorModel.ValueType;
+import org.sqlproc.model.util.Utils;
 
 @SuppressWarnings("all")
 public class ProcessorGeneratorUtils {
@@ -99,33 +92,6 @@ public class ProcessorGeneratorUtils {
   
   @Inject
   private IQualifiedNameConverter qualifiedNameConverter;
-  
-  public EList<Annotation> annotations(final PojoEntity it) {
-    EList<Annotation> _xblockexpression = null;
-    {
-      final AnnotatedEntity an = EcoreUtil2.<AnnotatedEntity>getContainerOfType(it, AnnotatedEntity.class);
-      _xblockexpression = an.getAnnotations();
-    }
-    return _xblockexpression;
-  }
-  
-  public EList<Annotation> annotations(final EnumEntity it) {
-    EList<Annotation> _xblockexpression = null;
-    {
-      final AnnotatedEntity an = EcoreUtil2.<AnnotatedEntity>getContainerOfType(it, AnnotatedEntity.class);
-      _xblockexpression = an.getAnnotations();
-    }
-    return _xblockexpression;
-  }
-  
-  public EList<Annotation> annotations(final DaoEntity it) {
-    EList<Annotation> _xblockexpression = null;
-    {
-      final AnnotatedEntity an = EcoreUtil2.<AnnotatedEntity>getContainerOfType(it, AnnotatedEntity.class);
-      _xblockexpression = an.getAnnotations();
-    }
-    return _xblockexpression;
-  }
   
   public boolean isGenerics(final Implements impl) {
     EList<ImplementsExtendsDirective> _directives = impl.getDirectives();
@@ -433,6 +399,96 @@ public class ProcessorGeneratorUtils {
     return _xifexpression;
   }
   
+  protected String _constName(final PojoAttribute attr) {
+    InputOutput.<PojoAttribute>println(attr);
+    String _name = attr.getName();
+    return this.constantName(_name);
+  }
+  
+  protected String _constName(final List<PojoAttribute> l) {
+    final StringBuilder result = new StringBuilder("");
+    boolean first = true;
+    for (final PojoAttribute attr : l) {
+      {
+        InputOutput.<PojoAttribute>println(attr);
+        if (first) {
+          first = false;
+        } else {
+          result.append("_");
+        }
+        String _name = attr.getName();
+        String _constantName = this.constantName(_name);
+        result.append(_constantName);
+      }
+    }
+    return result.toString();
+  }
+  
+  public String constantName(final String name) {
+    InputOutput.<String>println(name);
+    final StringBuilder result = new StringBuilder("");
+    char[] _charArray = name.toCharArray();
+    for (final char c : _charArray) {
+      boolean _isUpperCase = Character.isUpperCase(c);
+      if (_isUpperCase) {
+        result.append("_");
+        result.append(c);
+      } else {
+        char _upperCase = Character.toUpperCase(c);
+        result.append(_upperCase);
+      }
+    }
+    return result.toString();
+  }
+  
+  public String dbName(final String name) {
+    final StringBuilder result = new StringBuilder("");
+    boolean lastDigit = false;
+    char[] _charArray = name.toCharArray();
+    for (final char c : _charArray) {
+      {
+        boolean _or = false;
+        boolean _isUpperCase = Character.isUpperCase(c);
+        if (_isUpperCase) {
+          _or = true;
+        } else {
+          boolean _and = false;
+          boolean _isDigit = Character.isDigit(c);
+          if (!_isDigit) {
+            _and = false;
+          } else {
+            _and = (!lastDigit);
+          }
+          _or = _and;
+        }
+        if (_or) {
+          result.append("_");
+          result.append(c);
+        } else {
+          char _upperCase = Character.toUpperCase(c);
+          result.append(_upperCase);
+        }
+        boolean _isDigit_1 = Character.isDigit(c);
+        lastDigit = _isDigit_1;
+      }
+    }
+    final String s = result.toString();
+    boolean _startsWith = s.startsWith("_");
+    if (_startsWith) {
+      return s.substring(1);
+    }
+    return s;
+  }
+  
+  public EList<Annotation> annotations(final PojoEntity it) {
+    EList<Annotation> _xblockexpression = null;
+    {
+      final AnnotatedEntity an = EcoreUtil2.<AnnotatedEntity>getContainerOfType(it, AnnotatedEntity.class);
+      _xblockexpression = an.getAnnotations();
+    }
+    return _xblockexpression;
+  }
+  
   public boolean hasOperators(final PojoEntity pojo) {
     EList<PojoDirective> _directives = pojo.getDirectives();
     PojoDirective _findFirst = null;
@@ -652,6 +708,38 @@ public class ProcessorGeneratorUtils {
     return result;
   }
   
+  public PojoEntity getParent(final PojoEntity pojo) {
+    JvmParameterizedTypeReference _superType = null;
+    if (pojo!=null) {
+      _superType=pojo.getSuperType();
+    }
+    final JvmParameterizedTypeReference superType = _superType;
+    boolean _equals = Objects.equal(superType, null);
+    if (_equals) {
+      return null;
+    }
+    if ((superType instanceof PojoEntity)) {
+      return ((PojoEntity) superType);
+    }
+    final org.sqlproc.model.processorModel.Package pkg = EcoreUtil2.<org.sqlproc.model.processorModel.Package>getContainerOfType(pojo, org.sqlproc.model.processorModel.Package.class);
+    final String name = superType.getSimpleName();
+    List<AnnotatedEntity> _contentsOfType = Utils.<AnnotatedEntity>getContentsOfType(pkg, AnnotatedEntity.class);
+    final Function1<AnnotatedEntity, Boolean> _function = new Function1<AnnotatedEntity, Boolean>() {
+      public Boolean apply(final AnnotatedEntity p) {
+        Entity _entity = p.getEntity();
+        String _name = _entity.getName();
+        return Boolean.valueOf(Objects.equal(_name, name));
+      }
+    };
+    final AnnotatedEntity _pojo = IterableExtensions.<AnnotatedEntity>findFirst(_contentsOfType, _function);
+    boolean _notEquals = (!Objects.equal(_pojo, null));
+    if (_notEquals) {
+      Entity _entity = _pojo.getEntity();
+      return ((PojoEntity) _entity);
+    }
+    return null;
+  }
+  
   public List<PojoAttribute> requiredAttributes(final PojoEntity pojo) {
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
@@ -665,18 +753,12 @@ public class ProcessorGeneratorUtils {
     };
     Iterable<PojoAttribute> _filter = IterableExtensions.<PojoAttribute>filter(_attributes, _function);
     final List<PojoAttribute> features = IterableExtensions.<PojoAttribute>toList(_filter);
-    final JvmParameterizedTypeReference se = pojo.getSuperType();
-    boolean _or = false;
+    final PojoEntity se = this.getParent(pojo);
     boolean _equals_1 = Objects.equal(se, null);
     if (_equals_1) {
-      _or = true;
-    } else {
-      _or = (!(se instanceof PojoEntity));
-    }
-    if (_or) {
       return features;
     }
-    List<PojoAttribute> _requiredAttributes = this.requiredAttributes(((PojoEntity) se));
+    List<PojoAttribute> _requiredAttributes = this.requiredAttributes(se);
     features.addAll(_requiredAttributes);
     return features;
   }
@@ -688,18 +770,12 @@ public class ProcessorGeneratorUtils {
     }
     EList<PojoAttribute> _attributes = pojo.getAttributes();
     final List<PojoAttribute> features = IterableExtensions.<PojoAttribute>toList(_attributes);
-    final JvmParameterizedTypeReference se = pojo.getSuperType();
-    boolean _or = false;
+    final PojoEntity se = this.getParent(pojo);
     boolean _equals_1 = Objects.equal(se, null);
     if (_equals_1) {
-      _or = true;
-    } else {
-      _or = (!(se instanceof PojoEntity));
-    }
-    if (_or) {
       return features;
     }
-    List<PojoAttribute> _allAttributes = this.allAttributes(((PojoEntity) se));
+    List<PojoAttribute> _allAttributes = this.allAttributes(se);
     features.addAll(_allAttributes);
     return features;
   }
@@ -718,18 +794,12 @@ public class ProcessorGeneratorUtils {
       }
     };
     IterableExtensions.<PojoAttribute>forEach(_attributes, _function);
-    final JvmParameterizedTypeReference se = pojo.getSuperType();
-    boolean _or = false;
+    final PojoEntity se = this.getParent(pojo);
     boolean _equals_1 = Objects.equal(se, null);
     if (_equals_1) {
-      _or = true;
-    } else {
-      _or = (!(se instanceof PojoEntity));
-    }
-    if (_or) {
       return result;
     }
-    Map<String, PojoAttribute> _allAttributesAsMap = this.allAttributesAsMap(((PojoEntity) se));
+    Map<String, PojoAttribute> _allAttributesAsMap = this.allAttributesAsMap(se);
     result.putAll(_allAttributesAsMap);
     return result;
   }
@@ -747,18 +817,12 @@ public class ProcessorGeneratorUtils {
     };
     Iterable<PojoAttribute> _filter = IterableExtensions.<PojoAttribute>filter(_attributes, _function);
     final List<PojoAttribute> features = IterableExtensions.<PojoAttribute>toList(_filter);
-    final JvmParameterizedTypeReference se = pojo.getSuperType();
-    boolean _or = false;
+    final PojoEntity se = this.getParent(pojo);
     boolean _equals_1 = Objects.equal(se, null);
     if (_equals_1) {
-      _or = true;
-    } else {
-      _or = (!(se instanceof PojoEntity));
-    }
-    if (_or) {
       return features;
     }
-    List<PojoAttribute> _initAttributes = this.toInitAttributes(((PojoEntity) se));
+    List<PojoAttribute> _initAttributes = this.toInitAttributes(se);
     features.addAll(_initAttributes);
     return features;
   }
@@ -776,18 +840,12 @@ public class ProcessorGeneratorUtils {
     };
     Iterable<PojoAttribute> _filter = IterableExtensions.<PojoAttribute>filter(_attributes, _function);
     final List<PojoAttribute> features = IterableExtensions.<PojoAttribute>toList(_filter);
-    final JvmParameterizedTypeReference se = pojo.getSuperType();
-    boolean _or = false;
+    final PojoEntity se = this.getParent(pojo);
     boolean _equals_1 = Objects.equal(se, null);
     if (_equals_1) {
-      _or = true;
-    } else {
-      _or = (!(se instanceof PojoEntity));
-    }
-    if (_or) {
       return features;
     }
-    List<PojoAttribute> _enumInitAttributes = this.enumInitAttributes(((PojoEntity) se));
+    List<PojoAttribute> _enumInitAttributes = this.enumInitAttributes(se);
     features.addAll(_enumInitAttributes);
     return features;
   }
@@ -805,18 +863,12 @@ public class ProcessorGeneratorUtils {
     };
     Iterable<PojoAttribute> _filter = IterableExtensions.<PojoAttribute>filter(_attributes, _function);
     final List<PojoAttribute> features = IterableExtensions.<PojoAttribute>toList(_filter);
-    final JvmParameterizedTypeReference se = pojo.getSuperType();
-    boolean _or = false;
+    final PojoEntity se = this.getParent(pojo);
     boolean _equals_1 = Objects.equal(se, null);
     if (_equals_1) {
-      _or = true;
-    } else {
-      _or = (!(se instanceof PojoEntity));
-    }
-    if (_or) {
       return features;
     }
-    List<PojoAttribute> _isDefAttributes = this.isDefAttributes(((PojoEntity) se));
+    List<PojoAttribute> _isDefAttributes = this.isDefAttributes(se);
     features.addAll(_isDefAttributes);
     return features;
   }
@@ -834,18 +886,12 @@ public class ProcessorGeneratorUtils {
     };
     Iterable<PojoAttribute> _filter = IterableExtensions.<PojoAttribute>filter(_attributes, _function);
     final List<PojoAttribute> features = IterableExtensions.<PojoAttribute>toList(_filter);
-    final JvmParameterizedTypeReference se = pojo.getSuperType();
-    boolean _or = false;
+    final PojoEntity se = this.getParent(pojo);
     boolean _equals_1 = Objects.equal(se, null);
     if (_equals_1) {
-      _or = true;
-    } else {
-      _or = (!(se instanceof PojoEntity));
-    }
-    if (_or) {
       return features;
     }
-    List<PojoAttribute> _enumDefAttributes = this.enumDefAttributes(((PojoEntity) se));
+    List<PojoAttribute> _enumDefAttributes = this.enumDefAttributes(se);
     features.addAll(_enumDefAttributes);
     return features;
   }
@@ -904,18 +950,12 @@ public class ProcessorGeneratorUtils {
     if (_notEquals) {
       return true;
     }
-    final JvmParameterizedTypeReference se = pojo.getSuperType();
-    boolean _or = false;
+    final PojoEntity se = this.getParent(pojo);
     boolean _equals = Objects.equal(se, null);
     if (_equals) {
-      _or = true;
-    } else {
-      _or = (!(se instanceof PojoEntity));
-    }
-    if (_or) {
       return false;
     }
-    return this.hasIsDef(((PojoEntity) se));
+    return this.hasIsDef(se);
   }
   
   public PojoAttribute getAttribute(final PojoEntity pojo, final String name) {
@@ -942,96 +982,21 @@ public class ProcessorGeneratorUtils {
     if (_notEquals) {
       return feature;
     }
-    final JvmParameterizedTypeReference se = pojo.getSuperType();
-    boolean _or_1 = false;
+    final PojoEntity se = this.getParent(pojo);
     boolean _equals_2 = Objects.equal(se, null);
     if (_equals_2) {
-      _or_1 = true;
-    } else {
-      _or_1 = (!(se instanceof PojoEntity));
-    }
-    if (_or_1) {
       return null;
     }
-    return this.getAttribute(((PojoEntity) se), name);
+    return this.getAttribute(se, name);
   }
   
-  protected String _constName(final PojoAttribute attr) {
-    String _name = attr.getName();
-    return this.constName(_name);
-  }
-  
-  protected String _constName(final List<PojoAttribute> l) {
-    final StringBuilder result = new StringBuilder("");
-    boolean first = true;
-    for (final PojoAttribute attr : l) {
-      {
-        if (first) {
-          first = false;
-        } else {
-          result.append("_");
-        }
-        String _name = attr.getName();
-        String _constName = this.constName(_name);
-        result.append(_constName);
-      }
+  public EList<Annotation> annotations(final EnumEntity it) {
+    EList<Annotation> _xblockexpression = null;
+    {
+      final AnnotatedEntity an = EcoreUtil2.<AnnotatedEntity>getContainerOfType(it, AnnotatedEntity.class);
+      _xblockexpression = an.getAnnotations();
     }
-    return result.toString();
-  }
-  
-  protected String _constName(final String name) {
-    final StringBuilder result = new StringBuilder("");
-    char[] _charArray = name.toCharArray();
-    for (final char c : _charArray) {
-      boolean _isUpperCase = Character.isUpperCase(c);
-      if (_isUpperCase) {
-        result.append("_");
-        result.append(c);
-      } else {
-        char _upperCase = Character.toUpperCase(c);
-        result.append(_upperCase);
-      }
-    }
-    return result.toString();
-  }
-  
-  public String dbName(final String name) {
-    final StringBuilder result = new StringBuilder("");
-    boolean lastDigit = false;
-    char[] _charArray = name.toCharArray();
-    for (final char c : _charArray) {
-      {
-        boolean _or = false;
-        boolean _isUpperCase = Character.isUpperCase(c);
-        if (_isUpperCase) {
-          _or = true;
-        } else {
-          boolean _and = false;
-          boolean _isDigit = Character.isDigit(c);
-          if (!_isDigit) {
-            _and = false;
-          } else {
-            _and = (!lastDigit);
-          }
-          _or = _and;
-        }
-        if (_or) {
-          result.append("_");
-          result.append(c);
-        } else {
-          char _upperCase = Character.toUpperCase(c);
-          result.append(_upperCase);
-        }
-        boolean _isDigit_1 = Character.isDigit(c);
-        lastDigit = _isDigit_1;
-      }
-    }
-    final String s = result.toString();
-    boolean _startsWith = s.startsWith("_");
-    if (_startsWith) {
-      return s.substring(1);
-    }
-    return s;
+    return _xblockexpression;
   }
   
   public Integer getSernum(final EnumEntity enum_) {
@@ -1056,6 +1021,15 @@ public class ProcessorGeneratorUtils {
     return _xifexpression;
   }
   
+  public EList<Annotation> annotations(final DaoEntity it) {
+    EList<Annotation> _xblockexpression = null;
+    {
+      final AnnotatedEntity an = EcoreUtil2.<AnnotatedEntity>getContainerOfType(it, AnnotatedEntity.class);
+      _xblockexpression = an.getAnnotations();
+    }
+    return _xblockexpression;
+  }
+  
   public Integer getSernum(final DaoEntity dao) {
     EList<DaoDirective> _directives = dao.getDirectives();
     DaoDirective _findFirst = null;
@@ -1076,6 +1050,43 @@ public class ProcessorGeneratorUtils {
       _xifexpression = null;
     }
     return _xifexpression;
+  }
+  
+  public DaoEntity getParent(final DaoEntity pojo) {
+    JvmParameterizedTypeReference _superType = null;
+    if (pojo!=null) {
+      _superType=pojo.getSuperType();
+    }
+    final JvmParameterizedTypeReference superType = _superType;
+    boolean _equals = Objects.equal(superType, null);
+    if (_equals) {
+      return null;
+    }
+    if ((superType instanceof DaoEntity)) {
+      return ((DaoEntity) superType);
+    }
+    final org.sqlproc.model.processorModel.Package pkg = EcoreUtil2.<org.sqlproc.model.processorModel.Package>getContainerOfType(pojo, org.sqlproc.model.processorModel.Package.class);
+    List<DaoEntity> _eAllOfType = null;
+    if (pkg!=null) {
+      _eAllOfType=EcoreUtil2.<DaoEntity>eAllOfType(pkg, DaoEntity.class);
+    }
+    DaoEntity _findFirst = null;
+    if (_eAllOfType!=null) {
+      final Function1<DaoEntity, Boolean> _function = new Function1<DaoEntity, Boolean>() {
+        public Boolean apply(final DaoEntity d) {
+          String _name = d.getName();
+          String _simpleName = superType.getSimpleName();
+          return Boolean.valueOf(Objects.equal(_name, _simpleName));
+        }
+      };
+      _findFirst=IterableExtensions.<DaoEntity>findFirst(_eAllOfType, _function);
+    }
+    final DaoEntity _dao = _findFirst;
+    boolean _notEquals = (!Objects.equal(_dao, null));
+    if (_notEquals) {
+      return _dao;
+    }
+    return null;
   }
   
   public Map<String, Map<String, JvmParameterizedTypeReference>> getMoreResultClasses(final DaoEntity dao) {
@@ -1154,55 +1165,7 @@ public class ProcessorGeneratorUtils {
       String _substring = pojoName.substring(0, _minus);
       pojoName = _substring;
     }
-    final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(dao, Artifacts.class);
-    IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorModelPackage.Literals.ARTIFACTS__POJOS);
-    return this.findEntity(this.qualifiedNameConverter, artifacts, _scope, pojoName);
-  }
-  
-  public PojoEntity findEntity(final IQualifiedNameConverter qualifiedNameConverter, final Artifacts artifacts, final IScope scope, final String name) {
-    Iterable<IEObjectDescription> _allElements = scope.getAllElements();
-    for (final IEObjectDescription description : _allElements) {
-      {
-        InputOutput.<IEObjectDescription>println(description);
-        Resource _eResource = artifacts.eResource();
-        ResourceSet _resourceSet = _eResource.getResourceSet();
-        URI _eObjectURI = description.getEObjectURI();
-        EObject _eObject = _resourceSet.getEObject(_eObjectURI, true);
-        final org.sqlproc.model.processorModel.Package packageDeclaration = ((org.sqlproc.model.processorModel.Package) _eObject);
-        EList<AbstractEntity> _elements = packageDeclaration.getElements();
-        for (final AbstractEntity aEntity : _elements) {
-          if ((aEntity instanceof AnnotatedEntity)) {
-            final AnnotatedEntity ae = ((AnnotatedEntity) aEntity);
-            Entity _entity = ae.getEntity();
-            if ((_entity instanceof PojoEntity)) {
-              Entity _entity_1 = ae.getEntity();
-              final PojoEntity entity = ((PojoEntity) _entity_1);
-              String _name = entity.getName();
-              boolean _equals = name.equals(_name);
-              if (_equals) {
-                return entity;
-              }
-            }
-          }
-        }
-      }
-    }
     return null;
-  }
-  
-  protected PojoEntity _getPojo(final DaoEntity dao, final DaoDirectivePojo pojoDirective) {
-    PojoEntity _elvis = null;
-    PojoEntity _pojo = null;
-    if (pojoDirective!=null) {
-      _pojo=pojoDirective.getPojo();
-    }
-    if (_pojo != null) {
-      _elvis = _pojo;
-    } else {
-      PojoEntity _pojoImplicit = this.getPojoImplicit(dao);
-      _elvis = _pojoImplicit;
-    }
-    return _elvis;
   }
   
   public PojoEntity getPojo(final DaoEntity dao) {
@@ -1220,26 +1183,7 @@ public class ProcessorGeneratorUtils {
         }
       }
     }
-    return null;
-  }
-  
-  public PojoEntity getParent(final PojoEntity pojo) {
-    JvmParameterizedTypeReference _superType = null;
-    if (pojo!=null) {
-      _superType=pojo.getSuperType();
-    }
-    final JvmParameterizedTypeReference superType = _superType;
-    boolean _and = false;
-    boolean _notEquals = (!Objects.equal(superType, null));
-    if (!_notEquals) {
-      _and = false;
-    } else {
-      _and = (superType instanceof PojoEntity);
-    }
-    if (_and) {
-      return ((PojoEntity) superType);
-    }
-    return null;
+    return this.getPojoImplicit(dao);
   }
   
   public boolean isCRUD(final DaoEntity dao) {
@@ -1880,62 +1824,6 @@ public class ProcessorGeneratorUtils {
     return result;
   }
   
-  public String value(final ValueType pv) {
-    boolean _equals = Objects.equal(pv, null);
-    if (_equals) {
-      return null;
-    }
-    String s = pv.getValue();
-    boolean _notEquals = (!Objects.equal(s, null));
-    if (_notEquals) {
-      String _trim = s.trim();
-      s = _trim;
-      boolean _startsWith = s.startsWith("\"");
-      boolean _not = (!_startsWith);
-      if (_not) {
-        s = ("\"" + s);
-      }
-      boolean _endsWith = s.endsWith("\"");
-      boolean _not_1 = (!_endsWith);
-      if (_not_1) {
-        s = (s + "\"");
-      }
-      return s;
-    } else {
-      String _id = pv.getId();
-      boolean _notEquals_1 = (!Objects.equal(_id, null));
-      if (_notEquals_1) {
-        return pv.getId();
-      } else {
-        int _number = pv.getNumber();
-        return ("" + Integer.valueOf(_number));
-      }
-    }
-  }
-  
-  public String value0(final ValueType pv) {
-    boolean _equals = Objects.equal(pv, null);
-    if (_equals) {
-      return null;
-    }
-    String s = pv.getValue();
-    boolean _notEquals = (!Objects.equal(s, null));
-    if (_notEquals) {
-      String _trim = s.trim();
-      s = _trim;
-      return s;
-    } else {
-      String _id = pv.getId();
-      boolean _notEquals_1 = (!Objects.equal(_id, null));
-      if (_notEquals_1) {
-        return pv.getId();
-      } else {
-        int _number = pv.getNumber();
-        return ("" + Integer.valueOf(_number));
-      }
-    }
-  }
-  
   public String getExtends(final EnumEntity e) {
     EObject _eContainer = e.eContainer();
     EObject _eContainer_1 = _eContainer.eContainer();
@@ -2273,6 +2161,62 @@ public class ProcessorGeneratorUtils {
     return list;
   }
   
+  public String value(final ValueType pv) {
+    boolean _equals = Objects.equal(pv, null);
+    if (_equals) {
+      return null;
+    }
+    String s = pv.getValue();
+    boolean _notEquals = (!Objects.equal(s, null));
+    if (_notEquals) {
+      String _trim = s.trim();
+      s = _trim;
+      boolean _startsWith = s.startsWith("\"");
+      boolean _not = (!_startsWith);
+      if (_not) {
+        s = ("\"" + s);
+      }
+      boolean _endsWith = s.endsWith("\"");
+      boolean _not_1 = (!_endsWith);
+      if (_not_1) {
+        s = (s + "\"");
+      }
+      return s;
+    } else {
+      String _id = pv.getId();
+      boolean _notEquals_1 = (!Objects.equal(_id, null));
+      if (_notEquals_1) {
+        return pv.getId();
+      } else {
+        int _number = pv.getNumber();
+        return ("" + Integer.valueOf(_number));
+      }
+    }
+  }
+  
+  public String value0(final ValueType pv) {
+    boolean _equals = Objects.equal(pv, null);
+    if (_equals) {
+      return null;
+    }
+    String s = pv.getValue();
+    boolean _notEquals = (!Objects.equal(s, null));
+    if (_notEquals) {
+      String _trim = s.trim();
+      s = _trim;
+      return s;
+    } else {
+      String _id = pv.getId();
+      boolean _notEquals_1 = (!Objects.equal(_id, null));
+      if (_notEquals_1) {
+        return pv.getId();
+      } else {
+        int _number = pv.getNumber();
+        return ("" + Integer.valueOf(_number));
+      }
+    }
+  }
+  
   public String getSimpleName(final JvmParameterizedTypeReference ref) {
     JvmType _type = ref.getType();
     String _simpleName = _type.getSimpleName();
@@ -2313,15 +2257,9 @@ public class ProcessorGeneratorUtils {
       return _constName((List<PojoAttribute>)l);
     } else if (l instanceof PojoAttribute) {
       return _constName((PojoAttribute)l);
-    } else if (l instanceof String) {
-      return _constName((String)l);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(l).toString());
     }
-  }
-  
-  public PojoEntity getPojo(final DaoEntity dao, final DaoDirectivePojo pojoDirective) {
-    return _getPojo(dao, pojoDirective);
   }
 }

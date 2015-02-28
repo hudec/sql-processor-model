@@ -137,7 +137,7 @@ class PojoJvmModelInferrer {
 	   					parameters += entity.toParameter(attr.name, attr.type)
 	   				addAnnotations(entity.constructorAnnotations.map[a|a.annotation])
 	   				body = '''«FOR attr : requiredAttributes»
-						this.«attr.name» = «attr.name»;
+						set«attr.name.toFirstUpper»(«attr.name»);
 					«ENDFOR»'''
 	   			]
    			}
