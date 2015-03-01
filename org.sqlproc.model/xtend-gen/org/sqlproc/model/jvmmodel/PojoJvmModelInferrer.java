@@ -152,20 +152,21 @@ public class PojoJvmModelInferrer {
           PojoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _cloneWithProxies);
         }
         final Extends ext = PojoJvmModelInferrer.this._processorGeneratorUtils.getExtends(entity);
-        boolean _notEquals = (!Objects.equal(ext, null));
+        JvmParameterizedTypeReference _superType = entity.getSuperType();
+        boolean _notEquals = (!Objects.equal(_superType, null));
         if (_notEquals) {
           EList<JvmTypeReference> _superTypes_2 = it.getSuperTypes();
-          JvmParameterizedTypeReference _extends = ext.getExtends();
-          JvmTypeReference _cloneWithProxies_1 = PojoJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_extends);
-          PojoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_2, _cloneWithProxies_1);
-        }
-        JvmParameterizedTypeReference _superType = entity.getSuperType();
-        boolean _notEquals_1 = (!Objects.equal(_superType, null));
-        if (_notEquals_1) {
-          EList<JvmTypeReference> _superTypes_3 = it.getSuperTypes();
           JvmParameterizedTypeReference _superType_1 = entity.getSuperType();
-          JvmTypeReference _cloneWithProxies_2 = PojoJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_superType_1);
-          PojoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_3, _cloneWithProxies_2);
+          JvmTypeReference _cloneWithProxies_1 = PojoJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_superType_1);
+          PojoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_2, _cloneWithProxies_1);
+        } else {
+          boolean _notEquals_1 = (!Objects.equal(ext, null));
+          if (_notEquals_1) {
+            EList<JvmTypeReference> _superTypes_3 = it.getSuperTypes();
+            JvmParameterizedTypeReference _extends = ext.getExtends();
+            JvmTypeReference _cloneWithProxies_2 = PojoJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_extends);
+            PojoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_3, _cloneWithProxies_2);
+          }
         }
         boolean _notEquals_2 = (!Objects.equal(sernum, null));
         if (_notEquals_2) {
