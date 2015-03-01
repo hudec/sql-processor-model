@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.xtext.xtype.XImportSection;
 
 import org.sqlproc.model.processorModel.AbstractEntity;
+import org.sqlproc.model.processorModel.PackageDirective;
 import org.sqlproc.model.processorModel.ProcessorModelPackage;
 
 /**
@@ -30,6 +31,7 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.sqlproc.model.processorModel.impl.PackageImpl#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PackageImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PackageImpl#getImportSection <em>Import Section</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.impl.PackageImpl#getElements <em>Elements</em>}</li>
@@ -40,6 +42,16 @@ import org.sqlproc.model.processorModel.ProcessorModelPackage;
  */
 public class PackageImpl extends MinimalEObjectImpl.Container implements org.sqlproc.model.processorModel.Package
 {
+  /**
+   * The cached value of the '{@link #getDirectives() <em>Directives</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirectives()
+   * @generated
+   * @ordered
+   */
+  protected EList<PackageDirective> directives;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -99,6 +111,20 @@ public class PackageImpl extends MinimalEObjectImpl.Container implements org.sql
   protected EClass eStaticClass()
   {
     return ProcessorModelPackage.Literals.PACKAGE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<PackageDirective> getDirectives()
+  {
+    if (directives == null)
+    {
+      directives = new EObjectContainmentEList<PackageDirective>(PackageDirective.class, this, ProcessorModelPackage.PACKAGE__DIRECTIVES);
+    }
+    return directives;
   }
 
   /**
@@ -196,6 +222,8 @@ public class PackageImpl extends MinimalEObjectImpl.Container implements org.sql
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.PACKAGE__DIRECTIVES:
+        return ((InternalEList<?>)getDirectives()).basicRemove(otherEnd, msgs);
       case ProcessorModelPackage.PACKAGE__IMPORT_SECTION:
         return basicSetImportSection(null, msgs);
       case ProcessorModelPackage.PACKAGE__ELEMENTS:
@@ -214,6 +242,8 @@ public class PackageImpl extends MinimalEObjectImpl.Container implements org.sql
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.PACKAGE__DIRECTIVES:
+        return getDirectives();
       case ProcessorModelPackage.PACKAGE__NAME:
         return getName();
       case ProcessorModelPackage.PACKAGE__IMPORT_SECTION:
@@ -235,6 +265,10 @@ public class PackageImpl extends MinimalEObjectImpl.Container implements org.sql
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.PACKAGE__DIRECTIVES:
+        getDirectives().clear();
+        getDirectives().addAll((Collection<? extends PackageDirective>)newValue);
+        return;
       case ProcessorModelPackage.PACKAGE__NAME:
         setName((String)newValue);
         return;
@@ -259,6 +293,9 @@ public class PackageImpl extends MinimalEObjectImpl.Container implements org.sql
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.PACKAGE__DIRECTIVES:
+        getDirectives().clear();
+        return;
       case ProcessorModelPackage.PACKAGE__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -282,6 +319,8 @@ public class PackageImpl extends MinimalEObjectImpl.Container implements org.sql
   {
     switch (featureID)
     {
+      case ProcessorModelPackage.PACKAGE__DIRECTIVES:
+        return directives != null && !directives.isEmpty();
       case ProcessorModelPackage.PACKAGE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProcessorModelPackage.PACKAGE__IMPORT_SECTION:

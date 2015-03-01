@@ -28,10 +28,10 @@ class ProcessorModelFormatter extends XbaseFormatter {
 		c.setLinewrap(0, 1, 2).before(ML_COMMENTRule)
 		c.setLinewrap(0, 1, 1).after(ML_COMMENTRule)
 
-		c.setLinewrap(2).after(packageAccess.leftCurlyBracketKeyword_2)
-		c.setLinewrap().before(packageAccess.rightCurlyBracketKeyword_5)
-		c.setIndentationIncrement.after(packageAccess.leftCurlyBracketKeyword_2)
-		c.setIndentationDecrement.before(packageAccess.rightCurlyBracketKeyword_5)
+		c.setLinewrap(2).after(packageAccess.leftCurlyBracketKeyword_3)
+		c.setLinewrap().before(packageAccess.rightCurlyBracketKeyword_6)
+		c.setIndentationIncrement.after(packageAccess.leftCurlyBracketKeyword_3)
+		c.setIndentationDecrement.before(packageAccess.rightCurlyBracketKeyword_6)
 				
 		c.setLinewrap().before(XImportSectionAccess.rule)
 

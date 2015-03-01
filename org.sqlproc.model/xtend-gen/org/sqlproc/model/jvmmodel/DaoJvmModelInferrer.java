@@ -137,7 +137,7 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
    *            rely on linking using the index if isPreIndexingPhase is
    *            <code>true</code>.
    */
-  public void inferDao(final DaoEntity entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
+  public void inferDao(final DaoEntity entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase, final String implPackage) {
     final PojoEntity pojo = this._processorGeneratorUtils.getPojo(entity);
     boolean _and = false;
     boolean _equals = Objects.equal(pojo, null);
@@ -152,15 +152,15 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
       InputOutput.<String>println(("Missing POJO for " + entity));
       return;
     }
-    QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(entity);
-    final JvmGenericType entityType = this._processorTypesBuilder.toClass(entity, _fullyQualifiedName);
+    QualifiedName _daoFullyQualifiedName = this.daoFullyQualifiedName(entity, implPackage);
+    final JvmGenericType entityType = this._processorTypesBuilder.toClass(entity, _daoFullyQualifiedName);
     JvmGenericType _class = null;
     if (pojo!=null) {
-      QualifiedName _fullyQualifiedName_1 = null;
+      QualifiedName _fullyQualifiedName = null;
       if (pojo!=null) {
-        _fullyQualifiedName_1=this._iQualifiedNameProvider.getFullyQualifiedName(pojo);
+        _fullyQualifiedName=this._iQualifiedNameProvider.getFullyQualifiedName(pojo);
       }
-      _class=this._processorTypesBuilder.toClass(pojo, _fullyQualifiedName_1);
+      _class=this._processorTypesBuilder.toClass(pojo, _fullyQualifiedName);
     }
     final JvmGenericType pojoType = _class;
     boolean _and_1 = false;
@@ -2869,6 +2869,22 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
     };
     JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, fname, outType, _function_3);
     members.add(_method_3);
+  }
+  
+  public QualifiedName daoFullyQualifiedName(final DaoEntity entity, final String implPackage) {
+    final QualifiedName fqname = this._iQualifiedNameProvider.getFullyQualifiedName(entity);
+    boolean _notEquals = (!Objects.equal(implPackage, null));
+    if (_notEquals) {
+      QualifiedName fqn = fqname.skipLast(1);
+      QualifiedName _append = fqn.append(implPackage);
+      fqn = _append;
+      String _lastSegment = fqname.getLastSegment();
+      String _plus = (_lastSegment + "Impl");
+      QualifiedName _append_1 = fqn.append(_plus);
+      fqn = _append_1;
+      return fqn;
+    }
+    return fqname;
   }
   
   public void inferFunctionProcedure(final DaoEntity entity, final FunProcType type, final DaoDirectiveParameters params, final JvmGenericType entityType, final String simpleName, final List<JvmMember> members) {

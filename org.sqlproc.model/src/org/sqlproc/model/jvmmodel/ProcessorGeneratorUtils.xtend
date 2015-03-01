@@ -65,6 +65,7 @@ import org.eclipse.xtext.resource.IEObjectDescription
 import org.sqlproc.model.processorModel.DaoDirectivePojo
 import org.sqlproc.model.processorModel.DaoFunProcDirective
 import org.sqlproc.model.util.Utils
+import org.sqlproc.model.processorModel.PackageDirectiveImplementation
 
 class ProcessorGeneratorUtils {
 
@@ -534,6 +535,12 @@ class ProcessorGeneratorUtils {
 			result.add(it as DaoFunProcDirective)
 		]
 		return result
+    }
+
+    def String getImplPackage(DaoEntity dao) {
+    	val Package pkg = getContainerOfType(dao, Package)
+		val d = pkg?.directives?.findFirst[x|x instanceof PackageDirectiveImplementation] as PackageDirectiveImplementation
+		return if (d != null) d.implementation else null
     }
 
 	// Annotations

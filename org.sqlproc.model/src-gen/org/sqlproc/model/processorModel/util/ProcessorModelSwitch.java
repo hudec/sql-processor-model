@@ -74,6 +74,8 @@ import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
+import org.sqlproc.model.processorModel.PackageDirective;
+import org.sqlproc.model.processorModel.PackageDirectiveImplementation;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
@@ -427,6 +429,13 @@ public class ProcessorModelSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProcessorModelPackage.PACKAGE_DIRECTIVE:
+      {
+        PackageDirective packageDirective = (PackageDirective)theEObject;
+        T result = casePackageDirective(packageDirective);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProcessorModelPackage.PACKAGE:
       {
         org.sqlproc.model.processorModel.Package package_ = (org.sqlproc.model.processorModel.Package)theEObject;
@@ -605,6 +614,14 @@ public class ProcessorModelSwitch<T> extends Switch<T>
       {
         Annotation annotation = (Annotation)theEObject;
         T result = caseAnnotation(annotation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ProcessorModelPackage.PACKAGE_DIRECTIVE_IMPLEMENTATION:
+      {
+        PackageDirectiveImplementation packageDirectiveImplementation = (PackageDirectiveImplementation)theEObject;
+        T result = casePackageDirectiveImplementation(packageDirectiveImplementation);
+        if (result == null) result = casePackageDirective(packageDirectiveImplementation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1533,6 +1550,22 @@ public class ProcessorModelSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Package Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Package Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePackageDirective(PackageDirective object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Package</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1928,6 +1961,22 @@ public class ProcessorModelSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAnnotation(Annotation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Package Directive Implementation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Package Directive Implementation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePackageDirectiveImplementation(PackageDirectiveImplementation object)
   {
     return null;
   }

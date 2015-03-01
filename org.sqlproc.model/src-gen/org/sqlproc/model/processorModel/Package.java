@@ -16,6 +16,7 @@ import org.eclipse.xtext.xtype.XImportSection;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.sqlproc.model.processorModel.Package#getDirectives <em>Directives</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Package#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Package#getImportSection <em>Import Section</em>}</li>
  *   <li>{@link org.sqlproc.model.processorModel.Package#getElements <em>Elements</em>}</li>
@@ -28,6 +29,22 @@ import org.eclipse.xtext.xtype.XImportSection;
  */
 public interface Package extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Directives</b></em>' containment reference list.
+   * The list contents are of type {@link org.sqlproc.model.processorModel.PackageDirective}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Directives</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Directives</em>' containment reference list.
+   * @see org.sqlproc.model.processorModel.ProcessorModelPackage#getPackage_Directives()
+   * @model containment="true"
+   * @generated
+   */
+  EList<PackageDirective> getDirectives();
+
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->

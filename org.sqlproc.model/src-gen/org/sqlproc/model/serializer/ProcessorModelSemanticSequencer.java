@@ -120,6 +120,7 @@ import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
+import org.sqlproc.model.processorModel.PackageDirectiveImplementation;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveDiscriminator;
@@ -527,6 +528,12 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 			case ProcessorModelPackage.PACKAGE:
 				if(context == grammarAccess.getPackageRule()) {
 					sequence_Package(context, (org.sqlproc.model.processorModel.Package) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorModelPackage.PACKAGE_DIRECTIVE_IMPLEMENTATION:
+				if(context == grammarAccess.getPackageDirectiveRule()) {
+					sequence_PackageDirective(context, (PackageDirectiveImplementation) semanticObject); 
 					return; 
 				}
 				else break;
@@ -2733,7 +2740,23 @@ public class ProcessorModelSemanticSequencer extends XbaseWithAnnotationsSemanti
 	
 	/**
 	 * Constraint:
-	 *     (name=QualifiedName importSection=XImportSection? elements+=AbstractEntity*)
+	 *     implementation=QualifiedName
+	 */
+	protected void sequence_PackageDirective(EObject context, PackageDirectiveImplementation semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ProcessorModelPackage.Literals.PACKAGE_DIRECTIVE_IMPLEMENTATION__IMPLEMENTATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorModelPackage.Literals.PACKAGE_DIRECTIVE_IMPLEMENTATION__IMPLEMENTATION));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPackageDirectiveAccess().getImplementationQualifiedNameParserRuleCall_3_0(), semanticObject.getImplementation());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (directives+=PackageDirective* name=QualifiedName importSection=XImportSection? elements+=AbstractEntity*)
 	 */
 	protected void sequence_Package(EObject context, org.sqlproc.model.processorModel.Package semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

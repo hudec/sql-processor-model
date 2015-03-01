@@ -347,6 +347,15 @@ public interface ProcessorModelFactory extends EFactory
   FunctionDefinition createFunctionDefinition();
 
   /**
+   * Returns a new object of class '<em>Package Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Package Directive</em>'.
+   * @generated
+   */
+  PackageDirective createPackageDirective();
+
+  /**
    * Returns a new object of class '<em>Package</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -570,6 +579,15 @@ public interface ProcessorModelFactory extends EFactory
    * @generated
    */
   Annotation createAnnotation();
+
+  /**
+   * Returns a new object of class '<em>Package Directive Implementation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Package Directive Implementation</em>'.
+   * @generated
+   */
+  PackageDirectiveImplementation createPackageDirectiveImplementation();
 
   /**
    * Returns a new object of class '<em>Implements Extends Directive Generics</em>'.

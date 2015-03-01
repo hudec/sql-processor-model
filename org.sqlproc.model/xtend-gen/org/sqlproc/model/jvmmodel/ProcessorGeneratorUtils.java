@@ -57,6 +57,8 @@ import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveExceptPojos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveGenerics;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyDaos;
 import org.sqlproc.model.processorModel.ImplementsExtendsDirectiveOnlyPojos;
+import org.sqlproc.model.processorModel.PackageDirective;
+import org.sqlproc.model.processorModel.PackageDirectiveImplementation;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
@@ -1272,6 +1274,32 @@ public class ProcessorGeneratorUtils {
     };
     IterableExtensions.<DaoDirective>forEach(_filter, _function_1);
     return result;
+  }
+  
+  public String getImplPackage(final DaoEntity dao) {
+    final org.sqlproc.model.processorModel.Package pkg = EcoreUtil2.<org.sqlproc.model.processorModel.Package>getContainerOfType(dao, org.sqlproc.model.processorModel.Package.class);
+    EList<PackageDirective> _directives = null;
+    if (pkg!=null) {
+      _directives=pkg.getDirectives();
+    }
+    PackageDirective _findFirst = null;
+    if (_directives!=null) {
+      final Function1<PackageDirective, Boolean> _function = new Function1<PackageDirective, Boolean>() {
+        public Boolean apply(final PackageDirective x) {
+          return Boolean.valueOf((x instanceof PackageDirectiveImplementation));
+        }
+      };
+      _findFirst=IterableExtensions.<PackageDirective>findFirst(_directives, _function);
+    }
+    final PackageDirectiveImplementation d = ((PackageDirectiveImplementation) _findFirst);
+    String _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(d, null));
+    if (_notEquals) {
+      _xifexpression = d.getImplementation();
+    } else {
+      _xifexpression = null;
+    }
+    return _xifexpression;
   }
   
   public boolean isConflict(final Annotation an) {

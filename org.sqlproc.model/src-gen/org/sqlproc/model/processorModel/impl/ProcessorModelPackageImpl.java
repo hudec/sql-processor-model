@@ -84,6 +84,8 @@ import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
+import org.sqlproc.model.processorModel.PackageDirective;
+import org.sqlproc.model.processorModel.PackageDirectiveImplementation;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
@@ -388,6 +390,13 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass packageDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass packageEClass = null;
 
   /**
@@ -557,6 +566,13 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * @generated
    */
   private EClass annotationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass packageDirectiveImplementationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2842,6 +2858,16 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPackageDirective()
+  {
+    return packageDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPackage()
   {
     return packageEClass;
@@ -2852,9 +2878,19 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getPackage_Directives()
+  {
+    return (EReference)packageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getPackage_Name()
   {
-    return (EAttribute)packageEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)packageEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2864,7 +2900,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    */
   public EReference getPackage_ImportSection()
   {
-    return (EReference)packageEClass.getEStructuralFeatures().get(1);
+    return (EReference)packageEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2874,7 +2910,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
    */
   public EReference getPackage_Elements()
   {
-    return (EReference)packageEClass.getEStructuralFeatures().get(2);
+    return (EReference)packageEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -3595,6 +3631,26 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
   public EReference getAnnotation_Annotation()
   {
     return (EReference)annotationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPackageDirectiveImplementation()
+  {
+    return packageDirectiveImplementationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPackageDirectiveImplementation_Implementation()
+  {
+    return (EAttribute)packageDirectiveImplementationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4554,7 +4610,10 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     createEAttribute(functionDefinitionEClass, FUNCTION_DEFINITION__NAME);
     createEAttribute(functionDefinitionEClass, FUNCTION_DEFINITION__TABLE);
 
+    packageDirectiveEClass = createEClass(PACKAGE_DIRECTIVE);
+
     packageEClass = createEClass(PACKAGE);
+    createEReference(packageEClass, PACKAGE__DIRECTIVES);
     createEAttribute(packageEClass, PACKAGE__NAME);
     createEReference(packageEClass, PACKAGE__IMPORT_SECTION);
     createEReference(packageEClass, PACKAGE__ELEMENTS);
@@ -4654,6 +4713,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     annotationEClass = createEClass(ANNOTATION);
     createEReference(annotationEClass, ANNOTATION__DIRECTIVES);
     createEReference(annotationEClass, ANNOTATION__ANNOTATION);
+
+    packageDirectiveImplementationEClass = createEClass(PACKAGE_DIRECTIVE_IMPLEMENTATION);
+    createEAttribute(packageDirectiveImplementationEClass, PACKAGE_DIRECTIVE_IMPLEMENTATION__IMPLEMENTATION);
 
     implementsExtendsDirectiveGenericsEClass = createEClass(IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS);
 
@@ -4810,6 +4872,7 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     pojoEntityEClass.getESuperTypes().add(this.getEntity());
     enumEntityEClass.getESuperTypes().add(this.getEntity());
     daoEntityEClass.getESuperTypes().add(this.getEntity());
+    packageDirectiveImplementationEClass.getESuperTypes().add(this.getPackageDirective());
     implementsExtendsDirectiveGenericsEClass.getESuperTypes().add(this.getImplementsExtendsDirective());
     implementsExtendsDirectiveOnlyPojosEClass.getESuperTypes().add(this.getImplementsExtendsDirective());
     implementsExtendsDirectiveOnlyDaosEClass.getESuperTypes().add(this.getImplementsExtendsDirective());
@@ -5082,7 +5145,10 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEAttribute(getFunctionDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionDefinition_Table(), ecorePackage.getEString(), "table", null, 0, 1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(packageDirectiveEClass, PackageDirective.class, "PackageDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(packageEClass, org.sqlproc.model.processorModel.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPackage_Directives(), this.getPackageDirective(), null, "directives", null, 0, -1, org.sqlproc.model.processorModel.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPackage_Name(), ecorePackage.getEString(), "name", null, 0, 1, org.sqlproc.model.processorModel.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPackage_ImportSection(), theXtypePackage.getXImportSection(), null, "importSection", null, 0, 1, org.sqlproc.model.processorModel.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPackage_Elements(), this.getAbstractEntity(), null, "elements", null, 0, -1, org.sqlproc.model.processorModel.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5182,6 +5248,9 @@ public class ProcessorModelPackageImpl extends EPackageImpl implements Processor
     initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAnnotation_Directives(), this.getAnnotationDirective(), null, "directives", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAnnotation_Annotation(), theXAnnotationsPackage.getXAnnotation(), null, "annotation", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(packageDirectiveImplementationEClass, PackageDirectiveImplementation.class, "PackageDirectiveImplementation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPackageDirectiveImplementation_Implementation(), ecorePackage.getEString(), "implementation", null, 0, 1, PackageDirectiveImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(implementsExtendsDirectiveGenericsEClass, ImplementsExtendsDirectiveGenerics.class, "ImplementsExtendsDirectiveGenerics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

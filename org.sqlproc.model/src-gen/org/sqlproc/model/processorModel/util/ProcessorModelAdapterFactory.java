@@ -76,6 +76,8 @@ import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
+import org.sqlproc.model.processorModel.PackageDirective;
+import org.sqlproc.model.processorModel.PackageDirectiveImplementation;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
@@ -358,6 +360,11 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
         return createFunctionDefinitionAdapter();
       }
       @Override
+      public Adapter casePackageDirective(PackageDirective object)
+      {
+        return createPackageDirectiveAdapter();
+      }
+      @Override
       public Adapter casePackage(org.sqlproc.model.processorModel.Package object)
       {
         return createPackageAdapter();
@@ -481,6 +488,11 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
       public Adapter caseAnnotation(Annotation object)
       {
         return createAnnotationAdapter();
+      }
+      @Override
+      public Adapter casePackageDirectiveImplementation(PackageDirectiveImplementation object)
+      {
+        return createPackageDirectiveImplementationAdapter();
       }
       @Override
       public Adapter caseImplementsExtendsDirectiveGenerics(ImplementsExtendsDirectiveGenerics object)
@@ -1260,6 +1272,21 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.PackageDirective <em>Package Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.PackageDirective
+   * @generated
+   */
+  public Adapter createPackageDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.Package <em>Package</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1630,6 +1657,21 @@ public class ProcessorModelAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAnnotationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.model.processorModel.PackageDirectiveImplementation <em>Package Directive Implementation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.model.processorModel.PackageDirectiveImplementation
+   * @generated
+   */
+  public Adapter createPackageDirectiveImplementationAdapter()
   {
     return null;
   }

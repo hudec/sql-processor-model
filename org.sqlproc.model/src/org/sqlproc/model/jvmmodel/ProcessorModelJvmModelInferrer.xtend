@@ -36,6 +36,7 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
 	@Inject extension PojoJvmModelInferrer _pojoJvmModelInferrer
 	@Inject extension EnumJvmModelInferrer _enumJvmModelInferrer
 	@Inject extension DaoJvmModelInferrer _daoJvmModelInferrer
+	@Inject extension ProcessorGeneratorUtils
 
    	def dispatch void infer(PojoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
    		_pojoJvmModelInferrer._annotationTypesBuilder = _annotationTypesBuilder
@@ -52,7 +53,13 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    	def dispatch void infer(DaoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
    		_daoJvmModelInferrer._annotationTypesBuilder = _annotationTypesBuilder
    		_daoJvmModelInferrer._typeReferenceBuilder = _typeReferenceBuilder
-   		inferDao(entity, acceptor, isPreIndexingPhase)
+   		val implPackage = getImplPackage(entity)
+   		if (implPackage != null) {
+   			inferDao(entity, acceptor, isPreIndexingPhase, implPackage)
+   		}
+   		else {
+   			inferDao(entity, acceptor, isPreIndexingPhase, null)
+		}
    	}
 }
 

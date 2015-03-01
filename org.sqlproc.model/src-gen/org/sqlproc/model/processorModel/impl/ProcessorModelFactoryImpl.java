@@ -77,6 +77,8 @@ import org.sqlproc.model.processorModel.JoinTableAssignement;
 import org.sqlproc.model.processorModel.ManyToManyAssignement;
 import org.sqlproc.model.processorModel.MetaTypeAssignement;
 import org.sqlproc.model.processorModel.MetagenProperty;
+import org.sqlproc.model.processorModel.PackageDirective;
+import org.sqlproc.model.processorModel.PackageDirectiveImplementation;
 import org.sqlproc.model.processorModel.PojoAttribute;
 import org.sqlproc.model.processorModel.PojoAttributeDirective;
 import org.sqlproc.model.processorModel.PojoAttributeDirectiveCreateCol;
@@ -204,6 +206,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.TABLE_DEFINITION: return createTableDefinition();
       case ProcessorModelPackage.PROCEDURE_DEFINITION: return createProcedureDefinition();
       case ProcessorModelPackage.FUNCTION_DEFINITION: return createFunctionDefinition();
+      case ProcessorModelPackage.PACKAGE_DIRECTIVE: return createPackageDirective();
       case ProcessorModelPackage.PACKAGE: return createPackage();
       case ProcessorModelPackage.ABSTRACT_ENTITY: return createAbstractEntity();
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE: return createImplementsExtendsDirective();
@@ -229,6 +232,7 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
       case ProcessorModelPackage.DAO_ENTITY: return createDaoEntity();
       case ProcessorModelPackage.ANNOTATION_DIRECTIVE: return createAnnotationDirective();
       case ProcessorModelPackage.ANNOTATION: return createAnnotation();
+      case ProcessorModelPackage.PACKAGE_DIRECTIVE_IMPLEMENTATION: return createPackageDirectiveImplementation();
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_GENERICS: return createImplementsExtendsDirectiveGenerics();
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_POJOS: return createImplementsExtendsDirectiveOnlyPojos();
       case ProcessorModelPackage.IMPLEMENTS_EXTENDS_DIRECTIVE_ONLY_DAOS: return createImplementsExtendsDirectiveOnlyDaos();
@@ -678,6 +682,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
    * <!-- end-user-doc -->
    * @generated
    */
+  public PackageDirective createPackageDirective()
+  {
+    PackageDirectiveImpl packageDirective = new PackageDirectiveImpl();
+    return packageDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public org.sqlproc.model.processorModel.Package createPackage()
   {
     PackageImpl package_ = new PackageImpl();
@@ -946,6 +961,17 @@ public class ProcessorModelFactoryImpl extends EFactoryImpl implements Processor
   {
     AnnotationImpl annotation = new AnnotationImpl();
     return annotation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PackageDirectiveImplementation createPackageDirectiveImplementation()
+  {
+    PackageDirectiveImplementationImpl packageDirectiveImplementation = new PackageDirectiveImplementationImpl();
+    return packageDirectiveImplementation;
   }
 
   /**

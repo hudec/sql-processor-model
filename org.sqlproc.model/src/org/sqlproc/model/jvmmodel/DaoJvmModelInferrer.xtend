@@ -34,6 +34,7 @@ import org.sqlproc.model.processorModel.FunctionCall
 import org.sqlproc.model.processorModel.ProcedureUpdate
 import org.sqlproc.model.processorModel.FunctionQuery
 import org.sqlproc.model.processorModel.DaoFunProcDirective
+import org.eclipse.xtext.naming.QualifiedName
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -93,14 +94,14 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 	 *            rely on linking using the index if isPreIndexingPhase is
 	 *            <code>true</code>.
 	 */
-   	def void inferDao(DaoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
+   	def void inferDao(DaoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase, String implPackage) {
    		val pojo = entity.pojo
    		if (pojo == null && !entity.isFunctionProcedure) {
    			println("Missing POJO for "+entity)
    			return
    		}
 
-   		val entityType = entity.toClass(entity.fullyQualifiedName)
+   		val entityType = entity.toClass(entity.daoFullyQualifiedName(implPackage))
    		val pojoType = pojo?.toClass(pojo?.fullyQualifiedName)
    		if (pojoType == null && !entity.isFunctionProcedure) {
    			println("Missing POJOTYPE for "+entity)
@@ -834,6 +835,17 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
    			'''
    		]	
+   	}
+   	
+   	def QualifiedName daoFullyQualifiedName(DaoEntity entity, String implPackage) {
+   		val QualifiedName fqname = entity.fullyQualifiedName
+   		if (implPackage != null) {
+   			var fqn = fqname.skipLast(1)
+   			fqn = fqn.append(implPackage)
+   			fqn = fqn.append(fqname.lastSegment+'Impl')
+   			return fqn
+   		}
+   		return fqname
    	}
 }
 

@@ -175,12 +175,18 @@ ProcedureDefinition:
 FunctionDefinition:
 	'function' name=ValidID table=ValidID ';';
 
+PackageDirective: 
+{PackageDirectiveImplementation} '#Implementation' LPAREN implementation=QualifiedName RPAREN
+;
+
 Package:
+	directives+=PackageDirective*
 	'package' name=(QualifiedName)
 	'{'
 		importSection=XImportSection?
 		elements+=AbstractEntity*
-	'}';
+	'}'
+;
 
 AbstractEntity:
 	Implements | Extends | AnnotatedEntity	

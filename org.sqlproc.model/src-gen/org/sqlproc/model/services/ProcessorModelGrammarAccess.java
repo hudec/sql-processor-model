@@ -3682,52 +3682,98 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 
+	public class PackageDirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PackageDirective");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cPackageDirectiveImplementationAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cImplementationKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cLPARENTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Assignment cImplementationAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cImplementationQualifiedNameParserRuleCall_3_0 = (RuleCall)cImplementationAssignment_3.eContents().get(0);
+		private final RuleCall cRPARENTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		
+		//PackageDirective:
+		//	{PackageDirectiveImplementation} "#Implementation" LPAREN implementation=QualifiedName RPAREN;
+		public ParserRule getRule() { return rule; }
+
+		//{PackageDirectiveImplementation} "#Implementation" LPAREN implementation=QualifiedName RPAREN
+		public Group getGroup() { return cGroup; }
+
+		//{PackageDirectiveImplementation}
+		public Action getPackageDirectiveImplementationAction_0() { return cPackageDirectiveImplementationAction_0; }
+
+		//"#Implementation"
+		public Keyword getImplementationKeyword_1() { return cImplementationKeyword_1; }
+
+		//LPAREN
+		public RuleCall getLPARENTerminalRuleCall_2() { return cLPARENTerminalRuleCall_2; }
+
+		//implementation=QualifiedName
+		public Assignment getImplementationAssignment_3() { return cImplementationAssignment_3; }
+
+		//QualifiedName
+		public RuleCall getImplementationQualifiedNameParserRuleCall_3_0() { return cImplementationQualifiedNameParserRuleCall_3_0; }
+
+		//RPAREN
+		public RuleCall getRPARENTerminalRuleCall_4() { return cRPARENTerminalRuleCall_4; }
+	}
+
 	public class PackageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Package");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cImportSectionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cImportSectionXImportSectionParserRuleCall_3_0 = (RuleCall)cImportSectionAssignment_3.eContents().get(0);
-		private final Assignment cElementsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cElementsAbstractEntityParserRuleCall_4_0 = (RuleCall)cElementsAssignment_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cDirectivesAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cDirectivesPackageDirectiveParserRuleCall_0_0 = (RuleCall)cDirectivesAssignment_0.eContents().get(0);
+		private final Keyword cPackageKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameQualifiedNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cImportSectionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cImportSectionXImportSectionParserRuleCall_4_0 = (RuleCall)cImportSectionAssignment_4.eContents().get(0);
+		private final Assignment cElementsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cElementsAbstractEntityParserRuleCall_5_0 = (RuleCall)cElementsAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Package:
-		//	"package" name=QualifiedName "{" importSection=XImportSection? elements+=AbstractEntity* "}";
+		//	directives+=PackageDirective* "package" name=QualifiedName "{" importSection=XImportSection? elements+=AbstractEntity*
+		//	"}";
 		public ParserRule getRule() { return rule; }
 
-		//"package" name=QualifiedName "{" importSection=XImportSection? elements+=AbstractEntity* "}"
+		//directives+=PackageDirective* "package" name=QualifiedName "{" importSection=XImportSection? elements+=AbstractEntity*
+		//"}"
 		public Group getGroup() { return cGroup; }
 
+		//directives+=PackageDirective*
+		public Assignment getDirectivesAssignment_0() { return cDirectivesAssignment_0; }
+
+		//PackageDirective
+		public RuleCall getDirectivesPackageDirectiveParserRuleCall_0_0() { return cDirectivesPackageDirectiveParserRuleCall_0_0; }
+
 		//"package"
-		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
+		public Keyword getPackageKeyword_1() { return cPackageKeyword_1; }
 
 		//name=QualifiedName
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 
 		//QualifiedName
-		public RuleCall getNameQualifiedNameParserRuleCall_1_0() { return cNameQualifiedNameParserRuleCall_1_0; }
+		public RuleCall getNameQualifiedNameParserRuleCall_2_0() { return cNameQualifiedNameParserRuleCall_2_0; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 
 		//importSection=XImportSection?
-		public Assignment getImportSectionAssignment_3() { return cImportSectionAssignment_3; }
+		public Assignment getImportSectionAssignment_4() { return cImportSectionAssignment_4; }
 
 		//XImportSection
-		public RuleCall getImportSectionXImportSectionParserRuleCall_3_0() { return cImportSectionXImportSectionParserRuleCall_3_0; }
+		public RuleCall getImportSectionXImportSectionParserRuleCall_4_0() { return cImportSectionXImportSectionParserRuleCall_4_0; }
 
 		//elements+=AbstractEntity*
-		public Assignment getElementsAssignment_4() { return cElementsAssignment_4; }
+		public Assignment getElementsAssignment_5() { return cElementsAssignment_5; }
 
 		//AbstractEntity
-		public RuleCall getElementsAbstractEntityParserRuleCall_4_0() { return cElementsAbstractEntityParserRuleCall_4_0; }
+		public RuleCall getElementsAbstractEntityParserRuleCall_5_0() { return cElementsAbstractEntityParserRuleCall_5_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 
 	public class AbstractEntityElements extends AbstractParserRuleElementFinder {
@@ -5696,6 +5742,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 	private final TableDefinitionElements pTableDefinition;
 	private final ProcedureDefinitionElements pProcedureDefinition;
 	private final FunctionDefinitionElements pFunctionDefinition;
+	private final PackageDirectiveElements pPackageDirective;
 	private final PackageElements pPackage;
 	private final AbstractEntityElements pAbstractEntity;
 	private final ImplementsExtendsDirectiveElements pImplementsExtendsDirective;
@@ -5770,6 +5817,7 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTableDefinition = new TableDefinitionElements();
 		this.pProcedureDefinition = new ProcedureDefinitionElements();
 		this.pFunctionDefinition = new FunctionDefinitionElements();
+		this.pPackageDirective = new PackageDirectiveElements();
 		this.pPackage = new PackageElements();
 		this.pAbstractEntity = new AbstractEntityElements();
 		this.pImplementsExtendsDirective = new ImplementsExtendsDirectiveElements();
@@ -6243,8 +6291,19 @@ public class ProcessorModelGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionDefinitionAccess().getRule();
 	}
 
+	//PackageDirective:
+	//	{PackageDirectiveImplementation} "#Implementation" LPAREN implementation=QualifiedName RPAREN;
+	public PackageDirectiveElements getPackageDirectiveAccess() {
+		return pPackageDirective;
+	}
+	
+	public ParserRule getPackageDirectiveRule() {
+		return getPackageDirectiveAccess().getRule();
+	}
+
 	//Package:
-	//	"package" name=QualifiedName "{" importSection=XImportSection? elements+=AbstractEntity* "}";
+	//	directives+=PackageDirective* "package" name=QualifiedName "{" importSection=XImportSection? elements+=AbstractEntity*
+	//	"}";
 	public PackageElements getPackageAccess() {
 		return pPackage;
 	}
