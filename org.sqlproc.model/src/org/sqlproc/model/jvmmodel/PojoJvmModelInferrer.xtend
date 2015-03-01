@@ -130,15 +130,17 @@ class PojoJvmModelInferrer {
    			members += entity.toConstructor [
    				addAnnotations(entity.constructorAnnotations.map[a|a.annotation])
    			]
-   			val requiredAttributes = entity.requiredAttributes
-   			if (!requiredAttributes.empty) {
+   			val allRequiredAttributes = entity.allRequiredAttributes
+   			if (!allRequiredAttributes.empty) {
 	   			members += entity.toConstructor [
-		   			for (attr : requiredAttributes)
+		   			for (attr : allRequiredAttributes)
 	   					parameters += entity.toParameter(attr.name, attr.type)
 	   				addAnnotations(entity.constructorAnnotations.map[a|a.annotation])
-	   				body = '''«FOR attr : requiredAttributes»
-						set«attr.name.toFirstUpper»(«attr.name»);
-					«ENDFOR»'''
+	   				body = '''super(«FOR attr : entity.parentRequiredAttributes SEPARATOR ","»«attr.name»«ENDFOR»);
+	   				«FOR attr : entity.requiredAttributes»
+	   				set«attr.name.toFirstUpper»(«attr.name»);
+					«ENDFOR»
+					'''
 	   			]
    			}
    			

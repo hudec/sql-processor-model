@@ -742,7 +742,7 @@ public class ProcessorGeneratorUtils {
     return null;
   }
   
-  public List<PojoAttribute> requiredAttributes(final PojoEntity pojo) {
+  public List<PojoAttribute> allRequiredAttributes(final PojoEntity pojo) {
     final List<PojoAttribute> features = CollectionLiterals.<PojoAttribute>newArrayList();
     boolean _equals = Objects.equal(pojo, null);
     if (_equals) {
@@ -751,8 +751,8 @@ public class ProcessorGeneratorUtils {
     final PojoEntity se = this.getParent(pojo);
     boolean _notEquals = (!Objects.equal(se, null));
     if (_notEquals) {
-      List<PojoAttribute> _requiredAttributes = this.requiredAttributes(se);
-      features.addAll(_requiredAttributes);
+      List<PojoAttribute> _allRequiredAttributes = this.allRequiredAttributes(se);
+      features.addAll(_allRequiredAttributes);
     }
     EList<PojoAttribute> _attributes = pojo.getAttributes();
     final Function1<PojoAttribute, Boolean> _function = new Function1<PojoAttribute, Boolean>() {
@@ -763,6 +763,39 @@ public class ProcessorGeneratorUtils {
     Iterable<PojoAttribute> _filter = IterableExtensions.<PojoAttribute>filter(_attributes, _function);
     List<PojoAttribute> _list = IterableExtensions.<PojoAttribute>toList(_filter);
     features.addAll(_list);
+    return features;
+  }
+  
+  public List<PojoAttribute> requiredAttributes(final PojoEntity pojo) {
+    final List<PojoAttribute> features = CollectionLiterals.<PojoAttribute>newArrayList();
+    boolean _equals = Objects.equal(pojo, null);
+    if (_equals) {
+      return features;
+    }
+    EList<PojoAttribute> _attributes = pojo.getAttributes();
+    final Function1<PojoAttribute, Boolean> _function = new Function1<PojoAttribute, Boolean>() {
+      public Boolean apply(final PojoAttribute x) {
+        return Boolean.valueOf(ProcessorGeneratorUtils.this.isRequired(x));
+      }
+    };
+    Iterable<PojoAttribute> _filter = IterableExtensions.<PojoAttribute>filter(_attributes, _function);
+    List<PojoAttribute> _list = IterableExtensions.<PojoAttribute>toList(_filter);
+    features.addAll(_list);
+    return features;
+  }
+  
+  public List<PojoAttribute> parentRequiredAttributes(final PojoEntity pojo) {
+    final List<PojoAttribute> features = CollectionLiterals.<PojoAttribute>newArrayList();
+    boolean _equals = Objects.equal(pojo, null);
+    if (_equals) {
+      return features;
+    }
+    final PojoEntity se = this.getParent(pojo);
+    boolean _notEquals = (!Objects.equal(se, null));
+    if (_notEquals) {
+      List<PojoAttribute> _allRequiredAttributes = this.allRequiredAttributes(se);
+      features.addAll(_allRequiredAttributes);
+    }
     return features;
   }
   

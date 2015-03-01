@@ -280,14 +280,14 @@ public class PojoJvmModelInferrer {
         };
         JvmConstructor _constructor = PojoJvmModelInferrer.this._processorTypesBuilder.toConstructor(entity, _function_5);
         PojoJvmModelInferrer.this._processorTypesBuilder.<JvmConstructor>operator_add(_members_3, _constructor);
-        final List<PojoAttribute> requiredAttributes = PojoJvmModelInferrer.this._processorGeneratorUtils.requiredAttributes(entity);
-        boolean _isEmpty = requiredAttributes.isEmpty();
+        final List<PojoAttribute> allRequiredAttributes = PojoJvmModelInferrer.this._processorGeneratorUtils.allRequiredAttributes(entity);
+        boolean _isEmpty = allRequiredAttributes.isEmpty();
         boolean _not = (!_isEmpty);
         if (_not) {
           EList<JvmMember> _members_4 = it.getMembers();
           final Procedure1<JvmConstructor> _function_6 = new Procedure1<JvmConstructor>() {
             public void apply(final JvmConstructor it) {
-              for (final PojoAttribute attr : requiredAttributes) {
+              for (final PojoAttribute attr : allRequiredAttributes) {
                 EList<JvmFormalParameter> _parameters = it.getParameters();
                 String _name = attr.getName();
                 JvmTypeReference _type = attr.getType();
@@ -305,19 +305,35 @@ public class PojoJvmModelInferrer {
               StringConcatenationClient _client = new StringConcatenationClient() {
                 @Override
                 protected void appendTo(StringConcatenationClient.TargetStringConcatenation _builder) {
+                  _builder.append("super(");
                   {
-                    for(final PojoAttribute attr : requiredAttributes) {
-                      _builder.newLineIfNotEmpty();
-                      _builder.append("set");
+                    List<PojoAttribute> _parentRequiredAttributes = PojoJvmModelInferrer.this._processorGeneratorUtils.parentRequiredAttributes(entity);
+                    boolean _hasElements = false;
+                    for(final PojoAttribute attr : _parentRequiredAttributes) {
+                      if (!_hasElements) {
+                        _hasElements = true;
+                      } else {
+                        _builder.appendImmediate(",", "");
+                      }
                       String _name = attr.getName();
-                      String _firstUpper = StringExtensions.toFirstUpper(_name);
-                      _builder.append(_firstUpper, "");
+                      _builder.append(_name, "");
+                    }
+                  }
+                  _builder.append(");");
+                  _builder.newLineIfNotEmpty();
+                  {
+                    List<PojoAttribute> _requiredAttributes = PojoJvmModelInferrer.this._processorGeneratorUtils.requiredAttributes(entity);
+                    for(final PojoAttribute attr_1 : _requiredAttributes) {
+                      _builder.append("\t   \t\t\t\t");
+                      _builder.append("set");
+                      String _name_1 = attr_1.getName();
+                      String _firstUpper = StringExtensions.toFirstUpper(_name_1);
+                      _builder.append(_firstUpper, "\t   \t\t\t\t");
                       _builder.append("(");
-                      String _name_1 = attr.getName();
-                      _builder.append(_name_1, "");
+                      String _name_2 = attr_1.getName();
+                      _builder.append(_name_2, "\t   \t\t\t\t");
                       _builder.append(");");
                       _builder.newLineIfNotEmpty();
-                      _builder.append("\t\t\t\t\t");
                     }
                   }
                 }
