@@ -112,6 +112,151 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
   
   private final String SQL_STANDARD_CONTROL = "org.sqlproc.engine.impl.SqlStandardControl";
   
+  public void inferDaoIfx(final DaoEntity entity, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
+    final PojoEntity pojo = this._processorGeneratorUtils.getPojo(entity);
+    boolean _and = false;
+    boolean _equals = Objects.equal(pojo, null);
+    if (!_equals) {
+      _and = false;
+    } else {
+      boolean _isFunctionProcedure = this._processorGeneratorUtils.isFunctionProcedure(entity);
+      boolean _not = (!_isFunctionProcedure);
+      _and = _not;
+    }
+    if (_and) {
+      InputOutput.<String>println(("Missing POJO for " + entity));
+      return;
+    }
+    QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(entity);
+    String _string = _fullyQualifiedName.toString();
+    final Procedure1<JvmGenericType> _function = new Procedure1<JvmGenericType>() {
+      public void apply(final JvmGenericType it) {
+      }
+    };
+    final JvmGenericType entityType = this._processorTypesBuilder.toInterface(entity, _string, _function);
+    JvmGenericType _class = null;
+    if (pojo!=null) {
+      QualifiedName _fullyQualifiedName_1 = null;
+      if (pojo!=null) {
+        _fullyQualifiedName_1=this._iQualifiedNameProvider.getFullyQualifiedName(pojo);
+      }
+      _class=this._processorTypesBuilder.toClass(pojo, _fullyQualifiedName_1);
+    }
+    final JvmGenericType pojoType = _class;
+    boolean _and_1 = false;
+    boolean _equals_1 = Objects.equal(pojoType, null);
+    if (!_equals_1) {
+      _and_1 = false;
+    } else {
+      boolean _isFunctionProcedure_1 = this._processorGeneratorUtils.isFunctionProcedure(entity);
+      boolean _not_1 = (!_isFunctionProcedure_1);
+      _and_1 = _not_1;
+    }
+    if (_and_1) {
+      InputOutput.<String>println(("Missing POJOTYPE for " + entity));
+      return;
+    }
+    final String simpleName = entity.getName();
+    final Integer sernum = this._processorGeneratorUtils.getSernum(entity);
+    final Procedure1<JvmGenericType> _function_1 = new Procedure1<JvmGenericType>() {
+      public void apply(final JvmGenericType it) {
+        String _documentation = DaoJvmModelInferrer.this._processorTypesBuilder.getDocumentation(entity);
+        DaoJvmModelInferrer.this._processorTypesBuilder.setDocumentation(it, _documentation);
+        List<Implements> _implements = DaoJvmModelInferrer.this._processorGeneratorUtils.getImplements(entity);
+        for (final Implements impl : _implements) {
+          boolean _isGenerics = DaoJvmModelInferrer.this._processorGeneratorUtils.isGenerics(impl);
+          if (_isGenerics) {
+            JvmParameterizedTypeReference _implements_1 = impl.getImplements();
+            JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+            final JvmTypeReference genericType = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(it, _implements_1, _typeRef);
+            InputOutput.<JvmTypeReference>println(genericType);
+            EList<JvmTypeReference> _superTypes = it.getSuperTypes();
+            DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes, genericType);
+          } else {
+            EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
+            JvmParameterizedTypeReference _implements_2 = impl.getImplements();
+            JvmTypeReference _cloneWithProxies = DaoJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_implements_2);
+            DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _cloneWithProxies);
+          }
+        }
+        final Extends ext = DaoJvmModelInferrer.this._processorGeneratorUtils.getExtends(entity);
+        boolean _notEquals = (!Objects.equal(ext, null));
+        if (_notEquals) {
+          EList<JvmTypeReference> _superTypes_2 = it.getSuperTypes();
+          JvmParameterizedTypeReference _extends = ext.getExtends();
+          JvmTypeReference _cloneWithProxies_1 = DaoJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_extends);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_2, _cloneWithProxies_1);
+        }
+        JvmParameterizedTypeReference _superType = entity.getSuperType();
+        boolean _notEquals_1 = (!Objects.equal(_superType, null));
+        if (_notEquals_1) {
+          EList<JvmTypeReference> _superTypes_3 = it.getSuperTypes();
+          JvmParameterizedTypeReference _superType_1 = entity.getSuperType();
+          JvmTypeReference _cloneWithProxies_2 = DaoJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_superType_1);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_3, _cloneWithProxies_2);
+        }
+        boolean _notEquals_2 = (!Objects.equal(sernum, null));
+        if (_notEquals_2) {
+          EList<JvmTypeReference> _superTypes_4 = it.getSuperTypes();
+          JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SERIALIZABLE);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_4, _typeRef_1);
+        }
+        Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses = null;
+        EList<DaoDirective> _directives = entity.getDirectives();
+        for (final DaoDirective dir : _directives) {
+          if ((dir instanceof DaoDirectiveCrud)) {
+            boolean _equals = Objects.equal(moreResultClasses, null);
+            if (_equals) {
+              Map<String, Map<String, JvmParameterizedTypeReference>> _moreResultClasses = DaoJvmModelInferrer.this._processorGeneratorUtils.getMoreResultClasses(entity);
+              moreResultClasses = _moreResultClasses;
+            }
+            EList<JvmMember> _members = it.getMembers();
+            DaoJvmModelInferrer.this.inferInsertIfx(entity, ((DaoDirectiveCrud) dir), entityType, simpleName, pojo, pojoType, _members);
+            EList<JvmMember> _members_1 = it.getMembers();
+            DaoJvmModelInferrer.this.inferGetIfx(entity, ((DaoDirectiveCrud) dir), entityType, simpleName, pojo, pojoType, _members_1, moreResultClasses);
+            EList<JvmMember> _members_2 = it.getMembers();
+            DaoJvmModelInferrer.this.inferUpdateIfx(entity, ((DaoDirectiveCrud) dir), entityType, simpleName, pojo, pojoType, _members_2);
+            EList<JvmMember> _members_3 = it.getMembers();
+            DaoJvmModelInferrer.this.inferDeleteIfx(entity, ((DaoDirectiveCrud) dir), entityType, simpleName, pojo, pojoType, _members_3);
+          } else {
+            if ((dir instanceof DaoDirectiveQuery)) {
+              boolean _equals_1 = Objects.equal(moreResultClasses, null);
+              if (_equals_1) {
+                Map<String, Map<String, JvmParameterizedTypeReference>> _moreResultClasses_1 = DaoJvmModelInferrer.this._processorGeneratorUtils.getMoreResultClasses(entity);
+                moreResultClasses = _moreResultClasses_1;
+              }
+              EList<JvmMember> _members_4 = it.getMembers();
+              DaoJvmModelInferrer.this.inferListIfx(entity, ((DaoDirectiveQuery) dir), entityType, simpleName, pojo, pojoType, _members_4, moreResultClasses);
+              EList<JvmMember> _members_5 = it.getMembers();
+              DaoJvmModelInferrer.this.inferCountIfx(entity, ((DaoDirectiveQuery) dir), entityType, simpleName, pojo, pojoType, _members_5, moreResultClasses);
+            } else {
+              if ((dir instanceof DaoFunProcDirective)) {
+                FunProcType _type = ((DaoFunProcDirective) dir).getType();
+                DaoDirectiveParameters _paramlist = ((DaoFunProcDirective) dir).getParamlist();
+                EList<JvmMember> _members_6 = it.getMembers();
+                DaoJvmModelInferrer.this.inferFunctionProcedureIfx(entity, _type, _paramlist, entityType, simpleName, _members_6);
+              }
+            }
+          }
+        }
+        boolean _and = false;
+        boolean _notEquals_3 = (!Objects.equal(moreResultClasses, null));
+        if (!_notEquals_3) {
+          _and = false;
+        } else {
+          boolean _isEmpty = moreResultClasses.isEmpty();
+          boolean _not = (!_isEmpty);
+          _and = _not;
+        }
+        if (_and) {
+          EList<JvmMember> _members_7 = it.getMembers();
+          DaoJvmModelInferrer.this.inferMoreResultClassesIfx(entity, entityType, simpleName, pojo, pojoType, _members_7, moreResultClasses);
+        }
+      }
+    };
+    acceptor.<JvmGenericType>accept(entityType, _function_1);
+  }
+  
   /**
    * The dispatch method {@code infer} is called for each instance of the
    * given element's type that is contained in a resource.
@@ -154,13 +299,25 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
     }
     QualifiedName _daoFullyQualifiedName = this.daoFullyQualifiedName(entity, implPackage);
     final JvmGenericType entityType = this._processorTypesBuilder.toClass(entity, _daoFullyQualifiedName);
+    JvmGenericType _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(implPackage, null));
+    if (_notEquals) {
+      QualifiedName _fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(entity);
+      String _string = _fullyQualifiedName.toString();
+      final Procedure1<JvmGenericType> _function = new Procedure1<JvmGenericType>() {
+        public void apply(final JvmGenericType it) {
+        }
+      };
+      _xifexpression = this._processorTypesBuilder.toInterface(entity, _string, _function);
+    }
+    final JvmGenericType entityTypeIfx = _xifexpression;
     JvmGenericType _class = null;
     if (pojo!=null) {
-      QualifiedName _fullyQualifiedName = null;
+      QualifiedName _fullyQualifiedName_1 = null;
       if (pojo!=null) {
-        _fullyQualifiedName=this._iQualifiedNameProvider.getFullyQualifiedName(pojo);
+        _fullyQualifiedName_1=this._iQualifiedNameProvider.getFullyQualifiedName(pojo);
       }
-      _class=this._processorTypesBuilder.toClass(pojo, _fullyQualifiedName);
+      _class=this._processorTypesBuilder.toClass(pojo, _fullyQualifiedName_1);
     }
     final JvmGenericType pojoType = _class;
     boolean _and_1 = false;
@@ -178,7 +335,7 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
     }
     final String simpleName = entity.getName();
     final Integer sernum = this._processorGeneratorUtils.getSernum(entity);
-    final Procedure1<JvmGenericType> _function = new Procedure1<JvmGenericType>() {
+    final Procedure1<JvmGenericType> _function_1 = new Procedure1<JvmGenericType>() {
       public void apply(final JvmGenericType it) {
         String _documentation = DaoJvmModelInferrer.this._processorTypesBuilder.getDocumentation(entity);
         DaoJvmModelInferrer.this._processorTypesBuilder.setDocumentation(it, _documentation);
@@ -202,46 +359,52 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
             DaoJvmModelInferrer.this._processorTypesBuilder.addAnnotation(it, an);
           }
         }
+        boolean _notEquals = (!Objects.equal(entityTypeIfx, null));
+        if (_notEquals) {
+          EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
+          JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityTypeIfx);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _typeRef_1);
+        }
         List<Implements> _implements = DaoJvmModelInferrer.this._processorGeneratorUtils.getImplements(entity);
         for (final Implements impl : _implements) {
           boolean _isGenerics = DaoJvmModelInferrer.this._processorGeneratorUtils.isGenerics(impl);
           if (_isGenerics) {
             JvmParameterizedTypeReference _implements_1 = impl.getImplements();
-            JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
-            final JvmTypeReference genericType = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(it, _implements_1, _typeRef_1);
+            JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+            final JvmTypeReference genericType = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(it, _implements_1, _typeRef_2);
             InputOutput.<JvmTypeReference>println(genericType);
-            EList<JvmTypeReference> _superTypes_1 = it.getSuperTypes();
-            DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, genericType);
-          } else {
             EList<JvmTypeReference> _superTypes_2 = it.getSuperTypes();
+            DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_2, genericType);
+          } else {
+            EList<JvmTypeReference> _superTypes_3 = it.getSuperTypes();
             JvmParameterizedTypeReference _implements_2 = impl.getImplements();
             JvmTypeReference _cloneWithProxies = DaoJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_implements_2);
-            DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_2, _cloneWithProxies);
+            DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_3, _cloneWithProxies);
           }
         }
         final Extends ext = DaoJvmModelInferrer.this._processorGeneratorUtils.getExtends(entity);
-        boolean _notEquals = (!Objects.equal(ext, null));
-        if (_notEquals) {
-          EList<JvmTypeReference> _superTypes_3 = it.getSuperTypes();
-          JvmParameterizedTypeReference _extends = ext.getExtends();
-          JvmTypeReference _cloneWithProxies_1 = DaoJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_extends);
-          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_3, _cloneWithProxies_1);
-        }
-        JvmParameterizedTypeReference _superType = entity.getSuperType();
-        boolean _notEquals_1 = (!Objects.equal(_superType, null));
+        boolean _notEquals_1 = (!Objects.equal(ext, null));
         if (_notEquals_1) {
           EList<JvmTypeReference> _superTypes_4 = it.getSuperTypes();
-          JvmParameterizedTypeReference _superType_1 = entity.getSuperType();
-          JvmTypeReference _cloneWithProxies_2 = DaoJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_superType_1);
-          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_4, _cloneWithProxies_2);
+          JvmParameterizedTypeReference _extends = ext.getExtends();
+          JvmTypeReference _cloneWithProxies_1 = DaoJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_extends);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_4, _cloneWithProxies_1);
         }
-        boolean _notEquals_2 = (!Objects.equal(sernum, null));
+        JvmParameterizedTypeReference _superType = entity.getSuperType();
+        boolean _notEquals_2 = (!Objects.equal(_superType, null));
         if (_notEquals_2) {
           EList<JvmTypeReference> _superTypes_5 = it.getSuperTypes();
-          JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SERIALIZABLE);
-          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_5, _typeRef_2);
+          JvmParameterizedTypeReference _superType_1 = entity.getSuperType();
+          JvmTypeReference _cloneWithProxies_2 = DaoJvmModelInferrer.this._processorTypesBuilder.cloneWithProxies(_superType_1);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_5, _cloneWithProxies_2);
+        }
+        boolean _notEquals_3 = (!Objects.equal(sernum, null));
+        if (_notEquals_3) {
+          EList<JvmTypeReference> _superTypes_6 = it.getSuperTypes();
+          JvmTypeReference _typeRef_3 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SERIALIZABLE);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmTypeReference>operator_add(_superTypes_6, _typeRef_3);
           EList<JvmMember> _members = it.getMembers();
-          JvmTypeReference _typeRef_3 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(long.class);
+          JvmTypeReference _typeRef_4 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(long.class);
           final Procedure1<JvmField> _function_1 = new Procedure1<JvmField>() {
             public void apply(final JvmField it) {
               it.setStatic(true);
@@ -256,11 +419,11 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
               DaoJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client);
             }
           };
-          JvmField _field = DaoJvmModelInferrer.this._processorTypesBuilder.toField(entity, "serialVersionUID", _typeRef_3, _function_1);
+          JvmField _field = DaoJvmModelInferrer.this._processorTypesBuilder.toField(entity, "serialVersionUID", _typeRef_4, _function_1);
           DaoJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members, _field);
         }
         EList<JvmMember> _members_1 = it.getMembers();
-        JvmTypeReference _typeRef_4 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.LOGGER);
+        JvmTypeReference _typeRef_5 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.LOGGER);
         final Procedure1<JvmField> _function_2 = new Procedure1<JvmField>() {
           public void apply(final JvmField it) {
             it.setVisibility(JvmVisibility.PROTECTED);
@@ -275,7 +438,7 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
             DaoJvmModelInferrer.this._processorTypesBuilder.setInitializer(it, _client);
           }
         };
-        JvmField _field_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toField(entity, "logger", _typeRef_4, _function_2);
+        JvmField _field_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toField(entity, "logger", _typeRef_5, _function_2);
         DaoJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_1, _field_1);
         EList<JvmMember> _members_2 = it.getMembers();
         final Procedure1<JvmConstructor> _function_3 = new Procedure1<JvmConstructor>() {
@@ -353,22 +516,22 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
         JvmConstructor _constructor_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toConstructor(entity, _function_5);
         DaoJvmModelInferrer.this._processorTypesBuilder.<JvmConstructor>operator_add(_members_4, _constructor_2);
         EList<JvmMember> _members_5 = it.getMembers();
-        JvmTypeReference _typeRef_5 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.ENGINE_FACTORY);
+        JvmTypeReference _typeRef_6 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.ENGINE_FACTORY);
         final Procedure1<JvmField> _function_6 = new Procedure1<JvmField>() {
           public void apply(final JvmField it) {
             it.setVisibility(JvmVisibility.PROTECTED);
           }
         };
-        JvmField _field_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toField(entity, "sqlEngineFactory", _typeRef_5, _function_6);
+        JvmField _field_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toField(entity, "sqlEngineFactory", _typeRef_6, _function_6);
         DaoJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_5, _field_2);
         EList<JvmMember> _members_6 = it.getMembers();
-        JvmTypeReference _typeRef_6 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SESSION_FACTORY);
+        JvmTypeReference _typeRef_7 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SESSION_FACTORY);
         final Procedure1<JvmField> _function_7 = new Procedure1<JvmField>() {
           public void apply(final JvmField it) {
             it.setVisibility(JvmVisibility.PROTECTED);
           }
         };
-        JvmField _field_3 = DaoJvmModelInferrer.this._processorTypesBuilder.toField(entity, "sqlSessionFactory", _typeRef_6, _function_7);
+        JvmField _field_3 = DaoJvmModelInferrer.this._processorTypesBuilder.toField(entity, "sqlSessionFactory", _typeRef_7, _function_7);
         DaoJvmModelInferrer.this._processorTypesBuilder.<JvmField>operator_add(_members_6, _field_3);
         Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses = null;
         EList<DaoDirective> _directives = entity.getDirectives();
@@ -409,8 +572,8 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
           }
         }
         boolean _and = false;
-        boolean _notEquals_3 = (!Objects.equal(moreResultClasses, null));
-        if (!_notEquals_3) {
+        boolean _notEquals_4 = (!Objects.equal(moreResultClasses, null));
+        if (!_notEquals_4) {
           _and = false;
         } else {
           boolean _isEmpty = moreResultClasses.isEmpty();
@@ -440,8 +603,8 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
             if (_elvis_1 != null) {
               _elvis = _elvis_1;
             } else {
-              JvmTypeReference _typeRef_7 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
-              _elvis = _typeRef_7;
+              JvmTypeReference _typeRef_8 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(String.class);
+              _elvis = _typeRef_8;
             }
             final JvmTypeReference type = _elvis;
             EList<JvmMember> _members_15 = it.getMembers();
@@ -513,7 +676,7 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
               EList<JvmMember> _members_17 = it.getMembers();
               String _name_3 = attr.getName();
               String _name_4 = attr.getName();
-              JvmTypeReference _typeRef_8 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
+              JvmTypeReference _typeRef_9 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(entityType);
               final Procedure1<JvmOperation> _function_10 = new Procedure1<JvmOperation>() {
                 public void apply(final JvmOperation it) {
                   List<Annotation> _setterAnnotations = DaoJvmModelInferrer.this._processorGeneratorUtils.setterAnnotations(attr);
@@ -526,7 +689,7 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
                   DaoJvmModelInferrer.this._processorTypesBuilder.addAnnotations(it, _map);
                 }
               };
-              JvmOperation _setter = DaoJvmModelInferrer.this._processorTypesBuilder.toSetter(attr, _name_3, _name_4, type, _typeRef_8, _function_10);
+              JvmOperation _setter = DaoJvmModelInferrer.this._processorTypesBuilder.toSetter(attr, _name_3, _name_4, type, _typeRef_9, _function_10);
               DaoJvmModelInferrer.this._processorTypesBuilder.<JvmOperation>operator_add(_members_17, _setter);
             }
           }
@@ -576,7 +739,7 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
         }
       }
     };
-    acceptor.<JvmGenericType>accept(entityType, _function);
+    acceptor.<JvmGenericType>accept(entityType, _function_1);
   }
   
   public void inferInsert(final DaoEntity entity, final DaoDirectiveCrud dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members) {
@@ -759,6 +922,72 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
     members.add(_method_3);
   }
   
+  public void inferInsertIfx(final DaoEntity entity, final DaoDirectiveCrud dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members) {
+    String _name = pojo.getName();
+    final String pojoAttrName = StringExtensions.toFirstLower(_name);
+    final PojoEntity parent = this._processorGeneratorUtils.getParent(pojo);
+    JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(pojoType);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, "insert", _typeRef, _function);
+    members.add(_method);
+    JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(pojoType);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, "insert", _typeRef_1, _function_1);
+    members.add(_method_1);
+    JvmTypeReference _typeRef_2 = this._typeReferenceBuilder.typeRef(pojoType);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, "insert", _typeRef_2, _function_2);
+    members.add(_method_2);
+    JvmTypeReference _typeRef_3 = this._typeReferenceBuilder.typeRef(pojoType);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, "insert", _typeRef_3, _function_3);
+    members.add(_method_3);
+  }
+  
   public void inferGet(final DaoEntity entity, final DaoDirectiveCrud dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members, final Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses) {
     String _name = pojo.getName();
     final String pojoAttrName = StringExtensions.toFirstLower(_name);
@@ -912,6 +1141,71 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
           }
         };
         DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, "get", _typeRef_3, _function_3);
+    members.add(_method_3);
+  }
+  
+  public void inferGetIfx(final DaoEntity entity, final DaoDirectiveCrud dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members, final Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses) {
+    String _name = pojo.getName();
+    final String pojoAttrName = StringExtensions.toFirstLower(_name);
+    JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(pojoType);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, "get", _typeRef, _function);
+    members.add(_method);
+    JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(pojoType);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, "get", _typeRef_1, _function_1);
+    members.add(_method_1);
+    JvmTypeReference _typeRef_2 = this._typeReferenceBuilder.typeRef(pojoType);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, "get", _typeRef_2, _function_2);
+    members.add(_method_2);
+    JvmTypeReference _typeRef_3 = this._typeReferenceBuilder.typeRef(pojoType);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
       }
     };
     JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, "get", _typeRef_3, _function_3);
@@ -1115,6 +1409,72 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
     members.add(_method_3);
   }
   
+  public void inferUpdateIfx(final DaoEntity entity, final DaoDirectiveCrud dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members) {
+    String _name = pojo.getName();
+    final String pojoAttrName = StringExtensions.toFirstLower(_name);
+    final PojoEntity parent = this._processorGeneratorUtils.getParent(pojo);
+    JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, "update", _typeRef, _function);
+    members.add(_method);
+    JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, "update", _typeRef_1, _function_1);
+    members.add(_method_1);
+    JvmTypeReference _typeRef_2 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, "update", _typeRef_2, _function_2);
+    members.add(_method_2);
+    JvmTypeReference _typeRef_3 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, "update", _typeRef_3, _function_3);
+    members.add(_method_3);
+  }
+  
   public void inferDelete(final DaoEntity entity, final DaoDirectiveCrud dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members) {
     String _name = pojo.getName();
     final String pojoAttrName = StringExtensions.toFirstLower(_name);
@@ -1312,6 +1672,72 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
     members.add(_method_3);
   }
   
+  public void inferDeleteIfx(final DaoEntity entity, final DaoDirectiveCrud dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members) {
+    String _name = pojo.getName();
+    final String pojoAttrName = StringExtensions.toFirstLower(_name);
+    final PojoEntity parent = this._processorGeneratorUtils.getParent(pojo);
+    JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, "delete", _typeRef, _function);
+    members.add(_method);
+    JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, "delete", _typeRef_1, _function_1);
+    members.add(_method_1);
+    JvmTypeReference _typeRef_2 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, "delete", _typeRef_2, _function_2);
+    members.add(_method_2);
+    JvmTypeReference _typeRef_3 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, "delete", _typeRef_3, _function_3);
+    members.add(_method_3);
+  }
+  
   public void inferList(final DaoEntity entity, final DaoDirectiveQuery dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members, final Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses) {
     String _name = pojo.getName();
     final String pojoAttrName = StringExtensions.toFirstLower(_name);
@@ -1474,6 +1900,69 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
     members.add(_method_3);
   }
   
+  public void inferListIfx(final DaoEntity entity, final DaoDirectiveQuery dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members, final Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses) {
+    String _name = pojo.getName();
+    final String pojoAttrName = StringExtensions.toFirstLower(_name);
+    JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(pojoType);
+    final JvmTypeReference listType = this._typeReferenceBuilder.typeRef(List.class, _typeRef);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, "list", listType, _function);
+    members.add(_method);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, "list", listType, _function_1);
+    members.add(_method_1);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, "list", listType, _function_2);
+    members.add(_method_2);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, "list", listType, _function_3);
+    members.add(_method_3);
+  }
+  
   public void inferCount(final DaoEntity entity, final DaoDirectiveQuery dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members, final Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses) {
     String _name = pojo.getName();
     final String pojoAttrName = StringExtensions.toFirstLower(_name);
@@ -1622,6 +2111,71 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
     members.add(_method_3);
   }
   
+  public void inferCountIfx(final DaoEntity entity, final DaoDirectiveQuery dir, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members, final Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses) {
+    String _name = pojo.getName();
+    final String pojoAttrName = StringExtensions.toFirstLower(_name);
+    JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, "count", _typeRef, _function);
+    members.add(_method);
+    JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, "count", _typeRef_1, _function_1);
+    members.add(_method_1);
+    JvmTypeReference _typeRef_2 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, "count", _typeRef_2, _function_2);
+    members.add(_method_2);
+    JvmTypeReference _typeRef_3 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, "count", _typeRef_3, _function_3);
+    members.add(_method_3);
+  }
+  
   public void inferMoreResultClasses(final DaoEntity entity, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members, final Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses) {
     String _name = pojo.getName();
     final String pojoAttrName = StringExtensions.toFirstLower(_name);
@@ -1708,6 +2262,26 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
           }
         };
         DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, "getMoreResultClasses", _typeRef, _function);
+    members.add(_method);
+  }
+  
+  public void inferMoreResultClassesIfx(final DaoEntity entity, final JvmGenericType entityType, final String simpleName, final PojoEntity pojo, final JvmGenericType pojoType, final List<JvmMember> members, final Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses) {
+    String _name = pojo.getName();
+    final String pojoAttrName = StringExtensions.toFirstLower(_name);
+    JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(this.SQL_CONTROL);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(pojoType);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, pojoAttrName, _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
       }
     };
     JvmOperation _method = this._processorTypesBuilder.toMethod(entity, "getMoreResultClasses", _typeRef, _function);
@@ -1948,6 +2522,91 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
     members.add(_method_3);
   }
   
+  protected void _inferFunctionProcedureIfx(final DaoEntity entity, final FunctionCallQuery type, final DaoDirectiveParameters params, final JvmGenericType entityType, final String simpleName, final List<JvmMember> members) {
+    JvmParameterizedTypeReference _out = params.getOut();
+    JvmType _type = _out.getType();
+    JvmParameterizedTypeReference _out_1 = params.getOut();
+    EList<JvmTypeReference> _arguments = _out_1.getArguments();
+    final JvmTypeReference listType = this._typeReferenceBuilder.typeRef(_type, ((JvmTypeReference[])Conversions.unwrapArray(_arguments, JvmTypeReference.class)));
+    final String fname = this._processorGeneratorUtils.getFunProcName(entity);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef_1);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        }
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, fname, listType, _function);
+    members.add(_method);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        }
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, fname, listType, _function_1);
+    members.add(_method_1);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef_1);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        }
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, fname, listType, _function_2);
+    members.add(_method_2);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        }
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, fname, listType, _function_3);
+    members.add(_method_3);
+  }
+  
   protected void _inferFunctionProcedure(final DaoEntity entity, final ProcedureCallQuery type, final DaoDirectiveParameters params, final JvmGenericType entityType, final String simpleName, final List<JvmMember> members) {
     JvmParameterizedTypeReference _out = params.getOut();
     JvmType _type = _out.getType();
@@ -2176,6 +2835,91 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
           }
         };
         DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, fname, listType, _function_3);
+    members.add(_method_3);
+  }
+  
+  protected void _inferFunctionProcedureIfx(final DaoEntity entity, final ProcedureCallQuery type, final DaoDirectiveParameters params, final JvmGenericType entityType, final String simpleName, final List<JvmMember> members) {
+    JvmParameterizedTypeReference _out = params.getOut();
+    JvmType _type = _out.getType();
+    JvmParameterizedTypeReference _out_1 = params.getOut();
+    EList<JvmTypeReference> _arguments = _out_1.getArguments();
+    final JvmTypeReference listType = this._typeReferenceBuilder.typeRef(_type, ((JvmTypeReference[])Conversions.unwrapArray(_arguments, JvmTypeReference.class)));
+    final String fname = this._processorGeneratorUtils.getFunProcName(entity);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef_1);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        }
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, fname, listType, _function);
+    members.add(_method);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        }
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, fname, listType, _function_1);
+    members.add(_method_1);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef_1);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        }
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, fname, listType, _function_2);
+    members.add(_method_2);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        }
       }
     };
     JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, fname, listType, _function_3);
@@ -2411,6 +3155,91 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
     members.add(_method_3);
   }
   
+  protected void _inferFunctionProcedureIfx(final DaoEntity entity, final FunctionCall type, final DaoDirectiveParameters params, final JvmGenericType entityType, final String simpleName, final List<JvmMember> members) {
+    JvmParameterizedTypeReference _out = params.getOut();
+    JvmType _type = _out.getType();
+    JvmParameterizedTypeReference _out_1 = params.getOut();
+    EList<JvmTypeReference> _arguments = _out_1.getArguments();
+    final JvmTypeReference outType = this._typeReferenceBuilder.typeRef(_type, ((JvmTypeReference[])Conversions.unwrapArray(_arguments, JvmTypeReference.class)));
+    final String fname = this._processorGeneratorUtils.getFunProcName(entity);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef_1);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        }
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, fname, outType, _function);
+    members.add(_method);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        }
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, fname, outType, _function_1);
+    members.add(_method_1);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef_1);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        }
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, fname, outType, _function_2);
+    members.add(_method_2);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        }
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, fname, outType, _function_3);
+    members.add(_method_3);
+  }
+  
   protected void _inferFunctionProcedure(final DaoEntity entity, final ProcedureUpdate type, final DaoDirectiveParameters params, final JvmGenericType entityType, final String simpleName, final List<JvmMember> members) {
     final String fname = this._processorGeneratorUtils.getFunProcName(entity);
     JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(int.class);
@@ -2629,6 +3458,90 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
           }
         };
         DaoJvmModelInferrer.this._processorTypesBuilder.setBody(it, _client);
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, fname, _typeRef_3, _function_3);
+    members.add(_method_3);
+  }
+  
+  protected void _inferFunctionProcedureIfx(final DaoEntity entity, final ProcedureUpdate type, final DaoDirectiveParameters params, final JvmGenericType entityType, final String simpleName, final List<JvmMember> members) {
+    final String fname = this._processorGeneratorUtils.getFunProcName(entity);
+    JvmTypeReference _typeRef = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef_1);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        }
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, fname, _typeRef, _function);
+    members.add(_method);
+    JvmTypeReference _typeRef_1 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        }
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, fname, _typeRef_1, _function_1);
+    members.add(_method_1);
+    JvmTypeReference _typeRef_2 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef_1);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        }
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, fname, _typeRef_2, _function_2);
+    members.add(_method_2);
+    JvmTypeReference _typeRef_3 = this._typeReferenceBuilder.typeRef(int.class);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        }
       }
     };
     JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, fname, _typeRef_3, _function_3);
@@ -2871,20 +3784,112 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
     members.add(_method_3);
   }
   
+  protected void _inferFunctionProcedureIfx(final DaoEntity entity, final FunctionQuery type, final DaoDirectiveParameters params, final JvmGenericType entityType, final String simpleName, final List<JvmMember> members) {
+    JvmParameterizedTypeReference _out = params.getOut();
+    JvmType _type = _out.getType();
+    JvmParameterizedTypeReference _out_1 = params.getOut();
+    EList<JvmTypeReference> _arguments = _out_1.getArguments();
+    final JvmTypeReference outType = this._typeReferenceBuilder.typeRef(_type, ((JvmTypeReference[])Conversions.unwrapArray(_arguments, JvmTypeReference.class)));
+    final String fname = this._processorGeneratorUtils.getFunProcName(entity);
+    final Procedure1<JvmOperation> _function = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef_1);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        }
+        EList<JvmFormalParameter> _parameters_2 = it.getParameters();
+        JvmTypeReference _typeRef_2 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_2 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_2);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_2, _parameter_2);
+      }
+    };
+    JvmOperation _method = this._processorTypesBuilder.toMethod(entity, fname, outType, _function);
+    members.add(_method);
+    final Procedure1<JvmOperation> _function_1 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        }
+        EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+        JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_CONTROL);
+        JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlControl", _typeRef_1);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+      }
+    };
+    JvmOperation _method_1 = this._processorTypesBuilder.toMethod(entity, fname, outType, _function_1);
+    members.add(_method_1);
+    final Procedure1<JvmOperation> _function_2 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmFormalParameter> _parameters = it.getParameters();
+        JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(DaoJvmModelInferrer.this.SQL_SESSION);
+        JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, "sqlSession", _typeRef);
+        DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters_1 = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef_1 = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter_1 = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef_1);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters_1, _parameter_1);
+        }
+      }
+    };
+    JvmOperation _method_2 = this._processorTypesBuilder.toMethod(entity, fname, outType, _function_2);
+    members.add(_method_2);
+    final Procedure1<JvmOperation> _function_3 = new Procedure1<JvmOperation>() {
+      public void apply(final JvmOperation it) {
+        EList<JvmParameterizedTypeReference> _ins = params.getIns();
+        for (final JvmParameterizedTypeReference in : _ins) {
+          EList<JvmFormalParameter> _parameters = it.getParameters();
+          String _simpleName = in.getSimpleName();
+          JvmType _type = in.getType();
+          JvmTypeReference _typeRef = DaoJvmModelInferrer.this._typeReferenceBuilder.typeRef(_type);
+          JvmFormalParameter _parameter = DaoJvmModelInferrer.this._processorTypesBuilder.toParameter(entity, _simpleName, _typeRef);
+          DaoJvmModelInferrer.this._processorTypesBuilder.<JvmFormalParameter>operator_add(_parameters, _parameter);
+        }
+      }
+    };
+    JvmOperation _method_3 = this._processorTypesBuilder.toMethod(entity, fname, outType, _function_3);
+    members.add(_method_3);
+  }
+  
   public QualifiedName daoFullyQualifiedName(final DaoEntity entity, final String implPackage) {
     final QualifiedName fqname = this._iQualifiedNameProvider.getFullyQualifiedName(entity);
-    boolean _notEquals = (!Objects.equal(implPackage, null));
-    if (_notEquals) {
-      QualifiedName fqn = fqname.skipLast(1);
-      QualifiedName _append = fqn.append(implPackage);
-      fqn = _append;
-      String _lastSegment = fqname.getLastSegment();
-      String _plus = (_lastSegment + "Impl");
-      QualifiedName _append_1 = fqn.append(_plus);
-      fqn = _append_1;
-      return fqn;
+    boolean _equals = Objects.equal(implPackage, null);
+    if (_equals) {
+      return fqname;
     }
-    return fqname;
+    int _indexOf = implPackage.indexOf(".");
+    boolean _greaterEqualsThan = (_indexOf >= 0);
+    if (_greaterEqualsThan) {
+      final String[] segments = implPackage.split(".");
+      final QualifiedName fqn = QualifiedName.create(segments);
+      String _lastSegment = fqname.getLastSegment();
+      return fqn.append(_lastSegment);
+    } else {
+      QualifiedName fqn_1 = fqname.skipLast(1);
+      QualifiedName _append = fqn_1.append(implPackage);
+      fqn_1 = _append;
+      String _lastSegment_1 = fqname.getLastSegment();
+      String _plus = (_lastSegment_1 + "Impl");
+      return fqn_1.append(_plus);
+    }
   }
   
   public void inferFunctionProcedure(final DaoEntity entity, final FunProcType type, final DaoDirectiveParameters params, final JvmGenericType entityType, final String simpleName, final List<JvmMember> members) {
@@ -2902,6 +3907,28 @@ public class DaoJvmModelInferrer extends AbstractModelInferrer {
       return;
     } else if (type instanceof ProcedureUpdate) {
       _inferFunctionProcedure(entity, (ProcedureUpdate)type, params, entityType, simpleName, members);
+      return;
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(entity, type, params, entityType, simpleName, members).toString());
+    }
+  }
+  
+  public void inferFunctionProcedureIfx(final DaoEntity entity, final FunProcType type, final DaoDirectiveParameters params, final JvmGenericType entityType, final String simpleName, final List<JvmMember> members) {
+    if (type instanceof FunctionCall) {
+      _inferFunctionProcedureIfx(entity, (FunctionCall)type, params, entityType, simpleName, members);
+      return;
+    } else if (type instanceof FunctionCallQuery) {
+      _inferFunctionProcedureIfx(entity, (FunctionCallQuery)type, params, entityType, simpleName, members);
+      return;
+    } else if (type instanceof FunctionQuery) {
+      _inferFunctionProcedureIfx(entity, (FunctionQuery)type, params, entityType, simpleName, members);
+      return;
+    } else if (type instanceof ProcedureCallQuery) {
+      _inferFunctionProcedureIfx(entity, (ProcedureCallQuery)type, params, entityType, simpleName, members);
+      return;
+    } else if (type instanceof ProcedureUpdate) {
+      _inferFunctionProcedureIfx(entity, (ProcedureUpdate)type, params, entityType, simpleName, members);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +

@@ -273,7 +273,7 @@ public class TableDaoGenerator extends TablePojoGenerator {
                     pojoName = pojo;
                 pojoName = tableToCamelCase(pojoName);
                 daoImports.add(pojoPackage + "." + pojoName);
-                String daoName = tableToCamelCase(pojoName) + "Dao";
+                String daoName = pojoName + "Dao";
                 if (finalDaos.containsKey(daoName)) {
                     buffer.append(getFinalContent(finalDaos.get(daoName)));
                     continue;

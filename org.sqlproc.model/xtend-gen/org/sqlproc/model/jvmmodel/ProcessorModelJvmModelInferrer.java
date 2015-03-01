@@ -60,6 +60,7 @@ public class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
     final String implPackage = this._processorGeneratorUtils.getImplPackage(entity);
     boolean _notEquals = (!Objects.equal(implPackage, null));
     if (_notEquals) {
+      this._daoJvmModelInferrer.inferDaoIfx(entity, acceptor, isPreIndexingPhase);
       this._daoJvmModelInferrer.inferDao(entity, acceptor, isPreIndexingPhase, implPackage);
     } else {
       this._daoJvmModelInferrer.inferDao(entity, acceptor, isPreIndexingPhase, null);

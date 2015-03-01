@@ -55,6 +55,7 @@ class ProcessorModelJvmModelInferrer extends AbstractModelInferrer {
    		_daoJvmModelInferrer._typeReferenceBuilder = _typeReferenceBuilder
    		val implPackage = getImplPackage(entity)
    		if (implPackage != null) {
+   			inferDaoIfx(entity, acceptor, isPreIndexingPhase)
    			inferDao(entity, acceptor, isPreIndexingPhase, implPackage)
    		}
    		else {

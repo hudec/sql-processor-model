@@ -69,6 +69,71 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    	val LIST = 'java.util.List'
    	val SQL_STANDARD_CONTROL = 'org.sqlproc.engine.impl.SqlStandardControl'
 
+   	def void inferDaoIfx(DaoEntity entity, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
+   		val pojo = entity.pojo
+   		if (pojo == null && !entity.isFunctionProcedure) {
+   			println("Missing POJO for "+entity)
+   			return
+   		}
+
+   		val entityType = entity.toInterface(entity.fullyQualifiedName.toString) []
+   		val pojoType = pojo?.toClass(pojo?.fullyQualifiedName)
+   		if (pojoType == null && !entity.isFunctionProcedure) {
+   			println("Missing POJOTYPE for "+entity)
+   			return
+   		}
+   		
+   		val simpleName = entity.name
+   		val sernum = entity.sernum
+   		
+   		acceptor.accept(entityType) [
+   			documentation = entity.documentation
+   			for (impl : entity.getImplements) {
+   				if (impl.isGenerics) {
+   					val genericType = typeRef(impl.implements, typeRef(pojoType))
+   					println(genericType)
+   					superTypes += genericType
+   				}
+   				else {
+   					superTypes += impl.implements.cloneWithProxies
+   				}
+   			}
+   			val ext = entity.getExtends
+   			if (ext != null)
+   				superTypes += ext.extends.cloneWithProxies
+   			if (entity.superType != null)
+   				superTypes += entity.superType.cloneWithProxies
+   				
+   			if (sernum != null) {
+   				superTypes += typeRef(SERIALIZABLE)
+   			}
+
+   			var Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses = null
+   			
+   			for (dir : entity.directives) {
+   				if (dir instanceof DaoDirectiveCrud) {
+   					if (moreResultClasses == null)
+   						moreResultClasses = entity.getMoreResultClasses
+   					inferInsertIfx(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members)
+   					inferGetIfx(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   					inferUpdateIfx(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members)
+   					inferDeleteIfx(entity, dir as DaoDirectiveCrud, entityType, simpleName, pojo, pojoType, members)
+   				}
+   				else if (dir instanceof DaoDirectiveQuery) {
+   					if (moreResultClasses == null)
+   						moreResultClasses = entity.getMoreResultClasses
+   					inferListIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   					inferCountIfx(entity, dir as DaoDirectiveQuery, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+   				}
+   				else if (dir instanceof DaoFunProcDirective) {
+   					inferFunctionProcedureIfx(entity, (dir as DaoFunProcDirective).type, (dir as DaoFunProcDirective).paramlist, entityType, simpleName, members)
+   				}
+   			}
+   			if (moreResultClasses != null && !moreResultClasses.empty) {
+   				inferMoreResultClassesIfx(entity, entityType, simpleName, pojo, pojoType, members, moreResultClasses)
+			}
+   		]
+	}
 	/**
 	 * The dispatch method {@code infer} is called for each instance of the
 	 * given element's type that is contained in a resource.
@@ -102,6 +167,7 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		}
 
    		val entityType = entity.toClass(entity.daoFullyQualifiedName(implPackage))
+   		val entityTypeIfx = if (implPackage != null ) entity.toInterface(entity.fullyQualifiedName.toString) []
    		val pojoType = pojo?.toClass(pojo?.fullyQualifiedName)
    		if (pojoType == null && !entity.isFunctionProcedure) {
    			println("Missing POJOTYPE for "+entity)
@@ -121,6 +187,8 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    					addAnnotation(an)
    				}
    			}
+   			if (entityTypeIfx != null)
+   				superTypes += typeRef(entityTypeIfx)
    			for (impl : entity.getImplements) {
    				if (impl.isGenerics) {
    					val genericType = typeRef(impl.implements, typeRef(pojoType))
@@ -298,6 +366,34 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		]	
 	}
 
+   	
+   	def void inferInsertIfx(DaoEntity entity, DaoDirectiveCrud dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		val parent = pojo.parent
+   		
+		members += entity.toMethod('insert', typeRef(pojoType)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('insert', typeRef(pojoType)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('insert', typeRef(pojoType)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+   		
+		members += entity.toMethod('insert', typeRef(pojoType)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+	}
+
    	def void inferGet(DaoEntity entity, DaoDirectiveCrud dir, JvmGenericType entityType, String simpleName, 
    		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
    		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
@@ -343,6 +439,33 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 			body = '''
 				return get(«pojoAttrName», null);
    			'''
+   		]	
+	}
+
+   	def void inferGetIfx(DaoEntity entity, DaoDirectiveCrud dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		
+		members += entity.toMethod('get', typeRef(pojoType)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('get', typeRef(pojoType)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('get', typeRef(pojoType)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+   		
+		members += entity.toMethod('get', typeRef(pojoType)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
    		]	
 	}
 
@@ -400,6 +523,33 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		]	
 	}
 
+   	def void inferUpdateIfx(DaoEntity entity, DaoDirectiveCrud dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		val parent = pojo.parent
+   		
+		members += entity.toMethod('update', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('update', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('update', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+   		
+		members += entity.toMethod('update', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+	}
+
    	def void inferDelete(DaoEntity entity, DaoDirectiveCrud dir, JvmGenericType entityType, String simpleName, 
    		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
    	) {
@@ -454,6 +604,33 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		]	
 	}
 
+   	def void inferDeleteIfx(DaoEntity entity, DaoDirectiveCrud dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		val parent = pojo.parent
+   		
+		members += entity.toMethod('delete', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('delete', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('delete', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+   		
+		members += entity.toMethod('delete', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+	}
+
    	def void inferList(DaoEntity entity, DaoDirectiveQuery dir, JvmGenericType entityType, String simpleName, 
    		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
    		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
@@ -500,6 +677,34 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 			body = '''
 				return list(«pojoAttrName», null);
    			'''
+   		]	
+	}
+
+   	def void inferListIfx(DaoEntity entity, DaoDirectiveQuery dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		val listType = typeRef(java.util.List, typeRef(pojoType))
+   			
+		members += entity.toMethod('list', listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('list', listType) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('list', listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+   		
+		members += entity.toMethod('list', listType) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
    		]	
 	}
 
@@ -551,6 +756,33 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		]	
 	}
 
+   	def void inferCountIfx(DaoEntity entity, DaoDirectiveQuery dir, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		
+		members += entity.toMethod('count', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('count', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod('count', typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+   		
+		members += entity.toMethod('count', typeRef(int)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+   		]	
+	}
+
    	def void inferMoreResultClasses(DaoEntity entity, JvmGenericType entityType, String simpleName, 
    		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
    		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
@@ -582,6 +814,17 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		]	
 	}
 
+   	def void inferMoreResultClassesIfx(DaoEntity entity, JvmGenericType entityType, String simpleName, 
+   		PojoEntity pojo, JvmGenericType pojoType, List<JvmMember> members, 
+   		Map<String, Map<String, JvmParameterizedTypeReference>> moreResultClasses
+   	) {
+   		val pojoAttrName = pojo.name.toFirstLower
+   		
+		members += entity.toMethod('getMoreResultClasses', typeRef(SQL_CONTROL)) [
+			parameters += entity.toParameter(pojoAttrName, typeRef(pojoType))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+	}
 
    	dispatch def void inferFunctionProcedure(DaoEntity entity, FunctionCallQuery type, DaoDirectiveParameters params, 
    		JvmGenericType entityType, String simpleName, List<JvmMember> members
@@ -631,6 +874,37 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 			body = '''
 				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
    			'''
+   		]	
+	}
+
+   	dispatch def void inferFunctionProcedureIfx(DaoEntity entity, FunctionCallQuery type, DaoDirectiveParameters params, 
+   		JvmGenericType entityType, String simpleName, List<JvmMember> members
+   	) {
+   		val listType = typeRef(params.out.type, params.out.arguments)
+   		val fname = entity.getFunProcName
+   		
+		members += entity.toMethod(fname, listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod(fname, listType) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod(fname, listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+   		]	
+   		
+		members += entity.toMethod(fname, listType) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
    		]	
 	}
 
@@ -685,6 +959,37 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		]	
    	}
 
+   	dispatch def void inferFunctionProcedureIfx(DaoEntity entity, ProcedureCallQuery type, DaoDirectiveParameters params, 
+   		JvmGenericType entityType, String simpleName, List<JvmMember> members
+   	) {
+   		val listType = typeRef(params.out.type, params.out.arguments)
+   		val fname = entity.getFunProcName
+   		
+		members += entity.toMethod(fname, listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod(fname, listType) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod(fname, listType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+   		]	
+   		
+		members += entity.toMethod(fname, listType) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+   		]	
+   	}
+
    	dispatch def void inferFunctionProcedure(DaoEntity entity, FunctionCall type, DaoDirectiveParameters params, 
    		JvmGenericType entityType, String simpleName, List<JvmMember> members
    	) {
@@ -733,6 +1038,37 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
 			body = '''
 				return «fname»(«FOR in:params.ins SEPARATOR ", "»«in.simpleName»«ENDFOR», null);
    			'''
+   		]	
+   	}
+
+   	dispatch def void inferFunctionProcedureIfx(DaoEntity entity, FunctionCall type, DaoDirectiveParameters params, 
+   		JvmGenericType entityType, String simpleName, List<JvmMember> members
+   	) {
+   		val outType = typeRef(params.out.type, params.out.arguments)
+   		val fname = entity.getFunProcName
+   		
+		members += entity.toMethod(fname, outType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod(fname, outType) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod(fname, outType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+   		]	
+   		
+		members += entity.toMethod(fname, outType) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
    		]	
    	}
 
@@ -786,6 +1122,36 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    		]	
    	}
 
+   	dispatch def void inferFunctionProcedureIfx(DaoEntity entity, ProcedureUpdate type, DaoDirectiveParameters params, 
+   		JvmGenericType entityType, String simpleName, List<JvmMember> members
+   	) {
+   		val fname = entity.getFunProcName
+   		
+		members += entity.toMethod(fname, typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod(fname, typeRef(int)) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod(fname, typeRef(int)) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+   		]	
+   		
+		members += entity.toMethod(fname, typeRef(int)) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+   		]	
+   	}
+
    	dispatch def void inferFunctionProcedure(DaoEntity entity, FunctionQuery type, DaoDirectiveParameters params, 
    		JvmGenericType entityType, String simpleName, List<JvmMember> members
    	) {
@@ -836,16 +1202,52 @@ class DaoJvmModelInferrer extends AbstractModelInferrer {
    			'''
    		]	
    	}
+
+   	dispatch def void inferFunctionProcedureIfx(DaoEntity entity, FunctionQuery type, DaoDirectiveParameters params, 
+   		JvmGenericType entityType, String simpleName, List<JvmMember> members
+   	) {
+   		val outType = typeRef(params.out.type, params.out.arguments)
+   		val fname = entity.getFunProcName
+   		
+		members += entity.toMethod(fname, outType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod(fname, outType) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+			parameters += entity.toParameter("sqlControl", typeRef(SQL_CONTROL))
+   		]	
+   		
+		members += entity.toMethod(fname, outType) [
+			parameters += entity.toParameter("sqlSession", typeRef(SQL_SESSION))
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+   		]	
+   		
+		members += entity.toMethod(fname, outType) [
+			for (in : params.ins)
+				parameters += entity.toParameter(in.simpleName, typeRef(in.type))
+   		]	
+   	}
    	
    	def QualifiedName daoFullyQualifiedName(DaoEntity entity, String implPackage) {
    		val QualifiedName fqname = entity.fullyQualifiedName
-   		if (implPackage != null) {
-   			var fqn = fqname.skipLast(1)
-   			fqn = fqn.append(implPackage)
-   			fqn = fqn.append(fqname.lastSegment+'Impl')
-   			return fqn
+   		if (implPackage == null)
+			return fqname
+   		if (implPackage.indexOf('.') >= 0) {
+			val segments = implPackage.split('.')
+			val fqn = QualifiedName.create(segments)
+			return fqn.append(fqname.lastSegment)
    		}
-   		return fqname
+   		else {
+	   		var fqn = fqname.skipLast(1)
+	   		fqn = fqn.append(implPackage)
+	   		return fqn.append(fqname.lastSegment+'Impl')
+   		}
    	}
 }
 
