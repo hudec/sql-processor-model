@@ -320,7 +320,7 @@ public class DbResolverBean implements DbResolver {
         synchronized (sync) {
             debug.trace(m, "DATA START FOR " + modelDatabaseValues.dir);
             Class<?> driverClass = (this.driverClass != null) ? this.driverClass : pojoResolverFactory
-                    .getPojoResolver().loadClass(modelDatabaseValues.dbDriver);
+                    .getPojoResolver().loadClass(modelDatabaseValues.dbDriver, null);
             debug.trace(m, "DATA DRIVER " + driverClass);
             if (driverClass != null && Driver.class.isAssignableFrom(driverClass)) {
                 try {

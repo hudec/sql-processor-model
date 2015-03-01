@@ -49,6 +49,7 @@ import org.sqlproc.model.processorModel.DirectiveProperties
 import org.sqlproc.model.processorModel.PojoDirective
 import java.util.TreeMap
 import org.eclipse.xtext.CrossReference
+import org.eclipse.emf.common.util.URI
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
@@ -119,7 +120,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 		return false
 	}
 
-	def String getClassName(String baseClass, String property) {
+	def String getClassName(String baseClass, String property, URI uri) {
 		if (baseClass == null || property == null)
 			return baseClass
 		var pos1 = property.indexOf('.')
@@ -138,7 +139,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 			innerProperty = checkProperty.substring(pos1 + 1)
 			checkProperty = checkProperty.substring(0, pos1)
 		}
-		var descriptors = pojoResolver.getPropertyDescriptors(baseClass)
+		var descriptors = pojoResolver.getPropertyDescriptors(baseClass, uri)
 		if (descriptors == null)
 			return null
 		val _checkProperty = checkProperty
@@ -155,7 +156,7 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 			innerClass = type.getActualTypeArguments().head as Class<?>
 			if (isPrimitive(innerClass))
 				return null
-			return getClassName(innerClass.getName(), innerProperty)
+			return getClassName(innerClass.getName(), innerProperty, uri)
 		} else if (typeof(Collection).isAssignableFrom(innerClass)) {
 			var type = innerDesriptor.getReadMethod().getGenericReturnType() as ParameterizedType
 			if (type.getActualTypeArguments() == null || type.getActualTypeArguments().length == 0)
@@ -163,11 +164,11 @@ class ProcessorModelProposalProvider extends AbstractProcessorModelProposalProvi
 			innerClass = type.getActualTypeArguments().head as Class<?>
 			if (isPrimitive(innerClass))
 				return null
-			return getClassName(innerClass.getName(), innerProperty)
+			return getClassName(innerClass.getName(), innerProperty, uri)
 		} else {
 			if (isPrimitive(innerClass))
 				return null
-			return getClassName(innerClass.getName(), innerProperty)
+			return getClassName(innerClass.getName(), innerProperty, uri)
 		}
 	}
 

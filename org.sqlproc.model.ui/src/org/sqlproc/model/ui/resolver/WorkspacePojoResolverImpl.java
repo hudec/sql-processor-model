@@ -98,7 +98,7 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
     }
 
     @Override
-    public Class<?> loadClass(String name) {
+    public Class<?> loadClass(String name, URI uri) {
         if (allLoaders == null)
             init();
         for (URLClassLoader loader : allLoaders) {
@@ -120,10 +120,10 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
     }
 
     @Override
-    public PropertyDescriptor[] getPropertyDescriptors(String name) {
+    public PropertyDescriptor[] getPropertyDescriptors(String name, URI uri) {
         if (allLoaders == null)
             init();
-        Class<?> beanClass = loadClass(name);
+        Class<?> beanClass = loadClass(name, uri);
         if (beanClass == null)
             return null;
 

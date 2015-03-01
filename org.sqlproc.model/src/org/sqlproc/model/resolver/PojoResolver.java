@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.net.URLClassLoader;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 
 public interface PojoResolver {
@@ -13,9 +14,9 @@ public interface PojoResolver {
 
     List<URLClassLoader> getAllLoaders();
 
-    Class<?> loadClass(String name);
+    Class<?> loadClass(String name, URI uri);
 
-    public PropertyDescriptor[] getPropertyDescriptors(String name);
+    public PropertyDescriptor[] getPropertyDescriptors(String name, URI uri);
 
     boolean isResolvePojo(EObject model);
 
