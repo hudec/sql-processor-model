@@ -18,6 +18,7 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.serializer.ISerializer;
+import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.xtype.XImportDeclaration;
 import org.sqlproc.model.generator.TableDaoGenerator;
 import org.sqlproc.model.generator.TablePojoGenerator;
@@ -271,7 +272,8 @@ public class Utils {
 
         StringBuilder builder = new StringBuilder();
         for (Entry<String, String> pojo : map.entrySet()) {
-            builder.append("pojo ").append(pojo.getKey()).append(' ').append(pojo.getValue()).append(";\n");
+            builder.append("pojo ").append(Strings.toFirstUpper(pojo.getKey())).append(' ').append(pojo.getValue())
+                    .append(";\n");
         }
         return builder.toString();
     }
